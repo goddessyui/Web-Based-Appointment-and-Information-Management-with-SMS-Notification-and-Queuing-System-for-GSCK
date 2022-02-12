@@ -40,10 +40,19 @@ if (isset($_POST['button_register'])) {
     $first_name = $_POST['first_name']; 
     $last_name = $_POST['last_name']; 
 	$query = mysqli_query($db, "SELECT * FROM student_record WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
+	$query1 = mysqli_query($db, "SELECT * FROM student_registry WHERE student_id='{$student_id}'");
 	if (mysqli_num_rows($query) == 1){
+		session_start();
+		session_unset();
+    	session_destroy();
+		session_start();
+		$_SESSION["s_id"] = "1";
+		$_SESSION["student_id"] = $student_id;
 		echo '<script type="text/javascript">alert("Student Verified");window.location.href="student_index.php"</script>';
-	
+	}else if(mysqli_num_rows($query1) == 1){
+		echo '<p color="red">The Student ID <i>'.$student_id.'</i> is alrady signed up.</p>';
 	}
+	
 	else {
 		echo '<p color="red">The Student ID <i>'.$student_id.'</i> is not on the list. Please type another.</p>';
 }
