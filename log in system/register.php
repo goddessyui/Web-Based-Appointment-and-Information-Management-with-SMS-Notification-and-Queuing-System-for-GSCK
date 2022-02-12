@@ -9,15 +9,11 @@
 <?php include_once("dbconfig.php"); ?>
 <body>
     <h1>member system tutorial - register</h1> 
-    
-    <form action="./register.php" class="form" method="POST">
+
 	
 	<h1>create account</h1>
-
-	<div class="">
+	<form class="register.php" method="POST">
 	
-	</div>
-
 	<div class="">
 		<input type="text" name="student_id" value="" placeholder="Your Student ID" autocomplete="off" required />
 	</div>
@@ -29,32 +25,33 @@
 	</div>
 	
 	<div class="">
-		<input class="" type="submit" name="button_register" value="Verify" />
+		<button class="" type="submit" name="button_register">Login</button>
 	</div>
-
+	
 	<p class="center"><br />
-		Already have an account? <a href="<?php echo SITE_ADDR ?>/login">Login here</a>
+		Already have an account? <a href="student_index.php">Login here</a>
 	</p>
-    <?php
+	</form>
+	<?php
+
 
 if (isset($_POST['button_register'])) {
-	
 	$student_id = $_POST['student_id']; 
     $first_name = $_POST['first_name']; 
     $last_name = $_POST['last_name']; 
-    
-
-	$query = mysqli_query($conn, "SELECT * FROM student_record WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
+	$query = mysqli_query($db, "SELECT * FROM student_record WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
 	if (mysqli_num_rows($query) == 1){
-		echo '<script type="text/javascript">alert("Login Successful!");window.location.href="student_index.php"</script>';
+		echo '<script type="text/javascript">alert("Student Verified");window.location.href="student_index.php"</script>';
 	
 	}
-	else
-		$error_msg = 'The Student ID <i>'.$student_id.'</i> is not on the list. Please type another.';
+	else {
+		echo '<p color="red">The Student ID <i>'.$student_id.'</i> is not on the list. Please type another.</p>';
 }
-	?>
+}
+	
+?>
+      
 
-</form>
        
 </body>
 </html>
