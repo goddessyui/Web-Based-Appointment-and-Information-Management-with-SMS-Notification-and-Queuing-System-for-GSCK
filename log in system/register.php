@@ -28,9 +28,8 @@
 		<input type="text" name="last_name" value="" placeholder="Your Last Name" autocomplete="off" required />
 	</div>
 	
-	
 	<div class="">
-		<input class="" type="submit" name="button_register" value="create account" />
+		<input class="" type="submit" name="button_register" value="Verify" />
 	</div>
 
 	<p class="center"><br />
@@ -39,14 +38,22 @@
     <?php
 
 if (isset($_POST['button_register'])) {
+	
+	$student_id = $_POST['student_id']; 
+    $first_name = $_POST['first_name']; 
+    $last_name = $_POST['last_name']; 
+    
 
-    $stmt = $db->prepare("SELECT *
-    FROM student_record WHERE first_name = ? AND  last_name = ? AND student_id = ?");
-    $stmt->bind_param("ss", $username, $password, $student_id);
+	$query = mysqli_query($conn, "SELECT * FROM student_record WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
+	if (mysqli_num_rows($query) == 1){
+		echo '<script type="text/javascript">alert("Login Successful!");window.location.href="student_index.php"</script>';
+	
+	}
+	else
+		$error_msg = 'The Student ID <i>'.$student_id.'</i> is not on the list. Please type another.';
+}
+	?>
 
-    $username = $_POST['first_name'];
-    $password = $_POST['last_name'];
-    $student_id = $_POST['student_id']
 </form>
        
 </body>
