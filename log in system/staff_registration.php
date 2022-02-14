@@ -2,14 +2,14 @@
 include_once("dbconfig.php"); 
 session_start();
 $std_id = $_SESSION["s_id"];
-$session_id = $_SESSION["student_id"];
+$session_id = $_SESSION["staff_id"];
 
-$query = mysqli_query($db, "SELECT * FROM student_record WHERE student_id='{$session_id}'");
+$query = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$session_id}'");
 $row = $query->fetch_assoc();
-$s = $row["student_id"];
+$s = $row["staff_id"];
 
-if ($std_id != "1") {
-    echo '<script type="text/javascript">window.location.href="register.php"</script>';
+if ($std_id != "2") {
+    echo '<script type="text/javascript">window.location.href="verification.php"</script>';
 }
 ?>
 
@@ -24,10 +24,10 @@ if ($std_id != "1") {
 
 <body>
 
-<form action="student_index.php" method="post">
+<form action="staff_registration.php" method="post">
 <h1>Sign Up</h1>
 <div>
-    Student ID: <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" readonly>
+    Staff ID: <input type="text" name="staff_id" value="<?php echo $row["staff_id"]?>" readonly>
     </div><div>
     First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> readonly>
     </div><div>
@@ -37,11 +37,10 @@ if ($std_id != "1") {
 		<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
 	</div>
     <div class="">
-		<input type="tel" name="number" value="" placeholder="9683510254" minlength="10" maxlength="10" autocomplete="off" required />
+		<input type="tel" name="number" value="" placeholder="09683510254" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
 	<div class="">
-	<div class="">
-		<input type="text" name="email" value="" placeholder="provide an email" autocomplete="off" required />
+    <input type="text" name="position" value="" placeholder="provide an position" autocomplete="off" required />
 	</div>
 	<div class="">
 		<input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
@@ -63,12 +62,12 @@ if ($std_id != "1") {
 
 <?php
 if (isset($_POST['button_register'])) {
-    $student_id = $_POST['student_id'];
+    $staff_id = $_POST['staff_id'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $username = $_POST['username']; 
     $number = $_POST['number']; 
-    $email = $_POST['email']; 
+    $course = $_POST['position']; 
     $passwd = $_POST['passwd']; 
     $passwd_again = $_POST['confirm_password']; 
 
@@ -79,13 +78,11 @@ if (isset($_POST['button_register'])) {
             
             if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
                
-                $query = mysqli_query($db, "SELECT * FROM student_registry WHERE username='{$username}'");
-            if (mysqli_num_rows($query) == 0){
-                //$mysql = "INSERT INTO student_registry (ID, first_name, last_name, student_id, username, 'number', email, 'password') VALUES('$idid','$first_name','$last_name','$student_id','$username','$number','$email','$passwd')";
-                $idid = '0';
-                mysqli_query($db, "INSERT INTO student_registry VALUES ('{$idid}', '{$first_name}', '{$last_name}', '{$student_id}', '{$email}', '{$number}', '{$username}' , '{$passwd}')");
-               
-                $query = mysqli_query($db, "SELECT * FROM student_registry WHERE username='{$username}'");
+                $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
+                $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
+            if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+                mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}','{$number}')");
+                $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             if (mysqli_num_rows($query) == 1){
                 $success = true;    
             }
@@ -105,6 +102,9 @@ if (isset($_POST['button_register'])) {
 }
 
 if (isset($success) && $success == true){
+    session_start();
+	session_unset();
+    session_destroy();
     echo '<p color="green">Yay!! Your account has been created. <a href="./login.php">Click here</a> to login!<p>';
 }
 
