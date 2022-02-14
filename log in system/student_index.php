@@ -62,7 +62,6 @@ if ($std_id != "1") {
 
 
 <?php
-$idid = "";
 if (isset($_POST['button_register'])) {
     $student_id = $_POST['student_id'];
     $first_name = $_POST['first_name'];
@@ -75,30 +74,24 @@ if (isset($_POST['button_register'])) {
 
 
     if ($username != "" && $passwd != "" && $passwd_again != ""){
-        // make sure the two passwords match
+        
         if ($passwd == $passwd_again){
-            // make sure the password meets the min strength requirements
+            
             if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
                
                 $query = mysqli_query($db, "SELECT * FROM student_registry WHERE username='{$username}'");
             if (mysqli_num_rows($query) == 0){
-                $sql = "INSERT INTO student_registry "."(ID, first_name, last_name, student_id, username, number, email, password) "."VALUES"."('$idid','$first_name','$last_name','$student_id','$username','$number','$email','$passwd')";
+                //$mysql = "INSERT INTO student_registry (ID, first_name, last_name, student_id, username, 'number', email, 'password') VALUES('$idid','$first_name','$last_name','$student_id','$username','$number','$email','$passwd')";
+                $idid = '0';
+                mysqli_query($db, "INSERT INTO student_registry VALUES ('{$idid}', '{$first_name}', '{$last_name}', '{$student_id}', '{$email}', '{$number}', '{$username}' , '{$passwd}')");
+               
                 $query = mysqli_query($db, "SELECT * FROM student_registry WHERE username='{$username}'");
             if (mysqli_num_rows($query) == 1){
-    
-         $success = true;
-
-         if (isset($success) && $success == true){
-			echo '<p color="green">Yay!! Your account has been created. <a href="./login.php">Click here</a> to login!<p>';
-		}
-	
-		else if (isset($error_msg))
-			echo '<p color="red">'.$error_msg.'</p>';
-
-        }
-        else
-             $error_msg = 'An error occurred and your account was not created.';
+                $success = true;    
             }
+                else 
+             $error_msg = 'An error occurred and your account was not created.';
+        }
             else
                 $error_msg = 'The username <i>'.$username.'</i> is already taken. Please use another.';
 
@@ -108,12 +101,19 @@ if (isset($_POST['button_register'])) {
         }
         else
             $error_msg = 'Your passwords did not match.';
-    }
-    else
-        $error_msg = 'Please fill out all required fields.';
+    
+}
 
+if (isset($success) && $success == true){
+    echo '<p color="green">Yay!! Your account has been created. <a href="./login.php">Click here</a> to login!<p>';
+}
+
+else if (isset($error_msg))
+    echo '<p color="red">'.$error_msg.'</p>';
 
 }
+
+
 ?>
 
 
