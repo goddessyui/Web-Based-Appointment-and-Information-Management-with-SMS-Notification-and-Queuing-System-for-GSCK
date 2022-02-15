@@ -65,7 +65,8 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["student_id"] = $staff_id;
+            $_SESSION["staff_id"] = $staff_id;
+            $_SESSION["position"] = $position;
             $_SESSION["username"] = $row["username"];
             $_SESSION["password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="../Staff/registrar/registrar_index.php"</script>';
@@ -75,7 +76,8 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["student_id"] = $staff_id;
+            $_SESSION["staff_id"] = $staff_id;
+            $_SESSION["position"] = $position;
             $_SESSION["username"] = $row["username"];
             $_SESSION["password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="../Staff/accounting_staff/account_staff_index.php"</script>';
@@ -85,7 +87,8 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["student_id"] = $staff_id;
+            $_SESSION["staff_id"] = $staff_id;
+            $_SESSION["position"] = $position;
             $_SESSION["username"] = $row["username"];
             $_SESSION["password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="../Staff/teacher/teacher_index.php"</script>';
