@@ -105,7 +105,7 @@ if (isset($_POST['button_register'])) {
 }
 
 if (isset($success) && $success == true){
-    session_start();
+    
 	session_unset();
     session_destroy();
     echo '<script type="text/javascript">alert("Account Created!");window.location.href="login.php.php"</script>';

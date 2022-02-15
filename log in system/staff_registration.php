@@ -67,7 +67,7 @@ if (isset($_POST['button_register'])) {
     $last_name = $_POST['last_name'];
     $username = $_POST['username']; 
     $number = $_POST['number']; 
-    $course = $_POST['position']; 
+    $position = $_POST['position']; 
     $passwd = $_POST['passwd']; 
     $passwd_again = $_POST['confirm_password']; 
 
@@ -102,7 +102,7 @@ if (isset($_POST['button_register'])) {
 }
 
 if (isset($success) && $success == true){
-    session_start();
+ 
 	session_unset();
     session_destroy();
     echo '<p color="green">Yay!! Your account has been created. <a href="./login.php">Click here</a> to login!<p>';
