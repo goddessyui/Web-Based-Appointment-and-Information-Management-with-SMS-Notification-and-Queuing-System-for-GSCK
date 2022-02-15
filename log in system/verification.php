@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
 </head>
-<?php include_once("dbconfig.php"); ?>
+<?php include_once("../dbconfig.php"); ?>
 <body>
     <h1>member system tutorial - register</h1> 
 

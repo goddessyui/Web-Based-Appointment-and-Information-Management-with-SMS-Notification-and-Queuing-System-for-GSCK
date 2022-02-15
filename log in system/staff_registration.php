@@ -1,5 +1,5 @@
 <?php
-include_once("dbconfig.php"); 
+include_once("../dbconfig.php"); 
 session_start();
 $std_id = $_SESSION["s_id"];
 $session_id = $_SESSION["staff_id"];
@@ -10,7 +10,7 @@ $s = $row["staff_id"];
 
 if ($std_id != "2") {
     echo '<script type="text/javascript">window.location.href="verification.php"</script>';
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +105,7 @@ if (isset($success) && $success == true){
  
 	session_unset();
     session_destroy();
-    echo '<p color="green">Yay!! Your account has been created. <a href="./login.php">Click here</a> to login!<p>';
+    echo '<script type="text/javascript">alert("Account Created!");window.location.href="login.php"</script>';
 }
 
 else if (isset($error_msg))

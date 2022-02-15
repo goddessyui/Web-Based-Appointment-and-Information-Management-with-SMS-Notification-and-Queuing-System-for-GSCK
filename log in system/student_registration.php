@@ -1,5 +1,5 @@
 <?php
-include_once("dbconfig.php"); 
+include_once("../dbconfig.php"); 
 session_start();
 $std_id = $_SESSION["s_id"];
 $session_id = $_SESSION["student_id"];
@@ -82,7 +82,7 @@ if (isset($_POST['button_register'])) {
             if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
                
                 $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
-                $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
+                $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
                 mysqli_query($db, "INSERT INTO tbl_student_registry VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')");
                 $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
@@ -108,7 +108,7 @@ if (isset($success) && $success == true){
     
 	session_unset();
     session_destroy();
-    echo '<script type="text/javascript">alert("Account Created!");window.location.href="login.php.php"</script>';
+    echo '<script type="text/javascript">alert("Account Created!");window.location.href="login.php"</script>';
 }
 
 else if (isset($error_msg))
