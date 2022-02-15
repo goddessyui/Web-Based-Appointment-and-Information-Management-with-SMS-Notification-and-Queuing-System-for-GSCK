@@ -8,7 +8,7 @@
 </head>
 <?php include_once("../dbconfig.php"); ?>
 <body>
-    <h1>member system tutorial - register</h1> 
+    <h1>Verifiying Student/Staff info</h1> 
 
 	
 	<h1>create account</h1>

@@ -38,9 +38,10 @@ if ($std_id != "2") {
     <div class="">
 		<input type="tel" name="number" value="" placeholder="09683510254" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
-	<div class="">
-    <input type="text" name="position" value="" placeholder="provide an position" autocomplete="off" required />
-	</div>
+    <div><select name="position">  
+    <option value="Teacher">Teacher</option>}  
+    <option value="Account Staff">Accounting Staff</option>  
+    </select>  </div>
 	<div class="">
 		<input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
 	</div>
@@ -56,8 +57,6 @@ if ($std_id != "2") {
 		<button class="" type="submit" name="button_register">Create Account</button>
 	</div>
 </form>
-
-
 
 <?php
 if (isset($_POST['button_register'])) {
@@ -104,7 +103,7 @@ if (isset($success) && $success == true){
  
 	session_unset();
     session_destroy();
-    echo '<script type="text/javascript">alert("Account Created!");window.location.href="login .php"</script>';
+    echo '<script type="text/javascript">alert("Account Created!");window.location.href="login.php"</script>';
 }
 
 else if (isset($error_msg))

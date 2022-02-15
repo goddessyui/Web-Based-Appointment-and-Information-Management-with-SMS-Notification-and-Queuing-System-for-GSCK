@@ -9,7 +9,7 @@
 <?php include_once("../dbconfig.php"); ?>
 <body>
 
-<h1>create account</h1>
+<h1>Log In</h1>
 	<form class="login.php" method="POST">
     <div class="">
 		<input type="text" name="username" value="" placeholder="Username" autocomplete="off" required />
@@ -23,7 +23,7 @@
 	</div>
 	
 	<p class="center"><br />
-		Already have an account? <a href="login.php">Login here</a>
+        Don't have an account? <a href="verification.php">Register here</a>
 	</p>
 	</form>
 	<?php
