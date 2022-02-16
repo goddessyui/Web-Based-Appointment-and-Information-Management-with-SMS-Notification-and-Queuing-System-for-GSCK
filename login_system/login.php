@@ -37,7 +37,7 @@ if (isset($_POST['button_login'])) {
 	if (mysqli_num_rows($query) == 1){
         $row = $query->fetch_assoc();
         $student_id = $row["student_id"];
-        $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
+        $query1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}'");
     if (mysqli_num_rows($query1) == 1){
         session_start();
 		session_unset();
@@ -57,7 +57,7 @@ if (isset($_POST['button_login'])) {
         $row = $query2->fetch_assoc();
         $staff_id = $row["staff_id"];
         $position = $row["position"];
-        $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$staff_id}'");
+        $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$staff_id}'");
 
     if (mysqli_num_rows($query3) == 1){
         if ($position == 'Registrar'){
