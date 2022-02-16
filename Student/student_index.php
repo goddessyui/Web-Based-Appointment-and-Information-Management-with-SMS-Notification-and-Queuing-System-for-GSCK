@@ -2,8 +2,8 @@
 include_once("../dbconfig.php"); 
 session_start();
 $student_id = $_SESSION["student_id"];
-$username1 = $_SESSION["username"];
-$password1 = $_SESSION["password"];
+$username1 = $_SESSION["student_username"];
+$password1 = $_SESSION["student_password"];
 if ($student_id == "" && $username1 == "" && $password1 == ""){
     echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 }

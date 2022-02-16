@@ -44,8 +44,8 @@ if (isset($_POST['button_login'])) {
     	session_destroy();
 		session_start();
 		$_SESSION["student_id"] = $student_id;
-		$_SESSION["username"] = $row["username"];
-        $_SESSION["password"] = $row["password"];
+		$_SESSION["student_username"] = $row["username"];
+        $_SESSION["student_password"] = $row["password"];
 		echo '<script type="text/javascript">alert("Student Verified");window.location.href="../Student/student_index.php"</script>';
     }
     else{
@@ -65,10 +65,10 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["password"] = $row["password"];
+            $_SESSION["registrar_staff_id"] = $staff_id;
+            $_SESSION["registrar_position"] = $position;
+            $_SESSION["registrar_username"] = $row["username"];
+            $_SESSION["registrar_password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="../Staff/registrar/registrar_index.php"</script>';
         }   
         else if($position == 'Account Staff'){
@@ -76,10 +76,10 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["password"] = $row["password"];
+            $_SESSION["accounting_staff_id"] = $staff_id;
+            $_SESSION["accounting_position"] = $position;
+            $_SESSION["accounting_username"] = $row["username"];
+            $_SESSION["accounting_password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="../Staff/accounting_staff/account_staff_index.php"</script>';
         }
         else if($position == 'Teacher'){
@@ -87,10 +87,10 @@ if (isset($_POST['button_login'])) {
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["password"] = $row["password"];
+            $_SESSION["teacher_staff_id"] = $staff_id;
+            $_SESSION["teacher_position"] = $position;
+            $_SESSION["teacher_username"] = $row["username"];
+            $_SESSION["teacher_password"] = $row["password"];
             echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="../Staff/teacher/teacher_index.php"</script>';
         }
     }
