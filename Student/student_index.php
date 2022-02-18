@@ -17,6 +17,22 @@ if ($student_id == "" && $username1 == "" && $password1 == ""){
     <title>Document</title>
 </head>
 <body>
-    <h1>HELLO!!</h1>
+        <div class="">
+            <div class="">
+                <a class="" href="#">GSCK Appointment System</a>
+            </div>
+            <ul class="">
+                <li class="active"><a href="transaction.php">Request an Appointment</a></li>
+		<li><a href="stransaction.php">Appointment Details</a></li>
+                <li><a href="menu.php">Account</a></li>
+            </ul>
+            <ul class="">
+                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            </ul>
+
+
+
+
+    <h1>This is the index(announcement schedule etc etc)</h1>
 </body>
 </html>

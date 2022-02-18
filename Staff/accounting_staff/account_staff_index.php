@@ -18,6 +18,22 @@ if ($staff_id == "" && $username == "" && $password == "" && $position != "Accou
     <title>Document</title>
 </head>
 <body>
-    <h1>HELLO!!</h1>
+<div class="">
+            <div class="">
+                <a class="" href="#">GSCK Appointment System</a>
+            </div>
+            <ul class="">
+                <li class="active"><a href="transaction.php">Appointments</a></li>
+		        <li><a href="stransaction.php">Announcements</a></li>
+                <li><a href="stransaction.php">Schedules</a></li>
+                <li><a href="stransaction.php">Scholars Record</a></li>
+                <li><a href="menu.php">Account</a></li>
+            </ul>
+            <ul class="">
+                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            </ul>
+
+
+<h1>This is the index(announcement schedule etc etc)</h1>
 </body>
 </html>
