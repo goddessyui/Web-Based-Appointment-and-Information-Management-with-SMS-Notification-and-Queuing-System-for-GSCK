@@ -25,12 +25,8 @@
 	</div>
 	
 	<div class="">
-		<button class="" type="submit" name="button_register">Login</button>
+		<button class="" type="submit" name="button_register">Verify</button>
 	</div>
-	
-	<p class="center"><br />
-		Already have an account? <a href="login.php">Login here</a>
-	</p>
 	</form>
 	<?php
 

@@ -2,10 +2,9 @@
 include_once("../../dbconfig.php"); 
 session_start();
 $staff_id = $_SESSION["registrar_staff_id"];
-$position = $_SESSION["registrar_position"];
+$position = $_SESSION["position"];
 $username = $_SESSION["registrar_username"];
-$password = $_SESSION["registrar_password"];
-if ($staff_id == "" && $username == "" && $password == "" && $position != "Registrar"){
+if ($staff_id == "" && $username == "" && $position != "Registrar"){
     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
 }
 ?>

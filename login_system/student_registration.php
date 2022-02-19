@@ -27,11 +27,11 @@ if ($std_id != "1") {
 <form action="student_registration.php" method="post">
 <h1>Sign Up</h1>
 <div>
-    Student ID: <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" readonly>
+    Student ID: <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled>
     </div><div>
-    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> readonly>
+    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled>
     </div><div>
-    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> readonly>
+    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled>
     </div>
     <div class="">
 		<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
@@ -64,9 +64,9 @@ if ($std_id != "1") {
 
 <?php
 if (isset($_POST['button_register'])) {
-    $student_id = $_POST['student_id'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+    $student_id = $row["student_id"];
+    $first_name = $row["first_name"];
+    $last_name = $row["last_name"];
     $username = $_POST['username']; 
     $number = $_POST['number']; 
     $course = $_POST['course']; 

@@ -26,11 +26,11 @@ if ($std_id != "2") {
 <form action="staff_registration.php" method="post">
 <h1>Sign Up</h1>
 <div>
-    Staff ID: <input type="text" name="staff_id" value="<?php echo $row["staff_id"]?>" readonly>
+    Staff ID: <input type="text" name="staff_id" value="<?php echo $row["staff_id"]?>" disabled>
     </div><div>
-    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> readonly>
+    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled>
     </div><div>
-    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> readonly>
+    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled>
     </div>
     <div class="">
 		<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
@@ -60,9 +60,9 @@ if ($std_id != "2") {
 
 <?php
 if (isset($_POST['button_register'])) {
-    $staff_id = $_POST['staff_id'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+    $staff_id = $row["staff_id"];
+    $first_name = $row["first_name"];
+    $last_name = $row["last_name"];
     $username = $_POST['username']; 
     $number = $_POST['number']; 
     $position = $_POST['position']; 
