@@ -34,27 +34,25 @@ if ($std_id != "1") {
     Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled>
     </div>
     <div class="">
-		<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
+	Username: <input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
 	</div>
     <div class="">
-		<input type="tel" name="number" value="" placeholder="9683510254" minlength="11" maxlength="11" autocomplete="off" required />
+	Mobile Number: <input type="tel" name="number" value="" placeholder="9683510254" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
 	<div class="">
-    <input type="text" name="course" value="" placeholder="provide an course" autocomplete="off" required />
+    Course: <input type="text" name="course" value="" placeholder="provide an course" autocomplete="off" required />
 	</div>
-    <input type="text" name="year" value="" placeholder="provide an year" autocomplete="off" required />
-	</div>
-	<div class="">
-		<input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
+    Year: <input type="text" name="year" value="" placeholder="provide an year" autocomplete="off" required />
 	</div>
 	<div class="">
-		<p>password must be at least 5 characters and<br /> have a special character, e.g. !#$.,:;()</font></p>
+	Password: <input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
+	</div>
+	<div class="">
+		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
 	</div>					
 	<div class="">
-		<input type="password" name="confirm_password" value="" placeholder="confirm your password" autocomplete="off" required />
+	Re Enter Password: <input type="password" name="confirm_password" value="" placeholder="confirm your password" autocomplete="off" required />
 	</div>
-	
-	<div class="">
     <div class="">
 		<button class="" type="submit" name="button_register">Create Account</button>
 	</div>
@@ -79,20 +77,23 @@ if (isset($_POST['button_register'])) {
         
         if ($passwd == $passwd_again){
             
-            if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
-               
-                $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
-                $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
-            if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+            if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
+            $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
+            $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
+
+                if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
                 mysqli_query($db, "INSERT INTO tbl_student_registry VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')");
                 $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
-            if (mysqli_num_rows($query) == 1){
-                $success = true;    
-            }
-                else 
-             $error_msg = 'An error occurred and your account was not created.';
-        }
-            else
+
+                    if (mysqli_num_rows($query) == 1){
+                    $success = true;    
+                    }
+
+                    else 
+                    $error_msg = 'An error occurred and your account was not created.';
+                    }
+
+                else
                 $error_msg = 'The username <i>'.$username.'</i> is already taken. Please use another.';
 
             }

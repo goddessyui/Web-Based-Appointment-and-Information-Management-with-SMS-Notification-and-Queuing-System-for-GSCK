@@ -25,6 +25,9 @@
 	<p class="center"><br />
         Don't have an account? <a href="verification.php">Register here</a>
 	</p>
+    <p class="center"><br />
+         <a href="forgotpassword_verify.php">Forget Password?</a>
+	</p>
 	</form>
 	<?php
 

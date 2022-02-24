@@ -33,26 +33,33 @@ if ($std_id != "2") {
     Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled>
     </div>
     <div class="">
-		<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
+	Username:	<input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
 	</div>
     <div class="">
-		<input type="tel" name="number" value="" placeholder="09683510254" minlength="11" maxlength="11" autocomplete="off" required />
+	Phone Number: <input type="tel" name="number" value="" placeholder="09683510254" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
-    <div><select name="position">  
+    <div>Position: <select name="position">  
     <option value="Teacher">Teacher</option>}  
-    <option value="Account Staff">Accounting Staff</option>  
+    <option value="Account Staff">Accounting Staff/Scholar Coordinator</option>  
     </select>  </div>
+    <div> Appointment Type: </div>
+    <div>
+    <input type="checkbox" name="check_list[]" value="Meeting">
+    <label> Meeting</label><br>
+    <input type="checkbox" name="check_list[]" value="Evaluation">
+    <label> Evaluation</label><br>
+    <input type="checkbox" name="check_list[]" value="Unifastt">
+    <label> Unifast</label><br>
+    </div>
 	<div class="">
-		<input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
+    Password: <input type="password" name="passwd" value="" placeholder="enter a password" minlength="5" autocomplete="off" required />
 	</div>
-	<div class="">
-		<p>password must be at least 5 characters and<br /> have a special character, e.g. !#$.,:;()</font></p>
+    <div class="">
+		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
 	</div>					
 	<div class="">
-		<input type="password" name="confirm_password" value="" placeholder="confirm your password" autocomplete="off" required />
+    Re Enter Password: <input type="password" name="confirm_password" value="" placeholder="confirm your password" minlength="5"  autocomplete="off" required />
 	</div>
-	
-	<div class="">
     <div class="">
 		<button class="" type="submit" name="button_register">Create Account</button>
 	</div>
@@ -68,36 +75,46 @@ if (isset($_POST['button_register'])) {
     $position = $_POST['position']; 
     $passwd = $_POST['passwd']; 
     $passwd_again = $_POST['confirm_password']; 
-
-
+    $type = $_POST['check_list'];
     if ($username != "" && $passwd != "" && $passwd_again != ""){
-        
+    if(!empty($type)){
         if ($passwd == $passwd_again){
             
-            if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
-               
-                $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
-                $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
-            if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+            if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
+            $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
+            $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
+
+                if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
                 mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}','{$number}')");
                 $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
-            if (mysqli_num_rows($query) == 1){
-                $success = true;    
-            }
-                else 
-             $error_msg = 'An error occurred and your account was not created.';
-        }
-            else
-                $error_msg = 'The username <i>'.$username.'</i> is already taken. Please use another.';
 
-            }
+                    if (mysqli_num_rows($query) == 1){
+                    foreach($type as $types){
+                    $query = "INSERT INTO appointment_type VALUES ('{$staff_id}', '{$types}')";
+                    $query_run = mysqli_query($db, $query);
+                    }
+                    $success = true;     
+                    }
+
+                    else 
+                    $error_msg = 'An error occurred and your account was not created.';
+                    }
+
+                else
+                $error_msg = 'The username <i>'.$username.'</i> is already taken. Please use another.';
+                }
+
             else
-                $error_msg = 'Your password is not strong enough. Please use another.';
-        }
+            $error_msg = 'Your password is not strong enough. Please use another.';
+            }
+            
         else
-            $error_msg = 'Your passwords did not match.';
-    
-}
+        $error_msg = 'Your passwords did not match.';  
+        }
+
+    else 
+    $error_msg = 'You did not select any Appointment Type.';  
+    }
 
 if (isset($success) && $success == true){
  
