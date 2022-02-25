@@ -13,56 +13,82 @@ include_once("../dbconfig.php");
 <body>
 <h1>FORGOT PASSWORD</h1>
 	<form method="POST">
-    <!-- <div class="">
+    <div class="">
 	Enter Username: <input type="text" name="username" value="" placeholder="Username" autocomplete="off" required />
 	</div>
 	<div class="">
-		<button class="" type="submit" name="button_verify">Verify</button>
-	</div> -->
-
-    <label>Enter Mobile No</label>
-    <input type="text" name="mobile_no" value="<?php echo !empty($recipient_no)?$recipient_no:''; ?>" <?php echo ($otpDisplay == 1)?'readonly':''; ?>/>
-    <?php if($otpDisplay == 1){ ?>
-    <label>Enter OTP</label>
-    <input type="text" name="otp_code"/>
-    <a href="javascript:void(0);" class="resend">Resend OTP</a>
-    <?php } ?>
-    <input type="submit" name="<?php echo ($otpDisplay == 1)?'submit_otp':'submit_username'; ?>" value="VERIFY"/>
-
+		<button class="" type="submit" name="submit_username">Next</button>
+	</div>
 	</form>
 	
     <?php
     $receipient_no = '';
     $otpDisplay = 0;
     if (isset($_POST['submit_username'])) {  
-        $rand_no = rand(10000, 99999);
-        $otpDisplay = 1;
-        $recipient_no = $_POST['mobile_no'];
+        $username = $_POST["usename"];
+        $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username ='{$username}'");
+        $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'");
+        if (mysqli_num_rows($query) == 1 && mysqli_num_rows($query1) == 0){
+            $row = $query->fetch_assoc();
+            $m_number = $row["mobile_number"];
+            $rand_no = rand(10000, 99999);
+            session_start();
+		    session_unset();
+    	    session_destroy();
+		    session_start();
+            $_SESSION["student_username"] = $username;
+            $_SESSION["verification_id"] = "student";
 
-    // $username = $_POST["usename"];
-    // $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username ='{$username}'");
-    // $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'");
-    //     if (mysqli_num_rows($query) == 1 && mysqli_num_rows($query1) == 0){
-    //         session_start();
-	// 	    session_unset();
-    // 	    session_destroy();
-	// 	    session_start();
-    //         $_SESSION["student_username"] = $username;
-    //         $_SESSION["verification_id"] = "student";
-    //     }
-    //     else if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 1){
-    //         session_start();
-	// 	    session_unset();
-    // 	    session_destroy();
-	// 	    session_start();
-    //         $_SESSION["staff_username"] = $username;
-    //         $_SESSION["verification_id"] = "staff";
+            include 'smsAPIcon.php';
+            $receiver = $m_number;
+            $message = "Your One Time Password is " . $rand_no;
+            $smsAPICode = "TR-CHRIS092678_LZ1J8";
+            $smsAPIPassword = "hn9$2((%3{";
+        
+            $send = new smsfunction();
+            $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
+            
+            if ($send == false){
+                echo '<script type="text/javascript">alert("text messge not send")';
+            }
+        
+            }
 
-    //     }
+
+
+            echo '<script type="text/javascript">alert("Student Username Verified");window.location.href="forgotpassword.php"</script>';
+        
+        else if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 1){
+            $row = $query1->fetch_assoc();
+            $m_number = $row["mobile_number"];
+            $rand_no = rand(10000, 99999);
+            session_start();
+		    session_unset();
+    	    session_destroy();
+		    session_start();
+            $_SESSION["staff_username"] = $username;
+            $_SESSION["verification_id"] = "staff";
+            include 'smsAPIcon.php';
+            $receiver = $m_number;
+            $message = "Your One Time Password is " . $rand_no;
+            $smsAPICode = "TR-CHRIS092678_LZ1J8";
+            $smsAPIPassword = "hn9$2((%3{";
+            $send = new smsfunction();
+            $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
+            
+            if ($send == false){
+                echo '<script type="text/javascript">alert("error message not sent")';
+            }
+        
+            
+
+
+            echo '<script type="text/javascript">alert("Staff Username Verified");window.location.href="forgotpassword.php"</script>';
+        }
+        else {
+            echo 'Username not found';
+        }
     }
-else if(isset($_POST['submit_otp']) && !empty($_POST['otp_code'])){
-    $otpDisplay = 1;
-}
         ?>
     
     </body>
