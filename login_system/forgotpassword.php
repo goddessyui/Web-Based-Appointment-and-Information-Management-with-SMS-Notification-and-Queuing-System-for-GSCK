@@ -1,11 +1,15 @@
 <?php
 include_once("../dbconfig.php"); 
-start_session();
+session_start();
 $student_username =  $_SESSION["student_username"];
 $staff_username = $_SESSION["staff_username"];
-if ($student_username == "" && $staff_username ==""){
-    echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
-}
+$v_id = $_SESSION["verification_id"];
+$v_number = $_SESSION["verification_no"];
+$m_number = $_SESSION["m_number"];
+$otpDisplay = "";
+// if ($student_username == "" && $staff_username ==""){
+//     echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,38 +20,61 @@ if ($student_username == "" && $staff_username ==""){
     <title>Document</title>
 </head>
 <body>
-<h1>FORGOT PASSWORD</h1>
-	<form class="login.php" method="POST">
+<h1>FORGOT PASSWORD we send to your number ****<?php echo substr($m_number, -1, 2);  ?></h1>
+	<form  method="POST">
+    <label>Enter Verification Code <?php echo $v_number ?></label>
+    <input type="text" name="mobile_no" value="<?php echo !empty($verification)?$verification:''; ?>" <?php echo ($otpDisplay == 1)?'readonly':''; ?>/>
+    
+    
+    <label>New Password</label>
     <div class="">
-	Username: <input type="text" name="username" value="<?php echo $row["staff_id"]?>"  autocomplete="off" required readonly/>
+		<input type="text" name="verification" value="" placeholder="New Password" autocomplete="off" <?php echo !empty($verification)?'required':'disabled'; ?> />
+	</div>
+    <label>Re-enter new password</label>
+    <div class="">
+		<input type="text" name="OTP" value="" placeholder="Re enter new Password" autocomplete="off" <?php echo !empty($verification)?'required':'disabled'; ?> />
+   
+    <input type="submit" name="<?php echo ($otpDisplay == 1)?'new_password':'submit_verification'; ?>" value="VERIFY"/>
+</form>
+
+
+    <!-- <div class="">
+	Verification Code: <input type="text" name="username" value=""  autocomplete="off" required />
 	</div>
 	<div class="">
-		<input type="text" name="OTP" value="" placeholder="Verification Code" autocomplete="off" required />
+		<input type="text" name="OTP" value="" placeholder="New Password" autocomplete="off" required />
+	</div>
+    <div class="">
+		<input type="text" name="OTP" value="" placeholder="Re enter new Password" autocomplete="off" required />
 	</div>
 	<div class="">
 		<button class="" type="submit" name="button_verify">Verify</button>
 	</div>
-	</form>
-	
-    <?php
-    if (isset($_POST['button_verify'])) {
-    $username = $_POST["usename"];
-    $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'")
-        if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+	</form> -->
 
-        include '../smsAPIcon.php';
-        $receiver = $_POST["reciever"];
-        $message = $_POST["message"];
-        $smsAPICode = "TR-CHRIS092678_LZ1J8";
-        $smsAPIPassword = "hn9$2((%3{";
-        $send = new smsfunction();
-        $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
+    <?php
+    if (isset($_POST['submit_verification'])) {
+        $verification = $_POST['mobile_no'];
+        if ($verification == $v_number){
+            $otpDisplay = 1;
         
-    if ($send == false){
-        echo '<script type="text/javascript">alert("text messge not send")';
-    }
-    }
-    }
+            
+         }else{
+             echo "not match";
+         }
+        }
+        $sql = "UPDATE tbl_staff_registry SET password = $newpassword WHERE username = $staff_username";
+        if ($db->query($sql) === TRUE) {
+            echo "Password updated successfully";
+          } else {
+            echo "Error changing password: " . $conn->error;
+          }
+        
+    // if (isset($_POST['new_password'])) {
+    //     $username = $_POST["usename"];
+    //     $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'")
+    //     }
+        
 
     ?>
 
