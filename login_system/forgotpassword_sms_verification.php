@@ -1,15 +1,15 @@
 <?php
 include_once("../dbconfig.php"); 
 session_start();
-$staff_username = "";
-$student_username =  $_SESSION["student_username"];
-$staff_username = $_SESSION["staff_username"];
+
+$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 $v_id = $_SESSION["verification_id"];
 $v_number = $_SESSION["verification_no"];
 $m_number = $_SESSION["m_number"];
-// if ($student_username == "" && $staff_username ==""){
-//     echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
-// }
+if ($student_username == "" && $staff_username ==""){
+    echo '<script type="text/javascript">window.location.href="login.php"</script>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

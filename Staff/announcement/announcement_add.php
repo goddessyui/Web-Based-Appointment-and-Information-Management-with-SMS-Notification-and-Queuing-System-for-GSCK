@@ -1,9 +1,9 @@
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
-$staff_id = $_SESSION["accounting_staff_id"];
-$position = $_SESSION["position"];
-$username = $_SESSION["accounting_username"];
+$staff_id = !empty($_SESSION["teacher_staff_id"])?$_SESSION["teacher_staff_id"]:'';
+$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+$username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_username"]:'';
 
 //if ($position != "Teacher"){
  //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
@@ -67,8 +67,6 @@ if (isset($_POST['button_add_menu'])) {
     $datetime = $date;
     $staff_id1 = $staff_id;
     $menu_photo = "../../announcement_image/" . basename($_FILES['image']['name']);
-
-
     if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
         $stmt->execute();
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_test.php"</script>';

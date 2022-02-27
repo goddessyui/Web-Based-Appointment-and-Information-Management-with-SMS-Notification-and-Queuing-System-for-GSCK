@@ -3,7 +3,6 @@ include_once("../dbconfig.php");
 session_start();
 $std_id = $_SESSION["s_id"];
 $session_id = $_SESSION["student_id"];
-
 $query = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$session_id}'");
 $row = $query->fetch_assoc();
 $s = $row["student_id"];
