@@ -27,6 +27,7 @@ include_once("../dbconfig.php");
         $username = $_POST['username']; 
         $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username ='{$username}'");
         $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'");
+
         if (mysqli_num_rows($query) == 1){
             $row = $query->fetch_assoc();
             $m_number = $row["mobile_number"];
@@ -49,8 +50,9 @@ include_once("../dbconfig.php");
             $_SESSION["verification_id"] = "student";
             $_SESSION["verification_no"] = $rand_no;
             $_SESSION["m_number"] = $m_number;
-            echo '<script type="text/javascript">alert("Student Username Verified");window.location.href="forgotpassword.php"</script>';
+            echo '<script type="text/javascript">alert("Student Username Verified");window.location.href="forgotpassword_sms_verification.php"</script>';
         }}
+        
         else if (mysqli_num_rows($query1) == 1){
             $row = $query1->fetch_assoc();
             $m_number = $row["mobile_number"];
@@ -62,7 +64,7 @@ include_once("../dbconfig.php");
             $smsAPIPassword = "hn9$2((%3{";
             $send = new smsfunction();
             $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-            echo '<script type="text/javascript">alert("Staff Username Verified");window.location.href="forgotpassword.php"</script>';
+            echo '<script type="text/javascript">alert("Staff Username Verified");window.location.href="forgotpassword_sms_verification.php"</script>';
             if ($send == false){
                 echo '<script type="text/javascript">alert("error message not sent")';
             }else{
@@ -74,7 +76,7 @@ include_once("../dbconfig.php");
             $_SESSION["verification_id"] = "staff";
             $_SESSION["verification_no"] = $rand_no;
             $_SESSION["m_number"] = $m_number;
-            echo '<script type="text/javascript">alert("Staff Username Verified");window.location.href="forgotpassword.php"</script>';
+            echo '<script type="text/javascript">alert("Staff Username Verified");window.location.href="forgotpassword_sms_verification.php"</script>';
         }}
         else {
             echo "Username not exist";
