@@ -68,7 +68,7 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                                         
                                 <td>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal">
-                                <a href="announcement_edit.php"> <button onclick="updatemenu(<?= $row['announcement_id'] ?>,'<?= $row['announcement_title'] ?>','<?= $row['caption'] ?>','<?= $row['image'] ?>')">Edit</button></a>
+                                <a href="announcement_edit.php"> <button onclick="<?php $_SESSION['announcement_id']= $row['announcement_id']?>">Edit</button></a>
                                 </a>
 				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
 			<button style="background-color: #f44336";>Delete</button>

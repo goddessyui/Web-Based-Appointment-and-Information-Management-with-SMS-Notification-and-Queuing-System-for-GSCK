@@ -4,7 +4,7 @@ session_start();
 $staff_id = $_SESSION["accounting_staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["accounting_username"];
-
+$ann_id = $_SESSION['announcement_id'];
 //if ($position != "Teacher"){
  //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 //}
