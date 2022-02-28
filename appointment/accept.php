@@ -8,7 +8,7 @@ include('../db_connection.php');
  $currentdate = date("Y-m-d");
    	
 $acceptappointment = "UPDATE tbl_appointment_detail 
-                        SET `status` ='accept', date_accepted = '$currentdate'
+                        SET `status` ='accepted', date_accepted = '$currentdate'
                         WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 
