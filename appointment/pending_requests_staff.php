@@ -47,8 +47,6 @@ include("../db_connection.php");
 					            date_default_timezone_set('Asia/Manila');                           		
 					            $currentdate = date("Y-m-d");
 				            ?>
-                          
-				            <p>Manage Appointment Date</p>
 				            <span>
 				            <form action="update.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
 	      	 		        <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows['appointment_date']; ?>" 
