@@ -42,13 +42,15 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                                 
                                 <div><img id="output" src="#"/></div>
                                     <label>Photo:</label>
-                                    <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" required="required" class="form-control" onchange="loadFile(event)" >
+                                    <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" class="form-control" onchange="loadFile(event)" >
                                 </div>
                                 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                
+    
                     <button type="submit" name="button_add_menu">Submit</button>
                     </form>
+                    <a href="cancel.php">Cancel</a>
                 </div>
             </div>
       
@@ -67,11 +69,12 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
 
 
 if (isset($_POST['button_add_menu'])) {
+    $image = $_FILES['image']['tmp_name'];
+    if(!empty($image)){
     date_default_timezone_set("Asia/Manila");
     $date = date("Y-m-d H:i:s");
     $stmt = $db->prepare('INSERT INTO tbl_announcement (announcement_title,caption,image,date_created,staff_id) VALUES (?,?,?,?,?)');
     $stmt->bind_param("sssss", $title, $caption, $img, $datetime, $staff_id1);
-    $image = $_FILES['image']['tmp_name'];
     $img = basename($_FILES['image']['name']);
     $title = $_POST['name'];
     $caption = $_POST['price'];
@@ -84,6 +87,22 @@ if (isset($_POST['button_add_menu'])) {
     } else {
         echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
     }
+}
+    else if(empty($image)){
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d H:i:s");
+    $stmt = $db->prepare('INSERT INTO tbl_announcement (announcement_title,caption,date_created,staff_id) VALUES (?,?,?,?)');
+    $stmt->bind_param("ssss", $title, $caption, $datetime, $staff_id1);
+    $title = $_POST['name'];
+    $caption = $_POST['price'];
+    $datetime = $date;
+    $staff_id1 = $staff_id;
+    if ($stmt->execute()) {
+        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_test.php"</script>';
+    } else {
+        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
+    }
+}
 }
 
 ?>

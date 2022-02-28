@@ -60,20 +60,16 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                 ?>
                 <div class="blog_img_box">
                 <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
-                <div> <?php echo $row['caption'] ?></div>
+                <div><pre><?php echo $row['caption'] ?></pre></div>
                                 <div>
                                 <?php echo !empty($row['image'])?'<img src="../../announcement_image/' . $row['image'] . '" alt="#">':''; ?>
                                                
-                                </div>
-                                        
-                                <td>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal">
-                                <a href="announcement_edit.php"> <button onclick="<?php $_SESSION['announcement_id']= $row['announcement_id']?>">Edit</button></a>
-                                </a>
+                                </div> <div>    
+                <a href="get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
 				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
 			<button style="background-color: #f44336";>Delete</button>
 					</a>	
-                            </td>
+                          
                         </div>
                                         
                                         
@@ -84,6 +80,9 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                             <td> <?php echo $row['caption'] ?></td>
                             <td> <?php echo $row['date_created'] ?> </td>
                             <td>
+
+                                onclick="<?php $_SESSION['announcement_id']= $row['announcement_id']?>"
+
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal">
                                 <a href="announcement_edit.php"> <button onclick="updatemenu(<?= $row['announcement_id'] ?>,'<?= $row['announcement_title'] ?>','<?= $row['caption'] ?>','<?= $row['image'] ?>')">Edit</button></a>
                                 </a>

@@ -14,7 +14,7 @@
 </div>
 <div> 
     <li><a href="login_system/verification.php">Register</a></li>
-</div><div><h1>Announcement TEST</h1></div>
+</div><div><h1>Announcement</h1></div>
        
                 <?php
                 $sql = "SELECT

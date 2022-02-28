@@ -43,46 +43,69 @@ $row = $query->fetch_assoc();
                                     <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="">
 
                                     <label>Title:</label>
-                                    <input name="edit_title" id="edit_name" type="text" class="form-control" value="<?php echo $row["announcement_title"]?>"  required>
+                                    <input name="edit_title" type="text" class="form-control" value="<?php echo $row["announcement_title"]?>"  required>
                                 </div>
                           
                         
                                 <div>
                                     <label>Caption:</label>
-                                    <textarea name="price" id="price" type="text" class="form-control" required><?php echo $row["caption"]?></textarea>
+                                    <textarea name="edit_caption" type="text" class="form-control" required><?php echo $row["caption"]?></textarea>
                                 </div>
-                         
-                       
+
                                 <div>
                                     <label>Photo:</label>
-                                    <input type="file" name="image" id="menu_photo" accept="image/*" required="required" class="form-control" required>
+                                    <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" onchange="loadFile(event)" >
                                 </div>
+
+                                <div>
+                                    <img id="output" src="<?php echo '../../announcement_image/'.$row['image']?>"/>
+                                </div>
+                              
                           
              
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" name="button_edit_menu" class="btn btn-success">Submit</button>
+                <div>
+                    <button type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="button_edit_announcement">Submit</button>
                     </form>
                 </div>
            
+                <script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
+
 
 <?php
-if (isset($_POST['button_edit_menu'])) {
+if (isset($_POST['button_edit_announcement'])) {
     $image = $_FILES['image']['tmp_name'];
-    $img = file_get_contents($image);
-    $menu_photo = "../announcement_image/" . basename($_FILES['image']['name']);
+    $img = !empty($image)?file_get_contents($image):'';
+    $announcement_photo = "../../announcement_image/" . basename($_FILES['image']['name']);
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
-        $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, image=? where id=?');
-        $stmt->bind_param("sssss", $name, $price, $img, $id);
-        $name = $_POST['edit_title'];
-        $price = $_POST['edit_announcement'];
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $announcement_photo)) {
+        $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, image=? where announcement_id=?');
+        $stmt->bind_param("ssss", $title, $caption, $img, $ann_id);
+        $title = $_POST['edit_title'];
+        $caption = $_POST['edit_caption'];
         $img = basename($_FILES['image']['name']);
-        $id = $_POST['edit_id'];
+        $ann_id1 = $ann_id;
         $stmt->execute();
-        echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="menu.php"</script>';
-    } else {
-        echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="menu.php"</script>';
+        echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="announcement_test.php"</script>';
+    } 
+    else if (!move_uploaded_file($_FILES['image']['tmp_name'], $announcement_photo)) {
+        $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=? where announcement_id=?');
+        $stmt->bind_param("sss", $title, $caption, $ann_id);
+        $title = $_POST['edit_title'];
+        $caption = $_POST['edit_caption'];
+        $ann_id1 = $ann_id;
+        $stmt->execute();
+        echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="announcement_test.php"</script>';
+    }else {
+        echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
     }
 }
 
