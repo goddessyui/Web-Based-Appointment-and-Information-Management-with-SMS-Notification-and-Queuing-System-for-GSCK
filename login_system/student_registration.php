@@ -25,33 +25,59 @@ if ($std_id != "1") {
 
 <form action="student_registration.php" method="post">
 <h1>Sign Up</h1>
-<div>
+    <div>
     Student ID: <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled>
-    </div><div>
+    </div>
+
+    <div>
     First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled>
-    </div><div>
+    </div>
+    
+    <div>
     Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled>
     </div>
+    
     <div class="">
 	Username: <input type="text" name="username" value="" placeholder="enter a username" autocomplete="off" required />
 	</div>
+    
     <div class="">
-	Mobile Number: <input type="tel" name="number" value="" placeholder="9683510254" minlength="11" maxlength="11" autocomplete="off" required />
+	Mobile Number: <input type="tel" name="number" value="" placeholder="09683510254" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
-	<div class="">
-    Course: <input type="text" name="course" value="" placeholder="provide an course" autocomplete="off" required />
-	</div>
-    Year: <input type="text" name="year" value="" placeholder="provide an year" autocomplete="off" required />
-	</div>
+
+    <div>Course: <select name="course">  
+    <option value="BSHMr">BSHM</option>
+    <option value="BSTM">BSTM</option>
+    <option value="BSIT">BSIT</option>
+    <option value="BSSW">BSSW</option>
+    <option value="ABE">ABE</option>
+    <option value="BECE">BECE</option>
+    <option value="BTVED">BTVED</option>
+    <option value="BSBA">BSBA</option>
+    <option value="ACT">ACT</option>
+    <option value="HM">HM</option>
+    <option value="TESDA PROGRAM">TESDA PROGRAM</option>
+    </select>  </div>
+
+    <div>Year: <select name="year">  
+    <option value="1st Year">1st Year</option>
+    <option value="2nd Year">2nd Year</option>
+    <option value="3rd Year">3rd Year</option>
+    <option value="4th Year">4th Year</option>
+    </div>
+
 	<div class="">
 	Password: <input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
 	</div>
+
 	<div class="">
 		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
-	</div>					
+	</div>
+
 	<div class="">
 	Re Enter Password: <input type="password" name="confirm_password" value="" placeholder="confirm your password" autocomplete="off" required />
 	</div>
+
     <div class="">
 		<button class="" type="submit" name="button_register">Create Account</button>
 	</div>

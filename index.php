@@ -37,7 +37,7 @@
                 ?>
                 <div>
                 <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
-                <div> <?php echo $row['caption'] ?></div>
+                <div><p> <?php echo $row['caption'] ?></p></div>
                                 <div>
                                 <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
                                                

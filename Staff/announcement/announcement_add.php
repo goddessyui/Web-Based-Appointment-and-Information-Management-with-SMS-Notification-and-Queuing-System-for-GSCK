@@ -30,7 +30,7 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
   <h1>Add Announcement</h1>
             <!-- Modal content-->
            
-                    <form class="user" method="POST" enctype="multipart/form-data">
+                    <form class="user" method="POST" enctype="multipart/form-data" runat="server">
                         
                                 <div>    <label>Title:</label>
                                     <input name="name" id="name" type="text" class="form-control" value="" required>
@@ -39,10 +39,12 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                                     <label>Caption:</label>
                                     <textarea name="price" id="price" type="text" class="form-control" value="" required></textarea>
                                 </div><div>
-                        
+                                
+                                <div><img id="output" src="#"/></div>
                                     <label>Photo:</label>
-                                    <input type="file" name="image" id="menu_photo" required="required" class="form-control" required>
+                                    <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" required="required" class="form-control" onchange="loadFile(event)" >
                                 </div>
+                                
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <button type="submit" name="button_add_menu">Submit</button>
@@ -52,8 +54,17 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
       
  
 
-
+            <script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
 <?php
+
 
 if (isset($_POST['button_add_menu'])) {
     date_default_timezone_set("Asia/Manila");
