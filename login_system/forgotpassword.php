@@ -1,15 +1,14 @@
 <?php
 include_once("../dbconfig.php"); 
 session_start();
-$student_username =  $_SESSION["student_username"];
-$staff_username = $_SESSION["staff_username"];
+$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 $v_id = $_SESSION["verification_id"];
 $v_number = $_SESSION["verification_no"];
-$m_number = $_SESSION["m_number"];
-$otpDisplay = "";
-// if ($student_username == "" && $staff_username ==""){
-//     echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
-// }
+$verification = $_SESSION["verification"];
+if ($verification != $v_number){
+    echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,60 +19,62 @@ $otpDisplay = "";
     <title>Document</title>
 </head>
 <body>
-<h1>FORGOT PASSWORD we send to your number ****<?php echo substr($m_number, -1, 2);  ?></h1>
+<h1>CHANGE PASSWORD</h1>
 	<form  method="POST">
-    <label>Enter Verification Code <?php echo $v_number ?></label>
-    <input type="text" name="mobile_no" value="<?php echo !empty($verification)?$verification:''; ?>" <?php echo ($otpDisplay == 1)?'readonly':''; ?>/>
-    
-    
-    <label>New Password</label>
+    <label>New password</label>
     <div class="">
-		<input type="text" name="verification" value="" placeholder="New Password" autocomplete="off" <?php echo !empty($verification)?'required':'disabled'; ?> />
+		<input type="password" name="newpass" value="" placeholder="New password" minlength="5" autocomplete="off" required />
 	</div>
     <label>Re-enter new password</label>
     <div class="">
-		<input type="text" name="OTP" value="" placeholder="Re enter new Password" autocomplete="off" <?php echo !empty($verification)?'required':'disabled'; ?> />
-   
-    <input type="submit" name="<?php echo ($otpDisplay == 1)?'new_password':'submit_verification'; ?>" value="VERIFY"/>
+		<input type="password" name="newpass_verify" value="" placeholder="Re-enter new password" minlength="5" autocomplete="off" required />
+
+    <div class="">
+		<button class="" type="submit" name="button_pass">Change Password</button>
+	</div>
 </form>
 
 
-    <!-- <div class="">
-	Verification Code: <input type="text" name="username" value=""  autocomplete="off" required />
-	</div>
-	<div class="">
-		<input type="text" name="OTP" value="" placeholder="New Password" autocomplete="off" required />
-	</div>
-    <div class="">
-		<input type="text" name="OTP" value="" placeholder="Re enter new Password" autocomplete="off" required />
-	</div>
-	<div class="">
-		<button class="" type="submit" name="button_verify">Verify</button>
-	</div>
-	</form> -->
 
     <?php
-    if (isset($_POST['submit_verification'])) {
-        $verification = $_POST['mobile_no'];
-        if ($verification == $v_number){
-            $otpDisplay = 1;
-        
+    if (isset($_POST['button_pass'])) {
+        $newpassword = $_POST['newpass'];
+        $verify_newpassword = $_POST['newpass_verify'];
+        if($v_id == "student"){
+        if ($newpassword == $verify_newpassword){
+            $sql = "UPDATE tbl_student_registry SET password = $newpassword WHERE username = '{$student_username}'";
+            if (mysqli_query($db, $sql)) {
+                echo "Password updated successfully";
+              } else {
+                echo "Error changing password:  $sql." . mysqli_error($db);
+              }
             
          }else{
              echo "not match";
          }
         }
-        $sql = "UPDATE tbl_staff_registry SET password = $newpassword WHERE username = $staff_username";
-        if ($db->query($sql) === TRUE) {
-            echo "Password updated successfully";
-          } else {
-            echo "Error changing password: " . $conn->error;
-          }
+
+        else if($v_id == "staff"){
+            if ($newpassword == $verify_newpassword){
+                $sql = "UPDATE tbl_staff_registry SET password = $newpassword WHERE username = '{$staff_username}'";
+                if ($db->query($sql) === TRUE) {
+                    echo "Password updated successfully";
+                  } else {
+                    echo "Error changing password:  $sql." . mysqli_error($db);;
+                  }
+                
+             }else{
+                 echo "not match";
+             }
+            }
+
+
+
+
+    }
+       
         
-    // if (isset($_POST['new_password'])) {
-    //     $username = $_POST["usename"];
-    //     $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username ='{$username}'")
-    //     }
+   
         
 
     ?>

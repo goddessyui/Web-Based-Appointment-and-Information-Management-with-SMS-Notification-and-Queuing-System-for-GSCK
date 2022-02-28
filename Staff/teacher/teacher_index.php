@@ -30,7 +30,7 @@ if ($staff_id == "" && $username == "" && $position != "Teacher"){
                 <li><a href="menu.php">Account</a></li>
             </ul>
             <ul class="">
-                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                <li><a href="../../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
 
 

@@ -4,7 +4,9 @@ session_start();
 $staff_id = $_SESSION["accounting_staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["accounting_username"];
-
+$ann_id = $_SESSION['announcement_id'];
+$query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id='{$ann_id}'");
+$row = $query->fetch_assoc();
 //if ($position != "Teacher"){
  //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 //}
@@ -30,14 +32,7 @@ $username = $_SESSION["accounting_username"];
 </head>
 <body>
 
-<script type="text/javascript">
-        function updatemenu(announcement_id, announcement_title, caption, image) {
-            document.getElementById("edit_id").value = announcement_id;
-            document.getElementById("edit_title").value = announcement_title;
-            document.getElementById("edit_caption").value = caption;
-            document.getElementById("image").value = image;
-        }
-    </script>
+
 
     <h1>Edit Announcement</h1>
    
@@ -48,19 +43,19 @@ $username = $_SESSION["accounting_username"];
                                     <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="">
 
                                     <label>Title:</label>
-                                    <input name="edit_title" id="edit_name" type="text" class="form-control" value="" required>
+                                    <input name="edit_title" id="edit_name" type="text" class="form-control" value="<?php echo $row["announcement_title"]?>"  required>
                                 </div>
                           
                         
                                 <div>
                                     <label>Caption:</label>
-                                    <input name="edit_caption" id="edit_caption" type="text" class="form-control" value="" required>
+                                    <textarea name="price" id="price" type="text" class="form-control" required><?php echo $row["caption"]?></textarea>
                                 </div>
                          
                        
                                 <div>
                                     <label>Photo:</label>
-                                    <input type="file" name="image" id="menu_photo" required="required" class="form-control" required>
+                                    <input type="file" name="image" id="menu_photo" accept="image/*" required="required" class="form-control" required>
                                 </div>
                           
              

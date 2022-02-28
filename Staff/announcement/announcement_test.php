@@ -1,9 +1,9 @@
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
-$staff_id = $_SESSION["accounting_staff_id"];
-$position = $_SESSION["position"];
-$username = $_SESSION["accounting_username"];
+$staff_id = !empty($_SESSION["accounting_staff_id"])?$_SESSION["accounting_staff_id"]:'';
+$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+$username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_username"]:'';
 
 //if ($position != "Teacher"){
  //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
@@ -28,16 +28,16 @@ $username = $_SESSION["accounting_username"];
         <h2>Announcement</h2>
         <br>
         <!-- Trigger the modal with a button -->
-        <a href="announcement_add.php"><button type="button">Add Menu</button></a>
+        <a href="announcement_add.php"><button type="button">Add announcement</button></a>
         <table class="table">
-            <thead>
+            <!-- <thead>
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
                     <th>Caption</th>
                     <th>Date Created</th>
                 </tr>
-            </thead>
+            </thead> -->
             <tbody>
                 <?php
                 $sql = "SELECT
@@ -58,7 +58,27 @@ $username = $_SESSION["accounting_username"];
                         # code...
 
                 ?>
-                        <tr>
+                <div class="blog_img_box">
+                <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
+                <div> <?php echo $row['caption'] ?></div>
+                                <div>
+                                <?php echo !empty($row['image'])?'<img src="../../announcement_image/' . $row['image'] . '" alt="#">':''; ?>
+                                               
+                                </div>
+                                        
+                                <td>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal">
+                                <a href="announcement_edit.php"> <button onclick="<?php $_SESSION['announcement_id']= $row['announcement_id']?>">Edit</button></a>
+                                </a>
+				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
+			<button style="background-color: #f44336";>Delete</button>
+					</a>	
+                            </td>
+                        </div>
+                                        
+                                        
+
+                        <!-- <tr>
                             <td> <?php echo $row['announcement_id'] ?> </td>
                             <td> <?php echo $row['announcement_title'] ?></td>
                             <td> <?php echo $row['caption'] ?></td>
@@ -71,7 +91,7 @@ $username = $_SESSION["accounting_username"];
 			<button style="background-color: #f44336";>Delete</button>
 					</a>	
                             </td>
-                        </tr>
+                        </tr> -->
                 <?php
 
                     }
@@ -81,11 +101,11 @@ $username = $_SESSION["accounting_username"];
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
+    <!-- Modal
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -136,7 +156,7 @@ $username = $_SESSION["accounting_username"];
             document.getElementById("edit_caption").value = caption;
             document.getElementById("image").value = image;
         }
-    </script>
+    </script> -->
 
     <?php
 
