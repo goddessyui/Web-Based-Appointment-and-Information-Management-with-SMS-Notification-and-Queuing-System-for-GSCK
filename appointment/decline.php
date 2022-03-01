@@ -5,8 +5,8 @@ date_default_timezone_set('Asia/Manila');
 
  // Prepare a update statement
    	
-$declineappointment = "UPDATE tbl_appointment_detail 
-                        SET `status` ='decline', date_accepted = '$currentdate'
+$declineappointment = "UPDATE tbl_appointment 
+                        SET date_created = '$currentdate', `status` ='declined'
                         WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 

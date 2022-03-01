@@ -9,10 +9,13 @@ include("../db_connection.php");
         <h3>Pending Requests</h3>
         <?php
         //if (isset($_SESSION['staff_username'])) {
-            $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
-            tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+            $requests="SELECT * FROM tbl_appointment 
+            INNER JOIN tbl_staff_registry 
+            ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE `status` ='pending' ORDER BY appointment_detail_id";
+            WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+            WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+            AND `status` ='pending' ORDER BY appointment_id";
             //AND tbl_appointment.staff_id = '$staff_id' 
              $request_result = mysqli_query($conn, $requests);
              //check whether the query is executed or not
@@ -48,15 +51,17 @@ include("../db_connection.php");
 					            $currentdate = date("Y-m-d");
 				            ?>
 				            <span>
-				            <form action="update.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
-	      	 		        <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows['appointment_date']; ?>" 
-	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($rows['appointment_date']. ' + 20 days'));?>">
+				            <form action="accept.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+	      	 		            <input type="date" name="appointment_date" placeholder="" value="<?php echo $currentdate; ?>"
+	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
+                                   <textarea name="comment" placeholder="Comment here" value=""></textarea><br>
+                                   <button type="submit" name="accept">ACCEPT</button>
 	      	 				<br>
-	      	 				<br>
-	      	 		        <input id="update" type="submit" name="update" value="UPDATE APPOINTMENT DATE">
+	      	 		        
+            
 	      		            </form>
 	      		            </span>
-	      		            <button id="accept"><a href="accept.php?appointment_id=<?php echo $rows['appointment_id']; ?>">ACCEPT</a> </button>
+	      		           
                             <button id="decline"><a href="decline.php?appointment_id=<?php echo $rows['appointment_id']; ?>">DECLINE</a> </button>
 			
 		                </div>
@@ -69,6 +74,9 @@ include("../db_connection.php");
         //}    
 	    ?>
        
+
+
+
         
     </div>
 
