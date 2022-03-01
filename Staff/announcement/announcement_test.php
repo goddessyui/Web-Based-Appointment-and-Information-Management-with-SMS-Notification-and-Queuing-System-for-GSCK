@@ -1,19 +1,14 @@
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
-$staff_id = !empty($_SESSION["accounting_staff_id"])?$_SESSION["accounting_staff_id"]:'';
+$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-$username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_username"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-//if ($position != "Teacher"){
- //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Registrar"){
-  //  echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Account Staff"){
-//    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
+if ($staff_id == "" && $staff_username == ""){
+   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,25 +67,6 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                           
                         </div>
                                         
-                                        
-
-                        <!-- <tr>
-                            <td> <?php echo $row['announcement_id'] ?> </td>
-                            <td> <?php echo $row['announcement_title'] ?></td>
-                            <td> <?php echo $row['caption'] ?></td>
-                            <td> <?php echo $row['date_created'] ?> </td>
-                            <td>
-
-                                onclick="<?php $_SESSION['announcement_id']= $row['announcement_id']?>"
-
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal">
-                                <a href="announcement_edit.php"> <button onclick="updatemenu(<?= $row['announcement_id'] ?>,'<?= $row['announcement_title'] ?>','<?= $row['caption'] ?>','<?= $row['image'] ?>')">Edit</button></a>
-                                </a>
-				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
-			<button style="background-color: #f44336";>Delete</button>
-					</a>	
-                            </td>
-                        </tr> -->
                 <?php
 
                     }
@@ -100,62 +76,7 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
             </tbody>
         </table>
     </div>
-    <!-- Modal
-    <div id="editModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit Announcement</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="user" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-12 pr-1">
-                                <div class="form-group">
-                                    <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="">
-
-                                    <label>Title:</label>
-                                    <input name="edit_title" id="edit_name" type="text" class="form-control" value="" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 pr-1">
-                                <div class="form-group">
-                                    <label>Caption:</label>
-                                    <input name="edit_caption" id="edit_caption" type="text" class="form-control" value="" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 pr-1">
-                                <div class="form-group">
-                                    <label>Photo:</label>
-                                    <input type="file" name="image" id="menu_photo" required="required" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" name="button_edit_menu" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        function updatemenu(announcement_id, announcement_title, caption, image) {
-            document.getElementById("edit_id").value = announcement_id;
-            document.getElementById("edit_title").value = announcement_title;
-            document.getElementById("edit_caption").value = caption;
-            document.getElementById("image").value = image;
-        }
-    </script> -->
+  
 
     <?php
 

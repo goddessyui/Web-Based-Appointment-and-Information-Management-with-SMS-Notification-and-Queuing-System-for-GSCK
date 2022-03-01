@@ -1,19 +1,13 @@
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
-$staff_id = !empty($_SESSION["teacher_staff_id"])?$_SESSION["teacher_staff_id"]:'';
+$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-$username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_username"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-//if ($position != "Teacher"){
- //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Registrar"){
-  //  echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Account Staff"){
-//    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
+if ($staff_id == "" && $staff_username == ""){
+   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
+}
 ?>
 
 
@@ -45,9 +39,7 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
                                     <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" class="form-control" onchange="loadFile(event)" >
                                 </div>
                                 
-                <div class="modal-footer">
-                
-    
+                <div class="">
                     <button type="submit" name="button_add_menu">Submit</button>
                     </form>
                     <a href="cancel.php">Cancel</a>
@@ -56,18 +48,18 @@ $username = !empty($_SESSION["accounting_username"])?$_SESSION["accounting_usern
       
  
 
-            <script>
-  var loadFile = function(event) {
+<script>
+    var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-  };
+    };
 </script>
+
+
 <?php
-
-
 if (isset($_POST['button_add_menu'])) {
     $image = $_FILES['image']['tmp_name'];
     if(!empty($image)){

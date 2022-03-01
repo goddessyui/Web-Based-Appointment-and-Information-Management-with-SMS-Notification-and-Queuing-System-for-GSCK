@@ -1,5 +1,5 @@
 <?php
-include_once("../dbconfig.php"); 
+include_once("dbconfig.php"); 
 session_start();
 $student_id = $_SESSION["student_id"];
 $username1 = $_SESSION["student_username"];
@@ -26,12 +26,12 @@ if ($student_id == "" && $username1 == ""){
                 <li><a href="menu.php">Account</a></li>
             </ul>
             <ul class="">
-                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
 
 
+            <?php include 'announcement_display.php'; ?>
 
 
-    <h1>This is the index(announcement schedule etc etc)</h1>
 </body>
 </html>
