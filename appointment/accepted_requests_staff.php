@@ -6,7 +6,7 @@ include("../db_connection.php");
 <main>
   
     <div>
-        <h3>Accepted Requests</h3>
+        <h3>List of Appointments</h3>
         
         <?php
         //if (isset($_SESSION['staff_username'])) {
@@ -14,9 +14,10 @@ include("../db_connection.php");
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE `status` ='accepted' ORDER BY appointment_date";
+        ";
             //AND tbl_appointment.staff_id = '$staff_id'
             $request_result = mysqli_query($conn, $requests);
+            
             //check whether the query is executed or not
             if($request_result==TRUE) 
             { // count rows to check whether we have data in database or not
