@@ -18,6 +18,22 @@ if ($student_id == "" && $username1 == ""){
     <title>Document</title>
 </head>
 <body>
+
+<div class="">
+           
+                <a class="" href="#">GSCK Appointment System</a>
+            
+            <ul class="">
+                <li class="active"><a href="#">Request an Appointment</a></li>
+		<li><a href="#">Appointment Details</a></li>
+                <li><a href="Student/student_profile.php">Profile</a></li>
+            </ul>
+            <ul class="">
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            </ul>
+            </div>
+            <hr>
+
     <div><h1>PROFILE</h1></div>
     <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
     <div><p> <?php echo $row["username"]?></p></div>

@@ -32,26 +32,6 @@ else if ($student_id != "" && $student_username != ""){
     <title>Document</title>
 </head>
 <body>
-
-<nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Food Ordering System</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="transaction.php">Transactions</a></li>
-	<li><a href="stransaction.php">Success Transaction</a></li>
-                <li class="active"><a href="menu.php">Menu</a></li>
-		<li><a href="account.php">Accounts</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="loginsession.php?ses=1"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>
-
-
-
 <div class="">
 <div> 
     <li><a href="login_system/login.php">Sign in</a></li>

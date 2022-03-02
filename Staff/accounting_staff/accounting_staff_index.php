@@ -22,14 +22,14 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
                 <a class="" href="#">GSCK Appointment System</a>
             </div>
             <ul class="">
-                <li class="active"><a href="transaction.php">Appointments</a></li>
-		        <li><a href="stransaction.php">Announcements</a></li>
-                <li><a href="stransaction.php">Schedules</a></li>
-                <li><a href="stransaction.php">Scholars Record</a></li>
-                <li><a href="menu.php">Account</a></li>
+                <li class="active"><a href="#">Appointments</a></li>
+		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
+                <li><a href="#">Schedules</a></li>
+                <li><a href="#">Scholars Record</a></li>
+                <li><a href="../staff_profile.php">Account</a></li>
             </ul>
             <ul class="">
-                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                <li><a href="../../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
 
 

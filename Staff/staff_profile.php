@@ -8,6 +8,25 @@ $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$s
 $row = $query->fetch_assoc();
 $rows = !empty($row['other_positions'])?$row['other_positions']:'';
 $array_other = explode( ',', $rows );
+$appointment_type = "";
+                $sql = "SELECT
+                tbl_staff_appointment.staff_id,
+                tbl_staff_appointment.appointment_type
+                FROM
+                tbl_staff_appointment
+                WHERE staff_id = $staff_id";
+                $res = mysqli_query($db, $sql);
+                if (mysqli_num_rows($res) > 0) {
+
+                    while ($row1 = mysqli_fetch_assoc($res)) {
+                        # code...
+                        $appointment_type .= $row1["appointment_type"].","; 
+
+                    }
+                }
+$array_type = explode( ',', $appointment_type );
+
+               
 if ($staff_id == "" && $username == ""){
     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
 }
@@ -44,11 +63,16 @@ if ($staff_id == "" && $username == ""){
     <div>
     Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
     </div>
+
     <form  method="POST">
     <div class="">
 	Mobile Number: <input type="tel" name="number" value="<?php echo $row["mobile_number"]?>" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
 
+    <div>Position: <select name="position">  
+    <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
+    <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
+    </select>  </div>
 
     <div> Other Position: </div>
     <div>
@@ -60,32 +84,29 @@ if ($staff_id == "" && $username == ""){
 
     <div> Appointment Type: </div>
     <div>
-    <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo $row1["appointment_type"]=='Request Documents From Registrar'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
     <label> Request Documents From Registrar</label><br>
-    <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo $row1["appointment_type"]=='Evaluation of Grades - Department Head'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
     <label> Evaluation of Grades - Department Head</label><br>
-    <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo $row1["appointment_type"]=='Enrollment'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
     <label> Enrollment</label><br>
-    <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo $row1["appointment_type"]=='Pre-Enrollment'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
     <label> Pre-Enrollment</label><br>
-    <input type="checkbox" name="check_list[]" value="UniFAST - Claim Chequet" <?php echo $row1["appointment_type"]=='UniFAST - Claim Chequet'?'checked':'';?>>
-    <label> UniFAST - Claim Chequet</label><br>
-    <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo $row1["appointment_type"]=='UniFAST - Submit Documents'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="UniFAST - Claim Chequet" <?php echo in_array("UniFAST - Claim Chequet", $array_type)?'checked':'';?>>
+    <label> UniFAST - Claim Cheque</label><br>
+    <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
     <label> UniFAST - Submit Documents</label><br>
-    <input type="checkbox" name="check_list[]" value="Meeting" <?php echo $row1["appointment_type"]=='Meeting'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
     <label> Meeting</label><br>
-    <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo $row1["appointment_type"]=='Module Claiming/Submission'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo in_array("Module Claiming/Submission", $array_type)?'checked':'';?>>
     <label> Module Claiming/Submission</label><br>
-    <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo $row1["appointment_type"]=='Request for Grades'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
     <label> Request for Grades</label><br>
-    <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo $row1["appointment_type"]=='Project Submission'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
     <label> Project Submission</label><br>
-    <input type="checkbox" name="check_list[]" value="Presentation" <?php echo $row1["appointment_type"]=='Presentation'?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
     <label> Presentation</label><br>
     </div>
-
-
-
 
     <div>
     <button type="submit" name="button_edit_profile">Save Changes</button>
@@ -110,14 +131,21 @@ if ($staff_id == "" && $username == ""){
 </form>
 
 <?php
-$student_id = $row['student_id'];
+$staff_id = $row['staff_id'];
  if (isset($_POST['button_edit_profile'])) {
     $new_mobilenumber = $_POST['number'];
-    $new_course = $_POST["course"];
-    $new_year = $_POST['year'];
-    $sql = "UPDATE tbl_student_registry SET mobile_number=$new_mobilenumber, course='".$new_course."' , year=$new_year WHERE student_id = '{$student_id}'";
+    $new_position = $_POST["position"];
+    $type = $_POST['check_list'];
+    $new_other_position = implode(',', $_POST['other_list']);
+    $sql = "UPDATE tbl_staff_registry SET mobile_number='".$new_mobilenumber."', position='".$new_position."' , other_positions='".$new_other_position."' WHERE staff_id = '{$staff_id}'";
         if (mysqli_query($db, $sql)) {
-        echo "Profile Settings Changes";
+            $stmt = $db->prepare("DELETE FROM tbl_staff_appointment WHERE staff_id = '{$staff_id}'");
+	        if ($stmt->execute()){
+                foreach($type as $types){
+                    $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
+                    $query_run = mysqli_query($db, $query);
+                    }  
+        echo "Profile Settings Changes";}
         } else {
         echo "Error changing password:  $sql." . mysqli_error($db);
         }
@@ -131,7 +159,7 @@ $student_id = $row['student_id'];
         $verify_newpassword = $_POST['newpass_verify'];
         if($currentpassword == $row['password']){
         if ($newpassword == $verify_newpassword){
-            $sql = "UPDATE tbl_student_registry SET password = $newpassword WHERE student_id = '{$student_id}'";
+            $sql = "UPDATE tbl_staff_registry SET password = '".$newpassword."' WHERE staff_id = '{$staff_id}'";
             if (mysqli_query($db, $sql)) {
                 echo "Password updated successfully";
               } else {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<?php include_once("../db_connection.php"); ?>
+<?php include_once("../dbconfig.php"); ?>
 <body>
 
 <h1>Log In</h1>
