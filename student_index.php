@@ -23,7 +23,7 @@ if ($student_id == "" && $username1 == ""){
             <ul class="">
                 <li class="active"><a href="transaction.php">Request an Appointment</a></li>
 		<li><a href="stransaction.php">Appointment Details</a></li>
-                <li><a href="menu.php">Account</a></li>
+                <li><a href="Student/student_profile.php">Account</a></li>
             </ul>
             <ul class="">
                 <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>

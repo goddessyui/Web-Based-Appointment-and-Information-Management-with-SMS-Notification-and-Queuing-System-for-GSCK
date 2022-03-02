@@ -22,18 +22,9 @@ if ($staff_id == "" && $staff_username == ""){
 <div class="container">
         <h2>Announcement</h2>
         <br>
-        <!-- Trigger the modal with a button -->
         <a href="announcement_add.php"><button type="button">Add announcement</button></a>
         <table class="table">
-            <!-- <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Caption</th>
-                    <th>Date Created</th>
-                </tr>
-            </thead> -->
-            <tbody>
+           
                 <?php
                 $sql = "SELECT
                 tbl_announcement.announcement_id,
@@ -43,7 +34,8 @@ if ($staff_id == "" && $staff_username == ""){
                 tbl_announcement.image,
                 tbl_announcement.date_created
                 FROM
-                tbl_announcement                          
+                tbl_announcement
+                ORDER BY date_created DESC                          
                 ";
 
                 $res = mysqli_query($db, $sql);
@@ -73,7 +65,7 @@ if ($staff_id == "" && $staff_username == ""){
                 }
 
                 ?>
-            </tbody>
+            
         </table>
     </div>
   

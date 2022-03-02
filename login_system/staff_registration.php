@@ -76,8 +76,8 @@ if ($std_id != "2") {
     <label> Meeting</label><br>
     <input type="checkbox" name="check_list[]" value="Module Claiming/Submission">
     <label> Module Claiming/Submission</label><br>
-    <input type="checkbox" name="check_list[]" value="Defense">
-    <label> Defense</label><br>
+    <input type="checkbox" name="check_list[]" value="Request for Grades">
+    <label> Request for Grades</label><br>
     <input type="checkbox" name="check_list[]" value="Project Submission">
     <label> Project Submission</label><br>
     <input type="checkbox" name="check_list[]" value="Presentation">
@@ -122,17 +122,13 @@ if (isset($_POST['button_register'])) {
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
 
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                    $othr = '';
-                    foreach($other_type as $other)  
-                    {  
-                        $othr .= $other.",";  
-                    } 
+                    $othr = implode(',', $_POST['other_list']);
                     mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$othr}', '{$number}')");
                     $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
                         if (mysqli_num_rows($query) == 1){
                         foreach($type as $types){
-                        $query = "INSERT INTO tbl_staff_appointment VALUES ('', '{$types}', '{$staff_id}')";
+                        $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
                         $query_run = mysqli_query($db, $query);
                         }
                         $success = true;     

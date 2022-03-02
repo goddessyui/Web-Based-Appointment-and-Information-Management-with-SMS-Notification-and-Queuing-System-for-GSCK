@@ -17,8 +17,8 @@
                 tbl_announcement.image,
                 tbl_announcement.date_created
                 FROM
-                tbl_announcement                          
-                ";
+                tbl_announcement
+                ORDER BY date_created DESC";
 
                 $res = mysqli_query($db, $sql);
                 if (mysqli_num_rows($res) > 0) {

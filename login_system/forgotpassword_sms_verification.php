@@ -1,7 +1,6 @@
 <?php
 include_once("../dbconfig.php"); 
 session_start();
-
 $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 $v_id = $_SESSION["verification_id"];
@@ -32,6 +31,8 @@ if ($student_username == "" && $staff_username ==""){
     if (isset($_POST['submit_verification'])) {
         $verification = $_POST['verification_code'];
         if ($verification == $v_number){
+            session_start();
+            $_SESSION["verification"] = $verification;
             echo '<script type="text/javascript">alert("SMS Verification Success!");window.location.href="forgotpassword.php"</script>';
          
          }else{

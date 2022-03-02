@@ -27,20 +27,20 @@ if ($staff_id == "" && $staff_username == ""){
                     <form class="user" method="POST" enctype="multipart/form-data" runat="server">
                         
                                 <div>    <label>Title:</label>
-                                    <input name="name" id="name" type="text" class="form-control" value="" required>
+                                    <input name="name" id="name" type="text" value="" required>
                                 </div><div>
                         
                                     <label>Caption:</label>
-                                    <textarea name="price" id="price" type="text" class="form-control" value="" required></textarea>
+                                    <textarea name="price" id="price" type="text" value="" required></textarea>
                                 </div><div>
                                 
                                 <div><img id="output" src="#"/></div>
                                     <label>Photo:</label>
-                                    <input type="file" name="image" accept="image/*" id="menu_photo" id="imgInp" class="form-control" onchange="loadFile(event)" >
+                                    <input type="file" name="image" accept="image/*" id="imgInp" onchange="loadFile(event)" >
                                 </div>
                                 
                 <div class="">
-                    <button type="submit" name="button_add_menu">Submit</button>
+                    <button type="submit" name="button_add_announcement">Submit</button>
                     </form>
                     <a href="cancel.php">Cancel</a>
                 </div>
@@ -60,7 +60,7 @@ if ($staff_id == "" && $staff_username == ""){
 
 
 <?php
-if (isset($_POST['button_add_menu'])) {
+if (isset($_POST['button_add_announcement'])) {
     $image = $_FILES['image']['tmp_name'];
     if(!empty($image)){
     date_default_timezone_set("Asia/Manila");

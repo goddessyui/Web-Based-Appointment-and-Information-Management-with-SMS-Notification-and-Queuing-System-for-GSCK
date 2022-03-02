@@ -46,7 +46,7 @@ if ($std_id != "1") {
 	</div>
 
     <div>Course: <select name="course">  
-    <option value="BSHMr">BSHM</option>
+    <option value="BSHM">BSHM</option>
     <option value="BSTM">BSTM</option>
     <option value="BSIT">BSIT</option>
     <option value="BSSW">BSSW</option>
@@ -60,13 +60,14 @@ if ($std_id != "1") {
     </select>  </div>
 
     <div>Year: <select name="year">  
-    <option value="1st Year">1st Year</option>
-    <option value="2nd Year">2nd Year</option>
-    <option value="3rd Year">3rd Year</option>
-    <option value="4th Year">4th Year</option>
+    <option value="1">1st Year</option>
+    <option value="2">2nd Year</option>
+    <option value="3">3rd Year</option>
+    <option value="4">4th Year</option>
+    </select>
     </div>
 
-	<div class="">
+	<div class>
 	Password: <input type="password" name="passwd" value="" placeholder="enter a password" autocomplete="off" required />
 	</div>
 

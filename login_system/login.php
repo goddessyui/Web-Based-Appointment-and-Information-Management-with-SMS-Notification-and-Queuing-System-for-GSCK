@@ -89,7 +89,7 @@ if (isset($_POST['button_login'])) {
             session_start();
             $_SESSION["staff_id"] = $staff_id;
             $_SESSION["position"] = $position;
-            $_SESSION["tstaff_username"] = $row["username"];
+            $_SESSION["staff_username"] = $row["username"];
             echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="../Staff/teacher/teacher_index.php"</script>';
         }
     }
