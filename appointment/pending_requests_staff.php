@@ -4,7 +4,6 @@ include("../db_connection.php");
 ?>
 
 <main>
-  
     <div>
         <h3>Pending Requests</h3>
         <?php
@@ -31,7 +30,6 @@ include("../db_connection.php");
 			        //and while loop will run as long as we have data in database
                     {
         ?>
-
                         <div>
                             <td>
                                 <?php   echo $i;
@@ -39,11 +37,11 @@ include("../db_connection.php");
                                 ?>
                             </td>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Request Date: </span><?php echo $rows['date_created']; ?></p> 
+                            <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
 				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                             <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Note: </span><?php echo $rows['note']; ?></p> 
+                            <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
 			            </div>
                         <div>
 				            <?php
@@ -51,34 +49,23 @@ include("../db_connection.php");
 					            $currentdate = date("Y-m-d");
 				            ?>
 				            <span>
-				            <form action="accept.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+                                <label>Enter Date of Appointment:</label>
 	      	 		            <input type="date" name="appointment_date" placeholder="" value="<?php echo $currentdate; ?>"
 	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
-                                   <textarea name="comment" placeholder="Comment here" value=""></textarea><br>
-                                   <button type="submit" name="accept">ACCEPT</button>
+                                <label>Comment:</label>
+                                <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
+                                <button type="submit" name="accept">ACCEPT</button>
+                                <button type="submit" name="decline">DECLINE</button>
 	      	 				<br>
-	      	 		        
-            
 	      		            </form>
 	      		            </span>
-	      		           
-                            <button id="decline"><a href="decline.php?appointment_id=<?php echo $rows['appointment_id']; ?>">DECLINE</a> </button>
-			
 		                </div>
-
-
         <?php 
                     }
                 }
             }
         //}    
-	    ?>
-       
-
-
-
-        
+	    ?>  
     </div>
-
-
 </main>

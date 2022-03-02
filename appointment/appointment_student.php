@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1>Student User Interface</h1>
-    <button>Set an Appointment</button>
+    
     <br>
     <br>
 
@@ -39,18 +39,21 @@
             if($count > 0) {
                 while($rows = mysqli_fetch_assoc($result)) {
 
-                    ?>
+                    ?>  <form name='evaluation' method="post">
                         <input type="radio" name="staff_name" id="registry" value="<?php echo $rows['first_name']." ". $rows['last_name']; ?>">
                         <label for="registry"><?php echo $rows['first_name']." ". $rows['last_name'];?></label>
+                        </form>
                     <?php
                     }
                 }
             }
 
         }
+
+
         if(isset($_POST["meeting"]))
         {
-            $appointmenttype = "meeting";
+           
             $staff_appointment = "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
         tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id WHERE appointment_type = 'MEETING'";
 
@@ -60,7 +63,7 @@
             if($count > 0) {
                 while($rows = mysqli_fetch_assoc($result)) {
 
-                    ?>
+                    ?>  
                         <input type="radio" name="staff_name" id="registry" value="<?php echo $rows['first_name']." ". $rows['last_name']; ?>">
                         <label for="registry"><?php echo $rows['first_name']." ". $rows['last_name']; ?></label>
                     <?php
@@ -84,23 +87,23 @@
 
             $staff_id= $staff;
     
-            $note = $_POST['note'];  
+            
             date_default_timezone_set('Asia/Manila');                           		
             $currentdate = date("Y-m-d");
     
             // Check connection
-            if($conn === false){
-                die("ERROR: Could not connect. " . mysqli_connect_error());
-    }
+                if($conn === false){
+                    die("ERROR: Could not connect. " . mysqli_connect_error());
+                }
      
             // Attempt insert query execution
             $studentappointment = "INSERT INTO tbl_appointment (`date_created`,`student_id`, `staff_id`, `appointment_type`, `note`, `status`) 
-            VALUES ('$currentdate', '$student_id', 'IDNUMBER1', '$appointmenttype', '$note', 'pending')";
-            if(mysqli_query($conn, $studentappointment)){
-                echo "Records inserted successfully.";
-            } else{
-                echo "ERROR: Could not able to execute $studentappointment. " . mysqli_error($conn);
-            }
+            VALUES ('$currentdate', '$student_id', '$staff_id', '$appointmenttype', 'hehe', 'pending')";
+                if(mysqli_query($conn, $studentappointment)){
+                    echo "Records inserted successfully.";
+                } else{
+                    echo "ERROR: Could not able to execute $studentappointment. " . mysqli_error($conn);
+                }
     
     
     
