@@ -18,20 +18,20 @@ if ($staff_id == "" && $username == "" && $position != "Teacher"){
     <title>Document</title>
 </head>
 <body>
-<div class="">
-            <div class="">
+<div>
                 <a class="" href="#">GSCK Appointment System</a>
-            </div>
-            <ul class="">
-                <li class="active"><a href="transaction.php">Set Appointment</a></li>
-		        <li><a href="stransaction.php">Set an announcement</a></li>
-                <li><a href="stransaction.php">Set schedule</a></li>
-                <li><a href="stransaction.php">Appointment Details</a></li>
-                <li><a href="menu.php">Account</a></li>
+           
+                <ul class="">
+                <li class="active"><a href="#">Appointments</a></li>
+		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
+                <li><a href="#">Schedules</a></li>
+                <li><a href="#">Scholars Record</a></li>
+                <li><a href="../staff_profile.php">Account</a></li>
             </ul>
             <ul class="">
                 <li><a href="../../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
+            </div>
 
 
 <h1>This is the index(announcement schedule etc etc)</h1>
