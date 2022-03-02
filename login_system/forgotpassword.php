@@ -6,14 +6,18 @@ $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"
 $v_id = $_SESSION["verification_id"];
 $v_number = $_SESSION["verification_no"];
 $verification = $_SESSION["verification"];
-if ($verification != $v_number){
-    echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
-}
+// if ($verification != $v_number){
+//     echo '<script type="text/javascript">window.location.href="forgotpassword_verify.php"</script>';
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+
+
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -57,7 +61,7 @@ if ($verification != $v_number){
         else if($v_id == "staff"){
             if ($newpassword == $verify_newpassword){
                 $sql = "UPDATE tbl_staff_registry SET password = $newpassword WHERE username = '{$staff_username}'";
-                if ($db->query($sql) === TRUE) {
+                if ($db->query($sql)) {
                     echo "Password updated successfully";
                   } else {
                     echo "Error changing password:  $sql." . mysqli_error($db);;

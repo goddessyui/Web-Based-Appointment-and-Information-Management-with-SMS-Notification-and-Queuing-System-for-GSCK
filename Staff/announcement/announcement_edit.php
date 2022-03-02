@@ -1,21 +1,18 @@
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
-$staff_id = $_SESSION["accounting_staff_id"];
-$position = $_SESSION["position"];
-$username = $_SESSION["accounting_username"];
+$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+
+if ($staff_id == "" && $staff_username == ""){
+   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
+}
+
 $ann_id = $_SESSION['announcement_id'];
 $query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id='{$ann_id}'");
 $row = $query->fetch_assoc();
-//if ($position != "Teacher"){
- //   echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Registrar"){
-  //  echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
-//if ($position != "Account Staff"){
-//    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-//}
+
 ?>
 
 
