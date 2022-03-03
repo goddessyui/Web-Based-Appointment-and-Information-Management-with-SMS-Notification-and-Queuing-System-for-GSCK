@@ -121,6 +121,9 @@ if ($staff_id == "" && $username == ""){
     <div >
 		<input type="password" name="newpass" value="" placeholder="New password" minlength="5" autocomplete="off" />
 	</div>
+    <div class="">
+		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
+	</div>
     <label>Re-enter New Password</label>
     <div>
 		<input type="password" name="newpass_verify" value="" placeholder="Re-enter new password" minlength="5" autocomplete="off" />
@@ -158,6 +161,7 @@ $staff_id = $row['staff_id'];
         $newpassword = $_POST['newpass'];
         $verify_newpassword = $_POST['newpass_verify'];
         if($currentpassword == $row['password']){
+        if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
         if ($newpassword == $verify_newpassword){
             $sql = "UPDATE tbl_staff_registry SET password = '".$newpassword."' WHERE staff_id = '{$staff_id}'";
             if (mysqli_query($db, $sql)) {
@@ -169,6 +173,9 @@ $staff_id = $row['staff_id'];
          }else{
              echo "Password not Match";
          }
+         else{
+            echo 'Your password is not strong enough. Please use another.';
+            }
         }else{
             echo "Password Incorrect";
     }

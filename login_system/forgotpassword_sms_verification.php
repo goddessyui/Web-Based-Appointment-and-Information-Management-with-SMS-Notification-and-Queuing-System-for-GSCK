@@ -19,9 +19,11 @@ if ($student_username == "" && $staff_username ==""){
     <title>Document</title>
 </head>
 <body>
-<h1>FORGOT PASSWORD we send to your number ****<?php echo substr($m_number, -2);  ?></h1>
+<h1>FORGOT PASSWORD</h1>
+<div><h5>we send to your number 09****<?php echo substr($m_number, -2);  ?></h5></div>
+<div><p>Test Code = <?php echo $v_number ?></p></div>
 	<form  method="POST">
-    <label>Enter Verification Code <?php echo $v_number ?></label>
+    <label>Enter Verification Code</label>
     <input type="text" name="verification_code" value="" required/>
     
     <input type="submit" name="submit_verification" value="VERIFY"/>
