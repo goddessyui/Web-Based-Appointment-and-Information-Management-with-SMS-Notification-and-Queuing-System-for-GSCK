@@ -1,5 +1,12 @@
 <?php
-include("../db_connection.php"); 
+include("../db_connection.php");
+//session_start();
+//$staff_id = $_SESSION["staff_id"];
+//$position = $_SESSION["position"];
+//$username = $_SESSION["staff_username"];
+//if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator"){
+//    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+//}
 
 ?>
 
@@ -8,6 +15,18 @@ include("../db_connection.php");
         <h3>Pending Requests</h3>
         <?php
         //if (isset($_SESSION['staff_username'])) {
+            //TRY TO KUNG WALA PARIN SESSION
+            //$staff_username = $_SESSION['staff_username'];
+            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
+            //$queryuserdetail = mysqli_query($db, $userdetail);
+            //$user= mysqli_fetch_assoc($queryuserdetail);
+            //$staff_id = $user['staff_id'];
+            //$staff_username = $_SESSION['staff_username'];
+            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
+            //$queryuserdetail = mysqli_query($db, $userdetail);
+            //$user= mysqli_fetch_assoc($queryuserdetail);
+            //$staff_id = $user['staff_id'];
+
             $requests="SELECT * FROM tbl_appointment 
             INNER JOIN tbl_staff_registry 
             ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -16,7 +35,7 @@ include("../db_connection.php");
             WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
             AND `status` ='pending' ORDER BY appointment_id";
             //AND tbl_appointment.staff_id = '$staff_id' 
-             $request_result = mysqli_query($conn, $requests);
+             $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
             if($request_result==TRUE) 
             {   // count rows to check whether we have data in database or not

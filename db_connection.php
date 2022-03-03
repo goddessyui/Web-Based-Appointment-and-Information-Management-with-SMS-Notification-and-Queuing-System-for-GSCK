@@ -10,12 +10,12 @@ $dbname = "db_appointment_system";
 
 // Create connection
 
-$conn = mysqli_connect($servername, $db_username, $db_password, $dbname);
+$db = mysqli_connect($servername, $db_username, $db_password, $dbname);
 
 
 // Check connection
 
-if (!$conn) {
+if (!$db) {
 
 die("Connection failed: " . mysqli_connect_error());
 

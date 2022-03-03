@@ -12,7 +12,7 @@ if(isset($_POST['setappointment'])){
     VALUES ('".$student_id."', '".$staff_id."', '".$note."')";
 
 
-if (mysqli_query($conn, $set)) {
+if (mysqli_query($db, $set)) {
     
     header('location: pending_requests_staff.php');
            //exit();
@@ -21,9 +21,9 @@ if (mysqli_query($conn, $set)) {
  } else {
      header('location: pending_requests_staff.php');
         // exit();
-     echo "Error inserting record " . mysqli_error($conn);
+     echo "Error inserting record " . mysqli_error($db);
  }
- mysqli_close($conn);
+ mysqli_close($db);
  
  }
  ?>

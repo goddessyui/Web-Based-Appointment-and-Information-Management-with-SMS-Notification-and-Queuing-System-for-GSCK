@@ -9,7 +9,7 @@ if(isset($_POST['reschedule'])){
 
 
 
-if (mysqli_query($conn, $updatedate)) {
+if (mysqli_query($db, $updatedate)) {
     
    header('location: accepted_requests_staff.php');
           //exit();
@@ -18,9 +18,9 @@ if (mysqli_query($conn, $updatedate)) {
 } else {
 	header('location: accepted_requests_staff.php');
        // exit();
-    echo "Error inserting record " . mysqli_error($conn);
+    echo "Error inserting record " . mysqli_error($db);
 }
-mysqli_close($conn);
+mysqli_close($db);
 
 }
 ?>
