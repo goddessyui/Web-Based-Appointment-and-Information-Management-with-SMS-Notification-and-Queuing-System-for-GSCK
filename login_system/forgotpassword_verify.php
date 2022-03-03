@@ -13,7 +13,8 @@ include_once("../dbconfig.php");
 <body>
 
 <h1>FORGOT PASSWORD</h1>
-	<form class="forgotpassword_verify.php" method="POST">
+
+	<form method="POST">
     <div class="">
 	Enter Username: <input type="text" name="username" value="" placeholder="Username" autocomplete="off" required />
 	</div>
