@@ -10,7 +10,7 @@ if(isset($_POST['cancel'])){
 
 
 
-if (mysqli_query($conn, $cancelappointment)) {
+if (mysqli_query($db, $cancelappointment)) {
     
    header('location: accepted_requests_staff.php');
           //exit();
@@ -19,9 +19,9 @@ if (mysqli_query($conn, $cancelappointment)) {
 } else {
 	header('location: accepted_requests_staff.php');
        // exit();
-    echo "Error inserting record " . mysqli_error($conn);
+    echo "Error inserting record " . mysqli_error($db);
 }
-mysqli_close($conn);
+mysqli_close($db);
 
 }
 ?>

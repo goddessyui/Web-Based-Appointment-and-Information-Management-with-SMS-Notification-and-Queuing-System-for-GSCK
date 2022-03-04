@@ -10,7 +10,7 @@ WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 
 
-if (mysqli_query($conn, $cancelappointment)) {
+if (mysqli_query($db, $cancelappointment)) {
 
 header('location: accepted_requests_staff.php');
       //exit();
@@ -19,8 +19,8 @@ echo "Success";
 } else {
 header('location: accepted_requests_staff.php');
    // exit();
-echo "Error inserting record " . mysqli_error($conn);
+echo "Error inserting record " . mysqli_error($db);
 }
-mysqli_close($conn);
+mysqli_close($db);
 
 ?>
