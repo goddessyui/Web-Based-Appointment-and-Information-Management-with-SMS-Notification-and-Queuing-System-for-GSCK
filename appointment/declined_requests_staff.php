@@ -14,7 +14,7 @@ include("../db_connection.php");
   
     <div>
         <h3>Declined/Canceled Appointments</h3>
-        
+ 
         <?php
         //if (isset($_SESSION['staff_username'])) {
             //TRY TO KUNG WALA PARIN SESSION
@@ -66,9 +66,7 @@ include("../db_connection.php");
                 }
             
         //}    
-	    ?>
-       
-        
+	    ?>   
     </div>
 
 

@@ -24,113 +24,64 @@
     
     <br>
     <br>
-
-
+<!-- These are the buttons for appointment type-->
+    <h4>Select An Appointment Type:</h4>
     <form method="post">
-
-        <input type="submit" value="Evaluation of Grades" name="evaluation"><br/><br/>
-        <input type="submit" value="Meeting" name="meeting"><br/><br/>
-
-        
-        <?php
-        $appointmenttype = "hello";
-        
-        if(isset($_POST["evaluation"]))
-        {
-            $appointmenttype = "evaluation";
-            $staff_appointment = "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
-        tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id WHERE appointment_type = 'EVALUATION OF GRADES'";
-
-        $result = mysqli_query($db, $staff_appointment);
-        if($result==TRUE) {
-            $count = mysqli_num_rows($result);
-            if($count > 0) {
-                while($rows = mysqli_fetch_assoc($result)) {
-
-                    ?>  <form name='evaluation' method="post">
-                        <input type="radio" name="staff_name" id="registry" value="<?php echo $rows['first_name']." ". $rows['last_name']; ?>">
-                        <label for="registry"><?php echo $rows['first_name']." ". $rows['last_name'];?></label>
-                        </form>
-                    <?php
-                    }
-                }
-            }
-
-        }
-
-
-        if(isset($_POST["meeting"]))
-        {
-           
-            $staff_appointment = "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
-        tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id WHERE appointment_type = 'MEETING'";
-
-        $result = mysqli_query($db, $staff_appointment);
-        if($result==TRUE) {
-            $count = mysqli_num_rows($result);
-            if($count > 0) {
-                while($rows = mysqli_fetch_assoc($result)) {
-
-                    ?>  <select>
-                        <option type="op" name="staff_name" id="registry" value="<?php echo $rows['first_name']." ". $rows['last_name']; ?>">
-                        <?php echo $rows['first_name']." ". $rows['last_name']; ?></option>
-                        </select>
-                    <?php
-                    }
-                }
-            }
-
-        }
-    
-        if(isset($_POST["submit"]))
-        {
-                    /* Attempt MySQL server connection. Assuming you are running MySQL
-            server with default setting (user 'root' with no password) */
-    
-            
-
-            $student_id = "STUDENTNO1";
-            $first_name = "first_name";
-            $last_name = "last_name";
-            $find = "SELECT staff_id FROM tbl_staff_registry WHERE first_name = '$first_name' AND last_name = '$last_name'";
-            $request_result = mysqli_query($db, $find);
-            $rows=mysqli_fetch_assoc($request_result);
-            $staff_id = $rows['staff_id'];
-    
-            $note = $_POST['note'];  
-            date_default_timezone_set('Asia/Manila');                           		
-            $currentdate = date("Y-m-d");
-    
-            // Check connection
-            if($db === false){
-                die("ERROR: Could not connect. " . mysqli_connect_error());
-            }
-     
-            // Attempt insert query execution
-            $studentappointment = "INSERT INTO tbl_appointment (`date_created`,`student_id`, `staff_id`, `appointment_type`, `note`, `status`) 
-            VALUES ('$currentdate', '$student_id', '$staff_id', '$appointmenttype', '$note', 'pending')";
-            if(mysqli_query($db, $studentappointment)){
-                echo "Records inserted successfully.";
-            } else{
-                echo "ERROR: Could not able to execute $studentappointment. " . mysqli_error($db);
-            }
-    
-    
-    
-    
-            // Close connection
-            mysqli_close($db);
-
-
-        }
-        ?>
-        <br/><br/>
-        <input type="textarea" value=" " name="note"><br/><br/>
-        <input type="submit" value="submit" name="submit"><br/><br/>
+        <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
+        <input type="submit" value="Evaluation of Grades - Department Head" name="appointmenttype"><br/><br/>
+        <input type="submit" value="Meeting" name="appointmenttype"><br/><br>
+        <input type="submit" value="Module Submission" name="appointmenttype"><br/><br>
+        <input type="submit" value="Pre-Enrollment" name="appointmenttype"><br/><br>
+        <input type="submit" value="Presentation" name="appointmenttype"><br/><br>
+        <input type="submit" value="Project Submission" name="appointmenttype"><br/><br>
+        <input type="submit" value="Request Documents From Registrar" name="appointmenttype"><br/><br>
+        <input type="submit" value="Request for Grades" name="appointmenttype"><br/><br>
+        <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
+        <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
     </form>
+<!-- These ends the buttons for appointment type-->
 
-  
 
+<!-- This is the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
+    <?php
+        //get data
+        if(isset($_POST['appointmenttype']))
+        {
+            $appointment_type = $_POST['appointmenttype'];
+            $staff_appointment =    "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
+                                    tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id WHERE appointment_type = '$appointment_type'";
+
+            $result = mysqli_query($db, $staff_appointment);
+            if($result==TRUE) {
+                $count = mysqli_num_rows($result);
+                if($count > 0) {
+    ?>
+        <h4>Select A Staff Member:</h4>
+    <form action="student_insert_appointment.php" method="post">
+                    
+                        
+    <?php 
+                    while($rows = mysqli_fetch_assoc($result)) { 
+    ?>
+                        <input type="radio" name="staff_id" value="<?php echo $rows['staff_id'];?>">
+                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                        <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">               
+    <?php   
+                    }
+    ?>             
+    <?php
+                }
+            }
+        }
+    ?>
+        <br><br>
+        <h4>Note to Staff (Optional):</h4>
+        <textarea name="note"></textarea>
+        <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
+        <br><br>
+        <input type="submit" name="request" value="request">
+    </form>
+<!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
 
 
 </body>

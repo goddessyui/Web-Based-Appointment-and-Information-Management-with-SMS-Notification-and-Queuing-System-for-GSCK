@@ -1,7 +1,7 @@
 <?php
 include('../db_connection.php');
 
- // Prepare a update statement
+ // Prepare insert statement
  if (isset($_POST['accept'])) {
    date_default_timezone_set('Asia/Manila');                           		
    $currentdate = date("Y-m-d");
