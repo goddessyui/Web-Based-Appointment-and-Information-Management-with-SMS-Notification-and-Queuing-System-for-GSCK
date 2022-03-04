@@ -28,11 +28,14 @@ include("../db_connection.php");
             //$queryuserdetail = mysqli_query($db, $userdetail);
             //$user= mysqli_fetch_assoc($queryuserdetail);
             //$staff_id = $user['staff_id'];
-        
+            
+            $staff_id = "IDNUMBER3";//$_SESSION["staff_id"];
+
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id WHERE tbl_appointment_detail.status = 'done'";
-            //AND tbl_appointment.staff_id = '$staff_id'
+            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
+             WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id'";
+          
             $request_result = mysqli_query($db, $requests);
             
             //check whether the query is executed or not

@@ -1,5 +1,7 @@
 <?php
     include('../db_connection.php');
+
+
     //session_start();
     //$student_id = $_SESSION["student_id"];
     //$username1 = $_SESSION["student_username"];
@@ -8,6 +10,8 @@
    // if ($student_id == "" && $username1 == ""){
     //    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
     //}
+
+    
 
 ?>
 
@@ -55,8 +59,10 @@
             if($result==TRUE) {
                 $count = mysqli_num_rows($result);
                 if($count > 0) {
-    ?>
+    ?>  
+        <h2>Appointment Type: <?php echo $appointment_type;?></h2>
         <h4>Select A Staff Member:</h4>
+                    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
     <form action="student_insert_appointment.php" method="post">
                     
                         
@@ -76,11 +82,14 @@
     ?>
         <br><br>
         <h4>Note to Staff (Optional):</h4>
+        <small>Please keep your message relevent, brief, and concise.</small><br>
         <textarea name="note"></textarea>
         <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
         <br><br>
         <input type="submit" name="request" value="request">
     </form>
+                    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
+                    
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
 
 

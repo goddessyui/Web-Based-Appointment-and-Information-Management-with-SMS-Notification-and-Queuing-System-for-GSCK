@@ -13,7 +13,7 @@ include('../db_connection.php');
  if (isset($_POST['request'])) {
    date_default_timezone_set('Asia/Manila');                           		
    $currentdate = date("Y-m-d");
-   $student_id = "STUDENTNO1"; //$_SESSION["student_id"];
+   $student_id = "STUDENTNO2"; //$_SESSION["student_id"];
    $staff_id = $_POST['staff_id'];
    $appointment_type = $_POST['appointmenttype'];
    $note = $_POST['note'];
