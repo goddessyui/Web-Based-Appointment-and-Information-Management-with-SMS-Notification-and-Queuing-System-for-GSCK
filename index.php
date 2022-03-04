@@ -1,4 +1,4 @@
-<?php include_once("dbconfig.php");
+<?php
 session_start();
 $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
 $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';

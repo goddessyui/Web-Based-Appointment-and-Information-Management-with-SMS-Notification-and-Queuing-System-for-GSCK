@@ -9,6 +9,7 @@
 
 </style>
 <?php
+include_once("dbconfig.php"); 
                 $sql = "SELECT
                 tbl_announcement.announcement_id,
                 tbl_announcement.staff_id,
