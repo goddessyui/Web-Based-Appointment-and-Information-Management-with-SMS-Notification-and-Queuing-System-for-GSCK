@@ -1,5 +1,5 @@
 <?php
-include('../db_connection.php');
+include_once("../dbconfig.php"); 
 if(isset($_POST['cancel'])){
  // Prepare an update statement
     $comment = $_POST['comment'];  

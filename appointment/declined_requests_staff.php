@@ -1,5 +1,5 @@
 <?php
-include("../db_connection.php"); 
+include_once("../dbconfig.php"); 
 //session_start();
 //$staff_id = $_SESSION["staff_id"];
 //$position = $_SESSION["position"];

@@ -1,18 +1,14 @@
 <?php
-    include('../db_connection.php');
-
-
-    //session_start();
-    //$student_id = $_SESSION["student_id"];
-    //$username1 = $_SESSION["student_username"];
-    //$query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
-    //$row = $query->fetch_assoc();
-   // if ($student_id == "" && $username1 == ""){
-    //    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-    //}
-
-    
-
+    include_once("../dbconfig.php");
+    // Student Session
+    session_start();
+    $student_id = $_SESSION["student_id"];
+    $username1 = $_SESSION["student_username"];
+    $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
+    $row = $query->fetch_assoc();
+    if ($student_id == "" && $username1 == ""){
+        echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +49,9 @@
         {
             $appointment_type = $_POST['appointmenttype'];
             $staff_appointment =    "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
-                                    tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id WHERE appointment_type = '$appointment_type'";
+                                    tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
+                                    WHERE EXISTS(SELECT * FROM tbl_staff_record 
+                                    WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id) AND appointment_type = '$appointment_type'";
 
             $result = mysqli_query($db, $staff_appointment);
             if($result==TRUE) {
@@ -71,11 +69,10 @@
     ?>
                         <input type="radio" name="staff_id" value="<?php echo $rows['staff_id'];?>">
                         <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
-                        <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">               
+                        <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">  
+                                     
     <?php   
                     }
-    ?>             
-    <?php
                 }
             }
         }
@@ -91,7 +88,5 @@
                     <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
-
-
 </body>
 </html>

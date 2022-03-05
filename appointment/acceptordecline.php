@@ -1,5 +1,5 @@
 <?php
-include('../db_connection.php');
+include_once("../dbconfig.php"); 
 
  // Prepare insert statement
  if (isset($_POST['accept'])) {

@@ -1,13 +1,12 @@
 <?php
-include("../db_connection.php");
-//session_start();
-//$staff_id = $_SESSION["staff_id"];
-//$position = $_SESSION["position"];
-//$username = $_SESSION["staff_username"];
-//if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar"){
-//    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-//}
-
+    include_once("../dbconfig.php"); 
+    session_start();
+    $staff_id = $_SESSION["staff_id"];
+    $position = $_SESSION["position"];
+    $username = $_SESSION["staff_username"];
+    if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
+        echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+    }
 ?>
 
 <main>
@@ -16,7 +15,7 @@ include("../db_connection.php");
         <?php
         //if (isset($_SESSION['staff_username'])) {
           
-            $staff_id = "IDNUMBER3";//$_SESSION["staff_id"];
+            $staff_id = $_SESSION["staff_id"];
 
             $requests="SELECT * FROM tbl_appointment 
             INNER JOIN tbl_staff_registry 
@@ -25,6 +24,7 @@ include("../db_connection.php");
             WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
             WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
             AND `status` ='pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
+
             //AND tbl_appointment.staff_id = '$staff_id' 
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
@@ -61,11 +61,11 @@ include("../db_connection.php");
 				            <span>
 				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
-	      	 		            <input type="date" name="appointment_date" placeholder="" value="<?php echo $currentdate; ?>"
+	      	 		            <input type="date" name="appointment_date" required placeholder="" value=""
 	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
                                 <label>Comment:</label>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
-                                <button type="submit" name="accept">ACCEPT</button>
+                                <button  type="submit" name="accept" onclick="reminder()">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
 	      	 				<br>
 	      		            </form>
@@ -79,3 +79,11 @@ include("../db_connection.php");
 	    ?>  
     </div>
 </main>
+
+<script>
+
+function reminder() {
+  alert("Don't forget to set the Appointment Date!");
+}
+
+</script>

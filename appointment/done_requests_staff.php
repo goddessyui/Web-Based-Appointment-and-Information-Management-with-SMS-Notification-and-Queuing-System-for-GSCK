@@ -1,6 +1,6 @@
 <?php
-include("../db_connection.php"); 
-//session_start();
+include_once("../dbconfig.php");  
+session_start();
 //$staff_id = $_SESSION["staff_id"];
 //$position = $_SESSION["position"];
 //$username = $_SESSION["staff_username"];

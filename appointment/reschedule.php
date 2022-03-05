@@ -1,5 +1,7 @@
 <?php
-include('../db_connection.php');
+include_once("../dbconfig.php");
+session_start();
+
 if(isset($_POST['reschedule'])){
  // Prepare an update statement
     $original = $_POST['appointment_date'];  

@@ -1,12 +1,13 @@
 <?php
-include("../db_connection.php"); 
-//session_start();
-//$staff_id = $_SESSION["staff_id"];
-//$position = $_SESSION["position"];
-//$username = $_SESSION["staff_username"];
-//if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator"){
-//  echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-//}
+    include_once("../dbconfig.php");
+    // Staff Session
+    session_start();
+    $staff_id = $_SESSION["staff_id"];
+    $position = $_SESSION["position"];
+    $username = $_SESSION["staff_username"];
+    if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
+        echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+    }
 ?>
 
 <main>
@@ -16,14 +17,7 @@ include("../db_connection.php");
         
         <?php
         //if (isset($_SESSION['staff_username'])) {
-            //TRY TO KUNG WALA PARIN SESSION
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
-            $staff_id = "IDNUMBER3";//$_SESSION["staff_id"];
-
+         
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 

@@ -1,5 +1,7 @@
 <?php
-include('../db_connection.php');
+include_once("../dbconfig.php"); 
+session_start();
+
 if(isset($_POST['setappointment'])){
  // Prepare an update statement
     $student_id = $POST['student_id'];
