@@ -4,7 +4,7 @@ include("../db_connection.php");
 //$staff_id = $_SESSION["staff_id"];
 //$position = $_SESSION["position"];
 //$username = $_SESSION["staff_username"];
-//if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator"){
+//if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar"){
 //    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
 //}
 
@@ -15,17 +15,8 @@ include("../db_connection.php");
         <h3>Pending Requests</h3>
         <?php
         //if (isset($_SESSION['staff_username'])) {
-            //TRY TO KUNG WALA PARIN SESSION
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
+          
+            $staff_id = "IDNUMBER3";//$_SESSION["staff_id"];
 
             $requests="SELECT * FROM tbl_appointment 
             INNER JOIN tbl_staff_registry 
@@ -33,7 +24,7 @@ include("../db_connection.php");
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
             WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
             WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
-            AND `status` ='pending' ORDER BY appointment_id";
+            AND `status` ='pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
             //AND tbl_appointment.staff_id = '$staff_id' 
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
