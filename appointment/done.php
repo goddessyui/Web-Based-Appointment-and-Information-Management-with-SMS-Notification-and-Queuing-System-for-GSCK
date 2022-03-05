@@ -1,5 +1,6 @@
 <?php
 include_once("../dbconfig.php"); 
+session_start();
 
 date_default_timezone_set('Asia/Manila');                           		
  $currentdate = date("Y-m-d");
