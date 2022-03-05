@@ -18,14 +18,12 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 </head>
 <body>
 <div class="">
-            <div class="">
-                <a class="" href="#">GSCK Appointment System</a>
-            </div>
+
             <ul class="">
                 <li class="active"><a href="#">Appointments</a></li>
 		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
                 <li><a href="#">Schedules</a></li>
-                <li><a href="#">Scholars Record</a></li>
+                <li><a href="#">Scholars Records</a></li>
                 <li><a href="../staff_profile.php">Account</a></li>
             </ul>
             <ul class="">
@@ -33,6 +31,6 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             </ul>
 
 
-<h1>This is the index(announcement schedule etc etc)</h1>
+<h1>Accounting Staff/Scholarship Coordinator PAGE</h1>
 </body>
 </html>

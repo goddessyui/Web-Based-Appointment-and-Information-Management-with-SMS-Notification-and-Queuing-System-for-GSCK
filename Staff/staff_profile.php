@@ -14,7 +14,7 @@ $appointment_type = "";
                 tbl_staff_appointment.appointment_type
                 FROM
                 tbl_staff_appointment
-                WHERE staff_id = $staff_id";
+                WHERE staff_id = '{$staff_id}'";
                 $res = mysqli_query($db, $sql);
                 if (mysqli_num_rows($res) > 0) {
 
@@ -161,7 +161,7 @@ $staff_id = $row['staff_id'];
         $newpassword = $_POST['newpass'];
         $verify_newpassword = $_POST['newpass_verify'];
         if($currentpassword == $row['password']){
-        if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
+        if (strlen($newpassword) >= 5 && strpbrk($newpassword, "1234567890") != false ){
         if ($newpassword == $verify_newpassword){
             $sql = "UPDATE tbl_staff_registry SET password = '".$newpassword."' WHERE staff_id = '{$staff_id}'";
             if (mysqli_query($db, $sql)) {
@@ -172,7 +172,7 @@ $staff_id = $row['staff_id'];
             
          }else{
              echo "Password not Match";
-         }
+         }}
          else{
             echo 'Your password is not strong enough. Please use another.';
             }
