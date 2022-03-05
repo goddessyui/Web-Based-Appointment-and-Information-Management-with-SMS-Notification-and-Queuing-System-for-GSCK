@@ -49,8 +49,8 @@ if ($verification != $v_number){
         $newpassword = $_POST['newpass'];
         $verify_newpassword = $_POST['newpass_verify'];
           if($v_id == "student"){
-            if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
-            if ($newpassword == $verify_newpassword){
+            if ( strlen($newpassword) >= 5 && strpbrk($newpassword, "1234567890") != false ){
+              if ($newpassword == $verify_newpassword){
                 $sql = "UPDATE tbl_student_registry SET password = $newpassword WHERE username = '{$student_username}'";
                 if (mysqli_query($db, $sql)) {
                     echo "Password updated successfully";
@@ -61,14 +61,14 @@ if ($verification != $v_number){
             }else{
               echo "not match";
             }
-            
+          }
             else{
             echo 'Your password is not strong enough. Please use another.';
             }
-        }
-
+        
+      }
           else if($v_id == "staff"){
-            if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
+            if ( strlen($newpassword) >= 5 && strpbrk($newpassword, "1234567890") != false ){
             if ($newpassword == $verify_newpassword){
               $sql = "UPDATE tbl_staff_registry SET password = $newpassword WHERE username = '{$staff_username}'";
                 if ($db->query($sql)) {
@@ -80,17 +80,17 @@ if ($verification != $v_number){
              }else{
                  echo "not match";
              }
-             else{
+            }else{
               echo 'Your password is not strong enough. Please use another.';
               }
-        }
+        
 
 
 
 
     }
        
-        
+  }    
    
         
 

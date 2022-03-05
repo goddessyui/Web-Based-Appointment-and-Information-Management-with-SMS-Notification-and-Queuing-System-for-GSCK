@@ -129,7 +129,7 @@ $student_id = $row['student_id'];
         $newpassword = $_POST['newpass'];
         $verify_newpassword = $_POST['newpass_verify'];
         if($currentpassword == $row['password']){
-        if ( strlen($passwd) >= 5 && strpbrk($passwd, "1234567890") != false ){
+        if ( strlen($newpassword) >= 5 && strpbrk($newpassword, "1234567890") != false ){
         if ($newpassword == $verify_newpassword){
             $sql = "UPDATE tbl_student_registry SET password = $newpassword WHERE student_id = '{$student_id}'";
             if (mysqli_query($db, $sql)) {
@@ -137,19 +137,19 @@ $student_id = $row['student_id'];
               } else {
                 echo "Error changing password:  $sql." . mysqli_error($db);
               }
-            
-         }else{
+        }
+         else{
              echo "Password not Match";
-         }
+         } }
          else{
             echo 'Your password is not strong enough. Please use another.';
-            }
-        }else{
+            }}
+        else{
             echo "Password Incorrect";
     }
 }
-
-
+    
+    
 
 ?>
 

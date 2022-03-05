@@ -45,6 +45,7 @@ if ($staff_id == "" && $staff_username == ""){
                         # code...
 
                 ?>
+                <hr>
                 <div class="blog_img_box">
                 <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
                 <div><pre><?php echo $row['caption'] ?></pre></div>
