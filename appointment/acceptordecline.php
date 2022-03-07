@@ -27,7 +27,6 @@ else if (isset($_POST['decline'])) {
       $currentdate = date("Y-m-d");
    $appointment_id = $_GET['appointment_id'];
    $comment = $_POST['comment'];
-   $appointment_date = $_POST['appointment_date'];
    
    $declineappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
                         VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'declined')";

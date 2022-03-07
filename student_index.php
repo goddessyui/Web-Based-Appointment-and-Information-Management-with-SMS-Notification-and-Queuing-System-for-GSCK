@@ -18,10 +18,10 @@ if ($student_id == "" && $username1 == ""){
 <body>
         <div class="">
             <div class="">
-                <a class="" href="#">GSCK Appointment System</a>
+                <a class="" href="">GSCK Appointment System</a>
             </div>
             <ul class="">
-                <li class="active"><a href="#">Request an Appointment</a></li>
+                <li class="active"><a href="appointment/appointment_student.php">Request an Appointment</a></li>
 		<li><a href="#">Appointment Details</a></li>
                 <li><a href="Student/student_profile.php">Profile</a></li>
             </ul>

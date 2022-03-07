@@ -5,9 +5,12 @@
     $staff_id = $_SESSION["staff_id"];
     $position = $_SESSION["position"];
     $username = $_SESSION["staff_username"];
+    
+    // Redirect if not staff
     if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
         echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
     }
+    
 ?>
 
 <main>
@@ -34,8 +37,7 @@
                 <?php echo "Appointments for ". $sortdate; ?>
                 </font></b>
                 <?php
-                $staff_id = $_SESSION["staff_id"];
-                
+               
                 $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
                 ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -79,17 +81,18 @@
                                     $currentdate = date("Y-m-d");
                                 ?>
                                 <span>
-                                <!-------------------------To reschedule appointment. Send Form Data to reschedule.php ------------------------------>       
+                                <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
                                 <form action="reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                     <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
-                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($rows["appointment_date"]. ' + 20 days'));?>">
+                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                                     <br>
                                     <br>
                                     <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
                                 </form>
                                 <!-------------------------Send Form Data to reschedule.php ------------------------------>    
                                 </span>
-                                <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ------------------------------>  
+                                <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ---------------------->  
                                 <form action ="cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                     <label>Comment:</label><br>
                                     <textarea type="textarea" name="comment"></textarea><br><br>
@@ -97,14 +100,16 @@
                                 </form>
                                 <!-------------------------Send Form Data to cancel.php ------------------------------>
                                 <!-------------------------Send data to done.php ------------------------------>  
-                                <button type="submit" id="done"><a href="done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">APPOINTMENT DONE</a> </button>
+                                <button type="submit" id="done"><a href="done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                APPOINTMENT DONE</a> </button>
                                 <!-------------------------Send data to done.php ------------------------------> 
                             </div>
             <?php 
                         }
                     }
                 }
-            } 
+            }
+            //-------------------------Show Accepted Requests After Pressing Sort By Date------------------------------>  
         
             //-------------------------Show All Accepted Requests WITHOUT Sorting By Date------------------------------>  
         
@@ -152,17 +157,18 @@
                                     $currentdate = date("Y-m-d");
                                 ?>
                                 <span>
-                                <!-------------------------To reschedule appointment. Send Form Data to reschedule.php ------------------------------>       
+                                <!-------------------------To reschedule appointment. Send Form Data to reschedule.php -------------------------->       
                                 <form action="reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                     <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
-                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($rows["appointment_date"]. ' + 20 days'));?>">
+                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                                     <br>
                                     <br>
                                     <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
                                 </form>
                                 <!-------------------------Send Form Data to reschedule.php ------------------------------>    
                                 </span>
-                                <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ------------------------------>  
+                                <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php --------------------->  
                                 <form action ="cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                     <label>Comment:</label><br>
                                     <textarea type="textarea" name="comment"></textarea><br><br>
@@ -170,7 +176,8 @@
                                 </form>
                                 <!-------------------------Send Form Data to cancel.php ------------------------------>
                                 <!-------------------------Send data to done.php ------------------------------>  
-                                <button type="submit" id="done"><a href="done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">APPOINTMENT DONE</a> </button>
+                                <button type="submit" id="done"><a href="done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                APPOINTMENT DONE</a> </button>
                                 <!-------------------------Send data to done.php ------------------------------> 
                             </div>
             <?php 

@@ -14,20 +14,20 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
   
     <div>
         <h3>Declined/Canceled Appointments</h3>
-<!-------------------------Show Declined Requests ------------------------------>  
+<!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
         <?php
     
-            $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
+            $declinedappointments="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'declined' AND tbl_appointment.staff_id = '$staff_id'";
-            $request_result = mysqli_query($db, $requests);
+            WHERE tbl_appointment_detail.status = 'declined' AND tbl_appointment.staff_id = '$staff_id' ORDER BY appointment_date DESC";
+            $declinedappointments_result = mysqli_query($db, $declinedappointments);
             
             //check whether the query is executed or not
-            if($request_result==TRUE) 
+            if($declinedappointments_result==TRUE) 
             { // count rows to check whether we have data in database or not
                     $i = 1;
-                    while($rows=mysqli_fetch_assoc($request_result)) 
+                    while($rows=mysqli_fetch_assoc($declinedappointments_result)) 
                     //using while loop to get all the date from database
 			        //and while loop will run as long as we have data in database
                     {
@@ -39,8 +39,8 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
                                 ?>
                             </td>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
+                            <p><span>Date Declined/Canceled: </span><?php echo $rows['appointment_date']; ?></p>
                             <p><span>Request Date: </span><?php echo $rows['date_created']; ?></p>
-                            <p><span>Date Declined/Canceled: </span><?php echo $rows['appointment_date']; ?></p> 
 				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Student:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                             <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>

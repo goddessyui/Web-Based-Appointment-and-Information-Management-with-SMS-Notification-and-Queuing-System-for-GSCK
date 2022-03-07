@@ -60,7 +60,7 @@
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
-	      	 		            <input type="date" name="appointment_date" required placeholder="" value=""
+	      	 		            <input type="date" name="appointment_date" placeholder="" value=""
 	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
                                 <label>Comment:</label>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
