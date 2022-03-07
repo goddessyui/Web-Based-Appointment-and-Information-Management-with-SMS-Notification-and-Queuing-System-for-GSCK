@@ -65,7 +65,7 @@
 	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
                                 <label>Comment:</label>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
-                                <button  type="submit" name="accept" onclick="reminder()">ACCEPT</button>
+                                <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
 	      	 				<br>
 	      		            </form>
@@ -81,10 +81,3 @@
     </div>
 </main>
 
-<script>
-
-function reminder() {
-  alert("Don't forget to set the Appointment Date!");
-}
-
-</script>
