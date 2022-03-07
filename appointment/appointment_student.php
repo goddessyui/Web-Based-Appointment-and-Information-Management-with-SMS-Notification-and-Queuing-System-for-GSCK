@@ -9,6 +9,7 @@
     if ($student_id == "" && $username1 == ""){
         echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
     
     <br>
     <br>
-<!-- These are the buttons for appointment type-->
+<!-- These are the buttons for appointment type-------------------------------------------------------------------------------------------------->
     <h4>Select An Appointment Type:</h4>
     <form method="post">
         <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
@@ -39,7 +40,7 @@
         <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
         <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
     </form>
-<!-- These ends the buttons for appointment type-->
+<!-- These ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
 
 <!-- This is the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
@@ -60,7 +61,7 @@
     ?>  
         <h2>Appointment Type: <?php echo $appointment_type;?></h2>
         <h4>Select A Staff Member:</h4>
-                    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
+    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
     <form action="student_insert_appointment.php" method="post">
                     
                         
@@ -85,7 +86,7 @@
         <br><br>
         <input type="submit" name="request" value="request">
     </form>
-                    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
+    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
 </body>

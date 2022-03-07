@@ -8,7 +8,6 @@
         echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
     }
 ?>
-
 <main>
     <div>
         <h3>Pending Requests</h3>
