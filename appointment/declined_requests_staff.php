@@ -20,7 +20,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'declined' tbl_appointment.staff_id = '$staff_id'";
+            WHERE tbl_appointment_detail.status = 'declined' AND tbl_appointment.staff_id = '$staff_id'";
             $request_result = mysqli_query($db, $requests);
             
             //check whether the query is executed or not
