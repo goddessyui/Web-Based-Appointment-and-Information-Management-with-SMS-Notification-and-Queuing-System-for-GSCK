@@ -14,26 +14,13 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
   
     <div>
         <h3>Declined/Canceled Appointments</h3>
- 
+<!-------------------------Show Declined Requests ------------------------------>  
         <?php
-        //if (isset($_SESSION['staff_username'])) {
-            //TRY TO KUNG WALA PARIN SESSION
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
-
+    
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'declined'";
-            //AND tbl_appointment.staff_id = '$staff_id'
+            WHERE tbl_appointment_detail.status = 'declined' tbl_appointment.staff_id = '$staff_id'";
             $request_result = mysqli_query($db, $requests);
             
             //check whether the query is executed or not
@@ -45,10 +32,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			        //and while loop will run as long as we have data in database
                     {
         ?>
-
                         <div>
                             <td>
-                                <?php   echo $i;
+                                <?php   echo $i; //display numbers on the side
 		                  	            $i++; 
                                 ?>
                             </td>
@@ -63,10 +49,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			            </div>
         <?php 
                     }
-                }
-            
-        //}    
-	    ?>   
+                }   
+	    ?>
+<!-------------------------Show Declined Requests ------------------------------>          
     </div>
 
 

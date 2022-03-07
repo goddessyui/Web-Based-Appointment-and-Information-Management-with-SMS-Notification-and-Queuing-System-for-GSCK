@@ -3,7 +3,7 @@ include_once("../dbconfig.php");
 session_start();
 
 if(isset($_POST['setappointment'])){
- // Prepare an update statement
+ // Prepare an insert statement
     $student_id = $POST['student_id'];
     $staff_id= $POST['staff_id'];
     $appointment_type=$POST['appointment_type'];

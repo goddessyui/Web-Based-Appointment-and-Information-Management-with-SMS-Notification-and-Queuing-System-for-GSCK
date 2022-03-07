@@ -18,7 +18,7 @@ if (mysqli_query($db, $cancelappointment)) {
 	echo "Success";
 } else {
 	header('location: accepted_requests_staff.php');
-       // exit();
+       //exit();
     echo "Error inserting record " . mysqli_error($db);
 }
 mysqli_close($db);

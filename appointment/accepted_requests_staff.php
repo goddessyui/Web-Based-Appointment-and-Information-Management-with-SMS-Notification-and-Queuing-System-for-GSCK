@@ -11,10 +11,9 @@
 ?>
 
 <main>
-  
     <div>
         <h3>List of Appointments</h3>
-        
+<!-------------------------Show Accepted Requests ------------------------------>        
         <?php
         //if (isset($_SESSION['staff_username'])) {
          
@@ -59,6 +58,7 @@
 					            $currentdate = date("Y-m-d");
 				            ?>
 				            <span>
+                            <!-------------------------To reschedule appointment. Send Form Data to reschedule.php ------------------------------>       
 				            <form action="reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
                                     min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($rows["appointment_date"]. ' + 20 days'));?>">
@@ -66,19 +66,24 @@
                                 <br>
                                 <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE">
 	      		            </form>
+                            <!-------------------------Send Form Data to reschedule.php ------------------------------>    
 	      		            </span>
+                            <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ------------------------------>  
                             <form action ="cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                 <label>Comment:</label><br>
 					            <textarea type="textarea" name="comment"></textarea><br>
                                 <input id="cancel" type="submit" name="cancel" value="CANCEL"><br>
                             </form>
+                            <!-------------------------Send Form Data to cancel.php ------------------------------>
+                            <!-------------------------Send data to done.php ------------------------------>  
                             <button type="submit" id="done"><a href="done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">DONE</a> </button>
+                             <!-------------------------Send data to done.php ------------------------------> 
 		                </div>
         <?php 
                     }
                 }
-            }
-        //}    
+            } 
 	    ?>
+<!-------------------------Show Accepted Requests ------------------------------>            
     </div>
 </main>

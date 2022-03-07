@@ -12,9 +12,8 @@
 <main>
     <div>
         <h3>Pending Requests</h3>
+<!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->          
         <?php
-        //if (isset($_SESSION['staff_username'])) {
-          
             $staff_id = $_SESSION["staff_id"];
 
             $requests="SELECT * FROM tbl_appointment 
@@ -25,7 +24,6 @@
             WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
             AND `status` ='pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
 
-            //AND tbl_appointment.staff_id = '$staff_id' 
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
             if($request_result==TRUE) 
@@ -55,10 +53,12 @@
 			            </div>
                         <div>
 				            <?php
+                                //set the time to local time
 					            date_default_timezone_set('Asia/Manila');                           		
 					            $currentdate = date("Y-m-d");
 				            ?>
 				            <span>
+                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
 	      	 		            <input type="date" name="appointment_date" required placeholder="" value=""
@@ -69,14 +69,15 @@
                                 <button type="submit" name="decline">DECLINE</button>
 	      	 				<br>
 	      		            </form>
+                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 	      		            </span>
 		                </div>
         <?php 
                     }
                 }
-            }
-        //}    
-	    ?>  
+            }    
+	    ?>
+<!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->            
     </div>
 </main>
 

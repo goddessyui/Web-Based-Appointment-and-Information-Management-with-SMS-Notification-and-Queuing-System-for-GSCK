@@ -14,22 +14,10 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
   
     <div>
         <h3>Completed Appointments</h3>
-        
+ <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
         <?php
-        //if (isset($_SESSION['staff_username'])) {
-            //TRY TO KUNG WALA PARIN SESSION
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
-            //$staff_username = $_SESSION['staff_username'];
-            //$userdetail = "SELECT * FROM tbl_user WHERE username='$staff_username'";
-            //$queryuserdetail = mysqli_query($db, $userdetail);
-            //$user= mysqli_fetch_assoc($queryuserdetail);
-            //$staff_id = $user['staff_id'];
             
-            $staff_id = "IDNUMBER3";//$_SESSION["staff_id"];
+            $staff_id = $_SESSION["staff_id"];
 
             $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -49,7 +37,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
         ?>
                         <div>
                             <td>
-                                <?php   echo $i;
+                                <?php   echo $i;//display numbers on the side
 		                  	            $i++; 
                                 ?>
                             </td>
@@ -65,12 +53,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			            </div>
         <?php 
                     }
-                }
-        //}    
+                }   
 	    ?>
-       
+ <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
         
     </div>
-
-
 </main>
