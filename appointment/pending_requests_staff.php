@@ -21,7 +21,7 @@
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
             WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
             WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
-            AND `status` ='pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
+            AND `status` ='Pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
 
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
@@ -39,7 +39,7 @@
         ?>
                         <div>
                             <td>
-                                <?php   echo $i;
+                                <?php   echo $i;//Adds Row Counter
 		                  	            $i++; 
                                 ?>
                             </td>
@@ -60,8 +60,9 @@
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
-	      	 		            <input type="date" name="appointment_date" placeholder="" value=""
-	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>"><br>
+	      	 		            <input type="date" name="appointment_date" placeholder="" value=" "
+	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>">
+                                   <span class="error"><?php if (isset($Error)) echo $Error; ?></span><br>
                                 <label>Comment:</label>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
                                 <button  type="submit" name="accept">ACCEPT</button>

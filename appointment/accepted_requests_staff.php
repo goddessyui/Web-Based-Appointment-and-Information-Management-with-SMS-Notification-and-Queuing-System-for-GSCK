@@ -9,13 +9,12 @@
     // Redirect if not staff
     if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
         echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-    }
-    
+    }  
 ?>
-
 <main>
     <div>
         <h3>My Appointments</h3>
+        <hr>
 <!-------------------------Sort Requests By Date------------------------------> 
         <?php date_default_timezone_set('Asia/Manila');                           		
 		$currentdate = date("Y-m-d");?>
@@ -24,7 +23,7 @@
             min="<?php echo $currentdate, - '30 days' ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 90 days'));?>">
             <input type="submit" name="searchbydate" value="SORT BY DATE">
 	    </form>
-
+        <hr>
 <!-------------------------Sort Requests By Date ------------------------------> 
 
 <!-------------------------Show Accepted Requests ------------------------------>   
@@ -36,6 +35,7 @@
                 <b><font color="blue">
                 <?php echo "Appointments for ". $sortdate; ?>
                 </font></b>
+                <hr>
                 <?php
                
                 $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
@@ -114,6 +114,11 @@
             //-------------------------Show All Accepted Requests WITHOUT Sorting By Date------------------------------>  
         
                 else {
+                ?>
+                <h4><font color="blue">All Appointments</font></h4>
+                <hr>
+                <?php
+
                 $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
                 ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 

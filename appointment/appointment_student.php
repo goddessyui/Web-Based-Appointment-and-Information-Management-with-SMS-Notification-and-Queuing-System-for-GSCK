@@ -11,18 +11,7 @@
     }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Page</title>
-</head>
-<body>
     <h1>Student User Interface</h1>
-    
     <br>
     <br>
 <!-- These are the buttons for appointment type-------------------------------------------------------------------------------------------------->
@@ -41,7 +30,6 @@
         <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
     </form>
 <!-- These ends the buttons for appointment type------------------------------------------------------------------------------------------------->
-
 
 <!-- This is the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
     <?php
@@ -63,15 +51,13 @@
         <h4>Select A Staff Member:</h4>
     <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
     <form action="student_insert_appointment.php" method="post">
-                    
-                        
+                                      
     <?php 
                     while($rows = mysqli_fetch_assoc($result)) { 
     ?>
                         <input type="radio" name="staff_id" value="<?php echo $rows['staff_id'];?>">
                         <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
-                        <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">  
-                                     
+                        <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">                   
     <?php   
                     }
                 }
@@ -80,7 +66,7 @@
     ?>
         <br><br>
         <h4>Note to Staff (Optional):</h4>
-        <small>Please keep your message relevent, brief, and concise.</small><br>
+        <small>Please keep your message brief and relevant (For example: "Request for TOR.").</small><br>
         <textarea name="note"></textarea>
         <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
         <br><br>
@@ -88,6 +74,5 @@
     </form>
     <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
-<!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
-</body>
-</html>
+<!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>
+
