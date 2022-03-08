@@ -21,8 +21,8 @@ if ($student_id == "" && $username1 == ""){
                 <a class="" href="">GSCK Appointment System</a>
             </div>
             <ul class="">
-                <li class="active"><a href="appointment/appointment_student.php">Request an Appointment</a></li>
-		<li><a href="#">Appointment Details</a></li>
+                <li class="active"><a href="appointment/student_appointment.php">Request an Appointment</a></li>
+		<li><a href="appointment/student_appointment_details.php">Appointment Details</a></li>
                 <li><a href="Student/student_profile.php">Profile</a></li>
             </ul>
             <ul class="">

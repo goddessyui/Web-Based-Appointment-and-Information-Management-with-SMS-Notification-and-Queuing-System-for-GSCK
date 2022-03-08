@@ -1,16 +1,4 @@
-<?php
-    include_once("../dbconfig.php");
-    // Student Session
-    session_start();
-    $student_id = $_SESSION["student_id"];
-    $username1 = $_SESSION["student_username"];
-    $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
-    $row = $query->fetch_assoc();
-    if ($student_id == "" && $username1 == ""){
-        echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-    }
 
-?>
 <h3>Student Appointment Details</h3>
 <!----------------Shows Student's List of Appointments------------------------------------------------------------>
 <?php
@@ -19,7 +7,7 @@
      ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
      INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
      INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-     WHERE tbl_student_registry.student_id = '$student_id'";
+     WHERE tbl_student_registry.student_id = '$student_id' AND `status` = 'Pending'";
     
     $appointment_list = mysqli_query($db, $appointmentdetails);
                 

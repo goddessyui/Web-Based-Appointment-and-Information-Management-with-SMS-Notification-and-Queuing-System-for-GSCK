@@ -20,15 +20,14 @@
    $note = $_POST['note'];
 
    $requestappointment = "INSERT INTO tbl_appointment (`date_created`, `student_id`, `staff_id`, `appointment_type`, `note`, `status`)
-                           VALUES ('$currentdate', '$student_id', '$staff_id', '$appointment_type', '$note', 'pending')";
+                           VALUES ('$currentdate', '$student_id', '$staff_id', '$appointment_type', '$note', 'Pending')";
 
    if(mysqli_query($db, $requestappointment)){
-      header('location: appointment_student.php');
-      echo "Records inserted successfully.";
-      
+      header("refresh:2;url=../student_index.php");/* Redirect browser */
+      echo "You successfully sent a request for appointment.";     
    } else{
-      header('location: appointment_student.php');
-      echo "ERROR: Not able to execute $acceptappointment. " . mysqli_error($db);
+      header("refresh:2;url=student_appointment.php"); /* Redirect browser */
+      echo "ERROR: Not able to execute your request at this time. " . mysqli_error($db);
    }
  }
 // Close connection
