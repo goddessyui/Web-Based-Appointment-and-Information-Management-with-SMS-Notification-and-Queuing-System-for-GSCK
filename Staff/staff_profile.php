@@ -40,6 +40,22 @@ if ($staff_id == "" && $username == ""){
     <title>Document</title>
 </head>
 <body>
+    <div>
+    <div class="">
+                <a class="" href="../index.php">GSCK Appointment System</a>
+            </div>
+<ul class="">
+                <li><a href="#">Appointments</a></li>
+		        <li><a href="announcement/announcement_test.php">Make Announcements</a></li>
+                <li><a href="#">Schedules</a></li>
+                <li class="active"><a href="#">Account</a></li>
+            </ul>
+            <ul class="">
+                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            </ul>
+            </div>
+
+<hr>
     <div><h1>PROFILE</h1></div>
     <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
     <div><p> <?php echo $row["username"]?></p></div>
@@ -147,6 +163,8 @@ $staff_id = $row['staff_id'];
                 foreach($type as $types){
                     $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
                     $query_run = mysqli_query($db, $query);
+                    
+                    $_SESSION["position"] = $new_position;
                     }  
         echo "Profile Settings Changes";}
         } else {

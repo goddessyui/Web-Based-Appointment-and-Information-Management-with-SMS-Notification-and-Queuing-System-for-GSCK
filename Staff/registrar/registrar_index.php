@@ -17,13 +17,15 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
     <title>Document</title>
 </head>
 <body>
+<div >
 <div class="">
-              
+                <a class="" href="#">GSCK Appointment System</a>
+            </div>             
            
             <ul class="">
                 <li class="active"><a href="#">Appointments</a></li>
 		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
-                <li><a href="#">Schedules</a></li>
+                <li><a href="#">Set Schedules</a></li>
                 <li><a href="#">Student Records</a></li>
                 <li><a href="#">Staff Records</a></li>
                 <li><a href="">Account</a></li>
@@ -34,6 +36,6 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
             </div>
 
 
-<h1>REGISTART PAGE!!</h1>
+<h1>REGISTART PAGE</h1>
 </body>
 </html>

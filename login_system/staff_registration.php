@@ -112,7 +112,7 @@ if (isset($_POST['button_register'])) {
     $passwd = $_POST['passwd']; 
     $passwd_again = $_POST['confirm_password']; 
     $type = $_POST['check_list'];
-    $other_type = $_POST['other_list'];
+    $other_type = !empty($_POST['other_list'])?$_POST['other_list']:'';
     if ($username != "" && $passwd != "" && $passwd_again != ""){
     if(!empty($type)){
         if ($passwd == $passwd_again){
@@ -122,7 +122,7 @@ if (isset($_POST['button_register'])) {
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
 
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                    $othr = implode(',', $_POST['other_list']);
+                    $othr = !empty($_POST['other_list'])?implode(',', $_POST['other_list']):'';
                     mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$othr}', '{$number}')");
                     $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
