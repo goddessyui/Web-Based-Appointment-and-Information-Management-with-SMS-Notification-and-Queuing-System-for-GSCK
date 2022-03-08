@@ -11,17 +11,19 @@
 <main>
     <div>
         <h3>Pending Requests</h3>
+        <a href="staff_appointment_details.php">Back to Appointments</a>
+        <hr>
 <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->          
         <?php
             $staff_id = $_SESSION["staff_id"];
 
             $requests="SELECT * FROM tbl_appointment 
-            INNER JOIN tbl_staff_registry 
-            ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
-            WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
-            AND `status` ='Pending' AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY appointment_id";
+                INNER JOIN tbl_staff_registry 
+                ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+                WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+                AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY date_created ASC";
 
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
@@ -61,14 +63,15 @@
 				            <form action="acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
 	      	 		            <input type="date" name="appointment_date" placeholder="" value=" "
-	      	 				    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 20 days'));?>">
-                                   <span class="error"><?php if (isset($Error)) echo $Error; ?></span><br>
-                                <label>Comment:</label>
-                                <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br>
+	      	 				        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
+                                    strtotime($currentdate. ' + 20 days'));?>"><br><br>
+                                <label>Comment:</label><br>
+                                <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br><br>
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
 	      	 				<br>
 	      		            </form>
+                              <hr>
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 	      		            </span>
 		                </div>
@@ -80,4 +83,5 @@
 <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->            
     </div>
 </main>
+
 

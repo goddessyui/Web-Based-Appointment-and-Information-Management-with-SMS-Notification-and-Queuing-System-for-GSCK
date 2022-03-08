@@ -11,8 +11,8 @@ if (isset($_POST['accept'])) {
    $appointment_date = $_POST['appointment_date'];
     
    if (empty($_POST['appointment_date'])) {//if appointment date is not filled
-      header('location: pending_requests_staff.php');
-		$Error = 'Appointment date should be filled';
+      header("refresh:1;url=staff_pending_requests.php");
+		echo "Appointment date should be filled";
 	} 
    else { //if appointment date is filled 
    
@@ -20,12 +20,12 @@ if (isset($_POST['accept'])) {
                            VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
 
       if(mysqli_query($db, $acceptappointment)){
-         header('location: pending_requests_staff.php');
-         echo "Records inserted successfully.";
+         header("refresh:2;url=staff_pending_requests.php");
+         echo "Appointment request accepted and scheduled on". " ". $appointment_date;
       } 
       else {
-         header('location: pending_requests_staff.php');
-         echo "ERROR: Not able to execute $acceptappointment. " . mysqli_error($db);
+         header("refresh:2;url=staff_pending_requests.php");
+         echo "ERROR: Not able to execute. " . mysqli_error($db);
       }
 	}
 }
@@ -42,12 +42,12 @@ else if (isset($_POST['decline'])) {
                         VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'Declined')";
    
    if(mysqli_query($db, $declineappointment)){
-      header('location: pending_requests_staff.php');
-      echo "Records inserted successfully.";
+      header("refresh:2;url=staff_pending_requests.php");
+      echo "Appointment Request Declined.";
    } 
    else{
-      header('location: pending_requests_staff.php');
-      echo "ERROR: Not able to execute $declineappointment. " . mysqli_error($db);
+      header("refresh:2;url=staff_pending_requests.php");
+      echo "ERROR: Not able to execute. " . mysqli_error($db);
    }
  }
 //--------------------------If Decline is Pressed--------------------------// 

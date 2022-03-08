@@ -14,23 +14,24 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
   
     <div>
         <h3>Completed Appointments</h3>
+        <a href="staff_appointment_details.php">Back to Appointments</a>
  <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
         <?php
             
             $staff_id = $_SESSION["staff_id"];
 
-            $requests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
+            $donerequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
              WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id'";
           
-            $request_result = mysqli_query($db, $requests);
+            $donerequest_result = mysqli_query($db, $donerequests);
             
             //check whether the query is executed or not
-            if($request_result==TRUE) 
+            if($donerequest_result==TRUE) 
             { // count rows to check whether we have data in database or not
                     $i = 1;
-                    while($rows=mysqli_fetch_assoc($request_result)) 
+                    while($rows=mysqli_fetch_assoc($donerequest_result)) 
                     //using while loop to get all the date from database
 			        //and while loop will run as long as we have data in database
                     {

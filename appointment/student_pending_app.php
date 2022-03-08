@@ -1,25 +1,22 @@
 
-<h3>Student Appointment Details</h3>
-<!----------------Shows Student's List of Appointments------------------------------------------------------------>
+<!----------------Shows Student's Pending Appointments------------------------------------------------------------>
 <?php
 
-     $appointmentdetails="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+    $pendingappointments="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
      INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-     WHERE tbl_student_registry.student_id = '$student_id' AND `status` = 'Pending'";
+     WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment.status = 'Pending' ORDER BY date_created DESC";
     
-    $appointment_list = mysqli_query($db, $appointmentdetails);
+    $pending_appointment_list = mysqli_query($db, $pendingappointments);
                 
     //check whether the query is executed or not
-    if($appointment_list==TRUE) 
+    if($pending_appointment_list==TRUE) 
     { // count rows to check whether we have data in database or not
-        $count = mysqli_num_rows($appointment_list);  //function to get all the rows in database
+        $count = mysqli_num_rows($pending_appointment_list);  //function to get all the rows in database
         //check the num of rows                 
         if($count>0) //we have data in database
         {
             $i = 1;
-            while($rows=mysqli_fetch_assoc($appointment_list)) 
+            while($rows=mysqli_fetch_assoc($pending_appointment_list)) 
             //using while loop to get all the date from database
             //and while loop will run as long as we have data in database
             {
@@ -29,15 +26,11 @@
                         <?php   echo $i;
                                 $i++; 
                         ?>
-                    </td>
-                    <p><span>Appointment Status:</span><pre><?php echo $rows['status']; ?></pre></p> 
-                    <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                    <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
-                    <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
+                    </td>  
                     <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
+                    <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
                     <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
                     <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                    <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p> 
                 </div>
 <?php 
             }
@@ -45,3 +38,4 @@
     }
 
 ?>
+<!----------------Shows Student's Pending Appointments------------------------------------------------------------>

@@ -12,12 +12,12 @@ if(isset($_POST['cancel'])){
 
 if (mysqli_query($db, $cancelappointment)) {
     
-   header('location: accepted_requests_staff.php');
+   header('location: staff_accepted_requests.php');
           //exit();
 
 	echo "Success";
 } else {
-	header('location: accepted_requests_staff.php');
+	header('location: staff_accepted_requests.php');
        //exit();
     echo "Error inserting record " . mysqli_error($db);
 }
