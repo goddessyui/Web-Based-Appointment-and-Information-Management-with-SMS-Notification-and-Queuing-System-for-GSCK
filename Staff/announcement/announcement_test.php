@@ -19,6 +19,20 @@ if ($staff_id == "" && $staff_username == ""){
     <title>Document</title>
 </head>
 <body>
+<div>
+              
+           
+              <ul class="">
+              <li><a href="#">Appointments</a></li>
+              <li class="active"><a href="#">Make Announcements</a></li>
+              <li><a href="#">Schedules</a></li>
+              <li><a href="../staff_profile.php">Account</a></li>
+          </ul>
+          <ul class="">
+              <li><a href="../../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+          </ul>
+          </div>
+    <hr>
 <div class="container">
         <h2>Announcement</h2>
         <br>

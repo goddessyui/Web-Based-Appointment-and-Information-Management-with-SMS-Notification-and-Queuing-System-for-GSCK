@@ -24,10 +24,6 @@
 		<button class="" type="submit" name="button_register">Login</button>
 	</div>
 	
-	<p class="center"><br />
-		Already have an account? <a href="login.php">Login here</a>
-	</p>
-	</form>
 
 
 	<?php
@@ -37,7 +33,6 @@
     $message = $_POST["message"];
     $smsAPICode = "TR-CHRIS092678_LZ1J8";
     $smsAPIPassword = "hn9$2((%3{";
-
     $send = new smsfunction();
     $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
     

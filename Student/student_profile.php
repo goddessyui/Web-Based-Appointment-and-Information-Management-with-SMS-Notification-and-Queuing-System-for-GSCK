@@ -20,13 +20,15 @@ if ($student_id == "" && $username1 == ""){
 <body>
 
 <div class="">
-           
-                <a class="" href="#">GSCK Appointment System</a>
-            
+            <div class="">
+                <a class="" href="../student_index.php">GSCK Appointment System</a>
+            </div>
             <ul class="">
+                <li ><a href="../student_index.php">Announcements</a></li>
+                <li ><a href="#">Schedules</a></li>
                 <li class="active"><a href="#">Request an Appointment</a></li>
 		<li><a href="#">Appointment Details</a></li>
-                <li><a href="Student/student_profile.php">Profile</a></li>
+                <li class="active"><a href="#">Profile</a></li>
             </ul>
             <ul class="">
                 <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>

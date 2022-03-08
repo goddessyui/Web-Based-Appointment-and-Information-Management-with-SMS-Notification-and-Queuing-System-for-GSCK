@@ -7,13 +7,13 @@ $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 if ($staff_id != "" && $staff_username != ""){
     if ($position == "Registrar"){
-        echo '<script type="text/javascript">window.location.href="../../registrar_index.php"</script>';
+        echo '<script type="text/javascript">window.location.href="Staff/registrar/registrar_index.php"</script>';
     }
     else if ($position == "Accounting Staff/Scholarship Coordinator"){
-        echo '<script type="text/javascript">window.location.href="../../accounting_staff_index.php"</script>';
+        echo '<script type="text/javascript">window.location.href="Staff/accounting_staff/accounting_staff_index.php"</script>';
     }
     else if ($position == "Teacher"){
-        echo '<script type="text/javascript">window.location.href="../../teacher_index.php"</script>';
+        echo '<script type="text/javascript">window.location.href="Staff/teacher/teacher_index.php"</script>';
     }
 }
 
@@ -38,6 +38,10 @@ else if ($student_id != "" && $student_username != ""){
 </div>
 <div> 
     <li><a href="login_system/verification.php">Register</a></li>
+    <ul class="">
+                <li ><a href="#">Announcements</a></li>
+                <li ><a href="#">Schedules</a></li>
+            </ul>
 </div><div><h1>Announcement</h1></div>
 
 <?php include 'announcement_display.php'; ?>

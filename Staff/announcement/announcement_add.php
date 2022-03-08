@@ -33,11 +33,11 @@ if ($staff_id == "" && $staff_username == ""){
                                     <label>Caption:</label>
                                     <textarea name="price" id="price" type="text" value="" required></textarea>
                                 </div><div>
-                                
-                                <div><img id="output" src="#"/></div>
-                                    <label>Photo:</label>
+                                <label>Photo:</label>
                                     <input type="file" name="image" accept="image/*" id="imgInp" onchange="loadFile(event)" >
                                 </div>
+                                <div><img id="output" src="#"/></div>
+                                    
                                 
                 <div class="">
                     <button type="submit" name="button_add_announcement">Submit</button>
