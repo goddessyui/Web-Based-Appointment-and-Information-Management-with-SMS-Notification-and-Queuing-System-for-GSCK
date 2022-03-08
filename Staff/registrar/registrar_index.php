@@ -23,7 +23,7 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
             </div>             
            
             <ul class="">
-                <li class="active"><a href="#">Appointments</a></li>
+                <li><a href="#">Appointments</a></li>
 		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
                 <li><a href="#">Set Schedules</a></li>
                 <li><a href="#">Student Records</a></li>
