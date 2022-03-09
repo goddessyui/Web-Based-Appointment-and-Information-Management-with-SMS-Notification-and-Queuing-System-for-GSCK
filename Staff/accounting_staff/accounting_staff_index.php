@@ -25,7 +25,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
                 <li><a href="#">Appointments</a></li>
 		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
                 <li><a href="#">Set Schedules</a></li>
-                <li><a href="#">UniFAST Records</a></li>
+                <li><a href="upload_unifast_grantee.php">UniFAST Records</a></li>
                 <li><a href="../staff_profile.php">Account</a></li>
             </ul>
             <ul class="">
