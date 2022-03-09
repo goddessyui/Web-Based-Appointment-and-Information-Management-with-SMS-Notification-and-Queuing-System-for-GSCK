@@ -1,12 +1,11 @@
 <?php
-
 include_once("../../dbconfig.php");
 //session
 session_start();
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
-//redirect if not registrar
+//redirect if not accounting staff/scholarship coordinator
 if ($staff_id == "" && $username == "" && $position !="Accounting Staff/Scholarship Coordinator"){
     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
 }
@@ -15,27 +14,28 @@ $message = '';
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
-    if($_FILES['student_file']['name'])
+    if($_FILES['ug_file']['name'])
     {   
-        $filename = explode(".", $_FILES['student_file']['name']);//convert file name into array and store into $ file name variable
+        $filename = explode(".", $_FILES['ug_file']['name']);//convert file name into array and store into $ file name variable
         if(end($filename) == "csv")//check if file is csv or not
         {//if csv
             //truncate all data from table
             $truncate = "TRUNCATE `tbl_unifast_grantee`";
             mysqli_query($db, $truncate);
             //truncate all data from table
-            $handle = fopen($_FILES['student_file']['tmp_name'], "r");//file open function
+            $handle = fopen($_FILES['ug_file']['tmp_name'], "r");//file open function
             while($data = fgetcsv($handle))//file get csv function: fetch comma delimited data from csv and convert into array and store into $ variable
             {
                 $student_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
                
-                $query="INSERT INTO tbl_unifast_grantee (student_id, first_name, last_name) VALUES ('$student_id', '$first_name', '$last_name')";
+                $query="INSERT INTO tbl_unifast_grantee (student_id, first_name, last_name) 
+                VALUES ('$student_id', '$first_name', '$last_name')";
                         mysqli_query($db, $query);
             }
         fclose($handle);
-        header("location: upload_unifast_grantees.php?updation=1");
+        header("location: upload_unifast_grantee.php?updation=1");
         }
         else//if not csv
         {
@@ -59,7 +59,7 @@ if(isset($_GET["updation"]))
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Update Student Records</title>
+        <title>Update UniFAST Grantee Records</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -67,20 +67,20 @@ if(isset($_GET["updation"]))
 <body>
 <br />
 <div class="container">
-    <h2 align="center">Update Student Records</a></h2>
-    <h5 align="center"><a href="registrar_index.php">Back</a></h5>
+    <h2 align="center">Update UniFAST Grantee Records</a></h2>
+    <h5 align="center"><a href="accounting_staff_index.php">Back</a></h5>
     <br />
     <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select File(Only CSV Format)</label>
-        <input type="file" name="student_file" /></p>
+        <input type="file" name="ug_file" /></p>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
     </form>
     <!----------------------Form to Upload CSV ------------------------------------------------------------>
     <br />
     <?php echo $message; ?>
-        <h3 align="center">Student Record</h3>
+        <h3 align="center">UniFAST Grantee Record</h3>
    
     <br />
                 <tr>
@@ -90,10 +90,10 @@ if(isset($_GET["updation"]))
                 </tr>
     <?php
     //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
-        $unifastgranteequery = "SELECT * FROM tbl_unifast_grantee";
-        $unifastgranteeresult = mysqli_query($db, $unifastgranteequery);
+        $ugquery = "SELECT * FROM tbl_unifast_grantee";
+        $ugresult = mysqli_query($db, $ugquery);
 
-        while($row = mysqli_fetch_array($unifastgranteeresult))
+        while($row = mysqli_fetch_array($ugresult))
         {
     ?>
             <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
