@@ -81,13 +81,7 @@ if(isset($_GET["updation"]))
     <br />
     <?php echo $message; ?>
         <h3 align="center">Student Record</h3>
-
-    <form method="post">
-        <input type="text" name="staff_id" value="" required>
-        <input type="text" name="first_name" value="" required>
-        <input type="text" name="last_name" value="" required>
-        <input type="submit" value="ADD" name="add"><br/><br>
-    </form>    
+   
     <br />
                 <tr>
                     <th>Student ID</th>
@@ -95,7 +89,7 @@ if(isset($_GET["updation"]))
                     <th>Last Name</th>
                 </tr>
     <?php
-    //----------------------Form to Show, Update, Delete Data From tbl_student_records ------------------------------------------//
+    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
         $studentrecordquery = "SELECT * FROM tbl_student_record";
         $studentrecordresult = mysqli_query($db, $studentrecordquery);
 
@@ -113,8 +107,16 @@ if(isset($_GET["updation"]))
             <!---------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
       <?php
         }
-    //----------------------Form to Show, Update, Delete Data From tbl_student_records ------------------------------------------//
+    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
      ?>
+    <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
+        <form action="add_studentrecord.php" method="post">
+            <input type="text" name="staffid" required>
+            <input type="text" name="firstname" required>
+            <input type="text" name="lastname" required>
+            <input type="submit" value="ADD A STUDENT" name="add"><br/><br>
+        </form>
+        <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
   </div>
  </body>
 </html>

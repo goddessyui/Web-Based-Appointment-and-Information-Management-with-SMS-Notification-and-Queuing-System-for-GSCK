@@ -12,7 +12,7 @@ if ($staff_id == "" && $username == "" && $position !="Accounting Staff/Scholars
 }
 //show error message
 $message = '';
-//upload csv
+//-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
     if($_FILES['student_file']['name'])
@@ -35,7 +35,7 @@ if(isset($_POST["upload"]))
                         mysqli_query($db, $query);
             }
         fclose($handle);
-        header("location: upload_unifast_grantee.php?updation=1");
+        header("location: upload_unifast_grantees.php?updation=1");
         }
         else//if not csv
         {
@@ -50,60 +50,74 @@ if(isset($_POST["upload"]))
 
 if(isset($_GET["updation"]))
 {
-    $message = '<label class="text-success">UniFAST Grantee Record Update Done</label>';
+    $message = '<label class="text-success">Student Records Update Done</label>';
 }
-//upload csv
-
-
-$query = "SELECT * FROM tbl_unifast_grantee";
-$result = mysqli_query($db, $query);
+//-------------------------------upload csv------------------------------------------------------------------------------//
 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Update UniFAST Grantee Records</title>
+        <title>Update Student Records</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
- <body>
-  <br />
-  <div class="container">
-   <h2 align="center">Update UniFAST Grantee Records</a></h2>
-   <br />
+<body>
+<br />
+<div class="container">
+    <h2 align="center">Update Student Records</a></h2>
+    <h5 align="center"><a href="registrar_index.php">Back</a></h5>
+    <br />
+    <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select File(Only CSV Format)</label>
         <input type="file" name="student_file" /></p>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
-   </form>
-   <br />
-   <?php echo $message; ?>
-   <h3 align="center">UNIFAST GRANTEES</h3>
-   <br />
-   <div class="table-responsive">
-    <table class="table table-bordered table-striped">
-     <tr>
-      <th>Student ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-     </tr>
-     <?php
-     while($row = mysqli_fetch_array($result))
-     {
-      echo '
-      <tr>
-       <td>'.$row["student_id"].'</td>
-       <td>'.$row["first_name"].'</td>
-       <td>'.$row["last_name"].'</td>
-      </tr>
-      ';
-     }
+    </form>
+    <!----------------------Form to Upload CSV ------------------------------------------------------------>
+    <br />
+    <?php echo $message; ?>
+        <h3 align="center">Student Record</h3>
+   
+    <br />
+                <tr>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+    <?php
+    //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
+        $unifastgranteequery = "SELECT * FROM tbl_unifast_grantee";
+        $unifastgranteeresult = mysqli_query($db, $unifastgranteequery);
+
+        while($row = mysqli_fetch_array($unifastgranteeresult))
+        {
+    ?>
+            <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
+            <form action="updatedelete_unifastgrantee.php" method="post">
+                <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
+                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+                <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
+                <button  type="submit" name="update">UPDATE</button>
+                <button type="submit" name="delete">DELETE</button><br />
+            </form>
+            <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
+      <?php
+        }
+    //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
      ?>
-    </table>
-   </div>
+    <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
+        <form action="add_unifastgrantee.php" method="post">
+            <input type="text" name="staffid" required>
+            <input type="text" name="firstname" required>
+            <input type="text" name="lastname" required>
+            <input type="submit" value="ADD A STUDENT" name="add"><br/><br>
+        </form>
+        <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
   </div>
  </body>
 </html>
+

@@ -12,7 +12,7 @@ if ($staff_id == "" && $username == "" && $position !="Registrar"){
 }
 //show error message
 $message = '';
-//upload csv
+//-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
     if($_FILES['staff_file']['name'])
@@ -50,13 +50,9 @@ if(isset($_POST["upload"]))
 
 if(isset($_GET["updation"]))
 {
-    $message = '<label class="text-success">Staff Records Update Done</label>';
+    $message = '<label class="text-success">staff Records Update Done</label>';
 }
-//upload csv
-
-
-$query = "SELECT * FROM tbl_staff_record";
-$result = mysqli_query($db, $query);
+//-------------------------------upload csv------------------------------------------------------------------------------//
 
 ?>
 
@@ -68,42 +64,60 @@ $result = mysqli_query($db, $query);
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
- <body>
-  <br />
-  <div class="container">
-   <h2 align="center">Update Staff Records</a></h2>
-   <br />
+<body>
+<br />
+<div class="container">
+    <h2 align="center">Update Staff Records</a></h2>
+    <h5 align="center"><a href="registrar_index.php">Back</a></h5>
+    <br />
+    <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select File(Only CSV Format)</label>
         <input type="file" name="staff_file" /></p>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
-   </form>
-   <br />
-   <?php echo $message; ?>
-   <h3 align="center">Staff Record</h3>
-   <br />
-   <div class="table-responsive">
-    <table class="table table-bordered table-striped">
-     <tr>
-      <th>Staff ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-     </tr>
-     <?php
-     while($row = mysqli_fetch_array($result))
-     {
-      echo '
-      <tr>
-       <td>'.$row["staff_id"].'</td>
-       <td>'.$row["first_name"].'</td>
-       <td>'.$row["last_name"].'</td>
-      </tr>
-      ';
-     }
+    </form>
+    <!----------------------Form to Upload CSV ------------------------------------------------------------>
+    <br />
+    <?php echo $message; ?>
+        <h3 align="center">Staff Record</h3>
+   
+    <br />
+                <tr>
+                    <th>Staff ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+    <?php
+    //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
+        $staffrecordquery = "SELECT * FROM tbl_staff_record";
+        $staffrecordresult = mysqli_query($db, $staffrecordquery);
+
+        while($row = mysqli_fetch_array($staffrecordresult))
+        {
+    ?>
+            <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+            <form action="updatedelete_staffrecord.php" method="post">
+                <input type="text" name="staffid" value="<?php echo $row["staff_id"]?>">
+                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+                <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
+                <button  type="submit" name="update">UPDATE</button>
+                <button type="submit" name="delete">DELETE</button><br />
+            </form>
+            <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+      <?php
+        }
+    //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
      ?>
-    </table>
-   </div>
+    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
+        <form action="add_staffrecord.php" method="post">
+            <input type="text" name="staffid" required>
+            <input type="text" name="firstname" required>
+            <input type="text" name="lastname" required>
+            <input type="submit" value="ADD A staff" name="add"><br/><br>
+        </form>
+        <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
   </div>
  </body>
 </html>
+
