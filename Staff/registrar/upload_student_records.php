@@ -12,7 +12,7 @@ if ($staff_id == "" && $username == "" && $position !="Registrar"){
 }
 //show error message
 $message = '';
-//upload csv
+//-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
     if($_FILES['student_file']['name'])
@@ -52,11 +52,7 @@ if(isset($_GET["updation"]))
 {
     $message = '<label class="text-success">Student Records Update Done</label>';
 }
-//upload csv
-
-
-$query = "SELECT * FROM tbl_student_record";
-$result = mysqli_query($db, $query);
+//-------------------------------upload csv------------------------------------------------------------------------------//
 
 ?>
 
@@ -68,42 +64,58 @@ $result = mysqli_query($db, $query);
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
- <body>
-  <br />
-  <div class="container">
-   <h2 align="center">Update Student Records</a></h2>
-   <br />
+<body>
+<br />
+<div class="container">
+    <h2 align="center">Update Student Records</a></h2>
+    <h5 align="center"><a href="registrar_index.php">Back</a></h5>
+    <br />
+    <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select File(Only CSV Format)</label>
         <input type="file" name="student_file" /></p>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
-   </form>
-   <br />
-   <?php echo $message; ?>
-   <h3 align="center">Student Record</h3>
-   <br />
-   <div class="table-responsive">
-    <table class="table table-bordered table-striped">
-     <tr>
-      <th>Student ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-     </tr>
-     <?php
-     while($row = mysqli_fetch_array($result))
-     {
-      echo '
-      <tr>
-       <td>'.$row["student_id"].'</td>
-       <td>'.$row["first_name"].'</td>
-       <td>'.$row["last_name"].'</td>
-      </tr>
-      ';
-     }
+    </form>
+    <!----------------------Form to Upload CSV ------------------------------------------------------------>
+    <br />
+    <?php echo $message; ?>
+        <h3 align="center">Student Record</h3>
+
+    <form method="post">
+        <input type="text" name="staff_id" value="" required>
+        <input type="text" name="first_name" value="" required>
+        <input type="text" name="last_name" value="" required>
+        <input type="submit" value="ADD" name="add"><br/><br>
+    </form>    
+    <br />
+                <tr>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+    <?php
+    //----------------------Form to Show, Update, Delete Data From tbl_student_records ------------------------------------------//
+        $studentrecordquery = "SELECT * FROM tbl_student_record";
+        $studentrecordresult = mysqli_query($db, $studentrecordquery);
+
+        while($row = mysqli_fetch_array($studentrecordresult))
+        {
+    ?>
+            <!--------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
+            <form action="updatedelete_studentrecord.php" method="post">
+                <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
+                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+                <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
+                <button  type="submit" name="update">UPDATE</button>
+                <button type="submit" name="delete">DELETE</button><br />
+            </form>
+            <!---------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
+      <?php
+        }
+    //----------------------Form to Show, Update, Delete Data From tbl_student_records ------------------------------------------//
      ?>
-    </table>
-   </div>
   </div>
  </body>
 </html>
+
