@@ -11,6 +11,9 @@
     }
 
 ?>
+
+<<h3>Student Appointment Details</h3>
+
 <!-- Active/Accepted Appointments-->
 <h4>Active Appointments</h4>
 <?php

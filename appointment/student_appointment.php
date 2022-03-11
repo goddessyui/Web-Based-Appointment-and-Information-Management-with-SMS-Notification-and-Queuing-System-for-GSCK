@@ -40,22 +40,23 @@
             $staff_appointment =    "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                     tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
                                     WHERE EXISTS(SELECT * FROM tbl_staff_record 
-                                    WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id) AND appointment_type = '$appointment_type'";
+                                    WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id)  
+                                    AND appointment_type = '$appointment_type'";
 
             $result = mysqli_query($db, $staff_appointment);
             if($result==TRUE) {
                 $count = mysqli_num_rows($result);
                 if($count > 0) {
     ?>  
-        <h2>Appointment Type: <?php echo $appointment_type;?></h2>
-        <h4>Select A Staff Member:</h4>
+                    <h2>Appointment Type: <?php echo $appointment_type;?></h2>
+                    <h4>Select A Staff Member:</h4>
     <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
-    <form action="student_insert_appointment.php" method="post">
+                    <form action="student_insert_appointment.php" method="post">
                                       
     <?php 
                     while($rows = mysqli_fetch_assoc($result)) { 
     ?>
-                        <input type="radio" name="staff_id" value="<?php echo $rows['staff_id'];?>">
+                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
                         <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
                         <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">                   
     <?php   
@@ -64,15 +65,15 @@
             }
         }
     ?>
-        <br><br>
-        <h4>Note to Staff (Optional):</h4>
-        <small>Please keep your message brief and relevant. <br> (For example: "Request for TOR.")</small><br><br>
-        <textarea name="note"></textarea>
-        <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
-        <br><br>
-        <input type="submit" name="request" value="Request Appointment">
-        <span class="success"><?php if (isset($success)) echo "Success"; ?></span>
-    </form>
+                        <br><br>
+                        <h4>Note to Staff (Optional):</h4>
+                        <small>Please keep your message brief and relevant. <br> (For example: "Request for TOR.")</small><br><br>
+                        <textarea name="note"></textarea>
+                        <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
+                        <br><br>
+                        <input type="submit" name="request" value="Request Appointment">
+                        <span class="success"><?php if (isset($success)) echo "Success"; ?></span>
+                    </form>
     <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>
