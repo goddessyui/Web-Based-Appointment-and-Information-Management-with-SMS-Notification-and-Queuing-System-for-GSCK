@@ -31,8 +31,10 @@
          header("refresh:2;url=student_appointment.php"); /* Redirect browser */
          echo "You already requested this appointment with the same staff. You can try again tomorrow.";
       }
-      else {//if not exists, insert
-         $requestappointment = "INSERT INTO tbl_appointment (`date_created`, `student_id`, `staff_id`, `appointment_type`, `note`, `status`)
+      else 
+      {//if not exists, insert
+         $requestappointment = "INSERT INTO tbl_appointment
+                               (`date_created`, `student_id`, `staff_id`, `appointment_type`, `note`, `status`)
                               VALUES ('$currentdate', '$student_id', '$staff_id', '$appointment_type', '$note', 'Pending')";
 
          if(mysqli_query($db, $requestappointment))
