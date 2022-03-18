@@ -62,11 +62,11 @@
                         {
             ?>
                             <div>
-                                <td>
+                                <p><span>Queue #:</span>
                                     <?php   echo $i;
                                             $i++; 
                                     ?>
-                                </td>
+                                </p>
                                 <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
                                 <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
                                 <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 

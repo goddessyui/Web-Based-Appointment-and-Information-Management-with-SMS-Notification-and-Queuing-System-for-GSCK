@@ -14,7 +14,7 @@
     <h1>Student User Interface</h1><hr>
     <br>
     <br>
-<!-- These are the buttons for appointment type-------------------------------------------------------------------------------------------------->
+<!-- This starts the buttons for appointment type-------------------------------------------------------------------------------------------------->
     <h4>Select An Appointment Type:</h4>
     <form action=" " method="post">
         <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
@@ -29,9 +29,9 @@
         <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
         <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
     </form><hr>
-<!-- These ends the buttons for appointment type------------------------------------------------------------------------------------------------->
+<!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
-<!-- This is the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
+<!-- This starts the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
     <?php
         //get data
         if(isset($_POST['appointmenttype']))
@@ -50,7 +50,7 @@
     ?>  
                     <h2>Appointment Type: <?php echo $appointment_type;?></h2>
                     <h4>Select A Staff Member:</h4>
-    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
+    <!-- This starts the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     <form action="student_insert_appointment.php" method="post">
                                       
     <?php 
@@ -67,14 +67,15 @@
     ?>
                         <br><br>
                         <h4>Note to Staff (Optional):</h4>
-                        <small>Please keep your message brief and relevant. <br> (For example: "Request for TOR.")</small><br><br>
+                        <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
+                        Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
                         <textarea name="note"></textarea>
                         <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
                         <br><br>
                         <input type="submit" name="request" value="Request Appointment">
                         <span class="success"><?php if (isset($success)) echo "Success"; ?></span>
                     </form>
-    <!-- Form For Getting List of Teachers and Submitting the Appointment Request-->  
+    <!-- This ends the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>
 

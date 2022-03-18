@@ -2,7 +2,7 @@
 include_once("../dbconfig.php");
 session_start(); 
 
-//--------------------------If Accept is Pressed---------------------------//
+//--------------------------Start of If Accept is Pressed---------------------------//
 if (isset($_POST['accept'])) {
    date_default_timezone_set('Asia/Manila');                           		
    $currentdate = date("Y-m-d");
@@ -29,9 +29,9 @@ if (isset($_POST['accept'])) {
       }
 	}
 }
-//--------------------------If Accept is Pressed---------------------------//
+//--------------------------End of If Accept is Pressed---------------------------//
 
-//--------------------------If Decline is Pressed--------------------------// 
+//--------------------------Start of If Decline is Pressed--------------------------// 
 else if (isset($_POST['decline'])) {
    date_default_timezone_set('Asia/Manila');                           		
    $currentdate = date("Y-m-d");
@@ -50,7 +50,7 @@ else if (isset($_POST['decline'])) {
       echo "ERROR: Not able to execute. " . mysqli_error($db);
    }
  }
-//--------------------------If Decline is Pressed--------------------------// 
+//--------------------------End of If Decline is Pressed--------------------------// 
 
 // Close connection
 mysqli_close($db);
