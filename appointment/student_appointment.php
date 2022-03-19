@@ -73,8 +73,23 @@
                         <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
                         <br><br>
                         <input type="submit" name="request" value="Request Appointment">
-                        <span class="success"><?php if (isset($success)) echo "Success"; ?></span>
-                    </form>
+                       
+                    </form><br><br>
+                        <!--start of form validation message-->
+                        <?php 
+                            if(isset($_GET['msg'])){
+                        ?>
+                                <p>
+                                    <?php 
+                                        echo $_GET['msg'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            else{
+                            }
+                        ?>
+                        <!--end of form validation message-->
     <!-- This ends the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>

@@ -28,8 +28,8 @@
      
       if(mysqli_num_rows($result) > 0) 
       {//if exists, do not insert
-         header("refresh:2;url=student_appointment.php"); /* Redirect browser */
-         echo "You already requested this appointment with the same staff. You can try again tomorrow.";
+         /* Redirect browser and send form validation message */
+         header('location: student_appointment.php?msg=<font color="red">You already requested this appointment with the same staff. <br> You can try again tomorrow.</font>'); 
       }
       else 
       {//if not exists, insert
@@ -38,14 +38,13 @@
                               VALUES ('$currentdate', '$student_id', '$staff_id', '$appointment_type', '$note', 'Pending')";
 
          if(mysqli_query($db, $requestappointment))
-         {
-            header("refresh:2;url=../student_index.php");/* Redirect browser */
-            echo "You successfully sent a request for appointment.";     
+         {  /* Redirect browser and send form validation message */
+            header('location: student_appointment.php?msg=<font color="blue">You successfully sent a request for appointment.</font>'); 
+
          } 
          else
-         {
-            header("refresh:2;url=student_appointment.php"); /* Redirect browser */
-            echo "ERROR: Not able to execute your request at this time. " . mysqli_error($db);
+         {/* Redirect browser and send form validation message */
+            header('location: student_appointment.php?msg=<font color="red">ERROR: Not able to execute your request at this time. <?php echo mysqli_error($db); ?></font>');
          }
       }
    }
