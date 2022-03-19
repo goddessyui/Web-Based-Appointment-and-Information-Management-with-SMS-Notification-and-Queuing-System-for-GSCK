@@ -41,8 +41,8 @@
         ?>
                         <div>
                             <td>
-                                <?php   echo $i;//Adds Row Counter
-		                  	            $i++; 
+                                <?php  
+		                  	           echo $i++; //Adds Row Counter
                                 ?>
                             </td>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>

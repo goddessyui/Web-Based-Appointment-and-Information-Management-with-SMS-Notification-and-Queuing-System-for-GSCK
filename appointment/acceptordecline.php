@@ -22,6 +22,9 @@ if (isset($_POST['accept'])) {
       if(mysqli_query($db, $acceptappointment)){
          header("refresh:2;url=staff_pending_requests.php");
          echo "Appointment request accepted and scheduled on". " ". $appointment_date;
+            //Add Queueing and SMS function here
+            
+
       } 
       else {
          header("refresh:2;url=staff_pending_requests.php");

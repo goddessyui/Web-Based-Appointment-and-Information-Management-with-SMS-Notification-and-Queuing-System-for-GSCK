@@ -63,8 +63,8 @@
             ?>
                             <div>
                                 <p><span>Queue #:</span>
-                                    <?php   echo $i;
-                                            $i++; 
+                                    <?php  
+                                            echo $i++; 
                                     ?>
                                 </p>
                                 <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
