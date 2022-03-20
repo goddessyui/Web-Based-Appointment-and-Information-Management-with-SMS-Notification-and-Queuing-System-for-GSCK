@@ -21,7 +21,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             $declinedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
             tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id' ORDER BY appointment_date DESC";
+            WHERE tbl_appointment_detail.status = 'Cancelled' AND tbl_appointment.staff_id = '$staff_id' ORDER BY appointment_date DESC";
             $declinedrequest_result = mysqli_query($db, $declinedrequests);
             
             //check whether the query is executed or not
@@ -40,7 +40,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
                                 ?>
                             </td>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Date Declined: </span><?php echo $rows['appointment_date']; ?></p>
+                            <p><span>Date Cancelled: </span><?php echo $rows['appointment_date']; ?></p>
                             <p><span>Request Date: </span><?php echo $rows['date_created']; ?></p>
 				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>

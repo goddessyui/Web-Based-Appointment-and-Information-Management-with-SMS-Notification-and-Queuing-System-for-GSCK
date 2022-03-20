@@ -5,7 +5,7 @@ if(isset($_POST['cancel'])){
     $comment = $_POST['comment'];  
   	
     $cancelappointment = "UPDATE tbl_appointment_detail 
-    SET `status` ='declined', comment = '$comment' 
+    SET `status` ='Cancelled', comment = '$comment' 
     WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 

@@ -44,7 +44,7 @@
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                 WHERE tbl_appointment_detail.status = 'accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
-                AND appointment_date = '$sortdate' ORDER BY appointment_date";
+                AND appointment_date = '$sortdate' ORDER BY appointment_id ASC";
         
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 

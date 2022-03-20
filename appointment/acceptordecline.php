@@ -20,12 +20,23 @@ if (isset($_POST['accept'])) {
                            VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
 
       if(mysqli_query($db, $acceptappointment)){
-         header("refresh:2;url=staff_pending_requests.php");
+         header("refresh:10;url=staff_pending_requests.php");
          echo "Appointment request accepted and scheduled on". " ". $appointment_date;
-            //Add Queueing and SMS function here???
+            //Add Queueing and SMS function here???-----------------------------------------
+            $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
+            FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+            AND appointment_date = '$appointment_date') T2 WHERE appointment_id='$appointment_id'";
+            $qnum = mysqli_query($db, $q); 
+            $queue = mysqli_fetch_assoc($qnum);
+            //Queue Number---------------------------------------------------------------------------------------//
+            $queuenumber = $queue['queuenum'];
+            echo "<br><br>Queue Number:" . $queuenumber;
+            //Queue Number---------------------------------------------------------------------------------------//
+
+            
       } 
       else {
-         header("refresh:2;url=staff_pending_requests.php");
+         header("refresh:10;url=staff_pending_requests.php");
          echo "ERROR: Not able to execute. " . mysqli_error($db);
       }
 	}

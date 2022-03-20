@@ -12,7 +12,8 @@
 <ul>
     <li><a href="staff_pending_requests.php">Pending Appointment Requests</a></li>
     <li><a href="staff_accepted_requests.php">Active Appointments</a></li>
-    <li><a href="staff_declined_requests.php">Cancelled/Declined Appointments</a></li>
+    <li><a href="staff_cancelled_requests.php">Cancelled Appointments</a></li>
+    <li><a href="staff_declined_requests.php">Declined Appointments</a></li>
     <li><a href="staff_done_requests.php">Past Appointments</a></li>
 
 </ul>
