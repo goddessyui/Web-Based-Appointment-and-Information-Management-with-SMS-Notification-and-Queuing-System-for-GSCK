@@ -1,0 +1,16 @@
+<?php
+    require_once "../../dbconfig.php";
+
+    $json = array();
+    $sqlQuery = "SELECT * FROM tbl_schedule";
+
+    $result = mysqli_query($db, $sqlQuery);
+    $eventArray = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($eventArray, $row);
+    }
+    mysqli_free_result($result);
+
+    mysqli_close($db);
+    echo json_encode($eventArray);
+?>
