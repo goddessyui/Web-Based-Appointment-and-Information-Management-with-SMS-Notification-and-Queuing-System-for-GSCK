@@ -1,12 +1,26 @@
+<?php
+include_once("../../dbconfig.php"); 
+// session_start();
+// $staff_id = $_SESSION["staff_id"];
+// $position = $_SESSION["position"];
+// $username = $_SESSION["staff_username"];
+$query = mysqli_query($db, "SELECT tbl_staff_registry.staff_id, tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='IDNUMBER1'");
+$row = $query->fetch_assoc();
+$fullname = $row['first_name'].' '.$row['last_name'];
+echo $fullname;
 
+// if ($staff_id == "" && $username == "" && $position != "Teacher"){
+//     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+// }
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-<link rel="stylesheet" href="fullcalendar/fullcalendar.min.css" />
-<script src="fullcalendar/lib/jquery.min.js"></script>
-<script src="fullcalendar/lib/moment.min.js"></script>
-<script src="fullcalendar/fullcalendar.min.js"></script>
+<link rel="stylesheet" href="../../css/schedule/fullcalendar/fullcalendar.min.css" />
+<script src="../../css/schedule/fullcalendar/lib/jquery.min.js"></script>
+<script src="../../css/schedule/fullcalendar/lib/moment.min.js"></script>
+<script src="../../css/schedule/fullcalendar/fullcalendar.min.js"></script>
 
 <script>
 
@@ -24,48 +38,39 @@ $(document).ready(function () {
         },
         selectable: true,
         selectHelper: true,
-        select: function (start, end, allDay) {
-            var title = 'cj'
-                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+        select: function (start, allDay) {
+            var title = '<?php echo $fullname; ?>'
+            var staff = '<?php echo $row['staff_id']; ?>'
+                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss"); 
 
+                
+
+                
                 $.ajax({
                     url: 'add-event.php',
-                    data: 'title=' + title + '&start=' + start + '&end=' + end,
+                    data: 'title=' + title + '&start=' + start + '&staff=' + staff,
                     type: "POST",
                     success: function (data) {
-                        displayMessage("Added Successfully");
+                        displayMessage("Updated Successfully!");
                     }
                 });
                 calendar.fullCalendar('renderEvent',
                         {
                             title: title,
                             start: start,
-                            end: end,
                             allDay: allDay
                         },
                 true
                         );
-            
+                
+                    
             calendar.fullCalendar('unselect');
+        
         },
         
-        editable: true,
-        eventDrop: function (event, delta) {
-                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                    $.ajax({
-                        url: 'edit-event.php',
-                        data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
-                        type: "POST",
-                        success: function (response) {
-                            displayMessage("Updated Successfully");
-                        }
-                    });
-                },
+        editable: false,
+     
         eventClick: function (event) {
-            var deleteMsg = confirm("Do you really want to delete?");
-            if (deleteMsg) {
                 $.ajax({
                     type: "POST",
                     url: "delete-event.php",
@@ -77,7 +82,7 @@ $(document).ready(function () {
                         }
                     }
                 });
-            }
+            
         }
 
     });
@@ -98,7 +103,7 @@ body {
 }
 
 #calendar {
-    width: 700px;
+    width: 800px;
     margin: 0 auto;
 }
 
