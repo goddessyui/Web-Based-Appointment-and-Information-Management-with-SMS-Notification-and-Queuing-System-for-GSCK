@@ -17,10 +17,12 @@
         <a href="staff_appointment_details.php">Back to Appointments</a>
         <hr>
 <!-------------------------Sort Requests By Date------------------------------> 
-        <?php date_default_timezone_set('Asia/Manila');                           		
-		$currentdate = date("Y-m-d");?>
-        <form action=" " method="post">
-            <input type="date" name="sortbydate" placeholder="" value="<?php echo $currentdate?>" 
+        <?php 
+            date_default_timezone_set('Asia/Manila');                           		
+		    $currentdate = date("Y-m-d");
+        ?>
+        <form action="" method="post">
+            <input type="date" name="sortbydate" placeholder="" value="<?php echo $currentdate;?>" 
             min="<?php echo $currentdate, - '30 days' ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 90 days'));?>">
             <input type="submit" name="searchbydate" value="SORT BY DATE">
 	    </form>
@@ -39,34 +41,26 @@
                 <hr>
                 <?php
                
-                $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+               $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
                 ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                WHERE tbl_appointment_detail.status = 'accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
-                AND appointment_date = '$sortdate' ORDER BY appointment_id ASC";
+                WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
+                AND tbl_appointment_detail.appointment_date= '$sortdate' ORDER BY tbl_appointment_detail.appointment_id ASC";
         
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 
                 //check whether the query is executed or not
-                if($acceptedrequest_result==TRUE) 
-                { // count rows to check whether we have data in database or not
+                if($acceptedrequest_result==TRUE){ // count rows to check whether we have data in database or not
                     $count = mysqli_num_rows($acceptedrequest_result);  //function to get all the rows in database
                     //check the num of rows                 
-                    if($count>0) //we have data in database
-                    {
+                    if($count>0){  //we have data in database
                         $i = 1;
-                        while($rows=mysqli_fetch_assoc($acceptedrequest_result)) 
-                        //using while loop to get all the date from database
-                        //and while loop will run as long as we have data in database
-                        {
-            ?>
+                        while($rows=mysqli_fetch_assoc($acceptedrequest_result)){//using while loop to get all the date from database
+                            //and while loop will run as long as we have data in database
+                ?>
                             <div>
-                                <p><span>Queue #:</span>
-                                    <?php  
-                                            echo $i++; 
-                                    ?>
-                                </p>
+                                <p><?php echo $i++; ?></p>
                                 <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
                                 <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
                                 <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
@@ -87,6 +81,8 @@
                                     <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
                                         min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($rows["appointment_date"]. ' + 20 days'));?>">
+                                        <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                        <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>"> 
                                     <br>
                                     <br>
                                     <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
@@ -124,8 +120,8 @@
                 ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                WHERE tbl_appointment_detail.status = 'accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
-                ORDER BY appointment_date";
+                WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
+                ORDER BY tbl_appointment_detail.appointment_date ASCsss";
         
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 
@@ -143,11 +139,7 @@
                         {
             ?>
                             <div>
-                                <td>
-                                    <?php   echo $i;
-                                            $i++; 
-                                    ?>
-                                </td>
+                                <p><?php echo $i++; ?></p>
                                 <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
                                 <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
                                 <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
@@ -168,6 +160,8 @@
                                     <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
                                         min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($rows["appointment_date"]. ' + 20 days'));?>">
+                                    <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                    <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
                                     <br>
                                     <br>
                                     <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
