@@ -20,11 +20,11 @@ if (isset($_POST['add'])) {
                     VALUES ('$student_id', '$first_name', '$last_name')";
 
       if(mysqli_query($db, $addstudent)){
-         header("location: upload_unifast_grantee.php");
+         header('location: upload_unifast_grantee.php?success="Successfully Added UniFAST Grantee!"');
       } 
       else {
-        header("location: upload_unifast_grantee.php");
-         echo "ERROR: Not able to execute. " . mysqli_error($db);
+        header('location: upload_unifast_grantee.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+         
       }
 	
 }

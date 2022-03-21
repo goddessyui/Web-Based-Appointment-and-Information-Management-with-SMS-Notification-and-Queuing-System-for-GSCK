@@ -25,8 +25,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
                 echo "Successfully Updated Entry";
         } 
         else {
-                header("refresh:2;url=upload_unifast_grantee.php");
-                echo "ERROR: Not able to execute. " . mysqli_error($db);
+            header('location: upload_unifast_grantee.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Accept is Pressed---------------------------//
@@ -42,8 +41,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
         } 
         else
         {
-            header("refresh:1;url=upload_unifast_grantee.php");
-            echo "ERROR: Not able to execute. " . mysqli_error($db);
+            header('location: upload_unifast_grantee.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Delete is Pressed--------------------------// 
