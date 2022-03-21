@@ -75,7 +75,7 @@
                         <input type="submit" name="request" value="Request Appointment">
                        
                     </form><br><br>
-                        <!--start of form validation message-->
+                        <!--start of message if insert appointment successful-->
                         <?php 
                             if(isset($_GET['msg'])){
                         ?>
@@ -89,7 +89,7 @@
                             else{
                             }
                         ?>
-                        <!--end of form validation message-->
+                        <!--end of message if insert appointment successful-->
     <!-- This ends the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>

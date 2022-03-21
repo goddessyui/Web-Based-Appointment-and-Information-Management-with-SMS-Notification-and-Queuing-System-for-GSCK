@@ -118,6 +118,21 @@ if(isset($_GET["updation"]))
         </form>
         <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
   </div>
+                          <!--start of message changes successful-->
+                          <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p>
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            else{
+                            }
+                        ?>
+                        <!--end of message if changes successful-->
  </body>
 </html>
 
