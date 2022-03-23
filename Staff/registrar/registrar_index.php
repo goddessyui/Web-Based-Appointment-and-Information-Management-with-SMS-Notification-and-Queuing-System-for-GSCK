@@ -8,15 +8,8 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+
 <div >
 <div class="">
                 <a class="" href="#">GSCK Appointment System</a>
@@ -24,11 +17,11 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
            
             <ul class="">
                 <li class="active"><a href="../../appointment/staff_appointment_details.php">Appointments</a></li>
-		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
-                <li><a href="#">Set Schedules</a></li>
+		        <li><a href="../announcement/announcements_admin.php">Make Announcements</a></li>
+                <li><a href="../schedule/schedule_admin.php">Set Schedules</a></li>
                 <li><a href="upload_student_records.php">Student Records</a></li>
                 <li><a href="upload_staff_records.php">Staff Records</a></li>
-                <li><a href="">Account</a></li>
+                <li><a href="../staff_profile.php">Account</a></li>
 
             </ul>
             <ul class="">

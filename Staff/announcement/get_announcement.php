@@ -1,4 +1,4 @@
-<?php include("../../dbconfig.php"); ?>
+<?php include_once("../../dbconfig.php"); ?>
 <?php 
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];

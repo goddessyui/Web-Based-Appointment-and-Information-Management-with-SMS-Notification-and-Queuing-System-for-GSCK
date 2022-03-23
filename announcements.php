@@ -8,6 +8,7 @@
 }
 
 </style>
+<div><h1>Announcement</h1></div>
 <?php
 include_once("dbconfig.php"); 
                 $sql = "SELECT
@@ -29,7 +30,7 @@ include_once("dbconfig.php");
 
                 ?>
                 <div class="center">
-
+                      
                 <div class="center_ann"><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
                 <div class="center_ann"><pre><?php echo $row['caption'] ?></pre></div>
                 <div class="center_ann"><?php echo !empty($row['image'])?'<img class="imgs" src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>            </div>

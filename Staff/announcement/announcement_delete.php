@@ -1,4 +1,14 @@
-<?php include("../../dbconfig.php"); ?>
+<?php 
+
+session_start();
+$staff_id = $_SESSION["staff_id"];
+$username = $_SESSION["staff_username"];
+
+if ($staff_id == "" || $username == ""){
+    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+}
+
+include_once("../../dbconfig.php"); ?>
 <?php 
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];

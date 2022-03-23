@@ -5,7 +5,7 @@ $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-if ($staff_id == "" && $staff_username == ""){
+if ($staff_id == "" || $staff_username == ""){
    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 }
 

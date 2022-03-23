@@ -1,9 +1,7 @@
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- This File will show the Calendar Staff Schedules for the user(Student) and visitor -->
 <head>
-<title>Event Calendar</title>
-	
+<title>Event Calendar</title>	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +14,7 @@
 $(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
         editable: true,
-        events: "Staff/schedule/fetch-event.php",
+        events: "fetch-event.php",
         displayEventTime: false,
         eventRender: function (event, element, view) {
             if (event.allDay === 'true') {
@@ -30,9 +28,6 @@ $(document).ready(function () {
         
         
         editable: false,
-     
-       
-
     });
 });
 
@@ -43,9 +38,9 @@ function displayMessage(message) {
 </script>
 
 <style>
-body {
+.body {
     margin-top: 50px;
-    text-align: center;
+    text-align: "center";
     font-size: 17px;
     font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 }
@@ -54,18 +49,12 @@ body {
     width: 800px;
     margin: 0 auto;
 }
-
-
-
-
 </style>
 </head>
-<body>
+<div class = calendar>
     <h2>Staff Schedules</h2>
 
     <div class="response"></div>
     <div id='calendar'></div>
-</body>
+</div>
 
-</body>
-</html>

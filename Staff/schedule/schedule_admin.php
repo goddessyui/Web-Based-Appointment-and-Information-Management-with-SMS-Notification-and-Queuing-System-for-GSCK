@@ -1,17 +1,16 @@
 <?php
 include_once("../../dbconfig.php"); 
-// session_start();
-// $staff_id = $_SESSION["staff_id"];
-// $position = $_SESSION["position"];
-// $username = $_SESSION["staff_username"];
-$query = mysqli_query($db, "SELECT tbl_staff_registry.staff_id, tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='IDNUMBER1'");
+session_start();
+$staff_id = $_SESSION["staff_id"];
+$position = $_SESSION["position"];
+$username = $_SESSION["staff_username"];
+$query = mysqli_query($db, "SELECT tbl_staff_registry.staff_id, tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
 $row = $query->fetch_assoc();
 $fullname = $row['first_name'].' '.$row['last_name'];
-echo $fullname;
 
-// if ($staff_id == "" && $username == "" && $position != "Teacher"){
-//     echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-// }
+if ($staff_id == "" || $username == ""){
+    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,6 @@ echo $fullname;
 <script src="../../css/schedule/fullcalendar/fullcalendar.min.js"></script>
 
 <script>
-
 $(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
         editable: true,
@@ -41,11 +39,19 @@ $(document).ready(function () {
         select: function (start, allDay) {
             var title = '<?php echo $fullname; ?>'
             var staff = '<?php echo $row['staff_id']; ?>'
-                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss"); 
+                var start = $.fullCalendar.formatDate(start, "Y-MM-DD"); 
+                var res;
 
-                
-
-                
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "verify-event.php",
+                    data: 'start=' + start + '&staff=' + staff,
+                    success: function (response) {
+                            res = response;
+                    }
+                    });
+                    if (res === 'true') {
                 $.ajax({
                     url: 'add-event.php',
                     data: 'title=' + title + '&start=' + start + '&staff=' + staff,
@@ -62,15 +68,15 @@ $(document).ready(function () {
                         },
                 true
                         );
-                
                     
             calendar.fullCalendar('unselect');
+        }
         
         },
         
         editable: false,
      
-        eventClick: function (event) {
+        eventClick: function (event) {  
                 $.ajax({
                     type: "POST",
                     url: "delete-event.php",
@@ -98,7 +104,7 @@ function displayMessage(message) {
 body {
     margin-top: 50px;
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
     font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 }
 
@@ -120,8 +126,7 @@ body {
 </style>
 </head>
 <body>
-    <h2>PHP Calendar Event Management FullCalendar JavaScript Library</h2>
-
+    <h2>Calendar Scheduler</h2>
     <div class="response"></div>
     <div id='calendar'></div>
 </body>
