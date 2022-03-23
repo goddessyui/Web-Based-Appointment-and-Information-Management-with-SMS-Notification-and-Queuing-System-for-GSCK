@@ -1,39 +1,17 @@
 <?php
-include_once("../dbconfig.php"); 
-session_start();
 $student_id = $_SESSION["student_id"];
 $username1 = $_SESSION["student_username"];
 $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
 $row = $query->fetch_assoc();
-if ($student_id == "" && $username1 == ""){
+if ($student_id == "" || $username1 == ""){
     echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 
-<div class="">
-            <div class="">
-                <a class="" href="../student_index.php">GSCK Appointment System</a>
-            </div>
-            <ul class="">
-                <li ><a href="../student_index.php">Announcements</a></li>
-                <li ><a href="#">Schedules</a></li>
-                <li class="active"><a href="#">Request an Appointment</a></li>
-		<li><a href="#">Appointment Details</a></li>
-                <li class="active"><a href="#">Profile</a></li>
-            </ul>
-            <ul class="">
-                <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-            </ul>
-            </div>
+<head>
+    
+    <title>STUDENT PROFILE</title>
+</head>
             <hr>
 
     <div><h1>PROFILE</h1></div>
@@ -159,5 +137,3 @@ $student_id = $row['student_id'];
 
 
 
-</body>
-</html>

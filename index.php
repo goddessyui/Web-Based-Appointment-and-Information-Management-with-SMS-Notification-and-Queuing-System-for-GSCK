@@ -21,10 +21,11 @@ else if ($student_id != "" && $student_username != ""){
     echo '<script type="text/javascript">window.location.href="student_index.php"</script>';
 }
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,14 +40,26 @@ else if ($student_id != "" && $student_username != ""){
 <div> 
     <li><a href="login_system/verification.php">Register</a></li>
     <ul class="">
-                <li ><a href="#">Announcements</a></li>
-                <li ><a href="#">Schedules</a></li>
+                <li><a href="?p=announcements">Announcements</a></li>
+                <li><a href="?p=schedules">Schedules</a></li>
             </ul>
-</div><div><h1>Announcement</h1></div>
+</div>
 
-<?php include 'announcement_display.php'; ?>
-        
+
+<?php $page = isset($_GET['p']) ? $_GET['p'] : 'announcements';  ?>
+<?php 
+    if(!file_exists($page.".php") && !is_dir($page)){
+        include '404.html';
+    }else{
+    if($page == "announcements"){
+        include $page.'.php';
+    }else if($page == "schedules"){
+        include $page.'.php';
+    }
+    }
+?>
 
 </div>
+
 </body>
 </html>

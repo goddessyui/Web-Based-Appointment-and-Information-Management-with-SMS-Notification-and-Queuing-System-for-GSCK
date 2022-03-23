@@ -84,12 +84,16 @@ if ($staff_id == "" && $username == ""){
     <div class="">
 	Mobile Number: <input type="tel" name="number" value="<?php echo $row["mobile_number"]?>" minlength="11" maxlength="11" autocomplete="off" required />
 	</div>
-
+    <?php if ($position == 'Registrar'){?>
+    <div>Position: <select name="position">  
+    <option value="Registrar" selected>Registrar</option>  
+    </select>  </div>
+    <?php } else {?>
     <div>Position: <select name="position">  
     <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
     <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
     </select>  </div>
-
+        <?php } ?>
     <div> Other Position: </div>
     <div>
     <input type="checkbox" name="other_list[]" value="OJT Coordinator" <?php echo in_array("OJT Coordinator", $array_other)?'checked':''?>>
