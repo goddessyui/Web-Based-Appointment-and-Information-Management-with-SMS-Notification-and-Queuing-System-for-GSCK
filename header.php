@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Goldenstate College of Koronadal - Student Portal</title>
 </head>
 <body>
 
@@ -41,9 +41,9 @@
 				<li>Home</li>
 				<li>About</li>
 				<li>Schedule</li>
-				<li>Announcement</li>
+				<li><a href="announcement.php">Announcement</a></li>
 				<li>Contact</li>
-				<li>My Appointments</li>
+				<li><a href="appointment/student_appointment_details.php">My Appointments</a> </li>
 			</ul>
 		</nav>
 		<button class="btn_set_appointment">Set an Appointment</button>
@@ -240,7 +240,4 @@
 		document.getElementById('close').style.display = "none";
 	}
 </script>
-
-</body>
-</html>
 

@@ -1,27 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<?php
-session_start();
-$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
-$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
-$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
-$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
-if ($staff_id != "" && $staff_username != ""){
-    if ($position == "Registrar"){
-        echo '<script type="text/javascript">window.location.href="Staff/registrar/registrar_index.php"</script>';
-    }
-    else if ($position == "Accounting Staff/Scholarship Coordinator"){
-        echo '<script type="text/javascript">window.location.href="Staff/accounting_staff/accounting_staff_index.php"</script>';
-    }
-    else if ($position == "Teacher"){
-        echo '<script type="text/javascript">window.location.href="Staff/teacher/teacher_index.php"</script>';
-    }
-}
 
-else if ($student_id != "" && $student_username != ""){
-    echo '<script type="text/javascript">window.location.href="student_index.php"</script>';
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +59,7 @@ if (isset($_POST['button_login'])) {
 		session_start();
 		$_SESSION["student_id"] = $student_id;
 		$_SESSION["student_username"] = $row["username"];
-		echo '<script type="text/javascript">alert("Student Verified");window.location.href="../student_index.php"</script>';
+		echo '<script type="text/javascript">alert("Student Verified");window.location.href="index.php"</script>';
     }
     else{
     echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="login.php"</script>';
@@ -103,7 +81,7 @@ if (isset($_POST['button_login'])) {
             $_SESSION["staff_id"] = $staff_id;
             $_SESSION["position"] = $position;
             $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="../Staff/registrar/registrar_index.php"</script>';
+            echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="admin.php"</script>';
         }   
         else if($position == 'Accounting Staff/Scholarship Coordinator'){
             session_start();
@@ -113,7 +91,7 @@ if (isset($_POST['button_login'])) {
             $_SESSION["staff_id"] = $staff_id;
             $_SESSION["position"] = $position;
             $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="../Staff/accounting_staff/accounting_staff_index.php"</script>';
+            echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="admin.php"</script>';
         }
         else if($position == 'Teacher'){
             session_start();
@@ -123,7 +101,7 @@ if (isset($_POST['button_login'])) {
             $_SESSION["staff_id"] = $staff_id;
             $_SESSION["position"] = $position;
             $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="../Staff/teacher/teacher_index.php"</script>';
+            echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="admin.php"</script>';
         }
     }
         else{
