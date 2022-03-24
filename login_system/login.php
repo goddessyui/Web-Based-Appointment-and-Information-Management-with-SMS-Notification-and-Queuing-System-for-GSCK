@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<?php include_once("../dbconfig.php"); ?>
-<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h1>Log In</h1>
-	<form class="login.php" method="POST">
-    <div class="">
-		<input type="text" name="username" value="" placeholder="Username" autocomplete="off" required />
-	</div>
-	<div class="">
-		<input type="password" name="password" value="" placeholder="Password" autocomplete="off" required />
-	</div>
-	
-	<div class="">
-		<button class="" type="submit" name="button_login">Login</button>
-	</div>
-	
-	<p class="center"><br />
-        Don't have an account? <a href="verification.php">Register here</a>
-	</p>
-    <p class="center"><br />
-         <a href="forgotpassword_verify.php">Forget Password?</a>
-	</p>
+    <div class="user_account">
+        <h4 class="account_login"><i class="fa fa-user-circle-o icon"></i>ACCOUNT LOGIN</h4>
+    </div>
+    
+    <small>
+        Only registered students and staff of GSCK can login or register.
+    </small>
+    <br>
+    <br>
+	<form class="login_form" method="POST">
+		<input type="text" name="username" placeholder="Username" autocomplete="off" required />
+		<input type="password" name="password" placeholder="Password" autocomplete="off" required />
+		<button class="login_button" type="submit" name="button_login">LOGIN</button>
+
+        <div class="pass">
+            <small>
+                <a class="forget_password" href="forgotpassword_verify.php">Forget Password?</a>
+            </small>
+         </div>
+
+        <div class="accnt">
+            <small class="no_account">Don't have an account?</small>
+        </div>
+            
+        
+       
+        <a href="verification.php"><button class="register_button">REGISTER HERE</button></a>
 	</form>
 	<?php
 
@@ -102,13 +101,59 @@ if (isset($_POST['button_login'])) {
 }
 	}
 
-
-
-	
 ?>
 
 
-
-
-</body>
-</html>
+<style>
+    .login_form {
+        width: 300px;
+    }
+    .user_account {
+        margin-bottom: 30px;
+        align-items: center;
+    }
+    .login_form input {
+        width: 300px;
+        padding: 10px 2px;
+        margin-bottom: 16px;
+        border: none;
+        border-bottom: 1px solid #324e9e;
+        outline: none;
+    }
+    .account_login {
+        text-align: center;
+        color: #324e9e;
+    }
+    .login_button {
+        width: 300px;
+        border: none;
+        background: #324e9e;
+        color: #FBFBFB;
+        padding: 10px 0;
+        margin-top: 12px;
+    }
+    .login_button:hover {
+        background: #283e7e;
+    }
+    .register_button {
+        width: 300px;
+        border: none;
+        background: #FFD93D;
+        padding: 10px 0;
+    }
+    .register_button:hover {
+        background: #ffdc50;
+    }
+    .pass {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+    .accnt {
+        text-align: center;
+        padding: 5px;
+    }
+    .icon {
+        margin-right: 10px;
+    }
+</style>
