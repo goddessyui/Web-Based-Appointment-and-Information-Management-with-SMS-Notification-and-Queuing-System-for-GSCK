@@ -28,17 +28,4 @@ include("student_pending_app.php");
 ?>
 <hr>
 
-<!-- Declined/Cancelled Appointments-->
-<h4>Declined/Cancelled Appointments</h4>
-<?php
-include("student_declined_app.php");
-?>
-<hr>
-
-<!-- Finished Appointments-->
-<h4>Past Appointments</h4>
-<?php
-include("student_done_app.php");
-?>
-<hr>
 

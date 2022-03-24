@@ -1,41 +1,31 @@
 <?php
-
-include_once("../../dbconfig.php");
-//session
-session_start();
-$staff_id = $_SESSION["staff_id"];
-$position = $_SESSION["position"];
-$username = $_SESSION["staff_username"];
-//redirect if not registrar
-if ($staff_id == "" && $username == "" && $position !="Registrar"){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-}
+include_once("admin_header.php");
 //show error message
 $message = '';
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
-    if($_FILES['student_file']['name'])
+    if($_FILES['staff_file']['name'])
     {   
-        $filename = explode(".", $_FILES['student_file']['name']);//convert file name into array and store into $ file name variable
+        $filename = explode(".", $_FILES['staff_file']['name']);//convert file name into array and store into $ file name variable
         if(end($filename) == "csv")//check if file is csv or not
         {//if csv
             //truncate all data from table
-            $truncate = "TRUNCATE `tbl_student_record`";
+            $truncate = "TRUNCATE `tbl_staff_record`";
             mysqli_query($db, $truncate);
             //truncate all data from table
-            $handle = fopen($_FILES['student_file']['tmp_name'], "r");//file open function
+            $handle = fopen($_FILES['staff_file']['tmp_name'], "r");//file open function
             while($data = fgetcsv($handle))//file get csv function: fetch comma delimited data from csv and convert into array and store into $ variable
             {
-                $student_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
+                $staff_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
                
-                $query="INSERT INTO tbl_student_record (student_id, first_name, last_name) VALUES ('$student_id', '$first_name', '$last_name')";
+                $query="INSERT INTO tbl_staff_record (staff_id, first_name, last_name) VALUES ('$staff_id', '$first_name', '$last_name')";
                         mysqli_query($db, $query);
             }
         fclose($handle);
-        header("location: upload_student_records.php?updation=1");
+        header("location: upload_staff_records.php?updation=1");
         }
         else//if not csv
         {
@@ -50,69 +40,60 @@ if(isset($_POST["upload"]))
 
 if(isset($_GET["updation"]))
 {
-    $message = '<label class="text-success">Student Records Update Done</label>';
+    $message = '<label class="text-success">staff Records Update Done</label>';
 }
 //-------------------------------upload csv------------------------------------------------------------------------------//
 
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Update Student Records</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-<body>
+<main>
 <br />
 <div class="container">
-    <h2 align="center">Update Student Records</a></h2>
-    <h5 align="center"><a href="registrar_index.php">Back</a></h5>
+    <h2 align="center">Update Staff Records</a></h2>
+    <h5 align="center"><a href="admin.php">Back</a></h5>
     <br />
     <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
         <p><label>Please Select File(Only CSV Format)</label>
-        <input type="file" name="student_file" /></p>
+        <input type="file" name="staff_file" /></p>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
     </form>
     <!----------------------Form to Upload CSV ------------------------------------------------------------>
     <br />
     <?php echo $message; ?>
-        <h3 align="center">Student Record</h3>
+        <h3 align="center">Staff Record</h3>
    
     <br />
-
     <?php
-    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
-        $studentrecordquery = "SELECT * FROM tbl_student_record";
-        $studentrecordresult = mysqli_query($db, $studentrecordquery);
+    //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
+        $staffrecordquery = "SELECT * FROM tbl_staff_record";
+        $staffrecordresult = mysqli_query($db, $staffrecordquery);
 
-        while($row = mysqli_fetch_array($studentrecordresult))
+        while($row = mysqli_fetch_array($staffrecordresult))
         {
     ?>
-            <!--------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
-            <form action="updatedelete_studentrecord.php" method="post">
-                <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
+            <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+            <form action="Staff/registrar/updatedelete_staffrecord.php" method="post">
+                <input type="text" name="staffid" value="<?php echo $row["staff_id"]?>">
                 <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
                 <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
                 <button  type="submit" name="update">UPDATE</button>
                 <button type="submit" name="delete">DELETE</button><br />
             </form>
-            <!---------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
+            <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
       <?php
         }
-    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
+    //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
      ?>
-    <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
-        <form action="add_studentrecord.php" method="post">
+    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
+        <form action="Staff/registrar/add_staffrecord.php" method="post">
             <input type="text" name="staffid" required>
             <input type="text" name="firstname" required>
             <input type="text" name="lastname" required>
-            <input type="submit" value="ADD A STUDENT" name="add"><br/><br>
+            <input type="submit" value="ADD A staff" name="add"><br/><br>
         </form>
-        <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
+        <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
   </div>
                             <!--success or error-->
                             <?php 
@@ -138,6 +119,8 @@ if(isset($_GET["updation"]))
                             }
                         ?>
                         <!--success or error-->
- </body>
+ 
+</main>
+</body>
 </html>
 

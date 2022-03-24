@@ -28,12 +28,12 @@
                 ?>
             </p>
             <hr>
-<?php
+    <?php
         }
         else{
         }
         //--end of message if insert appointment successful-->
-?>
+    ?>
         <h4>Select An Appointment Type:</h4>
             <form action=" " method="post">
                 <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>

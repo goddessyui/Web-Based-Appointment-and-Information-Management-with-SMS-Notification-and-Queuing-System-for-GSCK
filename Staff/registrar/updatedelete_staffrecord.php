@@ -21,10 +21,10 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
         WHERE staff_id ='$staff_id'";
 
         if(mysqli_query($db, $updatestaffrecord)){
-                header('location: upload_staff_records.php?success="Successfully Updated Entry!"');
+                header('location: ../../upload_staff_records.php?success="Successfully Updated Entry!"');
         } 
         else {
-                header('location: upload_staff_records.php?error="error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+                header('location: ../../upload_staff_records.php?error="error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Accept is Pressed---------------------------//
@@ -36,11 +36,11 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
         $deletestaffrecord = "DELETE FROM tbl_staff_record WHERE staff_id ='$staff_id'";
     
         if(mysqli_query($db, $deletestaffrecord))
-        {   header('location: upload_staff_records.php?success="Successfully Deleted Entry!"');
+        {   header('location: ../../upload_staff_records.php?success="Successfully Deleted Entry!"');
         } 
         else
         {
-            header('location: upload_staff_records.php?error="error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+            header('location: ../../upload_staff_records.php?error="error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Delete is Pressed--------------------------// 

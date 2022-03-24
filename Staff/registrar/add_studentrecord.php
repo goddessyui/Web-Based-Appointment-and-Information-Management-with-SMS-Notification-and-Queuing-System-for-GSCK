@@ -13,10 +13,10 @@ if (isset($_POST['add'])) {
                     VALUES ('$student_id', '$first_name', '$last_name')";
 
       if(mysqli_query($db, $addstudent)){
-         header('location: upload_student_records.php?success="Successfully Added Student!"');
+         header('location: ../../upload_student_records.php?success="Successfully Added Student!"');
       } 
       else {
-         header('location: upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+         header('location: ../../upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
       }
 	
 }

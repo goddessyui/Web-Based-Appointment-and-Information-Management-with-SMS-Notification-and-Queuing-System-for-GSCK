@@ -81,6 +81,7 @@ if(isset($_GET["updation"]))
     <br />
     <?php echo $message; ?>
         <h3 align="center">UniFAST Grantee Record</h3>
+        <h5 align="center"><a href="admin.php">Back</a></h5>
    
     <br />
     <?php

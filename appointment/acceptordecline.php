@@ -11,7 +11,7 @@ if (isset($_POST['accept'])) {
    $appointment_date = $_POST['appointment_date'];
     
    if (empty($_POST['appointment_date'])) {//if appointment date is not filled
-      header("refresh:1;url=staff_pending_requests.php");
+      header("refresh:1;url=../staff_appointment_details.php");
 		echo "Appointment date should be filled";
 	} 
    else { //if appointment date is filled 
@@ -20,7 +20,7 @@ if (isset($_POST['accept'])) {
                            VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
 
       if(mysqli_query($db, $acceptappointment)){
-         header("refresh:2;url=staff_pending_requests.php");
+         header("refresh:2;url=../staff_appointment_details.php");
          echo "Appointment request accepted and scheduled on". " ". $appointment_date;
             //Add Queueing and SMS function here???-----------------------------------------
             $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
@@ -36,7 +36,7 @@ if (isset($_POST['accept'])) {
             
       } 
       else {
-         header("refresh:2;url=staff_pending_requests.php");
+         header("refresh:2;url=../staff_appointment_details.php");
          echo "ERROR: Not able to execute. " . mysqli_error($db);
       }
 	}
@@ -54,11 +54,11 @@ else if (isset($_POST['decline'])) {
                         VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'Declined')";
    
    if(mysqli_query($db, $declineappointment)){
-      header("refresh:2;url=staff_pending_requests.php");
+      header("refresh:2;url=../staff_appointment_details.php");
       echo "Appointment Request Declined.";
    } 
    else{
-      header("refresh:2;url=staff_pending_requests.php");
+      header("refresh:2;url=../staff_appointment_details.php");
       echo "ERROR: Not able to execute. " . mysqli_error($db);
    }
  }

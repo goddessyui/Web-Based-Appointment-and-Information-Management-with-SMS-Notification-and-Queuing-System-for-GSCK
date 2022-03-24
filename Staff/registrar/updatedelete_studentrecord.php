@@ -21,10 +21,10 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
         WHERE student_id ='$student_id'";
 
         if(mysqli_query($db, $updatestudentrecord)){
-                header('location: upload_student_records.php?success="Successfully Updated Entry!"');
+                header('location: ../../upload_student_records.php?success="Successfully Updated Entry!"');
         } 
         else {
-            header('location: upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+            header('location: ../../upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Accept is Pressed---------------------------//
@@ -36,10 +36,10 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
         $deletestudentrecord = "DELETE FROM tbl_student_record WHERE student_id ='$student_id'";
     
         if(mysqli_query($db, $deletestudentrecord)){   
-            header('location: upload_student_records.php?success="Successfully Deleted Entry!"');
+            header('location: ../../upload_student_records.php?success="Successfully Deleted Entry!"');
         } 
         else{
-            header('location: upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+            header('location: ../../upload_student_records.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
         }
     }
     //--------------------------If Delete is Pressed--------------------------// 

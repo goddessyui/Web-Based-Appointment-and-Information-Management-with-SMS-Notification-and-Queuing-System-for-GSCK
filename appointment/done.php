@@ -11,12 +11,12 @@ WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 if (mysqli_query($db, $cancelappointment)) {
 
-header('location: staff_accepted_requests.php');
+header('location: ../staff_appointment_details.php');
       //exit();
 
 echo "Success";
 } else {
-header('location: staff_accepted_requests.php');
+header('location: ../staff_appointment_details.php');
    // exit();
 echo "Error inserting record " . mysqli_error($db);
 }

@@ -20,17 +20,17 @@ if (mysqli_query($db, $updatedate)) {
    VALUES ('$appointment_id', '$currentdate', '$newDate', '$comment', 'Accepted')";
    
    if (mysqli_query($db, $insertnew)) {
-      header("refresh:2;url=staff_accepted_requests.php");
+      header("refresh:2;url=../staff_appointment_details.php");
       echo "Success";
    }
    else {
-      header("refresh:2;url=staff_accepted_requests.php");
+      header("refresh:2;url=../staff_appointment_details.php");
        echo "Error inserting record " . mysqli_error($db);
    }
 } 
 
 else {
-	header("refresh:2;url=staff_accepted_requests.php");
+	header("refresh:2;url=../staff_appointment_details.php");
     echo "Error updating record " . mysqli_error($db);
 }
 

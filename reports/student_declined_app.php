@@ -1,5 +1,5 @@
 
-<!----------------Shows Student's Declined/Cancelled Appointments------------------------------------------------------------>
+<!----------------Shows Student's Declined Appointments------------------------------------------------------------>
 <?php
 
     $declinedappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -33,7 +33,7 @@
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Date Declined/Cancelled: </span><?php echo $rows['appointment_date']; ?></p>
+                    <p><span>Date Declined: </span><?php echo $rows['appointment_date']; ?></p>
                     <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
                     <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
                     <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
