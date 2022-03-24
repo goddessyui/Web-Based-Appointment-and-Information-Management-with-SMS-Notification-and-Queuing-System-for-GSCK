@@ -26,7 +26,7 @@ if ($student_id != "" && $student_username != ""){
 </head>
 <body>
 <?php 
-include('header.php');
+
 ?>
 <br><br><br><br><br><br><br><br><br><h3>Admin Dashboard</h3>
 

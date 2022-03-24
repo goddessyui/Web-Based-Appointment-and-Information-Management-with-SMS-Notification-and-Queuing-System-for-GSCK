@@ -27,7 +27,7 @@ if(isset($_REQUEST["term"])){
         <?php
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                     
-                    echo "<p staff_id='{$row["staff_id"]}'>" .$row["first_name"] . " " . $row["last_name"] . "</p>";                
+                    echo "<p staff_id='{$row["staff_id"]}'>" .$row["first_name"] . " " . $row["last_name"] . "</p>";             
                 }
         ?>
         

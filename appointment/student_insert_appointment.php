@@ -20,6 +20,10 @@
       $appointment_type = $_POST['appointmenttype'];
       $note = $_POST['note'];
       //check if student already sent the same request
+
+
+
+      
       $check = "SELECT * FROM tbl_appointment 
                WHERE student_id = '$student_id' AND appointment_type = '$appointment_type' 
                AND staff_id ='$staff_id' AND date_created='$currentdate'";
@@ -44,7 +48,7 @@
          } 
          else
          {/* Redirect browser and send form validation message */
-            header('location: student_appointment.php?msg=<font color="red">ERROR: Not able to execute your request at this time. <?php echo mysqli_error($db); ?></font>');
+            header('location: student_appointment.php?msg=<font color="red">ERROR: Not able to execute your request at this time.</font>');
          }
       }
    }

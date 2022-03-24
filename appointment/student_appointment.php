@@ -11,41 +11,48 @@
     }
 
 ?>
-    <h1>Set An Appointment</h1><hr>
-    <br>
-    <br>
+    <?php include("searchbox.php");?><hr>
+    
+
 <!-- This starts the buttons for appointment type-------------------------------------------------------------------------------------------------->
-    <h4>Select An Appointment Type:</h4>
-    <form action=" " method="post">
-        <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
-        <input type="submit" value="Evaluation of Grades - Department Head" name="appointmenttype"><br/><br/>
-        <input type="submit" value="Meeting" name="appointmenttype"><br/><br>
-        <input type="submit" value="Module Submission" name="appointmenttype"><br/><br>
-        <input type="submit" value="Pre-Enrollment" name="appointmenttype"><br/><br>
-        <input type="submit" value="Presentation" name="appointmenttype"><br/><br>
-        <input type="submit" value="Project Submission" name="appointmenttype"><br/><br>
-        <input type="submit" value="Request Documents From Registrar" name="appointmenttype"><br/><br>
-        <input type="submit" value="Request for Grades" name="appointmenttype"><br/><br>
-        <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
-        <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
-    </form><hr>
-                        <!--start of message if insert appointment successful-->
-                        <?php 
-                            if(isset($_GET['msg'])){
-                        ?>
-                                <p>
-                                    <?php 
-                                        echo $_GET['msg'];
-                                    ?>
-                                </p>
-                                <hr>
-                        <?php
-                            }
-                            else{
-                            }
-                        ?>
+<?php    
+    if(empty($_GET['submit']))
+    {
+        //--start of message if insert appointment successful-->
+
+        if(isset($_GET['msg'])){
+?>
+            <p>
+                <?php 
+                    echo $_GET['msg'];
+                ?>
+            </p>
+            <hr>
+<?php
+        }
+        else{
+        }
+        //--end of message if insert appointment successful-->
+?>
+        <h4>Select An Appointment Type:</h4>
+            <form action=" " method="post">
+                <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
+                <input type="submit" value="Evaluation of Grades - Department Head" name="appointmenttype"><br/><br/>
+                <input type="submit" value="Meeting" name="appointmenttype"><br/><br>
+                <input type="submit" value="Module Submission" name="appointmenttype"><br/><br>
+                <input type="submit" value="Pre-Enrollment" name="appointmenttype"><br/><br>
+                <input type="submit" value="Presentation" name="appointmenttype"><br/><br>
+                <input type="submit" value="Project Submission" name="appointmenttype"><br/><br>
+                <input type="submit" value="Request Documents From Registrar" name="appointmenttype"><br/><br>
+                <input type="submit" value="Request for Grades" name="appointmenttype"><br/><br>
+                <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
+                <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
+            </form><hr>
+<?php                     
+    }                               
+?>
+                     
                         
-                        <!--end of message if insert appointment successful-->
 <!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
 <!-- This starts the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->

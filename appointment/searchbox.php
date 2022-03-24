@@ -1,16 +1,3 @@
-<?php 
-    include_once("../dbconfig.php");
-    // Student Session
-    session_start();
-    $student_id = $_SESSION["student_id"];
-    $username1 = $_SESSION["student_username"];
-    $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
-    $row = $query->fetch_assoc();
-    if ($student_id == "" && $username1 == ""){
-        echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,27 +37,34 @@ $(document).ready(function(){
 
 
 <body>
-    
-    <form name="form1" method="get" action=" ">
-    <div class="search-box">
-        <input type="text" autocomplete="off" placeholder="Search name..." name="search" value="" required>
-        <div class="result"></div>
+    <div class="search-parent">
+        <form name="form1" method="get" action=" ">
+        <div class="search-box"><label><h1>Set An Appointment</h1></label></div>
+        <div class="search-box">
+            <input type="text" autocomplete="off" placeholder="Search staff name..." name="search" value="" required>
+            <div class="result"></div>
+        </div>
+        <div class="search-box">
+            <input type="submit" value="Find" name="submit">
     </div>
-    <div>
-        <input type="submit" value="Find" name="submit">
     </div>
     </form>
-
 
 <?php
 
  if(isset($_GET['submit'])){
+    ?>
+    <h2>Appointments Under <?php echo  $_GET['search']; ?></h2>
+    <h4>Select An Appointment Type:</h4>
+    <?php
     $button = $_GET['submit'];
     $name = explode(" ", $_GET['search']);
     $search = $name[0];
     $search2 = end($name);
 
-    $sql="SELECT * FROM tbl_staff_registry INNER JOIN tbl_staff_appointment 
+    $sql="SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name, tbl_staff_registry.staff_id, 
+    tbl_staff_appointment.appointment_type 
+    FROM tbl_staff_registry INNER JOIN tbl_staff_appointment 
     ON tbl_staff_registry.staff_id = tbl_staff_appointment.staff_id 
     WHERE tbl_staff_registry.last_name = '$search2' AND tbl_staff_registry.first_name LIKE '".$search."%'";
     $run= mysqli_query($db, $sql);
@@ -79,53 +73,94 @@ $(document).ready(function(){
         $foundnum = mysqli_num_rows($run);
         if($foundnum > 0) { 
     ?>
-                <form action="student_insert_appointment.php" method="post">
+                <form method="post">
     <?php
             while($rows = mysqli_fetch_assoc($run)) { 
                 
     ?>  
-                <input type="submit" name="appointment_type" required value="<?php echo $rows['appointment_type'];?>">
-                <input type="hidden" name="staff_id" value="<?php echo $staff_id;?>">  
+                <input type="submit" name="at" required value="<?php echo $rows['appointment_type'];?>">
+                <input type="hidden" name="fn" value="<?php echo $rows['first_name'];?>"> 
+                <input type="hidden" name="ln" value="<?php echo $rows['last_name'];?>"> 
+                <input type="hidden" name="staff_id" value="<?php echo $rows['staff_id'];?>"> 
                 
     <?php     
             }
-
+            ?>
+            </form>
+            <?php
         }
-
+        else {
+            header('location: student_appointment.php?');
+        }
     }
-    ?>
-                        <br><br>
-                        <h4>Note to Staff (Optional):</h4>
-                        <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                        Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
-                        <textarea name="note"></textarea>
-                        <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
-                        <br><br>
-                        <input type="submit" name="request" value="Request Appointment">
-                       
-                    </form><br><br>
-
-    <?php        
-    mysqli_close($db);
+  
  }
+ if(isset($_POST['at'])){
+    $appointment_type =$_POST['at'];
+    $staff_id =$_POST['staff_id'];
+    $first_name =$_POST['fn'];
+    $last_name =$_POST['ln'];
+?>  <h2>Appointment Type: <?php echo $appointment_type;?></h2>
+    <h2>Staff: <?php echo $first_name . " ". $last_name;?></h2>          
+                <form action="student_insert_appointment.php" method="post">
+                    <br><br>
+                    <h4>Note to Staff (Optional):</h4>
+                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
+                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                    <textarea name="note"></textarea>
+                    <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>"> 
+                    <input type="hidden" name="staff_id" value="<?php echo $staff_id;?>"> 
+                    <br><br>
+                    <input type="submit" name="request" value="Request Appointment">
+                   
+                </form><br><br>
+
+<?php        
+}
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
+<style>
+    body{
+        font-family: Arail, sans-serif;
+    }
+    /* Formatting search box */
+    
+    .search-box{
+        width: 300px;
+        position: relative;
+       display: inline-block;
+        font-size: 14px;
+    }
+    .search-box input[type="text"]{
+        height: 32px;
+        padding: 5px 10px;
+        border: 1px solid #CCCCCC;
+        
+        font-size: 14px;
+    }
+    .result{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+        background-color: white;
+    }
+    .search-box input[type="text"], .result{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result p{
+        margin: 0;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result p:hover{
+        background: #f2f2f2;
+    }
+</style>
