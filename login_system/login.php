@@ -31,7 +31,7 @@ else if ($student_id != "" && $student_username != ""){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<?php include_once("../dbconfig.php"); ?>
+<?php include_once("dbconfig.php"); ?>
 <body>
 
     <div class="user_account">
