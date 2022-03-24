@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
@@ -103,7 +95,7 @@ $(document).ready(function(){
 ?>  <h2>Appointment Type: <?php echo $appointment_type;?></h2>
     <h2>Staff: <?php echo $first_name . " ". $last_name;?></h2>          
                 <form action="student_insert_appointment.php" method="post">
-                    <br><br>
+                    
                     <h4>Note to Staff (Optional):</h4>
                     <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
                     Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
