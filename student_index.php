@@ -7,13 +7,9 @@ if ($student_id == "" && $username1 == ""){
     echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>STUDENT PAGE</title>
 </head>
 <body>
         <div class="">
@@ -21,20 +17,38 @@ if ($student_id == "" && $username1 == ""){
                 <a class="" href="#">GSCK Appointment System</a>
             </div>
             <ul class="">
-                <li class="active"><a href="#">Announcements</a></li>
-                <li ><a href="#">Schedules</a></li>
+            <li><a href="?p=announcements">Announcements</a></li>
+                <li><a href="?p=schedules">Schedules</a></li>
                 <li ><a href="appointment/student_appointment.php">Request an Appointment</a></li>
                 <li><a href="appointment/student_appointment_details.php">Appointment Details</a></li>
-                <li><a href="Student/student_profile.php">Profile</a></li>
+                <li><a href="?p=Student/student_profile">Profile</a></li>
             </ul>
             <ul class="">
                 <li><a href="logout.php"><span class=""></span>Logout</a></li>
             </ul>
             </div>
-            <hr>
-
-            <?php include 'announcement_display.php'; ?>
 
 
+            <?php $page = isset($_GET['p']) ? $_GET['p'] : 'announcements';  ?>
+<?php 
+    if(!file_exists($page.".php") && !is_dir($page)){
+        include '404.html';
+    }else{
+        include $page.'.php';
+    }
+
+    // switch ($page) {
+    //     case "announcements":
+    //         include $page.'.php';
+    //       break;
+    //     case "schedules":
+    //         include $page.'.php';
+    //       break;
+    //     case "green":
+    //         include $page.'.php';
+    //       break;
+    //   } 
+
+    
+?>
 </body>
-</html>

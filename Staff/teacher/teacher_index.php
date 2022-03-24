@@ -24,7 +24,7 @@ if ($staff_id == "" && $username == "" && $position != "Teacher"){
             </div>
                 <ul class="">
                 <li><a href="#">Appointments</a></li>
-		        <li><a href="../announcement/announcement_test.php">Make Announcements</a></li>
+		        <li><a href="../announcement/announcements_admin.php">Make Announcements</a></li>
                 <li><a href="#">Set Schedules</a></li>
                 <li><a href="../staff_profile.php">Account</a></li>
             </ul>

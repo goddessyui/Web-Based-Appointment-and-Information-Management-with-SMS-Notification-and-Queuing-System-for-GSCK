@@ -13,7 +13,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 <main>
   
     <div>
-        <h3>Declined/Canceled Appointments</h3>
+        <h3>Cancelled Appointments</h3>
         <a href="staff_appointment_details.php">Back to Appointments</a>
 <!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
         <?php

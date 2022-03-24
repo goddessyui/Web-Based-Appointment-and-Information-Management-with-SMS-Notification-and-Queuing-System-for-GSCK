@@ -27,7 +27,6 @@ if (mysqli_query($db, $updatedate)) {
       header("refresh:2;url=staff_accepted_requests.php");
        echo "Error inserting record " . mysqli_error($db);
    }
-
 } 
 
 else {

@@ -24,30 +24,44 @@ session_start();
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="">
-            <div> 
-                <li><a href="login_system/login.php">Sign in</a></li>
-            </div>
-            <div> 
-                <li><a href="login_system/verification.php">Register</a></li>
-                <ul class="">
-                            <li ><a href="#">Announcements</a></li>
-                            <li ><a href="#">Schedules</a></li>
-                        </ul>
-            </div><div><h1>Announcementsss</h1></div>
 
-            <?php include 'announcement_display.php'; ?>
-                
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="">
+<div> 
+    <li><a href="login_system/login.php">Sign in</a></li>
+</div>
+<div> 
+    <li><a href="login_system/verification.php">Register</a></li>
+    <ul class="">
+                <li><a href="?p=announcements">Announcements</a></li>
+                <li><a href="?p=schedules">Schedules</a></li>
+            </ul>
+</div>
+
+
+<?php $page = isset($_GET['p']) ? $_GET['p'] : 'announcements';  ?>
+<?php 
+    if(!file_exists($page.".php") && !is_dir($page)){
+        include '404.html';
+    }else{
+    if($page == "announcements"){
+        include $page.'.php';
+    }else if($page == "schedules"){
+        include $page.'.php';
+    }
+    }
+?>
+
+</div>
+
+</body>
+
 </html>

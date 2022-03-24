@@ -83,11 +83,6 @@ if(isset($_GET["updation"]))
         <h3 align="center">UniFAST Grantee Record</h3>
    
     <br />
-                <tr>
-                    <th>Student ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
     <?php
     //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
         $ugquery = "SELECT * FROM tbl_unifast_grantee";
@@ -118,6 +113,30 @@ if(isset($_GET["updation"]))
         </form>
         <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
   </div>
+                          <!--success or error-->
+                          <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            if(isset($_GET['error'])){
+                        ?>
+                                        <p align="center">
+                                            <?php 
+                                                echo $_GET['error'];
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                            else{
+                            }
+                        ?>
+                        <!--success or error-->
  </body>
 </html>
 

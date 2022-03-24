@@ -11,7 +11,7 @@
     }
 
 ?>
-    <h1>Student User Interface</h1><hr>
+    <h1>Set An Appointment</h1><hr>
     <br>
     <br>
 <!-- This starts the buttons for appointment type-------------------------------------------------------------------------------------------------->
@@ -29,13 +29,30 @@
         <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
         <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
     </form><hr>
+                        <!--start of message if insert appointment successful-->
+                        <?php 
+                            if(isset($_GET['msg'])){
+                        ?>
+                                <p>
+                                    <?php 
+                                        echo $_GET['msg'];
+                                    ?>
+                                </p>
+                                <hr>
+                        <?php
+                            }
+                            else{
+                            }
+                        ?>
+                        
+                        <!--end of message if insert appointment successful-->
 <!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
 <!-- This starts the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
     <?php
         //get data
         if(isset($_POST['appointmenttype']))
-        {
+        {   
             $appointment_type = $_POST['appointmenttype'];
             $staff_appointment =    "SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                     tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -63,7 +80,6 @@
                     }
                 }
             }
-        }
     ?>
                         <br><br>
                         <h4>Note to Staff (Optional):</h4>
@@ -75,21 +91,12 @@
                         <input type="submit" name="request" value="Request Appointment">
                        
                     </form><br><br>
-                        <!--start of form validation message-->
-                        <?php 
-                            if(isset($_GET['msg'])){
-                        ?>
-                                <p>
-                                    <?php 
-                                        echo $_GET['msg'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                            else{
-                            }
-                        ?>
-                        <!--end of form validation message-->
+
+    <?php        
+        }
+    ?>
+                        
+                        
     <!-- This ends the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>
