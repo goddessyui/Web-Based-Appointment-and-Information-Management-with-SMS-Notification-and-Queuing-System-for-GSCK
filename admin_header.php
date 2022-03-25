@@ -46,7 +46,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 <div class="menu" id="navigation">
 	<div class="menu-container">
 		<button class="btn-user-accnt">User Account</button>
-		<button class="btn-log-out">Log out</button>
+		<button class="btn-log-out"><a href="logout.php">Log out</a></button>
 		<nav>
 			<ul>
                 <li><a href="admin.php">Dashboard</li>
@@ -125,6 +125,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
+		background-color: orange;
 	}
 	.school_container,
 	.icon_container {

@@ -7,7 +7,7 @@ $(document).ready(function(){
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
-            $.get("backend-search.php", {term: inputVal}).done(function(data){
+            $.get("appointment/backend-search.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
                 resultDropdown.html(data);
             });
@@ -27,9 +27,7 @@ $(document).ready(function(){
 
 </script>
 
-
-<body>
-    <div class="search-parent">
+    <div>
         <form name="form1" method="get" action=" ">
         <div class="search-box"><label><h1>Set An Appointment</h1></label></div>
         <div class="search-box">
@@ -94,7 +92,7 @@ $(document).ready(function(){
     $last_name =$_POST['ln'];
 ?>  <h2>Appointment Type: <?php echo $appointment_type;?></h2>
     <h2>Staff: <?php echo $first_name . " ". $last_name;?></h2>          
-                <form action="student_insert_appointment.php" method="post">
+                <form action="appointment/student_insert_appointment.php" method="post">
                     
                     <h4>Note to Staff (Optional):</h4>
                     <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
@@ -109,33 +107,25 @@ $(document).ready(function(){
 
 <?php        
 }
-
 ?>
 
-</body>
-</html>
 <style>
-    body{
-        font-family: Arail, sans-serif;
-    }
-    /* Formatting search box */
     
+    /* Formatting search box */
     .search-box{
         width: 300px;
         position: relative;
-       display: inline-block;
+        display: inline-block;
         font-size: 14px;
     }
     .search-box input[type="text"]{
         height: 32px;
         padding: 5px 10px;
         border: 1px solid #CCCCCC;
-        
         font-size: 14px;
     }
     .result{
         position: absolute;        
-        z-index: 999;
         top: 100%;
         left: 0;
         background-color: white;

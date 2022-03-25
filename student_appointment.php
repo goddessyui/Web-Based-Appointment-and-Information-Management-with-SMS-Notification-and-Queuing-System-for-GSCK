@@ -1,26 +1,14 @@
 <?php
-    include_once("../dbconfig.php");
-    // Student Session
-    session_start();
-    $student_id = $_SESSION["student_id"];
-    $username1 = $_SESSION["student_username"];
-    $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}'");
-    $row = $query->fetch_assoc();
-    if ($student_id == "" && $username1 == ""){
-        echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
-    }
-
+    include_once("dbconfig.php");
+    include("header.php");
 ?>
+<div class="parent-div">
     <?php include("searchbox.php");?><hr>
-    
-
 <!-- This starts the buttons for appointment type-------------------------------------------------------------------------------------------------->
 <?php    
-    if(empty($_GET['submit']))
+    if(empty($_GET['submit']))//if no form is submitted, this will not show
     {
-        //--start of message if insert appointment successful-->
-
-        if(isset($_GET['msg'])){
+        if(isset($_GET['msg'])){//--start of message if insert appointment successful-->
 ?>
             <p>
                 <?php 
@@ -28,12 +16,11 @@
                 ?>
             </p>
             <hr>
-    <?php
+<?php
         }
-        else{
-        }
-        //--end of message if insert appointment successful-->
-    ?>
+        else{//--end of message if insert appointment successful-->
+        }    
+?>
         <h4>Select An Appointment Type:</h4>
             <form action=" " method="post">
                 <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
@@ -50,9 +37,7 @@
             </form><hr>
 <?php                     
     }                               
-?>
-                     
-                        
+?>                      
 <!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
 <!-- This starts the form for the modal used to insert into tbl_appointment through student_insert_appointment.php -->
@@ -75,7 +60,7 @@
                     <h2>Appointment Type: <?php echo $appointment_type;?></h2>
                     <h4>Select A Staff Member:</h4>
     <!-- This starts the Form For Getting List of Teachers and Submitting the Appointment Request-->  
-                    <form action="student_insert_appointment.php" method="post">
+                    <form action="appointment/student_insert_appointment.php" method="post">
                                       
     <?php 
                     while($rows = mysqli_fetch_assoc($result)) { 
@@ -102,9 +87,16 @@
     <?php        
         }
     ?>
-                        
+ </div>                       
                         
     <!-- This ends the Form For Getting List of Teachers and Submitting the Appointment Request-->  
                     
 <!-- This ends the form for the modal used to insert into tbl_appointment through student_insert_appointment.php --></body>
 
+<style>
+    .parent-div{
+        padding-top: 150px;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+</style>

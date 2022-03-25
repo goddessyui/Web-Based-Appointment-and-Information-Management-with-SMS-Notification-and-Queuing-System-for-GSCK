@@ -1,3 +1,23 @@
+<?php
+session_start();
+$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
+$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+if ($staff_id != "" && $staff_username != ""){
+    if ($position == "Registrar && "){
+        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+    }
+    else if ($position == "Accounting Staff/Scholarship Coordinator"){
+        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+    }
+    else if ($position == "Teacher"){
+        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +63,10 @@
 				<li>Schedule</li>
 				<li><a href="announcement.php">Announcement</a></li>
 				<li>Contact</li>
-				<li><a href="appointment/student_appointment_details.php">My Appointments</a> </li>
+				<li><a >My Appointments</a> </li>
 			</ul>
 		</nav>
-		<button class="btn_set_appointment">Set an Appointment</button>
+		<button class="btn_set_appointment"><a href="student_appointment.php">Set an Appointment</a></button>
 	</div>
 </div>
 
