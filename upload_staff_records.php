@@ -50,7 +50,6 @@ if(isset($_GET["updation"]))
 <br />
 <div class="container">
     <h2 align="center">Update Staff Records</a></h2>
-    <h5 align="center"><a href="admin.php">Back</a></h5>
     <br />
     <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>

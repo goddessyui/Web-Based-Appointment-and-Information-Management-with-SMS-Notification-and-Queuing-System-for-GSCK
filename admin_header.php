@@ -62,7 +62,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             }
             else if($position == "Accounting Staff/Scholarship Coordinator"){
                 ?>
-                <li>UniFAST Grantee Records</li>
+                <li><a href="upload_unifast_grantee.php">UniFAST Grantee Records</a></li>
                 <?php
             }
                 ?>

@@ -1,14 +1,5 @@
 <?php
-include_once("../../dbconfig.php");
-//session
-session_start();
-$staff_id = $_SESSION["staff_id"];
-$position = $_SESSION["position"];
-$username = $_SESSION["staff_username"];
-//redirect if not accounting staff/scholarship coordinator
-if ($staff_id == "" && $username == "" && $position !="Accounting Staff/Scholarship Coordinator"){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-}
+include_once("admin_header.php");
 //show error message
 $message = '';
 //-------------------------------upload csv------------------------------------------------------------------------------//
@@ -56,19 +47,10 @@ if(isset($_GET["updation"]))
 
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Update UniFAST Grantee Records</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-<body>
+<main>
 <br />
 <div class="container">
     <h2 align="center">Update UniFAST Grantee Records</a></h2>
-    <h5 align="center"><a href="accounting_staff_index.php">Back</a></h5>
     <br />
     <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
@@ -81,7 +63,6 @@ if(isset($_GET["updation"]))
     <br />
     <?php echo $message; ?>
         <h3 align="center">UniFAST Grantee Record</h3>
-        <h5 align="center"><a href="admin.php">Back</a></h5>
    
     <br />
     <?php
@@ -93,7 +74,7 @@ if(isset($_GET["updation"]))
         {
     ?>
             <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
-            <form action="updatedelete_unifastgrantee.php" method="post">
+            <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                 <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
                 <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
                 <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
@@ -106,7 +87,7 @@ if(isset($_GET["updation"]))
     //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
      ?>
     <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
-        <form action="add_unifastgrantee.php" method="post">
+        <form action="Staff/accounting_staff/add_unifastgrantee.php" method="post">
             <input type="text" name="staffid" required>
             <input type="text" name="firstname" required>
             <input type="text" name="lastname" required>
@@ -138,6 +119,7 @@ if(isset($_GET["updation"]))
                             }
                         ?>
                         <!--success or error-->
- </body>
+</main>
+</body>
 </html>
 

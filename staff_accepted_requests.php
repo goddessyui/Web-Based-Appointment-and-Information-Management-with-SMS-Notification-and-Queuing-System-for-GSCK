@@ -7,11 +7,12 @@
 		    $currentdate = date("Y-m-d");
         ?>
         <form action="" method="post">
-            <input type="date" name="sortbydate" placeholder="" value="<?php echo $currentdate;?>" 
+            <input type="date" name="sortbydate" placeholder="" value="" 
             min="<?php echo $currentdate, - '30 days' ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 90 days'));?>">
-            <input type="submit" name="searchbydate" value="SORT BY DATE">
+            <input type="submit" name="searchbydate" id="searchbydate" value="SORT BY DATE">
 	    </form>
         <hr>
+        
 <!-------------------------Sort Requests By Date ------------------------------> 
 
 <!-------------------------Show Accepted Requests ------------------------------>   
@@ -19,20 +20,21 @@
             //-------------------------Show Accepted Requests After Pressing Sort By Date------------------------------> 
             if(isset($_POST['searchbydate'])){
                 $sortdate = $_POST['sortbydate'];
+                
                 ?>
                 <b><font color="blue">
                 <?php echo "Appointments for ". $sortdate; ?>
-                </font></b>
+                </font></b>          
                 <hr>
                 <?php
-               
+    
                $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
                 ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                 WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                 AND tbl_appointment_detail.appointment_date= '$sortdate' ORDER BY tbl_appointment_detail.appointment_id ASC";
-        
+                
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 
                 //check whether the query is executed or not
@@ -98,7 +100,7 @@
             //-------------------------Show Accepted Requests After Pressing Sort By Date------------------------------>  
         
             //-------------------------Show All Accepted Requests WITHOUT Sorting By Date------------------------------>  
-        
+            
                 else {
                 ?>
                 <h4><font color="blue">All Appointments</font></h4>
