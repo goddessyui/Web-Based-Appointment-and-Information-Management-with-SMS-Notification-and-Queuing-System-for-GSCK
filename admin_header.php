@@ -50,9 +50,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 		<nav>
 			<ul>
                 <li><a href="admin.php">Dashboard</li>
-				<li>My Account</li>
-				<li>Set My Schedule</li>
-				<li>Post Announcement</li>
+				<li><a href="#"> Account</a></li>
+				<li><a href="#">Set My Schedule</a></li>
+				<li><a href="#">Announcement</a></li>
             <?php 
             if ($position == "Registrar"){
             ?>
@@ -67,7 +67,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             }
                 ?>
 				<li><a href="staff_appointment_details.php">My Appointments</a></li>
-                <li>Reports</li>
+                <li><a href="#">Reports</a></li>
 			</ul>
 		</nav>
 	
@@ -125,7 +125,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
-		background-color: orange;
+		
 	}
 	.school_container,
 	.icon_container {

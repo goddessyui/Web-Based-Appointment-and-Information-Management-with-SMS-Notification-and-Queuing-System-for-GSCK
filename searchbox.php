@@ -80,7 +80,7 @@ $(document).ready(function(){
             <?php
         }
         else {
-            header('location: student_appointment.php?');
+            echo "<script>window.location.href='student_appointment.php'</script>";
         }
     }
   
@@ -117,6 +117,7 @@ $(document).ready(function(){
         position: relative;
         display: inline-block;
         font-size: 14px;
+       
     }
     .search-box input[type="text"]{
         height: 32px;
@@ -129,6 +130,7 @@ $(document).ready(function(){
         top: 100%;
         left: 0;
         background-color: white;
+        
     }
     .search-box input[type="text"], .result{
         width: 100%;

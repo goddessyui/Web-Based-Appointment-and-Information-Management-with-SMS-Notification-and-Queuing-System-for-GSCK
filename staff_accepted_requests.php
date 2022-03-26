@@ -1,8 +1,6 @@
 
 
-        <h3>My Appointments</h3>
-        <a href="staff_appointment_details.php">Back to Appointments</a>
-        <hr>
+
 <!-------------------------Sort Requests By Date------------------------------> 
         <?php 
             date_default_timezone_set('Asia/Manila');                           		

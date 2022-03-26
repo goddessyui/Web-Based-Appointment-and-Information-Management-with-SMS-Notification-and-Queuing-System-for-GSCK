@@ -1,4 +1,5 @@
 <?php
+include_once("dbconfig.php");
 session_start();
 $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
 $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
@@ -6,17 +7,10 @@ $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 if ($staff_id != "" && $staff_username != ""){
-    if ($position == "Registrar && "){
-        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
-    }
-    else if ($position == "Accounting Staff/Scholarship Coordinator"){
-        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
-    }
-    else if ($position == "Teacher"){
+    if ($position == "Registrar" OR "Accounting Staff/Scholarship Coordinator" OR "Teacher"){
         echo '<script type="text/javascript">window.location.href="admin.php"</script>';
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +29,17 @@ if ($staff_id != "" && $staff_username != ""){
 			<h3 class="school_name">GOLDENSTATE COLLEGE OF KORONADAL</h3>
 		</div>
 		<div class="icon_container">
-			<button class="btn_signin" onclick="BtnLogin()">LOG IN</button>
+			<?php 
+				if(empty($_SESSION['student_username'])){
+			?>
+					<button class="btn_signin" onclick="BtnLogin()">LOG IN</button>
+			<?php
+				}
+				else{
+					?>
+				
+			<?php
+				}?>
 			<img class="bell_icon" src="icons/bell.png" alt="notification-bell" width="24px">
 			<button class="burger_menu" id="burger" onclick="BtnMenu()"><img src="icons/menu.png" alt="burger-menu" width="29px"></button>
 			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icons/close.png" alt="burger-menu" width="29px"></button>
@@ -54,19 +58,29 @@ if ($staff_id != "" && $staff_username != ""){
 
 <div class="menu" id="navigation">
 	<div class="menu-container">
-		<button class="btn-user-accnt">User Account</button>
-		<button class="btn-log-out">Log out</button>
+	<?php 
+		if(isset($_SESSION['student_username'])){
+	?>	<small>Welcome, <?php echo $student_username;?></small>
+		<button class="btn-user-accnt"><a href="#">USER ACCOUNT</a></button>
+		<button class="btn-log-out"><a href="logout.php">Log out</a></button>
+	<?php			
+		}
+		else{}
+	?>
 		<nav>
 			<ul>
-				<li>Home</li>
-				<li>About</li>
-				<li>Schedule</li>
-				<li><a href="announcement.php">Announcement</a></li>
-				<li>Contact</li>
-				<li><a >My Appointments</a> </li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="#">Schedule</a></li>
+				<li><a href="announcements.php">Announcement</a></li>
+				<li><a href="contact.php">Contact</a></li>
+				<?php if(isset($_SESSION['student_username'])){?>
+				<li><a href="student_appointment_details.php">My Appointments</a> </li>
 			</ul>
 		</nav>
 		<button class="btn_set_appointment"><a href="student_appointment.php">Set an Appointment</a></button>
+		<?php
+		}?>
 	</div>
 </div>
 
@@ -253,11 +267,13 @@ if ($staff_id != "" && $staff_username != ""){
 		document.getElementById('navigation').style.display = "block";
 		document.getElementById('burger').style.display = "none";
 		document.getElementById('close').style.display = "block";
+		document.getElementById('search').style.display = "none";
 	}
 	function BtnClose() {
 		document.getElementById('navigation').style.display = "none";
 		document.getElementById('burger').style.display = "block";
 		document.getElementById('close').style.display = "none";
+		document.getElementById('search').style.display = "block";
 	}
 </script>
 

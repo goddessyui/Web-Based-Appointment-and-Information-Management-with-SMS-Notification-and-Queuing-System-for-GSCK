@@ -1,9 +1,20 @@
 <?php
-    include_once("dbconfig.php");
     include("header.php");
+    $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
+    $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+    $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+    $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+    $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+if ($staff_id != "" && $staff_username != ""){
+    if ($position == "Registrar" OR "Accounting Staff/Scholarship Coordinator" OR "Teacher"){
+        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+    }
+}
+    
 ?>
 <div class="parent-div">
-    <?php include("searchbox.php");?><hr>
+    
+<div id="search"><?php include("searchbox.php");?></div><hr>
 <!-- This starts the buttons for appointment type-------------------------------------------------------------------------------------------------->
 <?php    
     if(empty($_GET['submit']))//if no form is submitted, this will not show
@@ -98,5 +109,6 @@
         padding-top: 150px;
         margin-left: 15%;
         margin-right: 15%;
+ 
     }
 </style>

@@ -1,6 +1,4 @@
 <?php
-include_once("../dbconfig.php");  
-session_start();
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
@@ -10,11 +8,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 
 ?>
 
-<main>
-  
     <div>
-        <h3>Completed Appointments</h3>
-        <a href="staff_appointment_details.php">Back to Appointments</a>
  <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
         <?php
             
@@ -59,4 +53,3 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
  <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
         
     </div>
-</main>

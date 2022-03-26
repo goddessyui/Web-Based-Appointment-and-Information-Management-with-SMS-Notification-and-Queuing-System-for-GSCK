@@ -1,6 +1,4 @@
 <?php
-include_once("../dbconfig.php"); 
-session_start();
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
@@ -10,11 +8,8 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 
 ?>
 
-<main>
-  
+
     <div>
-        <h3>Declined Appointments</h3>
-        <a href="staff_appointment_details.php">Back to Appointments</a>
 <!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
         <?php
     
@@ -54,6 +49,3 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 	    ?>
 <!-------------------------Show Declined Requests ------------------------------>          
     </div>
-
-
-</main>

@@ -1,16 +1,10 @@
-<style>
-.center {
-  margin: auto;
-  width: 50%;
-  border: 1px solid #000000;
-  padding: 10px;
-  
-}
-
-</style>
+<?php
+include("header.php");
+?>
+<div class="parent-div">
 <div><h1>Announcement</h1></div>
 <?php
-include_once("dbconfig.php"); 
+
                 $sql = "SELECT
                 tbl_announcement.announcement_id,
                 tbl_announcement.staff_id,
@@ -45,3 +39,20 @@ include_once("dbconfig.php");
                 }
 
                 ?>
+</div>                
+</body>
+</html>
+<style>
+.center {
+  margin: auto;
+  width: 50%;
+  border: 1px solid #000000;
+  padding: 10px;
+}
+.parent-div{
+        padding-top: 150px;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+</style>
