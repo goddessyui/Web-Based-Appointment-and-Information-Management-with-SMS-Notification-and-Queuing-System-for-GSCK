@@ -3,6 +3,27 @@
 ?>
 
 <main>
+    <!---------------Set Appointment Limit------------------------------------------------->
+    <div>
+        <form action="appointment_limit.php" method="post">
+            <h5>Limit the No. of Appointments Per Day:</h5>
+            <?php
+                $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                $limitvalue= mysqli_query($db, $limit);
+                if($limitvalue==TRUE){
+                    while($al=mysqli_fetch_assoc($limitvalue)){
+            ?>
+                        <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>">
+                        <input type="submit" name="limit" value="Limit">
+            <?php
+                    }
+                }
+            ?>
+        </form>
+    </div>
+    <hr>
+
+    <!---------------Set Appointment Limit------------------------------------------------->
     <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
     <div>
         <!--------------Start of No. of Active Requests-------------->

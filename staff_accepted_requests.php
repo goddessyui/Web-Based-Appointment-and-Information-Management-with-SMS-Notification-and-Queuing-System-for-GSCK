@@ -11,6 +11,7 @@
             min="<?php echo $currentdate, - '30 days' ?>" max="<?php echo date('Y-m-d', strtotime($currentdate. ' + 90 days'));?>">
             <input type="submit" name="searchbydate" id="searchbydate" value="SORT BY DATE">
 	    </form>
+        
         <hr>
         
 <!-------------------------Sort Requests By Date ------------------------------> 
