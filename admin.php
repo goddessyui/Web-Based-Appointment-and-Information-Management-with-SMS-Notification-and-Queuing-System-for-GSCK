@@ -13,7 +13,8 @@
                 if($limitvalue==TRUE){
                     while($al=mysqli_fetch_assoc($limitvalue)){
             ?>
-                        <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>">
+                        <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
+                        min="1" max="5000">
                         <input type="submit" name="limit" value="Limit">
             <?php
                     }
