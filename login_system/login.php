@@ -62,7 +62,7 @@ if (isset($_POST['button_login'])) {
 		echo '<script type="text/javascript">alert("Student Verified");window.location.href="index.php"</script>';
     }
     else{
-    echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="login.php"</script>';
+    echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="index.php"</script>';
     }
 	}
 
@@ -105,11 +105,11 @@ if (isset($_POST['button_login'])) {
         }
     }
         else{
-    echo '<script type="text/javascript">alert("Account not existing in Staff record");window.location.href="login.php"</script>';
+    echo '<script type="text/javascript">alert("Account not existing in Staff record");window.location.href=index.php"</script>';
     }
     }
     else {
-		echo '<script type="text/javascript">alert("Username or Password Incorrect");window.location.href="login.php"</script>';
+		echo '<script type="text/javascript">alert("Username or Password Incorrect");window.location.href="index.php"</script>';
 }
 	}
 
