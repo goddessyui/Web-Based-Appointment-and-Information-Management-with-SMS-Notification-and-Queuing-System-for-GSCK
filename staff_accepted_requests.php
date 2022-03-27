@@ -94,7 +94,7 @@
                         }
                     }
                     else {
-                        echo "No appointments scheduled for ". $sortdate;
+                        echo "No Appointments Scheduled for ". $sortdate;
                     }
                 }
             }
@@ -176,7 +176,7 @@
                         }
                     }
                     else {
-                        echo "No appointments scheduled";
+                        echo "No Appointments Scheduled.";
                     }
                 }
             } 

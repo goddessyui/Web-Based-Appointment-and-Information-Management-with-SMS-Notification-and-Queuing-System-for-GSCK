@@ -1,15 +1,4 @@
-<?php
-$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
-$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
-$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
-$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
-}
-
-?>
 
 <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->          
         <?php

@@ -8,9 +8,8 @@ $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
 if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+    echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -69,11 +68,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 				<li><a href="staff_appointment_details.php">My Appointments</a></li>
 			</ul>
 		</nav>
-	
 	</div>
 </div>
 <script>
-
 	function BtnMenu() {
 		document.getElementById('navigation').style.display = "block";
 		document.getElementById('burger').style.display = "none";
@@ -84,7 +81,6 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 		document.getElementById('burger').style.display = "block";
 		document.getElementById('close').style.display = "none";
 	}
-    
 </script>
 <style>
 	* {
@@ -159,16 +155,13 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 		background: none;
 		display: none;
 	}
-
 	.menu {
 		width: 100%;
 		height: 100vh;
 		position: fixed;
 		left: 0;
 		padding-top: 80px;
-		
 		display: none;
-		
 	}
 	.menu-container {
 		width: 380px;

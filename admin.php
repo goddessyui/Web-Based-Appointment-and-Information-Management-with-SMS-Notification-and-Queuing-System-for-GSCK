@@ -40,6 +40,26 @@
             </p>
         </div>
         <!--------------End of No. of Pending Requests-------------->
+        <!--------------Start of No. of Missed Requests-------------->
+        <div>
+            <h5>Missed Requests</h5>
+            <p>
+                <?php
+                    $missedrequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                        WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
+                        AND tbl_appointment_detail.status = 'Accepted' 
+                        AND tbl_staff_registry.staff_id = '$staff_id'";
+                    $missedrequest_result = mysqli_query($db, $missedrequest);
+                    $count = mysqli_num_rows($missedrequest_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <!--------------End of No. of Missed Requests-------------->
+
         <!--------------Start of No. of Declined Requests-------------->
         <div>
             <h5>Declined Requests</h5>
