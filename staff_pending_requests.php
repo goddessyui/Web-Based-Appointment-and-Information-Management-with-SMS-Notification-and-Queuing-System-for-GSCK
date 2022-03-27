@@ -76,6 +76,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
         <?php 
                     }
                 }
+                else {
+                    echo "No Pending Requests.";
+                }
             }    
 	    ?>
 <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->            

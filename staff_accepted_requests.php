@@ -29,11 +29,12 @@
                 <?php
     
                $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
-                AND tbl_appointment_detail.appointment_date= '$sortdate' ORDER BY tbl_appointment_detail.appointment_id ASC";
+                    ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                    INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                    INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                    WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
+                    AND tbl_appointment_detail.appointment_date= '$sortdate' 
+                    ORDER BY tbl_appointment_detail.appointment_id ASC";
                 
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 

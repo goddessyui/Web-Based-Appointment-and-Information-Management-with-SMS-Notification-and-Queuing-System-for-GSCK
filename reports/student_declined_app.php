@@ -2,7 +2,7 @@
 <!----------------Shows Student's Declined Appointments------------------------------------------------------------>
 <?php
 
-    $declinedappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+    $declinedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
         tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
         tbl_appointment.note, tbl_appointment_detail.comment
         FROM tbl_appointment_detail INNER JOIN tbl_appointment 
@@ -12,10 +12,10 @@
         WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Declined' 
         ORDER BY appointment_date DESC";
     
-    $declined_appointment_list = mysqli_query($db, $declinedappointments);
+    $declined_appointment_list = mysqli_query($db, $declinedappointment);
                 
     //check whether the query is executed or not
-    if($accepted_appointment_list==TRUE) 
+    if($declined_appointment_list==TRUE) 
     { // count rows to check whether we have data in database or not
         $count = mysqli_num_rows($declined_appointment_list);  //function to get all the rows in database
         //check the num of rows                 
@@ -41,8 +41,12 @@
                     <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
                     <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
                 </div>
+                <hr>
 <?php 
             }
+        }
+        else {
+            echo "No Declined Appointments.";
         }
     }
 

@@ -2,11 +2,15 @@
 <!----------------Shows Student's Pending Appointments------------------------------------------------------------>
 <?php
 
-    $pendingappointments="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-     WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment.status = 'Pending' ORDER BY date_created DESC";
+    $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
+        ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+        WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+        WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+        AND tbl_student_registry.student_id = '$student_id' AND tbl_appointment.status = 'Pending' 
+        ORDER BY date_created ASC";
     
-    $pending_appointment_list = mysqli_query($db, $pendingappointments);
+    $pending_appointment_list = mysqli_query($db, $pendingappointment);
                 
     //check whether the query is executed or not
     if($pending_appointment_list==TRUE) 
@@ -32,8 +36,12 @@
                     <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
                     <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
                 </div>
+                <hr>
 <?php 
             }
+        }
+        else{
+            echo "No Pending Appointments.";
         }
     }
 

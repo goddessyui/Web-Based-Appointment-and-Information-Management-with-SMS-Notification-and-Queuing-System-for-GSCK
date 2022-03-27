@@ -11,19 +11,23 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
     <div>
  <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
         <?php
-            
-            $staff_id = $_SESSION["staff_id"];
 
-            $donerequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
-            tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-             WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id'";
+            $donerequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
+                WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id' 
+                ORDER BY tbl_appointment_detail.appointment_date DESC";
           
-            $donerequest_result = mysqli_query($db, $donerequests);
+            $donerequest_result = mysqli_query($db, $donerequest);
             
             //check whether the query is executed or not
             if($donerequest_result==TRUE) 
             { // count rows to check whether we have data in database or not
+                $count = mysqli_num_rows($donerequest_result);
+                //check the num of rows                 
+                if($count>0) //we have data in database
+                {
                     $i = 1;
                     while($rows=mysqli_fetch_assoc($donerequest_result)) 
                     //using while loop to get all the date from database
@@ -48,7 +52,11 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			            </div>
         <?php 
                     }
-                }   
+                }
+                else{
+                    echo "No Past Appointments.";
+                }
+            }   
 	    ?>
  <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
         

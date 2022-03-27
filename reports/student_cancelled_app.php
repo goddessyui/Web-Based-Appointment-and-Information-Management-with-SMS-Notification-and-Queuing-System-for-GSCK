@@ -41,8 +41,12 @@
                     <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
                     <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
                 </div>
+                <hr>
 <?php 
             }
+        }
+        else {
+            echo "No Cancelled Appointments.";
         }
     }
 

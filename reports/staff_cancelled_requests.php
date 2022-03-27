@@ -13,17 +13,23 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 <!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
         <?php
     
-            $declinedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
-            tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'Cancelled' AND tbl_appointment.staff_id = '$staff_id' ORDER BY appointment_date DESC";
-            $declinedrequest_result = mysqli_query($db, $declinedrequests);
+            $cancelledrequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                WHERE tbl_appointment_detail.status = 'Cancelled' AND tbl_appointment.staff_id = '$staff_id' 
+                ORDER BY appointment_date DESC";
+            $cancelledrequest_result = mysqli_query($db, $cancelledrequest);
             
             //check whether the query is executed or not
-            if($declinedrequest_result==TRUE) 
+            if($cancelledrequest_result==TRUE) 
             { // count rows to check whether we have data in database or not
+                $count = mysqli_num_rows($cancelledrequest_result);
+                //check the num of rows                 
+                if($count>0) //we have data in database
+                {
                     $i = 1;
-                    while($rows=mysqli_fetch_assoc($declinedrequest_result)) 
+                    while($rows=mysqli_fetch_assoc($cancelledrequest_result)) 
                     //using while loop to get all the date from database
 			        //and while loop will run as long as we have data in database
                     {
@@ -45,7 +51,11 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			            </div>
         <?php 
                     }
-                }   
+                } 
+                else{
+                    echo "No Cancelled Requests.";
+                }
+            }  
 	    ?>
 <!-------------------------Show Declined Requests ------------------------------>          
     </div>

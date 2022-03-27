@@ -13,15 +13,21 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 <!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
         <?php
     
-            $declinedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id =
-            tbl_appointment.appointment_id INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-            WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id' ORDER BY appointment_date DESC";
+            $declinedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id' 
+                ORDER BY appointment_date DESC";
             $declinedrequest_result = mysqli_query($db, $declinedrequests);
             
             //check whether the query is executed or not
             if($declinedrequest_result==TRUE) 
             { // count rows to check whether we have data in database or not
+                $count = mysqli_num_rows($declinedrequest_result);
+                //check the num of rows                 
+                if($count>0) //we have data in database
+                {
                     $i = 1;
                     while($rows=mysqli_fetch_assoc($declinedrequest_result)) 
                     //using while loop to get all the date from database
@@ -45,7 +51,11 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			            </div>
         <?php 
                     }
-                }   
+                }
+                else{
+                    echo "No Declined Appointments.";
+                }
+            }   
 	    ?>
 <!-------------------------Show Declined Requests ------------------------------>          
     </div>

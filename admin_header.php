@@ -67,7 +67,6 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
             }
                 ?>
 				<li><a href="staff_appointment_details.php">My Appointments</a></li>
-                <li><a href="#">Reports</a></li>
 			</ul>
 		</nav>
 	

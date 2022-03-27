@@ -2,7 +2,7 @@
 <!----------------Shows Student's Done Appointments------------------------------------------------------------>
 <?php
 
-    $acceptedappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+    $doneappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
         tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
         tbl_appointment.note, tbl_appointment_detail.comment
         FROM tbl_appointment_detail INNER JOIN tbl_appointment 
@@ -12,17 +12,17 @@
         WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Done' 
         ORDER BY appointment_date DESC";
     
-    $accepted_appointment_list = mysqli_query($db, $acceptedappointments);
+    $done_appointment_list = mysqli_query($db, $doneappointment);
                 
     //check whether the query is executed or not
-    if($accepted_appointment_list==TRUE) 
+    if($done_appointment_list==TRUE) 
     { // count rows to check whether we have data in database or not
-        $count = mysqli_num_rows($accepted_appointment_list);  //function to get all the rows in database
+        $count = mysqli_num_rows($done_appointment_list);  //function to get all the rows in database
         //check the num of rows                 
         if($count>0) //we have data in database
         {
             $i = 1;
-            while($rows=mysqli_fetch_assoc($accepted_appointment_list)) 
+            while($rows=mysqli_fetch_assoc($done_appointment_list)) 
             //using while loop to get all the date from database
             //and while loop will run as long as we have data in database
             {
@@ -41,8 +41,12 @@
                     <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
                     <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
                 </div>
+                <hr>
 <?php 
             }
+        }
+        else {
+            echo "No Past Appointments.";
         }
     }
 
