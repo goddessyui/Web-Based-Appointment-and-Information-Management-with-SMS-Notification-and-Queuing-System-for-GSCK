@@ -23,8 +23,76 @@
         </form>
     </div>
     <hr>
-
     <!---------------Set Appointment Limit------------------------------------------------->
+
+    <!---------------Reports for Registrar------------------------------------------------->
+    <?php
+    if ($position == "Registrar"){//Start of show if Registrar?>
+    <div>
+        <div>
+            <h5>No. of Enrolled Students</h5>
+            <p>
+                <?php
+                    $enrolledstudents = "SELECT * FROM tbl_student_record";
+                    $enrolledstudents_result = mysqli_query($db, $enrolledstudents);
+                    $count = mysqli_num_rows($enrolledstudents_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <div>
+            <h5>No. of Employed Staff</h5>
+            <p>
+                <?php
+                    $enrolledstaff = "SELECT * FROM tbl_staff_record";
+                    $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                    $count = mysqli_num_rows($enrolledstaff_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <div>
+            <h5>No. of Registered Students</h5>
+            <p>
+                <?php
+                    $registeredstudents = "SELECT * FROM tbl_student_registry";
+                    $registeredstudents_result = mysqli_query($db, $registeredstudents);
+                    $count = mysqli_num_rows($registeredstudents_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <div>
+            <h5>No. of Registered Staff</h5>
+            <p>
+                <?php
+                    $registeredstaff = "SELECT * FROM tbl_staff_registry";
+                    $registeredstaff_result = mysqli_query($db, $registeredstaff);
+                    $count = mysqli_num_rows($registeredstaff_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <div>
+            <h5>Total No. of Appointments</h5>
+            <p>
+                <?php
+                    $app = "SELECT * FROM tbl_appointment_detail WHERE `status`='Accepted'";
+                    $app_result = mysqli_query($db, $app);
+                    $count = mysqli_num_rows($app_result);
+                    echo $count;
+                ?>
+            </p>
+        </div>
+        <div>
+            <h5>No. of Appointments Today</h5>
+        </div>
+    </div>
+    <?php
+    }//End of show if Registrar
+    ?>
+    <!---------------Reports for Registrar------------------------------------------------->
+
     <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
     <div>
         <!--------------Start of No. of Active Requests-------------->

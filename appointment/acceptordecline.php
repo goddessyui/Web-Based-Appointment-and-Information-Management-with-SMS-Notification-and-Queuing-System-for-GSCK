@@ -2,6 +2,7 @@
 include_once("../dbconfig.php");
 session_start(); 
 
+
    $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
    $limitvalue= mysqli_query($db, $l);
    
@@ -15,6 +16,8 @@ session_start();
          $appointment_id = $_GET['appointment_id'];
          $comment = $_POST['comment'];
          $appointment_date = $_POST['appointment_date'];
+         $student_id = $_POST['student_id'];
+         $staff_id = $_SESSION["staff_id"];
          
          if (empty($_POST['appointment_date'])) {//if appointment date is not filled
             header("refresh:1;url=../staff_appointment_details.php");
@@ -35,8 +38,9 @@ session_start();
                   echo "Appointment request accepted and scheduled on". " ". $appointment_date;
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
-                     FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                     AND appointment_date = '$appointment_date') T2 WHERE appointment_id='$appointment_id'";
+                        FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+                        AND appointment_date = '$appointment_date') T2 
+                        WHERE appointment_id = '$appointment_id'";
                      $qnum = mysqli_query($db, $q); 
                      $queue = mysqli_fetch_assoc($qnum);
                      //Queue Number---------------------------------------------------------------------------------------//
@@ -45,12 +49,12 @@ session_start();
                      //Queue Number---------------------------------------------------------------------------------------//   
                } 
                else {
-                  header("refresh:2;url=../staff_appointment_details.php");
+                  header("refresh:10;url=../staff_appointment_details.php");
                   echo "ERROR: Not able to execute. " . mysqli_error($db);
                }
             }
             else {
-               header("refresh:2;url=../staff_appointment_details.php");
+               header("refresh:10;url=../staff_appointment_details.php");
                echo "Appointments for ". $appointment_date . " are limited to " . $limit;
             }
          }

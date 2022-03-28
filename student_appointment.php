@@ -10,7 +10,9 @@ if ($staff_id != "" && $staff_username != ""){
         echo '<script type="text/javascript">window.location.href="admin.php"</script>';
     }
 }
-    
+if (empty($_SESSION['student_id'])){
+    echo '<script type="text/javascript">window.location.href="index.php"</script>';
+}   
 ?>
 <div class="parent-div">
     

@@ -1,279 +1,394 @@
 <?php
-include_once("dbconfig.php");
-session_start();
-$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
-$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
-$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
-$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
-if ($staff_id != "" && $staff_username != ""){
-    if ($position == "Registrar" OR "Accounting Staff/Scholarship Coordinator" OR "Teacher"){
-        echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+    include_once("dbconfig.php");
+    session_start();
+    $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
+    $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+    $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+    $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+    $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+    if ($staff_id != "" && $staff_username != ""){
+        if ($position == "Registrar" OR "Accounting Staff/Scholarship Coordinator" OR "Teacher"){
+            echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+        }
     }
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Goldenstate College of Koronadal - Student Portal</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
 </head>
 <body>
-
 <div class="header">
-	<div class="nav_container">
-		<div class="school_container">
-			<img class="school_logo" src="images/logo.png" alt="logo" width="50">
-			<h3 class="school_name">GOLDENSTATE COLLEGE OF KORONADAL</h3>
-		</div>
-		<div class="icon_container">
-			<?php 
-				if(empty($_SESSION['student_username'])){
-			?>
-					<button class="btn_signin" onclick="BtnLogin()">LOG IN</button>
+    <div class="school-title">
+        <img src="image/logo.png" alt="gsck-logo" width="50px">
+    <h3>GOLDENSTATE COLLEGE OF KORONADAL</h3>
+    </div>
+
+    <div class="menu-bar">
+<?php 
+	if(isset($_SESSION['student_id'])){
+?>		<i class="fa fa-user"></i>
+		<b>
 			<?php
-				}
-				else{
-					?>
+				$student_id = $_SESSION['student_id'];
+				$fnln="SELECT first_name, last_name FROM tbl_student_registry WHERE student_id = '$student_id'";
+				$name= mysqli_query($db, $fnln);
+				$rows=mysqli_fetch_assoc($name);
 				
-			<?php
-				}?>
-			<img class="bell_icon" src="icons/bell.png" alt="notification-bell" width="24px">
-			<button class="burger_menu" id="burger" onclick="BtnMenu()"><img src="icons/menu.png" alt="burger-menu" width="29px"></button>
-			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icons/close.png" alt="burger-menu" width="29px"></button>
-		</div>
-	</div>
-</div>
-
-<div class="sign_in_form" id="sign-in">
-	<div class="form_container">
-	<small class="btn_close_login" onclick="Btn_close()">CANCEL</small>
-		<?php
-			include('login_system/login.php');
-		?>
-	</div>
-</div>
-
-<div class="menu" id="navigation">
-	<div class="menu-container">
-	<?php 
-		if(isset($_SESSION['student_username'])){
-	?>	<small>Welcome, <?php echo $student_username;?></small>
-		<button class="btn-user-accnt"><a href="#">USER ACCOUNT</a></button>
-		<button class="btn-log-out"><a href="logout.php">Log out</a></button>
-	<?php			
+        		echo $rows['first_name'] . " " . $rows['last_name'] ;
+			?>
+		</b>
+<?php
 		}
-		else{}
-	?>
-		<nav>
-			<ul>
-				<li><a href="index.php">Home</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="#">Schedule</a></li>
-				<li><a href="announcements.php">Announcement</a></li>
-				<li><a href="contact.php">Contact</a></li>
-				<?php if(isset($_SESSION['student_username'])){?>
-				<li><a href="student_appointment_details.php">My Appointments</a> </li>
-			</ul>
-		</nav>
-		<button class="btn_set_appointment"><a href="student_appointment.php">Set an Appointment</a></button>
-		<?php
-		}?>
-	</div>
+		else{
+?>
+		<button onclick="btn_login()">LOGIN</button>
+        <button onclick="open_register()">REGISTER</button>
+<?php		
+		}
+?>		
+        <img src="icon/notification.png" alt="Notification" width="24px">
+        <div class="menu-btn">
+            <div class="menu-btn-burger"></div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+    include('login_system/login.php');
+?>
+
+
+<div class="nav_container" id="nav">
+<nav>
+    <ul>
+        <button class="account"><i class="fa fa-user"></i>PROFILE</button>
+        <a href="logout.php"><button class="logout">LOGOUT</button></a>
+        <a href="index.php"><li>Home</li></a>
+        <a href="about.php"><li>About</li></a>
+<?php 
+	if(isset($_SESSION['student_id'])){
+?>
+        <a href="student_appointment_details.php"><li>My Appointment</li></a>
+<?php
+		}
+		?>
+        <a href="announcements.php"><li>Announcement</li></a>
+        <a href="contact.php"><li>Contact</li></a>
+        <a href="schedule.php"><li>Schedule</li></a>
+<?php 
+	if(isset($_SESSION['student_id'])){
+?>
+        <a href="student_appointment.php"><button class="set-appoint">SET AN APPOINTMENT</button></a>
+<?php
+		}
+		?>
+    </ul>
+</nav>
+</div>
+
+<div class="reg_container" id="regcontainer">
+    <div class="register_div">
+        <div class="content">
+            <h4>Register as : </h4>
+            <button class="reg_btn_cancel" onclick="regbtnCancel()">Cancel</button>
+        </div>
+        <div class="content">
+            <button class="reg_btn_choice">Student</button>
+        </div>
+        <div class="content">
+            <h4>or</h4>
+        </div>
+        <div class="content">
+            <button class="reg_btn_choice">Teacher</button>
+        </div>
+    </div>
 </div>
 
 
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-	body {
-		max-width: 1632px;
-	}
-	h1, h2, h3, h4, h5 {
-		font-family: 'Montserrat';
-		color: #202020;
-	}
-	p, small {
-		font-family: 'poppins';
-	}
-	.header {
-		width: 100%;
-		height: 80px;
-		position: fixed;
-		top: 0;
-		background: #fff;
-		z-index: 999;
-	}
-	.nav_container {
-		width: 90%;
-		height: 80px;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-	}
-	.school_container,
-	.icon_container {
-		display: flex;
-		align-items: center;
-	}
-	.icon_container .btn_signin {
-		border: none;
-		padding: 7px 20px;
-		font-family: 'montserrat';
-		background: #324e9e;
-		color: #FBFBFB;
-	}
-	.btn_signin:hover {
-		background: #283e7e;
-	}
-	.school_logo {
-		margin-right: 10px;
-	}
-	.btn_signin,
-	.bell_icon {
-		margin-right: 15px;
-	}
-	.school_name {
-		color: #324e9e;
-	}
-	.sign_in_form {
-		width: 100%;
-		height: 100vh;
-		position: fixed;
-		background: #0005;
-		z-index: 888;
-		display: none;
-	}
-	.form_container {
-		width: 380px;
-		position: relative;
-		margin: 0 auto;
-		top: 50%;
-		transform: translateY(-50%);
-		background: white;
-		padding: 40px;
-		padding-bottom: 50px;
-		box-shadow: 0 0 1px #0001;
-	}
-	.burger_menu {
-		border: none;
-		background: none;
-	}
-	.close_menu {
-		border: none;
-		background: none;
-		display: none;
-	}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-	.menu {
-		width: 100%;
-		height: 100vh;
-		position: fixed;
-		right: 0;
-		padding-top: 80px;
-		background: #0005;
-		display: none;
-		
-	}
-	.menu-container {
-		width: 380px;
-		position: absolute;
-		right: 0;
-		background: #fff;
-		padding: 60px 0;
-		height: 100vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-	}
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background: #fff;
+}
+.menu-bar {
+    display: flex;
+    align-items: center;
+}
 
-	.menu nav {
-		margin-top: 20px;
-	}
-	.menu nav ul {
-		padding-top: 20px;
-	}
-	.menu nav ul li {
-		list-style-type: none;
-		font-family: 'Montserrat';
-		color: #324e9e;
-		padding: 12px 0;
-		font-size: 15px;
-		padding-left: 40px;
-		text-transform: uppercase;
-	}
-	.menu nav ul li:hover {
-		background: #324e9e;
-		color: #fff;
-	}
-	.btn-user-accnt {
-		border: none;
-		outline: none;
-		padding: 7px 18px;
-		border: 2px solid #324e9e;
-		color: #324e9e;
-		font-weight: 600;
-		background: none;
-		margin-left: 40px;
-		margin-right: 12px;
-	}
-	.btn-log-out {
-		border: none;
-		outline: none;
-		padding: 8px 20px;
-		background: #FFD93D;
-	}
-	.btn-log-out:hover {
-        background: #ffdc50;
-    }
-	.btn_close_login {
-		position: absolute;
-		top: 8px;
-		right: 10px;
-		cursor: pointer;
-	}
-	.btn_close_login:hover {
-		color: red;
-	}
-	.btn_set_appointment {
-		border: none;
-		padding: 8px 16px;
-		margin-left: 40px;
-		margin-top: 20px;
-		background: #324e9e;
-		color: #fff;
-		font-size: 15px;
-	}
-	.btn_set_appointment:hover {
-		background: #283e7e;
-	}
-	button {
-		font-family: 'montserrat';
-		cursor: pointer;
-	}
+.school-title {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 70%;
+}
+.school-title h3 {
+    letter-spacing: 1px;
+    color: #324e9e;
+}
+.school-title img {
+    margin-right: 10px;
+}
+
+/*-----.menu-bar-----*/
+
+.menu-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    margin-left: 11px;
+}
+.menu-btn-burger {
+    width: 22px;
+    height: 2px;
+    background: #000;
+    transition: all .5s ease-in-out;
+}
+.menu-btn-burger::before,
+.menu-btn-burger::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    background: #000;
+    transition: all .5s ease-in-out;
+}
+.menu-btn-burger::before {
+    transform: translateY(-8px);
+}
+.menu-btn-burger::after {
+    transform: translateY(8px);
+}
+
+/*-----Animation-----*/
+
+.menu-btn.open .menu-btn-burger {
+    background: transparent;
+}
+.menu-btn.open .menu-btn-burger::before {
+    height: 1px;
+    transform: rotate(45deg);
+}
+.menu-btn.open .menu-btn-burger::after {
+    height: 1px;
+    transform: rotate(-45deg);
+}
+
+.menu-bar button {
+    padding: 5px 16px;
+    background: transparent;
+    color: #324e9e;
+    border: 2px solid #324e9e;
+    font-family: 'Montserrat';
+    transition: all .2s ease-in-out;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.menu-bar button:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+.menu-bar button:nth-child(1) {
+    background: #324e9e;
+    color: #fff;
+}
+
+/*-----end of header---*/
+
+.nav_container {
+    width: 420px;
+    background: #fff;
+    height: 90vh;
+    position: fixed;
+    right: 0;
+    top: 80px;
+    transform: translateX(420px);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.nav_container nav {
+    width: 380px;
+    height: 81vh;
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+nav ul {
+    width: 380px;
+}
+nav ul a {
+    text-decoration: none;
+    font-family: 'montserrat';
+    color: #000;
+}
+nav ul .fa {
+    margin-right: 10px;
+}
+nav ul a li {
+    list-style-type: none;
+    padding: 10px 0;
+}
+nav ul li {
+    transition: all .1s ease-in-out;
+}
+nav ul li:hover {
+    color: #324e9e;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+nav ul button {
+    border: none;
+    padding: 8px 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+}
+.account {
+    background: none;
+    border: 1px solid #000;
+}
+.logout {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    border: 1px solid #000;
+    background: none;
+}
+.set-appoint {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #324e9e;
+    color: #fff;
+}
+
+
+.reg_container {
+    width: 420px;
+    background: #fff;
+    height: 40vh;
+    position: fixed;
+    right: 0;
+    top: 80px;
+    opacity: 0.9;
+    font-family: 'montserrat';
+    background: #fff;
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+	display: none;
+}
+.register_div {
+    width: 380px;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    padding-right: 80px;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.reg_btn_cancel {
+    margin-right: 20px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: 'montserrat';
+    color: red;
+}
+.content h4 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+.content .reg_btn_choice {
+    border: none;
+    background: #324e9e;
+    color: #fff;
+    padding: 7px 28px;
+    text-transform: uppercase;
+    font-family: 'montserrat';
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+
+
+
 </style>
- 
-<script>
-	function BtnLogin() {
-		document.getElementById('sign-in').style.display = "block";
-	}
-	function Btn_close() {
-		document.getElementById('sign-in').style.display = "none";
-	}
-	function BtnMenu() {
-		document.getElementById('navigation').style.display = "block";
-		document.getElementById('burger').style.display = "none";
-		document.getElementById('close').style.display = "block";
-		document.getElementById('search').style.display = "none";
-	}
-	function BtnClose() {
-		document.getElementById('navigation').style.display = "none";
-		document.getElementById('burger').style.display = "block";
-		document.getElementById('close').style.display = "none";
-		document.getElementById('search').style.display = "block";
-	}
-</script>
 
+
+
+<script>
+
+    const menuBtn = document.querySelector('.menu-btn');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+        if(!menuOpen) {
+            menuBtn.classList.add('open');
+            menuOpen = true;
+            document.getElementById('nav').style.transform = "translateX(0)";
+            document.getElementById('nav').style.opacity = "1";
+            document.getElementById('sign_in').style.transform = "translateX(420px)";
+            document.getElementById('sign_in').style.opacity = "0";
+            document.getElementById('regcontainer').style.transform = "translateY(-100px)";
+            document.getElementById('regcontainer').style.opacity = "0";
+        }
+        else {
+            menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('nav').style.transform = "translateX(420px)";
+            document.getElementById('nav').style.opacity = "0";
+        }
+    });
+
+    function regbtnCancel() {
+        document.getElementById('regcontainer').style.transform = "translateY(-100px)";
+        document.getElementById('regcontainer').style.opacity = "0";
+		document.getElementById('regcontainer').style.display = "none";
+    }
+    function open_register() {
+        document.getElementById('regcontainer').style.transform = "translateY(0)";
+        document.getElementById('regcontainer').style.opacity = "1";
+        document.getElementById('nav').style.transform = "translateX(420px)";
+        document.getElementById('nav').style.opacity = "0";
+        document.getElementById('sign_in').style.transform = "translateX(420px)";
+        document.getElementById('sign_in').style.opacity = "0";
+        menuBtn.classList.remove('open');
+        menuOpen = false;
+		document.getElementById('regcontainer').style.display = "block";
+    }
+</script>

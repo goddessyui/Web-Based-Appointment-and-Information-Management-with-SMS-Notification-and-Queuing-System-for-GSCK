@@ -4,8 +4,11 @@
         <?php
             $staff_id = $_SESSION["staff_id"];
 
-            $requests="SELECT * FROM tbl_appointment 
-                INNER JOIN tbl_staff_registry 
+            $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
+                tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
+                tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
+                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                FROM tbl_appointment INNER JOIN tbl_staff_registry 
                 ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                 WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
@@ -54,8 +57,10 @@
                                     strtotime($currentdate. ' + 20 days'));?>"><br><br>
                                 <label>Comment:</label><br>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br><br>
+                                <input type="hidden" name="student_id" value="<?php $rows['student_id'];?>">
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
+                                
 	      	 				<br>
 	      		            </form>
                               <hr>

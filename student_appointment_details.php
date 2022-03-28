@@ -1,5 +1,11 @@
 <?php
 include("header.php");
+$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
+$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+if (empty($_SESSION['student_id'])){
+        echo '<script type="text/javascript">window.location.href="index.php"</script>';
+    }
+
 ?>
 <!-- Active/Accepted Appointments-->
 <div class="parent-div">
