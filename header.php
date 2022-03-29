@@ -105,7 +105,7 @@
 		?>
         <a href="announcements.php"><li><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement</li></a>
         <a href="contact.php"><li><i class="fa fa-phone-square" aria-hidden="true"></i> Contact</li></a>
-        <a href="schedule.php"><li><i class="fa fa-calendar" aria-hidden="true"></i> Schedule</li></a>
+        <a href="schedules.php"><li><i class="fa fa-calendar" aria-hidden="true"></i> Schedule</li></a>
 <?php 
 	if(isset($_SESSION['student_id'])){
 ?>
