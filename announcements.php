@@ -12,7 +12,7 @@ include("header.php");
                 tbl_announcement.caption,
                 tbl_announcement.image,
                 tbl_announcement.date_created,
-                tbl_announcement.video_link
+                tbl_announcement.video_url
                 FROM
                 tbl_announcement
                 ORDER BY date_created DESC";
@@ -29,7 +29,7 @@ include("header.php");
                 <div class="center_ann"><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
                 <div class="center_ann"><pre><?php echo $row['caption'] ?></pre></div>
                 <div class="center_ann"><?php echo !empty($row['image'])?'<img class="imgs" src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>            </div>
-                <div class="center_ann"><?php echo !empty($row['video_link'])?'<iframe src="'.$row['video_link'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?> </div>    
+                <div class="center_ann"><?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?> </div>    
                 </div>
                                       
                                         
