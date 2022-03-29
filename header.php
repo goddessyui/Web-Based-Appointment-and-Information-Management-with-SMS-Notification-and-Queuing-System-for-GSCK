@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+    <title>Web-base Appointment & Information System</title>
 </head>
 <body>
 <div class="header">
@@ -31,28 +31,26 @@
 
     <div class="menu-bar">
 <?php 
-	if(isset($_SESSION['student_id'])){
-?>		<i class="fa fa-user"></i>
-		<b>
-			<?php
-				$student_id = $_SESSION['student_id'];
-				$fnln="SELECT first_name, last_name FROM tbl_student_registry WHERE student_id = '$student_id'";
-				$name= mysqli_query($db, $fnln);
-				$rows=mysqli_fetch_assoc($name);
-				
-        		echo $rows['first_name'] . " " . $rows['last_name'] ;
-			?>
-		</b>
-<?php
+	if(isset($_SESSION['student_id'])) {
+
+        $student_id = $_SESSION['student_id'];
+        $fnln="SELECT * FROM tbl_student_registry WHERE student_id = '$student_id'";
+        $name= mysqli_query($db, $fnln);
+        $rows=mysqli_fetch_assoc($name);
+
+        ?>
+            <small class="student_id"><i class="fa fa-id-card" aria-hidden="true"></i><?php echo $rows['student_id']; ?></small>
+        <?php
 		}
-		else{
+
+		else {
 ?>
 		<button onclick="btn_login()">LOGIN</button>
         <button onclick="open_register()">REGISTER</button>
 <?php		
 		}
 ?>		
-        <img src="icon/notification.png" alt="Notification" width="24px">
+        <i class="fa fa-bell"></i>
         <div class="menu-btn">
             <div class="menu-btn-burger"></div>
         </div>
@@ -68,20 +66,46 @@
 <div class="nav_container" id="nav">
 <nav>
     <ul>
-        <button class="account"><i class="fa fa-user"></i>PROFILE</button>
-        <a href="logout.php"><button class="logout">LOGOUT</button></a>
-        <a href="index.php"><li>Home</li></a>
-        <a href="about.php"><li>About</li></a>
+        <?php
+            if(!empty($_SESSION['student_id'])) {
+
+                $student_id = $_SESSION['student_id'];
+                $fnln="SELECT first_name, last_name FROM tbl_student_registry WHERE student_id = '$student_id'";
+                $name= mysqli_query($db, $fnln);
+                $rows=mysqli_fetch_assoc($name);
+                
+    ?>
+                <div class="session_name">
+                    <?php echo $rows['first_name'] . " " . $rows['last_name'] ; ?>
+                </div>
+    
+    
+    <?php
+                ?>
+                    <button class="account"><i class="fa fa-user"></i>PROFILE</button>
+                    <a href="logout.php"><button class="logout">LOGOUT</button></a>
+                    <a href="index.php"><li><i class="fa fa-home" aria-hidden="true"></i> Home</li></a>
+                    <a href="about.php"><li><i class="fa fa-question-circle" aria-hidden="true"></i>About</li></a>
+                <?php
+            }
+            else {
+                ?>
+                    <a href="index.php"><li><i class="fa fa-home" aria-hidden="true"></i> Home</li></a>
+                    <a href="about.php"><li><i class="fa fa-question-circle" aria-hidden="true"></i> About</li></a>
+                <?php
+            }
+        ?>
+       
 <?php 
 	if(isset($_SESSION['student_id'])){
 ?>
-        <a href="student_appointment_details.php"><li>My Appointment</li></a>
+        <a href="student_appointment_details.php"><li><i class="fa fa-home"></i> My Appointment</li></a>
 <?php
 		}
 		?>
-        <a href="announcements.php"><li>Announcement</li></a>
-        <a href="contact.php"><li>Contact</li></a>
-        <a href="schedule.php"><li>Schedule</li></a>
+        <a href="announcements.php"><li><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement</li></a>
+        <a href="contact.php"><li><i class="fa fa-phone-square" aria-hidden="true"></i> Contact</li></a>
+        <a href="schedule.php"><li><i class="fa fa-calendar" aria-hidden="true"></i> Schedule</li></a>
 <?php 
 	if(isset($_SESSION['student_id'])){
 ?>
@@ -101,11 +125,7 @@
         </div>
         <div class="content">
             <button class="reg_btn_choice">Student</button>
-        </div>
-        <div class="content">
             <h4>or</h4>
-        </div>
-        <div class="content">
             <button class="reg_btn_choice">Teacher</button>
         </div>
     </div>
@@ -114,7 +134,6 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 * {
     margin: 0;
@@ -165,12 +184,12 @@
     height: 40px;
     cursor: pointer;
     transition: all .5s ease-in-out;
-    margin-left: 11px;
+    margin-left: 10px;
 }
 .menu-btn-burger {
     width: 22px;
     height: 2px;
-    background: #000;
+    background: #324e9e;
     transition: all .5s ease-in-out;
 }
 .menu-btn-burger::before,
@@ -179,7 +198,7 @@
     position: absolute;
     width: 22px;
     height: 2px;
-    background: #000;
+    background: #324e9e;
     transition: all .5s ease-in-out;
 }
 .menu-btn-burger::before {
@@ -228,21 +247,19 @@
 
 .nav_container {
     width: 420px;
-    background: #fff;
-    height: 90vh;
     position: fixed;
     right: 0;
     top: 80px;
     transform: translateX(420px);
     opacity: 0;
     transition: all 0.5s ease-in-out;
+    border-top: .5px solid lightgrey;
 }
 .nav_container nav {
-    width: 380px;
-    height: 81vh;
-    position: absolute;
-    top: 30px;
-    right: 0;
+    width: 365px;
+    padding: 40px;
+    background: #fff;
+    margin-left: 10px;
 }
 nav ul {
     width: 380px;
@@ -257,7 +274,7 @@ nav ul .fa {
 }
 nav ul a li {
     list-style-type: none;
-    padding: 10px 0;
+    padding: 12px 0;
 }
 nav ul li {
     transition: all .1s ease-in-out;
@@ -291,41 +308,47 @@ nav ul button {
     color: #fff;
 }
 
-
 .reg_container {
     width: 420px;
-    background: #fff;
-    height: 40vh;
     position: fixed;
     right: 0;
     top: 80px;
     opacity: 0.9;
     font-family: 'montserrat';
-    background: #fff;
-    transform: translateY(-100px);
+    transform: translateX(420px);
     opacity: 0;
     transition: all 0.4s ease-in-out;
-	display: none;
+    border-top: .5px solid lightgrey;
 }
 .register_div {
-    width: 380px;
-    position: absolute;
-    top: 30px;
-    right: 0;
-    padding-right: 80px;
+    width: 365px;
+    padding: 0 40px;
+    background: #fff;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    margin-left: 10px;
 }
 .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
+.content:nth-child(1) {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+}
+
 .reg_btn_cancel {
-    margin-right: 20px;
+    margin-right: 5px;
     border: none;
     background: transparent;
     font-size: 14px;
     font-family: 'montserrat';
+    color: #DA1212;
+    transition: all 0.3s ease-in-out;
+}
+.reg_btn_cancel:hover {
     color: red;
 }
 .content h4 {
@@ -337,14 +360,34 @@ nav ul button {
     border: none;
     background: #324e9e;
     color: #fff;
-    padding: 7px 28px;
+    padding: 7px 22px;
     text-transform: uppercase;
     font-family: 'montserrat';
     letter-spacing: 1px;
     font-size: 13px;
 }
-
-
+.reg_btn_choice:hover {
+    background: #283E7E;
+}
+.session_name {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Montserrat';
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 15px;
+}
+.fa.fa-bell {
+    font-size: 20px;
+    color: #324e9e;
+}
+.student_id {
+    margin-right: 20px;
+    color: #324e9e;
+}
+.fa.fa-id-card {
+    margin-right: 10px;
+}
 
 
 </style>
@@ -364,7 +407,7 @@ nav ul button {
             document.getElementById('nav').style.opacity = "1";
             document.getElementById('sign_in').style.transform = "translateX(420px)";
             document.getElementById('sign_in').style.opacity = "0";
-            document.getElementById('regcontainer').style.transform = "translateY(-100px)";
+            document.getElementById('regcontainer').style.transform = "translateX(420px)";
             document.getElementById('regcontainer').style.opacity = "0";
         }
         else {
@@ -376,12 +419,11 @@ nav ul button {
     });
 
     function regbtnCancel() {
-        document.getElementById('regcontainer').style.transform = "translateY(-100px)";
+        document.getElementById('regcontainer').style.transform = "translateX(420px)";
         document.getElementById('regcontainer').style.opacity = "0";
-		document.getElementById('regcontainer').style.display = "none";
     }
     function open_register() {
-        document.getElementById('regcontainer').style.transform = "translateY(0)";
+        document.getElementById('regcontainer').style.transform = "translateX(0)";
         document.getElementById('regcontainer').style.opacity = "1";
         document.getElementById('nav').style.transform = "translateX(420px)";
         document.getElementById('nav').style.opacity = "0";
@@ -389,6 +431,5 @@ nav ul button {
         document.getElementById('sign_in').style.opacity = "0";
         menuBtn.classList.remove('open');
         menuOpen = false;
-		document.getElementById('regcontainer').style.display = "block";
     }
 </script>

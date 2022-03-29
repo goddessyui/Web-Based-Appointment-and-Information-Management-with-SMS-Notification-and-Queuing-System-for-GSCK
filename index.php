@@ -1,19 +1,32 @@
 <?php 
 include('header.php');
 ?>
-<div class="parent-div">
-<h3>THIS IS THE INDEX</h3>
-<h4>Test: Show student name if session active: <?php echo $student_username;?></h4>
+
+<div class="main_container">
+    <div class="small_container">
+        hello world
+    </div>
 </div>
 
 
 
-</body>
-</html>
 <style>
-    .parent-div{
-        padding-top: 150px;
-        margin-left: 15%;
-        margin-right: 15%;
+    .main_container {
+        width: 100%;
+        margin-top: 80px;
+        background-image: url('image/calendar.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat:
+    }
+    .small_container {
+        width: 90%;
+        margin: 0 auto;
+        height: 90vh;
+        background: transparent;
     }
 </style>
+
+</body>
+</html>
+

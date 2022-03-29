@@ -116,23 +116,23 @@ include_once("dbconfig.php");
 <style>
     .sign_in_form {
         width: 420px;
-        height: 90vh;
+        height: 60vh;
         position: fixed;
         top: 80px;
         right: 0;
         display: flex;
         font-family: 'montserrat';
-        background: #fff;
         transform: translateX(420px);
         opacity: 0;
         transition: all 0.5s ease-in-out;
+        border-top: .5px solid lightgrey;
     }
     .form_container {
         width: 365px;
         height: 55vh;
-        background: #fff;
         padding: 40px;
-        margin-top: 16px;
+        background: #fff;
+        margin-left: 10px;
     }
     .form_container .title {
         display: flex;
@@ -145,14 +145,14 @@ include_once("dbconfig.php");
     }
     .title h3 {
         font-weight: 500;
-        font-size: 17px;
+        font-size: 14px;
     }
     .title button {
         cursor: pointer;
         border: none;
         background: none;
         font-family: 'montserrat';
-        font-size: 16px;
+        font-size: 17px;
         color: #DA1212;
     }
     .title button:hover {
@@ -233,7 +233,7 @@ include_once("dbconfig.php");
         menuOpen = false;
         document.getElementById('nav').style.transform = "translateX(420px)";
         document.getElementById('nav').style.opacity = "0";
-        document.getElementById('regcontainer').style.transform = "translateY(-100px)";
+        document.getElementById('regcontainer').style.transform = "translateX(420px)";
         document.getElementById('regcontainer').style.opacity = "0";
     }
     function btn_cancel() {
