@@ -77,8 +77,8 @@ $row = $query->fetch_assoc();
                           
              
                 <div>
-                    <button type="button" data-dismiss="modal">Cancel</button>
                     <button type="submit" name="button_edit_announcement">Submit</button>
+                    <button formnovalidate formaction='cancel.php'>Cancel</button>
                     </form>
                 </div>
            

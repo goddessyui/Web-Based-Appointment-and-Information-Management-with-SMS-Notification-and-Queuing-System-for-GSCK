@@ -55,8 +55,8 @@ if ($staff_id == "" || $staff_username == ""){
                                 
                 <div class="">
                     <button type="submit" id= "add" name="button_add_announcement">Submit</button>
+                     <button formnovalidate formaction='cancel.php'>Cancel</button>
                     </form>
-                    <a href="cancel.php">Cancel</a>
                 </div>
             </div>
       
