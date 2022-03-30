@@ -1,3 +1,6 @@
+<?php
+include("header.php");
+?>
 
 <!-- This File will show the Calendar Staff Schedules for the user(Student) and visitor -->
 <head>
@@ -49,12 +52,18 @@ function displayMessage(message) {
     width: 800px;
     margin: 0 auto;
 }
+.parent-div{
+        padding-top: 80px;
+        margin-left: 10%;
+        margin-right: 20%;
+    }
 </style>
 </head>
+<div class="parent-div">
 <div class = calendar>
     <h2>Staff Schedules</h2>
 
     <div class="response"></div>
     <div id='calendar'></div>
 </div>
-
+</div>

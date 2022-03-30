@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <div class="parent-div">
-    This is the about page.
+    This is the about page. This is where we place other information about GSCK.
 </div>
 <style>
     .parent-div{
