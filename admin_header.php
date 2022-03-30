@@ -29,8 +29,8 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 	<div class="nav_container">
     <div class="icon_container">
 			
-			<button class="burger_menu" id="burger" onclick="BtnMenu()"><img src="icons/menu.png" alt="burger-menu" width="29px"></button>
-			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icons/close.png" alt="burger-menu" width="29px"></button>
+			<button class="burger_menu" id="burger" onclick="BtnMenu()"><img src="icon/menu.png" alt="burger-menu" width="29px"></button>
+			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icon/close.png" alt="burger-menu" width="29px"></button>
 		</div>
 		<div class="school_container">
 			<img class="school_logo" src="image/logo.png" alt="logo" width="50">
