@@ -33,9 +33,9 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icons/close.png" alt="burger-menu" width="29px"></button>
 		</div>
 		<div class="school_container">
-			<img class="school_logo" src="images/logo.png" alt="logo" width="50">
+			<img class="school_logo" src="image/logo.png" alt="logo" width="50">
 			<h3 class="school_name">GOLDENSTATE COLLEGE OF KORONADAL</h3>
-            <img class="bell_icon" src="icons/bell.png" alt="notification-bell" width="24px">
+            <img class="bell_icon" src="icon/bell.png" alt="notification-bell" width="24px">
 		</div>
 		
 	</div>

@@ -52,8 +52,6 @@ if (empty($_SESSION['student_id'])){
                     if (mysqli_num_rows($result) > 0) {
                       // output data of each row
                         while($id = mysqli_fetch_assoc($result)){
-                        echo "student_id" . $student_id;
-                        echo "ug id" . $id['student_id'];
                             $ug_id= $id['student_id'];
                             if($student_id==$ug_id){?>
                 <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
