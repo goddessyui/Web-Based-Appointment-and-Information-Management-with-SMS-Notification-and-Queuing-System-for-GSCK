@@ -1,3 +1,5 @@
+<!-- ADDING ANNOUNCEMENT -->
+
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
@@ -11,15 +13,8 @@ if ($staff_id == "" || $staff_username == ""){
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+
     <script>
         window.onload = hideIt;
     function hideIt(){
@@ -136,7 +131,10 @@ else if(empty($image) && !empty($link)){
 
   $url = $link;
     $finalUrl = '';
-    if(strpos($url, 'youtube.com/') !== false) {
+    if(strpos($url, 'youtube.com/embed') !== false) {
+        $finalUrl = $url;
+    }
+    else if(strpos($url, 'youtube.com/watch') !== false) {
         //it is Youtube video
         $videoId = explode("v=",$url)[1];
         if(strpos($videoId, '&') !== false){
@@ -192,6 +190,3 @@ else if(empty($image) && !empty($link)){
 
 
 
-
-</body>
-</html>

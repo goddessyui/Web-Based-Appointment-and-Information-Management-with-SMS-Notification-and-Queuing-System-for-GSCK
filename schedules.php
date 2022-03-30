@@ -4,10 +4,6 @@ include("header.php");
 
 <!-- This File will show the Calendar Staff Schedules for the user(Student) and visitor -->
 <head>
-<title>Event Calendar</title>	
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/schedule/fullcalendar/fullcalendar.min.css" />
 <script src="css/schedule/fullcalendar/lib/jquery.min.js"></script>
 <script src="css/schedule/fullcalendar/lib/moment.min.js"></script>
@@ -34,10 +30,6 @@ $(document).ready(function () {
     });
 });
 
-function displayMessage(message) {
-	    $(".response").html("<div class='success'>"+message+"</div>");
-    setInterval(function() { $(".success").fadeOut(); }, 1000);
-}
 </script>
 
 <style>
@@ -62,7 +54,6 @@ function displayMessage(message) {
 <div class="parent-div">
 <div class = calendar>
     <h2>Staff Schedules</h2>
-
     <div class="response"></div>
     <div id='calendar'></div>
 </div>

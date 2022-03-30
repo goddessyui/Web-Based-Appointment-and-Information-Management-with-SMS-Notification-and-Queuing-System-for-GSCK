@@ -1,5 +1,16 @@
-<?php include_once("../../dbconfig.php"); ?>
-<?php 
+<!-- GET ANNOUNCEMENT ID TO SESSION IF EDIT BUTTON CLICKED -->
+<?php include_once("../../dbconfig.php"); 
+ 
+ session_start();
+ $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+ $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+ 
+ if ($staff_id == "" || $staff_username == ""){
+    echo '<script type="text/javascript">window.location.href="../login_system/login.php"</script>';
+ }
+
+
+
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
     session_start();

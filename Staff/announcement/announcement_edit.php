@@ -1,3 +1,4 @@
+<!-- EDIT ANNOUNCEMENT -->
 <?php
 include_once("../../dbconfig.php"); 
 session_start();
@@ -14,9 +15,6 @@ $query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id
 $row = $query->fetch_assoc();
 
 ?>
-
-
-
 
 <script>
         window.onload = hideIt;

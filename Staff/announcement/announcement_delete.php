@@ -1,5 +1,5 @@
+<!-- DELETE ANNOUNCEMENT -->
 <?php 
-
 session_start();
 $staff_id = $_SESSION["staff_id"];
 $username = $_SESSION["staff_username"];
