@@ -121,7 +121,6 @@ include_once("dbconfig.php");
         top: 80px;
         right: 0;
         display: flex;
-        font-family: 'montserrat';
         transform: translateX(420px);
         opacity: 0;
         transition: all 0.5s ease-in-out;
@@ -151,7 +150,6 @@ include_once("dbconfig.php");
         cursor: pointer;
         border: none;
         background: none;
-        font-family: 'montserrat';
         font-size: 17px;
         color: #DA1212;
     }
@@ -173,7 +171,6 @@ include_once("dbconfig.php");
         padding-left: 45px;
         border: 1px solid lightgrey;
         transition: all .3s ease-in-out;
-        font-family: 'montserrat';
     }
     .input_box input:focus {
         border-color: #324e9e;

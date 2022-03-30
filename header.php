@@ -148,7 +148,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    font-family: 'Poppins', sans-serif;
     position: fixed;
     z-index: 999;
     top: 0;
@@ -184,7 +183,8 @@
     height: 40px;
     cursor: pointer;
     transition: all .5s ease-in-out;
-    margin-left: 10px;
+    margin-left: 5px;
+    transform: translateX(5px);
 }
 .menu-btn-burger {
     width: 22px;
@@ -223,15 +223,14 @@
 }
 
 .menu-bar button {
-    padding: 5px 16px;
+    padding: 5px 12px;
     background: transparent;
     color: #324e9e;
     border: 2px solid #324e9e;
-    font-family: 'Montserrat';
     transition: all .2s ease-in-out;
     margin-right: 20px;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 .menu-bar button:hover {
@@ -266,7 +265,6 @@ nav ul {
 }
 nav ul a {
     text-decoration: none;
-    font-family: 'montserrat';
     color: #000;
 }
 nav ul .fa {
@@ -287,7 +285,6 @@ nav ul li:hover {
 nav ul button {
     border: none;
     padding: 8px 16px;
-    font-family: 'Montserrat';
     font-weight: 500;
 }
 .account {
@@ -314,7 +311,6 @@ nav ul button {
     right: 0;
     top: 80px;
     opacity: 0.9;
-    font-family: 'montserrat';
     transform: translateX(420px);
     opacity: 0;
     transition: all 0.4s ease-in-out;
@@ -344,7 +340,6 @@ nav ul button {
     border: none;
     background: transparent;
     font-size: 14px;
-    font-family: 'montserrat';
     color: #DA1212;
     transition: all 0.3s ease-in-out;
 }
@@ -362,7 +357,6 @@ nav ul button {
     color: #fff;
     padding: 7px 22px;
     text-transform: uppercase;
-    font-family: 'montserrat';
     letter-spacing: 1px;
     font-size: 13px;
 }
@@ -373,7 +367,6 @@ nav ul button {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 14px;
-    font-family: 'Montserrat';
     border-bottom: 1px solid lightgrey;
     padding-bottom: 15px;
 }
