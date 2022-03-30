@@ -45,8 +45,36 @@ if (empty($_SESSION['student_id'])){
                 <input type="submit" value="Project Submission" name="appointmenttype"><br/><br>
                 <input type="submit" value="Request Documents From Registrar" name="appointmenttype"><br/><br>
                 <input type="submit" value="Request for Grades" name="appointmenttype"><br/><br>
+                <?php
+                    $sql = "SELECT student_id FROM tbl_unifast_grantee WHERE student_id ='$student_id'";
+                    $result = mysqli_query($db, $sql);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                      // output data of each row
+                        while($id = mysqli_fetch_assoc($result)){
+                        echo "student_id" . $student_id;
+                        echo "ug id" . $id['student_id'];
+                            $ug_id= $id['student_id'];
+                            if($student_id==$ug_id){?>
                 <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
                 <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
+                       <?php
+                            }
+                            else{
+                                echo "UniFAST appointment types will only appear if you are an official UniFAST grantee";
+                            }
+                        }
+                    }
+                    else{
+                        echo "UniFAST appointment types will only appear if you are an official UniFAST grantee";
+                    }
+                   
+                                           
+                ?>
+                
+                <?php
+              
+                ?>
             </form><hr>
 <?php                     
     }                               

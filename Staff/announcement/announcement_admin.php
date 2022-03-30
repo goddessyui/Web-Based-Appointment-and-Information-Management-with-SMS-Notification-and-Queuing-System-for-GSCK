@@ -11,15 +11,7 @@ if ($staff_id == "" && $staff_username == ""){
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
 <div>
               
            
@@ -47,7 +39,8 @@ if ($staff_id == "" && $staff_username == ""){
                 tbl_announcement.announcement_title,
                 tbl_announcement.caption,
                 tbl_announcement.image,
-                tbl_announcement.date_created
+                tbl_announcement.date_created,
+                tbl_announcement.video_url
                 FROM
                 tbl_announcement
                 ORDER BY date_created DESC                          
@@ -66,7 +59,7 @@ if ($staff_id == "" && $staff_username == ""){
                 <div><pre><?php echo $row['caption'] ?></pre></div>
                                 <div>
                                 <?php echo !empty($row['image'])?'<img src="../../announcement_image/' . $row['image'] . '" alt="#">':''; ?>
-                                               
+                                <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
                                 </div> <div>    
                 <a href="get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
 				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
@@ -112,5 +105,3 @@ if ($staff_id == "" && $staff_username == ""){
     }
 
     ?>
-</body>
-</html>
