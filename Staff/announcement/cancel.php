@@ -1,3 +1,4 @@
+<!-- CANCEL BUTTON FUNCTION IN ADD AND EDIT FILE -->
 <?php include_once("../../dbconfig.php"); 
 
 session_start();
