@@ -9,7 +9,7 @@ $row = $query->fetch_assoc();
 $fullname = $row['first_name'].' '.$row['last_name'];
 
 if ($staff_id == "" || $username == ""){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+    echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -75,8 +75,14 @@ $(document).ready(function () {
         },
         
         editable: false,
-     
-        eventClick: function (event) {  
+        eventClick: function (event) {
+
+            if(event.id == undefined || event.id == ''){
+                alert("Can not delete the new added schedule, please refresh the Page!");
+            }
+            else{
+            var deleteMsg = confirm("Do you really want to delete?");
+            if (deleteMsg) {
                 $.ajax({
                     type: "POST",
                     url: "delete-event.php",
@@ -88,7 +94,8 @@ $(document).ready(function () {
                         }
                     }
                 });
-            
+            }
+        }
         }
 
     });
