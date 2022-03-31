@@ -42,7 +42,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 				</li>
 
 				<li>
-					<a href="staff_profile.php">
+					<a href="Staff/staff_profile.php">
 						<span class="las la-shopping-bag"></span>
 						<span>Account</span>
 					</a>
@@ -94,6 +94,13 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 					<a href="staff_appointment_details.php">
 						<span class="las la-user-circle"></span>
 						<span>My Appointments</span>
+					</a>
+				</li>
+				<li></li>
+				<li>
+					<a href="logout.php">
+						<span class="las la-user-circle"></span>
+						<span>Logout</span>
 					</a>
 				</li>
 				<li></li>
