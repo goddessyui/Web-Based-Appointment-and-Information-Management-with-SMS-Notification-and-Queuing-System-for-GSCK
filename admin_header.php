@@ -11,211 +11,246 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
     echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>Goldenstate College of Koronadal - Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Goldenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
-<div class="header">
-	<div class="nav_container">
-    <div class="icon_container">
-			
-			<button class="burger_menu" id="burger" onclick="BtnMenu()"><img src="icon/menu.png" alt="burger-menu" width="29px"></button>
-			<button class="close_menu" id="close" onclick="BtnClose()"><img src="icon/close.png" alt="burger-menu" width="29px"></button>
-		</div>
-		<div class="school_container">
-			<img class="school_logo" src="image/logo.png" alt="logo" width="50">
-			<h3 class="school_name">GOLDENSTATE COLLEGE OF KORONADAL</h3>
-            <img class="bell_icon" src="icon/bell.png" alt="notification-bell" width="24px">
-		</div>
-		
-	</div>
-</div>
+	<input type="checkbox" id="nav-toggle">
+	<div class="sidebar">
 
+		<div class="sidebar-brand">
+			<h1><img class="school_logo" src="image/logo.png" alt="logo" width="50"></h1>
+		</div>
 
-<div class="menu" id="navigation">
-	<div class="menu-container">
-		<button class="btn-user-accnt">User Account</button>
-		<button class="btn-log-out"><a href="logout.php">Log out</a></button>
-		<nav>
+		<div class="sidebar-menu">
 			<ul>
-                <li><a href="admin.php">Dashboard</li>
-				<li><a href="#"> Account</a></li>
-				<li><a href="#">Set My Schedule</a></li>
-				<li><a href="#">Announcement</a></li>
-            <?php 
-            if ($position == "Registrar"){
+				<li>
+					<a href="admin.php">
+						<span class="las la-igloo"></span>
+						<span>Dashboard</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="staff_profile.php">
+						<span class="las la-shopping-bag"></span>
+						<span>Account</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="Staff/schedule/schedule_admin.php">
+						<span class="las la-utensils"></span>
+						<span>Set my schedule</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="Staff/announcement/announcement_admin.php">
+						<span class="las la-users"></span>
+						<span>Announcement</span>
+					</a>
+				</li>
+			<?php 
+				if ($position == "Registrar"){
+			?>
+				<li>
+					<a href="upload_student_records.php">
+						<span class="las la-receipt"></span>
+						<span>Student Records</span>
+					</a>
+				</li>
+				<li>
+					<a href="upload_staff_records.php">
+						<span class="las la-receipt"></span>
+						<span>Staff Records</span>
+					</a>
+				</li>
+			<?php
+            	}
+            	else if($position == "Accounting Staff/Scholarship Coordinator"){
             ?>
-                <li><a href="upload_student_records.php">Student Records</a></li>
-                <li><a href="upload_staff_records.php">Staff Records</li>
-                <?php
-            }
-            else if($position == "Accounting Staff/Scholarship Coordinator"){
-                ?>
-                <li><a href="upload_unifast_grantee.php">UniFAST Grantee Records</a></li>
-                <?php
-            }
-                ?>
-				<li><a href="staff_appointment_details.php">My Appointments</a></li>
+				<li>
+					<a href="upload_unifast_grantee.php">
+						<span class="las la-receipt"></span>
+						<span>Unifast Grantee Records</span>
+					</a>
+				</li>
+			<?php
+            	}
+            ?>
+
+				<li>
+					<a href="staff_appointment_details.php">
+						<span class="las la-user-circle"></span>
+						<span>My Appointments</span>
+					</a>
+				</li>
+				<li></li>
+
 			</ul>
-		</nav>
+		</div>
 	</div>
-</div>
-<script>
-	function BtnMenu() {
-		document.getElementById('navigation').style.display = "block";
-		document.getElementById('burger').style.display = "none";
-		document.getElementById('close').style.display = "block";
-	}
-	function BtnClose() {
-		document.getElementById('navigation').style.display = "none";
-		document.getElementById('burger').style.display = "block";
-		document.getElementById('close').style.display = "none";
-	}
-</script>
+
+	<div class="main-content">
+		<header>
+				<h2>
+					<label for="nav-toggle">
+						<span class="fa fa-bars"></span>
+					</label>
+				</h2>
+
+				<div class="user-wrapper">
+					<span class="fa fa-user"></span>
+					<small>Admin_</small>
+					
+				</div>
+		</header>
+
+
+
+
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-  
-	body {
-		max-width: 1632px;
-	}
+    :root {
+	--main-color: #222831;
+	--color-dark: #1D2231;
+	--text-grey: #555;
+}
 
-    main {
-        padding-top: 150px;
-        padding-left: 500px;
-        z-index: 998;
-        
-    }
-	h1, h2, h3, h4, h5 {
-		font-family: 'Montserrat';
-		color: #202020;
-	}
-	p, small {
-		font-family: 'poppins';
-	}
-	.header {
-		width: 100%;
-		height: 80px;
-		position: fixed;
-		top: 0;
-		background: #fff;
-		z-index: 999;
-	}
-	.nav_container {
-		width: 90%;
-		height: 80px;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-		
-	}
-	.school_container,
-	.icon_container {
-		display: flex;
-		align-items: center;
-	}
-	.icon_container {
-		border: none;
-		padding: 7px 20px;
-		font-family: 'montserrat';
-		background: #324e9e;
-		color: #FBFBFB;
-	}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+	text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+}
+
+.sidebar {
+	width: 300px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: var(--main-color);
+	z-index: 100;
+	transition: width 300ms;
+    background: green;
+}
+.sidebar-brand {
+	height: 90px;
+	color: #fff;
+	text-align: center;
+	line-height: 90px;
+}
+.sidebar-brand span {
+	display: inline-block;
+	padding-right: 1rem;
+}
+.sidebar-menu {
+	margin-top: 80px;
+    background: teal;
+}
+.sidebar-menu li{
+	width: 100%;
+	margin-bottom: 20px;
+    background: brown;
+}
+
+.sidebar-menu a {
+	padding-left: 1rem;
+	color: #fff;
+	font-size: 1rem;
+}
+.sidebar-menu a.active {
+	background: #fff;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	color: var(--main-color);
+	border-radius: 30px 0 0 30px;
+}
+.sidebar-menu a span:first-child {
+	font-size: 1.5rem;
+	padding-right: 1rem;
+}
+#nav-toggle:checked + .sidebar {
+	width: 70px;
+}
+.sidebar-menu li{
+	padding-left: 5px;
+}
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span,
+#nav-toggle:checked + .sidebar li a{
+	padding-left: 1rem;
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child {
+	display: none;
+}
+#nav-toggle:checked ~ .main-content {
+	margin-left: 70px;
+}
+#nav-toggle:checked ~ .main-content header{
+	width: calc(100% - 70px);
+	left: 70px;
 	
-	.school_logo {
-		margin-right: 10px;
-	}
-	.bell_icon {
-		margin-left: 15px;
-	}
-	.school_name {
-		color: #324e9e;
-	}
-	
-	.burger_menu {
-		border: none;
-		background: none;
-      
-	}
-	.close_menu {
-		border: none;
-		background: none;
-		display: none;
-	}
-	.menu {
-		width: 100%;
-		height: 100vh;
-		position: fixed;
-		left: 0;
-		padding-top: 80px;
-		display: none;
-	}
-	.menu-container {
-		width: 380px;
-		position: absolute;
-		left: 0;
-		background: #324e9e;
-		padding: 60px 0;
-		height: 100vh;
-	}
 
-	.menu nav {
-		margin-top: 20px;
-	}
-	.menu nav ul {
-		padding-top: 20px;
-	}
-	.menu nav ul li {
-		list-style-type: none;
-		font-family: 'Montserrat';
-		color: #fff;
-		padding: 12px 0;
-		font-size: 15px;
-		padding-left: 40px;
-		text-transform: uppercase;
-	}
-	.menu nav ul li:hover {
-		background: #fff;
-		color: #324e9e;
-	}
-	.btn-user-accnt {
-		border: none;
-		outline: none;
-		padding: 7px 18px;
-		border: 2px solid #fff;
-		color: #fff;
-		font-weight: 600;
-		background: none;
-		margin-left: 40px;
-		margin-right: 12px;
-	}
-	.btn-log-out {
-		border: none;
-		outline: none;
-		padding: 8px 20px;
-		background: #FFD93D;
-	}
-	.btn-log-out:hover {
-        background: #ffdc50;
-    }
+}
 
-	button {
-		font-family: 'montserrat';
-		cursor: pointer;
-	}
- 
+.main-content {
+	transition: margin-left 300ms;
+	margin-left: 300px;
+}
 
+header {
+	background: #fff;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+	position: fixed;
+	left: 300px;
+	width: calc(100% - 300px);
+	top: 0;
+	z-index: 100;
+	transition: left 300ms;
+	padding: 8px 20px;
+}
+.la-user {
+	margin: 5px;
+	font-size: 20px;
+}
+
+#nav-toggle {
+	display: none;
+}
+
+header h2 {
+	color: #222;
+}
+header label span {
+	font-size: 1.7rem;
+	padding-right: 1rem;
+}
+
+.user-wrapper {
+	display: flex;
+	align-items: center;
+	margin-right: 3rem;
+}
+
+.user-wrapper small {
+	display: inline-block;
+	color: var(--text-grey);
+}
 </style>
