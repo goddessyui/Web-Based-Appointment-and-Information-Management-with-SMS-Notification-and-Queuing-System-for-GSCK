@@ -7,16 +7,48 @@ include('header.php');
 
         <div class="home_appointment">
             <div class="home_content">
-                <h1>GSCK APPOINTMENT SYSTEM</h1>
+                <h1>GSCK APPOINTMENT PORTAL</h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores fuga 
                     similique laboriosam accusamus vel tenetur unde quam at tempora earum adipisci 
                     sint dolores consequatur sed, quod consequuntur doloribus voluptatum maxime!
                 </p>
-                <button>Set an appointment</button>
+                <button><a href="student_appointment.php">Set an appointment</a></button>
             </div>
         </div>
         <div class="home_img"></div>
-        <div class="home_sched"></div>
+        <div class="home_sched">
+            <div class="sched_container">
+            <h3>Latest announcements</h3>
+            <?php
+                $announcement = "SELECT * FROM tbl_announcement INNER JOIN tbl_staff_registry ON 
+                tbl_staff_registry.staff_id = tbl_announcement.staff_id ORDER BY tbl_announcement.date_created 
+                DESC LIMIT 3";
+      
+                $announcement_query = mysqli_query($db, $announcement);
+                if($announcement_query == TRUE) {
+                    $count = mysqli_num_rows($announcement_query);
+                    if($count > 0) {
+                        while($rows = mysqli_fetch_assoc($announcement_query)) {
+                            ?>
+                                <div class="inline_box">
+                            
+                                <h3><?php echo $rows['announcement_title']; ?></h3>
+                                <p><?php echo $rows['caption']; ?></p>
+                                <img src="" alt=""><?php echo $rows['image']; ?>
+
+                                </div>
+                            <?php
+                        }
+                    }
+                }
+                ?>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="small_container">
+      
     </div>
 </div>
 
@@ -67,8 +99,23 @@ include('header.php');
         background-size: cover;
         background-repeat: no-repeat;
     }
-   
-  
+    .inline_box {
+        width: 100%;
+        height: 30%;
+    }
+    .sched_container {
+        width: 90%;
+        height: 100%;
+        float: right;
+    }
+    .sched_container h3 {
+        margin-top: 20px;
+    }
+    .inline_box {
+        height: 27%;
+        margin-top: 20px;
+        background: #eee;
+    }
 </style>
 
 </body>
