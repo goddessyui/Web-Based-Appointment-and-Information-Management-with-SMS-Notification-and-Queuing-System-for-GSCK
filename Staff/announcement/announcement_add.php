@@ -121,9 +121,9 @@ if (isset($_POST['button_add_announcement'])) {
     $menu_photo = "../../announcement_image/" . basename($_FILES['image']['name']);
     if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
         $stmt->execute();
-        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
-        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
     }
 }
 
@@ -149,7 +149,7 @@ else if(empty($image) && !empty($link)){
         }
         $finalUrl.='https://www.youtube.com/embed/'.$videoId;
     }else{
-        echo '<script type="text/javascript">alert("Added Unsuccessful! Enter valid video URL!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Unsuccessful! Enter valid video URL!");window.location.href="announcement_admin.php"</script>';
     }
     
     date_default_timezone_set("Asia/Manila");
@@ -162,9 +162,9 @@ else if(empty($image) && !empty($link)){
     $staff_id1 = $staff_id;
     $links = $finalUrl;
     if ($stmt->execute()) {
-        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
-        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
     }
 }
 
@@ -179,9 +179,9 @@ else if(empty($image) && !empty($link)){
     $datetime = $date;
     $staff_id1 = $staff_id;
     if ($stmt->execute()) {
-        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
-        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_test.php"</script>';
+        echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
     }
 }
 }
