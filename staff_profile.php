@@ -1,6 +1,5 @@
 <?php
-include_once("../dbconfig.php"); 
-session_start();
+include("admin_header.php");
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
@@ -28,21 +27,13 @@ $array_type = explode( ',', $appointment_type );
 
                
 if ($staff_id == "" && $username == ""){
-    echo '<script type="text/javascript">window.location.href="../../login_system/login.php"</script>';
+    echo '<script type="text/javascript">window.location.href="login_system/login.php"</script>';
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<main>
     <div>
     <div class="">
-                <a class="" href="../index.php">GSCK Appointment System</a>
+                <a class="" href="index.php">GSCK Appointment System</a>
             </div>
 <ul class="">
                 <li><a href="#">Appointments</a></li>
@@ -51,7 +42,7 @@ if ($staff_id == "" && $username == ""){
                 <li class="active"><a href="#">Account</a></li>
             </ul>
             <ul class="">
-                <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
             </div>
 
@@ -203,12 +194,10 @@ $staff_id = $row['staff_id'];
     }
 }
 
-
-
 ?>
 
 
-
+</main>
 
 
 </body>

@@ -1,30 +1,17 @@
 <!-- MAIN INDEX OF ANNOUNCEMENT FOR ADMIN -->
 <?php
-include_once("../../dbconfig.php"); 
-session_start();
+include("admin_header.php"); 
+
 $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
 if ($staff_id == "" || $staff_username == ""){
-   echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
+   echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
 ?>
 
-<div>
-              
-           
-              <ul class="">
-              <li><a href="#">Appointments</a></li>
-              <li class="active"><a href="#">Make Announcements</a></li>
-              <li><a href="#">Schedules</a></li>
-              <li><a href="../staff_profile.php">Account</a></li>
-          </ul>
-          <ul class="">
-              <li><a href="../../logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-          </ul>
-          </div>
-    <hr>
+
 <div class="container">
         <h2>Announcement</h2>
         <br>
@@ -57,11 +44,11 @@ if ($staff_id == "" || $staff_username == ""){
                 <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
                 <div><pre><?php echo $row['caption'] ?></pre></div>
                                 <div>
-                                <?php echo !empty($row['image'])?'<img src="../../announcement_image/' . $row['image'] . '" alt="#">':''; ?>
+                                <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
                                 <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
                                 </div> <div>    
-                <a href="get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
-				<a href="announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
+                <a href="Staff/announcement/get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
+				<a href="Staff/announcement/announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
 			<button style="background-color: #f44336";>Delete</button>
 					</a>	
                           
@@ -85,7 +72,7 @@ if ($staff_id == "" || $staff_username == ""){
         $image = $_FILES['image']['tmp_name'];
         $img = file_get_contents($image);
 
-        $menu_photo = "../announcement_image/" . basename($_FILES['image']['name']);
+        $menu_photo = "announcement_image/" . basename($_FILES['image']['name']);
 
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
@@ -97,9 +84,9 @@ if ($staff_id == "" || $staff_username == ""){
             $id = $_POST['edit_id'];
 
             $stmt->execute();
-            echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="menu.php"</script>';
+            echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="announcement_admin.php"</script>';
         } else {
-            echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="menu.php"</script>';
+            echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
         }
     }
 

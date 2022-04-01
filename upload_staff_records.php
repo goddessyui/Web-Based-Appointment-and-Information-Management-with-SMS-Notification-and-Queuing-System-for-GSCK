@@ -25,8 +25,12 @@ if(isset($_POST["upload"]))
                         mysqli_query($db, $query);
             }
         fclose($handle);
-        header("location: upload_staff_records.php?updation=1");
-        }
+        ?>
+        <script type="text/javascript">
+            window.location.href = 'upload_staff_records.php?updation=1';
+        </script>
+        <?php
+             }
         else//if not csv
         {
         $message = '<label class="text-danger">Please Select CSV File only</label>';

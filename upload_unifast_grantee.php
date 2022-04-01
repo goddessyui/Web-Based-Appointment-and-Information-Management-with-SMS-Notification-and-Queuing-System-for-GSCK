@@ -1,5 +1,5 @@
 <?php
-include_once("admin_header.php");
+include("admin_header.php");
 //show error message
 $message = '';
 //-------------------------------upload csv------------------------------------------------------------------------------//
@@ -26,7 +26,12 @@ if(isset($_POST["upload"]))
                         mysqli_query($db, $query);
             }
         fclose($handle);
-        header("location: upload_unifast_grantee.php?updation=1");
+        ?>
+            <script type="text/javascript">
+                window.location.href = 'upload_unifast_grantee.php?updation=1';
+            </script>
+        <?php
+     
         }
         else//if not csv
         {

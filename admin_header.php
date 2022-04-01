@@ -7,7 +7,7 @@ $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholarship Coordinator" && "Registrar" && "Teacher"){
+if ($staff_id == ""){
     echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
 ?>
@@ -41,21 +41,21 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 				</li>
 
 				<li>
-					<a href="Staff/staff_profile.php">
+					<a href="staff_profile.php">
 						<span class="las la-shopping-bag"></span>
 						<span>Account</span>
 					</a>
 				</li>
 
 				<li>
-					<a href="Staff/schedule/schedule_admin.php">
+					<a href="schedule_admin.php">
 						<span class="las la-utensils"></span>
 						<span>Set my schedule</span>
 					</a>
 				</li>
 
 				<li>
-					<a href="Staff/announcement/announcement_admin.php">
+					<a href="announcement_admin.php">
 						<span class="las la-users"></span>
 						<span>Announcement</span>
 					</a>

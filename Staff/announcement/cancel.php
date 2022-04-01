@@ -10,5 +10,5 @@ if ($staff_id == "" || $username == ""){
 }
 
     unset($_SESSION['announcement_id']);
-    echo '<script>window.location.href="announcement_admin.php"</script>';
+    echo '<script>window.location.href="../../announcement_admin.php"</script>';
     ?>

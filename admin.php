@@ -205,11 +205,41 @@
     <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
 
     <!----------Viewable only by Registrar----------------------->  
-     
+    <!----------Viewable only by Registrar----------------------->  
+
+    <!----------Includes----------------------->  
+    <div id="unifastrec">UniFAST Grantee Records
+        <?php include("Staff/accounting_staff/upload_unifast_grantee.php");?>    
+    </div>
+    <div id="appointment">My Appointments
+        <?php include("staff_appointment_details.php");?>   
+    </div>
 
 </main>
 </body>
 </html>
+<style>
+   
+   #unifastrec, 
+   #appointment
+     {
+        display: none;
+    }
+</style>
+<script>
+     function unifastgranteerecords() {
+     
+        document.getElementById('unifastrec').style.display = "block";
+        document.getElementById('appointment').style.display = "none";
+        return false;
+       
+    }
+    function myappointments() {
+        document.getElementById('unifastrec').style.display = "none";
+        document.getElementById('appointment').style.display = "block";
+        return false;
+    }
+</script>
 
  
 

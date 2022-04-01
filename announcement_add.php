@@ -1,14 +1,14 @@
 <!-- ADDING ANNOUNCEMENT -->
 
 <?php
-include_once("../../dbconfig.php"); 
+include_once("dbconfig.php"); 
 session_start();
 $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
 if ($staff_id == "" || $staff_username == ""){
-   echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
+   echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
 ?>
 
@@ -50,7 +50,7 @@ if ($staff_id == "" || $staff_username == ""){
                                 
                 <div class="">
                     <button type="submit" id= "add" name="button_add_announcement">Submit</button>
-                     <button formnovalidate formaction='cancel.php'>Cancel</button>
+                     <button formnovalidate formaction='Staff/announcement/cancel.php'>Cancel</button>
                     </form>
                 </div>
             </div>
@@ -118,7 +118,7 @@ if (isset($_POST['button_add_announcement'])) {
     $caption = $_POST['caption'];
     $datetime = $date;
     $staff_id1 = $staff_id;
-    $menu_photo = "../../announcement_image/" . basename($_FILES['image']['name']);
+    $menu_photo = "announcement_image/" . basename($_FILES['image']['name']);
     if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
         $stmt->execute();
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
