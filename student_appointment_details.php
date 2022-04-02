@@ -9,9 +9,9 @@ if (empty($_SESSION['student_id'])){
 ?>
 <!-- Active/Accepted Appointments-->
 <div class="parent-div">
-    <div><!---------Start of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
-        <div><!---------Start of No. of Active Appointments-------------------------------->
-            <h5>Active Appointments</h5>
+    <div class="cs_container"><!---------Start of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
+        <div class="count_status"><!---------Start of No. of Active Appointments-------------------------------->
+            <h5>Active Appointments</h5><br>
             <p>
                 <?php
                     $acceptedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -30,8 +30,8 @@ if (empty($_SESSION['student_id'])){
         </div>
         <!---------End of No. of Active Appointments-------------------------------->
         <!---------Start of No. of Pending Appointments-------------------------------->
-        <div>
-            <h5>Pending Appointments</h5>
+        <div class="count_status">
+            <h5>Pending Appointments</h5><br>
             <p>
                 <?php
                     $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
@@ -48,8 +48,8 @@ if (empty($_SESSION['student_id'])){
         </div>
         <!---------End of No. of Pending Appointments-------------------------------->
         <!---------Start of No. of Missed Appointments-------------------------------->
-        <div>
-            <h5>Missed Appointments</h5>
+        <div class="count_status">
+            <h5>Missed Appointments</h5><br>
             <p>
                 <?php
                     $missedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -69,8 +69,8 @@ if (empty($_SESSION['student_id'])){
         </div>
         <!---------End of No. of Missed Appointments-------------------------------->
         <!---------Start of No. of Declined Appointments-------------------------------->
-        <div>
-            <h5>Declined Appointments</h5>
+        <div class="count_status">
+            <h5>Declined Appointments</h5><br>
             <p>
                 <?php
                     $declinedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -89,8 +89,8 @@ if (empty($_SESSION['student_id'])){
         </div>
         <!---------End of No. of Declined Appointments-------------------------------->
         <!---------Start of No. of Cancelled Appointments-------------------------------->
-        <div>
-            <h5>Cancelled Appointments</h5>
+        <div class="count_status">
+            <h5>Cancelled Appointments</h5><br>
             <p>
                 <?php
                     $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -109,8 +109,8 @@ if (empty($_SESSION['student_id'])){
         </div>
         <!---------End of No. of Cancelled Appointments-------------------------------->
         <!---------Start of No. of Past Appointments-------------------------------->
-        <div>
-            <h5>Past Appointments</h5>
+        <div class="count_status">
+            <h5>Past Appointments</h5><br>
             <p>
                 <?php
                     $doneappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
@@ -131,7 +131,7 @@ if (empty($_SESSION['student_id'])){
     </div><!---------End of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
     
     <div><!---------Start of Show Appointment Based on Status----------------------------------->
-    <h3>Student Appointment Details</h3><br><hr>
+    <h3 align="center">Student Appointment Details</h3><br><hr>
         <!------Start of Appointment Status Buttons ---------------------->
         <button onclick="activeapp()">Active Appointments</button>
         <button onclick="pendingapp()">Pending Appointments</button>
@@ -186,8 +186,20 @@ if (empty($_SESSION['student_id'])){
 <style>
     .parent-div{
         padding-top: 150px;
-        margin-left: 15%;
-        margin-right: 15%;
+        margin-left: 5%;
+        margin-right: 30%;
+    }
+    
+    .cs_container{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .count_status{
+    width: 33.33%;
+    background-color:lightgray;
+    text-align: center;
+    padding: 20px;
     }
     #appactive,
     #apppending,

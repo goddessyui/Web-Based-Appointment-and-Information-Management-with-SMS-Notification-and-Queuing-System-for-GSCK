@@ -11,59 +11,61 @@ if ($staff_id == "" || $staff_username == ""){
 }
 ?>
 
-
-<div class="container">
-        <h2>Announcement</h2>
-        <br>
-        <a href="announcement_add.php"><button type="button">Add announcement</button></a>
-        <table class="table">
-           
-                <?php
-                $sql = "SELECT
-                tbl_announcement.announcement_id,
-                tbl_announcement.staff_id,
-                tbl_announcement.announcement_title,
-                tbl_announcement.caption,
-                tbl_announcement.image,
-                tbl_announcement.date_created,
-                tbl_announcement.video_url
-                FROM
-                tbl_announcement
-                ORDER BY date_created DESC                          
-                ";
-
-                $res = mysqli_query($db, $sql);
-                if (mysqli_num_rows($res) > 0) {
-
-                    while ($row = mysqli_fetch_assoc($res)) {
-                        # code...
-
-                ?>
-                <hr>
-                <div class="blog_img_box">
-                <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
-                <div><pre><?php echo $row['caption'] ?></pre></div>
-                                <div>
-                                <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
-                                <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
-                                </div> <div>    
-                <a href="Staff/announcement/get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
-				<a href="Staff/announcement/announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
-			<button style="background-color: #f44336";>Delete</button>
-					</a>	
-                          
-                        </div>
-                                        
-                <?php
-
-                    }
-                }
-
-                ?>
+    <main>
+        <div class="container">
+            <h2>Announcement</h2>
+            <br>
+            <a href="announcement_add.php"><button type="button">Add announcement</button></a>
+            <table class="table">
             
-        </table>
-    </div>
-  
+                    <?php
+                    $sql = "SELECT
+                    tbl_announcement.announcement_id,
+                    tbl_announcement.staff_id,
+                    tbl_announcement.announcement_title,
+                    tbl_announcement.caption,
+                    tbl_announcement.image,
+                    tbl_announcement.date_created,
+                    tbl_announcement.video_url
+                    FROM
+                    tbl_announcement
+                    ORDER BY date_created DESC                          
+                    ";
+
+                    $res = mysqli_query($db, $sql);
+                    if (mysqli_num_rows($res) > 0) {
+
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            # code...
+
+                    ?>
+                    <hr>
+                    <div class="blog_img_box">
+                    <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
+                    <div><pre><?php echo $row['caption'] ?></pre></div>
+                                    <div>
+                                    <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
+                                    <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
+                                    </div> <div>    
+                    <a href="Staff/announcement/get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
+                    <a href="Staff/announcement/announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
+                <button style="background-color: #f44336";>Delete</button>
+                        </a>	
+                            
+                            </div>
+                                            
+                    <?php
+
+                        }
+                    }
+
+                    ?>
+                
+            </table>
+        </div>
+    </main>
+</body>
+</html>
 
     <?php
 
@@ -91,3 +93,10 @@ if ($staff_id == "" || $staff_username == ""){
     }
 
     ?>
+<style>
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
+</style>

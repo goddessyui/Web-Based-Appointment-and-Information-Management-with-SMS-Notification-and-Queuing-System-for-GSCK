@@ -2,8 +2,8 @@
     include_once("admin_header.php"); 
 ?>
     <main><!-------------------------------Start of main div------------------------------------>
-        <div><!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
-            <div><!--------------Start of No. of Active Requests-------------->
+        <div class="sc_container"><!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
+            <div class="status_count"><!--------------Start of No. of Active Requests-------------->
                 <h5>Active Appointments</h5>
                 <p>
                     <?php
@@ -18,7 +18,7 @@
                     ?>
                 </p>
             </div><!--------------End of No. of Active Requests-------------->
-            <div><!--------------Start of No. of Pending Requests-------------->
+            <div class="status_count"><!--------------Start of No. of Pending Requests-------------->
                 <h5>Pending Appointments</h5>
                 <p>
                     <?php
@@ -34,7 +34,7 @@
                     ?>
                 </p>
             </div><!--------------End of No. of Pending Requests-------------->
-            <div><!--------------Start of No. of Missed Requests-------------->
+            <div class="status_count"><!--------------Start of No. of Missed Requests-------------->
                 <h5>Missed Appointments</h5>
                 <p>
                     <?php
@@ -51,7 +51,7 @@
                     ?>
                 </p>
             </div><!--------------End of No. of Missed Requests-------------->
-            <div> <!--------------Start of No. of Declined Requests-------------->
+            <div class="status_count"> <!--------------Start of No. of Declined Requests-------------->
                 <h5>Declined Appointments</h5>
                 <p>
                     <?php
@@ -66,7 +66,7 @@
                     ?>
                 </p>
             </div><!--------------End of No. of Declined Requests-------------->
-            <div><!--------------Start of No. of Cancelled Requests-------------->
+            <div class="status_count"><!--------------Start of No. of Cancelled Requests-------------->
                 <h5>Cancelled Appointments</h5>
                 <p>
                     <?php
@@ -81,7 +81,7 @@
                     ?>
                 </p>
             </div><!--------------End of No. of Cancelled Requests-------------->
-            <div><!--------------Start of No. of Past Requests-------------->
+            <div class="status_count"><!--------------Start of No. of Past Requests-------------->
                 <h5>Past Appointments</h5>
                 <p>
                     <?php
@@ -157,6 +157,22 @@
 </html>
 
 <style>
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
+    .sc_container{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .status_count{
+    width: 33.33%;
+    background-color:lightgray;
+    text-align: center;
+    padding: 20px;
+    }
     #apppending,
     #appmissed,
     #appdeclined,
