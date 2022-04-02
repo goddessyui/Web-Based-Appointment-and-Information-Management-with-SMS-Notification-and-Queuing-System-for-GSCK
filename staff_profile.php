@@ -5,8 +5,6 @@ $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
 $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$staff_id}'");
 $row = $query->fetch_assoc();
-$rows = !empty($row['other_positions'])?$row['other_positions']:'';
-$array_other = explode( ',', $rows );
 $appointment_type = "";
                 $sql = "SELECT
                 tbl_staff_appointment.staff_id,
@@ -31,26 +29,12 @@ if ($staff_id == "" && $username == ""){
 }
 ?>
 <main>
-    <div>
-    <div class="">
-                <a class="" href="index.php">GSCK Appointment System</a>
-            </div>
-<ul class="">
-                <li><a href="#">Appointments</a></li>
-		        <li><a href="announcement/announcement_test.php">Make Announcements</a></li>
-                <li><a href="#">Schedules</a></li>
-                <li class="active"><a href="#">Account</a></li>
-            </ul>
-            <ul class="">
-                <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-            </ul>
-            </div>
 
 <hr>
+
     <div><h1>PROFILE</h1></div>
     <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
     <div><p> <?php echo $row["username"]?></p></div>
-    <div><p> <?php echo $row["other_positions"]?></p></div>
     <div><p> <?php echo $row["mobile_number"]?></p></div>
     <hr>
 
@@ -85,14 +69,7 @@ if ($staff_id == "" && $username == ""){
     <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
     </select>  </div>
         <?php } ?>
-    <div> Other Position: </div>
-    <div>
-    <input type="checkbox" name="other_list[]" value="OJT Coordinator" <?php echo in_array("OJT Coordinator", $array_other)?'checked':''?>>
-    <label> OJT Coordinator</label><br>
-    <input type="checkbox" name="other_list[]" value="Department Head" <?php echo in_array("Department Head", $array_other)?'checked':''?>>
-    <label> Department Head</label><br>
-    </div>
-
+   
     <div> Appointment Type: </div>
     <div>
     <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
@@ -150,8 +127,7 @@ $staff_id = $row['staff_id'];
     $new_mobilenumber = $_POST['number'];
     $new_position = $_POST["position"];
     $type = $_POST['check_list'];
-    $new_other_position = implode(',', $_POST['other_list']);
-    $sql = "UPDATE tbl_staff_registry SET mobile_number='".$new_mobilenumber."', position='".$new_position."' , other_positions='".$new_other_position."' WHERE staff_id = '{$staff_id}'";
+    $sql = "UPDATE tbl_staff_registry SET mobile_number='".$new_mobilenumber."', position='".$new_position."' WHERE staff_id = '{$staff_id}'";
         if (mysqli_query($db, $sql)) {
             $stmt = $db->prepare("DELETE FROM tbl_staff_appointment WHERE staff_id = '{$staff_id}'");
 	        if ($stmt->execute()){
