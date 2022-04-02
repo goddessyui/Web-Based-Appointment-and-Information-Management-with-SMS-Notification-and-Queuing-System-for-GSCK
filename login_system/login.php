@@ -46,69 +46,71 @@ include_once("dbconfig.php");
     $password = $_POST['password']; 
 	$query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}' AND password='{$password}'");
 	$query2 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}' AND password='{$password}'");
-	if (mysqli_num_rows($query) == 1){
+	
+    if (mysqli_num_rows($query) == 1) {
         $row = $query->fetch_assoc();
         $student_id = $row["student_id"];
         $query1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}'");
-    if (mysqli_num_rows($query1) == 1){
-        session_start();
-		session_unset();
-    	session_destroy();
-		session_start();
-		$_SESSION["student_id"] = $student_id;
-		$_SESSION["student_username"] = $row["username"];
-		echo '<script type="text/javascript">alert("Student Verified");window.location.href="index.php"</script>';
-    }
-    else{
-    echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="index.php"</script>';
-    }
+        
+        if (mysqli_num_rows($query1) == 1) {
+            session_start();
+            session_unset();
+            session_destroy();
+            session_start();
+            $_SESSION["student_id"] = $student_id;
+            $_SESSION["student_username"] = $row["username"];
+            echo '<script type="text/javascript">alert("Student Verified");window.location.href="index.php"</script>';
+        }
+        else{
+        echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="index.php"</script>';
+        }
 	}
 
-	else if(mysqli_num_rows($query2) == 1){
+	else if(mysqli_num_rows($query2) == 1) {
         $row = $query2->fetch_assoc();
         $staff_id = $row["staff_id"];
         $position = $row["position"];
         $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$staff_id}'");
 
-    if (mysqli_num_rows($query3) == 1){
-        if ($position == 'Registrar'){
-            session_start();
-            session_unset();
-            session_destroy();
-            session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="admin.php"</script>';
-        }   
-        else if($position == 'Accounting Staff/Scholarship Coordinator'){
-            session_start();
-            session_unset();
-            session_destroy();
-            session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="admin.php"</script>';
+        if (mysqli_num_rows($query3) == 1) {
+            if ($position == 'Registrar') {
+                session_start();
+                session_unset();
+                session_destroy();
+                session_start();
+                $_SESSION["staff_id"] = $staff_id;
+                $_SESSION["position"] = $position;
+                $_SESSION["staff_username"] = $row["username"];
+                echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="admin.php"</script>';
+            }   
+            else if($position == 'Accounting Staff/Scholarship Coordinator'){
+                session_start();
+                session_unset();
+                session_destroy();
+                session_start();
+                $_SESSION["staff_id"] = $staff_id;
+                $_SESSION["position"] = $position;
+                $_SESSION["staff_username"] = $row["username"];
+                echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="admin.php"</script>';
+            }
+            else if($position == 'Teacher') {
+                session_start();
+                session_unset();
+                session_destroy();
+                session_start();
+                $_SESSION["staff_id"] = $staff_id;
+                $_SESSION["position"] = $position;
+                $_SESSION["staff_username"] = $row["username"];
+                echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="admin.php"</script>';
+            }
         }
-        else if($position == 'Teacher'){
-            session_start();
-            session_unset();
-            session_destroy();
-            session_start();
-            $_SESSION["staff_id"] = $staff_id;
-            $_SESSION["position"] = $position;
-            $_SESSION["staff_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="admin.php"</script>';
-        }
-    }
         else{
-    echo '<script type="text/javascript">alert("Account not existing in Staff record");window.location.href="index.php"</script>';
-    }
+        echo '<script type="text/javascript">alert("Account not existing in Staff record");window.location.href="index.php"</script>';
+        }
     }
     else {
 		echo '<script type="text/javascript">alert("Username or Password Incorrect");window.location.href="index.php"</script>';
-}
+    }
 	}
 
 ?>

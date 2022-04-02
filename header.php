@@ -82,7 +82,7 @@
     
     <?php
                 ?>
-                    <button class="account"><i class="fa fa-user"></i>PROFILE</button>
+                    <a href="student_profile.php"><button class="account"><i class="fa fa-user"></i>PROFILE</button></a>
                     <a href="logout.php"><button class="logout">LOGOUT</button></a>
                     <a href="index.php"><li><i class="fa fa-home" aria-hidden="true"></i> Home</li></a>
                     <a href="about.php"><li><i class="fa fa-question-circle" aria-hidden="true"></i>About</li></a>

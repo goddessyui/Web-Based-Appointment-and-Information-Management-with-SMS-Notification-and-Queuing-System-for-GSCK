@@ -1,12 +1,9 @@
 <?php
     include_once("admin_header.php"); 
 ?>
-    <main>
-    
-        <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
-        <div>
-            <!--------------Start of No. of Active Requests-------------->
-            <div>
+    <main><!-------------------------------Start of main div------------------------------------>
+        <div><!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
+            <div><!--------------Start of No. of Active Requests-------------->
                 <h5>Active Appointments</h5>
                 <p>
                     <?php
@@ -20,10 +17,8 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Active Requests-------------->
-            <!--------------Start of No. of Pending Requests-------------->
-            <div>
+            </div><!--------------End of No. of Active Requests-------------->
+            <div><!--------------Start of No. of Pending Requests-------------->
                 <h5>Pending Appointments</h5>
                 <p>
                     <?php
@@ -38,10 +33,8 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Pending Requests-------------->
-            <!--------------Start of No. of Missed Requests-------------->
-            <div>
+            </div><!--------------End of No. of Pending Requests-------------->
+            <div><!--------------Start of No. of Missed Requests-------------->
                 <h5>Missed Appointments</h5>
                 <p>
                     <?php
@@ -57,10 +50,8 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Missed Requests-------------->
-            <!--------------Start of No. of Declined Requests-------------->
-            <div>
+            </div><!--------------End of No. of Missed Requests-------------->
+            <div> <!--------------Start of No. of Declined Requests-------------->
                 <h5>Declined Appointments</h5>
                 <p>
                     <?php
@@ -74,10 +65,8 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Declined Requests-------------->
-            <!--------------Start of No. of Cancelled Requests-------------->
-            <div>
+            </div><!--------------End of No. of Declined Requests-------------->
+            <div><!--------------Start of No. of Cancelled Requests-------------->
                 <h5>Cancelled Appointments</h5>
                 <p>
                     <?php
@@ -91,10 +80,8 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Cancelled Requests-------------->
-            <!--------------Start of No. of Past Requests-------------->
-            <div>
+            </div><!--------------End of No. of Cancelled Requests-------------->
+            <div><!--------------Start of No. of Past Requests-------------->
                 <h5>Past Appointments</h5>
                 <p>
                     <?php
@@ -108,71 +95,67 @@
                         echo $count;
                     ?>
                 </p>
-            </div>
-            <!--------------End of No. of Declined Requests-------------->
-        </div>
-    <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
+            </div><!--------------End of No. of Declined Requests-------------->
+        </div><!----End of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
 
-        <div>
+        <div><!-------------------------------Start of Show Appointment Based on Status ------------------------------->
             <h2>Appointments</h2>
+            <!------Start of Appointment Status Buttons ---------------------->
             <button onclick="activeapp()">Active Appointments</button>
             <button onclick="pendingapp()">Pending Appointments</button>
             <button onclick="missedapp()">Missed Appointments</button>
             <button onclick="declineddapp()">Declined Appointments</button>
             <button onclick="cancelledapp()">Cancelled Appointments</button>
             <button onclick="doneapp()">Past Appointments</button>
-            <div id="appactive">
-                <h4>Active Appointments</h4>
-                <?php
-                    include("staff_accepted_requests.php");
-                ?>
-            </div>
-            <div id="apppending">                                 
-                <h4>Pending Appointments</h4>
-                <?php
-                    include("staff_pending_requests.php");
-                ?>
-            </div>
-            <div id="appmissed">                                 
-                <h4>Missed Appointments</h4>
-                <?php
-                    include("staff_missed_requests.php");
-                ?>
-            </div>
-            <div id="appdeclined">
-                <h4>Declined Appointments</h4>
-                <?php
-                    include("reports/staff_declined_requests.php");
-                ?>
-            </div>
-            <div id="appcancelled">
-                <h4>Cancelled Appointments</h4>
-                <?php
-                    include("reports/staff_cancelled_requests.php");
-                ?>
-            </div>
-            <div id="appdone">
-                <h4>Past Appointments</h4>
-                <?php
-                    include("reports/staff_done_requests.php");
-                ?>
-            </div>
+            <!------ End of of Appointment Status Buttons -------------------->
+
+            <div><!------- Start of Appointment Status Includes ------------------>
+                <div id="appactive">
+                    <h4>Active Appointments</h4>
+                    <?php
+                        include("staff_accepted_requests.php");
+                    ?>
+                </div>
+                <div id="apppending">                                 
+                    <h4>Pending Appointments</h4>
+                    <?php
+                        include("staff_pending_requests.php");
+                    ?>
+                </div>
+                <div id="appmissed">                                 
+                    <h4>Missed Appointments</h4>
+                    <?php
+                        include("staff_missed_requests.php");
+                    ?>
+                </div>
+                <div id="appdeclined">
+                    <h4>Declined Appointments</h4>
+                    <?php
+                        include("reports/staff_declined_requests.php");
+                    ?>
+                </div>
+                <div id="appcancelled">
+                    <h4>Cancelled Appointments</h4>
+                    <?php
+                        include("reports/staff_cancelled_requests.php");
+                    ?>
+                </div>
+                <div id="appdone">
+                    <h4>Past Appointments</h4>
+                    <?php
+                        include("reports/staff_done_requests.php");
+                    ?>
+                </div>
+            </div><!------End of Appointment Status Includes ---------->
             <hr>
-        </div>
+        </div><!-------------------------------End of Show Appointment Based on Status -------------------------->
+        <!-------------------------------Start of the BACK TO TOP BUTTON ---------------------------------------->
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    </main>
+        <!-------------------------------Start End of the BACK TO TOP BUTTON ------------------------------------>
+    </main><!-------------------------------End of main div--------------------------------------------------------------------------->
 </body>
 </html>
 
-<?php if(empty($_POST['searchbydate'])){?>
-    <style>
-        #appactive {
-            display: none;
-        }
-    </style>
-    <?php
-    }
-    ?>
 <style>
     #apppending,
     #appmissed,
@@ -183,24 +166,24 @@
     }
 
     #myBtn {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: red; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
-}
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed/sticky position */
+        bottom: 20px; /* Place the button at the bottom of the page */
+        right: 30px; /* Place the button 30px from the right */
+        z-index: 99; /* Make sure it does not overlap */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: red; /* Set a background color */
+        color: white; /* Text color */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        padding: 15px; /* Some padding */
+        border-radius: 10px; /* Rounded corners */
+        font-size: 18px; /* Increase font size */
+    }
 
-#myBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
-}
+    #myBtn:hover {
+        background-color: #555; /* Add a dark-grey background on hover */
+    }
 </style>
 
 <script>
@@ -254,22 +237,22 @@
             document.getElementById('appdone').style.display = "block";
     }
     //Get the button:
-mybutton = document.getElementById("myBtn");
+    mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
 </script>
