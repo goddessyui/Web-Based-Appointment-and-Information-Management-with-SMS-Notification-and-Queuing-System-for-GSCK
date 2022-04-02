@@ -128,4 +128,11 @@ if(isset($_GET["updation"]))
     </main>
 </body>
 </html>
+<style> 
+        main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
+</style>
 
