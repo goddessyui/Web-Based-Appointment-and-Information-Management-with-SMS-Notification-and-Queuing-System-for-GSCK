@@ -80,7 +80,7 @@ if ($staff_id == "" && $username == ""){
     <label> Enrollment</label><br>
     <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
     <label> Pre-Enrollment</label><br>
-    <input type="checkbox" name="check_list[]" value="UniFAST - Claim Chequet" <?php echo in_array("UniFAST - Claim Chequet", $array_type)?'checked':'';?>>
+    <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
     <label> UniFAST - Claim Cheque</label><br>
     <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
     <label> UniFAST - Submit Documents</label><br>
