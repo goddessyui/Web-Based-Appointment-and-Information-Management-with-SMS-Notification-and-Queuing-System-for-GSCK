@@ -15,9 +15,10 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
     $student_id = $_POST['studentid'];
     $first_name= $_POST['firstname'];
     $last_name= $_POST['lastname'];
+    $batch_status= $_POST['batchstatus'];
     
         $updateunifastgrantee = "UPDATE tbl_unifast_grantee 
-        SET student_id ='$student_id', first_name = '$first_name', last_name = '$last_name' 
+        SET student_id ='$student_id', first_name = '$first_name', last_name = '$last_name', batch_status = '$batch_status' 
         WHERE student_id ='$student_id'";
 
         if(mysqli_query($db, $updateunifastgrantee)){
