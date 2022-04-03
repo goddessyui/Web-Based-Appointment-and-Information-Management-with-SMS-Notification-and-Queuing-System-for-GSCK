@@ -36,15 +36,45 @@ if (empty($_SESSION['student_id'])){
 ?>
         <h4>Select An Appointment Type:</h4>
             <form action=" " method="post">
-                <input type="submit" value="Enrollment" name="appointmenttype"><br/><br>
-                <input type="submit" value="Evaluation of Grades - Department Head" name="appointmenttype"><br/><br/>
-                <input type="submit" value="Meeting" name="appointmenttype"><br/><br>
-                <input type="submit" value="Module Submission" name="appointmenttype"><br/><br>
-                <input type="submit" value="Pre-Enrollment" name="appointmenttype"><br/><br>
-                <input type="submit" value="Presentation" name="appointmenttype"><br/><br>
-                <input type="submit" value="Project Submission" name="appointmenttype"><br/><br>
-                <input type="submit" value="Request Documents From Registrar" name="appointmenttype"><br/><br>
-                <input type="submit" value="Request for Grades" name="appointmenttype"><br/><br>
+                <div class="aptype-container">
+                    <button type="submit" class="aptype" value="Meeting" name="appointmenttype">
+                        <h4>Meeting</h4><br><hr>
+                            Description: Please select this appointment type if the appointment type you're looking for is not in the list. 
+                            Indicate your purpose in the note. Office hours are from 8 am to 5 pm. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Enrollment" name="appointmenttype">
+                        <h4>Enrollment</h4><br><hr>
+                        Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Evaluation of Grades - Department Head" name="appointmenttype">
+                        <h4>Evaluation of Grades</h4><br><hr>
+                            Description: Please choose the correct Department Head for your department. Office hours are from 8 am to 5 pm.
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Module Submission" name="appointmenttype">
+                        <h4>Module Submission</h4><br><hr>
+                            Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Pre-Enrollment" name="appointmenttype">
+                        <h4>Pre-Enrollment</h4><br><hr>
+                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Presentation" name="appointmenttype">
+                        <h4>Presentation</h4><br><hr>
+                            Description: Office hours are from 8 am to 5 pm. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Project Submission" name="appointmenttype">
+                        <h4>Project Submission</h4><br><hr>
+                            Description: Office hours are from 8 am to 5 pm. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Request Documents From Registrar" name="appointmenttype">
+                        <h4>Request Documents</h4><br><hr>
+                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="Request for Grades" name="appointmenttype">
+                        <h4>Request for Grades</h4><br><hr>
+                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm.  
+                    </button><br/><br>
+                
                 <?php
                     $sql = "SELECT student_id FROM tbl_unifast_grantee WHERE student_id ='$student_id'";
                     $result = mysqli_query($db, $sql);
@@ -54,8 +84,15 @@ if (empty($_SESSION['student_id'])){
                         while($id = mysqli_fetch_assoc($result)){
                             $ug_id= $id['student_id'];
                             if($student_id==$ug_id){?>
-                <input type="submit" value="UniFAST - Claim Cheque" name="appointmenttype"><br/><br>
-                <input type="submit" value="UniFAST - Submit Documents" name="appointmenttype"><br/><br>
+                    <button type="submit" class="aptype" value="UniFAST - Claim Cheque" name="appointmenttype">
+                        <h4>UniFAST - Claim Cheque</h4><br><hr>
+                            Description: Requested From Accounting Staff/Scholarship Coordinator. Office hours are from 8 am to 5 pm. Please bring a pen and your ID. 
+                    </button><br/><br>
+                    <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype">
+                        <h4>UniFAST - Submit Documents</h4><br><hr>
+                            Description: Requested From Accounting Staff/Scholarship Coordinator. Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                    </button><br/><br>
+                </div>
                        <?php
                             }
                             else{
@@ -138,5 +175,15 @@ if (empty($_SESSION['student_id'])){
         margin-left: 15%;
         margin-right: 15%;
  
+    }
+    .aptype-container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .aptype {
+        margin: 10px;
+        padding: 10px;
+        width: 40%;
     }
 </style>
