@@ -18,6 +18,7 @@ session_start();
          $appointment_date = $_POST['appointment_date'];
          $student_id = $_POST['student_id'];
          $staff_id = $_SESSION["staff_id"];
+         $appointment_type = $_POST['appointment_type'];
          
          if (empty($_POST['appointment_date'])) {//if appointment date is not filled
             header("refresh:1;url=../staff_appointment_details.php");
@@ -34,6 +35,16 @@ session_start();
                                  VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
 
                if(mysqli_query($db, $acceptappointment)){
+
+                  // insert data into tbl_notification if staff accept a request
+                  $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
+                   $rows = $querys->fetch_assoc();
+                   $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                   mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`) VALUES 
+                   ('REQUEST UPDATE', 
+                  '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
+                  '$student_id')");
+
                   header("refresh:2;url=../staff_appointment_details.php");
                   echo "Appointment request accepted and scheduled on". " ". $appointment_date;
                      //Add Queueing and SMS function here???-----------------------------------------
@@ -67,11 +78,24 @@ session_start();
          $currentdate = date("Y-m-d");
          $appointment_id = $_GET['appointment_id'];
          $comment = $_POST['comment'];
+         $appointment_type = $_POST['appointment_type'];
+         $student_id = $_POST['student_id'];
+         $staff_id = $_SESSION["staff_id"];
          
          $declineappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
                               VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'Declined')";
          
          if(mysqli_query($db, $declineappointment)){
+
+            // insert data into tbl_notification if staff decline a request
+            $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
+            $rows = $querys->fetch_assoc();
+            $fullnames = $rows['first_name'].' '.$rows['last_name'];
+            mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`) VALUES 
+            ('REQUEST UPDATE', 
+            '$fullnames has DECLINED your request for  $appointment_type', '0', 
+            '$student_id')");
+
             header("refresh:2;url=../staff_appointment_details.php");
             echo "Appointment Request Declined.";
          } 

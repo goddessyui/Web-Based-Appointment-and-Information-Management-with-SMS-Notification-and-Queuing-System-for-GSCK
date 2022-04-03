@@ -57,7 +57,8 @@
                                     strtotime($currentdate. ' + 20 days'));?>"><br><br>
                                 <label>Comment:</label><br>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea></textarea><br><br>
-                                <input type="hidden" name="student_id" value="<?php $rows['student_id'];?>">
+                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
                                 
