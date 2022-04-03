@@ -15,7 +15,7 @@
     $cancelled_appointment_list = mysqli_query($db, $cancelledappointments);
                 
     //check whether the query is executed or not
-    if($accepted_appointment_list==TRUE) 
+    if($cancelled_appointment_list==TRUE) 
     { // count rows to check whether we have data in database or not
         $count = mysqli_num_rows($cancelled_appointment_list);  //function to get all the rows in database
         //check the num of rows                 
@@ -23,9 +23,9 @@
         {
             $i = 1;
             while($rows=mysqli_fetch_assoc($cancelled_appointment_list)) 
-            //using while loop to get all the date from database
+            {//using while loop to get all the date from database
             //and while loop will run as long as we have data in database
-            {
+            
 ?>
                 <div>
                     <td>
