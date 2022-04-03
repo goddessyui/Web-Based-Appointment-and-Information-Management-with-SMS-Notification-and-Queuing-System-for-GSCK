@@ -68,7 +68,62 @@ $(document).ready(function(){
             while($rows = mysqli_fetch_assoc($run)) { 
                 
     ?>  
-                <input type="submit" name="at" required value="<?php echo $rows['appointment_type'];?>">
+                <button type="submit" class="aptype" name="at" required value="<?php echo $rows['appointment_type'];?>">
+                    <?php echo $rows['appointment_type'];?><hr>
+                    <?php
+                        $atype=$rows['appointment_type'];
+                        if($atype=="Meeting"){?>
+                            <p>Description: Please select this appointment type if the appointment type you're looking for is not in the list. 
+                            Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
+                        <?php
+                        }
+                        if($atype=="Enrollment"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                        if($atype=="Evaluation of Grades - Department Head"){?>
+                            <p>Description: Please choose the correct Department Head for your department. 
+                            Office hours are from 8 am to 5 pm.</p>
+                        <?php
+                        }
+                        if($atype=="Module Submission"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                        if($atype=="Pre-Enrollment"){?>
+                            <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. 
+                            Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                        if($atype=="Presentation"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm.</p>
+                        <?php
+                        }
+                        if($atype=="Project Submission"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm.</p>
+                        <?php
+                        }
+                        if($atype=="Request Documents From Registrar"){?>
+                            <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
+                        <?php
+                        }
+                        if($atype=="Request for Grades"){?>
+                           <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                        <?php
+                        }
+                        if($atype=="UniFAST - Claim Cheque"){?>
+                            <p>Description: Requested From Accounting Staff/Scholarship Coordinator. 
+                            Office hours are from 8 am to 5 pm. Please bring a pen and your ID. </p>
+                        <?php
+                        }
+                        if($atype=="UniFAST - Submit Documents"){?>
+                            <p>Description: Requested From Accounting Staff/Scholarship Coordinator.
+                             Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                    ?>
+                    
+                </button>
                 <input type="hidden" name="fn" value="<?php echo $rows['first_name'];?>"> 
                 <input type="hidden" name="ln" value="<?php echo $rows['last_name'];?>"> 
                 <input type="hidden" name="staff_id" value="<?php echo $rows['staff_id'];?>"> 
@@ -100,6 +155,7 @@ $(document).ready(function(){
 
             if($student_id==$ug_id){//if student is unifast grantee
                  ?>
+<!---------------TURN TO MODAL ON CLICK OF APPOINTMENT BUTTON------------------------------------------>
                 <h2>Appointment Type: <?php echo $appointment_type;?></h2>
                 <h2>Staff: <?php echo $first_name . " ". $last_name;?></h2>          
                 <form action="appointment/student_insert_appointment.php" method="post"> 
@@ -112,7 +168,8 @@ $(document).ready(function(){
                     <br><br>
                     <input type="submit" name="request" value="Request Appointment">
                    
-                </form><br><br>     
+                </form><br><br>
+<!---------------TURN TO MODAL ON CLICK OF APPOINTMENT BUTTON------------------------------------------>     
                  <?php 
             }
         }
@@ -124,7 +181,8 @@ $(document).ready(function(){
         }
         else {
             //if appointment type is unifast app
-            ?>  
+            ?>
+<!---------------TURN TO MODAL ON CLICK OF APPOINTMENT BUTTON------------------------------------------>             
             <h2>Appointment Type: <?php echo $appointment_type;?></h2>
             <h2>Staff: <?php echo $first_name . " ". $last_name;?></h2>          
             <form action="appointment/student_insert_appointment.php" method="post">
@@ -138,6 +196,7 @@ $(document).ready(function(){
                 <br><br>
                 <input type="submit" name="request" value="Request Appointment">
             </form><br><br>
+<!---------------TURN TO MODAL ON CLICK OF APPOINTMENT BUTTON------------------------------------------>            
 <?php   
         }     
     }    

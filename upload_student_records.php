@@ -22,7 +22,8 @@ if(isset($_POST["upload"]))
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
                
-                $query="INSERT INTO tbl_student_record (student_id, first_name, last_name) VALUES ('$student_id', '$first_name', '$last_name')";
+                $query="INSERT INTO tbl_student_record (student_id, first_name, last_name) 
+                    VALUES ('$student_id', '$first_name', '$last_name')";
                         mysqli_query($db, $query);
             }
         fclose($handle);
@@ -89,7 +90,7 @@ if(isset($_GET["updation"]))
         <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
     <?php
     //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
-        $studentrecordquery = "SELECT * FROM tbl_student_record";
+        $studentrecordquery = "SELECT * FROM tbl_student_record ORDER BY student_id ASC";
         $studentrecordresult = mysqli_query($db, $studentrecordquery);
 
         while($row = mysqli_fetch_array($studentrecordresult))

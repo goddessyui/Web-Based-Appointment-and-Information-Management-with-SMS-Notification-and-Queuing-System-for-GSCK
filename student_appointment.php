@@ -38,41 +38,43 @@ if (empty($_SESSION['student_id'])){
             <form action=" " method="post">
                 <div class="aptype-container">
                     <button type="submit" class="aptype" value="Meeting" name="appointmenttype">
-                        <h4>Meeting</h4><br><hr>
+                        <h4>Meeting</h4><hr>
                             Description: Please select this appointment type if the appointment type you're looking for is not in the list. 
                             Indicate your purpose in the note. Office hours are from 8 am to 5 pm. 
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Enrollment" name="appointmenttype">
-                        <h4>Enrollment</h4><br><hr>
-                        Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.
+                        <h4>Enrollment</h4><hr>
+                        <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Evaluation of Grades - Department Head" name="appointmenttype">
-                        <h4>Evaluation of Grades</h4><br><hr>
-                            Description: Please choose the correct Department Head for your department. Office hours are from 8 am to 5 pm.
+                        <h4>Evaluation of Grades</h4><hr>
+                        <p>Description: Please choose the correct Department Head for your department. 
+                            Office hours are from 8 am to 5 pm.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Module Submission" name="appointmenttype">
-                        <h4>Module Submission</h4><br><hr>
-                            Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                        <h4>Module Submission</h4><hr>
+                        <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Pre-Enrollment" name="appointmenttype">
-                        <h4>Pre-Enrollment</h4><br><hr>
-                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                        <h4>Pre-Enrollment</h4><hr>
+                        <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. 
+                            Please bring a pen and necessary documents.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Presentation" name="appointmenttype">
-                        <h4>Presentation</h4><br><hr>
-                            Description: Office hours are from 8 am to 5 pm. 
+                        <h4>Presentation</h4><hr>
+                        <p>Description: Office hours are from 8 am to 5 pm.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Project Submission" name="appointmenttype">
-                        <h4>Project Submission</h4><br><hr>
-                            Description: Office hours are from 8 am to 5 pm. 
+                        <h4>Project Submission</h4><hr>
+                        <p>Description: Office hours are from 8 am to 5 pm.</p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Request Documents From Registrar" name="appointmenttype">
-                        <h4>Request Documents</h4><br><hr>
-                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen. 
+                        <h4>Request Documents</h4><hr>
+                        <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
                     </button><br/><br>
                     <button type="submit" class="aptype" value="Request for Grades" name="appointmenttype">
-                        <h4>Request for Grades</h4><br><hr>
-                            Description: Requested From Registrar. Office hours are from 8 am to 5 pm.  
+                        <h4>Request for Grades</h4><hr>
+                        <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
                     </button><br/><br>
                 
                 <?php
@@ -85,12 +87,14 @@ if (empty($_SESSION['student_id'])){
                             $ug_id= $id['student_id'];
                             if($student_id==$ug_id){?>
                     <button type="submit" class="aptype" value="UniFAST - Claim Cheque" name="appointmenttype">
-                        <h4>UniFAST - Claim Cheque</h4><br><hr>
-                            Description: Requested From Accounting Staff/Scholarship Coordinator. Office hours are from 8 am to 5 pm. Please bring a pen and your ID. 
+                        <h4>UniFAST - Claim Cheque</h4><hr>
+                        <p>Description: Requested From Accounting Staff/Scholarship Coordinator. 
+                            Office hours are from 8 am to 5 pm. Please bring a pen and your ID. </p>
                     </button><br/><br>
                     <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype">
-                        <h4>UniFAST - Submit Documents</h4><br><hr>
-                            Description: Requested From Accounting Staff/Scholarship Coordinator. Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents. 
+                        <h4>UniFAST - Submit Documents</h4><hr>
+                        <p>Description: Requested From Accounting Staff/Scholarship Coordinator.
+                             Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                     </button><br/><br>
                 </div>
                        <?php
