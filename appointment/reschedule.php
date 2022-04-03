@@ -36,6 +36,20 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                   VALUES ('$appointment_id', '$currentdate', '$newDate', '$comment', 'Accepted')";
                   
                   if (mysqli_query($db, $insertnew)) {
+
+                     // insert data into tbl_notification if staff reschedule an appointment
+                     $appointment_type = $_POST['appointment_type'];
+                     $student_id = $_POST['student_id'];
+                     $staff_id = $_SESSION["staff_id"];
+                     $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
+                     $rows = $querys->fetch_assoc();
+                      $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                      mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`) VALUES 
+                     ('APPOINTMENT UPDATE', 
+                     '$fullnames has RESCHEDULE your appointment for  $appointment_type', '0', 
+                     '$student_id')");
+
+
                      header("refresh:2;url=../staff_appointment_details.php");
                      echo "Success";
                   }

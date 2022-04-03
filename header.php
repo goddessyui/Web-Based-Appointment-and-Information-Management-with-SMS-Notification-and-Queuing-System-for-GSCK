@@ -20,6 +20,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- This css is only an example for the notifcation style -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Web-base Appointment & Information System</title>
 </head>
 <body>
@@ -50,7 +56,19 @@
 <?php		
 		}
 ?>		
-        <i class="fa fa-bell"></i>
+
+
+    <!-- NOTIFICATION BUTTON -->
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <i class="fa fa-bell"></i> <span class="glyphicon glyphicon-envelope" style="font-size:18px;"></span></a>
+       <ul class="dropdown-menu"></ul>
+       </li>
+    </ul>
+       <!-- NOTIFICATION BUTTON -->
+
+
+
         <div class="menu-btn">
             <div class="menu-btn-burger"></div>
         </div>
@@ -426,4 +444,43 @@ nav ul button {
         menuBtn.classList.remove('open');
         menuOpen = false;
     }
+</script>
+
+
+<!-- notification script -->
+
+<script>
+$(document).ready(function(){
+ var id = '<?php echo !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:$_SESSION["student_id"]; ?>'
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"fetch_notification.php",
+   method:"POST",
+   data:{view:view, id:id},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
 </script>

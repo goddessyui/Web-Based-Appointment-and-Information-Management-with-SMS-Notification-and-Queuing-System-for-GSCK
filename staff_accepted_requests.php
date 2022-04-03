@@ -1,6 +1,5 @@
 
 
-
 <!-------------------------Sort Requests By Date------------------------------> 
         <?php 
             date_default_timezone_set('Asia/Manila');                           		
@@ -94,7 +93,10 @@
                                         min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                                         <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
-                                        <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>"> 
+                                        <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
+                                        <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                        <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>"> 
+                                        <?php echo $rows['student_id']; ?>
                                     <br>
                                     <br>
                                     <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
@@ -105,6 +107,10 @@
                                 <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                     <label>Comment:</label><br>
                                     <textarea type="textarea" name="comment"></textarea><br><br>
+                                    <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                    <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
+                                    <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                    <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input id="cancel" type="submit" name="cancel" value="CANCEL APPOINTMENT"><br>
                                 </form>
                                 <!-------------------------Send Form Data to cancel.php ------------------------------>
@@ -177,6 +183,8 @@
                                     strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                                 <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                 <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
+                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <br>
                                 <br>
                                 <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
@@ -187,6 +195,8 @@
                             <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                 <label>Comment:</label><br>
                                 <textarea type="textarea" name="comment"></textarea><br><br>
+                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <input id="cancel" type="submit" name="cancel" value="CANCEL APPOINTMENT"><br>
                             </form>
                             <!-------------------------Send Form Data to cancel.php ------------------------------>
@@ -256,6 +266,8 @@
                                     strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                                 <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                 <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
+                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <br>
                                 <br>
                                 <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
@@ -266,6 +278,8 @@
                             <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                 <label>Comment:</label><br>
                                 <textarea type="textarea" name="comment"></textarea><br><br>
+                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <input id="cancel" type="submit" name="cancel" value="CANCEL APPOINTMENT"><br>
                             </form>
                             <!-------------------------Send Form Data to cancel.php ------------------------------>
@@ -342,6 +356,8 @@
                                 strtotime($rows["appointment_date"]. ' + 20 days'));?>">
                             <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                             <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
+                            <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                             <br>
                             <br>
                             <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
@@ -352,6 +368,8 @@
                         <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                             <label>Comment:</label><br>
                             <textarea type="textarea" name="comment"></textarea><br><br>
+                            <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                            <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                             <input id="cancel" type="submit" name="cancel" value="CANCEL APPOINTMENT"><br>
                         </form>
                         <!-------------------------Send Form Data to cancel.php ------------------------------>
