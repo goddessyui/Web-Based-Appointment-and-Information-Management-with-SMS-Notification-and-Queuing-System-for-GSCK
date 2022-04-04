@@ -35,9 +35,9 @@ if ($staff_id == "" || $staff_username == ""){
                                     <textarea name="caption" id="price" type="text" value="" required></textarea>
                                 </div>
                                 <div>    
-                                    <label>Video Link(can only accept youtube video link):</label>
+                                    <label>Video Link(can only accept youtube video url):</label>
                                     <input name="video_link" id="video_link" type="text" value="">
-                                    <button id="check" type="button" onclick="myFunction()">Validate</button>           
+                                    <button id="check" type="button" onclick="myFunction()">Validate URL</button>           
                                 </div>
                                 
                                 <div> <iframe id="videoObject" type="text/html" width="500" height="265" frameborder="0" allowfullscreen></iframe>
@@ -45,6 +45,7 @@ if ($staff_id == "" || $staff_username == ""){
                                
                                 <label>Photo:</label>
                                     <input type="file" name="image" accept="image/*" id="imgInp" onchange="loadFile(event)" >
+                                    <button type="button" id='remove_btn' onclick="Remove()" disabled>Remove Image</button>  
                                 </div>
                                 <div><img id="output" src="#"/></div>
                                 
@@ -66,6 +67,7 @@ if ($staff_id == "" || $staff_username == ""){
         $("#output").show();
       URL.revokeObjectURL(output.src) // free memory
       document.getElementById("video_link").disabled = true;
+      document.getElementById("remove_btn").disabled = false;
     }
     };
     function myFunction() {
@@ -98,6 +100,14 @@ if ($staff_id == "" || $staff_username == ""){
 
 }
     }   
+    function Remove() {
+        $("#imagevalidate").val("");
+        document.getElementById("output").src = false;
+        document.getElementById("video_link").disabled = false;
+        document.getElementById("imgInp").value = null;
+        document.getElementById("remove_btn").disabled = true;
+        $("#output").hide();
+    }
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">
 </script>

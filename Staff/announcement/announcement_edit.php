@@ -89,7 +89,7 @@ $row = $query->fetch_assoc();
         $("#output").show();
       URL.revokeObjectURL(output.src) // free memory
       document.getElementById("video_link").disabled = true;
-      document.getElementById("remove_btn").disabled = true;
+      document.getElementById("remove_btn").disabled = false;
       $("#imagevalidate").val("valid");
     }
     };
@@ -127,6 +127,9 @@ $row = $query->fetch_assoc();
         $("#imagevalidate").val("");
         document.getElementById("output").src = false;
         document.getElementById("video_link").disabled = false;
+        document.getElementById("imgInp").value = null;
+        document.getElementById("remove_btn").disabled = true;
+        $("#output").hide();
     }  
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">
