@@ -20,9 +20,13 @@ if(isset($_POST["upload"]))
                 $staff_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
+                
                
                 $query="INSERT INTO tbl_staff_record (staff_id, first_name, last_name) VALUES ('$staff_id', '$first_name', '$last_name')";
                         mysqli_query($db, $query);
+                       
+
+    
             }
         fclose($handle);
         ?>
@@ -88,6 +92,8 @@ if(isset($_GET["updation"]))
     <?php
     //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
         $staffrecordquery = "SELECT * FROM tbl_staff_record ORDER BY staff_id ASC";
+        
+
         $staffrecordresult = mysqli_query($db, $staffrecordquery);
 
         while($row = mysqli_fetch_array($staffrecordresult))
