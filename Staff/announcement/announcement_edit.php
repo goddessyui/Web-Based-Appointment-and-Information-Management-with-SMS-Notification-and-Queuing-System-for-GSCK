@@ -26,12 +26,14 @@ $row = $query->fetch_assoc();
     }
     else{
         document.getElementById("imgInp").disabled = true;
+        
     }
     if (image == undefined || image == ''){
     $("#output").hide();
     }
     else{
         document.getElementById("video_link").disabled = true;
+        document.getElementById("check").disabled = true;
     }
         }
 </script>
@@ -91,6 +93,7 @@ $row = $query->fetch_assoc();
       document.getElementById("video_link").disabled = true;
       document.getElementById("remove_btn").disabled = false;
       $("#imagevalidate").val("valid");
+      document.getElementById("check").disabled = true;
     }
     };
     function myFunction() {
@@ -130,6 +133,7 @@ $row = $query->fetch_assoc();
         document.getElementById("imgInp").value = null;
         document.getElementById("remove_btn").disabled = true;
         $("#output").hide();
+        document.getElementById("check").disabled = false;
     }  
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">

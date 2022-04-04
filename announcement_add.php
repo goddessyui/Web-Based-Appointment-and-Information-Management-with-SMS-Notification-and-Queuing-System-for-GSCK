@@ -68,6 +68,7 @@ if ($staff_id == "" || $staff_username == ""){
       URL.revokeObjectURL(output.src) // free memory
       document.getElementById("video_link").disabled = true;
       document.getElementById("remove_btn").disabled = false;
+      document.getElementById("check").disabled = true;
     }
     };
     function myFunction() {
@@ -107,6 +108,7 @@ if ($staff_id == "" || $staff_username == ""){
         document.getElementById("imgInp").value = null;
         document.getElementById("remove_btn").disabled = true;
         $("#output").hide();
+        document.getElementById("check").disabled = false;
     }
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">
