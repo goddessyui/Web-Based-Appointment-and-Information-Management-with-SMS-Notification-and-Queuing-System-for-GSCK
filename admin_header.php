@@ -118,7 +118,7 @@ if ($staff_id == ""){
 
 				<div class="user-wrapper">
 					<span class="fa fa-user"></span>
-					<small>Admin_</small>
+					<small><?php echo $staff_username;?></small>
 					
 				</div>
 		</header>
