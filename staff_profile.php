@@ -40,86 +40,95 @@ if ($staff_id == "" && $username == ""){
 
     <div><h2>Update Profile</h2></div>
     <div>
-    Student ID: <input type="text" name="student_id" value="<?php echo $row["staff_id"]?>" disabled />
+        Student ID: <input type="text" name="student_id" value="<?php echo $row["staff_id"]?>" disabled />
     </div>
 
     <div class="">
-	Username: <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
+	    Username: <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
 	</div>
 
     <div>
-    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
+        First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
     </div>
     
     <div>
-    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
+        Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
     </div>
 
-    <form  method="POST">
-    <div class="">
-	Mobile Number: <input type="tel" name="number" value="<?php echo $row["mobile_number"]?>" minlength="11" maxlength="11" autocomplete="off" required />
-	</div>
-    <?php if ($position == 'Registrar'){?>
-    <div>Position: <select name="position">  
-    <option value="Registrar" selected>Registrar</option>  
-    </select>  </div>
-    <?php } else {?>
-    <div>Position: <select name="position">  
-    <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
-    <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
-    </select>  </div>
+    <form  method="POST" action="#">
+        <div>
+            Mobile Number: <input type="tel" name="number" value="<?php echo $row["mobile_number"]?>" minlength="11" maxlength="11" autocomplete="off" required />
+        </div>
+        <?php 
+            if ($position == 'Registrar') {?>
+        <div>
+            Position: 
+            <select name="position">  
+                <option value="Registrar" selected>Registrar</option>  
+            </select>  </div>
+        <?php 
+            }
+            else {?>
+                <div>
+                    Position: 
+                    <select name="position">  
+                        <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
+                        <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
+                    </select>  
+                </div>
         <?php } ?>
-   
-    <div> Appointment Type: </div>
-    <div>
-    <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
-    <label> Request Documents From Registrar</label><br>
-    <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
-    <label> Evaluation of Grades - Department Head</label><br>
-    <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
-    <label> Enrollment</label><br>
-    <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
-    <label> Pre-Enrollment</label><br>
-    <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
-    <label> UniFAST - Claim Cheque</label><br>
-    <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
-    <label> UniFAST - Submit Documents</label><br>
-    <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
-    <label> Meeting</label><br>
-    <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo in_array("Module Claiming/Submission", $array_type)?'checked':'';?>>
-    <label> Module Claiming/Submission</label><br>
-    <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
-    <label> Request for Grades</label><br>
-    <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
-    <label> Project Submission</label><br>
-    <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
-    <label> Presentation</label><br>
-    </div>
+    
+        <div> Appointment Type: </div>
+        <div>
+            <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
+            <label> Request Documents From Registrar</label><br>
+            <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
+            <label> Evaluation of Grades - Department Head</label><br>
+            <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
+            <label> Enrollment</label><br>
+            <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
+            <label> Pre-Enrollment</label><br>
+            <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
+            <label> UniFAST - Claim Cheque</label><br>
+            <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
+            <label> UniFAST - Submit Documents</label><br>
+            <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
+            <label> Meeting</label><br>
+            <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo in_array("Module Claiming/Submission", $array_type)?'checked':'';?>>
+            <label> Module Claiming/Submission</label><br>
+            <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
+            <label> Request for Grades</label><br>
+            <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
+            <label> Project Submission</label><br>
+            <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
+            <label> Presentation</label><br>
+        </div>
 
-    <div>
-    <button type="submit" name="button_edit_profile">Save Changes</button>
-    </div>
-<HR>
-    <div><h2>Change Password</h2></div>
-<label>Current password</label>
-    <div>
-		<input type="password" name="currentpass" value="" placeholder="Current password" minlength="5" autocomplete="off" />
-	</div>
-    <label>New Password</label>
-    <div >
-		<input type="password" name="newpass" value="" placeholder="New password" minlength="5" autocomplete="off" />
-	</div>
-    <div class="">
-		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
-	</div>
-    <label>Re-enter New Password</label>
-    <div>
-		<input type="password" name="newpass_verify" value="" placeholder="Re-enter new password" minlength="5" autocomplete="off" />
+        <div>
+        <button type="submit" name="button_edit_profile">Save Changes</button>
+        </div>
 
-    <div>
-		<button class="" type="submit" name="button_change_pass">Change Password</button>
-	</div>
-</form>
+    <hr>
+        <div><h2>Change Password</h2></div>
+        <label>Current password</label>
+        <div>
+            <input type="password" name="currentpass" value="" placeholder="Current password" minlength="5" autocomplete="off" />
+        </div>
+        <label>New Password</label>
+        <div >
+            <input type="password" name="newpass" value="" placeholder="New password" minlength="5" autocomplete="off" />
+        </div>
+        <div class="">
+            <p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
+        </div>
+        <label>Re-enter New Password</label>
+        <div>
+            <input type="password" name="newpass_verify" value="" placeholder="Re-enter new password" minlength="5" autocomplete="off" />
+
+        <div>
+            <button class="" type="submit" name="button_change_pass">Change Password</button>
+        </div>
+    </form>
 
 <?php
 $staff_id = $row['staff_id'];
@@ -178,3 +187,10 @@ $staff_id = $row['staff_id'];
 
 </body>
 </html>
+<style>
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
+</style>
