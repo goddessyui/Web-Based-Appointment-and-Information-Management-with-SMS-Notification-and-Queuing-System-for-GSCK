@@ -11,8 +11,8 @@
 
 
 
-if (isset($_GET['del'])) {
-	$id = $_GET['del'];
+if (isset($_GET['edit'])) {
+	$id = $_GET['edit'];
     session_start();
     $_SESSION['announcement_id'] = $id;
     echo '<script>window.location.href="announcement_edit.php"</script>';

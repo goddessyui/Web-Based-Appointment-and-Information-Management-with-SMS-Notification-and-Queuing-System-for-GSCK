@@ -47,7 +47,7 @@ if ($staff_id == "" || $staff_username == ""){
                                     <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
                                     <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
                                     </div> <div>    
-                    <a href="Staff/announcement/get_announcement.php?del=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
+                    <a href="Staff/announcement/get_announcement.php?edit=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
                     <a href="Staff/announcement/announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
                 <button style="background-color: #f44336";>Delete</button>
                         </a>	
