@@ -90,13 +90,13 @@ if(isset($_GET["updation"]))
                         <input type="text" id="batchstatus" name="batchstatus" required>
                     </span>
                     
-                <input type="submit" value="ADD A STUDENT" name="add"><br/><br>
+                <input type="submit" value="ADD A STUDENT" name="add">
             </form>
             <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
         <?php
         
         //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
-            $ugquery = "SELECT * FROM tbl_unifast_grantee";
+            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC";
             $ugresult = mysqli_query($db, $ugquery);
 
             while($row = mysqli_fetch_array($ugresult))
