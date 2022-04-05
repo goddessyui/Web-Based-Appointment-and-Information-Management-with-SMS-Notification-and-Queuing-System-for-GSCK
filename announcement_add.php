@@ -125,13 +125,14 @@ if (isset($_POST['button_add_announcement'])) {
     $date = date("Y-m-d H:i:s");
     $stmt = $db->prepare('INSERT INTO tbl_announcement (announcement_title,caption,image,date_created,staff_id) VALUES (?,?,?,?,?)');
     $stmt->bind_param("sssss", $title, $caption, $img, $datetime, $staff_id1);
-    $img = basename($_FILES['image']['name']);
+    $temp = explode(".", $_FILES["image"]["name"]);
+    $newfilename = round(microtime(true)) . '.' . end($temp);
+    $img = $newfilename;
     $title = $_POST['title'];
     $caption = $_POST['caption'];
     $datetime = $date;
     $staff_id1 = $staff_id;
-    $menu_photo = "announcement_image/" . basename($_FILES['image']['name']);
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], "announcement_image/" . $newfilename)) {
         $stmt->execute();
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
