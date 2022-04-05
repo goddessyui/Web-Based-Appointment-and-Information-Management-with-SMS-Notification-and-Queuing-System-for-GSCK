@@ -75,19 +75,6 @@ if ($staff_id == ""){
 						<span>Staff Records</span>
 					</a>
 				</li>
-			<?php
-            	}
-            	else if($position == "Accounting Staff/Scholarship Coordinator"){
-            ?>
-				<li>
-					<a href="upload_unifast_grantee.php">
-						<span class="las la-receipt"></span>
-						<span>Unifast Grantee Records</span>
-					</a>
-				</li>
-			<?php
-            	}
-            ?>
 
 				<li>
 					<a href="staff_appointment_details.php">
@@ -95,7 +82,42 @@ if ($staff_id == ""){
 						<span>My Appointments</span>
 					</a>
 				</li>
-				<li></li>
+				
+			<?php
+            	}
+            	else if($position == "Accounting Staff/Scholarship Coordinator"){
+            ?>
+				<li>
+					<a href="upload_unifast_grantee.php">
+						<span class="las la-receipt"></span>
+						<span>UniFAST Grantee Records</span>
+					</a>
+				</li>
+				<li>
+					<a href="claimcheque_pendingapp.php">
+						<span class="las la-receipt"></span>
+						<span>UniFAST - Claim Cheque</span>
+					</a>
+				</li>
+				<li>
+					<a href="submitdocu_pendingapp.php">
+						<span class="las la-receipt"></span>
+						<span>UniFAST - Submit Documents</span>
+					</a>
+				</li>
+				<li>
+					<a href="staff_appointment_details.php">
+						<span class="las la-user-circle"></span>
+						<span>My Other Appointments</span>
+					</a>
+				</li>
+			<?php
+            	}
+            ?>
+
+				
+			
+
 				<li>
 					<a href="logout.php">
 						<span class="las la-user-circle"></span>
