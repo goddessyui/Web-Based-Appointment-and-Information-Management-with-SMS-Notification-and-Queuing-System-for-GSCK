@@ -82,11 +82,12 @@
                 ?>
             </div>
         </div>
+        <h3>My Appointments</h3>
         <?php
         }//End of show if Registrar
         ?>
         <!---------------Reports for Registrar------------------------------------------------->
-
+        
        <?php
         include("count_app.php");
        ?>
@@ -158,9 +159,9 @@
                         $applimit = "SELECT * FROM tbl_appointment_limit WHERE limit_id = '1'";
                         $al = mysqli_query($db, $applimit);
                         while($limit= mysqli_fetch_assoc($al)){
-                        echo $limit['appointment_limit'];
+                            echo $limit['appointment_limit'];
                         }
-                    }
+                  
                 ?>
             </div>
             <div>
@@ -175,7 +176,7 @@
                         $al = mysqli_query($db, $applimit);
                         $count = mysqli_num_rows($al);
                         echo $count;
-                    
+                    }
                 ?>
             </div>
             

@@ -130,11 +130,9 @@ $student_id = $row['student_id'];
     }
 }
     
-    
+include("backtotop.php");  
 
 ?>
-
-
 
 
 

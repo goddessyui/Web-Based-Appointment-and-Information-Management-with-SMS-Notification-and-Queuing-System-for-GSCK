@@ -1,5 +1,5 @@
  <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
- <h3>My Data</h3>
+        
         <div class="sc_container">
             <!--------------Start of No. of Active Requests-------------->
             <div class="status_count">
