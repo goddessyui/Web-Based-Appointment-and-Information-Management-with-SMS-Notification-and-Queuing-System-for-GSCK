@@ -195,10 +195,11 @@
             else{ //if not Accounting Staff/Scholarship Coordinator
                 echo "Test: You are not an Accounting Staff/Scholarship Coordinator";
             }//if not Accounting Staff/Scholarship Coordinator
+        
+            include("backtotop.php");
+        
         ?>
-        <!-------------------------------Start of the BACK TO TOP BUTTON ------------------------------------>
-        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-        <!-------------------------------End of the BACK TO TOP BUTTON ------------------------------------>   
+       
     </main>
 </body>
 </html>
