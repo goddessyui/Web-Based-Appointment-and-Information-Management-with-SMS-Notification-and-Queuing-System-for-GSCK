@@ -52,6 +52,10 @@ include('header.php');
     </div>
 </div>
 
+    <?php
+     include("backtotop.php");
+    ?>
+
 <style>
     .main_container {
         width: 100%;
