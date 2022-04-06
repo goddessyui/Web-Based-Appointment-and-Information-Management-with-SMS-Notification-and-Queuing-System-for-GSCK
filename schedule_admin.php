@@ -107,14 +107,19 @@ if ($staff_id == "" || $username == ""){
     }
     </script>
 
-    <style>
-        body {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 20px;
-            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
-        }
 
+</head>
+<body>
+    <main>
+        <h2>Calendar Scheduler</h2>
+        <div class="response"></div>
+        <div id='calendar'></div>
+    </main>
+</body>
+
+
+</html>
+<style>
         #calendar {
             width: 800px;
             margin: 0 auto;
@@ -130,15 +135,9 @@ if ($staff_id == "" || $username == ""){
             border: #c3e6c3 1px solid;
             display: inline-block;
         }
+        main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
     </style>
-</head>
-<body>
-    <main>
-        <h2>Calendar Scheduler</h2>
-        <div class="response"></div>
-        <div id='calendar'></div>
-    </main>
-</body>
-
-
-</html>
