@@ -92,7 +92,6 @@ $row = $query->fetch_assoc();
       URL.revokeObjectURL(output.src) // free memory
       document.getElementById("video_link").disabled = true;
       document.getElementById("remove_btn").disabled = false;
-      $("#imagevalidate").val("valid");
       document.getElementById("check").disabled = true;
     }
     };
@@ -146,21 +145,32 @@ if (isset($_POST['button_edit_announcement'])) {
     $link = !empty($_POST['video_link'])?$_POST['video_link']:'';
     $imagevalidate = $_POST['imagevalidator'];
     
-    if(!empty($imagevalidate) && !empty($image) && empty($link)){
+    if(!empty($image) && empty($link)){
 
         $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, image=?, video_url=? where announcement_id=?');
         $stmt->bind_param("sssss", $title, $caption, $img, $links, $ann_id);
         $title = $_POST['edit_title'];
         $caption = $_POST['edit_caption'];
-        $img = basename($_FILES['image']['name']);
+        $temp = explode(".", $_FILES["image"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $img = $newfilename;
         $links = null;  
-        $menu_photo = "../../announcement_image/" . basename($_FILES['image']['name']);
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $menu_photo)) {
+        if (!empty($imagevalidate)){
+            $filename = "../../announcement_image/" . $row['image'];
+            if (file_exists($filename)) {
+            unlink($filename);
+            }else {
+                echo '<script type="text/javascript">alert("aaa");window.location.href="../../announcement_admin.php"</script>';
+              }
+            }
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], "../../announcement_image/" . $newfilename)) {
             $stmt->execute();
             echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
         } else {
             echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
         }
+
+    
     }
 
 
@@ -182,7 +192,7 @@ if (isset($_POST['button_edit_announcement'])) {
 
 
 
-    else if(empty($imagevalidate) && !empty($link)){
+    else if(empty($image) && !empty($link)){
 
         $url = $link;
           $finalUrl = '';
@@ -219,13 +229,15 @@ if (isset($_POST['button_edit_announcement'])) {
       }
 
 
-      else if(empty($imagevalidate) && empty($link)){
+      else if(empty($image) && empty($link)){
         $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, image=?, video_url=? where announcement_id=?');
         $stmt->bind_param("sssss", $title, $caption, $links, $img, $ann_id);
         $title = $_POST['edit_title'];
         $caption = $_POST['edit_caption'];
         $img = null;
         $links = null; 
+        $filename = $row['image']?"../../announcement_image/" . $row['image']:'.jpg';
+        file_exists($filename)?unlink($filename):'';
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
         } else {
