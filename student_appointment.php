@@ -144,43 +144,44 @@ if (empty($_SESSION['student_id'])){
                 $result = mysqli_query($db, $staff_appointment);
                 if($result==TRUE) {
                     $count = mysqli_num_rows($result);
+
                     if($count > 0) {
         ?>  
-                         <!-- Modal content -->
-                    <div class="at-modal-content">
-                        <div class="at-modal-header">
-                            <div><h2>Appointment Type: <?php echo $appointment_type;?></h2></div>
-                            <div><h3>Select A Staff Member:</h3></div>
-                            <div><span class="at-close">&times;</span></div>
-                        </div>
-                        <div class="at-modal-body">
-                        <!-- This starts the Form For Getting List of Teachers and Submitting the Appointment Request-->  
-                        <form action="appointment/student_insert_appointment.php" method="post">                 
+                        <!-- Modal content -->
+                        <div class="at-modal-content">
+                            <div class="at-modal-header">
+                                <div><h2>Appointment Type: <?php echo $appointment_type;?></h2></div>
+                                <div><h3>Select A Staff Member:</h3></div>
+                                <div><span class="at-close">&times;</span></div>
+                            </div>
+                            <div class="at-modal-body">
+                            <!-- This starts the Form For Getting List of Teachers and Submitting the Appointment Request-->  
+                            <form action="appointment/student_insert_appointment.php" method="post">                 
                         <?php 
-                            while($rows = mysqli_fetch_assoc($result)) { 
+                        while($rows = mysqli_fetch_assoc($result)) { 
                         ?>
-                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
-                                <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">                   
-                        <?php   
-                            }
+                                    <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                    <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                    <input type="hidden" name="appointmenttype" value="<?php echo $appointment_type;?>">                   
+            <?php   
+                        }
                     }
                 }
-                        ?>
-                            <br><br>
-                            <h4>Note to Staff (Optional):</h4>
-                            <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                            Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
-                            <textarea name="note"></textarea>
-                            <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
-                            <br><br>
-                            <input type="submit" id="request" name="request" value="Request Appointment">
-                        </form><br><br>
-                        </div>
-                        <div class="at-modal-footer">
-                            <h5>GSCK Appointment and Information Management System</h5>
-                        </div>
-                    </div><!-- Modal content -->
+                            ?>
+                                <br><br>
+                                <h4>Note to Staff (Optional):</h4>
+                                <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
+                                Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                <textarea name="note"></textarea>
+                                <input type="hidden" name="at" value="<?php echo $appointment_type;?>">
+                                <br><br>
+                                <input type="submit" id="request" name="request" value="Request Appointment">
+                            </form><br><br>
+                            </div>
+                            <div class="at-modal-footer">
+                                <h5>GSCK Appointment and Information Management System</h5>
+                            </div>
+                        </div><!-- Modal content -->
                 </div><!------------ End of Modal ------------------------------>
         <?php        
             }

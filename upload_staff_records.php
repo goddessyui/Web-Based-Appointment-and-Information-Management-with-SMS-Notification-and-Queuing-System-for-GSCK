@@ -93,9 +93,8 @@ if(isset($_GET["updation"]))
     //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
         $staffrecordquery = "SELECT * FROM tbl_staff_record ORDER BY staff_id ASC";
         
-
         $staffrecordresult = mysqli_query($db, $staffrecordquery);
-
+            
         while($row = mysqli_fetch_array($staffrecordresult))
         {
     ?>

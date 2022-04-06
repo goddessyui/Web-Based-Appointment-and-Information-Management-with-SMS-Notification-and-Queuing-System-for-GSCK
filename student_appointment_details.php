@@ -181,7 +181,7 @@ if (empty($_SESSION['student_id'])){
     </div><!---------End of Show Appointment Based on Status----------------------------------->
     <!-------------------------------Start of the BACK TO TOP BUTTON ------------------------------------>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    <!-------------------------------End of the BACK TO TOP BUTTON ------------------------------------>        
+    <!-------------------------------End of the BACK TO TOP BUTTON ------------------------------------->        
 </div><!--End of parent-div-->
 <style>
     .parent-div{

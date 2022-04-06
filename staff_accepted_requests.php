@@ -72,7 +72,18 @@
                             <div>
                                 <p><?php echo $i++; ?></p>
                                 <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
+                                <p><span>Appointment Date: </span><?php 
+                                    $appointment_date = $rows['appointment_date'];
+                                    
+                                    if($appointment_date<=$currentdate){
+                                        echo "<font color='red';>" . $appointment_date . "</font>";
+                                    }
+                                    else {
+                                        echo $rows['appointment_date'];
+
+
+                                    }
+                                ?></p> 
                                 <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
                                 <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
                                 <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
@@ -162,7 +173,17 @@
                         <div>
                             <p><?php echo $i++; ?></p>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
+                            <p><span>Appointment Date: </span>
+                                <?php 
+                                    $appointment_date = $rows['appointment_date'];
+                                    
+                                    if($appointment_date>=$currentdate) {
+                                        echo $rows['appointment_date'];
+                                    }
+                                    else {
+                                        echo "<font color='red';>" . $appointment_date . ": MISSED APPOINTMENT" . "</font>";
+                                    }
+                                ?></p> 
                             <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
                             <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
                             <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
@@ -245,7 +266,17 @@
                         <div>
                             <p><?php echo $i++; ?></p>
                             <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
+                            <p><span>Appointment Date: </span>
+                                <?php 
+                                    $appointment_date = $rows['appointment_date'];
+                                    
+                                    if($appointment_date>=$currentdate) {
+                                        echo $rows['appointment_date'];
+                                    }
+                                    else {
+                                        echo "<font color='red';>" . $appointment_date . ": MISSED APPOINTMENT" . "</font>";
+                                    }
+                                ?></p> 
                             <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
                             <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
                             <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>

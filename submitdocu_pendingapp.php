@@ -5,7 +5,7 @@
         <?php 
             if($position=="Accounting Staff/Scholarship Coordinator") {//if Accounting Staff/Scholarship Coordinator
         ?>  
-            <h2>UniFAST - Submit Documents</h2>
+            <h2>UniFAST - Submit Documents Appointment Requests</h2>
             <div class="pending-container">
 
                     <div class="pending-column">
@@ -90,7 +90,7 @@
                                             <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
                                             <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p> 
 
-                                        </div>
+                                        </div><hr>
                                 <?php
                                             }
                                         }
@@ -167,7 +167,7 @@
                                         <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
                                         <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p> 
 
-                                    </div>
+                                    </div><hr>
                             <?php
                                         }
                                     }
@@ -268,9 +268,10 @@
 
 <style>
     main {
-
-            margin-top: 100px;
-        }
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+    }
     .pending-container {
         width: 100%;
         background: lightgrey;
