@@ -46,6 +46,7 @@
     }
 
     #backtotopbtn:hover {
-        background-color: #555; /* Add a dark-grey background on hover */
+        background-color: #fcd228;
+        color: #324e9e;  /* Add a dark-grey background on hover */
     } /*--------------END OF THE CSS FOR THE BACK TO TOP BUTTON------------------------*/
 </style>
