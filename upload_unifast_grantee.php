@@ -1,7 +1,6 @@
 <?php
 include("admin_header.php");
-//show error message
-$message = '';
+
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
@@ -61,11 +60,16 @@ if(isset($_GET["updation"]))
         
         <!----------------------Form to Upload CSV ------------------------------------------------------------> 
         <form method="post" enctype='multipart/form-data'>
-            <p><label>Please Select File(Only CSV Format)</label>
-            <input type="file" name="ug_file" /></p>
+            <label>Please Select File(Only CSV Format)</label>
+            <input type="file" name="ug_file" />
+            <?php
+                //show error message
+                $message = '';
+            ?>
             <br />
             <input type="submit" name="upload" class="btn btn-info" value="Upload" />
         </form>
+        
         <!----------------------Form to Upload CSV ------------------------------------------------------------>
         <br />
         <?php echo $message; ?>
@@ -116,12 +120,12 @@ if(isset($_GET["updation"]))
                         <input type="text" id="studentid" name="studentid" required>
                     </span>
                     <span class="ug_data">
-                        <label for="firstname">First Name</label>
-                        <input type="text" id="firstname" name="firstname" required>
-                    </span>
-                    <span class="ug_data">
                         <label for="lastname">Last Name</label>
                         <input type="text" id="lastname" name="lastname" required>
+                    </span>
+                    <span class="ug_data">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname" required>
                     </span>
                     <span class="ug_data">
                         <label for="batchstatus">Batch Status</label>
@@ -134,21 +138,26 @@ if(isset($_GET["updation"]))
         <?php
         
         //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
-            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC";
+            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC, first_name ASC";
             $ugresult = mysqli_query($db, $ugquery);
-
+            
             while($row = mysqli_fetch_array($ugresult))
             {
         ?>
                 <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
+                
+                
                 <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
-                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>">                 
+                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>"> 
+                    <input type="text" id="lastname" name="lastname" value="<?php echo $row["last_name"]?>">               
                     <input type="text" id="firstname" name="firstname" value="<?php echo $row["first_name"]?>">                  
-                    <input type="text" id="lastname" name="lastname" value="<?php echo $row["last_name"]?>">
                     <input type="text" id="batchstatus" name="batchstatus" value="<?php echo $row["batch_status"]?>">
                     <button  type="submit" name="update">UPDATE</button>
-                    <button type="submit" name="delete">DELETE</button><br />
+                    <button type="submit" name="delete">DELETE</button><br>
+             
+
                 </form>
+                
                 <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
         <?php
             }

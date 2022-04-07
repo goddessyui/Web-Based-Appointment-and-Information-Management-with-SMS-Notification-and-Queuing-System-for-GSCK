@@ -1,8 +1,6 @@
 <?php
 include_once("admin_header.php");
 
-//show error message
-$message = '';
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
@@ -59,8 +57,12 @@ if(isset($_GET["updation"]))
     <br />
     <!----------------------Form to Upload CSV ------------------------------------------------------------> 
     <form method="post" enctype='multipart/form-data'>
-        <p><label>Please Select File(Only CSV Format)</label>
-        <input type="file" name="student_file" /></p>
+        <label>Please Select File(Only CSV Format)</label>
+        <input type="file" name="student_file" />
+        <?php
+                //show error message
+                $message = '';
+            ?>
         <br />
         <input type="submit" name="upload" class="btn btn-info" value="Upload" />
     </form>
