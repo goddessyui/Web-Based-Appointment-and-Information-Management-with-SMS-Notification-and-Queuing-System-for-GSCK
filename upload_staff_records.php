@@ -70,6 +70,18 @@ if(isset($_GET["updation"]))
     <br />
     <?php echo $message; ?>
         <h3 align="center">Staff Record</h3>
+
+        <div class="stat_counter">
+                <h5>No. of Employed Staff</h5>
+                <p>
+                    <?php
+                        $enrolledstaff = "SELECT * FROM tbl_staff_record";
+                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                        $count = mysqli_num_rows($enrolledstaff_result);
+                        echo $count;
+                    ?>
+                </p>
+            </div>
    
     <br />
         <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
