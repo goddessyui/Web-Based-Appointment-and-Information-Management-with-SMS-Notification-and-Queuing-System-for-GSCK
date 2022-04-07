@@ -58,6 +58,7 @@ if(isset($_GET["updation"]))
     <div class="container">
         <h2 align="center">Update UniFAST Grantee Records</a></h2>
         <br />
+        
         <!----------------------Form to Upload CSV ------------------------------------------------------------> 
         <form method="post" enctype='multipart/form-data'>
             <p><label>Please Select File(Only CSV Format)</label>
@@ -69,6 +70,43 @@ if(isset($_GET["updation"]))
         <br />
         <?php echo $message; ?>
             <h3 align="center">UniFAST Grantee Record</h3>
+
+            <div>
+            <div class="stat_counter">
+                <h5>Total No. of UniFAST Grantees</h5>
+                <p>
+                    <?php
+                        $enrolledstaff = "SELECT * FROM tbl_unifast_grantee";
+                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                        $count = mysqli_num_rows($enrolledstaff_result);
+                        echo $count;
+                    ?>
+                </p>
+            </div>
+            <div class="stat_counter">
+                <h5>No. of Old UniFAST Grantees</h5>
+                <p>
+                    <?php
+                        $enrolledstaff = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'old'";
+                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                        $count = mysqli_num_rows($enrolledstaff_result);
+                        echo $count;
+                    ?>
+                </p>
+            </div>
+            <div class="stat_counter">
+                <h5>No. of New UniFAST Grantees</h5>
+                <p>
+                    <?php
+                        $enrolledstaff = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'new'";
+                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                        $count = mysqli_num_rows($enrolledstaff_result);
+                        echo $count;
+                    ?>
+                </p>
+            </div>
+
+        </div>
     
         <br />
                 <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
