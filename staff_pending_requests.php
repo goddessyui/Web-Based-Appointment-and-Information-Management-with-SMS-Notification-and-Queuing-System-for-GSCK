@@ -5,7 +5,19 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
 <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->          
         <?php
             $staff_id = $_SESSION["staff_id"];
-
+        if (isset($_GET['apde'])){
+            $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
+                tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
+                tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
+                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                FROM tbl_appointment INNER JOIN tbl_staff_registry 
+                ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+                WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+                AND tbl_staff_registry.staff_id = '$staff_id' AND tbl_appointment.appointment_id = '".$_GET['apde']."' ORDER BY date_created ASC";
+        }
+        else{
             $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                 tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                 tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
@@ -16,7 +28,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                 WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
                 WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
                 AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY date_created ASC";
-
+        }
              $request_result = mysqli_query($db, $requests);
              //check whether the query is executed or not
             if($request_result==TRUE) 

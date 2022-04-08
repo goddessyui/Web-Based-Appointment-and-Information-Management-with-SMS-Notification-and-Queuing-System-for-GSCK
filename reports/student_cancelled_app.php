@@ -1,7 +1,19 @@
 
 <!----------------Shows Student's Cancelled Appointments------------------------------------------------------------>
 <?php
-
+if (isset($_GET['apde'])){
+    $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+    tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
+    tbl_appointment.note, tbl_appointment_detail.comment
+    FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+    ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+    INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+    INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+    WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Cancelled'
+    AND tbl_appointment.appointment_id = '".$_GET['apde']."'
+    ORDER BY tbl_appointment_detail.appointment_date DESC";
+}
+else {
     $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
         tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
         tbl_appointment.note, tbl_appointment_detail.comment
@@ -11,7 +23,7 @@
         INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
         WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Cancelled' 
         ORDER BY tbl_appointment_detail.appointment_date DESC";
-    
+}
     $cancelled_appointment_list = mysqli_query($db, $cancelledappointments);
                 
     //check whether the query is executed or not

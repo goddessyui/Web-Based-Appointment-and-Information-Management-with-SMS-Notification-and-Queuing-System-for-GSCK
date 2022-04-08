@@ -4,6 +4,12 @@
     <main><!-------------------------------Start of main div------------------------------------>
     <?php
         include("count_app.php");
+
+        if (isset($_GET['status'])){
+          ?> <hr><a href="staff_appointment_details.php"><button type="button">View all appointment</button></a><hr> <?php 
+          include("staff_pending_requests.php");   
+        }
+        else{
        ?>
 
 
@@ -55,7 +61,7 @@
                         include("reports/staff_done_requests.php");
                     ?>
                 </div>
-            </div><!------End of Appointment Status Includes ---------->
+            </div><!------End of Appointment Status Includes ----------><?php } ?>
             <hr>
         </div><!-------------------------------End of Show Appointment Based on Status -------------------------->
         <?php

@@ -132,6 +132,25 @@ if (empty($_SESSION['student_id'])){
     
     <div><!---------Start of Show Appointment Based on Status----------------------------------->
     <h3 align="center">Student Appointment Details</h3><br><hr>
+
+   <?php if (isset($_GET['status'])){
+          ?> <hr><a href="student_appointment_details.php"><button type="button">View all appointment</button></a><hr> <?php 
+          if($_GET['status'] == 'accepted'){
+            include("reports/student_accepted_app.php");
+          }
+          if($_GET['status'] == 'declined'){
+            include("reports/student_declined_app.php");
+          }
+          if($_GET['status'] == 'reschedule'){
+            include("reports/student_accepted_app.php");
+          }
+          if($_GET['status'] == 'cancel'){
+            include("reports/student_cancelled_app.php");
+          }
+
+        }
+        else{
+       ?>
         <!------Start of Appointment Status Buttons ---------------------->
         <button onclick="activeapp()">Active Appointments</button>
         <button onclick="pendingapp()">Pending Appointments</button>
@@ -177,7 +196,7 @@ if (empty($_SESSION['student_id'])){
                     include("reports/student_done_app.php");
                 ?>
             </div>
-        </div> <!------End of Appointment Status Includes ---------->
+        </div> <!------End of Appointment Status Includes ----------><?php } ?>
     </div><!---------End of Show Appointment Based on Status----------------------------------->
     <?php
      include("backtotop.php");

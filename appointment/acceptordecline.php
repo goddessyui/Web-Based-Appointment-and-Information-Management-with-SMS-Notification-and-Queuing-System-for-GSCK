@@ -40,10 +40,10 @@ session_start();
                   $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
                    $rows = $querys->fetch_assoc();
                    $fullnames = $rows['first_name'].' '.$rows['last_name'];
-                   mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`) VALUES 
+                   mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                    ('REQUEST UPDATE', 
                   '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
-                  '$student_id')");
+                  '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
                   header("refresh:2;url=../staff_appointment_details.php");
                   echo "Appointment request accepted and scheduled on". " ". $appointment_date;
@@ -91,10 +91,10 @@ session_start();
             $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
             $rows = $querys->fetch_assoc();
             $fullnames = $rows['first_name'].' '.$rows['last_name'];
-            mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`) VALUES 
+            mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
             ('REQUEST UPDATE', 
             '$fullnames has DECLINED your request for  $appointment_type', '0', 
-            '$student_id')");
+            '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
 
             header("refresh:2;url=../staff_appointment_details.php");
             echo "Appointment Request Declined.";
