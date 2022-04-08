@@ -1,10 +1,6 @@
 <?php
  
 
-
- 
-
-//fetch notification
 if(isset($_POST["view"]))
 {
  include("dbconfig.php");
@@ -23,7 +19,7 @@ if(isset($_POST["view"]))
   {
    $output .= '
    <li>
-    <a href="#">
+    <a href="'.$row["link"].'">
      <strong>'.$row["notification_subject"].'</strong><br />
      <small><em>'.$row["notification_text"].'</em></small>
     </a>

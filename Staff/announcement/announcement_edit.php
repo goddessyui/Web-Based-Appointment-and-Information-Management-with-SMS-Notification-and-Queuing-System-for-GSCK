@@ -6,14 +6,15 @@ $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-if ($staff_id == "" || $staff_username == ""){
-   echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
-}
 
 $ann_id = $_SESSION['announcement_id'];
 $query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id='{$ann_id}'");
 $row = $query->fetch_assoc();
 
+
+if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
+    echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
+ }
 ?>
 
 <script>
@@ -160,11 +161,13 @@ if (isset($_POST['button_edit_announcement'])) {
             if (file_exists($filename)) {
             unlink($filename);
             }else {
-                echo '<script type="text/javascript">alert("aaa");window.location.href="../../announcement_admin.php"</script>';
+                echo '<script type="text/javascript">alert("Updated Unsuccessful!");window.location.href="../../announcement_admin.php"</script>';
               }
             }
         if (move_uploaded_file($_FILES["image"]["tmp_name"], "../../announcement_image/" . $newfilename)) {
             $stmt->execute();
+            $edit = "true";
+            include ('../../notification_announcement.php');
             echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
         } else {
             echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
@@ -183,6 +186,8 @@ if (isset($_POST['button_edit_announcement'])) {
         $caption = $_POST['edit_caption'];
         $links = null;  
         if ($stmt->execute()) {
+            $edit = "true";
+            include ('../../notification_announcement.php');
             echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
         } else {
             echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
@@ -197,14 +202,12 @@ if (isset($_POST['button_edit_announcement'])) {
         $url = $link;
           $finalUrl = '';
           if(strpos($url, 'youtube.com/') !== false) {
-              //it is Youtube video
               $videoId = explode("v=",$url)[1];
               if(strpos($videoId, '&') !== false){
                   $videoId = explode("&",$videoId)[0];
               }
               $finalUrl.='https://www.youtube.com/embed/'.$videoId;
           }else if(strpos($url, 'youtu.be/') !== false){
-              //it is Youtube video
               $videoId = explode("youtu.be/",$url)[1];
               if(strpos($videoId, '&') !== false){
                   $videoId = explode("&",$videoId)[0];
@@ -222,6 +225,8 @@ if (isset($_POST['button_edit_announcement'])) {
         $img = null;
           $links = $finalUrl;   
           if ($stmt->execute()) {
+            $edit = "true";
+            include ('../../notification_announcement.php');
               echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
           } else {
               echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
@@ -239,6 +244,9 @@ if (isset($_POST['button_edit_announcement'])) {
         $filename = $row['image']?"../../announcement_image/" . $row['image']:'.jpg';
         file_exists($filename)?unlink($filename):'';
         if ($stmt->execute()) {
+            
+            $edit = "true";
+            include ('../../notification_announcement.php');
             echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
         } else {
             echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';

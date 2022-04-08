@@ -134,6 +134,11 @@ if (isset($_POST['button_add_announcement'])) {
     $staff_id1 = $staff_id;
     if (move_uploaded_file($_FILES["image"]["tmp_name"], "announcement_image/" . $newfilename)) {
         $stmt->execute();
+     
+        $add_id = $db->insert_id;
+        $add = "true";
+        include ('notification_announcement.php');
+
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
         echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
@@ -175,6 +180,11 @@ else if(empty($image) && !empty($link)){
     $staff_id1 = $staff_id;
     $links = $finalUrl;
     if ($stmt->execute()) {
+
+        $add_id = $db->insert_id;
+        $add = "true";
+        include ('notification_announcement.php');
+
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
         echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
@@ -192,6 +202,11 @@ else if(empty($image) && !empty($link)){
     $datetime = $date;
     $staff_id1 = $staff_id;
     if ($stmt->execute()) {
+       
+        $add_id = $db->insert_id;
+        $add = "true";
+        include ('notification_announcement.php');
+
         echo '<script type="text/javascript">alert("Added Successfully!");window.location.href="announcement_admin.php"</script>';
     } else {
         echo '<script type="text/javascript">alert("Added Unsuccessful! Photo file format!");window.location.href="announcement_admin.php"</script>';
