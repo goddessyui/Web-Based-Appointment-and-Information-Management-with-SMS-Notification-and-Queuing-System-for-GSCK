@@ -15,10 +15,13 @@ if ($staff_id == "" || $staff_username == ""){
         <div class="container">
             <h2>Announcement</h2>
             <br>
+            <?php if (isset($_GET['ann'])){ ?>
+            <a href="announcement_admin.php"><button type="button">View all</button></a>
+            <?php } ?>
             <a href="announcement_add.php"><button type="button">Add announcement</button></a>
             <table class="table">
-            
                     <?php
+                    if (isset($_GET['ann'])){
                     $sql = "SELECT
                     tbl_announcement.announcement_id,
                     tbl_announcement.staff_id,
@@ -29,9 +32,23 @@ if ($staff_id == "" || $staff_username == ""){
                     tbl_announcement.video_url
                     FROM
                     tbl_announcement
+                    WHERE announcement_id = '".$_GET["ann"]."'
                     ORDER BY date_created DESC                          
                     ";
-
+                    } else {
+                        $sql = "SELECT
+                        tbl_announcement.announcement_id,
+                        tbl_announcement.staff_id,
+                        tbl_announcement.announcement_title,
+                        tbl_announcement.caption,
+                        tbl_announcement.image,
+                        tbl_announcement.date_created,
+                        tbl_announcement.video_url
+                        FROM
+                        tbl_announcement
+                        ORDER BY date_created DESC                          
+                        "; 
+                    }
                     $res = mysqli_query($db, $sql);
                     if (mysqli_num_rows($res) > 0) {
 
@@ -46,21 +63,22 @@ if ($staff_id == "" || $staff_username == ""){
                                     <div>
                                     <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
                                     <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
-                                    </div> <div>    
-                    <a href="Staff/announcement/get_announcement.php?edit=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>">Edit</button></a>
+                                    </div> <div>  
+                    <a href="Staff/announcement/get_announcement.php?edit=<?php echo $row['announcement_id']; ?>"> <button onclick="<?php unset($_SESSION['announcement_id'])?>" <?php echo $staff_id==$row['staff_id']?'':'disabled'; ?>>Edit</button></a>
                     <a href="Staff/announcement/announcement_delete.php?del=<?php echo $row['announcement_id']; ?>" class="del_btn" onclick="return confirm('Are you sure?')">
-                <button style="background-color: #f44336";>Delete</button>
+                    <button <?php echo $staff_id==$row['staff_id']?'style="background-color: #f44336";':'disabled'; ?>>Delete</button>
                         </a>	
-                            
                             </div>
                                             
                     <?php
 
                         }
                     }
-
+                    else{
                     ?>
-                
+                    <h1>NO ANNOUNCEMENT FOUND</h1>
+                    <h5><?php echo isset($_GET["ann"])?"UPLOADER MUST HAVE DELETED THE ANNOUNCEMENT":""; ?></h5>
+                    <?php } ?>
             </table>
         </div>
     </main>
