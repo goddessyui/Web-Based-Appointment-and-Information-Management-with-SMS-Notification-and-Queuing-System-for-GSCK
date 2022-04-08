@@ -201,7 +201,7 @@ if (empty($_SESSION['student_id'])){
     text-align: center;
     padding: 20px;
     }
-    #appactive,
+
     #apppending,
     #appmissed,
     #appdeclined,
