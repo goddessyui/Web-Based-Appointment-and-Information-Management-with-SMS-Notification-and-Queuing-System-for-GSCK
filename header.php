@@ -451,7 +451,7 @@ nav ul button {
 
 <script>
 $(document).ready(function(){
- var id = '<?php echo !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:$_SESSION["student_id"]; ?>'
+ var id = '<?php echo !empty($_SESSION["student_id"])?$_SESSION["student_id"]:''; ?>'
  function load_unseen_notification(view = '')
  {
   $.ajax({
