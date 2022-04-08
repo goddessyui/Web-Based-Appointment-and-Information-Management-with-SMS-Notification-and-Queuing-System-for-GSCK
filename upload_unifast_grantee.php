@@ -115,6 +115,7 @@ if(isset($_GET["updation"]))
         <br />
                 <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
                 <form action="Staff/accounting_staff/add_unifastgrantee.php" method="post">
+                   
                     <span class="ug_data">
                         <label for="studentid">Student ID</label>
                         <input type="text" id="studentid" name="studentid" required>
@@ -128,19 +129,72 @@ if(isset($_GET["updation"]))
                         <input type="text" id="firstname" name="firstname" required>
                     </span>
                     <span class="ug_data">
-                        <label for="batchstatus">Batch Status</label>
-                        <input type="text" id="batchstatus" name="batchstatus" required>
+                     
+                        <select required name="batchstatus">
+                            <option value="">Batch Status</option>
+                            <option value="old">old</option>
+                            <option value="new">new</option>
+                        </select>
+                        
                     </span>
                     
-                <input type="submit" value="ADD A STUDENT" name="add">
+                <input type="submit" value="ADD A STUDENT" name="add"><br><br>
             </form>
             <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
+        
+                                  <!--success or error-->
+                                  <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            if(isset($_GET['error'])){
+                        ?>
+                                        <p align="center">
+                                            <?php 
+                                                echo $_GET['error'];
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                            else{
+                            }
+                        ?>
+                        <!--success or error-->
+        
+        
+        
+        
         <?php
         
+        
         //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
-            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC, first_name ASC";
+
+
+            //-----------For pagination-------------//
+            if (isset($_GET['pageno'])) {
+                $pageno = $_GET['pageno'];
+            } else {
+                $pageno = 1;
+            }
+            $no_of_records_per_page = 25;
+            $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+            $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
+            $theresult = mysqli_query($db, $total_pages_sql);
+            $total_rows = mysqli_fetch_array($theresult)[0];
+            $total_pages = ceil($total_rows / $no_of_records_per_page);
+             //-----------For pagination-------------//
+        
+            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name, first_name LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
             $ugresult = mysqli_query($db, $ugquery);
-            
+            $i=1;
             while($row = mysqli_fetch_array($ugresult))
             {
         ?>
@@ -165,33 +219,26 @@ if(isset($_GET["updation"]))
         ?>
 
     </div>
-                          <!--success or error-->
-                          <?php 
-                            if(isset($_GET['success'])){
-                        ?>
-                                <p align="center">
-                                    <?php 
-                                        echo $_GET['success'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                            if(isset($_GET['error'])){
-                        ?>
-                                        <p align="center">
-                                            <?php 
-                                                echo $_GET['error'];
-                                            ?>
-                                        </p>
-                                <?php
-                                    }
-                            else{
-                            }
-                        ?>
-                        <!--success or error-->
+
         <?php
          include("backtotop.php");
         ?> 
+
+
+<!--------Pagination---------------------------------------------->
+<ul class="pagination">
+    <li><a href="?pageno=1">First</a></li>
+    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+    </li>
+    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+    </li>
+    <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+</ul>
+<!--------Pagination---------------------------------------------->
+
+
     </main>
 </body>
 </html>
