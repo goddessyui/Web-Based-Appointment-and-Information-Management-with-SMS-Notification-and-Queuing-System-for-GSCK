@@ -88,45 +88,23 @@ if(isset($_GET["updation"]))
         <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
         <form action="Staff/registrar/add_studentrecord.php" method="post">
             <span class="studentrecord">
-                <label for="studentid">Student ID</label>
-                <input type="text" id="studentid" name="studentid" required>
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname"name="lastname" required>
             </span>
             <span class="studentrecord">
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" name="firstname" required>
             </span>
             <span class="studentrecord">
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname"name="lastname" required>
+                <label for="studentid">Student ID</label>
+                <input type="text" id="studentid" name="studentid" required>
             </span>
+            
             <input type="submit" value="ADD A STUDENT" name="add">
         </form>
         <!------Form to Add data to tbl_student_record. Sends data to add_studentrecord.php------------------------------------------------>
-    <?php
-    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
-        $studentrecordquery = "SELECT * FROM tbl_student_record ORDER BY student_id ASC";
-        $studentrecordresult = mysqli_query($db, $studentrecordquery);
-
-        while($row = mysqli_fetch_array($studentrecordresult))
-        {
-    ?>
-            <!--------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
-            <form action="Staff/registrar/updatedelete_studentrecord.php" method="post">
-                <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
-                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
-                <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
-                <button  type="submit" name="update">UPDATE</button>
-                <button type="submit" name="delete">DELETE</button><br />
-            </form>
-            <!---------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
-      <?php
-        }
-    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
-     ?>
-
-  </div>
-                            <!--success or error-->
-                            <?php 
+             <!--success or error-->
+             <?php 
                             if(isset($_GET['success'])){
                         ?>
                                 <p align="center">
@@ -149,9 +127,69 @@ if(isset($_GET["updation"]))
                             }
                         ?>
                         <!--success or error-->
+
+    <?php
+    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
+        
+        //-----------For pagination-------------//
+        if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+        } else {
+            $pageno = 1;
+        }
+        $no_of_records_per_page = 25;
+        $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+        $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
+        $theresult = mysqli_query($db, $total_pages_sql);
+        $total_rows = mysqli_fetch_array($theresult)[0];
+        $total_pages = ceil($total_rows / $no_of_records_per_page);
+         //-----------For pagination-------------//
+    
+    
+        $studentrecordquery = "SELECT * FROM tbl_student_record ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
+        $studentrecordresult = mysqli_query($db, $studentrecordquery);
+
+        while($row = mysqli_fetch_array($studentrecordresult))
+        {
+    ?>
+            <!--------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
+            <form action="Staff/registrar/updatedelete_studentrecord.php" method="post">
+
+                <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">  
+                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+                <input type="text" name="studentid" value="<?php echo $row["student_id"]?>">
+                <button  type="submit" name="update">UPDATE</button>
+                <button type="submit" name="delete">DELETE</button><br />
+                
+            </form>
+            <!---------Send Form Data to updatedelete_studentrecord.php---------------------------------------------->
+      <?php
+        }
+    //----------------------Form to Show, Update, Delete Data From tbl_student_record ------------------------------------------//
+     ?>
+
+  </div>
+                           
         <?php
             include("backtotop.php");
-        ?>           
+        ?>
+        
+        <!--------Pagination---------------------------------------------->
+<ul class="pagination">
+    <li><a href="?pageno=1">First</a></li>
+    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+    </li>
+    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+    </li>
+    <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+</ul>
+<!--------Pagination---------------------------------------------->
+
+
     </main>
 </body>
 </html>

@@ -116,10 +116,7 @@ if(isset($_GET["updation"]))
                 <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
                 <form action="Staff/accounting_staff/add_unifastgrantee.php" method="post">
                    
-                    <span class="ug_data">
-                        <label for="studentid">Student ID</label>
-                        <input type="text" id="studentid" name="studentid" required>
-                    </span>
+                    
                     <span class="ug_data">
                         <label for="lastname">Last Name</label>
                         <input type="text" id="lastname" name="lastname" required>
@@ -129,13 +126,15 @@ if(isset($_GET["updation"]))
                         <input type="text" id="firstname" name="firstname" required>
                     </span>
                     <span class="ug_data">
-                     
+                        <label for="studentid">Student ID</label>
+                        <input type="text" id="studentid" name="studentid" required>
+                    </span>
+                    <span class="ug_data">
                         <select required name="batchstatus">
                             <option value="">Batch Status</option>
                             <option value="old">old</option>
                             <option value="new">new</option>
-                        </select>
-                        
+                        </select>   
                     </span>
                     
                 <input type="submit" value="ADD A STUDENT" name="add"><br><br>
@@ -166,10 +165,7 @@ if(isset($_GET["updation"]))
                             }
                         ?>
                         <!--success or error-->
-        
-        
-        
-        
+
         <?php
         
         
@@ -192,7 +188,7 @@ if(isset($_GET["updation"]))
             $total_pages = ceil($total_rows / $no_of_records_per_page);
              //-----------For pagination-------------//
         
-            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name, first_name LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
+            $ugquery = "SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
             $ugresult = mysqli_query($db, $ugquery);
             $i=1;
             while($row = mysqli_fetch_array($ugresult))
@@ -202,13 +198,14 @@ if(isset($_GET["updation"]))
                 
                 
                 <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
-                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>"> 
+                    
                     <input type="text" id="lastname" name="lastname" value="<?php echo $row["last_name"]?>">               
-                    <input type="text" id="firstname" name="firstname" value="<?php echo $row["first_name"]?>">                  
+                    <input type="text" id="firstname" name="firstname" value="<?php echo $row["first_name"]?>">
+                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>">                
                     <input type="text" id="batchstatus" name="batchstatus" value="<?php echo $row["batch_status"]?>">
+
                     <button  type="submit" name="update">UPDATE</button>
                     <button type="submit" name="delete">DELETE</button><br>
-             
 
                 </form>
                 

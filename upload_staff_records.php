@@ -89,24 +89,73 @@ if(isset($_GET["updation"]))
     <br />
         <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
         <form action="Staff/registrar/add_staffrecord.php" method="post">
+            
             <span class="staffrecord">
-                <label for="staffid">Student ID</label>
-                <input type="text" id="staffid" name="staffid" required>
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname"name="lastname" required>
             </span>
             <span class="staffrecord">
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" name="firstname" required>
             </span>
             <span class="staffrecord">
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname"name="lastname" required>
+                <label for="staffid">Staff ID</label>
+                <input type="text" id="staffid" name="staffid" required>
             </span>
+
             <input type="submit" value="ADD A STAFF" name="add">
+
         </form>
         <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
+
+       
+       
+        <!--success or error-->
+        <?php 
+        if(isset($_GET['success'])){
+    ?>
+            <p align="center">
+                <?php 
+                    echo $_GET['success'];
+                ?>
+            </p>
+    <?php
+        }
+        if(isset($_GET['error'])){
+    ?>
+                    <p align="center">
+                        <?php 
+                            echo $_GET['error'];
+                        ?>
+                    </p>
+            <?php
+                }
+        else{
+        }
+    ?>
+    <!--success or error-->
+
+
     <?php
     //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
-        $staffrecordquery = "SELECT * FROM tbl_staff_record ORDER BY staff_id ASC";
+        
+    //-----------For pagination-------------//
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+    $no_of_records_per_page = 25;
+    $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+    $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
+    $theresult = mysqli_query($db, $total_pages_sql);
+    $total_rows = mysqli_fetch_array($theresult)[0];
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
+        //-----------For pagination-------------//
+    
+    $staffrecordquery = "SELECT * FROM tbl_staff_record ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
         
         $staffrecordresult = mysqli_query($db, $staffrecordquery);
             
@@ -115,11 +164,14 @@ if(isset($_GET["updation"]))
     ?>
             <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
             <form action="Staff/registrar/updatedelete_staffrecord.php" method="post">
-                <input type="text" name="staffid" value="<?php echo $row["staff_id"]?>">
-                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+
                 <input type="text" name="lastname" value="<?php echo $row["last_name"]?>">
+                <input type="text" name="firstname" value="<?php echo $row["first_name"]?>">
+                <input type="text" name="staffid" value="<?php echo $row["staff_id"]?>">
+                
                 <button  type="submit" name="update">UPDATE</button>
                 <button type="submit" name="delete">DELETE</button><br />
+            
             </form>
             <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
       <?php
@@ -127,33 +179,24 @@ if(isset($_GET["updation"]))
     //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
      ?>
   </div>
-                            <!--success or error-->
-                            <?php 
-                            if(isset($_GET['success'])){
-                        ?>
-                                <p align="center">
-                                    <?php 
-                                        echo $_GET['success'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                            if(isset($_GET['error'])){
-                        ?>
-                                        <p align="center">
-                                            <?php 
-                                                echo $_GET['error'];
-                                            ?>
-                                        </p>
-                                <?php
-                                    }
-                            else{
-                            }
-                        ?>
-                        <!--success or error-->
+
                         <?php
          include("backtotop.php");
         ?>
+
+<!--------Pagination---------------------------------------------->
+<ul class="pagination">
+    <li><a href="?pageno=1">First</a></li>
+    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+    </li>
+    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+    </li>
+    <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+</ul>
+<!--------Pagination---------------------------------------------->
+
     </main>
 </body>
 </html>
