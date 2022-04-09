@@ -25,15 +25,10 @@ if (mysqli_query($db, $cancelappointment)) {
    '$fullnames has CANCEL your appointment for  $appointment_type', '0', 
    '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 
-
-   header('location: ../staff_appointment_details.php');
-          //exit();
-
-	echo "Success";
+   header('location: ../staff_appointment_details.php?success="Appointment Cancelled"');
+  
 } else {
-	header('location: ../staff_appointment_details.php');
-       //exit();
-    echo "Error inserting record " . mysqli_error($db);
+   header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
 }
 mysqli_close($db);
 

@@ -63,9 +63,8 @@ session_start();
                                  ('REQUEST UPDATE', 
                                  '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                                  '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
-            
-                              header("refresh:2;url=../submitdocu_pendingapp.php");
-                              echo "Appointment request accepted and scheduled on". " ". $appointment_date;
+                                 
+                              
                                  //Add Queueing and SMS function here???-----------------------------------------
                                  $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                                     FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -76,19 +75,16 @@ session_start();
                                  //Queue Number---------------------------------------------------------------------------------------//
                                  $queuenumber = $queue['queuenum'];
                                  echo "<br><br>Queue Number:" . $queuenumber;
-                                 //Queue Number---------------------------------------------------------------------------------------//   
+                                 //Queue Number---------------------------------------------------------------------------------------// 
+                                 header('location: ../submitdocu_pendingapp.php?success="Appointment request accepted."'); 
                            } 
-                           else { 
-                              header("refresh:10;url=../submitdocu_pendingapp.php");
-                              echo "ERROR: Not able to execute. " . mysqli_error($db);
+                           else {
+                              header('location: ../submitdocu_pendingapp.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                            }
                         }
                         else {
-                           header("refresh:10;url=../submitdocu_pendingapp.php");
-                           echo "Appointments for ". $appointment_date . " are limited to " . $limit;
+                              header('location: ../submitdocu_pendingapp.php?error="Appointments are limited for this date."');
                         }
-
-
 
                               ?>
                               <hr>
@@ -125,23 +121,16 @@ session_start();
                            AND tbl_appointment.appointment_id = $appointment_id 
                            ORDER BY date_created ASC";
 
-                        $request_result = mysqli_query($db, $requests);
-                        $rows=mysqli_fetch_assoc($request_result);
+                           $request_result = mysqli_query($db, $requests);
+                           $rows=mysqli_fetch_assoc($request_result);
 
-                        $student_id = $rows['student_id'];
-                        $appointment_type = $rows['appointment_type'];
+                           $student_id = $rows['student_id'];
+                           $appointment_type = $rows['appointment_type'];
                         
-                        $noofappointments ="SELECT * FROM tbl_appointment_detail 
-                           WHERE appointment_date = '$appointment_date' AND `status` = 'Declined'";
-                        
-                        $appnumber = mysqli_query($db, $noofappointments);
-                        $countapp = mysqli_num_rows( $appnumber);
-                        
-                        if($countapp<=($limit-1)) {
-                           $acceptappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
-                              VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
+                           $declineappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
+                              VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Declined')";
             
-                           if(mysqli_query($db, $acceptappointment)) {
+                           if(mysqli_query($db, $declineappointment)) {
             
                               // insert data into tbl_notification if staff accept a request
                               $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
@@ -150,10 +139,8 @@ session_start();
                                  mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                                  ('REQUEST UPDATE', 
                                  '$fullnames has DECLINED your request for  $appointment_type', '0', 
-                                 '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
+                                 '$student_id', 'student_appointment_details.php?status=Declined&apde=$appointment_id')");
             
-                              header("refresh:2;url=../submitdocu_pendingapp.php");
-                              echo "Appointment request accepted and scheduled on". " ". $appointment_date;
                                  //Add Queueing and SMS function here???-----------------------------------------
                                  $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                                     FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -164,20 +151,13 @@ session_start();
                                  //Queue Number---------------------------------------------------------------------------------------//
                                  $queuenumber = $queue['queuenum'];
                                  echo "<br><br>Queue Number:" . $queuenumber;
-                                 //Queue Number---------------------------------------------------------------------------------------//   
+                                 //Queue Number---------------------------------------------------------------------------------------//
+                                 header('location: ../submitdocu_pendingapp.php?success="Appointment request declined."');    
                            } 
                            else { 
-                              header("refresh:10;url=../submitdocu_pendingapp.php");
-                              echo "ERROR: Not able to execute. " . mysqli_error($db);
+                              header('location: ../submitdocu_pendingapp.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                            }
-                        }
-                        else {
-                           header("refresh:10;url=../submitdocu_pendingapp.php");
-                           echo "Appointments for ". $appointment_date . " are limited to " . $limit;
-                        }
-
-
-
+                        
                               ?>
                               <hr>
                               <?php

@@ -10,15 +10,10 @@ SET appointment_date= '$currentdate', `status` ='Done'
 WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 if (mysqli_query($db, $cancelappointment)) {
+      header('location: ../staff_appointment_details.php?success="Done with Appointment"');
 
-header('location: ../staff_appointment_details.php');
-      //exit();
-
-echo "Success";
 } else {
-header('location: ../staff_appointment_details.php');
-   // exit();
-echo "Error inserting record " . mysqli_error($db);
+      header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
 }
 mysqli_close($db);
 

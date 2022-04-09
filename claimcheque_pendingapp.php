@@ -25,14 +25,20 @@
                     
                     <div class="pending-column" id="buttonsforall">
 
-                    
+
+
+
+
                     <?php 
                         if(isset($_POST['batchstate'])) {
                             $bs = $_POST['batchstate'];
+                            date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
 
                         ?>
                             <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                             <!-------------------------BUTTONS FOR ALL------------------------->
+                                
                                 <label>Enter Date of Appointment:</label>
                                 <input type="date" name="ad[]" required placeholder="" value=" "
                                         min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
@@ -43,7 +49,34 @@
                                 </textarea>
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
-                                <!----------------------------BUTTONS FOR ALL----------------------->        
+                                <!----------------------------BUTTONS FOR ALL-----------------------> 
+                                
+                                
+                                                    <!--success or error-->
+                        <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            if(isset($_GET['error'])){
+                        ?>
+                                        <p align="center">
+                                            <?php 
+                                                echo $_GET['error'];
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                            else{
+                            }
+                        ?>
+                        <!--success or error-->
+
                     </div>                
                     <div class="pending-column">
 
@@ -185,8 +218,7 @@
                     }//end of show all status
                     
                     ?>
-                                        
-
+                                    
                 </div>
                  
             </div> 

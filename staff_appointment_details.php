@@ -14,7 +14,33 @@
 
 
         <div><!-------------------------------Start of Show Appointment Based on Status ------------------------------->
-            <h2>Appointments</h2>
+            <h2>Appointments</h2> 
+            
+                        <!--success or error-->
+                        <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            if(isset($_GET['error'])){
+                        ?>
+                                        <p align="center">
+                                            <?php 
+                                                echo $_GET['error'];
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                            else{
+                            }
+                        ?>
+                        <!--success or error-->
+
             <!------Start of Appointment Status Buttons ---------------------->
             <button onclick="activeapp()">Active Appointments</button>
             <button onclick="pendingapp()">Pending Appointments</button>
@@ -149,5 +175,15 @@
             document.getElementById('appcancelled').style.display = "none";
             document.getElementById('appdone').style.display = "block";
     }
+    if (window.location.hash === '#displaypending') { 
+        function displaypending(){
+
+        document.getElementById('appactive').style.display = "none";
+            document.getElementById('apppending').style.display = "block";
+            document.getElementById('appmissed').style.display = "none";
+            document.getElementById('appdeclined').style.display = "none";
+            document.getElementById('appcancelled').style.display = "none";
+            document.getElementById('appdone').style.display = "none";
+    };}
  
 </script>

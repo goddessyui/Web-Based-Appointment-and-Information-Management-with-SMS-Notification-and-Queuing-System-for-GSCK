@@ -45,8 +45,7 @@ session_start();
                   '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
-                  header("refresh:2;url=../staff_appointment_details.php");
-                  echo "Appointment request accepted and scheduled on". " ". $appointment_date;
+                  header('location: ../staff_appointment_details.php?success="Appointment request accepted."');
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -60,13 +59,11 @@ session_start();
                      //Queue Number---------------------------------------------------------------------------------------//   
                } 
                else {
-                  header("refresh:10;url=../staff_appointment_details.php");
-                  echo "ERROR: Not able to execute. " . mysqli_error($db);
+                  header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                }
             }
             else {
-               header("refresh:10;url=../staff_appointment_details.php");
-               echo "Appointments for ". $appointment_date . " are limited to " . $limit;
+               header('location: ../staff_appointment_details.php?error="Appointments for that date are already limited."');
             }
          }
       }
@@ -96,16 +93,13 @@ session_start();
             '$fullnames has DECLINED your request for  $appointment_type', '0', 
             '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
 
-            header("refresh:2;url=../staff_appointment_details.php");
-            echo "Appointment Request Declined.";
+            header('location: ../staff_appointment_details.php?success="Appointment Request Declined"'); 
          } 
-         else{
-            header("refresh:2;url=../staff_appointment_details.php");
-            echo "ERROR: Not able to execute. " . mysqli_error($db);
+         else {
+            header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');   
          }
       }
       //--------------------------End of If Decline is Pressed--------------------------// 
-
       }
    }
 ?>
