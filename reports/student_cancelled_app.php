@@ -2,6 +2,7 @@
 <!----------------Shows Student's Cancelled Appointments------------------------------------------------------------>
 <?php
 if (isset($_GET['apde'])){
+    
     $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
     tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
     tbl_appointment.note, tbl_appointment_detail.comment
@@ -11,7 +12,7 @@ if (isset($_GET['apde'])){
     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
     WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Cancelled'
     AND tbl_appointment.appointment_id = '".$_GET['apde']."'
-    ORDER BY tbl_appointment_detail.appointment_date DESC";
+    ORDER BY tbl_appointment_detail.appointment_date DESC LIMIT 1";
 }
 else {
     $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
