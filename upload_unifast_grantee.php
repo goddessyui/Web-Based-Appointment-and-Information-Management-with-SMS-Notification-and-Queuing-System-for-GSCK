@@ -201,9 +201,22 @@ if(isset($_GET["updation"]))
                     
                     <input type="text" id="lastname" name="lastname" value="<?php echo $row["last_name"]?>">               
                     <input type="text" id="firstname" name="firstname" value="<?php echo $row["first_name"]?>">
-                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>">                
-                    <input type="text" id="batchstatus" name="batchstatus" value="<?php echo $row["batch_status"]?>">
-
+                    <input type="text" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>">
+                     <select name="batchstatus" id="batchstatus" >
+                         <?php $batch_status = $row["batch_status"];
+                         if($batch_status=='old'){?>
+                            <option value="old">old</option>
+                            <option value="new">new</option>
+                            <?php
+                         }
+                         else {?>
+                            <option value="new">new</option>
+                            <option value="old">old</option>
+                        <?php         
+                         }
+                         ?>
+                     </select>               
+                   
                     <button  type="submit" name="update">UPDATE</button>
                     <button type="submit" name="delete">DELETE</button><br>
 
