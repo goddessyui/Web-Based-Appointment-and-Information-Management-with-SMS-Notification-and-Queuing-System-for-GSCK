@@ -54,7 +54,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
 				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                             <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
+                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
 			            </div>
                         <div>
 				            <?php
@@ -140,7 +140,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                             <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                             <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
+                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
                         </div>
                         <div>
                             <?php

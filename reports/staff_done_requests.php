@@ -38,7 +38,7 @@
 				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                             <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Stuudent's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
+                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
                             <p><span>My Comment: </span><pre><?php echo $rows['comment']; ?></pre></p> 
 			            </div>
         <?php 
