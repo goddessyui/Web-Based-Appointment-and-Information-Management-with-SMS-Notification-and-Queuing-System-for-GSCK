@@ -127,10 +127,7 @@
                 <!---------------Reports for Registrar------------------------------------------------->
 
             
- 
 
-            
-            
             <?php
                 include("count_app.php");
             ?>
@@ -138,9 +135,9 @@
 
             <!---------------Set Appointment Limit only seen by Registrar------------------------------------------------->
                 <?php 
-            if ($position == "Registrar"){
+            if ($position == "Registrar") {
             ?>
-                <div>
+                <div class="row">
                     <div><br><br>
                         <form action="appointment_limit.php" method="post">
                             <h5>Limit the No. of Appointments Per Day:</h5>
@@ -191,40 +188,66 @@
             ?>
             
             <!---------------Set Appointment Limit------------------------------------------------->
-            <div>
-                <div>
+            <div class="row">
+               
                     
                     <?php
                         if($position=="Accounting Staff/Scholarship Coordinator" OR $position=="Teacher"){
                             ?>
-                                <h4>Allowed No. of Appointment Slots Today:</h4>
-                            <?php
-                            $applimit = "SELECT * FROM tbl_appointment_limit WHERE limit_id = '1'";
-                            $al = mysqli_query($db, $applimit);
-                            while($limit= mysqli_fetch_assoc($al)){
-                                echo $limit['appointment_limit'];
-                            }
-                    
-                    ?>
-                </div>
-                <div>
-                    
-                                <h4>No. of Appointment Slots Taken Today:</h4>
-                            <?php
-                            date_default_timezone_set('Asia/Manila');                           		
-                            $currentdate = date("Y-m-d");
-                            $applimit = "SELECT appointment_detail_id FROM tbl_appointment_detail 
-                                WHERE `status` = ('Accepted' OR 'Cancelled') 
-                                AND appointment_date = '$currentdate'";
-                            $al = mysqli_query($db, $applimit);
-                            $count = mysqli_num_rows($al);
-                            echo $count;
-                        }
-                    ?>
-                </div>
-                
-                
+
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Allowed No. of Appointment Slots Today:</h5>
+                                        <?php
+                                            $applimit = "SELECT * FROM tbl_appointment_limit WHERE limit_id = '1'";
+                                            $al = mysqli_query($db, $applimit);
+                                            
+                                            while($limit= mysqli_fetch_assoc($al)){
+                                                echo $limit['appointment_limit'];
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+              
+               
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">No. of Appointment Slots Taken Today:</h5>
+                                        <?php
+                                            date_default_timezone_set('Asia/Manila');                           		
+                                            $currentdate = date("Y-m-d");
+                                            
+                                            $applimit = "SELECT appointment_detail_id FROM tbl_appointment_detail 
+                                                WHERE `status` = ('Accepted' OR 'Cancelled') 
+                                                AND appointment_date = '$currentdate'";
+                                            $al = mysqli_query($db, $applimit);
+                                            $count = mysqli_num_rows($al);
+
+                                            echo $count;
+                                        }
+                                ?>
+                                    </div>
+                                </div>
+                            </div>
             </div>
+
+            <div class="row">
+
+                        This contains list of registered students             
+            </div>
+
+            <div class="row">
+
+                        This contains list of registered staff             
+            </div>
+
+            <div class="row">
+                        This contains list of unifast grantees in alphabetical order
+            </div>
+            
 
         </div>
     </main>
