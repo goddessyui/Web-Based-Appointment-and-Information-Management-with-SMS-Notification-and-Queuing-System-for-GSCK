@@ -167,7 +167,7 @@ if(isset($_GET["updation"]))
                 $offset = ($pageno-1) * $no_of_records_per_page;
 
 
-                $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
+                $total_pages_sql = "SELECT COUNT(*) FROM tbl_student_record";
                 $theresult = mysqli_query($db, $total_pages_sql);
                 $total_rows = mysqli_fetch_array($theresult)[0];
                 $total_pages = ceil($total_rows / $no_of_records_per_page);
