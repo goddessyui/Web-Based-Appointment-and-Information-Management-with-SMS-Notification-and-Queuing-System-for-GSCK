@@ -4,11 +4,11 @@ server with default setting (user 'root' with no password) */
 include_once("../dbconfig.php");
  
 
-if(isset($_REQUEST["term"])){
+if(isset($_REQUEST["term"])) {
     // Prepare a select statement
     $sql = "SELECT * FROM tbl_staff_registry WHERE first_name LIKE ? OR last_name LIKE ?";
     
-    if($stmt = mysqli_prepare($db, $sql)){
+    if($stmt = mysqli_prepare($db, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "ss", $param_term, $param_term);
         
@@ -23,11 +23,14 @@ if(isset($_REQUEST["term"])){
             if(mysqli_num_rows($result) > 0){
                 // Fetch result rows as an associative array
         ?>
-                <form action="" >
+                <form action="">
         <?php
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                     
-                    echo "<p staff_id='{$row["staff_id"]}'>" .$row["first_name"] . " " . $row["last_name"] . "</p>";             
+                    echo "<p staff_id='{$row["staff_id"]}'>" .$row["last_name"] . ", " . $row["first_name"] . "</p>";?>
+
+                    <?php
+                                 
                 }
         ?>
         
@@ -43,6 +46,7 @@ if(isset($_REQUEST["term"])){
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
         }
     }
+    
      
     // Close statement
     mysqli_stmt_close($stmt);

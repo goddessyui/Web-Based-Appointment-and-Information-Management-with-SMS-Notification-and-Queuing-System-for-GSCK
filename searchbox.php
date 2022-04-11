@@ -48,15 +48,16 @@ $(document).ready(function(){
     <h4>Select An Appointment Type:</h4>
     <?php
     $button = $_GET['submit'];
-    $name = explode(" ", $_GET['search']);
-    $search = $name[0];
-    $search2 = end($name);
+    $name = explode(", ", $_GET['search']);
+    $search2 = $name[0];
+    $search = end($name);
+
 
     $sql="SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name, tbl_staff_registry.staff_id, 
     tbl_staff_appointment.appointment_type 
     FROM tbl_staff_registry INNER JOIN tbl_staff_appointment 
     ON tbl_staff_registry.staff_id = tbl_staff_appointment.staff_id 
-    WHERE tbl_staff_registry.last_name = '$search2' AND tbl_staff_registry.first_name LIKE '".$search."%'";
+    WHERE tbl_staff_registry.last_name = '$search2' AND tbl_staff_registry.first_name LIKE '$search'";
     $run= mysqli_query($db, $sql);
     
     if($run==TRUE) {
@@ -137,6 +138,9 @@ $(document).ready(function(){
         else {
             echo "<script>window.location.href='student_appointment.php'</script>";
         }
+    }
+    else {
+        echo "This staff has no appointment types listed.";
     }
   
  }
