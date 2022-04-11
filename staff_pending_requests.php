@@ -66,9 +66,9 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
 				            <form action="appointment/acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
-	      	 		            <input type="date" name="appointment_date" placeholder="" value=" "
-	      	 				        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 20 days'));?>"><br><br>
+	      	 		            <input type="date" name="appointment_date" value=" "
+	      	 				        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                    strtotime($currentdate. ' + 90 days'));?>"><br><br>
                                 <label>Comment:</label><br>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -152,9 +152,9 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
                             <form action="appointment/acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                 <label>Enter Date of Appointment:</label>
-                                <input type="date" name="appointment_date" placeholder="" value=" "
-                                    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 20 days'));?>"><br><br>
+                                <input type="date" name="appointment_date" value=" "
+                                    min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                    strtotime($currentdate. ' + 90 days'));?>"><br><br>
                                 <label>Comment:</label><br>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
