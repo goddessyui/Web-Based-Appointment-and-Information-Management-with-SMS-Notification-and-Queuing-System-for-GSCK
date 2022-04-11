@@ -221,6 +221,7 @@ if (empty($_SESSION['student_id'])){
     padding: 20px;
     }
 
+    #appactive,
     #apppending,
     #appmissed,
     #appdeclined,
