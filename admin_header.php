@@ -94,6 +94,7 @@ if ($staff_id == ""){
 						<span>UniFAST Grantee Records</span>
 					</a>
 				</li>
+				
 				<li>
 					<a href="claimcheque_pendingapp.php">
 						<span class="las la-receipt"></span>
@@ -114,8 +115,18 @@ if ($staff_id == ""){
 				</li>
 			<?php
             	}
+				else if($position == "Teacher"){
             ?>
 
+				<li>
+					<a href="staff_appointment_details.php">
+						<span class="las la-user-circle"></span>
+						<span>My Appointments</span>
+					</a>
+				</li>
+				<?php
+			}
+			?>
 				
 			
 
@@ -125,7 +136,7 @@ if ($staff_id == ""){
 						<span>Logout</span>
 					</a>
 				</li>
-				<li></li>
+			
 
 			</ul>
 		</div>
