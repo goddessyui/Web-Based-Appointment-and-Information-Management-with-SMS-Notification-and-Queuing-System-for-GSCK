@@ -22,21 +22,23 @@ if (empty($_SESSION['student_id'])){
     
     <div id="search"><?php include("searchbox.php");?></div>
     <!-- This starts the buttons for appointment type------------------------------------------------------------------->
-    <?php    
+    <?php
+    if(empty($_GET['submit']))//start of do not show if searchbox used
+    {   
         
             if(isset($_GET['msg'])){//--start of message if insert appointment successful-->
-    ?>
+        ?>
                 <p>
                     <?php 
                         echo $_GET['msg'];
                     ?>
                 </p>
                 <hr>
-    <?php
+        <?php
             }
             else{//--end of message if insert appointment successful-->
             }    
-    ?>
+        ?>
             <h4>Select An Appointment Type:</h4>
                 
                     <div class="aptype-container">
@@ -125,7 +127,7 @@ if (empty($_SESSION['student_id'])){
                     ?>
                     
                                    
-    <!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
+        <!-- This ends the buttons for appointment type------------------------------------------------------------------------------------------------->
 
     
     <div id="at_meeting"><!-- Start of Meeting------------------------------------------------------------------------------------->
@@ -559,7 +561,9 @@ if (empty($_SESSION['student_id'])){
          
     </div><!-- End of Unifast Submit Documents------------------------------------------------------------------------------------->
 
-    
+    <?php
+    }//end of do not show if searchbox is used
+    ?>
     
 
 
