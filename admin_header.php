@@ -127,8 +127,6 @@ if ($staff_id == ""){
 				<?php
 			}
 			?>
-				
-			
 
 				<li>
 					<a href="logout.php">

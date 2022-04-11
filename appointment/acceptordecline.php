@@ -45,7 +45,7 @@ session_start();
                   '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
-                  header('location: ../staff_appointment_details.php?success="Appointment request accepted."');
+                  header('location: ../staff_appointment_details.php?p+includepage?success="Appointment request accepted."');
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
