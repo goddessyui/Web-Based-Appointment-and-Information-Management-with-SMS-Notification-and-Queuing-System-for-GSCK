@@ -110,7 +110,7 @@ if ($staff_id == ""){
 				<li>
 					<a href="staff_appointment_details.php">
 						<span class="las la-user-circle"></span>
-						<span>My Other Appointments</span>
+						<span>My Appointments</span>
 					</a>
 				</li>
 			<?php

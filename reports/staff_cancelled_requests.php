@@ -43,7 +43,7 @@
                     }
                 } 
                 else{
-                    echo "No Cancelled Requests.";
+                    echo "No Cancelled Appointments.";
                 }
             }  
 	    ?>

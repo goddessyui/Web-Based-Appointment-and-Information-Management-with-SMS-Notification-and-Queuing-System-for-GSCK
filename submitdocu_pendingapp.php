@@ -54,13 +54,15 @@
                     <?php 
                         if(isset($_POST['batchstate'])) {
                             $bs = $_POST['batchstate'];
+                            date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
                     ?>
                             <form action="appointment/submit_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                                 <!-------------------------BUTTONS FOR ALL------------------------->
                                 <label>Enter Date of Appointment:</label>
-                                <input type="date" name="ad[]" placeholder="" value="<?php echo $currentdate;?>"
+                                <input type="date" name="ad[]" value=" "
                                         min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
-                                        strtotime($currentdate. ' + 20 days'));?>">
+                                        strtotime($currentdate. ' + 60 days'));?>">
                                 <label>Comment:</label>
                                     <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.
                                 </textarea>
@@ -129,18 +131,20 @@
                             </form> <!----------------------------End of FORM-------------------------------------------------------------------------------------------->  
                         <?php   
                         }//end of batch status
-                         else {//start of show all status
+                         else {
+                            date_default_timezone_set('Asia/Manila');                           		
+                            $currentdate = date("Y-m-d");//start of show all status
                         ?>
-
+                        
 
                         <form action="appointment/submit_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                         <!-------------------------BUTTONS FOR ALL------------------------->
                             <label>Enter Date of Appointment:</label>
-                            <input type="date" name="ad[]" placeholder="" value=" "
-                                    min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 20 days'));?>">
+                            <input type="date" name="ad[]" value=" "
+                                    min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                    strtotime($currentdate. ' + 90 days'));?>">
                             <label>Comment:</label>
-                                <textarea name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.
+                                <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.
                             </textarea>
                             <button  type="submit" name="accept">ACCEPT</button>
                             <button type="submit" name="decline">DECLINE</button>

@@ -590,7 +590,6 @@ if (empty($_SESSION['student_id'])){
         display: none;
     }
 
-
     </style>
 
 <script>
@@ -748,7 +747,5 @@ if (empty($_SESSION['student_id'])){
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "block";
     }
-
-
 
 </script>
