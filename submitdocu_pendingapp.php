@@ -6,6 +6,31 @@
             if($position=="Accounting Staff/Scholarship Coordinator") {//if Accounting Staff/Scholarship Coordinator
         ?>  
             <h2>UniFAST - Submit Documents Appointment Requests</h2>
+                                    <!--success or error-->
+                                    <?php 
+                            if(isset($_GET['success'])){
+                        ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['success'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                            if(isset($_GET['error'])){
+                        ?>
+                                        <p align="center">
+                                            <?php 
+                                                echo $_GET['error'];
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                            else{
+                            }
+                        ?>
+                        <!--success or error-->
+
             <div class="pending-container">
 
                     <div class="pending-column">
@@ -33,40 +58,16 @@
                             <form action="appointment/submit_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                                 <!-------------------------BUTTONS FOR ALL------------------------->
                                 <label>Enter Date of Appointment:</label>
-                                <input type="date" name="ad[]" required placeholder="" value="<?php echo $currentdate;?>"
+                                <input type="date" name="ad[]" placeholder="" value="<?php echo $currentdate;?>"
                                         min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($currentdate. ' + 20 days'));?>">
                                 <label>Comment:</label>
-                                    <textarea name="com[]" required placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
+                                    <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.
                                 </textarea>
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
                                 <!----------------------------BUTTONS FOR ALL----------------------->   
                                 
-                        <!--success or error-->
-                        <?php 
-                            if(isset($_GET['success'])){
-                        ?>
-                                <p align="center">
-                                    <?php 
-                                        echo $_GET['success'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                            if(isset($_GET['error'])){
-                        ?>
-                                        <p align="center">
-                                            <?php 
-                                                echo $_GET['error'];
-                                            ?>
-                                        </p>
-                                <?php
-                                    }
-                            else{
-                            }
-                        ?>
-                        <!--success or error-->
 
                     </div>                
                     <div class="pending-column">
@@ -97,7 +98,6 @@
                                         if($count>0) {
                                             $t = 1;
                                 ?>
-                                    
                                         <?php
                                             while($rows=mysqli_fetch_assoc($request_result)) {
                                         ?>
@@ -136,11 +136,11 @@
                         <form action="appointment/submit_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                         <!-------------------------BUTTONS FOR ALL------------------------->
                             <label>Enter Date of Appointment:</label>
-                            <input type="date" name="ad[]" required placeholder="" value=" "
+                            <input type="date" name="ad[]" placeholder="" value=" "
                                     min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
                                     strtotime($currentdate. ' + 20 days'));?>">
                             <label>Comment:</label>
-                                <textarea name="com[]" required placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
+                                <textarea name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.
                             </textarea>
                             <button  type="submit" name="accept">ACCEPT</button>
                             <button type="submit" name="decline">DECLINE</button>
