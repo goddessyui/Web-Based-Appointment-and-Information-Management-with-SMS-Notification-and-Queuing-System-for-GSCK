@@ -46,9 +46,9 @@
                                 <span>
                                 <!-------------------------To reschedule appointment. Send Form Data to reschedule.php -------------------------->       
                                 <form action="appointment/reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
-                                    <input type="date" name="appointment_date" placeholder="" value="<?php echo $rows["appointment_date"]; ?>" 
-                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
-                                        strtotime($rows["appointment_date"]. ' + 20 days'));?>">
+                                    <input type="date" name="appointment_date" value="<?php echo $rows["appointment_date"]; ?>" 
+                                        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($rows["appointment_date"]. ' + 90 days'));?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                     <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
                                     <br>
