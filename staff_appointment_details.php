@@ -2,22 +2,35 @@
     include_once("admin_header.php"); 
 ?>
     <main><!-------------------------------Start of main div------------------------------------>
-    <?php
-        include("count_app.php");
 
-        if (isset($_GET['status'])){
-          ?> <hr><a href="staff_appointment_details.php"><button type="button">View all appointment</button></a><hr> <?php 
-          include("staff_pending_requests.php");   
-        }
-        else{
-       ?>
-
-
-        <div><!-------------------------------Start of Show Appointment Based on Status ------------------------------->
-            <h2>Appointments</h2> 
+        <div class="container-fluid"><!-------------------------------Start of Show Appointment Based on Status ------------------------------->
             
-                        <!--success or error-->
-                        <?php 
+            <div class="row">
+                <?php
+                     include("count_app.php");
+                ?>
+            </div>
+
+            <div class="row">
+                <?php
+                    if (isset($_GET['status'])){
+                ?> 
+                <hr>
+                <a href="staff_appointment_details.php"><button type="button">View all appointment</button></a><hr> <?php 
+                
+                include("staff_pending_requests.php");   
+                }
+                else{
+            ?>
+            </div>
+
+            <div class="row">
+                <h3>Appointments</h3> 
+            </div>
+
+            <div class="row">
+                    <!--success or error-->
+                    <?php 
                             if(isset($_GET['success'])){
                         ?>
                                 <p align="center">
@@ -40,17 +53,25 @@
                             }
                         ?>
                         <!--success or error-->
+            </div>
 
-            <!------Start of Appointment Status Buttons ---------------------->
-            <button onclick="activeapp()">Active Appointments</button>
-            <button onclick="pendingapp()">Pending Appointments</button>
-            <button onclick="missedapp()">Missed Appointments</button>
-            <button onclick="declineddapp()">Declined Appointments</button>
-            <button onclick="cancelledapp()">Cancelled Appointments</button>
-            <button onclick="doneapp()">Past Appointments</button>
-            <!------ End of of Appointment Status Buttons -------------------->
+            <div class="row">                       
+                <!------Start of Appointment Status Buttons ---------------------->
+                
+                <div class="form-group" role="group" aria-label="Basic example">
+                    <div class="form-inline">
+                        <button class="btn btn-secondary" onclick="activeapp()">Active</button>
+                        <button class="btn btn-secondary" onclick="pendingapp()">Pending</button>
+                        <button class="btn btn-secondary" onclick="missedapp()">Missed</button>
+                        <button class="btn btn-secondary" onclick="declineddapp()">Declined</button>
+                        <button class="btn btn-secondary" onclick="cancelledapp()">Cancelled</button>
+                        <button class="btn btn-secondary" onclick="doneapp()">Past</button>
+                    </div>
+                </div>
+                <!------ End of of Appointment Status Buttons -------------------->
+            </div>
 
-            <div><!------- Start of Appointment Status Includes ------------------>
+            <div class="row"><!------- Start of Appointment Status Includes ------------------>
                 <div id="appactive">
                     <h4>Active Appointments</h4>
                     <?php
@@ -89,10 +110,13 @@
                 </div>
             </div><!------End of Appointment Status Includes ----------><?php } ?>
             <hr>
+
         </div><!-------------------------------End of Show Appointment Based on Status -------------------------->
+        
         <?php
          include("backtotop.php");
         ?>
+
     </main><!-------------------------------End of main div--------------------------------------------------------------------------->
 </body>
 </html>
@@ -102,6 +126,7 @@
         margin-left: 5%;
         margin-right: 5%;
         margin-top: 100px;
+        background: violet;
     }
     .sc_container{
         display: flex;
