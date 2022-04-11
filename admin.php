@@ -375,7 +375,13 @@
                     </div>  
 
                 </div>
-                
+            <?php
+            }
+            ?>
+            
+            <?php
+            if($position=="Accounting Staff/Scholarship Coordinator") { 
+            ?>    
                 <div class="row">
                
                     <div class="col-sm-6">
