@@ -9,6 +9,8 @@ $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"
 if ($staff_id == "" || $staff_username == ""){
    echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
+
+
 ?>
 
     <main>
@@ -58,7 +60,7 @@ if ($staff_id == "" || $staff_username == ""){
                     ?>
                     <hr>
                     <div class="blog_img_box">
-                    <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo $row['date_created'] ?></div>
+                    <div><h3><?php echo $row['announcement_title'] ?></h3><?php echo date("F d, Y", strtotime($row['date_created']));?></div>
                     <div><pre><?php echo $row['caption'] ?></pre></div>
                                     <div>
                                     <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
