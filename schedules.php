@@ -53,7 +53,32 @@ $(document).ready(function () {
 </head>
 <div class="parent-div">
 <div class = calendar>
-    <h2>Staff Schedules</h2>
+<div><h2>Staff Schedules</h2> <select onchange="location = this.value;">
+<option value="" selected>All</option>
+<?php
+                $sql = "SELECT
+                tbl_staff_registry.first_name,
+                tbl_staff_registry.last_name
+                FROM
+                tbl_staff_registry
+                ORDER BY last_name ASC";
+                $res = mysqli_query($db, $sql);
+                if (mysqli_num_rows($res) > 0) {
+
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        # code...
+                ?>
+                <option value="staff_schedule.php?name=<?php echo $row['first_name'],' ',$row['last_name'];?>"><?php echo $row['first_name'],' ',$row['last_name'];?></option>
+                                          
+                <?php
+
+                    }
+                }
+
+                ?>
+
+</select>  </div>
+
     <div class="response"></div>
     <div id='calendar'></div>
 </div>
