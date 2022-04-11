@@ -46,7 +46,7 @@
             VALUES ('Requested an Appointment', '$fullnames requested for $appointment_type', '0', '$staff_id', 'staff_appointment_details.php?status=pending&apde=$app_id')");
 
 
-            header('location: ../student_appointment.php?msg=<font color="blue">You successfully sent a request for <?php echo $appointment_type;?>.</font>'); 
+            header('location: ../student_appointment.php?msg=<font color="blue">You successfully sent a request.</font>'); 
 
          } 
          else
