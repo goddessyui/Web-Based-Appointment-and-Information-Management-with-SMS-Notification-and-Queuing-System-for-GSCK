@@ -229,7 +229,7 @@ if(isset($_GET["updation"]))
                         <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                             
                             <div class="form-inline" >
-                                
+                                <label><?php echo $offset + $i++;?></label>
                                 <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row["last_name"]?>">               
                                 <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $row["first_name"]?>">
                                 <input type="text" class="form-control" id="studentid" name="studentid" value="<?php echo $row["student_id"]?>">
@@ -305,4 +305,4 @@ if(isset($_GET["updation"]))
         margin-top: 100px;
     }
 
-</style>
+</styl>
