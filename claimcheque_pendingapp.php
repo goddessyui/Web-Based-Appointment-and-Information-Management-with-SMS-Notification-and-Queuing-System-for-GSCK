@@ -6,53 +6,7 @@
             if($position=="Accounting Staff/Scholarship Coordinator") {//if Accounting Staff/Scholarship Coordinator
         ?>  
             <h2>UniFAST - Claim Cheque Appointment Requests</h2>
-            <div class="pending-container">
-
-                    <div class="pending-column">
-                        <button type="submit" onclick='selectAll()' value="Select All">Select All</button>
-                        <button type="submit" onclick='UnSelectAll()' value="Unselect All">Unselect All</button>
-                        <button type="submit" onclick='select10()' value="Select 2">Select 10</button>
-                        <form action="#" method="POST" onclick="e.preventDefault()" >
-                            <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
-                                <option value="">Select Batch Status</option>
-                                <option value="('new' OR 'old')">ALL</option>
-                                <option value="'old'">OLD</option>
-                                <option value="'new'">NEW</option>
-                            </select>
-                        </form>
-    
-                    </div>
-                    
-                    <div class="pending-column" id="buttonsforall">
-
-
-
-
-
-                    <?php 
-                        if(isset($_POST['batchstate'])) {
-                            $bs = $_POST['batchstate'];
-                            date_default_timezone_set('Asia/Manila');                           		
-                                    $currentdate = date("Y-m-d");
-
-                        ?>
-                            <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
-                            <!-------------------------BUTTONS FOR ALL------------------------->
-                                
-                                <label>Enter Date of Appointment:</label>
-                                <input type="date" name="ad[]" required placeholder="" value=" "
-                                        min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
-                                        strtotime($currentdate. ' + 20 days'));?>">
-                                <label>Comment:</label>
-                                    <textarea name="com[]" required placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">
-                                    "For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
-                                </textarea>
-                                <button  type="submit" name="accept">ACCEPT</button>
-                                <button type="submit" name="decline">DECLINE</button>
-                                <!----------------------------BUTTONS FOR ALL-----------------------> 
-                                
-                                
-                                                    <!--success or error-->
+            <!--success or error-->
                         <?php 
                             if(isset($_GET['success'])){
                         ?>
@@ -76,7 +30,47 @@
                             }
                         ?>
                         <!--success or error-->
+            <div class="pending-container">
 
+                    <div class="pending-column">
+                        <button type="submit" onclick='selectAll()' value="Select All">Select All</button>
+                        <button type="submit" onclick='UnSelectAll()' value="Unselect All">Unselect All</button>
+                        <button type="submit" onclick='select10()' value="Select 2">Select 10</button>
+                        <form action="#" method="POST" onclick="e.preventDefault()" >
+                            <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
+                                <option value="">Select Batch Status</option>
+                                <option value="('new' OR 'old')">ALL</option>
+                                <option value="'old'">OLD</option>
+                                <option value="'new'">NEW</option>
+                            </select>
+                        </form>
+    
+                    </div>
+                    
+                    <div class="pending-column" id="buttonsforall">
+
+                    <?php 
+                        if(isset($_POST['batchstate'])) {
+                            $bs = $_POST['batchstate'];
+                            date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
+
+                        ?>
+                            <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
+                            <!-------------------------BUTTONS FOR ALL------------------------->
+                                
+                                <label>Enter Date of Appointment:</label>
+                                <input type="date" name="ad[]" placeholder="" value=""
+                                        min="<?php echo date("Y/m/d");?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($currentdate. ' + 20 days'));?>">
+                                <label>Comment:</label>
+                                    <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">
+                                    "For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
+                                </textarea>
+                                <button  type="submit" name="accept">ACCEPT</button>
+                                <button type="submit" name="decline">DECLINE</button>
+                                <!----------------------------BUTTONS FOR ALL-----------------------> 
+                                                
                     </div>                
                     <div class="pending-column">
 
@@ -145,11 +139,11 @@
                         <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                         <!-------------------------BUTTONS FOR ALL------------------------->
                             <label>Enter Date of Appointment:</label>
-                            <input type="date" name="ad[]" required placeholder="" value=" "
+                            <input type="date" name="ad[]" placeholder="" value=" "
                                     min="<?php echo $currentdate ?>" max="<?php echo date('Y-m-d', 
                                     strtotime($currentdate. ' + 20 days'));?>">
                             <label>Comment:</label>
-                                <textarea name="com[]" required placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">
+                                <textarea name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">
                                 "For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
                             </textarea>
                             <button  type="submit" name="accept">ACCEPT</button>
