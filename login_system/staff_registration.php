@@ -50,14 +50,6 @@ if ($std_id != "2") {
     <option value="Accounting Staff/Scholarship Coordinator">Accounting Staff/Scholarship Coordinator</option>  
     </select>  </div>
 
-    <div> Other Position: </div>
-    <div>
-    <input type="checkbox" name="other_list[]" value="OJT Coordinator">
-    <label> OJT Coordinator</label><br>
-    <input type="checkbox" name="other_list[]" value="Department Head">
-    <label> Department Head</label><br>
-    </div>
-
     <div> Appointment Type: </div>
     <div>
     <input type="checkbox" name="check_list[]" value="Request Documents From Registrar">
@@ -112,7 +104,6 @@ if (isset($_POST['button_register'])) {
     $passwd = $_POST['passwd']; 
     $passwd_again = $_POST['confirm_password']; 
     $type = $_POST['check_list'];
-    $other_type = !empty($_POST['other_list'])?$_POST['other_list']:'';
     if ($username != "" && $passwd != "" && $passwd_again != ""){
     if(!empty($type)){
         if ($passwd == $passwd_again){
@@ -122,8 +113,7 @@ if (isset($_POST['button_register'])) {
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
 
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                    $othr = !empty($_POST['other_list'])?implode(',', $_POST['other_list']):'';
-                    mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$othr}', '{$number}')");
+                    mysqli_query($db, "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')");
                     $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
                         if (mysqli_num_rows($query) == 1){
