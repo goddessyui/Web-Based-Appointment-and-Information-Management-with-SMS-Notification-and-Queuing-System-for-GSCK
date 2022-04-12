@@ -13,7 +13,7 @@ session_start();
       if (isset($_POST['accept'])) {
          date_default_timezone_set('Asia/Manila');                           		
          $currentdate = date("Y-m-d");
-         $appointment_id = $_GET['appointment_id'];
+         $appointment_id = $_POST['appointment_id'];
          $comment = $_POST['comment'];
          $appointment_date = $_POST['appointment_date'];
          $student_id = $_POST['student_id'];
