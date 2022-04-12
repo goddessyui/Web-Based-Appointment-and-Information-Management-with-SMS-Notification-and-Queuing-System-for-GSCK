@@ -41,6 +41,10 @@
             {
                 $appointment_id = $rows['appointment_id'];
                 $appointment_date = $rows['appointment_date'];
+            
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+            
 ?>
                 <div>
                     <td>
@@ -48,7 +52,14 @@
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Appointment Date:</span><?php echo $rows['appointment_date']; ?></p>
+                    <p><span>Appointment Date:</span>
+                    <?php      
+                                    if($appointment_date<=$currentdate){
+                                        echo "<font color='red';>" . $appointment_date . ": Missed Appointment. </font>";
+                                    }
+                                    else {
+                                        echo $rows['appointment_date'];
+                                    }?></p>
                     <p><?php
                         $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                             FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -60,6 +71,7 @@
                             echo "Queue Number:" . $queuenumber;
                             //Queue Number---------------------------------------------------------------------------------------// 
                         ?>
+
                     </p>
                     <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
                     <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
