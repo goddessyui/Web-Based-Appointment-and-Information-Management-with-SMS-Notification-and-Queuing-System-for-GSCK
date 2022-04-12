@@ -68,6 +68,8 @@
                         $i = 1;
                         while($rows=mysqli_fetch_assoc($acceptedrequest_result)){//using while loop to get all the date from database
                             //and while loop will run as long as we have data in database
+                            date_default_timezone_set('Asia/Manila');                           		
+                            $currentdate = date("Y-m-d");
                 ?>  
                             <div>
                                 <p><?php echo $i++; ?></p>
@@ -92,10 +94,7 @@
                                 <p><span>Student's Note:</span><pre><?php echo $rows['note']; ?></pre></p> 
                             </div>
                             <div>
-                                <?php
-                                    date_default_timezone_set('Asia/Manila');                           		
-                                    $currentdate = date("Y-m-d");
-                                ?>
+                               
                                 <span>
                                 <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
                                 <form action="appointment/reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
