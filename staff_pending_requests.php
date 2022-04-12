@@ -64,7 +64,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
 				            ?>
 				            <span>
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-				            <form action="appointment/acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+				            <form action="appointment/acceptordecline.php" method="post">
                                 <label>Enter Date of Appointment:</label>
 	      	 		            <input type="date" name="appointment_date" value=" "
 	      	 				        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
@@ -73,6 +73,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                 <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
+                                <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
                                 
@@ -150,7 +151,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                             ?>
                             <span>
                             <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-                            <form action="appointment/acceptordecline.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+                            <form action="appointment/acceptordecline.php" method="post">
                                 <label>Enter Date of Appointment:</label>
                                 <input type="date" name="appointment_date" value=" "
                                     min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
@@ -159,6 +160,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                                 <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                 <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
+                                <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                 <button  type="submit" name="accept">ACCEPT</button>
                                 <button type="submit" name="decline">DECLINE</button>
                                 
