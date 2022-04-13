@@ -11,14 +11,14 @@ include_once("dbconfig.php");
             Only registered students and staff of GSCK can login or register.
         </small>
         <br>
-        <br>
+
         <form class="login_form" method="POST">
             <div class="input_box">
-                <input type="text" name="username" placeholder="Username" autocomplete="off" required />
+                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
                 <div class="icon"><i class="fa fa-user"></i></div>
             </div>
             <div class="input_box">
-                <input type="password" name="password" placeholder="Password" autocomplete="off" required />
+                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
                 <div class="icon"><i class="fa fa-lock"></i></div>
             </div>
             <div class="option_div">
@@ -30,90 +30,68 @@ include_once("dbconfig.php");
                     <a class="forget_password" href="login_system/forgotpassword_verify.php">Forget Password?</a>
                 </div>
             </div>
+            <div class="">
+		<div id="message" class=""> </div>
+	    </div>
             <div class="input_box">
-                
-                    <button class="login_button" type="submit" name="button_login">LOGIN</button>
-                </a>
+                    <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" />
             </div>
+ 
+    
         </form>
     </div>
 </div>
 
 
-<?php
-  if (isset($_POST['button_login'])) {
-    $username = $_POST['username']; 
-    $password = $_POST['password']; 
-	$query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}' AND password='{$password}'");
-	$query2 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}' AND password='{$password}'");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('#btn_login').on('click', function() {
+		var username = $('#username').val();
+		var password = $('#password').val();
+		if(username!="" && password!=""){
+			$.ajax({
+				url: "login_system/loginajax.php",
+				type: "POST",
+				data: {
+					type:1,	
+					username: username,	
+					password: password						
+				},
+                cache: false,
+				success: function(dataResult){
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+						location.href = "index.php"; 
+					}
+                    else if(dataResult.statusCode==201){
+						location.href = "admin.php"; 
+					}
+					else if(dataResult.statusCode==202){
+						$('#message').html('Username or Password Incorrect !'); 
+					
+					}
+                    else if(dataResult.statusCode==203){
+						$('#message').html('Account not existing in Student record !');  
+					}
+                    else if(dataResult.statusCode==204){
+						$('#message').html('Account not existing in Staff record !');
+					}
+
+					
+				}
+			});
+		}
+		else{
+            
+			$('#message').html('Please fill all the field !');
+		}
+	});
+	// VERIFICATION
+
 	
-    if (mysqli_num_rows($query) == 1) {
-        $row = $query->fetch_assoc();
-        $student_id = $row["student_id"];
-        $query1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}'");
-        
-        if (mysqli_num_rows($query1) == 1) {
-            session_start();
-            session_unset();
-            session_destroy();
-            session_start();
-            $_SESSION["student_id"] = $student_id;
-            $_SESSION["student_username"] = $row["username"];
-            echo '<script type="text/javascript">alert("Student Verified");window.location.href="index.php"</script>';
-        }
-        else{
-        echo '<script type="text/javascript">alert("Account not existing in student record");window.location.href="index.php"</script>';
-        }
-	}
-
-	else if(mysqli_num_rows($query2) == 1) {
-        $row = $query2->fetch_assoc();
-        $staff_id = $row["staff_id"];
-        $position = $row["position"];
-        $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$staff_id}'");
-
-        if (mysqli_num_rows($query3) == 1) {
-            if ($position == 'Registrar') {
-                session_start();
-                session_unset();
-                session_destroy();
-                session_start();
-                $_SESSION["staff_id"] = $staff_id;
-                $_SESSION["position"] = $position;
-                $_SESSION["staff_username"] = $row["username"];
-                echo '<script type="text/javascript">alert("Successfully Log in as Registrar");window.location.href="admin.php"</script>';
-            }   
-            else if($position == 'Accounting Staff/Scholarship Coordinator'){
-                session_start();
-                session_unset();
-                session_destroy();
-                session_start();
-                $_SESSION["staff_id"] = $staff_id;
-                $_SESSION["position"] = $position;
-                $_SESSION["staff_username"] = $row["username"];
-                echo '<script type="text/javascript">alert("Successfully Log in as Accounting Staff");window.location.href="admin.php"</script>';
-            }
-            else if($position == 'Teacher') {
-                session_start();
-                session_unset();
-                session_destroy();
-                session_start();
-                $_SESSION["staff_id"] = $staff_id;
-                $_SESSION["position"] = $position;
-                $_SESSION["staff_username"] = $row["username"];
-                echo '<script type="text/javascript">alert("Successfully Log in as Teacher");window.location.href="admin.php"</script>';
-            }
-        }
-        else{
-        echo '<script type="text/javascript">alert("Account not existing in Staff record");window.location.href="index.php"</script>';
-        }
-    }
-    else {
-		echo '<script type="text/javascript">alert("Username or Password Incorrect");window.location.href="index.php"</script>';
-    }
-	}
-
-?>
+});
+</script>
 
 <style>
     .sign_in_form {
