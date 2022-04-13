@@ -47,7 +47,7 @@ if ($_POST['type']==2) {
             $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                $sql = "INSERT INTO tbl_student_registry VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')";
+                $sql = "INSERT INTO tbl_student_registry ( `student_id`, `first_name`, `last_name`, `username`, `password`, `mobile_number`, `course`, `year`) VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')";
                     if (mysqli_query($db, $sql)) {
                         session_unset();
                         session_destroy();
