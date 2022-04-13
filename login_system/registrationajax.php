@@ -6,17 +6,19 @@ if ($_POST['type']==1){
 	$s_id = $_POST['s_id']; 
     $first_name = $_POST['first_name']; 
     $last_name = $_POST['last_name']; 
+    $first_name1 = ucwords($first_name);
+    $last_name1 = ucwords($last_name);
 	$query = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$s_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
 	$query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$s_id}'");
 	$query2 = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$s_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
 	$query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$s_id}'");
 	if (mysqli_num_rows($query) == 1 && mysqli_num_rows($query1) == 0){
 
-        echo json_encode(array("statusCode"=>201, "student_id" => $s_id, "first_name" => $first_name, "last_name" => $last_name));
+        echo json_encode(array("statusCode"=>201, "student_id" => $s_id, "first_name" => $first_name1, "last_name" => $last_name1));
 	}
 	else if(mysqli_num_rows($query2) == 1 && mysqli_num_rows($query3) == 0){
 
-        echo json_encode(array("statusCode"=>202, "staff_id"=>$s_id, "first_name"=>$first_name, "last_name"=>$last_name));
+        echo json_encode(array("statusCode"=>202, "staff_id"=>$s_id, "first_name"=>$first_name1, "last_name"=>$last_name1));
 	}
 	else if(mysqli_num_rows($query1) == 1 || mysqli_num_rows($query3) == 1){
         echo json_encode(array("statusCode"=>203));
@@ -27,7 +29,6 @@ if ($_POST['type']==1){
         echo json_encode(array("statusCode"=>204));
 }
 }
-
 // Verification
 
 
@@ -81,7 +82,6 @@ if ($_POST['type']==3) {
     $position = $_POST['position']; 
     $passwd = $_POST['password']; 
     $type = $_POST['types'];
-    // $type = (explode(",",$type1));
 
             $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
