@@ -86,7 +86,7 @@ if ($_POST['type']==3) {
             $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                    $sql = "INSERT INTO tbl_staff_registry VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')";
+                    $sql = "INSERT INTO tbl_staff_registry ( `staff_id`, `first_name`, `last_name`, `username`, `password`, `position`, `mobile_number`) VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')";
 
                         if (mysqli_query($db, $sql)){
                         foreach($type as $types){
