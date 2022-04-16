@@ -13,7 +13,7 @@
             $rand_no = rand(10000, 99999);
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
-            $message = "Your One Time Password is " . $rand_no;
+            $message = "Your verification code is " . $rand_no;
             $smsAPICode = "ST-GOLDE092678_7EKXN";
             $smsAPIPassword = "u5uf{xtl5e";
             $send = new smsfunction();
@@ -34,7 +34,7 @@
             $rand_no = rand(10000, 99999);
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
-            $message = "Your One Time Password is " . $rand_no;
+            $message = "Your verification code is " . $rand_no;
             $smsAPICode = "ST-GOLDE092678_7EKXN";
             $smsAPIPassword = "u5uf{xtl5e";
             $send = new smsfunction();
@@ -72,7 +72,7 @@
             $rand_no = rand(10000, 99999);
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
-            $message = "Your One Time Password is " . $rand_no;
+            $message = "Your verification code is " . $rand_no;
             $smsAPICode = "ST-GOLDE092678_7EKXN";
             $smsAPIPassword = "u5uf{xtl5e";
             $send = new smsfunction();
