@@ -1,33 +1,39 @@
 <?php
 include_once("../dbconfig.php"); 
 ?>
+<!-- MESSAGE AFTER CHANGGING NEW PASSWORD SUCCESSFULLY -->
 <div class="form-group">
 		<div id="m" class=""></div>
 	</div>
+
+
+<!-- POP UP THATS FADES OUT MESSAGE AFTER VERIFYING -->
 <div class="form-group">
 		<div id="message_fade" class=""></div>
 	</div>
 
+
+  <!-- FORM FOR USERNAME VERIFICATION -->
 	<form id="username_verify" name="form" method="post">
-  
     <div>
   <h1>FORGOT PASSWORD</h1>
 </div>
+
+<!-- message for errors -->
   <div class="form-group">
 		<div id="message" class=""></div>
 	</div>
+
     <div class="">
 	Enter Username: <input type="text" name="username" id="username" placeholder="Username"/>
 
     <input type="button" name="btn_verify" class="btn btn-success" value="Next" id="btn_verify" />
 	</div>
-    
- 
 	</form>
+ <!-- FORM FOR USERNAME VERIFICATION -->
 
 
-
- 
+ <!-- FORM FOR VERIFYING CODE -->
 	<form id="otp_verify" name="form2" method="post" style="display:none;">
   <div class="form-group">
 		<div id="number" class=""></div>
@@ -39,20 +45,28 @@ include_once("../dbconfig.php");
     <input type="button" name="btn_otp_erify" class="btn btn-success" value="Verify" id="btn_otp_verify" disabled/>
 	</div>
 </form>
+<!-- FORM FOR VERIFYING CODE -->
 
+<!-- hidden data -->
 <input type="hidden" id="hidden_username" />
 <input type="hidden" id="hidden_mobile_number" />
 <input type="hidden" id="v_number" />
 <input type="hidden" id="verify" />
+<!-- hidden data -->
 
 
+<!-- FORM FOR CHANGE PASSWORD  -->
 	<form id="change_pass" name="form2" method="post" style="display:none;">
     <div>
   <h1>CHANGE PASSWORD</h1>
 </div>
+
+<!-- message for errors -->
 <div class="form-group">
 		<div id="message2" class=""></div>
 	</div>
+
+
     <label>New password</label>
     <div class="">
 		<input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off"/>
@@ -67,7 +81,7 @@ include_once("../dbconfig.php");
     <input type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled/>
 	</div>
 </form>
-
+<!-- FORM FOR CHANGE PASSWORD  -->
 
 
 
@@ -198,6 +212,7 @@ $(document).ready(function() {
 
 	// otp VERIFY
 	$('#btn_otp_verify').on('click', function() {
+    $('#btn_otp_verify').prop('disabled', true);		
     var verification_code = $('#verification_code').val();
 		var username = $('#hidden_username').val();
 		if(verification_code!=""){
@@ -225,7 +240,8 @@ $(document).ready(function() {
         
 					else if(dataResult.statusCode==202){
 						$("#message_fade").html("Incorrect verification code !");
-            $("#message_fade").fadeIn();					   			
+            $("#message_fade").fadeIn();
+            $('#btn_otp_verify').prop('disabled', false);					   			
 					}
            
           
@@ -234,6 +250,7 @@ $(document).ready(function() {
 			});
 		}
 		else{
+      $('#btn_otp_verify').prop('disabled', false);		
 			$('#message').html('Please enter the verification code !');
 		}
 	});
@@ -242,6 +259,7 @@ $(document).ready(function() {
 
 // change pass
 $('#btn_change_pass').on('click', function() {
+  $('#btn_change_pass').prop('disabled', true);	
     var verification_code = $('#v_number').val();
 		var username = $('#hidden_username').val();
     var new_pass = $('#newpass').val();
@@ -249,33 +267,41 @@ $('#btn_change_pass').on('click', function() {
     var verify = $('#verify').val();
 		if(new_pass!=""&&new_pass_verify!=""){
       if (verification_code==""){
+        $('#btn_change_pass').prop('disabled', false);
         $("#message2").html("An error occured, please refresh the page !");
 
       }
       else if (username==""){
+        $('#btn_change_pass').prop('disabled', false);
         $("#message2").html("An error occured, please refresh the page !");
 
       }
       else if (verify==""){
+        $('#btn_change_pass').prop('disabled', false);
         $("#message2").html("An error occured, please refresh the page !");
 
       }
       else if (new_pass.length < 8) {
+        $('#btn_change_pass').prop('disabled', false);
       $("#message2").html('Your password must be at least 8 characters !!');
 
         }
       else if (new_pass.length > 16) {
+        $('#btn_change_pass').prop('disabled', false);
         $("#message2").html('Your password must not exceed 16 characters !!'); 
 
         }
         else if  (new_pass.search(/[a-z]/i) < 0) {
+          $('#btn_change_pass').prop('disabled', false);
         $("#message2").html('Your password must contain at least one letter !!');
         }
         else if  (new_pass.search(/[0-9]/) < 0) {
+          $('#btn_change_pass').prop('disabled', false);
         $("#message2").html('Your password must contain at least one digit !!'); 
 
         }
       else if (new_pass != new_pass_verify){
+        $('#btn_change_pass').prop('disabled', false);
         $("#message2").html("Password did not match !");
       }
       else{
@@ -291,20 +317,20 @@ $('#btn_change_pass').on('click', function() {
 				},
 				cache: false,
 				success: function(dataResult){
-          alert(dataResult);
 					var dataResult = JSON.parse(dataResult);	
 					if(dataResult.statusCode==201){
             var timeleft = 30;	
 						$("#change_pass").hide();
-						$('#m').html('Password Changed ! ');
-						
-   					//  setTimeout( function() { location.href = "../index.php" }, 2000 );	
+						$('#m').html('Password Changed ! Redirecting to Index . . .');
+   					 setTimeout( function() { location.href = "../index.php" }, 2000 );	
 					}
         
 					else if(dataResult.statusCode==202){
+            $('#btn_change_pass').prop('disabled', false);
 						$("#message2").html("Incorrect verification code !");				   			
 					}
           else if(dataResult.statusCode==203){
+            $('#btn_change_pass').prop('disabled', false);
 						$("#message2").html("'Not Authorized !'");				   			
 					}
           
@@ -314,6 +340,7 @@ $('#btn_change_pass').on('click', function() {
     }
 		}
 		else{
+      $('#btn_change_pass').prop('disabled', false);
 			$('#message2').html('Please fill all the field !');
 		}
 	});
