@@ -42,8 +42,7 @@ if ($_POST['type']==2) {
     $number = $_POST['number']; 
     $course = $_POST['course']; 
     $year = $_POST['year']; 
-    $passwd = $_POST['password']; 
-
+    $passwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
@@ -80,9 +79,8 @@ if ($_POST['type']==3) {
     $username = $_POST['username']; 
     $number = $_POST['number']; 
     $position = $_POST['position']; 
-    $passwd = $_POST['password']; 
     $type = $_POST['types'];
-
+    $passwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
