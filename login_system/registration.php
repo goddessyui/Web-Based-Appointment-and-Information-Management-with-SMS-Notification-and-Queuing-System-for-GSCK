@@ -201,12 +201,12 @@
 	</div>
 
     <div class="">
-	<label class="">Rpassword must be at least 8 characters and<br /> have a number character, e.g. 1234567890</label>
+	<label class="">Password must be at least 8 characters and<br /> have a number character, e.g. 1234567890</label>
 	</div>	
 
 	<div class="">
 	<label class="">Re-enter Password: </label>
-    Re-enter Password: <input type="password" name="confirm_password2" id="confirm_password2" placeholder="confirm your password" autocomplete="off"  />
+    <input type="password" name="confirm_password2" id="confirm_password2" placeholder="confirm your password" autocomplete="off"  />
 	</div>
 
 	<div class="form-group">
