@@ -1,14 +1,5 @@
 <?php
 include_once("../dbconfig.php"); 
-// session_start();
-// $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
-// $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
-// $v_id = $_SESSION["verification_id"];
-// $v_number = !empty($_SESSION["verification_no"])?$_SESSION["verification_no"]:'1';
-// $verification = !empty($_SESSION["verification"])?$_SESSION["verification"]:'';
-// if ($verification != $v_number){
-//     echo '<script type="text/javascript">window.location.href="login.php"</script>';
-// }
 ?>
 <div class="form-group">
 		<div id="m" class=""></div>
