@@ -186,6 +186,7 @@
 .school-title h3 {
     letter-spacing: 1px;
     color: #324e9e;
+    
 }
 .school-title img {
     margin-right: 10px;
@@ -484,3 +485,4 @@ $(document).ready(function(){
  
 });
 </script>
+

@@ -50,7 +50,13 @@
                         ?>
                             <button><p><?php echo $rows['student_id']; ?></p></button>
                             <button class="btn_logout_link"><a href="logout.php">Logout</a></button>
-                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            
+                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                <button onclick="BtnDropdown()">
+                                    <i class="fa fa-bell-o"><p class="count" id="count_red" style="color: #fff; text-decoration: none;"></p></i>
+                                </button>
+                                <div class="dropdown-menu" id="dropdown_id"></div>
+                            </div>
                         <?php
                     }
             
@@ -68,7 +74,24 @@
     </div>
 
 
-    <div class="nav_container" id="open_nav_container"></div>
+
+
+    <div class="nav_container" id="open_nav_container">
+        <nav>
+            <ul>
+                <a href="#" class="a_link_after"><li>Home</li></a>
+                <a href="#" class="a_link_after"><li>Profile Setting</li></a>
+                <a href="#" class="a_link_after"><li>About</li></a>
+                <a href="#" class="a_link_after"><li>My Appointments</li></a>
+                <a href="#" class="a_link_after"><li>Announcements</li></a>
+                <a href="#" class="a_link_after"><li>Staff Schedule</li></a>
+                <a href="#" class="a_link_after"><li>Contact</li></a>
+            </ul>
+        </nav>
+    </div>
+
+
+
 
     <div class="login_sidebar" id="open_login">
         <div class="login_form_container">
@@ -83,6 +106,30 @@
                             </div>
                         </div>
                     </button>
+                   
+                    <div class="input_box">
+                        <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
+                        <div class="icon"><i class="fa fa-user"></i></div>
+                    </div>
+
+                    <div class="input_box">
+                        <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
+                        <div class="icon"><i class="fa fa-lock"></i></div>
+                    </div>
+
+                    <div class="option_div">
+                        <div class="check_box">
+                            <input type="checkbox">
+                            <span>Remember me?</span>
+                        </div>
+                        <div class="forget_div">
+                            <a class="forget_password" href="login_system/forgotpassword_verify.php">Forget Password?</a>
+                        </div>
+                    </div>
+
+                    <div class="input_box">
+                            <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" />
+                    </div>
                 </form>
 
             </div>
@@ -91,20 +138,28 @@
 
     <div class="register_sidebar"  id="open_register">
         <div class="register_container">
-        <button class="bg-outer" onclick="CloseLoginBtn()">
+            <div class="form_content">
+
+                <div class="gsck_img"></div>
+                <form method="post">
+                    <button class="bg-outer" onclick="CloseLoginBtn()">
                         <div class="outer">
                             <div class="inner">
                                 <label>EXIT</label>
                             </div>
                         </div>
                     </button>
+                </form>
+                
+            </div>
         </div>
     </div>
 
-
+   
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
     * {
         margin: 0;
@@ -225,10 +280,46 @@
         background: #fff;
         position: fixed;
         top: 80px;
-        border-top: 1px solid lightgrey;
         transition: all .3s ease-in-out;
         transform: translateX(-380px);
+        opacity: 0;
+
     }
+        .nav_container nav {
+            width: 100%;
+            height: 100%;
+        }
+        .nav_container nav ul {
+            margin-top: 80px;
+            width: 100%;
+            padding-left: 45px;
+        }
+        .nav_container nav ul a {
+            text-decoration: none;
+            font-family: roboto;
+            color: #333;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: all .1s ease-in;
+        }
+        .nav_container nav ul li {
+            list-style-type: none;
+            padding: 20px 0;
+        }
+        .nav_container nav ul .a_link_after::after {
+            content: '';
+            position: absolute;
+            background: lightgrey;
+            width: 80px;
+            height: 1px;
+            transform: translateY(-15px);
+        }
+        .nav_container nav ul .a_link_after:hover {
+            font-size: 20px;
+            font-weight: 600;
+            color: #324e9e;
+        }
+  
 
     .login_sidebar {
         width: 100%;
@@ -370,7 +461,7 @@
     }
     .btn_logout_link {
         margin-left: 15px;
-        margin-right: 15px;
+        margin-right: 14px;
     }
     .btn_logout_link a{
         text-decoration: none;
@@ -382,14 +473,114 @@
     .fa.fa-bell-o {
         font-size: 18px;
         transform: translateY(2px);
+
     }
+    .fa.fa-bell-o:hover {
+        animation-name: bell_icon;
+        animation-duration: .5s;
+        animation-iteration-count: 3;
+    }
+    @keyframes bell_icon {
+        0% {
+            transform: rotate(-10deg) translateY(2px);
+        }
+        50% {
+            transform: rotate(10deg) translateY(2px);
+        }
+        100% {
+            transform: rotate(-10deg) translateY(2px);
+        }
+    }
+ 
+    .dropdown-menu {
+        width: 400px;
+        height: 90vh;
+        position: fixed;
+        top: 80px;
+        right: 0;
+        list-style-type: none;
+        box-sizing: border-box;
+        padding: 20px 40px;
+        padding-top: 30px;
+        overflow: scroll;
+        opacity: 0;
+        transform: translateX(55vh);
+        transition: all .5s ease-in-out;
+        background: #fff;
+    }
+ 
+    /* width */
+    ::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #fff; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #eee; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: grey; 
+    }
+
+    .notif_container {
+        padding: 10px;
+        border-bottom: 1px solid lightgrey;
+        transition: all .3s ease-in-out;
+    }
+  
+    .notif_container:last-child {
+        border: none;
+    }
+
+    .notif_container a {
+        text-decoration: none;
+        color: #333;
+    }
+    .notif_container a:visited {
+        color: grey;
+    }
+    .notif_container .notif_title {
+        font-family: roboto;
+        margin-bottom: 5px;
+        font-size: 13px;
+    }
+    .notif_container small {
+        font-family: Lato;
+        font-size: 12px;
+    }
+    .count {
+        height: 14px;
+        width: 14px;
+        background: #DA1212;
+        font-size: 9px;
+        font-family: roboto;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -4px;
+        right: -5px;
+    }
+
+
+
+
 
 
 </style>
 
 
 <script>
-     const menuBtn = document.querySelector('.menu-btn');
+    const menuBtn = document.querySelector('.menu-btn');
     let menuOpen = false;
 
     menuBtn.addEventListener('click', () => {
@@ -397,6 +588,8 @@
             menuBtn.classList.add('open');
             menuOpen = true;
             document.getElementById('open_nav_container').style.transform = "translateX(0)";
+            document.getElementById('open_nav_container').style.opacity = "1";
+            
 
             document.getElementById('open_login').style.transform = "translateY(-100vh)";
             document.getElementById('open_login').style.opacity = "0";
@@ -407,6 +600,7 @@
             menuBtn.classList.remove('open');
             menuOpen = false;
             document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
         }
     });
 
@@ -438,4 +632,60 @@
         menuOpen = false;
         document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
     }
+    function BtnDropdown() {
+
+        var x = document.getElementById("dropdown_id");
+            if (x.style.opacity === "1") {
+                x.style.opacity = "0";
+                x.style.transform = "translateX(55vh)";
+
+            } else {
+                x.style.opacity = "1";
+                x.style.transform = "translateX(0)";
+            }
+    }
+   
+
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        var id = '<?php echo !empty($_SESSION["student_id"])?$_SESSION["student_id"]:''; ?>'
+
+    function load_unseen_notification(view = '') {
+
+        $.ajax({
+        url:"fetch_notification.php",
+        method:"POST",
+        data:{view:view, id:id},
+        dataType:"json",
+        success:function(data)
+        {
+            $('.dropdown-menu').html(data.notification);
+            if(data.unseen_notification > 0)
+            {
+            $('.count').html(data.unseen_notification);
+            }
+            else {
+                document.getElementById('count_red').style.display = "none";
+            }
+        }
+        });
+        }
+    
+    load_unseen_notification();
+    
+    
+    $(document).on('click', '.dropdown-toggle', function(){
+    $('.count').html('');
+    load_unseen_notification('yes');
+    });
+    
+    setInterval(function(){ 
+    load_unseen_notification();; 
+    }, 5000);
+    
+    });
 </script>
