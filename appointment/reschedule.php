@@ -45,7 +45,7 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      $rows = $querys->fetch_assoc();
                       $fullnames = $rows['first_name'].' '.$rows['last_name'];
                       mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-                     ('APPOINTMENT UPDATE', 
+                     ('APPOINTMENT RESCHEDULED', 
                      '$fullnames has RESCHEDULE your appointment for  $appointment_type', '0', 
                      '$student_id', 'student_appointment_details.php?status=reschedule&apde=$appointment_id')");
 

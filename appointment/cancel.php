@@ -1,6 +1,8 @@
 <?php
 include_once("../dbconfig.php"); 
 session_start();
+
+
 if(isset($_POST['cancel'])){
  // Prepare an update statement
     $comment = $_POST['comment'];  
@@ -21,7 +23,7 @@ if (mysqli_query($db, $cancelappointment)) {
    $rows = $querys->fetch_assoc();
     $fullnames = $rows['first_name'].' '.$rows['last_name'];
     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-   ('APPOINTMENT UPDATE', 
+   ('APPOINTMENT CANCELLED', 
    '$fullnames has CANCEL your appointment for  $appointment_type', '0', 
    '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 

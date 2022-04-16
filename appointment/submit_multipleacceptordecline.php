@@ -68,7 +68,7 @@ session_start();
                                     $rows = $querys->fetch_assoc();
                                     $fullnames = $rows['first_name'].' '.$rows['last_name'];
                                     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-                                    ('REQUEST UPDATE', 
+                                    ('REQUEST ACCEPTED', 
                                     '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                                     '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
                                     
@@ -146,7 +146,7 @@ session_start();
                                  $rows = $querys->fetch_assoc();
                                  $fullnames = $rows['first_name'].' '.$rows['last_name'];
                                  mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-                                 ('REQUEST UPDATE', 
+                                 ('REQUEST DECLINED', 
                                  '$fullnames has DECLINED your request for  $appointment_type', '0', 
                                  '$student_id', 'student_appointment_details.php?status=Declined&apde=$appointment_id')");
             

@@ -41,8 +41,8 @@ session_start();
                    $rows = $querys->fetch_assoc();
                    $fullnames = $rows['first_name'].' '.$rows['last_name'];
                    mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-                   ('REQUEST UPDATE', 
-                  '$fullnames has ACCEPTED your request for $appointment_type', '0', 
+                   ('REQUEST ACCEPTED', 
+                  '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
                   header('location: ../staff_appointment_details.php?p+includepage?success="Appointment request accepted."');
@@ -89,8 +89,8 @@ session_start();
             $rows = $querys->fetch_assoc();
             $fullnames = $rows['first_name'].' '.$rows['last_name'];
             mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
-            ('REQUEST UPDATE', 
-            '$fullnames has DECLINED your request for $appointment_type', '0', 
+            ('REQUEST DECLINED', 
+            '$fullnames has DECLINED your request for  $appointment_type', '0', 
             '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
 
             header('location: ../staff_appointment_details.php?success="Appointment Request Declined"'); 

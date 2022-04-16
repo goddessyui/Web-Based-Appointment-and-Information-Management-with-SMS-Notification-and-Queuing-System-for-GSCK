@@ -1,8 +1,5 @@
 <?php
- 
 
-
- 
 
 //fetch notification
 if(isset($_POST["view"]))
@@ -13,7 +10,7 @@ if(isset($_POST["view"]))
   $update_query = "UPDATE tbl_notification SET notification_status=1 WHERE notification_status=0 AND id = '".$_POST["id"]."'";
   mysqli_query($db, $update_query);
  }
- $query = "SELECT * FROM tbl_notification WHERE id = '".$_POST["id"]."' ORDER BY notification_id DESC LIMIT 10";
+ $query = "SELECT * FROM tbl_notification WHERE id = '".$_POST["id"]."' ORDER BY notification_id DESC LIMIT 8";
  $result = mysqli_query($db, $query);
  $output = '';
  
@@ -22,19 +19,19 @@ if(isset($_POST["view"]))
   while($row = mysqli_fetch_array($result))
   {
    $output .= '
-   <li>
-    <a href="'.$row["link"].'">
-     <strong>'.$row["notification_subject"].'</strong><br />
-     <small><em>'.$row["notification_text"].'</em></small>
-    </a>
-   </li>
-   <li class="divider"></li>
+   <div class="notif_container">
+        <a href="'.$row["link"].'">
+            <div class="notif_title"><b>'.$row["notification_subject"].'</b></div>
+            <small>'.$row["notification_text"].'</small>
+        </a>
+   </div>
+
    ';
   }
  }
  else
  {
-  $output .= '<li><a href="#" class="text-bold text-italic">No Notification Found</a></li>';
+   $output .= '<li><a href="#" class="text-bold text-italic">No Notification Found</a></li>';
  }
  
  $query_1 = "SELECT * FROM tbl_notification WHERE notification_status=0 AND id = '".$_POST["id"]."'";
