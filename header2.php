@@ -73,7 +73,56 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <script>
+    $(document).ready(function() {
+        $('#btn_login').on('click', function() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            if(username!="" && password!=""){
+                $.ajax({
+                    url: "login_system/loginajax.php",
+                    type: "POST",
+                    data: {
+                        type:1,	
+                        username: username,	
+                        password: password						
+                    },
+                    cache: false,
+                    success: function(dataResult){
+                        var dataResult = JSON.parse(dataResult);
+                        if(dataResult.statusCode==200){
+                            location.href = "index.php"; 
+                        }
+                        else if(dataResult.statusCode==201){
+                            location.href = "admin.php"; 
+                        }
+                        else if(dataResult.statusCode==202){
+                            $('#message').html('Username or Password Incorrect !'); 
+                        
+                        }
+                        else if(dataResult.statusCode==203){
+                            $('#message').html('Account not existing in Student record !');  
+                        }
+                        else if(dataResult.statusCode==204){
+                            $('#message').html('Account not existing in Staff record !');
+                        }
+
+                        
+                    }
+                });
+            }
+            else{
+                
+                $('#message').html('Please fill all the field !');
+            }
+        });
+        // VERIFICATION
+
+        
+    });
+    </script>
 
 
     <div class="nav_container" id="open_nav_container">
@@ -108,12 +157,12 @@
                     </button>
                    
                     <div class="input_box">
-                        <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
+                        <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" required/>
                         <div class="icon"><i class="fa fa-user"></i></div>
                     </div>
 
                     <div class="input_box">
-                        <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
+                        <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required/>
                         <div class="icon"><i class="fa fa-lock"></i></div>
                     </div>
 
@@ -122,6 +171,7 @@
                             <input type="checkbox">
                             <span>Remember me?</span>
                         </div>
+
                         <div class="forget_div">
                             <a class="forget_password" href="login_system/forgotpassword_verify.php">Forget Password?</a>
                         </div>
