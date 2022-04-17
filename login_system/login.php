@@ -12,6 +12,12 @@ include_once("dbconfig.php");
         </small>
         <br>
 
+        <!-- error message -->
+        <div class="">
+		<small id="message" class="" style="color:red;"></small>
+	    </div>
+        <!-- error message -->
+
         <form class="login_form" method="POST">
             <div class="input_box">
                 <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
@@ -30,9 +36,6 @@ include_once("dbconfig.php");
                     <a class="forget_password" href="login_system/forgotpassword_verify.php">Forget Password?</a>
                 </div>
             </div>
-            <div class="">
-		<div id="message" class=""> </div>
-	    </div>
             <div class="input_box">
                     <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" />
             </div>
@@ -47,6 +50,7 @@ include_once("dbconfig.php");
 <script>
 $(document).ready(function() {
 	$('#btn_login').on('click', function() {
+        $('#btn_login').prop('disabled', true);
 		var username = $('#username').val();
 		var password = $('#password').val();
 		if(username!="" && password!=""){
@@ -68,14 +72,17 @@ $(document).ready(function() {
 						location.href = "admin.php"; 
 					}
 					else if(dataResult.statusCode==202){
+                        $('#btn_login').prop('disabled', false);
 						$('#message').html('Username or Password Incorrect !'); 
 					
 					}
                     else if(dataResult.statusCode==203){
-						$('#message').html('Account not existing in Student record !');  
+                        $('#btn_login').prop('disabled', false);
+						$('#message').html('Account not existing in records !');  
 					}
                     else if(dataResult.statusCode==204){
-						$('#message').html('Account not existing in Staff record !');
+                        $('#btn_login').prop('disabled', false);
+						$('#message').html('Account not existing in records !');
 					}
 
 					
@@ -83,7 +90,7 @@ $(document).ready(function() {
 			});
 		}
 		else{
-            
+            $('#btn_login').prop('disabled', false);
 			$('#message').html('Please fill all the field !');
 		}
 	});
