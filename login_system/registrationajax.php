@@ -47,6 +47,9 @@ if ($_POST['type']==2) {
             $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
 
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+                $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
+                $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
+                if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
                 $sql = "INSERT INTO tbl_student_registry ( `student_id`, `first_name`, `last_name`, `username`, `password`, `mobile_number`, `course`, `year`) VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')";
                     if (mysqli_query($db, $sql)) {
                         session_unset();
@@ -60,6 +63,10 @@ if ($_POST['type']==2) {
                     else {
                     echo json_encode(array("statusCode"=>202));
                     }
+                }
+                else {
+                    echo json_encode(array("statusCode"=>204));
+                }
                     }
                 else {
                 echo json_encode(array("statusCode"=>203,"username" => $username));
@@ -84,8 +91,10 @@ if ($_POST['type']==3) {
             $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
                 if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
-                    $sql = "INSERT INTO tbl_staff_registry ( `staff_id`, `first_name`, `last_name`, `username`, `password`, `position`, `mobile_number`) VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')";
-
+                    $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
+                    $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
+                if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
+                        $sql = "INSERT INTO tbl_staff_registry ( `staff_id`, `first_name`, `last_name`, `username`, `password`, `position`, `mobile_number`) VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')";
                         if (mysqli_query($db, $sql)){
                         foreach($type as $types){
                         $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
@@ -103,7 +112,11 @@ if ($_POST['type']==3) {
                         else {
                             echo json_encode(array("statusCode"=>202));   
                         }
-                        }
+                    }
+                else{
+                        echo json_encode(array("statusCode"=>204));   
+                    }
+                }
 
                 else{
                     echo json_encode(array("statusCode"=>203,"username" => $username));
