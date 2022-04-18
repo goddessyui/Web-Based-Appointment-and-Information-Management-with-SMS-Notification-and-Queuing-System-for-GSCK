@@ -23,26 +23,31 @@ if ($student_id == "" || $username1 == ""){
 
     <div><h2>Update Profile</h2></div>
     <div>
-    Student ID: <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled />
+    <label>Student ID: </label>
+    <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled />
     </div>
 
     <div class="">
-	Username: <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
+    <label>Username: </label>
+	<input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
 	</div>
 
     <div>
-    First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
+    <label>First Name: </label>
+    <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
     </div>
     
     <div>
-    Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
+    <label>Last Name: </label>
+    <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
     </div>
-    <form  method="POST">
+    <form  method="POST" id="dis">
     <div class="">
-	Mobile Number: <input type="tel" name="number" value="<?php echo $row["mobile_number"]?>" minlength="11" maxlength="11" autocomplete="off" required />
+    <label>Mobile Number: </label>
+	<input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" />
 	</div>
 
-    <div>Course: <select name="course">  
+    <div><label>Course: </label>  <select name="course" id="course">  
     <option value="BSHM" <?php echo $row["course"]=='BSHM'?'selected':"";?>>BSHM</option>
     <option value="BSTM" <?php echo $row["course"]=='BSTM'?'selected':"";?>>BSTM</option>
     <option value="BSIT" <?php echo $row["course"]=='BSIT'?"selected":"";?>>BSIT</option>
@@ -57,82 +62,188 @@ if ($student_id == "" || $username1 == ""){
     </select>  </div>
 
 
-    <div>Year: <select name="year">  
+    <div><label>Year: </label> <select name="year" id="year">  
     <option value="1" <?php echo $row["year"]=='1'?'selected':'';?>>1st Year</option>
     <option value="2" <?php echo $row["year"]=='2'?'selected':'';?>>2nd Year</option>
     <option value="3" <?php echo $row["year"]=='3'?'selected':'';?>>3rd Year</option>
     <option value="4" <?php echo $row["year"]=='4'?'selected':'';?>>4th Year</option>
     </select>
     </div>
+    
     <div>
-    <button type="submit" name="button_edit_profile">Save Changes</button>
-    </div>
-<HR>
-    <div><h2>Change Password</h2></div>
-<label>Current password</label>
-    <div>
-		<input type="password" name="currentpass" value="" placeholder="Current password" minlength="5" autocomplete="off" />
-	</div>
-    <label>New Password</label>
-    <div >
-		<input type="password" name="newpass" value="" placeholder="New password" minlength="5" autocomplete="off" />
-	</div>
-    <div class="">
-		<p>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</p>
-	</div>
-    <label>Re-enter New Password</label>
-    <div>
-		<input type="password" name="newpass_verify" value="" placeholder="Re-enter new password" minlength="5" autocomplete="off" />
+        <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
+        </div>
 
-    <div>
-		<button class="" type="submit" name="button_change_pass">Change Password</button>
-	</div>
+        <div class="form-group">
+		<small id="message3" class="" style="color:red;"></small>
+	    </div>        
+    <hr>
+        <div><h2>Change Password</h2></div>
+        <label>Current password</label>
+        <div>
+            <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
+        </div>
+        <label>New Password</label>
+        <div >
+            <input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off" />
+        </div>
+        <div class="">
+            <small>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</small>
+        </div>
+        <label>Re-enter New Password</label>
+        <div>
+            <input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
+
+        <div>
+            <input type="button" name="button_change_pass" value="Save Changes" id="button_change_pass" />
+        </div>
+        <div class="form-group">
+		<small id="message1" class="" style="color:red;"></small>
+	    </div>
 </form>
 
-<?php
-$student_id = $row['student_id'];
- if (isset($_POST['button_edit_profile'])) {
-    $new_mobilenumber = $_POST['number'];
-    $new_course = $_POST["course"];
-    $new_year = $_POST['year'];
-    $sql = "UPDATE tbl_student_registry SET mobile_number=$new_mobilenumber, course='".$new_course."' , year=$new_year WHERE student_id = '{$student_id}'";
-        if (mysqli_query($db, $sql)) {
-        echo "Profile Settings Changes";
-        } else {
-        echo "Error changing password:  $sql." . mysqli_error($db);
-        }
-        
-     
-    
-}
-    if (isset($_POST['button_change_pass'])) {
-        $currentpassword = $_POST['currentpass'];
-        $newpassword = $_POST['newpass'];
-        $verify_newpassword = $_POST['newpass_verify'];
-        if($currentpassword == $row['password']){
-        if ( strlen($newpassword) >= 5 && strpbrk($newpassword, "1234567890") != false ){
-        if ($newpassword == $verify_newpassword){
-            $sql = "UPDATE tbl_student_registry SET password = $newpassword WHERE student_id = '{$student_id}'";
-            if (mysqli_query($db, $sql)) {
-                echo "Password updated successfully";
-              } else {
-                echo "Error changing password:  $sql." . mysqli_error($db);
-              }
-        }
-         else{
-             echo "Password not Match";
-         } }
-         else{
-            echo 'Your password is not strong enough. Please use another.';
-            }}
+<?php include("backtotop.php"); ?>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    // UPDATE PROFILE
+	$('#button_edit_profile').on('click', function() {
+        $("#dis :input").prop('disabled', true);    
+		var new_mobilenumber = $('#number').val();
+		var new_course = $('#course').val();
+        var new_year = $('#year').val();;
+        $(':checkbox:checked').each(function(i){
+          type[i] = $(this).val();
+        });
+        if(new_mobilenumber!=""&&new_course!=""&&new_year!=""){
+        if (!/^[0-9]+$/.test(new_mobilenumber)) {
+            $("#dis :input").prop('disabled', false);   
+			$('#message3').html('Phone number only a number character'); 
+		}
+		else if (new_mobilenumber.length != 11) {
+            $("#dis :input").prop('disabled', false);   
+			$('#message3').html('Phone number must be at 11 characters'); 
+		}
+		else if (new_mobilenumber.substring(0, 2)!='09') {
+            $("#dis :input").prop('disabled', false);   
+			$('#message3').html('Incorrect phone number !!'); 
+		}
         else{
-            echo "Password Incorrect";
+			$.ajax({
+				url: "student_profileajax.php",
+				type: "POST",
+				data: {
+					type:1,	
+					number: new_mobilenumber,
+                    course: new_course,
+                    year:new_year						
+				},
+                cache: false,
+				success: function(dataResult){
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){  
+                        $("#dis :input").prop('disabled', false); 
+                        $('#message3').html('Updated profile settings sucessfully !!'); 
+					}
+                    else if(dataResult.statusCode==201){
+                        $("#dis :input").prop('disabled', false);   
+						$('#message3').html('An Error occured, please refresh the page !!'); 
+					}
+                    else if(dataResult.statusCode==202){
+                        $("#dis :input").prop('disabled', false);   
+						$('#message3').html('Mobile number already in used, please try another !!'); 
+					}
+					
+				}
+			});
+        }
     }
-}
-    
-include("backtotop.php");  
+    else{
+        $("#dis :input").prop('disabled', false);   
+		$('#message3').html('Please fill all the field !!'); 
+    }
+		
+	});
+	// UPDATE PROFILE
 
-?>
 
+    // CHANGE PASS
+    $('#button_change_pass').on('click', function() {
+        $("#dis :input").prop('disabled', true);  
+        var currentpass = $('#currentpass').val();
+		var newpass = $('#newpass').val();
+		var newpass_verify = $('#newpass_verify').val();
+        if(currentpass!=""&&newpass!=""&&newpass_verify!=""){
+        if (newpass.length < 8) {
+            $("#dis :input").prop('disabled', false); 
+      	$("#message1").html('Password must be at least 8 characters !!');
+        }
+      	else if (newpass.length > 16) {
+            $("#dis :input").prop('disabled', false);
+        $("#message1").html('Password must not exceed 16 characters !!'); 
+        }
+		else if (!/^(?!.* )/.test(newpass)) {
+            $("#dis :input").prop('disabled', false);
+		$('#message1').html('Password must not contain space !!'); 
+		}
+        else if  (newpass.search(/[a-z]/i) < 0) {
+            $("#dis :input").prop('disabled', false);
+        $("#message1").html('Password must contain at least one letter !!');
+        }
+        else if  (newpass.search(/[0-9]/) < 0) {
+            $("#dis :input").prop('disabled', false);
+        $("#message1").html('Password must contain at least one digit !!'); 
+        }
+      	else if (newpass != newpass_verify){
+            $("#dis :input").prop('disabled', false);
+            $('#message1').html('New Password did not match !!'); 
+      	}
+            else{
+			$.ajax({
+				url: "student_profileajax.php",
+				type: "POST",
+				data: {
+					type:2,	
+					currentpass: currentpass,	
+					newpass: newpass					
+				},
+                cache: false,
+				success: function(dataResult){
+                  
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+                        $("#dis :input").prop('disabled', false);
+                        $('#currentpass').val('');
+                        $('#newpass').val('');
+                        $('#newpass_verify').val('');
+                        $('#message1').html('Password updated successfully !!'); 
+					}
+                    else if(dataResult.statusCode==201){
+                        $("#dis :input").prop('disabled', false);
+						$('#message1').html('An Error occured while changing password, please refresh the page !!'); 
+					}
+                    else if(dataResult.statusCode==202){
+                        $$("#dis :input").prop('disabled', false);
+						$('#message1').html('Current password did not match !!'); 
+					}
+                    
+					
+				}
+			});
+        }
+        }
+        else{
+            $("#dis :input").prop('disabled', false);
+            $('#message1').html('Please fill all the field !!'); 
+        }
+		
+	});
+	// CHANGE PASS
+
+
+});
+</script>
 
 
