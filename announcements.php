@@ -10,7 +10,7 @@ if (isset($_GET['pageno'])) {
 } else {
     $pageno = 1;
 }
-$no_of_records_per_page = 15;
+$no_of_records_per_page = 10;
 $offset = ($pageno-1) * $no_of_records_per_page;
 
 
@@ -28,7 +28,8 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                 tbl_announcement.caption,
                 tbl_announcement.image,
                 tbl_announcement.date_created,
-                tbl_announcement.video_url
+                tbl_announcement.video_url,
+                `name`
                 FROM
                 tbl_announcement
                 ORDER BY date_created DESC
@@ -42,7 +43,9 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
                 ?>
                 <div class="center">
-                <div class="center_ann"><h3><?php echo $row['announcement_title'] ?></h3><?php echo date("F d, Y", strtotime($row['date_created'])) ?></div>
+                <span class="fa fa-user"></span><small><?php echo $row['name'] ?></small>
+                <div><small><?php echo date("F d, Y", strtotime($row['date_created'])) ?></small></div>
+                <div class="center_ann"><h3><?php echo $row['announcement_title'] ?></h3></div>
                 <div class="center_ann"><pre><?php echo $row['caption'] ?></pre></div>
                 <div class="center_ann"><?php echo !empty($row['image'])?'<img class="imgs" src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>            </div>
                 <div class="center_ann"><?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?> </div>    

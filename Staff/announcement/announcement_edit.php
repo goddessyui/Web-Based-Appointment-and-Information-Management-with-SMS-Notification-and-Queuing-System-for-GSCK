@@ -7,13 +7,13 @@ $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
 
-$ann_id = $_SESSION['announcement_id'];
+$ann_id = $_GET['edit'];
 $query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id='{$ann_id}'");
 $row = $query->fetch_assoc();
 
 
 if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
-    echo '<script type="text/javascript">window.location.href="../../index.php"</script>';
+    echo '<script type="text/javascript">window.location.href="../../announcement_admin.php"</script>';
  }
 ?>
 
@@ -24,6 +24,7 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
     var links = $('#videoObject').attr('src')  
     if (links == undefined || links == ''){
      $("#videoObject").hide();
+     $("#removeurl").hide();
     }
     else{
         document.getElementById("imgInp").disabled = true;
@@ -31,6 +32,7 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
     }
     if (image == undefined || image == ''){
     $("#output").hide();
+    $("#remove_btn").hide();
     }
     else{
         document.getElementById("video_link").disabled = true;
@@ -54,13 +56,20 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
                         
                                 <div>
                                     <label>Caption:</label>
+                                </div><div>
                                     <textarea name="edit_caption" type="text" class="form-control" required><?php echo $row["caption"]?></textarea>
                                 </div>
                                 <div>    
                                     <label>Video Link(can only accept youtube video link):</label>
                                     <input name="video_link" id="video_link" type="text" value=<?php echo $row['video_url']?> >
-                                    <button id="check" type="button" onclick="myFunction()">Validate</button>           
+                                    <button id="check" type="button" onclick="myFunction()">Validate</button>  
+                                    <button id="removeurl" type="button" onclick="removeu()">Remove URL</button>           
                                 </div>
+
+                                <div>
+                                    <small id="mess" style="color:red;"></small>
+                                </div>
+
                                 <div> 
                                     <iframe id="videoObject" type="text/html" <?php echo !empty($row['video_url'])?'src='.$row['video_url']:''?> width="500" height="265" frameborder="0" allowfullscreen></iframe>
                                 </div>
@@ -78,9 +87,12 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
                           
              
                 <div>
-                    <button type="submit" name="button_edit_announcement">Submit</button>
-                    <button formnovalidate formaction='cancel.php'>Cancel</button>
+                    <button type="submit" id= "add" name="button_edit_announcement">Submit</button>
+                    <button formnovalidate formaction='../../announcement_admin.php'>Cancel</button>
                     </form>
+                </div>
+                <div>
+                <div id="mess1" style="color:red;"></div>
                 </div>
            
 
@@ -89,6 +101,7 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
+        $("#remove_btn").show();
         $("#output").show();
       URL.revokeObjectURL(output.src) // free memory
       document.getElementById("video_link").disabled = true;
@@ -99,8 +112,11 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
     function myFunction() {
     var url = $('#video_link').val();
     if (url == undefined || url == ''){
-    $("#videoObject").hide(); 
-            alert('URL Empty');
+            $("#videoObject").hide(); 
+            $('#mess').show();
+            $('#mess').html('URL Empty !');
+            setInterval(function() { $("#mess").fadeOut(); }, 2000);
+            $("#removeurl").hide();
             document.getElementById("imgInp").disabled = false;
             document.getElementById("add").disabled = false;
             // Do anything for Empty URL
@@ -111,14 +127,18 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
         var match = url.match(regExp);
         if (match && match[2].length == 11) {
             // Do anything for being valid
-            // if need to change the url to embed url then use below line 
+            // if need to change the url to embed url then use below line
+            $("#removeurl").show(); 
             $("#videoObject").show();           
             $('#videoObject').attr('src', 'https://www.youtube.com/embed/' + match[2] + '?autoplay=1&enablejsapi=1');
             document.getElementById("imgInp").disabled = true;
             document.getElementById("add").disabled = false;
         } else {
+            $("#removeurl").show();
             $("#videoObject").hide(); 
-            alert('not valid');
+            $('#mess').show();
+            $('#mess').html('URL not valid !');
+            setInterval(function() { $("#mess").fadeOut(); }, 2000);
             document.getElementById("imgInp").disabled = true;
             document.getElementById("add").disabled = true;
             // Do anything for not being valid
@@ -127,6 +147,7 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
 }
     } 
     function Remove() {
+        $("#remove_btn").hide();
         $("#imagevalidate").val("");
         document.getElementById("output").src = false;
         document.getElementById("video_link").disabled = false;
@@ -135,6 +156,17 @@ if ($staff_id == "" || $staff_username == "" || $row['staff_id'] != $staff_id){
         $("#output").hide();
         document.getElementById("check").disabled = false;
     }  
+    function removeu() {
+        $("#removeurl").hide();
+        $("#video_link").val("");
+        $('#videoObject').attr('src', '');
+        $('#videoObject').hide();
+        document.getElementById("imgInp").disabled = false;
+        document.getElementById("add").disabled = false;
+        $('#mess').show();
+        $('#mess').html('URL removed !');
+        setInterval(function() { $("#mess").fadeOut(); }, 2000);
+    }
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">
 </script>
@@ -161,16 +193,19 @@ if (isset($_POST['button_edit_announcement'])) {
             if (file_exists($filename)) {
             unlink($filename);
             }else {
-                echo '<script type="text/javascript">alert("Updated Unsuccessful!");window.location.href="../../announcement_admin.php"</script>';
+                echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
               }
             }
         if (move_uploaded_file($_FILES["image"]["tmp_name"], "../../announcement_image/" . $newfilename)) {
             $stmt->execute();
             $edit = "true";
             include ('../../notification_announcement.php');
-            echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("Updated Successfully!");
+        setInterval(function() { window.location.href="../../announcement_admin.php"; }, 1000);
+            </script>';
+           
         } else {
-            echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
         }
 
     
@@ -188,9 +223,12 @@ if (isset($_POST['button_edit_announcement'])) {
         if ($stmt->execute()) {
             $edit = "true";
             include ('../../notification_announcement.php');
-            echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("Updated Successfully!");
+        setInterval(function() { window.location.href="../../announcement_admin.php"; }, 1000);
+            </script>';
+           
         } else {
-            echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
         }
     }
 
@@ -201,7 +239,10 @@ if (isset($_POST['button_edit_announcement'])) {
 
         $url = $link;
           $finalUrl = '';
-          if(strpos($url, 'youtube.com/') !== false) {
+          if(strpos($url, 'youtube.com/embed') !== false) {
+            $finalUrl = $url;
+        }
+          else if(strpos($url, 'youtube.com/watch') !== false) {
               $videoId = explode("v=",$url)[1];
               if(strpos($videoId, '&') !== false){
                   $videoId = explode("&",$videoId)[0];
@@ -214,10 +255,10 @@ if (isset($_POST['button_edit_announcement'])) {
               }
               $finalUrl.='https://www.youtube.com/embed/'.$videoId;
           }else{
-              echo '<script type="text/javascript">alert("Updated Unsuccessful! Enter valid video URL!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("Please enter valid video URL!");</script>';
           }
           
-
+          if($finalUrl!=""){
           $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, video_url=?, image=? where announcement_id=?');
           $stmt->bind_param("sssss", $title, $caption,$links, $img, $ann_id);
           $title = $_POST['edit_title'];
@@ -227,10 +268,13 @@ if (isset($_POST['button_edit_announcement'])) {
           if ($stmt->execute()) {
             $edit = "true";
             include ('../../notification_announcement.php');
-              echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("Updated Successfully!");
+            setInterval(function() { window.location.href="../../announcement_admin.php"; }, 1000);
+                </script>';
           } else {
-              echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
           }
+        }
       }
 
 
@@ -247,9 +291,12 @@ if (isset($_POST['button_edit_announcement'])) {
             
             $edit = "true";
             include ('../../notification_announcement.php');
-            echo '<script type="text/javascript">alert("Updated Successfully!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("Updated Successfully!");
+        setInterval(function() { window.location.href="../../announcement_admin.php"; }, 1000);
+            </script>';
         } else {
-            echo '<script type="text/javascript">alert("Updated Unsuccessful! Photo file format!");window.location.href="../../announcement_admin.php"</script>';
+            echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
+           
         }
     }
 

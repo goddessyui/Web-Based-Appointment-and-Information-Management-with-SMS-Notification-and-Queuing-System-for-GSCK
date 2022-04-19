@@ -4,7 +4,7 @@ if ($staff_id == "" || $staff_username == ""){
  }
 
 // insert data into tbl_notification if staff added an announcement
-if ($add == "true"){
+if (isset($add)){
 $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
 $rows = $querys->fetch_assoc();
 $fullnames = $rows['first_name'].' '.$rows['last_name'];
@@ -31,7 +31,7 @@ if (mysqli_num_rows($res) > 0) {
 }
 
 // insert data into tbl_notification if staff edited an announcement
-else if ($edit == "true"){
+else if (isset($edit)){
     $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
     $rows = $querys->fetch_assoc();
     $fullnames = $rows['first_name'].' '.$rows['last_name'];
