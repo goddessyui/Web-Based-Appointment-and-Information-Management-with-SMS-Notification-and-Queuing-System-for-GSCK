@@ -3,57 +3,58 @@ include_once("../dbconfig.php");
 ?>
 <!-- MESSAGE AFTER CHANGGING NEW PASSWORD SUCCESSFULLY -->
 	<div class="form-group">
-	<div id="m" class=""></div>
+		<div id="m"></div>
 	</div>
 
 
 <!-- POP UP THATS FADES OUT MESSAGE AFTER VERIFYING -->
 	<div class="form-group">
-	<div id="message_fade" class=""></div>
+		<div id="message_fade"></div>
 	</div>
 
 
   <!-- FORM FOR USERNAME VERIFICATION -->
 	<form id="username_verify" name="form" method="post">
-    <div>
-  	<h1>FORGOT PASSWORD</h1>
-	</div>
+		<div>
+			<h1>FORGOT PASSWORD</h1>
+		</div>
 
-    <div class="">
-	<label>Enter Username: </label>
-	<input type="text" name="username" id="username" placeholder="Username"/>
-    <input type="button" name="btn_verify" class="btn btn-success" value="Next" id="btn_verify" />
-	</div>
+		<div>
+			<label>Enter Username: </label>
+			<input type="text" name="username" id="username" placeholder="Username"/>
+			<input type="button" name="btn_verify" class="btn btn-success" value="Next" id="btn_verify" />
+		</div>
 
-	<!-- message for errors -->
-	<div class="form-group">
-		<small id="message" class="" style="color:red;"></small>
-	</div>
+		<!-- message for errors -->
+		<div class="form-group">
+			<small id="message" style="color:red;"></small>
+		</div>
+		<!-- message for errors -->
 	</form>
  <!-- FORM FOR USERNAME VERIFICATION -->
 
 
  <!-- FORM FOR VERIFYING CODE -->
 	<form id="otp_verify" name="form2" method="post" style="display:none;">
-  	<div class="form-group">
-	<div id="number" class=""></div>
-	</div>
+		<div class="form-group">
+			<div id="number"></div>
+		</div>
 
-	<div>
-    <label>Enter Verification Code</label>
-    <input type="text" name="verification_code" id="verification_code" />
-    <input type="button" name="btn_otp_erify" class="btn btn-success" value="Resend" id="btn_otp_resend" disabled/><small id="countdown"></small>
-	</div>
+		<div>
+			<label>Enter Verification Code</label>
+			<input type="text" name="verification_code" id="verification_code" />
+			<input type="button" name="btn_otp_erify" class="btn btn-success" value="Resend" id="btn_otp_resend" disabled/><small id="countdown"></small>
+		</div>
 
-    <div>
-    <input type="button" name="btn_otp_erify" class="btn btn-success" value="Verify" id="btn_otp_verify" disabled/>
-	</div>
+		<div>
+			<input type="button" name="btn_otp_erify" class="btn btn-success" value="Verify" id="btn_otp_verify" disabled/>
+		</div>
 
-	<!-- message for errors -->
-	<div class="form-group">
-		<small id="message1" class="" style="color:red;"></small>
-	</div>
-</form>
+		<!-- message for errors -->
+		<div class="form-group">
+			<small id="message1" style="color:red;"></small>
+		</div>
+	</form>
 <!-- FORM FOR VERIFYING CODE -->
 
 
@@ -67,33 +68,34 @@ include_once("../dbconfig.php");
 
 <!-- FORM FOR CHANGE PASSWORD  -->
 	<form id="change_pass" name="form2" method="post" style="display:none;">
-    <div>
-  	<h1>CHANGE PASSWORD</h1>
-	</div>
+		<div>
+			<h1>CHANGE PASSWORD</h1>
+		</div>	
 
-    <div class="">
-	<label>New password</label>
-	<input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off"/>
-	</div>
+		<div>
+			<label>New password</label>
+			<input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off"/>
+		</div>
 
-    <div class="">
-	<small class="">Password must be at least 8 characters and<br /> have a number character, e.g. 1234567890</small>
-	</div>
+		<div>
+			<small class="">Password must be at least 8 characters and<br /> have a number character, e.g. 1234567890</small>
+		</div>
 
-    <div class="">
-	<label>Re-enter new password</label>
-	<input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password"autocomplete="off"/>
-	</div>
+		<div>
+			<label>Re-enter new password</label>
+			<input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password"autocomplete="off"/>
+		</div>
 
-    <div class="">
-    <input type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled/>
-	</div>
+		<div>
+			<input type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled/>
+		</div>
 
-	<!-- message for errors -->
-	<div class="form-group">
-		<small id="message2" class="" style="color:red;"></small>
-	</div>
-</form>
+		<!-- message for errors -->
+		<div class="form-group">
+			<small id="message2" style="color:red;"></small>
+		</div>
+		<!-- message for errors -->
+	</form>
 <!-- FORM FOR CHANGE PASSWORD  -->
 
 
