@@ -33,7 +33,7 @@ include_once("dbconfig.php");
                     <span>Remember me?</span>
                 </div>
                 <div class="forget_div">
-                    <a class="forget_password" href="login_system/forgotpassword_verify.php">Forget Password?</a>
+                    <button>Forgot Password?</button>
                 </div>
             </div>
             <div class="input_box">

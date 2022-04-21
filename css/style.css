@@ -185,7 +185,7 @@
         display: flex;
     }
     .form_content .gsck_img,
-    .form_content form {
+    .form_content .form_container_div {
         width: 50%;
         height: 60vh;
         background: #fff;
@@ -414,10 +414,11 @@
         right: -5px;
     }
 
-/*----form-div----*/
-
-    .form_div {
-        width: 100%;
-        height: 60vh;
-        background: green;
-    }
+/*---------login_form here-------------*/
+.login_form_div {
+    background: teal;
+}
+.forgot_pass_div,
+.sms_forgot_pass {
+    display: none;
+}
