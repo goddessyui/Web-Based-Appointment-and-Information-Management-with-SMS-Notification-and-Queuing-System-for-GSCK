@@ -9,7 +9,7 @@ session_start();
     if (mysqli_num_rows($query) == 1) {
         $row = $query->fetch_assoc();
 
-    if (password_verify($_POST['password'],$row["password"])) {
+    if (password_verify($_POST['password'],$row['password'])) {
         $student_id = $row["student_id"];
         $query1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}'");
         

@@ -1,5 +1,5 @@
 <?php
-include_once("admin_header.php");
+include("admin_header.php");
 
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
@@ -19,21 +19,19 @@ if(isset($_POST["upload"]))
                 $staff_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
-                
                
-                $query="INSERT INTO tbl_staff_record (staff_id, first_name, last_name) VALUES ('$staff_id', '$first_name', '$last_name')";
+                $query="INSERT INTO tbl_staff_record (staff_id, first_name, last_name) 
+                VALUES ('$staff_id', '$first_name', '$last_name')";
                         mysqli_query($db, $query);
-                       
-
-    
             }
         fclose($handle);
         ?>
-        <script type="text/javascript">
-            window.location.href = 'upload_staff_records.php?updation=1';
-        </script>
+            <script type="text/javascript">
+                window.location.href = 'upload_staff_records.php?updation=1';
+            </script>
         <?php
-             }
+     
+        }
         else//if not csv
         {
         $message = '<label class="text-danger">Please Select CSV File only</label>';
@@ -47,171 +45,327 @@ if(isset($_POST["upload"]))
 
 if(isset($_GET["updation"]))
 {
-    $message = '<label class="text-success">staff Records Update Done</label>';
+    $msg = '<label class="text-success">Staff Records Update Done</label>';
+}
+else{
+    $msg = " ";
 }
 //-------------------------------upload csv------------------------------------------------------------------------------//
 
 ?>
 
 <main>
+    
 <br />
     <div class="container-fluid">
-        <h2 align="center">Update Staff Records</a></h2>
-        <br />
-        <!----------------------Form to Upload CSV ------------------------------------------------------------> 
         <div class="row">
-            <div  class="form-group">
-                <form method="post" enctype='multipart/form-data'>
-                    <label>Please Select File(Only CSV Format)</label>
-                    <input type="file" class="form-control" name="staff_file" />
-                    <?php
-                            //show error message
-                            $message = '';
-                        ?>
-                    <br />
-                    <input type="submit" name="upload" class="btn btn-info" value="Upload" />
-                </form>
-            </div>
+            <h3>Staff Records</h3>
         </div>
-        
-        <!----------------------Form to Upload CSV ------------------------------------------------------------>
-        <br />
-
+ <!----------------------Cards ------------------------------------------------------------>        
         <div class="row">
-            <h3 align="center">Staff Record</h3>
-            <?php echo $message; ?>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-4">
+            <div class="col_3">
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">No. of Employed Staff</h5>
-                        <p class="card-text">
-                            <?php
-                                $enrolledstaff = "SELECT * FROM tbl_staff_record";
-                                $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
-                                $count = mysqli_num_rows($enrolledstaff_result);
-                                echo $count;
-                            ?>
-                        </p>
+                    <div class="card_title">Total No. of employed staff</div>
+                    <div class="card_body">
+                    
+                    <div class="card_text">
+                        <?php
+                            $employedstaff = "SELECT * FROM tbl_staff_record";
+                            $employedstaff_result = mysqli_query($db, $employedstaff);
+                            $count = mysqli_num_rows($employedstaff_result);
+                            echo $count;
+                        ?>
+                    </div>
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <br />
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div  class="form-group">
-                    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
-                    <form action="Staff/registrar/add_staffrecord.php" method="post">
-                        
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname"name="lastname" required>
+            <div class="col_3">
+                <div class="card">
+                    <div class="card_title">Total No. of Registered Staff</div>
+                    <div class="card_body">
                     
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" required>
-                    
-                        <label for="staffid">Staff ID</label>
-                        <input type="text" class="form-control" id="staffid" name="staffid" required>
-                     
-                        <input type="submit" class="btn btn-info" value="ADD A STAFF" name="add">
-
-                    </form>
-                    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
-
+                    <div class="card_text">
+                        <?php
+                            $employedstaff = "SELECT * FROM tbl_staff_registry";
+                            $employedstaff_result = mysqli_query($db, $employedstaff);
+                            $count = mysqli_num_rows($employedstaff_result);
+                            echo $count;
+                        ?>
+                    </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
-
+<!---------------------Cards ------------------------------------------------------------> 
+    
+    
+        <!----------------------Form to Upload CSV ------------------------------------------------------------> 
         <div class="row">
-            <div class="card">
-                <div class="card-body">
-                    <!--success or error-->
-                    <?php 
-                        if(isset($_GET['success'])){
-                    ?>
-                            <p align="center">
-                                <?php 
-                                    echo $_GET['success'];
-                                ?>
-                            </p>
+            <div  class="form_group">
+                <div class="message"><?php echo $msg; ?></div>
+                <form method="post" enctype='multipart/form-data'>
+                    <label>Update staff Records: <small>Please Select File(Only CSV Format)</small></label>
+                    <input type="file" class="uploadfile" name="staff_file" />
                     <?php
-                        }
-                        if(isset($_GET['error'])){
+                        //show error message
+                        $message = '';
                     ?>
-                                    <p align="center">
+                    
+                    <input type="submit" class="btn_upload" name="upload" value="Upload" />
+                </form>
+            </div>
+            
+        </div>
+        <!----------------------Form to Upload CSV ------------------------------------------------------------>
+        <!----------------------Show Error or Success Message ------------------------------------------------------------>
+      
+
+       
+        <div class="row">
+                <div class="form_group">
+                    <div class="message">
+                            <!--success or error-->
+                            <?php 
+                                if(isset($_GET['success'])){
+                            ?>
+                                    <p>
                                         <?php 
-                                            echo $_GET['error'];
+                                            echo $_GET['success'];
                                         ?>
                                     </p>
                             <?php
                                 }
-                        else{
-                        }
-                    ?>
-                    <!--success or error-->
+                                if(isset($_GET['error'])){
+                            ?>
+                                            <p>
+                                                <?php 
+                                                    echo $_GET['error'];
+                                                ?>
+                                            </p>
+                                    <?php
+                                        }
+                                else{
+                                }
+                            ?>
+                            <!--success or error-->
+                    </div>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <?php
-            //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
-                
-            //-----------For pagination-------------//
-            if (isset($_GET['pageno'])) {
-                $pageno = $_GET['pageno'];
-            } else {
-                $pageno = 1;
-            }
-            $no_of_records_per_page = 25;
-            $offset = ($pageno-1) * $no_of_records_per_page;
-
-
-            $total_pages_sql = "SELECT COUNT(*) FROM tbl_staff_record";
-            $theresult = mysqli_query($db, $total_pages_sql);
-            $total_rows = mysqli_fetch_array($theresult)[0];
-            $total_pages = ceil($total_rows / $no_of_records_per_page);
-                //-----------For pagination-------------//
-            
-            $staffrecordquery = "SELECT * FROM tbl_staff_record ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
-                
-                $staffrecordresult = mysqli_query($db, $staffrecordquery);
-                    
-                while($row = mysqli_fetch_array($staffrecordresult))
-                {
-            ?>
-                <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
-                <div class="col-sm-10">
-                    <div  class="form-group"> 
-                    
-                        <form action="Staff/registrar/updatedelete_staffrecord.php" method="post">
-                            <div class="form-inline" >
-                                <input type="text" class="form-control" name="lastname" value="<?php echo $row["last_name"]?>">
-                                <input type="text" class="form-control" name="firstname" value="<?php echo $row["first_name"]?>">
-                                <input type="text" class="form-control" name="staffid" value="<?php echo $row["staff_id"]?>">
-                            
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button  type="submit" class="btn btn-primary" name="update">UPDATE</button>
-                                    <button type="submit" class="btn btn-danger" name="delete">DELETE</button>
-                                </div>
-                            </div>
-                        </form>
+                      
+        <!----------------------Show Error or Success Message ------------------------------------------------------------>
+                    <div class="form_inline">
+                    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
+                    <form action="Staff/registrar/add_staffrecord.php" method="post">
+                        <label><div class="left_counter">Add staff:</div></label>  
+                            <input type="text"  id="lastname" name="lastname" placeholder="Last Name" required>
+                            <input type="text"  id="firstname" name="firstname" placeholder="First Name" required>
+                            <input type="text"  id="staffid" name="staffid" placeholder="staff ID" required> 
+                        <button type="submit" class="btn_add" name="add">Add</button>
+                    </form>
+                    <!------Form to Add data to tbl_staff_record. Sends data to add_staffrecord.php------------------------------------------------>
                     </div>
                 </div>
-                <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+        </div>
+
+       
+
+        <div class="row">
+            <!--------------------------------------Search box--------------------------------------------------------->
+            <div class="form_group">
+                <form name="form1" method="get" action="">
+                    <div class="search-box"><label>Search staff:</label></div>
+                    <div class="search-box">
+                        <input type="text" autocomplete="off" placeholder="Search staff name..." name="search" id="search" value="" required>
+                        <div class="result"></div>
+                    </div>
+                    <div class="search-box">
+                        <button type="submit" value="Find" name="formsubmit" id="formsubmit">Search</button>
+                    </div>
+                </form>
+                <!------Shows the result when pressing find---->
+            <div id="response"></div>
+            <!------Shows the result when pressing find---->
+            </div>
+
+            <!--------------------------------------Search box--------------------------------------------------------->
+
+        </div>
+
+                        
+        <div class="row">
+            <div class="form_group">
+                <div class="form_inline">
+                    <div class="form_label">No.</div>
+                    <form action="#" method="POST" onclick="e.preventDefault()" >
+                        <select name="alphabetical" id="alphabetical"  onchange="this.form.submit();">
+                            <option value="">Last Name</option>
+                            <option value="'%'">ALL</option>
+                            <option value="'A%'">A</option>
+                            <option value="'B%'">B</option>
+                            <option value="'C%'">C</option>
+                            <option value="'D%'">D</option>
+                            <option value="'E%'">E</option>
+                            <option value="'F%'">F</option>
+                            <option value="'G%'">G</option>
+                            <option value="'H%'">H</option>
+                            <option value="'I%'">I</option>
+                            <option value="'J%'">J</option>
+                            <option value="'K%'">K</option>
+                            <option value="'L%'">L</option>
+                            <option value="'M%'">M</option>
+                            <option value="'N%'">N</option>
+                            <option value="'O%'">O</option>
+                            <option value="'P%'">P</option>
+                            <option value="'Q%'">Q</option>
+                            <option value="'R%'">R</option>
+                            <option value="'S%'">S</option>
+                            <option value="'T%'">T</option>
+                            <option value="'U%'">U</option>
+                            <option value="'V%'">V</option>
+                            <option value="'W%'">W</option>
+                            <option value="'X%'">X</option>
+                            <option value="'Y%'">Y</option>
+                            <option value="'Z%'">Z</option>
+                        </select>
+                    </form>
+                    <div class="form_label">First Name</div>
+                    <div class="form_label">staff ID No.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <?php
+            //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
+            
+            if(isset($_POST['alphabetical'])) {
+                $alphabetical = $_POST['alphabetical'];
+
+
+                if (isset($_GET['pageno'])) {
+                    $pageno = $_GET['pageno'];
+                } else {
+                    $pageno = 1;
+                }
+                $no_of_records_per_page = 25;
+                $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+                $total_pages_sql = "SELECT COUNT(*) FROM tbl_staff_record";
+                $theresult = mysqli_query($db, $total_pages_sql);
+                $total_rows = mysqli_fetch_array($theresult)[0];
+                $total_pages = ceil($total_rows / $no_of_records_per_page);
+                //-----------For thepagination-------------//
+            
+                
+                $staffquery = "SELECT * FROM tbl_staff_record WHERE last_name LIKE $alphabetical ORDER BY last_name ASC, first_name ASC 
+                    LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
+                $staffresult = mysqli_query($db, $staffquery);
+                $count =mysqli_num_rows($staffresult);
+                if ($count > 0) {
+                $i=1;
+                
+                while($row = mysqli_fetch_array($staffresult))
+                {
+            ?>
+                    <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+               
+                    <div class="form_group">    
+                        
+                        <form action="Staff/registrar/updatedelete_staffrecord.php" method="post">
+                            
+                            <div class="form_inline" >
+                                <div class="form_list">
+                                    <label><div class="left_counter"><?php echo $offset + $i++;?></div></label>
+                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text"  id="staffid" name="staffid" placeholder="staff Id" value="<?php echo $row["staff_id"]?>">
+                                </div>    
+                                <div class="btn_group" role="group" aria-label="Basic example">
+                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                </div>
+
+                            </div>
+                            
+                        </form>
+                    </div>
+               
+                    <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
             <?php
                 }
-            //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
+            }
+            else {
+                if ($alphabetical == "'%'"){
+                    echo "The list of employed staff is empty.";
+                }
+                else{
+                    echo "No result for ". substr($alphabetical, 1,-2);
+                }
+            }
+
+            }//end of isset
+            else if (empty($_POST['alphabetical'])) {
+
+
+                if (isset($_GET['pageno'])) {
+                    $pageno = $_GET['pageno'];
+                } else {
+                    $pageno = 1;
+                }
+                $no_of_records_per_page = 25;
+                $offset = ($pageno-1) * $no_of_records_per_page;
+
+
+                $total_pages_sql = "SELECT COUNT(*) FROM tbl_staff_record";
+                $theresult = mysqli_query($db, $total_pages_sql);
+                $total_rows = mysqli_fetch_array($theresult)[0];
+                $total_pages = ceil($total_rows / $no_of_records_per_page);
+                //-----------For thepagination-------------//
+            
+                
+                $staffquery = "SELECT * FROM tbl_staff_record ORDER BY last_name ASC, first_name ASC 
+                    LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
+                $staffresult = mysqli_query($db, $staffquery);
+                $i=1;
+                
+                while($row = mysqli_fetch_array($staffresult))
+                {
+            ?>
+                    <!--------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+               
+                    <div class="form_group">    
+                        
+                        <form action="Staff/registrar/updatedelete_staffrecord.php" method="post">
+                            
+                            <div class="form_inline" >
+                                <div class="form_list">
+                                    <label><div class="left_counter"><?php echo $offset + $i++;?></div></label>
+                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text"  id="staffid" name="staffid" placeholder="staff Id" value="<?php echo $row["staff_id"]?>">
+                                </div>    
+                                <div class="btn_group" role="group" aria-label="Basic example">
+                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                </div>
+
+                            </div>
+                            
+                        </form>
+                    </div>
+               
+                    <!---------Send Form Data to updatedelete_staffrecord.php---------------------------------------------->
+            <?php
+                }
+
+            }//end of else
+                //----------------------Form to Show, Update, Delete Data From tbl_staff_record ------------------------------------------//
             ?>
         </div>
+        
         <div class="row">
-            <!--------Pagination---------------------------------------------->
-            <ul class="pagination">
+            <!--------thepagination---------------------------------------------->
+            <ul class="thepagination">
                 <li><a href="?pageno=1">First</a></li>
                 <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
                     <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
@@ -221,14 +375,17 @@ if(isset($_GET["updation"]))
                 </li>
                 <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
             </ul>
-            <!--------Pagination---------------------------------------------->
+            <!--------thepagination---------------------------------------------->
 
         </div>
 
     </div>
+
         <?php
          include("backtotop.php");
-        ?>
+        ?> 
+
+
 
 
     </main>
@@ -237,15 +394,235 @@ if(isset($_GET["updation"]))
 
 <style> 
     main {
+        padding: 0;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 100px;
+        margin-top: 50px;
     }
-    .staffrecord{
-        display: inline-block;
+   
+    .row {
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fafafa;
+        text-align: center;
     }
-    .staffrecord input{
+    .row h3 {
+        text-align: center;
+    }
+    .col_3{
+        width: 320px;
+        margin-bottom: 10px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .card {
+        text-align: center;
+    }
+    .card_title{
+        background-color: #324e9e;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: #fff;
+    }
+    .card_body {
+        background-color: white;
+        font-size: 20px;
+        color: #324e9e;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    #formsubmit {
+        background-color: #324e9e;
+        color: #fff;
+        padding: 5px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 25px;
+    }
+    .form_group {
+      width: 100%;
+      margin: auto;
+      min-width: 300px;
+    }
+
+    h3 {
+       text-align: center;
+    }
+    .form_inline {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        background-color: #dedede;
+        padding: 10px;
+        min-width: 250px;
+       
+    }
+    .form_inline:hover .btn_group {
         display: block;
     }
 
+    .form_inline .left_counter{
+        width: 150px;
+        float: left;
+    }
+    .form_inline input{
+        width: 150px;
+    }
+    .form_inline select {
+        width: 150px;
+        text-align: center;
+    }
+    .form_inline .form_label {
+        width: 150px;
+       
+    }
+    .uploadfile {
+        border: 0.5px solid gray;
+    }
+    .message {
+        color: #324e9e;
+    }
+    .btn_group{
+        display: none;
+        width: 150px;
+    }
+    .btn_update {
+        margin-top: 1px;
+        margin-left: 10px;
+        border-radius: 0.5em 0 0 0.5em;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #324e9e;
+        border: 1px solid #324e9e;
+        color: #fff;
+    }
+   
+    .btn_delete {
+        margin-top: 1px;
+        border-radius: 0 0.5em 0.5em 0;
+        border: 1px solid #ec3237;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #ec3237;
+        color: #fff;
+    }
+    .btn_add, .btn_upload {
+        background-color: var(--blue);
+        color: #fff;
+        padding: 5px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 25px;
+    }
+    .thepagination {
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    .thepagination li {
+        border: 1px solid lightgray;
+        padding: 5px; 
+    }
+    .thepagination li a {
+        text-decoration: none;
+    }
+
+
+  /* Formatting search box */
+  .search-box{
+        width: 300px;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        z-index: 2;
+       
+    }
+    .search-box input[type="text"]{
+        height: 32px;
+        padding: 5px 10px;
+        border: 1px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result{
+        position: absolute;        
+        top: 100%;
+        left: 0;
+        background-color: white;
+        
+    }
+    .search-box input[type="text"], .result{
+        width: 100%;
+       
+    }
+    /* End of Formatting search box */
+    /* Formatting result items */
+    .result p{
+        margin: 0;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result p:hover{
+        background: #f2f2f2;
+    }
+    /* End of Formatting result items */
+    
 </style>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+/*--------------------------------------Search box script---------------------------------------------------------*/
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("Staff/registrar/staff_backend-search.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+
+        $(this).parent(".result").empty();
+
+    });
+});
+
+$(document).ready(function() {
+    $('#formsubmit').click(function(){
+      
+        $.post("Staff/registrar/staff_search_name.php", 
+        {search: $('#search').val()}, 
+        function(data){
+            $('#response').html(data);
+            $('#thisappointment').hide();
+        });
+        
+        return false;
+        
+    });
+
+});
+/*--------------------------------------Search box script---------------------------------------------------------*/
+
+
+</script>
+

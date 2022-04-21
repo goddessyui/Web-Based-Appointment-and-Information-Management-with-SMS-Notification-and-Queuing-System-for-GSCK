@@ -1,6 +1,62 @@
+<?php
+include("admin_header.php");
+?>
+<main>
+    <div class="row">
+        <?php
+                include("count_app.php");
+        ?>
+    </div>
+    <style>
+        #activerequests{
+            background-color: #fcd228;
+            color: #324e9e;
+        }
+    </style>
 
+    <div class="row">
+        <?php
+            if (isset($_GET['status'])){
+        ?> 
+                <hr>
+                <a href="staff_accepted_requests.php"><button type="button">View all appointment</button></a><hr> <?php 
+                include("staff_accepted_requests.php");   
+            }   
+    ?>
+    </div>
 
-<!-------------------------Sort Requests By Date------------------------------> 
+    <div class="row">
+        <h2>Active Appointments</h2> 
+    </div>
+
+    <div class="row">
+            <!--success or error-->
+            <?php 
+                    if(isset($_GET['success'])){
+                ?>
+                        <p align="center">
+                            <?php 
+                                echo $_GET['success'];
+                            ?>
+                        </p>
+                <?php
+                    }
+                    if(isset($_GET['error'])){
+                ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['error'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                    else{
+                    }
+                ?>
+                <!--success or error-->
+    </div>
+
+    <!-------------------------Sort Requests By Date------------------------------> 
         <?php 
             date_default_timezone_set('Asia/Manila');                           		
 		    $currentdate = date("Y-m-d");
@@ -15,27 +71,27 @@
         
         <hr>
         
-<!-------------------------Sort Requests By Date ------------------------------> 
-<script>
-    document.getElementById("sort_date").value = localStorage.getItem("sortingdate");
+    <!-------------------------Sort Requests By Date ------------------------------> 
+    <script>
+        document.getElementById("sort_date").value = localStorage.getItem("sortingdate");
 
-    function savesortdate() {
-        
-        var sortingdate = document.getElementById("sort_date").value;
-        if (sortingdate == "") {
-            alert("Please enter a date in first!");
-            return false;
+        function savesortdate() {
+            
+            var sortingdate = document.getElementById("sort_date").value;
+            if (sortingdate == "") {
+                alert("Please enter a date in first!");
+                return false;
+            }
+            localStorage.setItem("sortingdate", sortingdate);
+            return true;   
         }
-        localStorage.setItem("sortingdate", sortingdate);
-        return true;   
-    }
-    function deletestorage(){
-        window.localStorage.clear();
-        var sortingdate = document.getElementById("sort_date").value = 
-            new Date().toJSON().slice(0,10);//change to sortdata to current date
-    }
+        function deletestorage(){
+            window.localStorage.clear();
+            var sortingdate = document.getElementById("sort_date").value = 
+                new Date().toJSON().slice(0,10);//change to sortdata to current date
+        }
 
-</script>
+    </script>
 
 <!-------------------------Show Accepted Requests ------------------------------>   
         <?php
@@ -420,3 +476,20 @@
     }
 
 ?>
+
+</main>
+
+<style>
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+        background: violet;
+    }
+    h2{
+        width: 100%;
+        align-items: center;
+    }
+    
+  
+</style>

@@ -21,8 +21,8 @@ session_start();
          $appointment_type = $_POST['appointment_type'];
          
          if (empty($_POST['appointment_date'])) {//if appointment date is not filled
-            header("refresh:1;url=../staff_appointment_details.php");
-            echo "Appointment date should be filled";
+            header('location: ../staff_pending_requests.php?error="Appointment date should be filled."');
+           
          } 
          else { //if appointment date is filled 
             $noofappointments ="SELECT * FROM tbl_appointment_detail 
@@ -45,7 +45,7 @@ session_start();
                   '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
-                  header('location: ../staff_appointment_details.php?p+includepage?success="Appointment request accepted."');
+                  header('location: ../staff_pending_requests.php?success="Appointment request accepted."');
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -59,11 +59,11 @@ session_start();
                      //Queue Number---------------------------------------------------------------------------------------//   
                } 
                else {
-                  header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+                  header('location: ../staff_pending_requests.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                }
             }
             else {
-               header('location: ../staff_appointment_details.php?error="Appointments for that date are already limited."');
+               header('location: ../staff_pending_requests.php?error="Appointments for that date are already limited."');
             }
          }
       }
@@ -93,10 +93,10 @@ session_start();
             '$fullnames has DECLINED your request for  $appointment_type', '0', 
             '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
 
-            header('location: ../staff_appointment_details.php?success="Appointment Request Declined"'); 
+            header('location: ../staff_pending_requests.php?success="Appointment Request Declined"'); 
          } 
          else {
-            header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');   
+            header('location: ../staff_pending_requests.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');   
          }
       }
       //--------------------------End of If Decline is Pressed--------------------------// 

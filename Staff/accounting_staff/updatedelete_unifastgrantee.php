@@ -22,8 +22,8 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
         WHERE student_id ='$student_id'";
 
         if(mysqli_query($db, $updateunifastgrantee)){
-                header('location: ../../upload_unifast_grantee.php?success="Successfully Updated Entry"');
-                echo "Successfully Updated Entry";
+                header('location: ../../upload_unifast_grantee.php?success="Successfully Updated Unifast Grantee\'s Details!"');
+               
         } 
         else {
             header('location: ../../upload_unifast_grantee.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
@@ -38,7 +38,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
         $deleteunifastgrantee = "DELETE FROM tbl_unifast_grantee WHERE student_id ='$student_id'";
     
         if(mysqli_query($db, $deleteunifastgrantee))
-        {   header('location: ../../upload_unifast_grantee.php?success="Successfully Deleted Entry"');
+        {   header('location: ../../upload_unifast_grantee.php?success="Successfully Deleted Student From the List!"');
         } 
         else
         {

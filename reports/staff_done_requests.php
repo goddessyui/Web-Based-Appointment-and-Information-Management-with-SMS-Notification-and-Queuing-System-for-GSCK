@@ -1,3 +1,49 @@
+<?php
+include("admin_header.php");
+?>
+<main>
+    <div class="row">
+        <?php
+            include("count_app.php");
+        ?>
+    </div>
+    <style>
+        #pastrequests{
+            background-color: #fcd228;
+            color: #324e9e;
+        }
+    </style>
+
+    <div class="row">
+        <h2>Past Appointments</h2> 
+    </div>
+
+    <div class="row">
+            <!--success or error-->
+            <?php 
+                    if(isset($_GET['success'])){
+                ?>
+                        <p align="center">
+                            <?php 
+                                echo $_GET['success'];
+                            ?>
+                        </p>
+                <?php
+                    }
+                    if(isset($_GET['error'])){
+                ?>
+                                <p align="center">
+                                    <?php 
+                                        echo $_GET['error'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                    else{
+                    }
+                ?>
+                <!--success or error-->
+    </div>
 
     <div>
  <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
@@ -51,3 +97,20 @@
 	    ?>
  <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
     </div>
+    
+</main>
+
+<style>
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+        background: violet;
+    }
+    h2{
+        width: 100%;
+        align-items: center;
+    }
+    
+  
+</style>
