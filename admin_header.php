@@ -123,10 +123,16 @@ if ($staff_id == ""){
             ?>
 
 				<li>
-					<a href="staff_appointment_details.php">
-						<span class="fa fa-calendar"></span>
-						<span>My Appointments</span>
-					</a>
+					<span><button class="dropdown_btn"><span class="fa fa-calendar"></span><span class="navname">My Appointments</span><i class="fa fa-caret-down"></i></button>
+					<div class="dropdown_container">
+						<a href="staff_accepted_requests.php">Active </a>
+						<a href="staff_pending_requests.php">Pending </a>
+						<a href="staff_missed_requests.php">Missed </a>
+						<a href="staff_declined_requests.php">Declined </a>
+						<a href="staff_cancelled_requests.php">Cancelled </a>
+						<a href="staff_done_requests.php">Past </a>
+					</div>
+					</span>
 				</li>
 				<?php
 			}
