@@ -44,6 +44,15 @@ include("admin_header.php");
                 ?>
                 <!--success or error-->
     </div>
+    
+    <div class="row_app">
+        <div class="col_app" id="serialnum"></div>
+        <div class="col_app" id="apptdate">Cancellation Date</div>
+        <div class="col_app" id="appttype">Appt.Type</div>
+        <div class="col_app" id="studentfullname">Student</div> 
+        <div class="col_app" id="thestudnote">Student's Note</div>
+        <div class="col_app" id="staffcomment">Comment</div>
+    </div>
 
     <div>
 <!-------------------------Show Declined Requests in Descending Order or From Most Current------------------------------>  
@@ -70,21 +79,57 @@ include("admin_header.php");
 			        //and while loop will run as long as we have data in database
                     {
         ?>
-                        <div>
-                            <td>
-                                <?php   echo $i; //display numbers on the side
-		                  	            $i++; 
+                                            
+                        <div class="row_app">
+                            <div class="col_app" id="serialnum">
+                                <?php   
+                                    echo $i++; 
                                 ?>
-                            </td>
-                            <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Date Cancelled: </span><?php echo $rows['appointment_date']; ?></p>
-                            <p><span>Request Date: </span><?php echo $rows['date_created']; ?></p>
-				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                            <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
-                            <p><span>My Comment: </span><pre><?php echo $rows['comment']; ?></pre></p> 
-			            </div>
+                            </div>
+
+                            <div class="col_app" id="apptdate">
+                                <?php echo $rows['appointment_date']; ?>
+                            </div>
+
+                            <div class="col_app" id="appttype">
+                                <?php echo $rows['appointment_type']; ?>
+                                <small>
+                                    <p><b>Date Accepted:</b></p><p><?php echo $rows['date_accepted']; ?></p> 
+                                    <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
+                                </small>
+                            </div>
+
+                            <div class="col_app" id="studentfullname">
+                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                <small>
+                                    <p><b>Course and Year:</b></p><p><?php echo $rows['course']." ".$rows['year']; ?></p>
+                                </small>
+                            </div>
+
+                            <div class="col_app" id="thestudnote">
+                                <?php
+                                if($rows['note']==""){
+                                    echo "No note.";
+                                }
+                                else{
+                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                }
+                                ?>
+                            </div>
+
+                            <div class="col_app" id="staffcomment">
+                            <?php
+                                if($rows['note']==""){
+                                    echo "No note.";
+                                }
+                                else{
+                                    ?><pre><?php echo $rows['comment'];  ?></pre><?php
+                                }
+                                ?>
+                            </div>
+                            
+                        </div>
+                        
         <?php 
                     }
                 } 
@@ -99,16 +144,69 @@ include("admin_header.php");
 </main>
 
 <style>
-    main {
+
+*{
+        box-sizing: border-box;
+    }
+   main {
+        padding: 0;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 100px;
-        background: violet;
+        margin-top: 50px;
+    }
+   
+    .row {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fafafa;
+        padding: 10px;
+        text-align: center;
     }
     h2{
         width: 100%;
         align-items: center;
     }
+    
+    .row_app {
+       background-color: #dedede;
+       margin-bottom: 10px;
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+    }
+    .col_app{
+       margin: 3px;
+       
+        text-align: center;
+    }
+    #serialnum {
+        width: 4%;
+
+    }
+    #apptdate {
+        width: 16%;
+    }
+    #appttype{
+        width: 16%;
+    }
+    #appttype small{
+        font-size: 10px;
+    }
+    #studentfullname{
+        width: 16%;
+    }
+  
+    #thestudnote{
+        width: 16%;
+    }
+
+    #staffcomment{
+        width: 16%;
+    }
+  
+    
     
   
 </style>
