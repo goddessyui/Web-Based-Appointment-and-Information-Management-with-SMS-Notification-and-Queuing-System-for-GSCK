@@ -15,17 +15,6 @@ include("admin_header.php");
     </style>
 
     <div class="row">
-        <?php
-            if (isset($_GET['status'])){
-        ?> 
-                <hr>
-                <a href="staff_accepted_requests.php"><button type="button">View all appointment</button></a><hr> <?php 
-                include("staff_accepted_requests.php");   
-            }   
-    ?>
-    </div>
-
-    <div class="row">
         <h2>Active Appointments</h2> 
     </div>
 
@@ -134,7 +123,7 @@ include("admin_header.php");
                                         <?php 
                                             $appointment_date = $rows['appointment_date'];
                                             
-                                            if($appointment_date<=$currentdate){
+                                            if($appointment_date<$currentdate){
                                                 echo "<font color='red';>" . $appointment_date . "</font>";
                                             }
                                             else {
@@ -211,9 +200,6 @@ include("admin_header.php");
                                 </div>
                                 
                     <?php 
-
-
-
                             }
                         }
                         else {
@@ -269,7 +255,7 @@ include("admin_header.php");
                                 <?php 
                                     $appointment_date = $rows['appointment_date'];
                                     
-                                    if($appointment_date<=$currentdate){
+                                    if($appointment_date<$currentdate){
                                         echo "<font color='red';>" . $appointment_date . "</font>";
                                     }
                                     else {
@@ -377,7 +363,7 @@ include("admin_header.php");
         
         <?php
         
-        
+
         $acceptedrequests="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
             ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
             INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -404,7 +390,7 @@ include("admin_header.php");
                             <?php 
                                 $appointment_date = $rows['appointment_date'];
                                 
-                                if($appointment_date<=$currentdate){
+                                if($appointment_date<$currentdate){
                                     echo "<font color='red';>" . $appointment_date . "</font>";
                                 }
                                 else {
