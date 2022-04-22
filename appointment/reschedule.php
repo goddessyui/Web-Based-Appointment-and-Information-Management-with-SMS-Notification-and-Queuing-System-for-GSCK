@@ -49,11 +49,11 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      '$fullnames has RESCHEDULED your appointment for  $appointment_type', '0', 
                      '$student_id', 'student_appointment_details.php?status=reschedule&apde=$appointment_id')");
 
-                     header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!"');
+                     
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                        AND appointment_date = '$appointment_date') T2 
+                        AND appointment_date = '$newDate') T2 
                         WHERE appointment_id = '$appointment_id'";
                      $qnum = mysqli_query($db, $q); 
                      $queue = mysqli_fetch_assoc($qnum);
@@ -61,6 +61,15 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      $queuenumber = $queue['queuenum'];
                      echo "<br><br>Queue Number:" . $queuenumber;
                      //Queue Number---------------------------------------------------------------------------------------//  
+                     // send sms to student if apppointment rescheduled
+                     $querys = mysqli_query($db, "SELECT mobile_number, last_name, first_name FROM tbl_student_registry WHERE student_id='".$student_id."'");
+                     $rows1 = $querys->fetch_assoc();
+                     $m_number = $rows1['mobile_number'];
+                     $student_fullname = $rows1['first_name'].' '.$rows1['last_name'];
+                     $move='true';
+                     include ('sms_appointment.php');
+
+                     header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!"');
                      
                   }
                   else {

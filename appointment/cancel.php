@@ -27,6 +27,14 @@ if (mysqli_query($db, $cancelappointment)) {
    '$fullnames has CANCELLED your appointment for $appointment_type', '0', 
    '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 
+    // send sms to student if apppointment cancelled
+    $querys = mysqli_query($db, "SELECT mobile_number, last_name, first_name FROM tbl_student_registry WHERE student_id='".$student_id."'");
+    $rows1 = $querys->fetch_assoc();
+    $m_number = $rows1['mobile_number'];
+    $student_fullname = $rows1['first_name'].' '.$rows1['last_name'];
+    $cancel='true';
+    include ('sms_appointment.php');
+
    header('location: ../staff_accepted_requests.php?success="Appointment Cancelled"');
   
 } else {

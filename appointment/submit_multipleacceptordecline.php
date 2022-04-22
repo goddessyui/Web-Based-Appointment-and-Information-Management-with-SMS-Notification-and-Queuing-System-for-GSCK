@@ -38,7 +38,7 @@ session_start();
                               $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                                  tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                                  tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                                 tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                                 tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                                  FROM tbl_appointment INNER JOIN tbl_staff_registry 
                                  ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                  INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -69,14 +69,14 @@ session_start();
                   
                                     // insert data into tbl_notification if staff accept a request
                                     $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
-                                       $rows = $querys->fetch_assoc();
-                                       $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                                       $rows1 = $querys->fetch_assoc();
+                                       $fullnames = $rows1['first_name'].' '.$rows1['last_name'];
                                        mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                                        ('REQUEST ACCEPTED', 
                                        '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                                        '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
-                                       
-                                    
+ 
+ 
                                        //Add Queueing and SMS function here???-----------------------------------------
                                        $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                                           FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -88,6 +88,13 @@ session_start();
                                        $queuenumber = $queue['queuenum'];
                                        echo "<br><br>Queue Number:" . $queuenumber;
                                        //Queue Number---------------------------------------------------------------------------------------// 
+
+                                       // send sms to student if apppointment accepted
+                                       $m_number = $rows['mobile_number'];
+                                       $student_fullname = $rows['first_name'].' '.$rows['last_name'];
+                                       $accept='true';
+                                       include ('sms_appointment.php');
+
                                        header('location: ../submitdocu_pendingapp.php?success="Appointment request accepted."'); 
                                  } 
                                  else {
@@ -129,7 +136,7 @@ session_start();
                            $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                               tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                               tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                              tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                              tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                               FROM tbl_appointment INNER JOIN tbl_staff_registry 
                               ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                               INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -152,8 +159,8 @@ session_start();
                
                                  // insert data into tbl_notification if staff accept a request
                                  $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
-                                    $rows = $querys->fetch_assoc();
-                                    $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                                    $rows1 = $querys->fetch_assoc();
+                                    $fullnames = $rows1['first_name'].' '.$rows1['last_name'];
                                     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                                     ('REQUEST DECLINED', 
                                     '$fullnames has DECLINED your request for  $appointment_type', '0', 
@@ -170,6 +177,13 @@ session_start();
                                     $queuenumber = $queue['queuenum'];
                                     echo "<br><br>Queue Number:" . $queuenumber;
                                     //Queue Number---------------------------------------------------------------------------------------//
+
+                                    // send sms to student if apppointment accepted
+                                    $m_number = $rows['mobile_number'];
+                                    $student_fullname = $rows['first_name'].' '.$rows['last_name'];
+                                    $decline='true';
+                                    include ('sms_appointment.php');
+
                                     header('location: ../submitdocu_pendingapp.php?success="Appointment request declined."');    
                               } 
                               else { 

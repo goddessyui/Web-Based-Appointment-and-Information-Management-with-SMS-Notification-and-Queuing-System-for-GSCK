@@ -45,7 +45,6 @@ session_start();
                   '$fullnames has ACCEPTED your request for $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
-                  header('location: ../staff_pending_requests.php?success="Appointment request accepted."');
                      //Add Queueing and SMS function here???-----------------------------------------
                      $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
@@ -56,7 +55,15 @@ session_start();
                      //Queue Number---------------------------------------------------------------------------------------//
                      $queuenumber = $queue['queuenum'];
                      echo "<br><br>Queue Number:" . $queuenumber;
-                     //Queue Number---------------------------------------------------------------------------------------//   
+                     //Queue Number---------------------------------------------------------------------------------------// 
+                     
+                     // send sms to student if accepted
+                     $student_fullname = $_POST['student_fullname'];
+                     $m_number = $_POST['number'];
+                     $accept='true';
+                     include ('sms_appointment.php');
+
+                     header('location: ../staff_pending_requests.php?success="Appointment request accepted."');
                } 
                else {
                   header('location: ../staff_pending_requests.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
@@ -92,6 +99,12 @@ session_start();
             ('REQUEST DECLINED', 
             '$fullnames has DECLINED your request for $appointment_type', '0', 
             '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
+
+            // send sms to student if apppointment declined
+            $student_fullname = $_POST['student_fullname'];
+            $m_number = $_POST['number'];
+            $decline='true';
+            include ('sms_appointment.php');
 
             header('location: ../staff_pending_requests.php?success="Appointment Request Declined"'); 
          } 

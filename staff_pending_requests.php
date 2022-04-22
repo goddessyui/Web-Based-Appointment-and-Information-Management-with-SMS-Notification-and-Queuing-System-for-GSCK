@@ -71,7 +71,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
             $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                 tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                 tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                 FROM tbl_appointment INNER JOIN tbl_staff_registry 
                 ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -83,7 +83,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
             $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                 tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                 tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                 FROM tbl_appointment INNER JOIN tbl_staff_registry 
                 ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -152,6 +152,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                                     <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                     <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                    <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
                                     <button  type="submit" name="accept" id="accept">ACCEPT</button>
                                     <button type="submit" name="decline" id="decline">DECLINE</button>
                                 </form>
@@ -185,7 +186,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
             $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                 tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                 tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                 FROM tbl_appointment INNER JOIN tbl_staff_registry 
                 ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -254,6 +255,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                                     <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                     <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                    <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
                                     <button  type="submit" name="accept" id="accept">ACCEPT</button>
                                     <button type="submit" name="decline" id="decline">DECLINE</button>
                                 </form>
