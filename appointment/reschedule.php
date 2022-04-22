@@ -50,6 +50,18 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      '$student_id', 'student_appointment_details.php?status=reschedule&apde=$appointment_id')");
 
                      header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!"');
+                     //Add Queueing and SMS function here???-----------------------------------------
+                     $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
+                        FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+                        AND appointment_date = '$appointment_date') T2 
+                        WHERE appointment_id = '$appointment_id'";
+                     $qnum = mysqli_query($db, $q); 
+                     $queue = mysqli_fetch_assoc($qnum);
+                     //Queue Number---------------------------------------------------------------------------------------//
+                     $queuenumber = $queue['queuenum'];
+                     echo "<br><br>Queue Number:" . $queuenumber;
+                     //Queue Number---------------------------------------------------------------------------------------//  
+                     
                   }
                   else {
                      header('location: ../staff_accepted_requests.php?error="<?php echo "Error inserting record " . mysqli_error($db);?>"');
