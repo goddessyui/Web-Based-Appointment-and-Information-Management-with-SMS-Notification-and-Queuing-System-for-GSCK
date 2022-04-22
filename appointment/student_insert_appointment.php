@@ -43,7 +43,7 @@
             $rows = $querys->fetch_assoc();
             $fullnames = $rows['first_name'].' '.$rows['last_name'];
             mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) 
-            VALUES ('Requested an Appointment', '$fullnames requested for $appointment_type', '0', '$staff_id', 'staff_appointment_details.php?status=pending&apde=$app_id')");
+            VALUES ('Requested an Appointment', '$fullnames requested for $appointment_type', '0', '$staff_id', 'staff_pending_requests.php?status=pending&apde=$app_id')");
 
 
             header('location: ../student_appointment.php?msg=<font color="blue">You successfully sent a request.</font>'); 
