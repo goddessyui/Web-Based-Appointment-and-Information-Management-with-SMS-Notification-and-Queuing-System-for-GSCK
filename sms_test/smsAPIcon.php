@@ -1,5 +1,6 @@
 <?php
-
+$smsAPICode = "ST-GOLDE092678_7EKXN";
+$smsAPIPassword = "u5uf{xtl5e";
 class smsfunction{
         function itexmo($number,$message,$apicode,$passwd)
         {
