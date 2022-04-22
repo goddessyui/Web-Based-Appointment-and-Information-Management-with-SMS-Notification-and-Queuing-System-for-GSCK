@@ -42,7 +42,7 @@ session_start();
                    $fullnames = $rows['first_name'].' '.$rows['last_name'];
                    mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                    ('REQUEST ACCEPTED', 
-                  '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
+                  '$fullnames has ACCEPTED your request for $appointment_type', '0', 
                   '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
 
                   header('location: ../staff_pending_requests.php?success="Appointment request accepted."');
@@ -90,7 +90,7 @@ session_start();
             $fullnames = $rows['first_name'].' '.$rows['last_name'];
             mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
             ('REQUEST DECLINED', 
-            '$fullnames has DECLINED your request for  $appointment_type', '0', 
+            '$fullnames has DECLINED your request for $appointment_type', '0', 
             '$student_id', 'student_appointment_details.php?status=declined&apde=$appointment_id')");
 
             header('location: ../staff_pending_requests.php?success="Appointment Request Declined"'); 

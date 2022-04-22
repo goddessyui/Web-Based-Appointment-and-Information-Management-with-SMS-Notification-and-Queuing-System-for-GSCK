@@ -44,6 +44,21 @@ include("admin_header.php");
                 ?>
                 <!--success or error-->
     </div>
+    
+        <div class="row_app">
+            <div class="col_app" id="serialno_pend"></div>
+            <div class="col_app" id="datecreated">Request Date</div>
+            <div class="col_app" id="apptype_pend">Appt.Type</div>
+            <div class="col_app" id="studentname_pend">Student</div> 
+            <div class="col_app" id="courseandyear">Course & Year</div>
+            <div class="col_app" id="studnote_pend">Student's Note</div>
+
+            <div class="col_app" id="setdate">Set Appt. Date</div> 
+            <div class="col_app" id="comment_pend">Comment</div>
+            <div class="col_app" id="acceptdecline"></div>
+        </div>
+    
+                    
 
 
 <?php
@@ -90,46 +105,61 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
 			        //and while loop will run as long as we have data in database
                     
         ?>
-                        <div>
-                            <td>
-                                <?php  
-		                  	           echo $i++; //Adds Row Counter
+                        <div class="row_app">
+                            <div class="col_app" id="serialno_pend">
+                                <?php  echo $i++; ?>
+                            </div>
+                            <div class="col_app" id="datecreated">
+                                <?php echo $rows['date_created']; ?>
+                            </div>
+                            <div class="col_app" id="apptype_pend">
+                                <?php echo $rows['appointment_type']; ?>
+                            </div>
+                            <div class="col_app" id="studentname_pend">
+                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                            </div>
+                            <div class="col_app" id="courseandyear">
+                                <?php echo $rows['course']." ".$rows['year']; ?>
+                            </div>
+                            <div class="col_app" id="studnote_pend">
+                                <?php
+                                         if($rows['note']==""){
+                                            echo "No note.";
+                                        }
+                                        else{
+                                            ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                        }
+                                        ?>
+                            </div>
+                            <div class="col_app" id="setdate">
+                                <?php
+                                    //set the time to local time
+                                    date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
                                 ?>
-                            </td>
-                            <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-				            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                            <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
-			            </div>
-                        <div>
-				            <?php
-                                //set the time to local time
-					            date_default_timezone_set('Asia/Manila');                           		
-					            $currentdate = date("Y-m-d");
-				            ?>
-				            <span>
-                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-				            <form action="appointment/acceptordecline.php" method="post">
-                                <label>Enter Date of Appointment:</label>
-	      	 		            <input type="date" name="appointment_date" value=" "
-	      	 				        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 90 days'));?>"><br><br>
-                                <label>Comment:</label><br>
-                                <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
-                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
-                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
-                                <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
-                                <button  type="submit" name="accept">ACCEPT</button>
-                                <button type="submit" name="decline">DECLINE</button>
                                 
-	      	 				<br>
-	      		            </form>
-                              <hr>
-                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-	      		            </span>
-		                </div>
+                                <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
+                                <form action="appointment/acceptordecline.php" method="post">
+                               
+                                    <input type="date" name="appointment_date" id="appointmentdate" value=" "
+                                        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($currentdate. ' + 90 days'));?>">
+                            </div>
+                            <div class="col_app" id="comment_pend">
+                                    <textarea name="comment" placeholder="Comment here" value=""s></textarea>
+                            </div>
+                            <div class="col_app" id="acceptdecline">
+                                    <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                    <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
+                                    <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                    <button  type="submit" name="accept" id="accept">ACCEPT</button>
+                                    <button type="submit" name="decline" id="decline">DECLINE</button>
+                                </form>
+                                 <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
+                            </div>
+
+                        </div>
+                   
         <?php 
                     }
                 }
@@ -177,45 +207,59 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                     //and while loop will run as long as we have data in database
                     
         ?>
-                        <div>
-                            <td>
-                                <?php  
-                                        echo $i++; //Adds Row Counter
+                        <div class="row_app">
+                            <div class="col_app" id="serialno_pend">
+                                <?php  echo $i++; ?>
+                            </div>
+                            <div class="col_app" id="datecreated">
+                                <?php echo $rows['date_created']; ?>
+                            </div>
+                            <div class="col_app" id="apptype_pend">
+                                <?php echo $rows['appointment_type']; ?>
+                            </div>
+                            <div class="col_app" id="studentname_pend">
+                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                            </div>
+                            <div class="col_app" id="courseandyear">
+                                <?php echo $rows['course']." ".$rows['year']; ?>
+                            </div>
+                            <div class="col_app" id="studnote_pend">
+                                <?php
+                                         if($rows['note']==""){
+                                            echo "No note.";
+                                        }
+                                        else{
+                                            ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                        }
+                                        ?>
+                            </div>
+                            <div class="col_app" id="setdate">
+                                <?php
+                                    //set the time to local time
+                                    date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
                                 ?>
-                            </td>
-                            <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                            <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                            <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                            <p><span>Student's Note: </span><pre><?php echo $rows['note']; ?></pre></p> 
-                        </div>
-                        <div>
-                            <?php
-                                //set the time to local time
-                                date_default_timezone_set('Asia/Manila');                           		
-                                $currentdate = date("Y-m-d");
-                            ?>
-                            <span>
-                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-                            <form action="appointment/acceptordecline.php" method="post">
-                                <label>Enter Date of Appointment:</label>
-                                <input type="date" name="appointment_date" value=" "
-                                    min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 90 days'));?>"><br><br>
-                                <label>Comment:</label><br>
-                                <textarea name="comment" placeholder="Comment here" value=""></textarea><br><br>
-                                <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
-                                <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
-                                <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
-                                <button  type="submit" name="accept">ACCEPT</button>
-                                <button type="submit" name="decline">DECLINE</button>
                                 
-                            <br>
-                            </form>
-                            <hr>
-                            <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
-                            </span>
+                                <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
+                                <form action="appointment/acceptordecline.php" method="post">
+                               
+                                    <input type="date" name="appointment_date" id="appointmentdate" value=" "
+                                        min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                        strtotime($currentdate. ' + 90 days'));?>">
+                            </div>
+                            <div class="col_app" id="comment_pend">
+                                    <textarea name="comment" placeholder="Comment here" value=""></textarea>
+                            </div>
+                            <div class="col_app" id="acceptdecline">
+                                    <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
+                                    <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
+                                    <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
+                                    <button  type="submit" name="accept" id="accept">ACCEPT</button>
+                                    <button type="submit" name="decline" id="decline">DECLINE</button>
+                                </form>
+                                 <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
+                            </div>
+
                         </div>
         <?php 
                     }
@@ -242,16 +286,76 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
 </main>
 
 <style>
-    main {
+    *{
+        box-sizing: border-box;
+    }
+   main {
+        padding: 0;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 100px;
-        background: violet;
+        margin-top: 50px;
+    }
+   
+    .row {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fafafa;
+        padding: 10px;
+        text-align: center;
     }
     h2{
         width: 100%;
         align-items: center;
     }
     
+    .row_app {
+       background-color: #dedede;
+       margin-bottom: 10px;
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+    }
+    .col_app{
+       margin: 3px;
+      
+        text-align: center;
+    }
+    #serialno_pend {
+        width: 2%;
+    }
+    #datecreated {
+        width: 12.25%;
+    }
+    #apptype_pend{
+        width: 12.25%;
+    }
+    #apptype_pend small{
+        font-size: 10px;
+    }
+    #studentname_pend{
+        width: 12.25%;
+    }
+    #courseandyear {
+        width: 12.25%;
+    }
+  
+    #studnote_pend{
+        width: 12.25%;
+    }
+    #setdate{
+        width: 12.25%;
+    }
+    #comment_pend{
+        width: 12.25%;
+    }
+    #acceptdecline{
+        width: 12.25%;
+    }
+    #accept, #decline, #appointmentdate {
+        width: 100%;
+    }
+
   
 </style>

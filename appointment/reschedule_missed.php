@@ -49,21 +49,21 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      '$fullnames has RESCHEDULED your appointment for  $appointment_type', '0', 
                      '$student_id', 'student_appointment_details.php?status=reschedule&apde=$appointment_id')");
 
-                     header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!"');
+                     header('location: ../staff_missed_requests.php?success="Appointment Successfully Rescheduled!"');
                   }
                   else {
-                     header('location: ../staff_accepted_requests.php?error="<?php echo "Error inserting record " . mysqli_error($db);?>"');
+                     header('location: ../staff_missed_requests.php?error="<?php echo "Error inserting record " . mysqli_error($db);?>"');
                   }
                } 
 
                else {
                  
-                  header('location: ../staff_accepted_requests.php?error="<?php echo "Error updating record " . mysqli_error($db);?>"');
+                  header('location: ../staff_missed_requests.php?error="<?php echo "Error updating record " . mysqli_error($db);?>"');
                 
                }
             }
             else{
-               header('location: ../staff_accepted_requests.php?error="Appointment for that date are already limited!"');
+               header('location: ../staff_missed_requests.php?error="Appointment for that date are already limited!"');
             }
          }  
       }

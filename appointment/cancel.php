@@ -24,13 +24,13 @@ if (mysqli_query($db, $cancelappointment)) {
     $fullnames = $rows['first_name'].' '.$rows['last_name'];
     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
    ('APPOINTMENT CANCELLED', 
-   '$fullnames has CANCEL your appointment for  $appointment_type', '0', 
+   '$fullnames has CANCELLED your appointment for $appointment_type', '0', 
    '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 
-   header('location: ../staff_appointment_details.php?success="Appointment Cancelled"');
+   header('location: ../staff_accepted_requests.php?success="Appointment Cancelled"');
   
 } else {
-   header('location: ../staff_appointment_details.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+   header('location: ../staff_accepted_requests.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
 }
 mysqli_close($db);
 
