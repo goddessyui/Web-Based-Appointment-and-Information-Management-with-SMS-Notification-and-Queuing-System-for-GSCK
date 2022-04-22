@@ -45,6 +45,17 @@ include("admin_header.php");
                 <!--success or error-->
     </div>
 
+    <div class="row_app">
+        <div class="col_app" id="serialno"></div>
+        <div class="col_app" id="appdate">Appt. Date</div>
+        <div class="col_app" id="apptype">Appt.Type</div>
+        <div class="col_app" id="studentname">Student</div> 
+        <div class="col_app" id="studnote">Student's Note</div>
+        <div class="col_app" id="resched">Reschedule</div> 
+        <div class="col_app" id="comment">Comment</div>
+        <div class="col_app" id="canceldone"></div>
+    </div>
+
 <!-------------------------Show Missed Requests ------------------------------>   
         <?php
                 $missedrequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
@@ -70,49 +81,74 @@ include("admin_header.php");
                         //using while loop to get all the date from database
                         //and while loop will run as long as we have data in database
                         {
-            ?>
-                            <div>
-                                <p><?php echo $i++; ?></p>
-                                <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p> 
-                                <p><span>Date Accepted: </span><?php echo $rows['date_accepted']; ?></p> 
-                                <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                                <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                                <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                                <p><span>Student's Note:</span><pre><?php echo $rows['note']; ?></pre></p> 
+            ?>              
+                        <div class="row_app">
+                            <div class="col_app" id="serialno">
+                                <?php echo $i++; ?>
                             </div>
-                            <div>
+                            
+                            <div class="col_app" id="appdate">
+                                <?php echo $rows['appointment_date']; ?>
+                            </div>
+
+                            <div class="col_app" id="apptype">
+                                <?php echo $rows['appointment_type']; ?>
+                                <small>
+                                    <p><b>Date Accepted:</b></p><p><?php echo $rows['date_accepted']; ?></p> 
+                                    <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
+                                </small> 
+                            </div>
+
+                            <div class="col_app" id="studentname">
+                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                <small>
+                                    <p><b>Course and Year:</b></p><p><?php echo $rows['course']." ".$rows['year']; ?></p>
+                                </small>
+                            </div> 
+                            <div class="col_app" id="studnote">
+                                <?php
+                                if($rows['note']==""){
+                                    echo "No note.";
+                                }
+                                else{
+                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                }
+                                ?>
+                            </div>
+                            <div class="col_app" id="resched">
                                 <?php
                                     date_default_timezone_set('Asia/Manila');                           		
                                     $currentdate = date("Y-m-d");
                                 ?>
-                                <span>
-                                <!-------------------------To reschedule appointment. Send Form Data to reschedule.php -------------------------->       
-                                <form action="appointment/reschedule.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
+                                 <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------> 
+                                <form action="appointment/reschedule_missed.php?appointment_id=<?=$rows['appointment_id']?>" method="post">
                                     <input type="date" name="appointment_date" value="<?php echo $rows["appointment_date"]; ?>" 
                                         min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($rows["appointment_date"]. ' + 90 days'));?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                     <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
-                                    <br>
-                                    <br>
-                                    <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE APPOINTMENT">
+                                    
+                                    <input id="reschedule" type="submit" name="reschedule" value="RESCHEDULE">
                                 </form>
                                 <!-------------------------Send Form Data to reschedule.php ------------------------------>    
-                                </span>
+                            </div> 
+                            <div class="col_app" id="comment">
                                 <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php --------------------->  
                                 <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                     <label>Comment:</label><br>
-                                    <textarea type="textarea" name="comment"></textarea><br><br>
-                                    <input id="cancel" type="submit" name="cancel" value="CANCEL APPOINTMENT"><br>
+                                    <textarea type="textarea" name="comment"></textarea>
+                            </div>
+                            <div class="col_app" id="canceldone">
+                                <input id="cancel" type="submit" name="cancel" value="CANCEL"><br>
                                 </form>
                                 <!-------------------------Send Form Data to cancel.php ------------------------------>
                                 <!-------------------------Send data to done.php ------------------------------>  
                                 <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
-                                APPOINTMENT DONE</a> </button>
+                                DONE</a> </button>
                                 <!-------------------------Send data to done.php ------------------------------> 
                             </div>
+                            
+                        </div>
             <?php 
                         }
                     }
@@ -127,15 +163,73 @@ include("admin_header.php");
 </main>
 
 <style>
-    main {
+    *{
+        box-sizing: border-box;
+    }
+   main {
+        padding: 0;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 100px;
-        background: violet;
+        margin-top: 50px;
+    }
+   
+    .row {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fafafa;
+        padding: 10px;
+        text-align: center;
     }
     h2{
         width: 100%;
         align-items: center;
+    }
+    
+    .row_app {
+       background-color: #dedede;
+       margin-bottom: 10px;
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+    }
+    .col_app{
+       margin: 3px;
+       
+        text-align: center;
+    }
+    #serialno {
+        width: 2%;
+
+    }
+    #appdate {
+        width: 14%;
+    }
+    #apptype{
+        width: 14%;
+    }
+    #apptype small{
+        font-size: 10px;
+    }
+    #studentname{
+        width: 14%;
+    }
+  
+    #studnote{
+        width: 14%;
+    }
+    #resched{
+        width: 14%;
+    }
+    #comment{
+        width: 14%;
+    }
+    #canceldone{
+        width: 14%;
+    }
+    #done, #cancel, #appointment_date, #reschedule {
+        width: 100%;
     }
     
   
