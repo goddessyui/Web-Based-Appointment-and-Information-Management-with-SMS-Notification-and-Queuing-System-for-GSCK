@@ -1,6 +1,7 @@
 <?php
 include_once("../dbconfig.php");
 session_start();
+
 // Verification
 if ($_POST['type']==1){
 	$s_id = $_POST['s_id']; 
