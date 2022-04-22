@@ -161,7 +161,7 @@
 
                             <div>
                                 <label>Enter Username: </label>
-                                <input type="text" name="username" id="username" placeholder="Username"/>
+                                <input type="text" name="forgot_username" id="forgot_username" placeholder="Username"/>
                                 <input type="button" name="btn_verify" class="btn btn-success" value="Next" id="btn_verify" />
                             </div>
 
@@ -529,7 +529,7 @@ $(document).ready(function() {
 
 	$('#btn_verify').on('click', function() {
     $('#btn_verify').prop('disabled', true);
-		var username = $('#username').val();
+		var username = $('#forgot_username').val();
 		if(username!=""){
 			$.ajax({
 				url: "login_system/forgotpasswordajax.php",
