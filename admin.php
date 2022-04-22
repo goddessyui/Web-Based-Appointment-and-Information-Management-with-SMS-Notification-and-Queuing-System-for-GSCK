@@ -7,132 +7,11 @@
             
             <!---------------Reports for Registrar------------------------------------------------->
             <?php
-            if ($position == "Registrar") {//Start of show if Registrar?>
-            
-                <div class="row">
-                    <h3>GSCK Data</h3>
-                </div>
-
-                <div class="row">
-                
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">No. of Enrolled Students</h5>
-                                <p>
-                                <?php
-                                    $enrolledstudents = "SELECT COUNT(*) AS total FROM tbl_student_record";
-                                    $enrolledstudents_result = mysqli_query($db, $enrolledstudents);
-                                    $count =mysqli_fetch_assoc($enrolledstudents_result);
-                                    echo $count['total'];
-                                ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">No. of Employed Staff</h5>
-                                <p>
-                                <?php
-                                    $enrolledstaff = "SELECT * FROM tbl_staff_record";
-                                    $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
-                                    $count = mysqli_num_rows($enrolledstaff_result);
-                                    echo $count;
-                                ?>
-                            </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">No. of Registered Students</h5>
-                                <p>
-                                <?php
-                                    $registeredstudents = "SELECT * FROM tbl_student_registry";
-                                    $registeredstudents_result = mysqli_query($db, $registeredstudents);
-                                    $count = mysqli_num_rows($registeredstudents_result);
-                                    echo $count;
-                                ?>
-                            </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">No. of Registered Staff</h5>
-                                <p>
-                                <?php
-                                    $registeredstaff = "SELECT * FROM tbl_staff_registry";
-                                    $registeredstaff_result = mysqli_query($db, $registeredstaff);
-                                    $count = mysqli_num_rows($registeredstaff_result);
-                                    echo $count;
-                                ?>
-                            </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Total No. of Appointments</h5>
-                                <p>
-                                <?php
-                                    $app = "SELECT * FROM tbl_appointment_detail WHERE `status`='Accepted'";
-                                    $app_result = mysqli_query($db, $app);
-                                    $count = mysqli_num_rows($app_result);
-                                    echo $count;
-                                ?>
-                            </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Total No. of Appointments Today</h5>
-                                <?php   
-                                    date_default_timezone_set('Asia/Manila');                           		
-                                    $currentdate = date("Y-m-d");
-
-                                    $app = "SELECT * FROM tbl_appointment_detail WHERE appointment_date = '$currentdate' 
-                                        AND `status`=('Accepted' OR 'Cancelled')";
-
-                                    $app_today = mysqli_query($db, $app);
-                                    $count = mysqli_num_rows($app_today);
-                                    echo $count;
-                                    
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div> 
-                
-                <div class="row">
-                    <h3>My Appointments</h3>
-                </div>
-            
-            <?php
+            if ($position == "Registrar") {//Start of show if Registrar
+                include("count_gsck.php");
             }//End of show if Registrar
             ?>
             <!---------------Reports for Registrar------------------------------------------------->
-
-            
-
-            <?php
-                include("count_app.php");
-            ?>
-
-            
 
 
             <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
@@ -338,11 +217,13 @@
             ?>
                 <div class="row">
 
-                    <div class="col-4">
+                    <div class="col_3">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Allowed No. of Appointment Slots Today:</h5>
+                            <div class="card_title">Allowed No. of Appointment Slots Today:</div>
+                            <div class="card_body">
+                                <div class="card_text">
                                 <?php
+                                
                                     $applimit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                                     $al = mysqli_query($db, $applimit);
                                     
@@ -350,14 +231,16 @@
                                         echo $limit['appointment_limit'];
 
                                 ?>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col_4">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">No. of Appointment Slots Taken Today:</h5>
+                            <div class="card_title">No. of Appointment Slots Taken Today:</div>
+                            <div class="card_body">
+                                <div class="card_text">
                                 <?php
                                     date_default_timezone_set('Asia/Manila');                           		
                                     $currentdate = date("Y-m-d");
@@ -369,7 +252,8 @@
                                     $count = mysqli_num_rows($al);
 
                                     echo $count; 
-                        ?>
+                                ?>
+                                </div>
                             </div>
                         </div>                
                     </div>  
