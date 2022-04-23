@@ -27,7 +27,8 @@ $fullname = $row['first_name'].' '.$row['last_name'];
 
     <h1>Add Announcement</h1>
         <!-- Modal content-->
-                    <form class="user" method="POST" id="form">
+
+                    <form class="user" method="POST" id="form" enctype="multipart/form-data">
                         <div><label>Title:</label>
                             <input name="title" id="title" type="text" value="" required>
                         </div>
@@ -166,7 +167,6 @@ if (isset($_POST['button_add_announcement'])) {
     $link = !empty($_POST['video_link'])?$_POST['video_link']:'';
     $title = $_POST['title'];
     $caption = $_POST['caption'];
-
     if(!empty($image) && empty($link)){
         date_default_timezone_set("Asia/Manila");
         $date = date("Y-m-d H:i:s");

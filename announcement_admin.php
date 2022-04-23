@@ -179,7 +179,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
       <!-- Modal content -->
       <div class="addmodal-content">
         <div>
-          <?php include("announcement_add.php"); ?>  
+          <?php include("announcement_add.php"); ?>    
         </div>
       </div>
     </div>

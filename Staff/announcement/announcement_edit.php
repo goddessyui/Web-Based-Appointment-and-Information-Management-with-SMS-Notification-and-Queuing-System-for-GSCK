@@ -13,9 +13,9 @@ if ($staff_id == "" || $staff_username == ""){
 
 
     <h1>Edit Announcement</h1>      
-        <form class="user" method="POST" id="form">
+        <form class="user" method="POST" id="form" enctype="multipart/form-data">
             <div>
-                <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="">
+                <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="" >
                 <label>Title:</label>
                 <input name="edit_title" id="edit_title"  type="text" class="form-control"  required>
             </div>
@@ -30,7 +30,7 @@ if ($staff_id == "" || $staff_username == ""){
 
             <div>    
                 <label>Video Link(can only accept youtube video link):</label>
-                <input name="video_link" id="edit_video_link" type="text" >
+                <input name="edit_video_link" id="edit_video_link" type="text" >
                 <button id="edit_check" type="button" onclick="validate()">Validate</button>  
                 <button id="edit_removeurl" type="button" onclick="remove_url()">Remove URL</button>           
             </div>
@@ -45,12 +45,12 @@ if ($staff_id == "" || $staff_username == ""){
 
             <div>
                 <label>Photo:</label>
-                <input type="file" name="image" accept="image/*" id="edit_imgInp" onchange="loadFile_edit(event)"/>
+                <input type="file" name="edit_image" accept="image/*" id="edit_imgInp" onchange="loadFile_edit(event)"/>
                 <button type="button" id='edit_remove_btn' onclick="Remove_image()" >Remove Image</button>   
             </div>
 
             <div>
-                <input type="hidden" id= 'edit_imagevalidate' name="imagevalidator" value="<?php echo !empty($row['image'])?'valid':''?>">
+                <input type="hidden" id= 'edit_imagevalidate' name="edit_imagevalidator" value="<?php echo !empty($row['image'])?'valid':''?>">
                 <img id="edit_output"/>
             </div>
                               
@@ -150,16 +150,16 @@ if (isset($_POST['button_edit_announcement'])) {
     $ann_id = $_POST['edit_id'];
     $query = mysqli_query($db, "SELECT * FROM tbl_announcement WHERE announcement_id='{$ann_id}'");
     $row = $query->fetch_assoc();
-    $image = !empty($_FILES['image'])?$_FILES['image']['tmp_name']:'';
-    $link = !empty($_POST['video_link'])?$_POST['video_link']:'';
-    $imagevalidate = $_POST['imagevalidator'];
+    $image = !empty($_FILES['edit_image'])?$_FILES['edit_image']['tmp_name']:'';
+    $link = !empty($_POST['edit_video_link'])?$_POST['edit_video_link']:'';
+    $imagevalidate = $_POST['edit_imagevalidator'];
     
     if(!empty($image) && empty($link)){
         $stmt = $db->prepare('UPDATE tbl_announcement set announcement_title=?, caption=?, image=?, video_url=? where announcement_id=?');
         $stmt->bind_param("sssss", $title, $caption, $img, $links, $ann_id);
         $title = $_POST['edit_title'];
         $caption = $_POST['edit_caption'];
-        $temp = explode(".", $_FILES["image"]["name"]);
+        $temp = explode(".", $_FILES["edit_image"]["name"]);
         $newfilename = round(microtime(true)) . '.' . end($temp);
         $img = $newfilename;
         $links = null;  
@@ -171,7 +171,7 @@ if (isset($_POST['button_edit_announcement'])) {
                 echo '<script>$("#edit_mess1").html("An Error occured, please reload the page!");</script>';
               }
         }
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], "announcement_image/" . $newfilename)) {
+        if (move_uploaded_file($_FILES["edit_image"]["tmp_name"], "announcement_image/" . $newfilename)) {
             $stmt->execute();
             $edit = "true";
             include ('notification_announcement.php');
