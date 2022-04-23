@@ -3,13 +3,15 @@
    <div class="homepage">
        <img src="image/logo.png" width="80">
        <p>GSCK APPOINTMENT PORTAL</p>
-       <h1>Set Appointment with the hassle of queing</h1>
+       <h1>Set appointment without the hassle of queueing</h1>
        <button>BOOK NOW</button>
    </div>
 </div>
 
 
-
+<div class="announcement_container">
+    <div class="announcement"></div>
+</div>
 
 <?php
     include("header.php");

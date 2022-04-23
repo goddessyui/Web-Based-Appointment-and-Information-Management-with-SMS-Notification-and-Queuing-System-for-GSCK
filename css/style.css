@@ -38,6 +38,7 @@
         font-family: roboto;
         color: #333;
         text-align: center;
+        transform: translateX(50px);
     }
     .sign_user {
         display: flex;

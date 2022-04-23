@@ -22,18 +22,45 @@
 .homepage p {
     font-family: Roboto;
     color: #fff;
+    text-shadow: 1px 1px 5px #0005;
 }
 .homepage h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: gold;
+    color: #fff;
     font-size: 46px;
     text-shadow: 1px 1px 5px #0005;
 }
 .homepage button {
-    background: #0001;
-    border: 1px solid #fff;
-    padding: 8px 100px;
+    background: #324E9E;
+    border: none;
+    padding: 10px 100px;
     cursor: pointer;
     color: #fff;
+    transition: all .2s ease-in-out;
+    font-family: Lato;
+}
+.homepage button:hover {
+    background: #5463FF;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+.announcement_container {
+    width: 100%;
+    background: #eee;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.announcement_container .announcement {
+    height: 50vh;
+    width: 80%;
+    background: #333;
 }
