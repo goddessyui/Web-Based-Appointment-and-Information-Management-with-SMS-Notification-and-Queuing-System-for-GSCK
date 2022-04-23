@@ -1,0 +1,362 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    *{
+        box-sizing: border-box;
+    }
+    main {
+        padding: 0;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 80px;
+    }
+    /*----Calendar CSS---*/
+    #calendar {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .response {
+        height: 60px;
+    }
+
+    .success {
+        background: #cdf3cd;
+        padding: 10px 60px;
+        border: #c3e6c3 1px solid;
+        display: inline-block;
+    }
+    /*----Calendar CSS---*/
+   
+
+
+
+    .row {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fafafa;
+        padding: 10px;
+        text-align: center;
+    }
+    .row h3 {
+        text-align: center;
+    }
+    h2{
+        width: 100%;
+        align-items: center;
+    }
+    .row_report{
+        display: flex;
+    }
+
+
+      /*----pagination---*/
+    .pagination,
+    .thepagination {
+        display: flex;
+        flex-wrap: wrap;  
+    }
+
+    .thepagination li,
+    .pagination li{
+        border: 1px solid lightgray;
+        padding: 5px; 
+    }
+    .thepagination li a,
+    .pagination li a {
+        text-decoration: none;
+    }
+
+    /*----pagination---*/
+
+
+     /*----general appointment request rows---*/
+    .row_app {
+       background-color: #dedede;
+       margin-bottom: 10px;
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+    }
+    .col_app{
+       margin: 3px;
+       
+        text-align: center;
+    }
+     /*----general appointment request rows---*/
+
+
+
+
+
+    /*----start of staff_cancelled_requests, staff_done_requests, and staff_declined_requests---*/
+    #serialnum {
+        width: 4%;
+
+    }
+    #apptdate {
+        width: 16%;
+    }
+    #appttype{
+        width: 16%;
+    }
+    #apptdate small{
+        font-size: 10px;
+    }
+    #studentfullname{
+        width: 16%;
+    }
+  
+    #thestudnote{
+        width: 16%;
+    }
+
+    #staffcomment{
+        width: 16%;
+    }
+    /*----end of staff_cancelled_requests, staff_done_requests,  and staff_declined_requests---*/
+
+
+
+
+ 
+    /*----start of staff_accepted_requests and staff_missed_requests---*/
+    #serialno {
+        width: 2%;
+
+    }
+    #appdate {
+        width: 14%;
+    }
+    #apptype{
+        width: 14%;
+    }
+    #appdate small{
+        font-size: 10px;
+    }
+    #studentname{
+        width: 14%;
+    }
+  
+    #studnote{
+        width: 14%;
+    }
+    #resched{
+        width: 14%;
+    }
+    #comment{
+        width: 14%;
+    }
+    #canceldone{
+        width: 14%;
+    }
+    #done, #cancel, #appointment_date, #reschedule {
+        width: 100%;
+    }
+    /*----end of staff_accepted_requests and staff_missed_requests---*/
+    
+
+
+
+    
+  /*----start of staff_pending_requests--------------*/
+    
+    #serialno_pend {
+        width: 2%;
+    }
+    #datecreated {
+        width: 12.25%;
+    }
+    #apptype_pend{
+        width: 12.25%;
+    }
+    #apptype_pend small{
+        font-size: 10px;
+    }
+    #studentname_pend{
+        width: 12.25%;
+    }
+    #courseandyear {
+        width: 12.25%;
+    }
+  
+    #studnote_pend{
+        width: 12.25%;
+    }
+    #setdate{
+        width: 12.25%;
+    }
+    #comment_pend{
+        width: 12.25%;
+    }
+    #acceptdecline{
+        width: 12.25%;
+    }
+    #accept, #decline, #appointmentdate {
+        width: 100%;
+    }
+/*----end of staff_pending_requests--------------*/
+
+
+
+
+ /* Formatting search box */
+ .search-box{
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    z-index: 2;
+   
+}
+.search-box input[type="text"]{
+    height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+.result{
+    position: absolute;        
+    top: 100%;
+    left: 0;
+    background-color: white;
+    
+}
+.search-box input[type="text"], .result{
+    width: 100%;
+   
+}
+/* End of Formatting search box */
+/* Formatting result items */
+.result p{
+    margin: 0;
+    padding: 7px 10px;
+    border: 1px solid #CCCCCC;
+    border-top: none;
+    cursor: pointer;
+}
+.result p:hover{
+    background: #f2f2f2;
+}
+/* End of Formatting result items */
+
+
+
+
+/*--------------upload records------------------*/
+
+.col_3{
+    width: 320px;
+    margin-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.card {
+    text-align: center;
+}
+.card_title{
+    background-color: #324e9e;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+.card_body {
+    background-color: white;
+    font-size: 20px;
+    color: #324e9e;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#formsubmit {
+    background-color: #324e9e;
+    color: #fff;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 25px;
+}
+.form_group {
+  width: 100%;
+  margin: auto;
+  min-width: 300px;
+}
+
+h3 {
+   text-align: center;
+}
+.form_inline {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color: #dedede;
+    padding: 10px;
+    min-width: 250px;
+   
+}
+.form_inline:hover .btn_group {
+    display: block;
+}
+
+.form_inline .left_counter{
+    width: 150px;
+    float: left;
+}
+.form_inline input{
+    width: 150px;
+}
+.form_inline select {
+    width: 150px;
+    text-align: center;
+}
+.form_inline .form_label {
+    width: 150px;
+   
+}
+.uploadfile {
+    border: 0.5px solid gray;
+}
+.message {
+    color: #324e9e;
+}
+.btn_group{
+    display: none;
+    width: 150px;
+}
+.btn_update {
+    margin-top: 1px;
+    margin-left: 10px;
+    border-radius: 0.5em 0 0 0.5em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #324e9e;
+    border: 1px solid #324e9e;
+    color: #fff;
+}
+
+.btn_delete {
+    margin-top: 1px;
+    border-radius: 0 0.5em 0.5em 0;
+    border: 1px solid #ec3237;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #ec3237;
+    color: #fff;
+}
+.btn_add, .btn_upload {
+    background-color: var(--blue);
+    color: #fff;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 25px;
+}
+
+/*--------------upload records------------------*/
