@@ -1,3 +1,6 @@
+<?php 
+include('header.php');
+?>
 
 <div class="main_container">
     <div class="small_container">
@@ -50,11 +53,7 @@
 </div>
 
     <?php
-    
-        include('header.php');
-    
-    
-        include("backtotop.php");
+     include("backtotop.php");
     ?>
 
 <style>
@@ -62,7 +61,7 @@
         width: 100%;
         margin-top: 100px;
         height: 80vh;
-       
+        display: none;
     }
     .small_container {
         width: 90%;
