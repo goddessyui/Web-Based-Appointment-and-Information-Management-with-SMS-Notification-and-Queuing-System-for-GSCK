@@ -53,14 +53,72 @@
 
 .announcement_container {
     width: 100%;
-    background: #eee;
+    background: #fff;
     height: 80vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 2%;
+}
+.announcement_container h2 {
+    width: 20%;
+    text-align: right;
+    text-decoration: underline;
+    font-size: 28px;
+    padding: 40px;
 }
 .announcement_container .announcement {
     height: 50vh;
     width: 80%;
+    display: flex;
+    justify-content: left;
+}
+.announcement .img_announcement {
+    width: 360px;
+    height: 50vh;
+    background-image: url("../image/announcement.jpg");
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+.announcement .fetch_content {
+    padding: 30px;
+}
+.fetch_content .announcement_div {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gold;
+}
+
+.announcement_div h1 {
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.announcement_div h3 {
+    font-size: 13px;
+    color: #666;
+    font-family: Lato;
+    font-weight: 500;
+}
+.announcement_div p {
+    font-family: Lato;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #444;
+    width: 600px;
+}
+.announcement button {
+    border: none;
+    padding: 8px 50px;
     background: #333;
+    color: #eee;
+    font-family: Roboto;
+    cursor: pointer;
+}
+
+.date_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }

@@ -359,7 +359,7 @@
  
     /* width */
     ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     }
 
     /* Track */
@@ -369,12 +369,12 @@
     
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: #eee; 
+    background: gray; 
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: grey; 
+    background: gold; 
     }
 
     .notif_container {
