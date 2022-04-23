@@ -61,7 +61,7 @@ include('header.php');
         width: 100%;
         margin-top: 100px;
         height: 80vh;
-        display: none;
+       
     }
     .small_container {
         width: 90%;

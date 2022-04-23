@@ -79,13 +79,32 @@
     <div class="nav_container" id="open_nav_container">
         <nav>
             <ul>
-                <a href="#" class="a_link_after"><li>Home</li></a>
-                <a href="#" class="a_link_after"><li>Profile Setting</li></a>
-                <a href="#" class="a_link_after"><li>About</li></a>
-                <a href="#" class="a_link_after"><li>My Appointments</li></a>
-                <a href="#" class="a_link_after"><li>Announcements</li></a>
-                <a href="#" class="a_link_after"><li>Staff Schedule</li></a>
-                <a href="#" class="a_link_after"><li>Contact</li></a>
+                <a href="index.php" class="a_link_after"><li>Home</li></a>
+                <?php 
+	                if(isset($_SESSION['student_id'])){
+                ?>
+                <a href="student_profile.php" class="a_link_after"><li>Profile Setting</li></a>
+                <?php
+		        }
+		        ?>
+                <a href="about.php" class="a_link_after"><li>About</li></a>
+                <?php 
+	            if(isset($_SESSION['student_id'])){
+                ?>
+                <a href="student_appointment_details.php" class="a_link_after"><li>My Appointments</li></a>
+                <?php
+		        }
+		        ?>
+                <a href="announcements.php" class="a_link_after"><li>Announcements</li></a>
+                <a href="schedules.php" class="a_link_after"><li>Staff Schedule</li></a>
+                <a href="contact.php" class="a_link_after"><li>Contact</li></a>
+                <?php 
+	            if(isset($_SESSION['student_id'])){
+                ?>
+                <a href="student_appointment.php" class="a_link_after"><li>Set An Appointment</li></a>
+                <?php
+		        }
+		        ?>
             </ul>
         </nav>
     </div>
