@@ -136,7 +136,7 @@ include("admin_header.php");
                                 <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php --------------------->  
                                 <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
                                     <label>Comment:</label><br>
-                                    <textarea type="textarea" name="comment"></textarea>
+                                    <textarea type="textarea" name="comment"><?php echo $rows['comment'];?></textarea>
                             </div>
                             <div class="col_app" id="canceldone">
                                 <input id="cancel" type="submit" name="cancel" value="CANCEL"><br>
