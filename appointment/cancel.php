@@ -5,10 +5,12 @@ session_start();
 
 if(isset($_POST['cancel'])){
  // Prepare an update statement
-    $comment = $_POST['comment'];  
+   $comment = $_POST['comment'];
+   date_default_timezone_set('Asia/Manila');                           		
+   $currentdate = date("Y-m-d");
   	
     $cancelappointment = "UPDATE tbl_appointment_detail 
-    SET `status` ='Cancelled', comment = '$comment' 
+    SET `date_accepted` = '$currentdate', `status` ='Cancelled', comment = '$comment' 
     WHERE appointment_id ='".$_GET['appointment_id']."'";
 
 
