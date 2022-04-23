@@ -83,6 +83,7 @@
 }
 .announcement .fetch_content {
     padding: 30px;
+    margin-left: 20px;
 }
 .fetch_content .announcement_div {
     margin-bottom: 20px;
@@ -103,7 +104,6 @@
 .announcement_div p {
     font-family: Lato;
     font-size: 14px;
-    margin-top: 5px;
     color: #444;
     width: 600px;
 }
