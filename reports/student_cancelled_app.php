@@ -3,8 +3,9 @@
 <?php
 if (isset($_GET['apde'])){
     
-    $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-    tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
+    $cancelledappointments="SELECT tbl_appointment_detail.date_accepted, tbl_appointment_detail.appointment_date, 
+    tbl_appointment.date_created, tbl_appointment.appointment_id, 
+    appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
     tbl_appointment.note, tbl_appointment_detail.comment
     FROM tbl_appointment_detail INNER JOIN tbl_appointment 
     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
@@ -15,8 +16,9 @@ if (isset($_GET['apde'])){
     ORDER BY tbl_appointment_detail.appointment_date DESC LIMIT 1";
 }
 else {
-    $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
+    $cancelledappointments="SELECT tbl_appointment_detail.date_accepted, tbl_appointment_detail.appointment_date, 
+        tbl_appointment.date_created, tbl_appointment.appointment_id, 
+        appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
         tbl_appointment.note, tbl_appointment_detail.comment
         FROM tbl_appointment_detail INNER JOIN tbl_appointment 
         ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
@@ -46,7 +48,8 @@ else {
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Date Cancelled: </span><?php echo $rows['appointment_date']; ?></p>
+                    <p><span>Date Cancelled: </span><?php echo $rows['date_accepted']; ?></p>
+                    <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p>
                     <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
                     <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
                     <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
