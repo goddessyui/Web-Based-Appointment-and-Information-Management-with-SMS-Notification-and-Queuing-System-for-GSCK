@@ -1,24 +1,11 @@
 
 <div class="main_container">
    <div class="homepage">
-       <div class="front_page">
-           <div class="front_content">
-            <img src="image/logo.png" width="80">
-            <h3>GSCK Appointment Portal</h3>
-            <h1>Set an appointment without the hassle of queing</h1>
-            <a href="#"><button>Book Now</button></a>
-           </div>
-       </div>
+       <img src="image/logo.png" width="80">
+       <p>GSCK APPOINTMENT PORTAL</p>
+       <h1>Set Appointment with the hassle of queing</h1>
+       <button>BOOK NOW</button>
    </div>
-   <div class="appointment">
-       <div class="contact_info">
-           <h1>contact info here</h1>
-       </div>
-   </div>
-</div>
-
-<div class="announcement_container">
-
 </div>
 
 
