@@ -2,15 +2,15 @@
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-    
 
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
     }
     body {
-        background: #F4F6F7;
+        background: #fff;
     }
     .header {
         width: 100%;
@@ -31,10 +31,13 @@
     .title_container {
         display: flex;
         align-items: center;
+        justify-content: center;
+
     }
     .title_container h3 {
         font-family: roboto;
         color: #333;
+        text-align: center;
     }
     .sign_user {
         display: flex;
@@ -126,6 +129,7 @@
         transition: all .3s ease-in-out;
         transform: translateX(-380px);
         opacity: 0;
+        z-index: 888;
 
     }
         .nav_container nav {
@@ -416,9 +420,18 @@
 
 /*---------login_form here-------------*/
 .login_form_div {
-    background: teal;
+    width: 100%;
+    height: 60vh;
+    padding: 40px;
 }
-.forgot_pass_div,
-.sms_forgot_pass {
-    display: none;
+        .forgot_pass_div {
+            display: none;
+        }
+.login_form_div .title_login {
+    font-family: Roboto;
 }
+    .title_login h4 {
+        font-family: Roboto;
+        text-transform: uppercase;
+        text-align: center;
+    }
