@@ -42,12 +42,12 @@ include("dbconfig.php");
                             <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                         <?php
                         }
-                        if($atype=="Evaluation of Grades - Department Head"){?>
+                        if($atype=="Evaluation of Grades"){?>
                             <p>Description: Please choose the correct Department Head for your department. 
                             Office hours are from 8 am to 5 pm.</p>
                         <?php
                         }
-                        if($atype=="Module Submission"){?>
+                        if($atype=="Module Claiming/Submission"){?>
                             <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                         <?php
                         }

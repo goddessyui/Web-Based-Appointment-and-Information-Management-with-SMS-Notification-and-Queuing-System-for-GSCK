@@ -112,14 +112,14 @@ $(document).ready(function() {
                                 <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
 
-                            <button type="submit" class="aptype" value="Evaluation of Grades - Department Head" name="appointmenttype" onclick="evaluationofgrades_at()">
+                            <button type="submit" class="aptype" value="Evaluation of Grades" name="appointmenttype" onclick="evaluationofgrades_at()">
                                 <h4>Evaluation of Grades</h4><hr>
                                 <p>Description: Please choose the correct Department Head for your department. 
                                     Office hours are from 8 am to 5 pm.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Module Submission" name="appointmenttype" onclick="modulesubmission_at()">
-                                <h4>Module Submission</h4><hr>
+                                <h4>Module Claiming/Submission</h4><hr>
                                 <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
 
@@ -211,7 +211,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Meeting">                   
                                     <?php   
                                     }
