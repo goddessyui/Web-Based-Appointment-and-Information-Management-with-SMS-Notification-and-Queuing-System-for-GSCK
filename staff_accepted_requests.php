@@ -179,7 +179,7 @@ include("admin_header.php");
                                     <div class="col_app" id="comment">
                                         <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ---------------------->  
                                         <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
-                                            <textarea type="textarea" name="comment"></textarea><br><br>
+                                            <textarea type="textarea" name="comment"><?php echo $rows['comment'];?></textarea><br><br>
                                             <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                             <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                             <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -311,7 +311,7 @@ include("admin_header.php");
                             <div class="col_app" id="comment">
                                 <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ---------------------->  
                                 <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
-                                    <textarea type="textarea" name="comment"></textarea><br><br>
+                                    <textarea type="textarea" name="comment"><?php echo $rows['comment'];?></textarea><br><br>
                                     <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                     <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -446,7 +446,7 @@ include("admin_header.php");
                         <div class="col_app" id="comment">
                             <!-------------------------To Cancel Appointment and add note. Send Form Data to cancel.php ---------------------->  
                             <form action ="appointment/cancel.php?appointment_id=<?=$rows['appointment_id']?>"  method="post">
-                                <textarea type="textarea" name="comment"></textarea><br><br>
+                                <textarea type="textarea" name="comment"><?php echo $rows['comment'];?></textarea><br><br>
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
                                 <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                 <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
