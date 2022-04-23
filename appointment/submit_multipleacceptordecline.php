@@ -1,8 +1,8 @@
 <?php
 include_once("../dbconfig.php");
 session_start();
-
-
+include '../sms_test/smsAPIcon.php';
+$send = new smsfunction();
    $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
    $limitvalue= mysqli_query($db, $l);
 
@@ -54,6 +54,7 @@ session_start();
                               $student_id = $rows['student_id'];
                               $appointment_type = $rows['appointment_type'];
                               
+                              
                               $noofappointments ="SELECT * FROM tbl_appointment_detail 
                                  WHERE appointment_date = '$appointment_date' AND `status` = 'Accepted'";
                               
@@ -90,11 +91,12 @@ session_start();
                                        //Queue Number---------------------------------------------------------------------------------------// 
 
                                        // send sms to student if apppointment accepted
+
                                        $m_number = $rows['mobile_number'];
                                        $student_fullname = $rows['first_name'].' '.$rows['last_name'];
                                        $accept='true';
-                                       include ('sms_appointment.php');
-
+                                       include ('sms_unifast.php');
+                                       $accept='';
                                        header('location: ../submitdocu_pendingapp.php?success="Appointment request accepted."'); 
                                  } 
                                  else {
@@ -151,9 +153,10 @@ session_start();
 
                               $student_id = $rows['student_id'];
                               $appointment_type = $rows['appointment_type'];
+                              
                            
                               $declineappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
-                                 VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Declined')";
+                                 VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'Declined')";
                
                               if(mysqli_query($db, $declineappointment)) {
                
@@ -166,24 +169,14 @@ session_start();
                                     '$fullnames has DECLINED your request for  $appointment_type', '0', 
                                     '$student_id', 'student_appointment_details.php?status=Declined&apde=$appointment_id')");
                
-                                    //Add Queueing and SMS function here???-----------------------------------------
-                                    $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
-                                       FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                                       AND appointment_date = '$appointment_date') T2 
-                                       WHERE appointment_id = '$appointment_id'";
-                                    $qnum = mysqli_query($db, $q); 
-                                    $queue = mysqli_fetch_assoc($qnum);
-                                    //Queue Number---------------------------------------------------------------------------------------//
-                                    $queuenumber = $queue['queuenum'];
-                                    echo "<br><br>Queue Number:" . $queuenumber;
-                                    //Queue Number---------------------------------------------------------------------------------------//
+                                    
 
                                     // send sms to student if apppointment accepted
                                     $m_number = $rows['mobile_number'];
                                     $student_fullname = $rows['first_name'].' '.$rows['last_name'];
                                     $decline='true';
-                                    include ('sms_appointment.php');
-
+                                    include ('sms_unifast.php');
+                                    $decline='';
                                     header('location: ../submitdocu_pendingapp.php?success="Appointment request declined."');    
                               } 
                               else { 

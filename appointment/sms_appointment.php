@@ -1,24 +1,9 @@
 <?php
-if ($staff_id == "" || $staff_username == ""){
-    echo '<script type="text/javascript">window.location.href="index.php"</script>';
- }
-
-
-
 if (isset($accept)){
     include '../sms_test/smsAPIcon.php';
     $receiver = $m_number;
     $message = "Hello, ".$student_fullname."!\n\n". $fullnames . ", has accepted your request for ".$appointment_type." and is set on " . date("F d, Y", strtotime($appointment_date)).
     ". Your queue number is ".$queuenumber."\n\n -Goldenstate College";
-    $send = new smsfunction();
-    $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-
-
-}
-else if (isset($accept_unifast)){
-    include '../sms_test/smsAPIcon.php';
-    $receiver = $m_number;
-    $message = $fullnames . "has accepted your request your appoint is set on" . $appointment_date;
     $send = new smsfunction();
     $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
 
@@ -49,4 +34,4 @@ else if (isset($cancel)){
     $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
 }
 
-
+?>

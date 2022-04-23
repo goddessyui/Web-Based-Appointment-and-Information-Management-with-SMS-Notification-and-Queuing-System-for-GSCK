@@ -153,6 +153,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                                     <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                     <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
+                                    <input type="hidden" name="number" value="<?php echo $rows['mobile_number']; ?>">
                                     <button  type="submit" name="accept" id="accept">ACCEPT</button>
                                     <button type="submit" name="decline" id="decline">DECLINE</button>
                                 </form>
@@ -257,6 +258,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                                     <input type="hidden" name="appointment_type" value="<?php echo $rows['appointment_type'];?>">
                                     <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                     <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
+                                    <input type="hidden" name="number" value="<?php echo $rows['mobile_number']; ?>">
                                     <button  type="submit" name="accept" id="accept">ACCEPT</button>
                                     <button type="submit" name="decline" id="decline">DECLINE</button>
                                 </form>

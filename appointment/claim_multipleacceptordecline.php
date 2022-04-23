@@ -1,8 +1,8 @@
 <?php
 include_once("../dbconfig.php");
 session_start();
-
-
+include '../sms_test/smsAPIcon.php';
+$send = new smsfunction();
    $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
    $limitvalue= mysqli_query($db, $l);
 
@@ -37,7 +37,7 @@ session_start();
                               $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                                  tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                                  tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                                 tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                                 tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                                  FROM tbl_appointment INNER JOIN tbl_staff_registry 
                                  ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                  INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -67,8 +67,8 @@ session_start();
                   
                                     // insert data into tbl_notification if staff accept a request
                                     $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
-                                       $rows = $querys->fetch_assoc();
-                                       $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                                       $rows1 = $querys->fetch_assoc();
+                                       $fullnames = $rows1['first_name'].' '.$rows1['last_name'];
                                        mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
                                        ('REQUEST ACCEPTED', 
                                        '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
@@ -87,6 +87,14 @@ session_start();
                                        $queuenumber = $queue['queuenum'];
                                        echo "<br><br>Queue Number:" . $queuenumber;
                                        //Queue Number---------------------------------------------------------------------------------------// 
+
+                                       // send sms to student if apppointment accepted
+                                       $m_number = $rows['mobile_number'];
+                                       $student_fullname = $rows['first_name'].' '.$rows['last_name'];
+                                       $accept_unifast='true';
+                                       include ('sms_unifast.php');                                   
+                                       $accept_unifast='';
+                                       
                                        header('location: ../claimcheque_pendingapp.php?success="Appointment request accepted."'); 
                                  } 
                                  else { 
@@ -129,7 +137,7 @@ session_start();
                            $requests="SELECT tbl_appointment.appointment_id, tbl_appointment.date_created,
                               tbl_appointment.student_id, tbl_appointment.staff_id, tbl_appointment.appointment_type,
                               tbl_appointment.note, tbl_appointment.status, tbl_student_registry.first_name, 
-                              tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year
+                              tbl_student_registry.last_name, tbl_student_registry.course, tbl_student_registry.year, tbl_student_registry.mobile_number
                               FROM tbl_appointment INNER JOIN tbl_staff_registry 
                               ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                               INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -146,32 +154,27 @@ session_start();
                            $appointment_type = $rows['appointment_type'];
                            
                               $declinedappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
-                                 VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Declined')";
+                                 VALUES ('$appointment_id', '$currentdate', '$currentdate', '$comment', 'Declined')";
                
                               if(mysqli_query($db, $declinedappointment)) {
                
                                  // insert data into tbl_notification if staff accept a request
-                                 $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
-                                    $rows = $querys->fetch_assoc();
-                                    $fullnames = $rows['first_name'].' '.$rows['last_name'];
+                                    $querys = mysqli_query($db, "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name FROM tbl_staff_registry WHERE staff_id='".$staff_id."'");
+                                    $rows1 = $querys->fetch_assoc();
+                                    $fullnames = $rows1['first_name'].' '.$rows1['last_name'];
                                     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`,`link`) VALUES 
                                     ('REQUEST DECLINED', 
                                     '$fullnames has DECLINED your request for  $appointment_type', '0', 
                                     '$student_id', 'student_appointment_details.php?status=Declined&apde=$appointment_id')");
-               
+                                                                                                             
+                                    // send sms to student if unifast declined
+                                    $m_number = $rows['mobile_number'];
+                                    $student_fullname = $rows['first_name'].' '.$rows['last_name'];
+                                    $decline='true';
+                                    include ('sms_unifast.php');
+                                    $decline='';
+                                   
                                     header('location: ../claimcheque_pendingapp.php?success="Appointment request declined."');
-                              
-                                    //Add Queueing and SMS function here???-----------------------------------------
-                                    $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
-                                       FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                                       AND appointment_date = '$appointment_date') T2 
-                                       WHERE appointment_id = '$appointment_id'";
-                                    $qnum = mysqli_query($db, $q); 
-                                    $queue = mysqli_fetch_assoc($qnum);
-                                    //Queue Number---------------------------------------------------------------------------------------//
-                                    $queuenumber = $queue['queuenum'];
-                                    echo "<br><br>Queue Number:" . $queuenumber;
-                                    //Queue Number---------------------------------------------------------------------------------------//   
                               } 
                               else { 
                                     header('location: ../claimcheque_pendingapp.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
