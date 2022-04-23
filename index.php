@@ -1,6 +1,3 @@
-<?php 
-include('header.php');
-?>
 
 <div class="main_container">
     <div class="small_container">
@@ -53,7 +50,11 @@ include('header.php');
 </div>
 
     <?php
-     include("backtotop.php");
+    
+        include('header.php');
+    
+    
+        include("backtotop.php");
     ?>
 
 <style>
