@@ -94,16 +94,16 @@
 .announcement_div h1 {
     text-transform: uppercase;
     font-size: 20px;
+    font-family: Roboto;
 }
 .announcement_div h3 {
     font-size: 13px;
-    color: #666;
-    font-family: Lato;
+    color: #777;
+    font-family: Roboto;
     font-weight: 500;
 }
 .announcement_div p {
-    font-family: Lato;
-    font-size: 14px;
+    font-size: 15px;
     color: #444;
     width: 600px;
 }
