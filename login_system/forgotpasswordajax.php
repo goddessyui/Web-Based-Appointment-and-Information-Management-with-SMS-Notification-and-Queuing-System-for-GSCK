@@ -14,8 +14,7 @@
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
             $message = "Your verification code is " . $rand_no;
-            $smsAPICode = "ST-GOLDE092678_7EKXN";
-            $smsAPIPassword = "u5uf{xtl5e";
+
             $send = new smsfunction();
             $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
            
@@ -35,8 +34,7 @@
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
             $message = "Your verification code is " . $rand_no;
-            $smsAPICode = "ST-GOLDE092678_7EKXN";
-            $smsAPIPassword = "u5uf{xtl5e";
+
             $send = new smsfunction();
             $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
            
@@ -73,8 +71,7 @@
             include '../sms_test/smsAPIcon.php';
             $receiver = $m_number;
             $message = "Your verification code is " . $rand_no;
-            $smsAPICode = "ST-GOLDE092678_7EKXN";
-            $smsAPIPassword = "u5uf{xtl5e";
+ 
             $send = new smsfunction();
             $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
             session_unset();
