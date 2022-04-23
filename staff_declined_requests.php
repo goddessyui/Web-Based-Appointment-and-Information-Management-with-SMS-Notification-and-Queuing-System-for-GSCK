@@ -110,7 +110,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                    ?><?php echo $rows['note'];  ?><?php
                                 }
                                 ?>
                             </div>
@@ -121,7 +121,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['comment'];  ?></pre><?php
+                                    ?><?php echo $rows['comment'];  ?><?php
                                 }
                                 ?>
                             </div>
@@ -174,8 +174,7 @@ include("admin_header.php");
     }
     .col_app{
        margin: 3px;
-       
-        text-align: center;
+    text-align: center;
     }
     #serialnum {
         width: 4%;

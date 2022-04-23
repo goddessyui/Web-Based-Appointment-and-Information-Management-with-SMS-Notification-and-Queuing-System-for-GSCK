@@ -111,7 +111,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                    ?><?php echo $rows['note'];  ?><?php
                                 }
                                 ?>
                             </div>

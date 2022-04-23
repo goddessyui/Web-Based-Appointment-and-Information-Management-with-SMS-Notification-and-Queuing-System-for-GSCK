@@ -154,7 +154,7 @@ include("admin_header.php");
                                             echo "No note.";
                                         }
                                         else{
-                                            ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                            echo $rows['note'];
                                         }
                                         ?>
                                     </div> 
@@ -285,7 +285,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                    echo $rows['note']; 
                                 }
                                 ?>
                             </div> 
@@ -419,7 +419,7 @@ include("admin_header.php");
                                 echo "No note.";
                             }
                             else{
-                                ?><pre><?php echo $rows['note'];  ?></pre><?php
+                               echo $rows['note'];
                             }
                             ?>
                         </div> 

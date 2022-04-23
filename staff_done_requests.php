@@ -112,7 +112,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                    ?><?php echo $rows['note'];  ?><?php
                                 }
                                 ?>
                             </div>
@@ -123,7 +123,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><pre><?php echo $rows['comment'];  ?></pre><?php
+                                    ?><?php echo $rows['comment'];  ?><?php
                                 }
                                 ?>
                             </div>

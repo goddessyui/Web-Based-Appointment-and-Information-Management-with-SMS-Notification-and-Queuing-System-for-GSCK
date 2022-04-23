@@ -127,7 +127,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                                             echo "No note.";
                                         }
                                         else{
-                                            ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                            echo $rows['note'];
                                         }
                                         ?>
                             </div>
@@ -146,7 +146,7 @@ if($position!="Accounting Staff/Scholarship Coordinator"){
                                         strtotime($currentdate. ' + 90 days'));?>">
                             </div>
                             <div class="col_app" id="comment_pend">
-                                    <textarea name="comment" placeholder="Comment here" value=""s></textarea>
+                                    <textarea name="comment" placeholder="Comment here" value=""></textarea>
                             </div>
                             <div class="col_app" id="acceptdecline">
                                     <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -192,7 +192,8 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                 WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
                 WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
-                AND tbl_staff_registry.staff_id = '$staff_id' AND tbl_appointment.appointment_type != 'UniFAST - Claim Cheque' AND tbl_appointment.appointment_type != 'UniFAST - Submit Documents' ORDER BY date_created ASC";
+                AND tbl_staff_registry.staff_id = '$staff_id' AND tbl_appointment.appointment_type != 'UniFAST - Claim Cheque' 
+                AND tbl_appointment.appointment_type != 'UniFAST - Submit Documents' ORDER BY date_created ASC";
 
             $request_result = mysqli_query($db, $requests);
             //check whether the query is executed or not
@@ -230,7 +231,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                                             echo "No note.";
                                         }
                                         else{
-                                            ?><pre><?php echo $rows['note'];  ?></pre><?php
+                                           echo $rows['note'];
                                         }
                                         ?>
                             </div>
@@ -244,7 +245,7 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
                                 <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
                                 <form action="appointment/acceptordecline.php" method="post">
                                
-                                    <input type="date" name="appointment_date" id="appointmentdate" value=" "
+                                    <input type="date" name="appointment_date" id="appointmentdate" value=""
                                         min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                         strtotime($currentdate. ' + 90 days'));?>">
                             </div>
