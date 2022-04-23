@@ -118,7 +118,7 @@ $(document).ready(function() {
                                     Office hours are from 8 am to 5 pm.</p>
                             </button>
 
-                            <button type="submit" class="aptype" value="Module Submission" name="appointmenttype" onclick="modulesubmission_at()">
+                            <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
                                 <h4>Module Claiming/Submission</h4><hr>
                                 <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
