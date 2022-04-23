@@ -27,7 +27,7 @@ if (mysqli_query($db, $cancelappointment)) {
     mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) VALUES 
    ('APPOINTMENT CANCELLED', 
    '$fullnames has CANCELLED your appointment for $appointment_type', '0', 
-   '$student_id', 'student_appointment_details.php?status=cancelled&apde=$appointment_id')");
+   '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 
     // send sms to student if apppointment cancelled
     $querys = mysqli_query($db, "SELECT mobile_number, last_name, first_name FROM tbl_student_registry WHERE student_id='".$student_id."'");
