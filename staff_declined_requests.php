@@ -87,14 +87,14 @@ include("admin_header.php");
 
                             <div class="col_app" id="apptdate">
                                 <?php echo $rows['date_accepted']; ?>
+                                <small>
+                                    <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
+                                </small>
                             </div>
 
                             <div class="col_app" id="appttype">
                                 <?php echo $rows['appointment_type']; ?>
-                                <small>
-                                    
-                                    <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
-                                </small>
+                                
                             </div>
 
                             <div class="col_app" id="studentfullname">
@@ -187,7 +187,7 @@ include("admin_header.php");
     #appttype{
         width: 16%;
     }
-    #appttype small{
+    #apptdate small{
         font-size: 10px;
     }
     #studentfullname{

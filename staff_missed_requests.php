@@ -89,14 +89,14 @@ include("admin_header.php");
                             
                             <div class="col_app" id="appdate">
                                 <?php echo $rows['appointment_date']; ?>
-                            </div>
-
-                            <div class="col_app" id="apptype">
-                                <?php echo $rows['appointment_type']; ?>
                                 <small>
                                     <p><b>Date Accepted:</b></p><p><?php echo $rows['date_accepted']; ?></p> 
                                     <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
                                 </small> 
+                            </div>
+
+                            <div class="col_app" id="apptype">
+                                <?php echo $rows['appointment_type']; ?>
                             </div>
 
                             <div class="col_app" id="studentname">
@@ -209,7 +209,7 @@ include("admin_header.php");
     #apptype{
         width: 14%;
     }
-    #apptype small{
+    #appdate small{
         font-size: 10px;
     }
     #studentname{
