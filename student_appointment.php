@@ -328,7 +328,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Module Submission">                   
                                     <?php   
                                     }
@@ -367,7 +367,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Pre-Enrollment">                   
                                     <?php   
                                     }
@@ -406,7 +406,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Presentation">                   
                                     <?php   
                                     }
@@ -445,7 +445,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Project Submission">                   
                                     <?php   
                                     }
@@ -484,7 +484,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Request Documents From Registrar">                   
                                     <?php   
                                     }
@@ -523,7 +523,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="Request for Grades">                   
                                     <?php   
                                     }
@@ -562,7 +562,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">                   
                                     <?php   
                                     }
@@ -601,7 +601,7 @@ $(document).ready(function() {
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <label><?php echo $rows['first_name']." ".$rows['last_name'];?></label>
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
                                         <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">                   
                                     <?php   
                                     }
