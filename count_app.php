@@ -35,6 +35,7 @@
                             
                             <div class="card_text">
                                 <?php
+                                    if($position!="Accounting Staff/Scholarship Coordinator"){
                                     $pendingrequest="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
                                         ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                         INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
@@ -44,7 +45,21 @@
                                     $pendingrequest_result = mysqli_query($db, $pendingrequest);
                                     $count = mysqli_num_rows($pendingrequest_result);
                                     echo $count;
-                                ?>
+                                    }
+                                    if($position=="Accounting Staff/Scholarship Coordinator") {
+                                        $pendingrequest="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
+                                        ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                                        WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+                                        WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+                                        AND tbl_staff_registry.staff_id = '$staff_id' 
+                                        AND tbl_appointment.appointment_type != 'UniFAST - Claim Cheque' AND tbl_appointment.appointment_type != 'UniFAST - Submit Documents'";
+                                    $pendingrequest_result = mysqli_query($db, $pendingrequest);
+                                    $count = mysqli_num_rows($pendingrequest_result);
+                                    echo $count;
+                                    }?>
+
+                            
                             </div>
                         </div>
                     </div>
