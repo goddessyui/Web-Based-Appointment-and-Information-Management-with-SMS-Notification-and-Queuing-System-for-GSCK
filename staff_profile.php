@@ -298,18 +298,8 @@ $(document).ready(function() {
 </script>
 
 
-
 <?php
  include("backtotop.php");
 ?>
-
 </main>
 
-
-<style>
-    main {
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 100px;
-    }
-</style>

@@ -111,7 +111,7 @@ include("admin_header.php");
                                     echo "No note.";
                                 }
                                 else{
-                                    ?><?php echo $rows['note'];  ?><?php
+                                    echo $rows['note'];
                                 }
                                 ?>
                             </div>
@@ -162,75 +162,3 @@ include("admin_header.php");
 
 </main>
 
-<style>
-    *{
-        box-sizing: border-box;
-    }
-   main {
-        padding: 0;
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 50px;
-    }
-   
-    .row {
-        width: 100%;
-        margin-bottom: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        background-color: #fafafa;
-        padding: 10px;
-        text-align: center;
-    }
-    h2{
-        width: 100%;
-        align-items: center;
-    }
-    
-    .row_app {
-       background-color: #dedede;
-       margin-bottom: 10px;
-       display: flex;
-       justify-content: space-between;
-       width: 100%;
-    }
-    .col_app{
-       margin: 3px;
-       
-        text-align: center;
-    }
-    #serialno {
-        width: 2%;
-
-    }
-    #appdate {
-        width: 14%;
-    }
-    #apptype{
-        width: 14%;
-    }
-    #appdate small{
-        font-size: 10px;
-    }
-    #studentname{
-        width: 14%;
-    }
-  
-    #studnote{
-        width: 14%;
-    }
-    #resched{
-        width: 14%;
-    }
-    #comment{
-        width: 14%;
-    }
-    #canceldone{
-        width: 14%;
-    }
-    #done, #cancel, #appointment_date, #reschedule {
-        width: 100%;
-    }
-    
-  
-</style>
