@@ -501,21 +501,6 @@
                         </form>
                         <!-- STAFF REGISTRATION -->
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
                 </div>
                 
             </div>
