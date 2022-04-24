@@ -7,7 +7,7 @@
        <img src="image/logo.png" width="80">
        <p>GSCK APPOINTMENT PORTAL</p>
        <h1>Set an appointment without the hassle of queueing</h1>
-       <button>BOOK NOW</button>
+       <a href="student_appointment.php"><button>BOOK NOW</button></a>
    </div>
 </div>
 

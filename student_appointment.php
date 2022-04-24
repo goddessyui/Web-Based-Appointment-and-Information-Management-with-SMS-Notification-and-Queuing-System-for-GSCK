@@ -63,15 +63,17 @@ $(document).ready(function() {
 
 <div class="parent_div">
     <!--------------------------------------Search box--------------------------------------------------------->
-    <div>
+    <div class="search_container">
         <form name="form1" method="get" action="">
-            <div class="search-box"><label><h3>Set An Appointment</h3></label></div>
+            <div class="search-box">
+                <h2>Set An Appointment</h2>
+            </div>
+
             <div class="search-box">
                 <input type="text" autocomplete="off" placeholder="Search staff name..." name="search" id="search" value="" required>
-                <div class="result"></div>
-            </div>
-            <div class="search-box">
-                <button type="submit" value="Find" name="formsubmit" id="formsubmit">Find</button>
+                <div class="result">test</div>
+
+                <button type="submit" value="Find" name="formsubmit" id="formsubmit">Search</button>
             </div>
         </form>
     </div>
@@ -92,60 +94,63 @@ $(document).ready(function() {
                             echo $_GET['msg'];
                         ?>
                     </p>
-                    <hr>
+                    
             <?php
                 }
                 else{//--end of message if insert appointment successful-->
                 }    
             ?>
-                <h4>Select An Appointment Type:</h4>
+                        
                     
                         <div class="aptype-container">
+
+                            <button class="select_apt"><h3>Select an appointment type</h3></button>
+
                             <button type="submit" class="aptype" value="Meeting" name="appointmenttype" onclick="meeting_at()">
-                                <h4>Meeting</h4><hr>
+                                <h4>Meeting</h4>
                                 <p>Description: Please select this appointment type if the appointment type you're looking for is not in the list. 
                                     Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Enrollment" name="appointmenttype" onclick="enrollment_at()">
-                                <h4>Enrollment</h4><hr>
+                                <h4>Enrollment</h4>
                                 <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Evaluation of Grades" name="appointmenttype" onclick="evaluationofgrades_at()">
-                                <h4>Evaluation of Grades</h4><hr>
+                                <h4>Evaluation of Grades</h4>
                                 <p>Description: Please choose the correct Department Head for your department. 
                                     Office hours are from 8 am to 5 pm.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
-                                <h4>Module Claiming/Submission</h4><hr>
+                                <h4>Module Claiming/Submission</h4>
                                 <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Pre-Enrollment" name="appointmenttype" onclick="preenrollment_at()">
-                                <h4>Pre-Enrollment</h4><hr>
+                                <h4>Pre-Enrollment</h4>
                                 <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. 
                                     Please bring a pen and necessary documents.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Presentation" name="appointmenttype" onclick="presentation_at()">
-                                <h4>Presentation</h4><hr>
+                                <h4>Presentation</h4>
                                 <p>Description: Office hours are from 8 am to 5 pm.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Project Submission" name="appointmenttype" onclick="projectsubmission_at()">
-                                <h4>Project Submission</h4><hr>
+                                <h4>Project Submission</h4>
                                 <p>Description: Office hours are from 8 am to 5 pm.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="Request Documents From Registrar" name="appointmenttype" onclick="requestdocuments_at()">
-                                <h4>Request Documents</h4><hr>
+                                <h4>Request Documents</h4>
                                 <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
                             </button>
 
                             <button type="submit" class="aptype" value="Request for Grades" name="appointmenttype" onclick="requestforgrades_at()">
-                                <h4>Request for Grades</h4><hr>
+                                <h4>Request for Grades</h4>
                                 <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
                             </button>
                         
@@ -160,17 +165,18 @@ $(document).ready(function() {
                                     $ug_id= $id['student_id'];
                                     if($student_id==$ug_id){?>
                             <button type="submit" class="aptype" value="UniFAST - Claim Cheque" name="appointmenttype" onclick="unifastcc_at()">
-                                <h4>UniFAST - Claim Cheque</h4><hr>
+                                <h4>UniFAST - Claim Cheque</h4>
                                 <p>Description: Requested From Accounting Staff/Scholarship Coordinator. 
                                     Office hours are from 8 am to 5 pm. Please bring a pen and your ID.</p>
                             </button>
 
                             <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype" onclick="unifastsd_at()">
-                                <h4>UniFAST - Submit Documents</h4><hr>
+                                <h4>UniFAST - Submit Documents</h4>
                                 <p>Description: Requested From Accounting Staff/Scholarship Coordinator.
                                     Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                             </button>
                         </div>
+
                             <?php
                                     }
                                     else{
@@ -190,7 +196,7 @@ $(document).ready(function() {
 
         
                 <div id="at_meeting"><!-- Start of Meeting------------------------------------------------------------------------------------->
-                    
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -217,8 +223,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -227,9 +233,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Meeting------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_enrollment"><!-- Start of Enrollment------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -256,8 +266,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -266,9 +276,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Enrollment------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_evaluationofgrades"> <!-- Start of Evaluation of Grades------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -295,8 +309,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -305,9 +319,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Evaluation of Grades------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_modulesubmission"> <!-- Start of Module Submission------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -334,8 +352,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -344,9 +362,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Module Submission------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_preenrollment"><!-- Start of Pre-enrollment------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -373,8 +395,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -383,9 +405,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Pre-enrollment------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_presentation"><!-- Start of Presentation------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -412,8 +438,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -422,9 +448,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Presentation------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_projectsubmission"><!-- Start of Project Submission------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -451,8 +481,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -461,9 +491,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Project Submission------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_requestdocuments"><!-- Start of Request Documents------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -490,8 +524,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -500,9 +534,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Request Documents------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_requestforgrades"><!-- Start of Request for Grades------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -529,8 +567,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -539,9 +577,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Request for Grades------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_unifastcc"><!-- Start of Unifast Claim Cheque------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -568,8 +610,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -578,9 +620,13 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                    </div>
                 </div><!-- End of Unifast CLaim Cheque------------------------------------------------------------------------------------->
 
+
+
                 <div id="at_unifastsd"><!-- Start of Unifast Submit Documents------------------------------------------------------------------------------------->
+                    <div class="apt_content">
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -607,8 +653,8 @@ $(document).ready(function() {
                                     }
                                     ?>
                                     <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. <br>
-                                    Please keep your message brief and relevant. <br> (For example: "Verification of Grades", "Request for TOR.")</small><br><br>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                     <textarea name="note"></textarea>
                                     <input type="submit" id="request" name="request" value="Request Appointment">
 
@@ -617,7 +663,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
-                    
+                    </div>
                 </div><!-- End of Unifast Submit Documents------------------------------------------------------------------------------------->
 
         <?php
@@ -625,13 +671,14 @@ $(document).ready(function() {
         ?>
    </div> 
 </div>
+
     
 <style>
     .parent_div{
        width: 100%;
-       padding-top: 80px;
-       padding-left: 5%;
-       padding-right: 5%;
+       margin-top: 80px;
+       padding-top: 5vh;
+       padding-bottom: 5vh;
     }
     #thisappointment {
         display: block;
@@ -648,23 +695,102 @@ $(document).ready(function() {
     #at_unifastcc,
     #at_unifastsd {
         display: none;
+        position: fixed;
+        width: 100%;
+        height: 90vh;
+        background: #0005;
+        top: 80px;
+        align-items: center;
+        justify-content: center;
     }
 
-    
+    .apt_content {
+        width: 680px;
+        height: 50vh;
+        background: #fff;
+        padding: 40px;
+    }
+
+
+
+    .aptype-container {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 10px;
+    }
+    .aptype {
+        background: teal;
+        border: none;
+        cursor: pointer;
+        height: 300px;
+        width: 299px;
+    }
+    .aptype-container .aptype h4 {
+        color: green;
+    }
+    .aptype-container .aptype p {
+        color: brown;
+    }
+
+    .select_apt {
+        border: none;
+        background: yellow;
+    }
+    .select_apt h3 {
+        background: green;
+        text-align: left;
+    }
     /* Formatting search box */
-    .search-box{
-        width: 300px;
-        position: relative;
-        display: inline-block;
-        font-size: 14px;
-       
+    .search_container {
+        width: 80%;
+        height: 80px;
+        margin: 0 auto;
+
     }
+    .search_container form {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .search-box:nth-child(1) h2 {
+        text-decoration: underline;
+    }
+    .search-box:nth-child(2) {
+        width: 50%;
+        display: flex;
+    }
+
     .search-box input[type="text"]{
-        height: 32px;
-        padding: 5px 10px;
-        border: 1px solid #CCCCCC;
-        font-size: 14px;
+        height: 30px;
+        outline: none;
+        border: none;
+        background: none;
+        border-bottom: 1px solid lightgrey;
+        font-size: 16px;
+        font-family: "times new roman";
+        padding-left: 5px;
     }
+    .search-box:nth-child(2) button {
+        height: 30px;
+        outline: none;
+        border: none;
+        background: #333;
+        color: #eee;
+        cursor: pointer;
+        padding-left: 30px;
+        padding-right: 30px;
+        font-family: Roboto;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+   
     .result{
         position: absolute;        
         top: 100%;
@@ -697,7 +823,7 @@ $(document).ready(function() {
 <script>
 
     function meeting_at() {
-        document.getElementById('at_meeting').style.display = "block";
+        document.getElementById('at_meeting').style.display = "flex";
         document.getElementById('at_enrollment').style.display = "none";
         document.getElementById('at_evaluationofgrades').style.display = "none";
         document.getElementById('at_modulesubmission').style.display = "none";
@@ -712,7 +838,7 @@ $(document).ready(function() {
 
     function enrollment_at() {
         document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "block";
+        document.getElementById('at_enrollment').style.display = "flex";
         document.getElementById('at_evaluationofgrades').style.display = "none";
         document.getElementById('at_modulesubmission').style.display = "none";
         document.getElementById('at_preenrollment').style.display = "none";
@@ -727,7 +853,7 @@ $(document).ready(function() {
     function evaluationofgrades_at() {
         document.getElementById('at_meeting').style.display = "none";
         document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "block";
+        document.getElementById('at_evaluationofgrades').style.display = "flex";
         document.getElementById('at_modulesubmission').style.display = "none";
         document.getElementById('at_preenrollment').style.display = "none";
         document.getElementById('at_presentation').style.display = "none";
@@ -742,7 +868,7 @@ $(document).ready(function() {
         document.getElementById('at_meeting').style.display = "none";
         document.getElementById('at_enrollment').style.display = "none";
         document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "block";
+        document.getElementById('at_modulesubmission').style.display = "flex";
         document.getElementById('at_preenrollment').style.display = "none";
         document.getElementById('at_presentation').style.display = "none";
         document.getElementById('at_projectsubmission').style.display = "none";
@@ -757,7 +883,7 @@ $(document).ready(function() {
         document.getElementById('at_enrollment').style.display = "none";
         document.getElementById('at_evaluationofgrades').style.display = "none";
         document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "block";
+        document.getElementById('at_preenrollment').style.display = "flex";
         document.getElementById('at_presentation').style.display = "none";
         document.getElementById('at_projectsubmission').style.display = "none";
         document.getElementById('at_requestdocuments').style.display = "none";
@@ -772,7 +898,7 @@ $(document).ready(function() {
         document.getElementById('at_evaluationofgrades').style.display = "none";
         document.getElementById('at_modulesubmission').style.display = "none";
         document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "block";
+        document.getElementById('at_presentation').style.display = "flex";
         document.getElementById('at_projectsubmission').style.display = "none";
         document.getElementById('at_requestdocuments').style.display = "none";
         document.getElementById('at_requestforgrades').style.display = "none";
@@ -787,7 +913,7 @@ $(document).ready(function() {
         document.getElementById('at_modulesubmission').style.display = "none";
         document.getElementById('at_preenrollment').style.display = "none";
         document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "block";
+        document.getElementById('at_projectsubmission').style.display = "flex";
         document.getElementById('at_requestdocuments').style.display = "none";
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
@@ -802,7 +928,7 @@ $(document).ready(function() {
         document.getElementById('at_preenrollment').style.display = "none";
         document.getElementById('at_presentation').style.display = "none";
         document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "block";
+        document.getElementById('at_requestdocuments').style.display = "flex";
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
@@ -817,7 +943,7 @@ $(document).ready(function() {
         document.getElementById('at_presentation').style.display = "none";
         document.getElementById('at_projectsubmission').style.display = "none";
         document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "block";
+        document.getElementById('at_requestforgrades').style.display = "flex";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
     }
@@ -832,7 +958,7 @@ $(document).ready(function() {
         document.getElementById('at_projectsubmission').style.display = "none";
         document.getElementById('at_requestdocuments').style.display = "none";
         document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "block";
+        document.getElementById('at_unifastcc').style.display = "flex";
         document.getElementById('at_unifastsd').style.display = "none";
     }
 
@@ -847,7 +973,7 @@ $(document).ready(function() {
         document.getElementById('at_requestdocuments').style.display = "none";
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "block";
+        document.getElementById('at_unifastsd').style.display = "flex";
     }
 
 </script>

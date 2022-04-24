@@ -99,13 +99,6 @@
                 <a href="announcements.php" class="a_link_after"><li>Announcements</li></a>
                 <a href="schedules.php" class="a_link_after"><li>Staff Schedule</li></a>
                 <a href="contact.php" class="a_link_after"><li>Contact</li></a>
-                <?php 
-	            if(isset($_SESSION['student_id'])){
-                ?>
-                <a href="student_appointment.php" class="a_link_after"><li>Set An Appointment</li></a>
-                <?php
-		        }
-		        ?>
             </ul>
         </nav>
     </div>
