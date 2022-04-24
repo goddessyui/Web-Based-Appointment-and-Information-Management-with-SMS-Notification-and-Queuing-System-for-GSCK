@@ -753,15 +753,20 @@ $(document).ready(function() {
         justify-content: center;
     }
     .aptype .content_type {
-        background: teal;
         width: 100%;
         height: 20vh;
     }
-    .aptype-container .aptype h4 {
-       background: green;
+    .aptype-container .aptype .content_type h4 {
+        font-size: 20px;
+        font-family: Roboto;
+        padding: 0 20px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
     }
-    .aptype-container .aptype p {
-        background: pink;
+    .aptype-container .aptype .content_type p {
+        padding: 0 40px;
+        font-family: 'times new roman';
+        font-size: 16px;
     }
 
  
