@@ -2,7 +2,8 @@
 include("dbconfig.php");
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<div>
+
+<div class="parent_div">
     
     <?php
     
@@ -28,7 +29,11 @@ include("dbconfig.php");
     <?php
             while($rows = mysqli_fetch_assoc($run)) { 
                 $at = "at".$i++;
-    ?>          
+    ?>     
+
+        <div class="main_apt_container">
+            <div class="aptype-container">
+
                 <button type="submit" class="aptype" name="<?php echo $at;?>" id="<?php echo $at;?>" required value="<?php echo $rows['appointment_type'];?>">
                     <?php echo $rows['appointment_type'];?><hr>
                     <?php
@@ -89,6 +94,9 @@ include("dbconfig.php");
                     ?>
                     
                 </button>
+            </div>
+        </div>
+
                 <input type="hidden" name="fn" id="fn" value="<?php echo $rows['first_name'];?>"> 
                 <input type="hidden" name="ln" id="ln" value="<?php echo $rows['last_name'];?>"> 
                 <input type="hidden" name="staff_id" id="staff_id" value="<?php echo $rows['staff_id'];?>">
