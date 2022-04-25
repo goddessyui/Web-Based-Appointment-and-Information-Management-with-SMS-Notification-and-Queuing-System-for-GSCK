@@ -107,66 +107,84 @@ $(document).ready(function() {
                             <button type="submit" class="aptype" value="Meeting" name="appointmenttype" onclick="meeting_at()">
                                 <div class="content_type">
                                     <h4>Meeting</h4>
+                                    <div class="p_flex_end">
                                     <p> Please select this appointment type if the appointment type you're looking for is not in the list. 
                                         Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Enrollment" name="appointmenttype" onclick="enrollment_at()">
                                 <div class="content_type">
                                     <h4>Enrollment</h4>
+                                    <div class="p_flex_end">
                                     <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Evaluation of Grades" name="appointmenttype" onclick="evaluationofgrades_at()">
                                 <div class="content_type">
                                     <h4>Evaluation of Grades</h4>
+                                    <div class="p_flex_end">
                                     <p> Please choose the correct Department Head for your department. 
                                         Office hours are from 8 am to 5 pm.</p>
+                                        </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
                                 <div class="content_type">
                                     <h4>Module Claiming or Submission</h4>
+                                    <div class="p_flex_end">
                                     <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Pre-Enrollment" name="appointmenttype" onclick="preenrollment_at()">
                                 <div class="content_type">
                                     <h4>Pre-Enrollment</h4>
+                                    <div class="p_flex_end">
                                     <p> Requested From Registrar. Office hours are from 8 am to 5 pm. 
                                         Please bring a pen and necessary documents.</p>
+                                        </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Presentation" name="appointmenttype" onclick="presentation_at()">
                                 <div class="content_type">
                                     <h4>Presentation</h4>
+                                    <div class="p_flex_end">
                                     <p> Office hours are from 8 am to 5 pm.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Project Submission" name="appointmenttype" onclick="projectsubmission_at()">
                                 <div class="content_type">
                                     <h4>Project Submission</h4>
+                                    <div class="p_flex_end">
                                     <p> Office hours are from 8 am to 5 pm.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Request Documents From Registrar" name="appointmenttype" onclick="requestdocuments_at()">
                                 <div class="content_type">
                                     <h4>Request Documents</h4>
+                                    <div class="p_flex_end">
                                     <p> Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="Request for Grades" name="appointmenttype" onclick="requestforgrades_at()">
                                 <div class="content_type">
                                     <h4>Request for Grades</h4>
+                                    <div class="p_flex_end">
                                     <p> Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                                    </div>
                                 </div>
                             </button>
                         
@@ -183,24 +201,29 @@ $(document).ready(function() {
                             <button type="submit" class="aptype" value="UniFAST - Claim Cheque" name="appointmenttype" onclick="unifastcc_at()">
                                 <div class="content_type">
                                     <h4>UniFAST - Claim Cheque</h4>
+                                    <div class="p_flex_end">
                                     <p> Requested From Accounting Staff/Scholarship Coordinator. 
                                     Office hours are from 8 am to 5 pm. Please bring a pen and your ID.</p>
+                                    </div>
                                 </div>
                             </button>
 
                             <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype" onclick="unifastsd_at()">
                                 <div class="content_type">
                                     <h4>UniFAST - Submit Documents</h4>
+                                    <div class="p_flex_end">
                                     <p> Requested From Accounting Staff/Scholarship Coordinator.
                                         Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                        </div>
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype" onclick="grad_at()">
+                            <button type="submit" class="aptype" value="Application for Graduation" name="appointmenttype" onclick="grad_at()">
                                 <div class="content_type">
-                                    <h4>Graduation - Claim Forms</h4>
-                                    <p> Requested From Accounting Staff/Scholarship Coordinator.
-                                        Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <h4>Application for Graduation</h4>
+                                    <div class="p_flex_end">
+                                        <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    </div>
                                 </div>
                             </button>
                         </div>
@@ -743,13 +766,15 @@ $(document).ready(function() {
     }
 
 
+
+
 .main_apt_container {
-    margin-top: 10px;
-    background-image: url(./image/calendar.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    margin-top: 20px;
     padding: 10px 0;
+    background-image: url(./image/appoint.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
     .aptype-container {
         width: 80%;
@@ -764,26 +789,31 @@ $(document).ready(function() {
         cursor: pointer;
         width: 300px;
         display: flex;
-        align-items: center;
         justify-content: center;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     }
     .aptype .content_type {
         width: 100%;
         padding: 30px;
     }
     .aptype-container .aptype .content_type h4 {
-        font-size: 18px;
+        font-size: 24px;
         font-family: 'times new roman';
         text-transform: uppercase;
         color: #333;
+        text-align: left;
+        height: 40px;
+    }
+    .p_flex_end {
+        height: 200px;
+        display: flex;
+        align-items: flex-end;
     }
     .aptype-container .aptype .content_type p {
-        font-family: 'times new roman';
-        font-size: 16px;
-        text-align: left;
-        color: #777;
-        margin-top: 20px;
-        display: none;
+       text-align: left;
+       font-family: 'times new roman';
+       font-size: 15px;
+       color: #777;
     }
 
  
@@ -799,7 +829,7 @@ $(document).ready(function() {
 
     /* Formatting search box */
     .search_container {
-        width: 80%;
+        width: 70%;
         height: 80px;
         margin: 0 auto;
 
@@ -826,8 +856,8 @@ $(document).ready(function() {
         border: none;
         background: none;
         border-bottom: 1px solid lightgrey;
-        font-size: 15px;
-        font-family: 'times new roman';
+        font-size: 14px;
+        font-family: 'Roboto';
         padding-left: 5px;
     }
     .search-box:nth-child(2) button {
