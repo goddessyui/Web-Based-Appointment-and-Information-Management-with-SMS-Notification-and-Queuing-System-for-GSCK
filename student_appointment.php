@@ -114,11 +114,29 @@ $(document).ready(function() {
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="Enrollment" name="appointmenttype" onclick="enrollment_at()">
+                            <button type="submit" class="aptype" value="Presentation" name="appointmenttype" onclick="presentation_at()">
                                 <div class="content_type">
-                                    <h4>Enrollment</h4>
+                                    <h4>Presentation</h4>
+                                    <div class="p_flex_end">
+                                    <p> Office hours are from 8 am to 5 pm.</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
+                                <div class="content_type">
+                                    <h4>Module Claiming or Submission</h4>
                                     <div class="p_flex_end">
                                     <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button type="submit" class="aptype" value="Project Submission" name="appointmenttype" onclick="projectsubmission_at()">
+                                <div class="content_type">
+                                    <h4>Project Submission</h4>
+                                    <div class="p_flex_end">
+                                    <p> Office hours are from 8 am to 5 pm.</p>
                                     </div>
                                 </div>
                             </button>
@@ -133,15 +151,6 @@ $(document).ready(function() {
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
-                                <div class="content_type">
-                                    <h4>Module Claiming or Submission</h4>
-                                    <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
-                                    </div>
-                                </div>
-                            </button>
-
                             <button type="submit" class="aptype" value="Pre-Enrollment" name="appointmenttype" onclick="preenrollment_at()">
                                 <div class="content_type">
                                     <h4>Pre-Enrollment</h4>
@@ -152,20 +161,11 @@ $(document).ready(function() {
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="Presentation" name="appointmenttype" onclick="presentation_at()">
+                            <button type="submit" class="aptype" value="Enrollment" name="appointmenttype" onclick="enrollment_at()">
                                 <div class="content_type">
-                                    <h4>Presentation</h4>
+                                    <h4>Enrollment</h4>
                                     <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm.</p>
-                                    </div>
-                                </div>
-                            </button>
-
-                            <button type="submit" class="aptype" value="Project Submission" name="appointmenttype" onclick="projectsubmission_at()">
-                                <div class="content_type">
-                                    <h4>Project Submission</h4>
-                                    <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm.</p>
+                                    <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                     </div>
                                 </div>
                             </button>
@@ -184,6 +184,15 @@ $(document).ready(function() {
                                     <h4>Request for Grades</h4>
                                     <div class="p_flex_end">
                                     <p> Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button type="submit" class="aptype" value="Application for Graduation" name="appointmenttype" onclick="grad_at()">
+                                <div class="content_type">
+                                    <h4>Application for Graduation</h4>
+                                    <div class="p_flex_end">
+                                        <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                     </div>
                                 </div>
                             </button>
@@ -218,14 +227,6 @@ $(document).ready(function() {
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="Application for Graduation" name="appointmenttype" onclick="grad_at()">
-                                <div class="content_type">
-                                    <h4>Application for Graduation</h4>
-                                    <div class="p_flex_end">
-                                        <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
-                                    </div>
-                                </div>
-                            </button>
                         </div>
                     </div>
                             <?php
@@ -342,7 +343,7 @@ $(document).ready(function() {
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
                                             WHERE EXISTS(SELECT * FROM tbl_staff_record 
                                             WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id)  
-                                            AND appointment_type = 'Evaluation of Grades - Department Head'";
+                                            AND appointment_type = 'Evaluation of Grades'";
 
                         $atresult = mysqli_query($db, $staff_appointment);
                         $count = mysqli_num_rows($atresult);
@@ -358,7 +359,7 @@ $(document).ready(function() {
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
                                         <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        <input type="hidden" name="appointmenttype" value="Evaluation of Grades - Department Head">                   
+                                        <input type="hidden" name="appointmenttype" value="Evaluation of Grades">                   
                                     <?php   
                                     }
                                     ?>
@@ -385,7 +386,7 @@ $(document).ready(function() {
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
                                             WHERE EXISTS(SELECT * FROM tbl_staff_record 
                                             WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id)  
-                                            AND appointment_type = 'Module Submission'";
+                                            AND appointment_type = 'Module Claiming/Submission'";
 
                         $atresult = mysqli_query($db, $staff_appointment);
                         $count = mysqli_num_rows($atresult);
@@ -401,7 +402,7 @@ $(document).ready(function() {
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
                                         <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        <input type="hidden" name="appointmenttype" value="Module Submission">                   
+                                        <input type="hidden" name="appointmenttype" value="Module Claiming/Submission">                   
                                     <?php   
                                     }
                                     ?>
@@ -720,6 +721,49 @@ $(document).ready(function() {
                     </div>
                 </div><!-- End of Unifast Submit Documents------------------------------------------------------------------------------------->
 
+
+                <div id="at_appforgrad"><!-- Start of Application for Graduation------------------------------------------------------------------------------------->
+                    <div class="apt_content">
+                    <?php
+                        $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
+                                            tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
+                                            WHERE EXISTS(SELECT * FROM tbl_staff_record 
+                                            WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id)  
+                                            AND appointment_type = 'Application for Graduation'";
+
+                        $atresult = mysqli_query($db, $staff_appointment);
+                        $count = mysqli_num_rows($atresult);
+
+                            if($count > 0) {
+                    ?>  
+                                <h2>Appointment Type: Application for Graduation</h2>
+                                <h3>Select A Staff Member:</h3>
+
+                                <form action="appointment/student_insert_appointment.php" method="post">                 
+                                    <?php
+                                    while($rows = mysqli_fetch_assoc($atresult)) { 
+                                    ?>
+                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <input type="hidden" name="appointmenttype" value="Application for Graduation">                   
+                                    <?php   
+                                    }
+                                    ?>
+                                    <h4>Note to Staff (Optional):</h4>
+                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
+                                    <textarea name="note"></textarea>
+                                    <input type="submit" id="request" name="request" value="Request Appointment">
+
+                                </form>
+                            <?php }
+                            else {
+                                echo "No staff with this appointment type.";
+                            } ?>
+                    </div>
+                </div><!-- End of Application for Graduation------------------------------------------------------------------------------------>
+
+
         <?php
         }
         ?>
@@ -747,7 +791,8 @@ $(document).ready(function() {
     #at_requestdocuments,
     #at_requestforgrades,
     #at_unifastcc,
-    #at_unifastsd {
+    #at_unifastsd,
+    #at_appforgrad {
         display: none;
         position: fixed;
         width: 100%;
