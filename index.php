@@ -44,7 +44,7 @@
                 }
             }
         ?>
-        <button>Go to Announcement Page</button>
+        <a href="announcements.php"><button>Go to Announcement Page</button></a>
         </div>
     </div>
 </div>

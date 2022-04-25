@@ -47,7 +47,7 @@
     .sign_user p {
         color: #333;
         text-decoration: underline;
-        transition: all .3s ease-in-out;
+        transition: all .2s ease-in-out;
     }
     .sign_user p:hover {
         color: #324e9e;
@@ -82,14 +82,14 @@
         width: 40px;
         height: 40px;
         cursor: pointer;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
 
     }
     .menu-btn-burger {
         width: 21px;
         height: 2.2px;
         background: #333;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
     }
     .menu-btn-burger::before,
     .menu-btn-burger::after {
@@ -98,7 +98,7 @@
         width: 21px;
         height: 2.2px;
         background: #333;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
     }
     .menu-btn-burger::before {
         transform: translateY(-6px);
@@ -128,7 +128,7 @@
         background: #444;
         position: fixed;
         top: 80px;
-        transition: all .3s ease-in-out;
+        transition: all .2s ease-in-out;
         transform: translateX(-380px);
         opacity: 0;
         z-index: 888;
@@ -182,7 +182,7 @@
         justify-content: center;
         transform: translateY(-100vh);
         opacity: 0;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
         z-index: 888;
 
     }
@@ -225,7 +225,7 @@
         top: 80px;
         transform: translateY(-100vh);
         opacity: 0;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
         z-index: 888;
     }
     .register_container {
@@ -268,7 +268,7 @@
         text-transform: uppercase;
         color: #fff;
         font-family: Lato;
-        transition: all .3s ease-in;
+        transition: all .1s ease-in;
         opacity: 0;
         cursor: pointer;
     }
@@ -280,7 +280,7 @@
         width: 28px;
         background: #fff;
         left: 0;
-        transition: all .3s ease-in;
+        transition: all .2s ease-in;
     }
 
     .inner:before {
@@ -354,7 +354,7 @@
         padding-top: 30px;
         opacity: 0;
         transform: translateX(55vh);
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
         background: #444;
     }
  
@@ -381,7 +381,7 @@
     .notif_container {
         padding: 20px;
         border-bottom: 1px solid lightgrey;
-        transition: all .3s ease-in-out;
+        transition: all .2s ease-in-out;
     }
   
     .notif_container:last-child {

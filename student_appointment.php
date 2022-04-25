@@ -259,7 +259,9 @@ $(document).ready(function() {
                             </div>
                         </button>
                         
-                    <?php
+                        <div class="apt_container_div">
+
+                        <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
                                             WHERE EXISTS(SELECT * FROM tbl_staff_record 
@@ -270,7 +272,7 @@ $(document).ready(function() {
                         $count = mysqli_num_rows($atresult);
 
                             if($count > 0) {
-                    ?>  
+                        ?>  
                                 <h2>Appointment Type: Meeting</h2>
                                 <h3>Select A Staff Member:</h3>
 
@@ -295,6 +297,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Meeting------------------------------------------------------------------------------------->
 
@@ -311,6 +314,7 @@ $(document).ready(function() {
                             </div>
                         </button>
 
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -348,6 +352,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Enrollment------------------------------------------------------------------------------------->
 
@@ -363,6 +368,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -400,6 +407,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Evaluation of Grades------------------------------------------------------------------------------------->
 
@@ -415,6 +423,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -452,6 +462,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Module Submission------------------------------------------------------------------------------------->
 
@@ -469,6 +480,7 @@ $(document).ready(function() {
                             </div>
                         </button>
 
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -506,6 +518,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Pre-enrollment------------------------------------------------------------------------------------->
 
@@ -521,6 +534,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -558,6 +573,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Presentation------------------------------------------------------------------------------------->
 
@@ -573,6 +589,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -610,6 +628,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Project Submission------------------------------------------------------------------------------------->
 
@@ -625,6 +644,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -662,6 +683,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Request Documents------------------------------------------------------------------------------------->
 
@@ -677,6 +699,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </button>
+
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -714,6 +738,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Request for Grades------------------------------------------------------------------------------------->
 
@@ -731,6 +756,7 @@ $(document).ready(function() {
                             </div>
                         </button>
 
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -768,6 +794,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Unifast CLaim Cheque------------------------------------------------------------------------------------->
 
@@ -784,6 +811,7 @@ $(document).ready(function() {
                             </div>
                         </button>
 
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -821,6 +849,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Unifast Submit Documents------------------------------------------------------------------------------------->
 
@@ -836,6 +865,7 @@ $(document).ready(function() {
                             </div>
                         </button>
 
+                        <div class="apt_container_div">
 
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
@@ -873,6 +903,7 @@ $(document).ready(function() {
                             else {
                                 echo "No staff with this appointment type.";
                             } ?>
+                        </div>
                     </div>
                 </div><!-- End of Application for Graduation------------------------------------------------------------------------------------>
 
@@ -906,7 +937,9 @@ $(document).ready(function() {
     #at_unifastcc,
     #at_unifastsd,
     #at_appforgrad {
-        display: none;
+        display: flex;
+        transform: translateY(-90vh);
+        opacity: 0;
         position: fixed;
         width: 100%;
         height: 90vh;
@@ -914,6 +947,7 @@ $(document).ready(function() {
         top: 80px;
         align-items: center;
         justify-content: center;
+        transition: all .3s ease-in-out;
     }
 
     .apt_content {
@@ -948,7 +982,12 @@ $(document).ready(function() {
         display: flex;
         justify-content: center;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        transition: all .2s ease-in-out;
     }
+    .aptype:hover {
+        background: #FCD227;
+    }
+   
     .aptype .content_type {
         width: 100%;
         padding: 30px;
@@ -975,8 +1014,40 @@ $(document).ready(function() {
 
  
 
+/* ----apt_container_div----- */
 
 
+.apt_container_div {
+    background: teal;
+    padding: 40px;
+    height: 60vh;
+}
+.apt_container_div h2 {
+    color: red;
+}
+.apt_container_div h3 {
+    color: blue;
+}
+.apt_container_div form {
+    background: lime;
+}
+.apt_container_div form h4 {
+    color: green;
+}
+.apt_container_div form small {
+    color: orange;
+}
+.apt_container_div form input[type=radio] {
+    color: pink;
+}
+.apt_container_div form input[type=submit] {
+    background: #333;
+}
+.apt_container_div form textarea {
+    background: brown;
+}
+
+/* end --- apt_container_div */
 
 
 
@@ -1062,182 +1133,555 @@ $(document).ready(function() {
 <script>
 
     function meeting_at() {
-        document.getElementById('at_meeting').style.display = "flex";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(0)";
+        document.getElementById('at_meeting').style.opacity = "1";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+        
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+
     }
 
     function enrollment_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "flex";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(0)";
+        document.getElementById('at_enrollment').style.opacity = "1";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function evaluationofgrades_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "flex";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(0)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "1";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function modulesubmission_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "flex";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(0)";
+        document.getElementById('at_modulesubmission').style.opacity = "1";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function preenrollment_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "flex";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(0)";
+        document.getElementById('at_preenrollment').style.opacity = "1";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function presentation_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "flex";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(0)";
+        document.getElementById('at_presentation').style.opacity = "1";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function projectsubmission_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "flex";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(0)";
+        document.getElementById('at_projectsubmission').style.opacity = "1";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function requestdocuments_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "flex";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(0)";
+        document.getElementById('at_requestdocuments').style.opacity = "1";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function requestforgrades_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "flex";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(0)";
+        document.getElementById('at_requestforgrades').style.opacity = "1";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+        
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
     
     function unifastcc_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "flex";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(0)";
+        document.getElementById('at_unifastcc').style.opacity = "1";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
     function unifastsd_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "flex";
-        document.getElementById('at_appforgrad').style.display = "none";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(0)";
+        document.getElementById('at_unifastsd').style.opacity = "1";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+
     }
+
     function grad_at() {
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "flex";
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(0)";
+        document.getElementById('at_appforgrad').style.opacity = "1";
+
+        menuBtn.classList.remove('open');
+            menuOpen = false;
+            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.opacity = "0";
+
+            document.getElementById('dropdown_id').style.opacity = "0";
+            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
 
 </script>

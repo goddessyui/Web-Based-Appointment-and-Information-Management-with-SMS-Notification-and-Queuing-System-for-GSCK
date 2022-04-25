@@ -527,6 +527,42 @@
             document.getElementById('dropdown_id').style.opacity = "0";
             document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
 
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
+
         }
         else {
             menuBtn.classList.remove('open');
@@ -554,18 +590,42 @@
         document.getElementById('open_register').style.transform = "translateY(-100vh)";
         document.getElementById('open_register').style.opacity = "0";
 
-        document.getElementById('at_meeting').style.display = "none";
-        document.getElementById('at_enrollment').style.display = "none";
-        document.getElementById('at_evaluationofgrades').style.display = "none";
-        document.getElementById('at_modulesubmission').style.display = "none";
-        document.getElementById('at_preenrollment').style.display = "none";
-        document.getElementById('at_presentation').style.display = "none";
-        document.getElementById('at_projectsubmission').style.display = "none";
-        document.getElementById('at_requestdocuments').style.display = "none";
-        document.getElementById('at_requestforgrades').style.display = "none";
-        document.getElementById('at_unifastcc').style.display = "none";
-        document.getElementById('at_unifastsd').style.display = "none";
-        document.getElementById('at_appforgrad').style.display = "none";
+ 
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
     }
     function BtnRegister() {
         document.getElementById('open_register').style.transform = "translateY(0)";
@@ -596,6 +656,41 @@
                 menuOpen = false;
                 document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
 
+        document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
+        document.getElementById('at_meeting').style.opacity = "0";
+
+        document.getElementById('at_enrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_enrollment').style.opacity = "0";
+
+        document.getElementById('at_evaluationofgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_evaluationofgrades').style.opacity = "0";
+
+        document.getElementById('at_modulesubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_modulesubmission').style.opacity = "0";
+
+        document.getElementById('at_preenrollment').style.transform = "translateY(-90vh)";
+        document.getElementById('at_preenrollment').style.opacity = "0";
+
+        document.getElementById('at_presentation').style.transform = "translateY(-90vh)";
+        document.getElementById('at_presentation').style.opacity = "0";
+
+        document.getElementById('at_projectsubmission').style.transform = "translateY(-90vh)";
+        document.getElementById('at_projectsubmission').style.opacity = "0";
+
+        document.getElementById('at_requestdocuments').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestdocuments').style.opacity = "0";
+
+        document.getElementById('at_unifastcc').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastcc').style.opacity = "0";
+
+        document.getElementById('at_unifastsd').style.transform = "translateY(-90vh)";
+        document.getElementById('at_unifastsd').style.opacity = "0";
+
+        document.getElementById('at_requestforgrades').style.transform = "translateY(-90vh)";
+        document.getElementById('at_requestforgrades').style.opacity = "0";
+        
+        document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
+        document.getElementById('at_appforgrad').style.opacity = "0";
             }
     }
    
