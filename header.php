@@ -251,13 +251,6 @@
                         </form>
                     <!-- FORM FOR CHANGE PASSWORD  -->
 
-
-
-
-
-
-
-
                         <button onclick="BackToLogin()">
                             <img src="icon/back-arrow.png">
                         </button>
@@ -287,12 +280,6 @@
 
 
                     
-
-
-
-
-
-
 
                         <!-- DISPLAY AFTER ACCOUNT CREATED -->
                         <div class="form_group" id='m' style="display:none;">
@@ -566,6 +553,19 @@
         document.getElementById('open_login').style.opacity = "0";
         document.getElementById('open_register').style.transform = "translateY(-100vh)";
         document.getElementById('open_register').style.opacity = "0";
+
+        document.getElementById('at_meeting').style.display = "none";
+        document.getElementById('at_enrollment').style.display = "none";
+        document.getElementById('at_evaluationofgrades').style.display = "none";
+        document.getElementById('at_modulesubmission').style.display = "none";
+        document.getElementById('at_preenrollment').style.display = "none";
+        document.getElementById('at_presentation').style.display = "none";
+        document.getElementById('at_projectsubmission').style.display = "none";
+        document.getElementById('at_requestdocuments').style.display = "none";
+        document.getElementById('at_requestforgrades').style.display = "none";
+        document.getElementById('at_unifastcc').style.display = "none";
+        document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
     function BtnRegister() {
         document.getElementById('open_register').style.transform = "translateY(0)";

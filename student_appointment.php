@@ -249,9 +249,16 @@ $(document).ready(function() {
         
                 <div id="at_meeting"><!-- Start of Meeting------------------------------------------------------------------------------------->
                 
-
                     <div class="apt_content">
-                    
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+                        
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -295,6 +302,16 @@ $(document).ready(function() {
 
                 <div id="at_enrollment"><!-- Start of Enrollment------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -338,6 +355,15 @@ $(document).ready(function() {
 
                 <div id="at_evaluationofgrades"> <!-- Start of Evaluation of Grades------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -381,6 +407,15 @@ $(document).ready(function() {
 
                 <div id="at_modulesubmission"> <!-- Start of Module Submission------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -424,6 +459,17 @@ $(document).ready(function() {
 
                 <div id="at_preenrollment"><!-- Start of Pre-enrollment------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -467,6 +513,15 @@ $(document).ready(function() {
 
                 <div id="at_presentation"><!-- Start of Presentation------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -510,6 +565,15 @@ $(document).ready(function() {
 
                 <div id="at_projectsubmission"><!-- Start of Project Submission------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -553,6 +617,15 @@ $(document).ready(function() {
 
                 <div id="at_requestdocuments"><!-- Start of Request Documents------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -596,6 +669,15 @@ $(document).ready(function() {
 
                 <div id="at_requestforgrades"><!-- Start of Request for Grades------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -639,6 +721,17 @@ $(document).ready(function() {
 
                 <div id="at_unifastcc"><!-- Start of Unifast Claim Cheque------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -682,6 +775,16 @@ $(document).ready(function() {
 
                 <div id="at_unifastsd"><!-- Start of Unifast Submit Documents------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -724,6 +827,16 @@ $(document).ready(function() {
 
                 <div id="at_appforgrad"><!-- Start of Application for Graduation------------------------------------------------------------------------------------->
                     <div class="apt_content">
+
+                        <button class="bg-outer" onclick="CloseLoginBtn()">
+                            <div class="outer">
+                                <div class="inner">
+                                    <label>EXIT</label>
+                                </div>
+                            </div>
+                        </button>
+
+
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -807,7 +920,6 @@ $(document).ready(function() {
         width: 760px;
         height: 60vh;
         background: #fff;
-        padding: 40px;
     }
 
 
@@ -858,7 +970,7 @@ $(document).ready(function() {
        text-align: left;
        font-family: 'times new roman';
        font-size: 15px;
-       color: #777;
+       color: #555;
     }
 
  
@@ -961,6 +1073,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function enrollment_at() {
@@ -975,6 +1088,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function evaluationofgrades_at() {
@@ -989,6 +1103,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function modulesubmission_at() {
@@ -1003,6 +1118,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function preenrollment_at() {
@@ -1017,6 +1133,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function presentation_at() {
@@ -1031,6 +1148,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function projectsubmission_at() {
@@ -1045,6 +1163,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function requestdocuments_at() {
@@ -1059,6 +1178,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function requestforgrades_at() {
@@ -1073,6 +1193,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "flex";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
     
     function unifastcc_at() {
@@ -1087,6 +1208,7 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "flex";
         document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "none";
     }
 
     function unifastsd_at() {
@@ -1101,6 +1223,21 @@ $(document).ready(function() {
         document.getElementById('at_requestforgrades').style.display = "none";
         document.getElementById('at_unifastcc').style.display = "none";
         document.getElementById('at_unifastsd').style.display = "flex";
+        document.getElementById('at_appforgrad').style.display = "none";
+    }
+    function grad_at() {
+        document.getElementById('at_meeting').style.display = "none";
+        document.getElementById('at_enrollment').style.display = "none";
+        document.getElementById('at_evaluationofgrades').style.display = "none";
+        document.getElementById('at_modulesubmission').style.display = "none";
+        document.getElementById('at_preenrollment').style.display = "none";
+        document.getElementById('at_presentation').style.display = "none";
+        document.getElementById('at_projectsubmission').style.display = "none";
+        document.getElementById('at_requestdocuments').style.display = "none";
+        document.getElementById('at_requestforgrades').style.display = "none";
+        document.getElementById('at_unifastcc').style.display = "none";
+        document.getElementById('at_unifastsd').style.display = "none";
+        document.getElementById('at_appforgrad').style.display = "flex";
     }
 
 </script>
