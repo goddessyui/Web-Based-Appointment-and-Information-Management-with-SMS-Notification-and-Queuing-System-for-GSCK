@@ -68,28 +68,20 @@ if ($staff_id == "" && $username == ""){
 
         <div><label>Appointment Type: </label></div>
         <div>
-            <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
-            <label> Request Documents From Registrar</label><br>
-            <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
-            <label> Evaluation of Grades - Department Head</label><br>
-            <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
-            <label> Enrollment</label><br>
-            <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
-            <label> Pre-Enrollment</label><br>
-            <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
-            <label> UniFAST - Claim Cheque</label><br>
-            <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
-            <label> UniFAST - Submit Documents</label><br>
             <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
             <label> Meeting</label><br>
-            <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo in_array("Module Claiming/Submission", $array_type)?'checked':'';?>>
-            <label> Module Claiming/Submission</label><br>
-            <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
-            <label> Request for Grades</label><br>
-            <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
-            <label> Project Submission</label><br>
             <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
             <label> Presentation</label><br>
+            <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
+            <label> Request Documents</label><br>
+            <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
+            <label> Pre-Enrollment</label><br>
+            <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
+            <label> Enrollment</label><br>
+            <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
+            <label> Request for Grades</label><br>
+            <input type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
+            <label> Application for Graduation</label><br>   
         </div>
         <?php 
             }

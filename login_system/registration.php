@@ -177,20 +177,22 @@
 	</div>
     
 	<div>
+		<input type="checkbox" name="check_list[]" value="Meeting">
+		<label> Meeting</label><br>
+		<input type="checkbox" name="check_list[]" value="Presentation">
+		<label> Presentation</label><br>
+		<input type="checkbox" name="check_list[]" value="Module Claiming/Submission">
+		<label> Module Claiming/Submission</label><br>
+		<input type="checkbox" name="check_list[]" value="Project Submission">
+		<label> Project Submission</label><br>
 		<input type="checkbox" name="check_list[]" value="Evaluation of Grades">
 		<label> Evaluation of Grades - Department Head</label><br>
 		<input type="checkbox" name="check_list[]" value="UniFAST - Claim Chequet">
 		<label> UniFAST - Claim Chequet</label><br>
 		<input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents">
 		<label> UniFAST - Submit Documents</label><br>
-		<input type="checkbox" name="check_list[]" value="Meeting">
-		<label> Meeting</label><br>
-		<input type="checkbox" name="check_list[]" value="Module Claiming/Submission">
-		<label> Module Claiming/Submission</label><br>
-		<input type="checkbox" name="check_list[]" value="Project Submission">
-		<label> Project Submission</label><br>
-		<input type="checkbox" name="check_list[]" value="Presentation">
-		<label> Presentation</label><br>
+		<input type="checkbox" name="check_list[]" value="Application for Graduation">
+		<label> Application for Graduation</label><br>
     </div>
 
 	<div>
