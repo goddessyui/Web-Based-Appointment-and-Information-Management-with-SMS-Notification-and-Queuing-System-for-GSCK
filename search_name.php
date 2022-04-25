@@ -38,17 +38,16 @@ include("dbconfig.php");
                             Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
                         <?php
                         }
-                        if($atype=="Enrollment"){?>
-                            <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
-                        <?php
-                        }
-                        if($atype=="Evaluation of Grades"){?>
-                            <p>Description: Please choose the correct Department Head for your department. 
-                            Office hours are from 8 am to 5 pm.</p>
+                        if($atype=="Presentation"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm.</p>
                         <?php
                         }
                         if($atype=="Module Claiming/Submission"){?>
                             <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                        if($atype=="Project Submission"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm.</p>
                         <?php
                         }
                         if($atype=="Pre-Enrollment"){?>
@@ -56,12 +55,13 @@ include("dbconfig.php");
                             Please bring a pen and necessary documents.</p>
                         <?php
                         }
-                        if($atype=="Presentation"){?>
-                            <p>Description: Office hours are from 8 am to 5 pm.</p>
+                        if($atype=="Enrollment"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                         <?php
                         }
-                        if($atype=="Project Submission"){?>
-                            <p>Description: Office hours are from 8 am to 5 pm.</p>
+                        if($atype=="Evaluation of Grades"){?>
+                            <p>Description: Please choose the correct Department Head for your department. 
+                            Office hours are from 8 am to 5 pm.</p>
                         <?php
                         }
                         if($atype=="Request Documents From Registrar"){?>
@@ -80,6 +80,10 @@ include("dbconfig.php");
                         if($atype=="UniFAST - Submit Documents"){?>
                             <p>Description: Requested From Accounting Staff/Scholarship Coordinator.
                              Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                        <?php
+                        }
+                        if($atype=="Application for Graduation"){?>
+                            <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                         <?php
                         }
                     ?>
