@@ -129,7 +129,7 @@ $(document).ready(function() {
 
                             <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
                                 <div class="content_type">
-                                    <h4>Module Claiming/Submission</h4>
+                                    <h4>Module Claiming or Submission</h4>
                                     <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                 </div>
                             </button>
@@ -195,6 +195,14 @@ $(document).ready(function() {
                                         Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                 </div>
                             </button>
+
+                            <button type="submit" class="aptype" value="UniFAST - Submit Documents" name="appointmenttype" onclick="grad_at()">
+                                <div class="content_type">
+                                    <h4>Graduation - Claim Forms</h4>
+                                    <p> Requested From Accounting Staff/Scholarship Coordinator.
+                                        Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                </div>
+                            </button>
                         </div>
                     </div>
                             <?php
@@ -216,7 +224,10 @@ $(document).ready(function() {
 
         
                 <div id="at_meeting"><!-- Start of Meeting------------------------------------------------------------------------------------->
+                
+
                     <div class="apt_content">
+                    
                     <?php
                         $staff_appointment ="SELECT * FROM tbl_staff_appointment INNER JOIN tbl_staff_registry ON
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -725,15 +736,20 @@ $(document).ready(function() {
     }
 
     .apt_content {
-        width: 680px;
-        height: 50vh;
+        width: 760px;
+        height: 60vh;
         background: #fff;
         padding: 40px;
     }
 
 
 .main_apt_container {
-    margin-top: 20px;
+    margin-top: 10px;
+    background-image: url(./image/calendar.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 10px 0;
 }
     .aptype-container {
         width: 80%;
@@ -743,10 +759,9 @@ $(document).ready(function() {
         gap: 10px;
     }
     .aptype {
-        background: #eee;
+        background: #fff;
         border: none;
         cursor: pointer;
-        height: 45vh;
         width: 300px;
         display: flex;
         align-items: center;
@@ -754,19 +769,21 @@ $(document).ready(function() {
     }
     .aptype .content_type {
         width: 100%;
-        height: 20vh;
+        padding: 30px;
     }
     .aptype-container .aptype .content_type h4 {
-        font-size: 20px;
-        font-family: Roboto;
-        padding: 0 20px;
-        margin-bottom: 20px;
+        font-size: 18px;
+        font-family: 'times new roman';
         text-transform: uppercase;
+        color: #333;
     }
     .aptype-container .aptype .content_type p {
-        padding: 0 40px;
         font-family: 'times new roman';
         font-size: 16px;
+        text-align: left;
+        color: #777;
+        margin-top: 20px;
+        display: none;
     }
 
  
@@ -809,8 +826,8 @@ $(document).ready(function() {
         border: none;
         background: none;
         border-bottom: 1px solid lightgrey;
-        font-size: 16px;
-        font-family: "times new roman";
+        font-size: 15px;
+        font-family: 'times new roman';
         padding-left: 5px;
     }
     .search-box:nth-child(2) button {
