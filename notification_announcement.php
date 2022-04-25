@@ -23,6 +23,11 @@ if (mysqli_num_rows($res) > 0) {
         ('ANNOUNCEMENT UPDATE', 
         '$fullnames ADDED an Announcement', '0', 
         '".$row['staff_id']."', 'announcement_admin.php?ann=$add_id')");
+
+    // delete older notif if exced 10 rows
+    $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='".$row['staff_id']."' ORDER BY notification_id DESC LIMIT 10,1");
+    $fetch = mysqli_fetch_assoc($result);
+    mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='".$row['staff_id']."'");
     }
 
     }
@@ -50,6 +55,11 @@ if (mysqli_num_rows($res) > 0) {
     ('ANNOUNCEMENT UPDATE', 
     '$fullnames EDITED his Announcement', '0', 
     '".$row['staff_id']."', 'announcement_admin.php?ann=$ann_id')");
+
+// delete older notif if exced 10 rows
+$result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='".$row['staff_id']."' ORDER BY notification_id DESC LIMIT 10,1");
+$fetch = mysqli_fetch_assoc($result);
+mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='".$row['staff_id']."'");
     }
 
     }

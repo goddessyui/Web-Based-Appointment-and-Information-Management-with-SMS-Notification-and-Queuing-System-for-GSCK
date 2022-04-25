@@ -45,6 +45,10 @@
             mysqli_query($db, "INSERT INTO tbl_notification (`notification_subject`, `notification_text`, `notification_status`, `id`, `link`) 
             VALUES ('Requested an Appointment', '$fullnames requested for $appointment_type', '0', '$staff_id', 'staff_pending_requests.php?status=pending&apde=$app_id')");
 
+            // delete older notif if exced 10 rows
+            $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='$staff_id' ORDER BY notification_id DESC LIMIT 10,1");
+            $fetch = mysqli_fetch_assoc($result);
+            mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='$staff_id'");
 
             header('location: ../student_appointment.php?msg=<font color="blue">You successfully sent a request.</font>'); 
 

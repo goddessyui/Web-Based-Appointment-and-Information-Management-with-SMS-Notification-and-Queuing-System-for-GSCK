@@ -77,6 +77,10 @@ $send = new smsfunction();
                                        '$fullnames has ACCEPTED your request for  $appointment_type', '0', 
                                        '$student_id', 'student_appointment_details.php?status=accepted&apde=$appointment_id')");
  
+                                       // delete older notif if exced 10 rows
+                                       $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='$student_id' ORDER BY notification_id DESC LIMIT 10,1");
+                                       $fetch = mysqli_fetch_assoc($result);
+                                       mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='$student_id'");
  
                                        //Add Queueing and SMS function here???-----------------------------------------
                                        $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
@@ -169,7 +173,10 @@ $send = new smsfunction();
                                     '$fullnames has DECLINED your request for  $appointment_type', '0', 
                                     '$student_id', 'student_appointment_details.php?status=Declined&apde=$appointment_id')");
                
-                                    
+                                    // delete older notif if exced 10 rows
+                                    $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='$student_id' ORDER BY notification_id DESC LIMIT 10,1");
+                                    $fetch = mysqli_fetch_assoc($result);
+                                    mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='$student_id'");
 
                                     // send sms to student if apppointment accepted
                                     $m_number = $rows['mobile_number'];

@@ -49,6 +49,11 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      '$fullnames has RESCHEDULED your appointment for  $appointment_type', '0', 
                      '$student_id', 'student_appointment_details.php?status=reschedule&apde=$appointment_id')");
 
+                     // delete older notif if exced 10 rows
+                     $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='$student_id' ORDER BY notification_id DESC LIMIT 10,1");
+                     $fetch = mysqli_fetch_assoc($result);
+                     mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='$student_id'");
+
                      header('location: ../staff_missed_requests.php?success="Appointment Successfully Rescheduled!"');
                   }
                   else {

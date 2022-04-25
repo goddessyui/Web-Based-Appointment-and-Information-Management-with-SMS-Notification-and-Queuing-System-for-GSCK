@@ -29,6 +29,11 @@ if (mysqli_query($db, $cancelappointment)) {
    '$fullnames has CANCELLED your appointment for $appointment_type', '0', 
    '$student_id', 'student_appointment_details.php?status=cancel&apde=$appointment_id')");
 
+   // delete older notif if exced 10 rows
+   $result = mysqli_query($db, "SELECT notification_id FROM tbl_notification WHERE id='$student_id' ORDER BY notification_id DESC LIMIT 10,1");
+   $fetch = mysqli_fetch_assoc($result);
+   mysqli_query($db, "DELETE FROM `tbl_notification` WHERE `notification_id` < '".$fetch['notification_id']."' AND `id`='$student_id'");
+
     // send sms to student if apppointment cancelled
     $querys = mysqli_query($db, "SELECT mobile_number, last_name, first_name FROM tbl_student_registry WHERE student_id='".$student_id."'");
     $rows1 = $querys->fetch_assoc();
