@@ -934,7 +934,7 @@ $(document).ready(function() {
     background-repeat: no-repeat;
 }
     .aptype-container {
-        width: 80%;
+        width: 70%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: auto auto auto auto;
@@ -943,11 +943,11 @@ $(document).ready(function() {
     .aptype {
         background: #fff;
         border: none;
+        width: 260.4px;
         cursor: pointer;
-        width: 300px;
         display: flex;
         justify-content: center;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
     .aptype .content_type {
         width: 100%;
@@ -962,14 +962,14 @@ $(document).ready(function() {
         height: 40px;
     }
     .p_flex_end {
-        height: 200px;
+        height: 180px;
         display: flex;
         align-items: flex-end;
     }
     .aptype-container .aptype .content_type p {
        text-align: left;
        font-family: 'times new roman';
-       font-size: 15px;
+       font-size: 16px;
        color: #555;
     }
 
