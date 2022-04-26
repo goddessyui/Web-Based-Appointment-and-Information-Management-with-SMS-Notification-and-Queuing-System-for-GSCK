@@ -980,7 +980,7 @@ $(document).ready(function() {
     padding: 5px 0;
 }
     .aptype-container {
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
@@ -1023,9 +1023,7 @@ $(document).ready(function() {
        text-align: left;
        font-family: Lato;
        font-size: 14px;
-       text-transform: uppercase;
        color: #555;
-       text-decoration: underline;
     }
 
  
