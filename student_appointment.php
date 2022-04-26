@@ -969,10 +969,6 @@ $(document).ready(function() {
 
 .main_apt_container {
     margin-top: 20px;
-    background-image: url(./image/appoint.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     padding: 5px 0;
 }
     .aptype-container {
@@ -989,13 +985,13 @@ $(document).ready(function() {
         width: 24.15%;
         margin: 5px;
         justify-content: center;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        box-shadow: 0 1px 5px #0001;
         transition: all .2s ease-in-out;
     }
 
 
     .aptype:hover {
-        background: #FCD227;
+        transform: scale(1.025);
     }
    
     .aptype .content_type {
@@ -1033,18 +1029,24 @@ $(document).ready(function() {
 
 
 .apt_container_div {
-    background: teal;
+    background: #fff;
     padding: 40px;
     height: 60vh;
 }
 .apt_container_div h2 {
-    color: red;
+    font-size: 20px;
+    text-decoration: underline;
 }
 .apt_container_div h3 {
-    color: blue;
+    font-weight: 500;
+    font-family: Lato;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
 }
 .apt_container_div form {
-    background: lime;
+    background: #fff;
 }
 .apt_container_div form h4 {
     color: green;
@@ -1053,7 +1055,7 @@ $(document).ready(function() {
     color: orange;
 }
 .apt_container_div form input[type=radio] {
-    color: pink;
+    background: green;
 }
 .apt_container_div form input[type=submit] {
     background: #333;

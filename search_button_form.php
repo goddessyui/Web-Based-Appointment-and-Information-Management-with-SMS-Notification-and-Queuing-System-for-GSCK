@@ -37,6 +37,7 @@ session_start();
                             </div>
                         </div>
                     </button>
+                    
                     <div class="apt_container_div">
 
                         <!---------------TURN TO MODAL ON CLICK OF APPOINTMENT BUTTON------------------------------------------>

@@ -279,8 +279,6 @@
                     </button>
 
 
-                    
-
                         <!-- DISPLAY AFTER ACCOUNT CREATED -->
                         <div class="form_group" id='m' style="display:none;">
                             <h3 id="message_created_account"></h3>
@@ -423,7 +421,7 @@
                             <h1>Sign Up</h1>
                             
                             <div>
-                                <label>Staff ID: </label>
+                                <label for="staff_id">Staff ID: </label>
                                 <input type="text" name="staff_id" id="staff_id" readonly>
                             </div>
                             
