@@ -109,8 +109,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Meeting</h4>
                                     <div class="p_flex_end">
-                                    <p> Please select this appointment type if the appointment type you're looking for is not in the list. 
-                                        Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
+                                    <p>This is a general appointment type. Indicate your purpose in the note.</p>
                                     </div>
                                 </div>
                             </button>
@@ -119,7 +118,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Presentation</h4>
                                     <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm.</p>
+                                    <p>For defense, reporting, or other presentation types.</p>
                                     </div>
                                 </div>
                             </button>
@@ -128,7 +127,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Module Claiming or Submission</h4>
                                     <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Bring your receipt to claim your module.</p>
                                     </div>
                                 </div>
                             </button>
@@ -146,8 +145,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Evaluation of Grades</h4>
                                     <div class="p_flex_end">
-                                    <p> Please choose the correct Department Head for your department. 
-                                        Office hours are from 8 am to 5 pm.</p>
+                                    <p>Choose the correct Department Head for your department.</p>
                                         </div>
                                 </div>
                             </button>
@@ -156,8 +154,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Pre-Enrollment</h4>
                                     <div class="p_flex_end">
-                                    <p> Requested From Registrar. Office hours are from 8 am to 5 pm. 
-                                        Please bring a pen and necessary documents.</p>
+                                    <p>Please bring a pen and necessary documents.</p>
                                         </div>
                                 </div>
                             </button>
@@ -166,7 +163,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Enrollment</h4>
                                     <div class="p_flex_end">
-                                    <p> Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Please bring a pen and necessary documents.</p>
                                     </div>
                                 </div>
                             </button>
@@ -175,7 +172,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Request Documents</h4>
                                     <div class="p_flex_end">
-                                    <p> Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p>
+                                    <p>Requested From Registrar. Bring your own pen.</p>
                                     </div>
                                 </div>
                             </button>
@@ -184,7 +181,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Request for Grades</h4>
                                     <div class="p_flex_end">
-                                    <p> Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                                    <p>Requested From Registrar.</p>
                                     </div>
                                 </div>
                             </button>
@@ -193,7 +190,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>Application for Graduation</h4>
                                     <div class="p_flex_end">
-                                        <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                        <p>Bring your own pen and necessary documents.</p>
                                     </div>
                                 </div>
                             </button>
@@ -212,8 +209,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>UniFAST - Claim Cheque</h4>
                                     <div class="p_flex_end">
-                                    <p> Requested From Accounting Staff/Scholarship Coordinator. 
-                                    Office hours are from 8 am to 5 pm. Please bring a pen and your ID.</p>
+                                    <p>Bring your own pen and necessary documents.</p>
                                     </div>
                                 </div>
                             </button>
@@ -222,8 +218,7 @@ $(document).ready(function() {
                                 <div class="content_type">
                                     <h4>UniFAST - Submit Documents</h4>
                                     <div class="p_flex_end">
-                                    <p> Requested From Accounting Staff/Scholarship Coordinator.
-                                        Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Bring your own pen and necessary documents.</p>
                                         </div>
                                 </div>
                             </button>

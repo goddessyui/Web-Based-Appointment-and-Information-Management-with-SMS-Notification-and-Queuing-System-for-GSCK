@@ -49,56 +49,51 @@ include("dbconfig.php");
                             <?php
                                 $atype=$rows['appointment_type'];
                                 if($atype=="Meeting"){?>
-                                    <p>Please select this appointment type if the appointment type you're looking for is not in the list. 
-                                    Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
+                                    <p>This is a general appointment type. Indicate your purpose in the note.</p>
                                 <?php
                                 }
                                 if($atype=="Presentation"){?>
-                                    <p>Office hours are from 8 am to 5 pm.</p>
+                                    <p>For defense, reporting, or other presentation types.</p>
                                 <?php
                                 }
                                 if($atype=="Module Claiming or Submission"){?>
-                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Bring your receipt to claim your module.</p>
                                 <?php
                                 }
                                 if($atype=="Project Submission"){?>
-                                    <p>Office hours are from 8 am to 5 pm.</p>
+                                    <p>Ensure your name is written on the project.</p>
                                 <?php
                                 }
                                 if($atype=="Pre-Enrollment"){?>
-                                    <p>Requested From Registrar. Office hours are from 8 am to 5 pm. 
-                                    Please bring a pen and necessary documents.</p>
+                                    <p>Requested From Registrar. Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Enrollment"){?>
-                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Requested From Registrar. Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Evaluation of Grades"){?>
-                                    <p>Please choose the correct Department Head for your department. 
-                                    Office hours are from 8 am to 5 pm.</p>
+                                    <p>Please choose the correct Department Head for your department.</p>
                                 <?php
                                 }
                                 if($atype=="Request Documents From Registrar"){?>
-                                    <p>Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
+                                    <p>Requested From Registrar. Bring your own pen.</p> 
                                 <?php
                                 }
                                 if($atype=="Request for Grades"){?>
-                                <p>Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                                    <p>Requested From Registrar.</p>
                                 <?php
                                 }
                                 if($atype=="UniFAST - Claim Cheque"){?>
-                                    <p>Requested From Accounting Staff/Scholarship Coordinator. 
-                                    Office hours are from 8 am to 5 pm. Please bring a pen and your ID. </p>
+                                    <p>Bring your own pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="UniFAST - Submit Documents"){?>
-                                    <p>Requested From Accounting Staff/Scholarship Coordinator.
-                                    Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Bring your own pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Application for Graduation"){?>
-                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Bring your own pen and necessary documents.</p>
                         </div>    
                                 <?php
                             }
