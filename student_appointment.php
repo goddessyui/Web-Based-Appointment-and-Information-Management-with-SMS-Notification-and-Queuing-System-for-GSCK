@@ -973,29 +973,31 @@ $(document).ready(function() {
 
 .main_apt_container {
     margin-top: 20px;
-    padding: 10px 0;
     background-image: url(./image/appoint.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    padding: 5px 0;
 }
     .aptype-container {
         width: 70%;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
     }
     .aptype {
         background: #fff;
         border: none;
-        width: 260.4px;
         cursor: pointer;
         display: flex;
+        width: 24%;
+        margin: 5px;
         justify-content: center;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
         transition: all .2s ease-in-out;
     }
+
+
     .aptype:hover {
         background: #FCD227;
     }
@@ -1072,7 +1074,6 @@ $(document).ready(function() {
         width: 70%;
         height: 80px;
         margin: 0 auto;
-
     }
     .search_container form {
         width: 100%;
@@ -1113,6 +1114,7 @@ $(document).ready(function() {
         text-transform: uppercase;
         font-size: 12px;
         margin-left: 10px;
+        margin-right: 8px;
     }
    
     .result{

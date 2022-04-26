@@ -24,7 +24,8 @@ include("dbconfig.php");
              
     ?>
     <div class="search-box" style="margin-left: 15%;">
-        <h2>Appointments Under <?php echo  $_POST['search']; ?></h2>
+        <button id="back_search"><p>Go Back</p></button>
+        <p class="at_under_staff">Appointments Under <?php echo  $search . " " . $search2; ?></p>
        
     </div>
 
@@ -48,56 +49,56 @@ include("dbconfig.php");
                             <?php
                                 $atype=$rows['appointment_type'];
                                 if($atype=="Meeting"){?>
-                                    <p>Description: Please select this appointment type if the appointment type you're looking for is not in the list. 
+                                    <p>Please select this appointment type if the appointment type you're looking for is not in the list. 
                                     Indicate your purpose in the note. Office hours are from 8 am to 5 pm.</p>
                                 <?php
                                 }
                                 if($atype=="Presentation"){?>
-                                    <p>Description: Office hours are from 8 am to 5 pm.</p>
+                                    <p>Office hours are from 8 am to 5 pm.</p>
                                 <?php
                                 }
                                 if($atype=="Module Claiming or Submission"){?>
-                                    <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Project Submission"){?>
-                                    <p>Description: Office hours are from 8 am to 5 pm.</p>
+                                    <p>Office hours are from 8 am to 5 pm.</p>
                                 <?php
                                 }
                                 if($atype=="Pre-Enrollment"){?>
-                                    <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. 
+                                    <p>Requested From Registrar. Office hours are from 8 am to 5 pm. 
                                     Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Enrollment"){?>
-                                    <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Evaluation of Grades"){?>
-                                    <p>Description: Please choose the correct Department Head for your department. 
+                                    <p>Please choose the correct Department Head for your department. 
                                     Office hours are from 8 am to 5 pm.</p>
                                 <?php
                                 }
                                 if($atype=="Request Documents From Registrar"){?>
-                                    <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
+                                    <p>Requested From Registrar. Office hours are from 8 am to 5 pm. Please bring a pen.</p> 
                                 <?php
                                 }
                                 if($atype=="Request for Grades"){?>
-                                <p>Description: Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
+                                <p>Requested From Registrar. Office hours are from 8 am to 5 pm.</p>
                                 <?php
                                 }
                                 if($atype=="UniFAST - Claim Cheque"){?>
-                                    <p>Description: Requested From Accounting Staff/Scholarship Coordinator. 
+                                    <p>Requested From Accounting Staff/Scholarship Coordinator. 
                                     Office hours are from 8 am to 5 pm. Please bring a pen and your ID. </p>
                                 <?php
                                 }
                                 if($atype=="UniFAST - Submit Documents"){?>
-                                    <p>Description: Requested From Accounting Staff/Scholarship Coordinator.
+                                    <p>Requested From Accounting Staff/Scholarship Coordinator.
                                     Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                                 <?php
                                 }
                                 if($atype=="Application for Graduation"){?>
-                                    <p>Description: Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
+                                    <p>Office hours are from 8 am to 5 pm. Please bring a pen and necessary documents.</p>
                         </div>    
                                 <?php
                             }
@@ -162,4 +163,30 @@ $(document).ready(function() {
 });
 
 
+
+$(document).ready(function() {
+    $('#back_search').click(function(){
+     location.reload(true);
+    });
+
+});
 </script>
+
+<style>
+    #back_search {
+        background: none;
+        padding: 0;
+        border: none;
+        margin: 0;
+        margin-right: 10px;
+        color: blue;
+        text-decoration: underline;
+    }
+    .at_under_staff {
+        font-family: Lato;
+        text-transform: uppercase;
+        transform: translateY(6px);
+        font-size: 14px;
+        color: #333;
+    }
+</style>
