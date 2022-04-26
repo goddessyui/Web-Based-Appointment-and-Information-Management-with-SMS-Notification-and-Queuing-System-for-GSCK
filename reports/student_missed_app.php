@@ -61,7 +61,7 @@
             }
         }
         else {
-            echo "No Active Appointments.";
+            echo "No Missed Appointments.";
         }
     }
 
