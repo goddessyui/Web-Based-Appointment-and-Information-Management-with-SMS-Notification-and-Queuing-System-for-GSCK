@@ -123,7 +123,7 @@ $(document).ready(function() {
                                 </div>
                             </button>
 
-                            <button type="submit" class="aptype" value="Module Claiming/Submission" name="appointmenttype" onclick="modulesubmission_at()">
+                            <button type="submit" class="aptype" value="Module Claiming or Submission" name="appointmenttype" onclick="modulesubmission_at()">
                                 <div class="content_type">
                                     <h4>Module Claiming or Submission</h4>
                                     <div class="p_flex_end">
@@ -431,7 +431,7 @@ $(document).ready(function() {
                                             tbl_staff_appointment.staff_id = tbl_staff_registry.staff_id 
                                             WHERE EXISTS(SELECT * FROM tbl_staff_record 
                                             WHERE tbl_staff_record.staff_id = tbl_staff_registry.staff_id)  
-                                            AND appointment_type = 'Module Claiming/Submission'";
+                                            AND appointment_type = 'Module Claiming or Submission'";
 
                         $atresult = mysqli_query($db, $staff_appointment);
                         $count = mysqli_num_rows($atresult);
@@ -447,7 +447,7 @@ $(document).ready(function() {
                                     ?>
                                         <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
                                         <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        <input type="hidden" name="appointmenttype" value="Module Claiming/Submission">                   
+                                        <input type="hidden" name="appointmenttype" value="Module Claiming or Submission">                   
                                     <?php   
                                     }
                                     ?>
@@ -940,6 +940,18 @@ $(document).ready(function() {
         display: flex;
         transform: translateY(-90vh);
         opacity: 0;
+        position: fixed;
+        width: 100%;
+        height: 90vh;
+        background: #0005;
+        top: 80px;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s ease-in-out;
+    }
+
+    #at_all{
+        display: flex;
         position: fixed;
         width: 100%;
         height: 90vh;
@@ -1491,6 +1503,7 @@ $(document).ready(function() {
         
         document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
         document.getElementById('at_appforgrad').style.opacity = "0";
+
         menuBtn.classList.remove('open');
             menuOpen = false;
             document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
@@ -1683,6 +1696,7 @@ $(document).ready(function() {
             document.getElementById('dropdown_id').style.opacity = "0";
             document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
     }
+
 
 </script>
 

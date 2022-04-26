@@ -181,8 +181,8 @@
 		<label> Meeting</label><br>
 		<input type="checkbox" name="check_list[]" value="Presentation">
 		<label> Presentation</label><br>
-		<input type="checkbox" name="check_list[]" value="Module Claiming/Submission">
-		<label> Module Claiming/Submission</label><br>
+		<input type="checkbox" name="check_list[]" value="Module Claiming or Submission">
+		<label> Module Claiming or Submission</label><br>
 		<input type="checkbox" name="check_list[]" value="Project Submission">
 		<label> Project Submission</label><br>
 		<input type="checkbox" name="check_list[]" value="Evaluation of Grades">

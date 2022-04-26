@@ -100,8 +100,8 @@ if ($staff_id == "" && $username == ""){
             <label> Meeting</label><br>
             <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
             <label> Presentation</label><br>
-            <input type="checkbox" name="check_list[]" value="Module Claiming/Submission" <?php echo in_array("Module Claiming/Submission", $array_type)?'checked':'';?>>
-            <label> Module Claiming/Submission</label><br>
+            <input type="checkbox" name="check_list[]" value="Module Claiming or Submission" <?php echo in_array("Module Claiming or Submission", $array_type)?'checked':'';?>>
+            <label> Module Claiming or Submission</label><br>
             <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
             <label> Project Submission</label><br>
             <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>

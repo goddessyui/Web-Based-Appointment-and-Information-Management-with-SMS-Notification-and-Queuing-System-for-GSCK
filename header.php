@@ -626,6 +626,10 @@
         
         document.getElementById('at_appforgrad').style.transform = "translateY(-90vh)";
         document.getElementById('at_appforgrad').style.opacity = "0";
+
+        document.getElementById('at_all').style.transform = "translateY(-90vh)";
+        document.getElementById('at_all').style.opacity = "0";
+
     }
     function BtnRegister() {
         document.getElementById('open_register').style.transform = "translateY(0)";
