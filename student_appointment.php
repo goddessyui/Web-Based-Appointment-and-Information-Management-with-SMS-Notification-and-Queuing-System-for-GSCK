@@ -1021,9 +1021,11 @@ $(document).ready(function() {
     }
     .aptype-container .aptype .content_type p {
        text-align: left;
-       font-family: 'times new roman';
-       font-size: 16px;
+       font-family: Lato;
+       font-size: 14px;
+       text-transform: uppercase;
        color: #555;
+       text-decoration: underline;
     }
 
  
@@ -1098,8 +1100,9 @@ $(document).ready(function() {
         background: none;
         border-bottom: 1px solid lightgrey;
         font-size: 14px;
-        font-family: 'Roboto';
+        font-family: Roboto;
         padding-left: 5px;
+
     }
     .search-box:nth-child(2) button {
         height: 30px;
