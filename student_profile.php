@@ -10,97 +10,130 @@ if ($student_id == "" || $username1 == ""){
 ?>
 
 <head>
-    
     <title>STUDENT PROFILE</title>
 </head>
-            <hr>
 
-    <div><h1>PROFILE</h1></div>
-    <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
-    <div><p> <?php echo $row["username"]?></p></div>
-    <div><p> <?php echo $row["course"]," ", $row["year"]?></p></div>
+<div class="parent_div">
+
+    <div>
+        <h1>PROFILE</h1>
+    </div>
+
+    <div>
+        <h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2>
+    </div>
+
+    <div>
+        <p> <?php echo $row["username"]?></p>
+    </div>
+
+    <div>
+        <p> <?php echo $row["course"]," ", $row["year"]?></p>
+    </div>
+
     <hr>
 
-    <div><h2>Update Profile</h2></div>
     <div>
-    <label>Student ID: </label>
-    <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled />
+        <h2>Update Profile</h2>
     </div>
 
-    <div class="">
-    <label>Username: </label>
-	<input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
+    <div>
+        <span>Student ID: </span>
+        <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled />
+    </div>
+
+    <div>
+        <span>Username: </span>
+	    <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
 	</div>
 
     <div>
-    <label>First Name: </label>
-    <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
+        <span>First Name: </span>
+        <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
     </div>
     
     <div>
-    <label>Last Name: </label>
-    <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
+        <span>Last Name: </span>
+        <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
     </div>
+
     <form  method="POST" id="dis">
-    <div class="">
-    <label>Mobile Number: </label>
-	<input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" />
-	</div>
+        <div>
+            <span>Mobile Number: </span>
+            <input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" />
+        </div>
 
-    <div><label>Course: </label>  <select name="course" id="course">  
-    <option value="BSHM" <?php echo $row["course"]=='BSHM'?'selected':"";?>>BSHM</option>
-    <option value="BSTM" <?php echo $row["course"]=='BSTM'?'selected':"";?>>BSTM</option>
-    <option value="BSIT" <?php echo $row["course"]=='BSIT'?"selected":"";?>>BSIT</option>
-    <option value="BSSW" <?php echo $row["course"]=='BSSW'?'selected':"";?>>BSSW</option>
-    <option value="ABE" <?php echo $row["course"]=='ABE'?'selected':"";?>>ABE</option>
-    <option value="BECE" <?php echo $row["course"]=='BECE'?'selected':"";?>>BECE</option>
-    <option value="BTVED" <?php echo $row["course"]=='BTVED'?'selected':"";?>>BTVED</option>
-    <option value="BSBA" <?php echo $row["course"]=='BSBA'?'selected':"";?>>BSBA</option>
-    <option value="ACT" <?php echo $row["course"]=='ACT'?'selected':"";?>>ACT</option>
-    <option value="HM" <?php echo $row["course"]=='HM'?'selected':"";?>>HM</option>
-    <option value="TESDA PROGRAM" <?php echo $row["course"]=='TESDA PROGRAM'?'selected':"";?>>TESDA PROGRAM</option>
-    </select>  </div>
+        <div>
+            <span>Course:</span>
+            <select name="course" id="course">  
+                <option value="BSHM" <?php echo $row["course"]=='BSHM'?'selected':"";?>>BSHM</option>
+                <option value="BSTM" <?php echo $row["course"]=='BSTM'?'selected':"";?>>BSTM</option>
+                <option value="BSIT" <?php echo $row["course"]=='BSIT'?"selected":"";?>>BSIT</option>
+                <option value="BSSW" <?php echo $row["course"]=='BSSW'?'selected':"";?>>BSSW</option>
+                <option value="ABE" <?php echo $row["course"]=='ABE'?'selected':"";?>>ABE</option>
+                <option value="BECE" <?php echo $row["course"]=='BECE'?'selected':"";?>>BECE</option>
+                <option value="BTVED" <?php echo $row["course"]=='BTVED'?'selected':"";?>>BTVED</option>
+                <option value="BSBA" <?php echo $row["course"]=='BSBA'?'selected':"";?>>BSBA</option>
+                <option value="ACT" <?php echo $row["course"]=='ACT'?'selected':"";?>>ACT</option>
+                <option value="HM" <?php echo $row["course"]=='HM'?'selected':"";?>>HM</option>
+                <option value="TESDA PROGRAM" <?php echo $row["course"]=='TESDA PROGRAM'?'selected':"";?>>TESDA PROGRAM</option>
+            </select>  
+        </div>
 
 
-    <div><label>Year: </label> <select name="year" id="year">  
-    <option value="1" <?php echo $row["year"]=='1'?'selected':'';?>>1st Year</option>
-    <option value="2" <?php echo $row["year"]=='2'?'selected':'';?>>2nd Year</option>
-    <option value="3" <?php echo $row["year"]=='3'?'selected':'';?>>3rd Year</option>
-    <option value="4" <?php echo $row["year"]=='4'?'selected':'';?>>4th Year</option>
-    </select>
-    </div>
+        <div>
+            <span>Year: </span> 
+            <select name="year" id="year">  
+                <option value="1" <?php echo $row["year"]=='1'?'selected':'';?>>1st Year</option>
+                <option value="2" <?php echo $row["year"]=='2'?'selected':'';?>>2nd Year</option>
+                <option value="3" <?php echo $row["year"]=='3'?'selected':'';?>>3rd Year</option>
+                <option value="4" <?php echo $row["year"]=='4'?'selected':'';?>>4th Year</option>
+            </select>
+        </div>
     
-    <div>
-        <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
+        <div>
+            <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
         </div>
 
         <div class="form-group">
-		<small id="message3" class="" style="color:red;"></small>
-	    </div>        
-    <hr>
-        <div><h2>Change Password</h2></div>
-        <label>Current password</label>
+		    <small id="message3" class="" style="color:red;"></small>
+	    </div>
+
+        <hr>
+
+        <div>
+            <h2>Change Password</h2>
+        </div>
+
+        <span>Current password</span>
         <div>
             <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
         </div>
-        <label>New Password</label>
+        
+        <span>New Password</span>
         <div >
             <input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off" />
         </div>
-        <div class="">
+        
+        <div>
             <small>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</small>
         </div>
-        <label>Re-enter New Password</label>
+
+        <span>Re-enter New Password</span>
         <div>
             <input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
+        </div>
 
         <div>
             <input type="button" name="button_change_pass" value="Save Changes" id="button_change_pass" />
         </div>
+
         <div class="form-group">
-		<small id="message1" class="" style="color:red;"></small>
+		    <small id="message1" class="" style="color:red;"></small>
 	    </div>
-</form>
+    </form>
+
+</div>
 
 <?php include("backtotop.php"); ?>
 
