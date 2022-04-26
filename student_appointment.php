@@ -67,6 +67,7 @@ $(document).ready(function() {
         <form name="form1" method="get" action="">
             <div class="search-box">
                 <h2>Select Appointment Type</h2>
+                <p class="at_under_staff">OFFICE HOURS ARE FROM 8AM-5AM ONLY</p>
             </div>
 
             <div class="search-box">
@@ -990,7 +991,7 @@ $(document).ready(function() {
         border: none;
         cursor: pointer;
         display: flex;
-        width: 24%;
+        width: 24.15%;
         margin: 5px;
         justify-content: center;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -1007,7 +1008,7 @@ $(document).ready(function() {
         padding: 30px;
     }
     .aptype-container .aptype .content_type h4 {
-        font-size: 24px;
+        font-size: 20px;
         font-family: 'times new roman';
         text-transform: uppercase;
         color: #333;
@@ -1015,19 +1016,24 @@ $(document).ready(function() {
         height: 40px;
     }
     .p_flex_end {
-        height: 180px;
+        height: 120px;
         display: flex;
         align-items: flex-end;
     }
     .aptype-container .aptype .content_type p {
        text-align: left;
-       font-family: Lato;
-       font-size: 14px;
+       font-family: 'times new roman';
+       font-size: 15px;
        color: #555;
     }
-
- 
-
+    .at_under_staff {
+        font-family: Lato;
+        text-transform: uppercase;
+        transform: translateY(6px);
+        font-size: 14px;
+        color: #333;
+    }
+    
 /* ----apt_container_div----- */
 
 
@@ -1071,9 +1077,10 @@ $(document).ready(function() {
 
     /* Formatting search box */
     .search_container {
-        width: 70%;
+        width: 80%;
         height: 80px;
         margin: 0 auto;
+        padding: 0 8px;
     }
     .search_container form {
         width: 100%;
@@ -1096,10 +1103,11 @@ $(document).ready(function() {
         outline: none;
         border: none;
         background: none;
-        border-bottom: 1px solid lightgrey;
-        font-size: 14px;
-        font-family: Roboto;
-        padding-left: 5px;
+        border: 1px solid lightgrey;
+        font-size: 15px;
+        font-family: 'times new roman';
+        padding-left: 10px;
+        color: #666;
 
     }
     .search-box:nth-child(2) button {
@@ -1115,7 +1123,6 @@ $(document).ready(function() {
         text-transform: uppercase;
         font-size: 12px;
         margin-left: 10px;
-        margin-right: 8px;
     }
    
     .result{
@@ -1133,8 +1140,11 @@ $(document).ready(function() {
     .result p{
         cursor: pointer;
         background: #324E9E;
-        padding: 5px 10px;
+        padding: 5px 12px;
         color: #eee;
+        font-family: Lato;
+        text-transform: uppercase;
+        font-size: 12px;
     }
     .result p:hover{
         background: #5463FF;

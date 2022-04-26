@@ -23,7 +23,7 @@ include("dbconfig.php");
         if($foundnum > 0) {$i=0;
              
     ?>
-    <div class="search-box" style="margin-left: 15%;">
+    <div class="search-box" style="margin-left: 10%; padding-left: 8px;">
         <button id="back_search"><p>Go Back</p></button>
         <p class="at_under_staff">Appointments Under <?php echo  $search . " " . $search2; ?></p>
        
