@@ -257,12 +257,12 @@
         cursor: pointer;
     }
 
-    .inner {
+    .outer .inner {
         width: inherit;
         text-align: center;
     }
 
-    label { 
+    .outer .inner label { 
         font-size: 11px;
         line-height: 21px;
         text-transform: uppercase;
@@ -293,7 +293,7 @@
         transform: rotate(-45deg);  
     }
 
-    .outer:hover label {
+    .outer:hover .inner label {
         opacity: 1;
     }
 
