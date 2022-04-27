@@ -276,8 +276,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Meeting">                   
                                     <?php   
                                     }
@@ -331,8 +331,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Enrollment">                   
                                     <?php   
                                     }
@@ -386,8 +386,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Evaluation of Grades">                   
                                     <?php   
                                     }
@@ -441,8 +441,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Module Claiming or Submission">                   
                                     <?php   
                                     }
@@ -497,8 +497,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Pre-Enrollment">                   
                                     <?php   
                                     }
@@ -552,8 +552,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Presentation">                   
                                     <?php   
                                     }
@@ -607,8 +607,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Project Submission">                   
                                     <?php   
                                     }
@@ -662,8 +662,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Request Documents From Registrar">                   
                                     <?php   
                                     }
@@ -717,8 +717,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Request for Grades">                   
                                     <?php   
                                     }
@@ -773,8 +773,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">                   
                                     <?php   
                                     }
@@ -828,8 +828,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">                   
                                     <?php   
                                     }
@@ -882,8 +882,8 @@ $(document).ready(function() {
                                     <?php
                                     while($rows = mysqli_fetch_assoc($atresult)) { 
                                     ?>
-                                        <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                        <div class="radio_design"><input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                        <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span></div>
                                         <input type="hidden" name="appointmenttype" value="Application for Graduation">                   
                                     <?php   
                                     }
@@ -1005,6 +1005,7 @@ $(document).ready(function() {
         color: #333;
         text-align: left;
         height: 40px;
+        text-decoration: underline;
     }
     .p_flex_end {
         height: 120px;
@@ -1014,7 +1015,7 @@ $(document).ready(function() {
     .aptype-container .aptype .content_type p {
        text-align: left;
        font-family: 'times new roman';
-       font-size: 15px;
+       font-size: 16px;
        color: #555;
     }
     .at_under_staff {
@@ -1025,6 +1026,11 @@ $(document).ready(function() {
         color: #333;
     }
     
+
+
+
+
+
 /* ----apt_container_div----- */
 
 
@@ -1036,32 +1042,35 @@ $(document).ready(function() {
 .apt_container_div h2 {
     font-size: 20px;
     text-decoration: underline;
+    margin-bottom: 40px;
 }
+/*-------------------------------------------
 .apt_container_div h3 {
-    font-weight: 500;
-    font-family: Lato;
-    text-transform: uppercase;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
+
 }
 .apt_container_div form {
-    background: #fff;
+
 }
 .apt_container_div form h4 {
-    color: green;
+
 }
 .apt_container_div form small {
-    color: orange;
+
+}
+.apt_container_div form .radio_design {
+
+}
+.apt_container_div form .radio_design span {
+
 }
 .apt_container_div form input[type=radio] {
-    background: green;
+
 }
 .apt_container_div form input[type=submit] {
-    background: #333;
+
 }
 .apt_container_div form textarea {
-    background: brown;
+
 }
 
 /* end --- apt_container_div */
