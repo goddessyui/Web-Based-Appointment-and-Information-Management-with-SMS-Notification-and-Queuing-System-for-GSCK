@@ -3,7 +3,7 @@
 ?>
 
     <main>
-        <div class="container-fluid">
+       
             
             <!---------------Reports for Registrar------------------------------------------------->
             <?php
@@ -14,10 +14,12 @@
             <!---------------Reports for Registrar------------------------------------------------->
 
 
+
+
             <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
                 <?php 
-            if ($position == "Registrar") {
-            ?>
+            if ($position == "Registrar") {?>
+
                 <div class="row">
                     <div class="col-6">
 
@@ -40,7 +42,6 @@
                     
                     <div>
 
-                    
                     <div class="col-6">
                         <!--success or error-->                        
                         <?php 
@@ -72,144 +73,131 @@
 
                 <div class="row">
 
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <div class="row">
-
-                        <h4>Registered Staff</h4>
-                        <?php
-
-                        //-----------For pagination-------------//
-                        if (isset($_GET['pageno'])) {
-                            $pageno = $_GET['pageno'];
-                        } else {
-                            $pageno = 1;
-                        }
-                        $no_of_records_per_page = 10;
-                        $offset = ($pageno-1) * $no_of_records_per_page;
-
-
-                        $total_pages_sql = "SELECT COUNT(*) FROM tbl_staff_registry";
-                        $theresult = mysqli_query($db, $total_pages_sql);
-                        $total_rows = mysqli_fetch_array($theresult)[0];
-                        $total_pages = ceil($total_rows / $no_of_records_per_page);
-                        //-----------For pagination-------------//
-                        $staff="SELECT * FROM tbl_staff_registry ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
-                        $staff_result = mysqli_query($db, $staff);
-                        
-                        //check whether the query is executed or not
-                        if($staff_result==TRUE) { // count rows to check whether we have data in database or not
-                            $count = mysqli_num_rows($staff_result);
-                            //check the num of rows                 
-                            if($count>0) { //we have data in database
-                                $i = 1;
-                                while($rows=mysqli_fetch_assoc($staff_result)) {
-                        ?>
-                                    <div>
-                                        <td>
-                                            <?php   
-                                                    echo $offset + $i++; 
-                                            ?>
-                                        </td>
-                                        <?php echo $rows['last_name'].", ".$rows['first_name'] . " - " . $rows['staff_id']; ?>
-                                    </div>
-                        <?php 
-                                }
-                            } 
-                            else{
-                                echo "No Staff Registered in the System.";
-                            }
-                        }  
-                        ?>
-
+                            <h4>List of Registered Staff</h4>
                         </div>
-                        
                         <div class="row">
-                            <!--------Pagination---------------------------------------------->
-                            <ul class="pagination">
-                                <li><a href="?pageno=1">First</a></li>
-                                <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-                                </li>
-                                <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-                                </li>
-                                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-                            </ul>
-                        <!--------Pagination---------------------------------------------->
+                            <form method="post">
+                                <span>Alphabetical (Last Name):</span>
+                                <select name="alphabetical_ln_staff" id="alphabetical_ln_staff">
+                                    <option value="('%')">ALL</option>
+                                    <option value="'A%'">A</option>
+                                    <option value="'B%'">B</option>
+                                    <option value="'C%'">C</option>
+                                    <option value="'D%'">D</option>
+                                    <option value="'E%'">E</option>
+                                    <option value="'F%'">F</option>
+                                    <option value="'G%'">G</option>
+                                    <option value="'H%'">H</option>
+                                    <option value="'I%'">I</option>
+                                    <option value="'J%'">J</option>
+                                    <option value="'K%'">K</option>
+                                    <option value="'L%'">L</option>
+                                    <option value="'M%'">M</option>
+                                    <option value="'N%'">N</option>
+                                    <option value="'O%'">O</option>
+                                    <option value="'P%'">P</option>
+                                    <option value="'Q%'">Q</option>
+                                    <option value="'R%'">R</option>
+                                    <option value="'S%'">S</option>
+                                    <option value="'T%'">T</option>
+                                    <option value="'U%'">U</option>
+                                    <option value="'V%'">V</option>
+                                    <option value="'W%'">W</option>
+                                    <option value="'X%'">X</option>
+                                    <option value="'Y%'">Y</option>
+                                    <option value="'Z%'">Z</option>
+                                </select>
+
+                                <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List of Registered Staff"/>
+                                <button onclick="printDiv_regstaff()">PRINT</button>
+                            </form>
                         </div>
+                        <div class="row" id="generated_rep_registeredstaff"></div>
+                        <div class="row" id="generated_rep_registeredstaff_hidden" style="display: none;"></div>
+                        
                     </div>
+                  
 
                     <div class="col-sm-6">
                         <div class="row">
-
-                        <h4>Registered Students</h4>
-                        <?php
-
-                        //-----------For pagination-------------//
-                        if (isset($_GET['pageno'])) {
-                            $pageno = $_GET['pageno'];
-                        } else {
-                            $pageno = 1;
-                        }
-                        $no_of_records_per_page = 10;
-                        $offset = ($pageno-1) * $no_of_records_per_page;
-
-
-                        $total_pages_sql = "SELECT COUNT(*) FROM tbl_student_registry";
-                        $theresult = mysqli_query($db, $total_pages_sql);
-                        $total_rows = mysqli_fetch_array($theresult)[0];
-                        $total_pages = ceil($total_rows / $no_of_records_per_page);
-                        //-----------For pagination-------------//
-                        $staff="SELECT * FROM tbl_student_registry ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
-                        $staff_result = mysqli_query($db, $staff);
-                        
-                        //check whether the query is executed or not
-                        if($staff_result==TRUE) { // count rows to check whether we have data in database or not
-                            $count = mysqli_num_rows($staff_result);
-                            //check the num of rows                 
-                            if($count>0) { //we have data in database
-                                $i = 1;
-                                while($rows=mysqli_fetch_assoc($staff_result)) {
-                        ?>
-                                    <div>
-                                        <td>
-                                            <?php   
-                                                    echo $offset + $i++; 
-                                            ?>
-                                        </td>
-                                        <?php echo $rows['last_name'].", ".$rows['first_name'] . " - " . $rows['student_id']; ?>
-                                    </div>
-                        <?php 
-                                }
-                            } 
-                            else{
-                                echo "No Student Registered in the System.";
-                            }
-                        }  
-                        ?>
-
+                            <h4>List of Registered Students</h4>
                         </div>
-                        
                         <div class="row">
-                            <!--------Pagination---------------------------------------------->
-                            <ul class="pagination">
-                                <li><a href="?pageno=1">First</a></li>
-                                <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-                                </li>
-                                <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-                                </li>
-                                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-                            </ul>
-                        <!--------Pagination---------------------------------------------->
+                        
+                            <form method="post">
+                                <span>Alphabetical (Last Name):</span>
+                                <select name="alphabetical_ln_student" id="alphabetical_ln_student">
+                                    <option value="('%')">ALL</option>
+                                    <option value="'A%'">A</option>
+                                    <option value="'B%'">B</option>
+                                    <option value="'C%'">C</option>
+                                    <option value="'D%'">D</option>
+                                    <option value="'E%'">E</option>
+                                    <option value="'F%'">F</option>
+                                    <option value="'G%'">G</option>
+                                    <option value="'H%'">H</option>
+                                    <option value="'I%'">I</option>
+                                    <option value="'J%'">J</option>
+                                    <option value="'K%'">K</option>
+                                    <option value="'L%'">L</option>
+                                    <option value="'M%'">M</option>
+                                    <option value="'N%'">N</option>
+                                    <option value="'O%'">O</option>
+                                    <option value="'P%'">P</option>
+                                    <option value="'Q%'">Q</option>
+                                    <option value="'R%'">R</option>
+                                    <option value="'S%'">S</option>
+                                    <option value="'T%'">T</option>
+                                    <option value="'U%'">U</option>
+                                    <option value="'V%'">V</option>
+                                    <option value="'W%'">W</option>
+                                    <option value="'X%'">X</option>
+                                    <option value="'Y%'">Y</option>
+                                    <option value="'Z%'">Z</option>
+                                </select>
+
+                                <span>Course:</span>
+                                <select name="student_course_report" id="student_course_report">
+                                    <option value="('%')">ALL</option>  
+                                    <option value="'BSHM'">BSHM</option>
+                                    <option value="'BSTM'">BSTM</option>
+                                    <option value="'BSIT'">BSIT</option>
+                                    <option value="'BSSW'">BSSW</option>
+                                    <option value="'ABE'">ABE</option>
+                                    <option value="'BECE'">BECE</option>
+                                    <option value="'BTVED'">BTVED</option>
+                                    <option value="'BSBA'">BSBA</option>
+                                    <option value="'ACT'">ACT</option>
+                                    <option value="'HM'">HM</option>
+                                    <option value="'TESDA PROGRAM'">TESDA PROGRAM</option>
+                                </select>
+
+                                <span>Year: </span> 
+                                <select name="student_year_report" id="student_year_report">
+                                    <option value="('%')">ALL</option>
+                                    <option value="'1'">1st Year</option>
+                                    <option value="'2'">2nd Year</option>
+                                    <option value="'3'">3rd Year</option>
+                                    <option value="'4'">4th Year</option>
+                                </select>
+                                <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List of Registered Students"/>
+                                <button onclick="printDiv_regstudent()">PRINT</button>
+                            </form>
+                  
                         </div>
-                    </div>  
-                                  
-                </div>
-            <?php
+                        <div class="row" id="generated_rep_registeredstudents"></div>
+                        <div class="row" id="generated_rep_registeredstudents_hidden" style="display: none;"></div>
+
+                    </div>
+                        
+                <?php
             }
-            ?><!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
+                ?><!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
+            
+            
+            
             
             <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
             <?php
@@ -270,69 +258,55 @@
                
                     <div class="col-sm-6">
                         <div class="row">
-
-                        <h4>Unifast Grantees</h4>
-                        <?php
-
-                        //-----------For pagination-------------//
-                        if (isset($_GET['pageno'])) {
-                            $pageno = $_GET['pageno'];
-                        } else {
-                            $pageno = 1;
-                        }
-                        $no_of_records_per_ug_page = 10;
-                        $offset = ($pageno-1) * $no_of_records_per_ug_page;
-
-
-                        $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
-                        $theresult = mysqli_query($db, $total_pages_sql);
-                        $total_rows = mysqli_fetch_array($theresult)[0];
-                        $total_pages = ceil($total_rows / $no_of_records_per_ug_page);
-                        //-----------For pagination-------------//
-                        $ug="SELECT * FROM tbl_unifast_grantee ORDER BY last_name ASC, first_name ASC LIMIT $offset, $no_of_records_per_ug_page"; //LIMIT $offset, $no_of_records_per_page is for pagination
-                        $ug_result = mysqli_query($db, $ug);
-                        
-                        //check whether the query is executed or not
-                        if($ug_result==TRUE) { // count rows to check whether we have data in database or not
-                            $count = mysqli_num_rows($ug_result);
-                            //check the num of rows                 
-                            if($count>0) { //we have data in database
-                                $i = 1;
-                                while($rows=mysqli_fetch_assoc($ug_result)) {
-                        ?>
-                                    <div>
-                                        <td>
-                                            <?php   
-                                                    echo $offset + $i++; 
-                                            ?>
-                                        </td>
-                                        <?php echo $rows['last_name'].", ".$rows['first_name'] . " - " . $rows['student_id']; ?>
-                                    </div>
-                        <?php 
-                                }
-                            } 
-                            else{
-                                echo "No Student Registered in the System.";
-                            }
-                        }  
-                        ?>
-
+                            <h4>List of Unifast Grantees</h4>
                         </div>
-                        
                         <div class="row">
-                            <!--------Pagination---------------------------------------------->
-                            <ul class="pagination">
-                                <li><a href="?pageno=1">First</a></li>
-                                <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-                                </li>
-                                <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                                    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-                                </li>
-                                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-                            </ul>
-                        <!--------Pagination---------------------------------------------->
+                            <form method="post">
+                                <span>Alphabetical (Last Name):</span>
+                                <select name="alphabetical_ln_ug" id="alphabetical_ln_ug">
+                                    <option value="('%')">ALL</option>
+                                    <option value="'A%'">A</option>
+                                    <option value="'B%'">B</option>
+                                    <option value="'C%'">C</option>
+                                    <option value="'D%'">D</option>
+                                    <option value="'E%'">E</option>
+                                    <option value="'F%'">F</option>
+                                    <option value="'G%'">G</option>
+                                    <option value="'H%'">H</option>
+                                    <option value="'I%'">I</option>
+                                    <option value="'J%'">J</option>
+                                    <option value="'K%'">K</option>
+                                    <option value="'L%'">L</option>
+                                    <option value="'M%'">M</option>
+                                    <option value="'N%'">N</option>
+                                    <option value="'O%'">O</option>
+                                    <option value="'P%'">P</option>
+                                    <option value="'Q%'">Q</option>
+                                    <option value="'R%'">R</option>
+                                    <option value="'S%'">S</option>
+                                    <option value="'T%'">T</option>
+                                    <option value="'U%'">U</option>
+                                    <option value="'V%'">V</option>
+                                    <option value="'W%'">W</option>
+                                    <option value="'X%'">X</option>
+                                    <option value="'Y%'">Y</option>
+                                    <option value="'Z%'">Z</option>
+                                </select>
+
+                                <span>Batch Status:</span>
+                                <select name="batchstatus_ug" id="batchstatus_ug">
+                                    <option value="('new' OR 'old')">ALL</option>
+                                    <option value="'old'">OLD</option>
+                                    <option value="'new'">NEW</option>
+                                </select>
+                                <input id="ajaxSubmit_gen_report_ug" type="submit" value="Show List of UniFAST Grantees"/>
+                                <button onclick="printDiv_regug()">PRINT</button>
+                            </form>
+                            
                         </div>
+                        <div class="row" id="generated_rep_ug"></div>
+                        <div class="row" id="generated_rep_ug_hidden" style="display: none;"></div>
+                       
                     </div> 
 
                 </div>
@@ -341,12 +315,9 @@
             }
             ?> <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
 
-            
+         
 
-
-            
-
-        </div>
+       
     </main>
 </body>
 </html>
@@ -360,6 +331,75 @@
 
 </style>
 
+<script>
+       $(document).ready(function() {
+        $('#ajaxSubmit_gen_report_regstudent').click(function(){
+      
+            $.post("adminajax_regstudent.php", 
+            {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
+            student_course_report: $('#student_course_report').val(),
+            student_year_report: $('#student_year_report').val(),},
+            function(data){
+                $('#generated_rep_registeredstudents').html(data);
+            });
+            $.post("adminajax_regstudentprint.php", 
+            {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
+            student_course_report: $('#student_course_report').val(),
+            student_year_report: $('#student_year_report').val(),},
+            function(data){
+                $('#generated_rep_registeredstudents_hidden').html(data);
+            });
+            
+            return false;
+                    
+                });
+
+        });
+
+        $(document).ready(function() {
+        $('#ajaxSubmit_gen_report_regstaff').click(function(){
+      
+            $.post("adminajax_regstaff.php", 
+            {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
+            function(data){
+                $('#generated_rep_registeredstaff').html(data);
+            });
+            $.post("adminajax_regstaffprint.php", 
+            {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
+            function(data){
+                $('#generated_rep_registeredstaff_hidden').html(data);
+            });
+            
+            return false;
+                    
+                });
+
+        });
+
+        $(document).ready(function() {
+        $('#ajaxSubmit_gen_report_ug').click(function(){
+      
+            $.post("adminajax_ug.php", 
+            {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
+            batchstatus_ug: $('#batchstatus_ug').val(),},
+            function(data){
+                $('#generated_rep_ug').html(data);
+            });
+            $.post("adminajax_ugprint.php", 
+            {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
+            batchstatus_ug: $('#batchstatus_ug').val(),},
+            function(data){
+                $('#generated_rep_ug_hidden').html(data);
+            });
+            
+            return false;
+                    
+                });
+
+        });
+   
+        
+    </script>
  
 
 
