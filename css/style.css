@@ -231,9 +231,6 @@
     padding: 40px;
 }
 
-        .forgot_pass_div {
-            display: none;
-        }
 
     .form_content {
         width: 760px;
@@ -282,6 +279,7 @@
     }
     .login_form_div form .input_box .icon {
         width: 20px;
+        color: #555;
     }
     .login_form_div form .input_box input {
         width: 100%;
@@ -289,6 +287,7 @@
         border: none;
         outline: none;
         background: none;
+        font-family: Lato;
     }
     .login_form_div form .input_button_div {
         width: 100%;
@@ -314,11 +313,76 @@
     }
     #message {
         color: red;
-        margin-top: 10px;
-        font-style: italic;
+        margin-top: 12px;
+    }
+ /*--------------forgot password css-------------*/
+
+    .forgot_pass_div {
+        display: none;
+        padding: 40px;
+    }
+    .forgot_pass_div h2 {
+        font-size: 22px;
+        text-decoration: underline;
+        margin-top: 20px;
+    }
+    .forgot_pass_div .go_back_pass {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+    }
+    .go_back_pass button {
+        background: none;
+        border: none;
+        color: #324e9e;
+        text-decoration: underline;
+        font-family: Lato;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    .go_back_pass a:visited {
+        color: #324e9e;
+    }
+    .go_back_pass h3 {
+        font-weight: 500;
+        font-family: Lato;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .input_n_button {
+        width: 100%;
+        align-items: center;
+        height: 32px;
+        display: flex;
+        border: 1px solid lightgrey;
+        margin-top: 40px;
+    }
+    .input_n_button span {
+        width: 20px;
+        color: #555;
+        padding-left: 10px;
     }
  
-
+    .input_n_button input {
+        width: 100%;
+        background: none;
+        border: none;
+        height: 32px;
+        padding-left: 10px;
+        font-family: Lato;
+        font-size: 14px;
+        outline: none;
+    }
+    .forgot_pass_div form .btn_success {
+        width: 100%;
+        border: none;
+        margin-top: 12px;
+        background: #324e9e;
+        color: #eee;
+        height: 32px;
+        font-family: Lato;
+    }
 
 
     .register_sidebar {

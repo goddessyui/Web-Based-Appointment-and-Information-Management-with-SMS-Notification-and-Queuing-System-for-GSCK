@@ -147,7 +147,7 @@
                             <button onclick="ForgotPassword()">Forgot Password?</button>
                         </div>
 
-                        <p id="message_login"></p>
+                        <p id="message"></p>
                     </div>
 
 
@@ -158,7 +158,8 @@
 
                      <!----forgotpass form---->
                     <div class="forgot_pass_div" id="forgot_pass_div_id">
-                        <h1>forgotpass</h1>
+
+                        <h2>forgotpass</h2>
 
                     <!-- MESSAGE AFTER CHANGGING NEW PASSWORD SUCCESSFULLY -->
                         <div class="form-group">
@@ -174,19 +175,21 @@
 
                     <!-- FORM FOR USERNAME VERIFICATION -->
                         <form id="username_verify" name="form" method="post">
-                            <div>
-                                <h1>FORGOT PASSWORD</h1>
+                            <div class="go_back_pass">
+                                <button onclick="BackToLogin()"><a href="#">Go Back</a></button>
+                                <h3>FORGOT PASSWORD</h3>
                             </div>
 
-                            <div>
-                                <label>Enter Username: </label>
-                                <input type="text" name="forgot_username" id="forgot_username" placeholder="Username"/>
-                                <input type="button" name="btn_verify" class="btn btn-success" value="Next" id="btn_verify" />
+                            <div class="input_n_button">
+                                <span><i class="fa fa-user"></i></span>
+                                <input type="text" name="forgot_username" id="forgot_username" placeholder="Enter your username"/>
                             </div>
+
+                            <input type="button" name="btn_verify" class="btn_success" value="Next" id="btn_verify" />
 
                             <!-- message for errors -->
                             <div class="form-group">
-                                <p id="message_forgotpassword"></p>
+                                <p id="message"></p>
                             </div>
                             <!-- message for errors -->
                         </form>
@@ -257,9 +260,6 @@
                         </form>
                     <!-- FORM FOR CHANGE PASSWORD  -->
 
-                        <button onclick="BackToLogin()">
-                            <img src="icon/back-arrow.png">
-                        </button>
                     </div>
             
                 </div>
@@ -741,14 +741,14 @@ $(document).ready(function() {
                         location.href = "admin.php"; 
                     }
                     else if(dataResult.statusCode==202){
-                        $('#message_login').html('Username or Password Incorrect !'); 
+                        $('#message').html('Username or Password Incorrect!'); 
                     
                     }
                     else if(dataResult.statusCode==203){
-                        $('#message_login').html('Account not existing in Student record !');  
+                        $('#message').html('Account not existing in Student record!');  
                     }
                     else if(dataResult.statusCode==204){
-                        $('#message_login').html('Account not existing in Staff record !');
+                        $('#message').html('Account not existing in Staff record!');
                     }
 
                     
@@ -757,7 +757,7 @@ $(document).ready(function() {
         }
         else{
             
-            $('#message_login').html('Please fill all the field !');
+            $('#message').html('Please fill all the field !');
         }
     });
     // VERIFICATION
@@ -834,16 +834,16 @@ $(document).ready(function() {
 					}
 					else if(dataResult.statusCode==202){
                         $('#btn_login').prop('disabled', false);
-						$('#message_forgotpassword').html('Username or Password Incorrect !'); 
+						$('#message').html('Username or Password Incorrect!'); 
 					
 					}
                     else if(dataResult.statusCode==203){
                         $('#btn_login').prop('disabled', false);
-						$('#message_forgotpassword').html('Account not existing in records !');  
+						$('#message').html('Account not existing in records!');  
 					}
                     else if(dataResult.statusCode==204){
                         $('#btn_login').prop('disabled', false);
-						$('#message_forgotpassword').html('Account not existing in records !');
+						$('#message').html('Account not existing in records!');
 					}
 
 					
@@ -852,7 +852,7 @@ $(document).ready(function() {
 		}
 		else{
             $('#btn_login').prop('disabled', false);
-			$('#message_forgotpassword').html('Please fill all the field !');
+			$('#message').html('Please fill all the field !');
 		}
 	});
 	// VERIFICATION
@@ -901,7 +901,7 @@ $(document).ready(function() {
                 		}timeleft -= 1; }, 1000);
 						$("#otp_verify").show();
            			 	$('#btn_verify').hide();
-						$('#message_forgotpassword').hide();
+						$('#message').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);
             			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
@@ -925,7 +925,7 @@ $(document).ready(function() {
                 		}timeleft -= 1;}, 1000);
 						$("#otp_verify").show();
            		 		$('#btn_verify').hide();
-						$('#message_forgotpassword').hide();
+						$('#message').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);						
             			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
@@ -935,7 +935,7 @@ $(document).ready(function() {
 					}
                     else if(dataResult.statusCode==203){
                   		$('#btn_verify').prop('disabled', false);
-						$('#message_forgotpassword').html('Username not found !');  
+						$('#message').html('Username not found !');  
 					}
           
 					
@@ -944,7 +944,7 @@ $(document).ready(function() {
 		}
 		else{
       		$('#btn_verify').prop('disabled', false);
-			$('#message_forgotpassword').html('Please enter your username !');
+			$('#message').html('Please enter your username !');
 		}
 	});
 	// VERIFICATION
@@ -1022,7 +1022,7 @@ $(document).ready(function() {
 					}
         
 					else if(dataResult.statusCode==202){
-						$('#message1').html("Incorrect verification code !");
+						$('#message1').html("Incorrect verification code!");
             			$('#btn_otp_verify').prop('disabled', false);					   			
 					}
            
@@ -1033,7 +1033,7 @@ $(document).ready(function() {
 		}
 		else{
       		$('#btn_otp_verify').prop('disabled', false);		
-			$('#message1').html('Please enter the verification code !');
+			$('#message1').html('Please enter the verification code!');
 		}
 	});
   // OTP verify  
@@ -1106,11 +1106,11 @@ $('#btn_change_pass').on('click', function() {
 					}
 					else if(dataResult.statusCode==202){
             		$('#btn_change_pass').prop('disabled', false);
-					$("#message2").html("Incorrect verification code !");				   			
+					$("#message2").html("Incorrect verification code!");				   			
 					}
           			else if(dataResult.statusCode==203){
             		$('#btn_change_pass').prop('disabled', false);
-					$("#message2").html("'Not Authorized !'");				   			
+					$("#message2").html("'Not Authorized!'");				   			
 					}	
 				}
 			});
@@ -1118,7 +1118,7 @@ $('#btn_change_pass').on('click', function() {
 		}
 		else{
       		$('#btn_change_pass').prop('disabled', false);
-			$('#message2').html('Please fill all the field !');
+			$('#message2').html('Please fill all the field!');
 		}
 	});
   // change pass
