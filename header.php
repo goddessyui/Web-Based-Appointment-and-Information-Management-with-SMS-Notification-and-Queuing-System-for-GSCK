@@ -147,7 +147,7 @@
                             <button onclick="ForgotPassword()">Forgot Password?</button>
                         </div>
 
-                        <p id="message"></p>
+                        <p id="message_login"></p>
                     </div>
 
 
@@ -186,7 +186,7 @@
 
                             <!-- message for errors -->
                             <div class="form-group">
-                                <p id="message"></p>
+                                <p id="message_forgotpassword"></p>
                             </div>
                             <!-- message for errors -->
                         </form>
@@ -741,14 +741,14 @@ $(document).ready(function() {
                         location.href = "admin.php"; 
                     }
                     else if(dataResult.statusCode==202){
-                        $('#message').html('Username or Password Incorrect !'); 
+                        $('#message_login').html('Username or Password Incorrect !'); 
                     
                     }
                     else if(dataResult.statusCode==203){
-                        $('#message').html('Account not existing in Student record !');  
+                        $('#message_login').html('Account not existing in Student record !');  
                     }
                     else if(dataResult.statusCode==204){
-                        $('#message').html('Account not existing in Staff record !');
+                        $('#message_login').html('Account not existing in Staff record !');
                     }
 
                     
@@ -757,7 +757,7 @@ $(document).ready(function() {
         }
         else{
             
-            $('#message').html('Please fill all the field !');
+            $('#message_login').html('Please fill all the field !');
         }
     });
     // VERIFICATION
@@ -834,16 +834,16 @@ $(document).ready(function() {
 					}
 					else if(dataResult.statusCode==202){
                         $('#btn_login').prop('disabled', false);
-						$('#message').html('Username or Password Incorrect !'); 
+						$('#message_forgotpassword').html('Username or Password Incorrect !'); 
 					
 					}
                     else if(dataResult.statusCode==203){
                         $('#btn_login').prop('disabled', false);
-						$('#message').html('Account not existing in records !');  
+						$('#message_forgotpassword').html('Account not existing in records !');  
 					}
                     else if(dataResult.statusCode==204){
                         $('#btn_login').prop('disabled', false);
-						$('#message').html('Account not existing in records !');
+						$('#message_forgotpassword').html('Account not existing in records !');
 					}
 
 					
@@ -852,7 +852,7 @@ $(document).ready(function() {
 		}
 		else{
             $('#btn_login').prop('disabled', false);
-			$('#message').html('Please fill all the field !');
+			$('#message_forgotpassword').html('Please fill all the field !');
 		}
 	});
 	// VERIFICATION
@@ -901,7 +901,7 @@ $(document).ready(function() {
                 		}timeleft -= 1; }, 1000);
 						$("#otp_verify").show();
            			 	$('#btn_verify').hide();
-						$('#message').hide();
+						$('#message_forgotpassword').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);
             			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
@@ -925,7 +925,7 @@ $(document).ready(function() {
                 		}timeleft -= 1;}, 1000);
 						$("#otp_verify").show();
            		 		$('#btn_verify').hide();
-						$('#message').hide();
+						$('#message_forgotpassword').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);						
             			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
@@ -935,7 +935,7 @@ $(document).ready(function() {
 					}
                     else if(dataResult.statusCode==203){
                   		$('#btn_verify').prop('disabled', false);
-						$('#message').html('Username not found !');  
+						$('#message_forgotpassword').html('Username not found !');  
 					}
           
 					
@@ -944,7 +944,7 @@ $(document).ready(function() {
 		}
 		else{
       		$('#btn_verify').prop('disabled', false);
-			$('#message').html('Please enter your username !');
+			$('#message_forgotpassword').html('Please enter your username !');
 		}
 	});
 	// VERIFICATION
