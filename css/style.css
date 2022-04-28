@@ -181,7 +181,7 @@
             font-size: 16px;
             text-transform: uppercase;
             transition: all .1s ease-in;
-            font-weight: 600;
+            font-weight: 500;
         }
         .nav_container nav ul li {
             list-style-type: none;
@@ -193,7 +193,7 @@
             position: absolute;
             background: gold;
             width: 80px;
-            height: 1px;
+            height: .5px;
             transform: translateY(-15px);
         }
         .nav_container nav ul .a_link_after:hover {
@@ -267,6 +267,7 @@
         font-size: 14px;
         color: #333;
         margin-bottom: 40px;
+        text-transform: uppercase;
     }
     .login_form_div form .input_box {
         display: flex;
@@ -382,6 +383,7 @@
         color: #eee;
         height: 32px;
         font-family: Lato;
+        cursor: pointer;
     }
 
 
