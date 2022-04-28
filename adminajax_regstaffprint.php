@@ -37,7 +37,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
             <div class="row">
                     <div class="regstaff_row">
                         <?php   
-                                echo $offset + $i++; 
+                            echo $i++; 
                         ?>
                     </div>
                         

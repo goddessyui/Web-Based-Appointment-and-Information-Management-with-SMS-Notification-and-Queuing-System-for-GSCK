@@ -98,23 +98,78 @@
                                     if($request_result==TRUE) {
                                         $count = mysqli_num_rows($request_result);
                                         if($count>0) {
-                                            $t = 1;
-                                ?>
+                                            $t = 1;?>
+                                            <div class="pending-row">
+                                                <div class="sdpending_count">
+                                                    <h4>S.N.</h4>
+                                                </div>
+                                                <div class="sdpending_checkbox">
+                                                    
+                                                </div>
+
+                                                <div class="ccpending_date">
+                                                    <h4>Date Requested</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Student</h4>
+                                                </div>
+
+                                                <div class="sdpending_bs">
+                                                    <h4>Batch Status</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Appointment Type</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Student's Note</h4>
+                                                </div>
+                                            </div>
                                         <?php
                                             while($rows=mysqli_fetch_assoc($request_result)) {
                                         ?>
                                         <div class="pending-row">
                                             
-                                            <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                            <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                            <p><span><?php echo $t++; //Adds Row Counter ?></p>
-                                            <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                            <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                                            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                            <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                                            <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
-                                            <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p> 
+                                            <div class="sdpending_count">
+                                            <?php echo $t++; //Adds Row Counter ?>
+                                            </div>   
+                                            <div class="sdpending_checkbox">
+                                                <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                                <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
+                                                
+                                            </div>
+
+                                            <div class="ccpending_date">
+                                                <?php echo $rows['date_created']; ?>
+                                            </div>
+
+                                            <div class="sdpending_col">
+                                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                                <small>
+                                                    <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                                </small>
+                                            </div>
+
+                                            <div class="sdpending_bs">
+                                                <?php echo $rows['batch_status']; ?>
+                                            </div>
+                                            
+                                            <div class="sdpending_col">
+                                                <?php echo $rows['appointment_type']; ?>
+                                            </div>
+
+                                            <div class="sdpending_col">
+                                                <?php
+                                                    if($rows['note']==""){
+                                                        echo "No note.";
+                                                    }
+                                                    else{
+                                                    echo $rows['note'];
+                                                    }
+                                                ?>
+                                            </div>
 
                                         </div><hr>
                                 <?php
@@ -175,26 +230,81 @@
                                 if($request_result==TRUE) {
                                     $count = mysqli_num_rows($request_result);
                                     if($count>0) {
-                                        $t = 1;
-                            ?>
+                                        $t = 1;?>
+                                        <div class="pending-row">
+                                                <div class="sdpending_count">
+                                                    <h4>S.N.</h4>
+                                                </div>
+                                                <div class="sdpending_checkbox">
+                                                    
+                                                </div>
+
+                                                <div class="ccpending_date">
+                                                    <h4>Date Requested</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Student</h4>
+                                                </div>
+
+                                                <div class="sdpending_bs">
+                                                    <h4>Batch Status</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Appointment Type</h4>
+                                                </div>
+
+                                                <div class="sdpending_col">
+                                                    <h4>Student's Note</h4>
+                                                </div>
+                                            </div>
                                 
                                     <?php
                                         while($rows=mysqli_fetch_assoc($request_result)) {
                                     ?>
                                     <div class="pending-row">
                                         
-                                        <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                        <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                        <p><span><?php echo $t++; //Adds Row Counter ?></p>
-                                        <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                        <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                                        <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                                        <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                        <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                                        <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
-                                        <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p> 
+                                        <div class="sdpending_count">
+                                            <?php echo $t++; //Adds Row Counter ?>
+                                        </div>   
+                                        <div class="sdpending_checkbox">
+                                            <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                            <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
+                                            
+                                        </div>
 
-                                    </div><hr>
+                                        <div class="ccpending_date">
+                                            <?php echo $rows['date_created']; ?>
+                                        </div>
+
+                                        <div class="sdpending_col">
+                                            <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                            <small>
+                                                <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                            </small>
+                                        </div>
+
+                                        <div class="sdpending_bs">
+                                            <?php echo $rows['batch_status']; ?>
+                                        </div>
+                                        
+                                        <div class="sdpending_col">
+                                            <?php echo $rows['appointment_type']; ?>
+                                        </div>
+
+                                        <div class="sdpending_col">
+                                            <?php
+                                                if($rows['note']==""){
+                                                    echo "No note.";
+                                                }
+                                                else{
+                                                echo $rows['note'];
+                                                }
+                                            ?>
+                                        </div>
+
+                                    </div>
                             <?php
                                         }
                                     }
@@ -288,6 +398,34 @@
     .pending-row{
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .sdpending_col {
+        width: 20%;
+        padding: 5px;
+        word-break: break-all;
+        margin: auto;
+    }
+    .sdpending_checkbox {
+        width: 5%;
+        padding: 5px;
+        text-align: center;
+        margin: auto;
+    }
+    .sdpending_checkbox input[type=checkbox] {
+        accent-color: gold;
+        transform: scale(3);
+    }
+    .sdpending_count {
+        width: 5%;
+        text-align: center;
+        padding: 5px;
+        margin: auto;
+    }
+    .sdpending_bs, .ccpending_date {
+        width: 15%;
+        padding: 5px;
+        margin: auto;
     }
 
 </style>

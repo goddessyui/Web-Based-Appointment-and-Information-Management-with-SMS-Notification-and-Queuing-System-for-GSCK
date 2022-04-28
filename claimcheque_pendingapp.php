@@ -97,26 +97,80 @@
                                     if($request_result==TRUE) {
                                         $count = mysqli_num_rows($request_result);
                                         if($count>0) {
-                                            $t = 1;
-                                ?>
-                                    
+                                            $t = 1;?>
+                                            <div class="pending-row">
+                                                <div class="ccpending_count">
+                                                    <h4>S.N.</h4>
+                                                </div>
+                                                <div class="ccpending_checkbox">
+                                                    
+                                                </div>
+
+                                                <div class="ccpending_date">
+                                                    <h4>Date Requested</h4>
+                                                </div>
+
+                                                <div class="ccpending_col">
+                                                    <h4>Student</h4>
+                                                </div>
+
+                                                <div class="ccpending_bs">
+                                                    <h4>Batch Status</h4>
+                                                </div>
+
+                                                <div class="ccpending_col">
+                                                    <h4>Appointment Type</h4>
+                                                </div>
+
+                                                <div class="ccpending_col">
+                                                    <h4>Student's Note</h4>
+                                                </div>
+                                            </div>
                                         <?php
                                             while($rows=mysqli_fetch_assoc($request_result)) {
                                         ?>
                                         <div class="pending-row">
                                             
-                                            <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                            <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                            <p><span><?php echo $t++; //Adds Row Counter ?></p>
-                                            <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                            <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                                            <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                            <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                                            <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
-                                            <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p>
+                                            <div class="ccpending_count">
+                                            <?php echo $t++; //Adds Row Counter ?>
+                                            </div>   
+                                            <div class="ccpending_checkbox">
+                                                <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                                <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
+                                                
+                                            </div>
 
-                                        </div><hr>
+                                            <div class="ccpending_date">
+                                                <?php echo $rows['date_created']; ?>
+                                            </div>
+
+                                            <div class="ccpending_col">
+                                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                                <small>
+                                                    <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                                </small>
+                                            </div>
+
+                                            <div class="ccpending_bs">
+                                                <?php echo $rows['batch_status']; ?>
+                                            </div>
+                                            
+                                            <div class="ccpending_col">
+                                                <?php echo $rows['appointment_type']; ?>
+                                            </div>
+
+                                            <div class="ccpending_col">
+                                                <?php
+                                                    if($rows['note']==""){
+                                                        echo "No note.";
+                                                    }
+                                                    else{
+                                                    echo $rows['note'];
+                                                    }
+                                                ?>
+                                            </div>
+
+                                        </div>
                                 <?php
                                             }
                                         }
@@ -138,7 +192,7 @@
 
 
                         <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
-                        <!-------------------------BUTTONS FOR ALL------------------------->
+                            <!-------------------------BUTTONS FOR ALL------------------------->
                             <label>Enter Date of Appointment:</label>
                             <input type="date" name="ad[]" value=""
                                     min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
@@ -175,26 +229,78 @@
                                 if($request_result==TRUE) {
                                     $count = mysqli_num_rows($request_result);
                                     if($count>0) {
-                                        $t = 1;
-                            ?>
-                                
+                                        $t = 1;?>
+                                        <div class="pending-row">
+                                            <div class="ccpending_count">
+                                                <h4>S.N.</h4>
+                                            </div>
+                                            <div class="ccpending_checkbox">
+                                                
+                                            </div>
+
+                                            <div class="ccpending_date">
+                                                <h4>Date Requested</h4>
+                                            </div>
+
+                                            <div class="ccpending_col">
+                                                <h4>Student</h4>
+                                            </div>
+
+                                            <div class="ccpending_bs">
+                                                <h4>Batch Status</h4>
+                                            </div>
+
+                                            <div class="ccpending_col">
+                                                <h4>Appointment Type</h4>
+                                            </div>
+
+                                            <div class="ccpending_col">
+                                                <h4>Student's Note</h4>
+                                            </div>
+                                        </div>
                                     <?php
                                         while($rows=mysqli_fetch_assoc($request_result)) {
                                     ?>
                                     <div class="pending-row">
-                                        
-                                        <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                        <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                        <p><span><?php echo $t++; //Adds Row Counter ?></p>
-                                        <p><span>Appointment #:</span> <?php echo $rows['appointment_id']; ?></p>
-                                        <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p> 
-                                        <p><span>Student:</span> <?php echo $rows['first_name']." ".$rows['last_name']; ?></p>
-                                        <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                        <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                                        <p><span>Student's Note: </span><?php echo $rows['note']; ?></p> 
-                                        <p><span>Batch Status: </span><?php echo $rows['batch_status']; ?></p> 
+                                        <div class="ccpending_count">
+                                        <?php echo $t++; //Adds Row Counter ?>
+                                        </div>   
+                                        <div class="ccpending_checkbox">
+                                            <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                            <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
+                                            
+                                        </div>
 
-                                    </div><hr>
+                                        <div class="ccpending_date">
+                                            <?php echo $rows['date_created']; ?>
+                                        </div>
+                                       <div class="ccpending_col">
+                                            <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                            <small>
+                                                <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                                
+                                            </small>
+                                       </div>
+                                       <div class="ccpending_bs">
+                                            <?php echo $rows['batch_status']; ?>
+                                       </div>
+                                       
+                                       <div class="ccpending_col">
+                                            <?php echo $rows['appointment_type']; ?>
+                                       </div>
+
+                                       <div class="ccpending_col">
+                                            <?php
+                                                if($rows['note']==""){
+                                                    echo "No note.";
+                                                }
+                                                else{
+                                                echo $rows['note'];
+                                                }
+                                            ?>
+                                       </div>
+
+                                    </div>
                             <?php
                                         }
                                     }
@@ -289,9 +395,35 @@
     .pending-row{
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 5px;
     }
-
-
+    .ccpending_col {
+        width: 20%;
+        padding: 5px;
+        word-break: break-all;
+        margin: auto;
+    }
+    .ccpending_checkbox {
+        width: 5%;
+        padding: 5px;
+        text-align: center;
+        margin: auto;
+    }
+    .ccpending_checkbox input[type=checkbox] {
+        accent-color: gold;
+        transform: scale(3);
+    }
+    .ccpending_count {
+        width: 5%;
+        text-align: center;
+        padding: 5px;
+        margin: auto;
+    }
+    .ccpending_bs, .ccpending_date {
+        width: 15%;
+        padding: 5px;
+        margin: auto;
+    }
    
 </style>
 
