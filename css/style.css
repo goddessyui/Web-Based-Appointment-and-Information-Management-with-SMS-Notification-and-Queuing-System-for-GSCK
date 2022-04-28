@@ -123,9 +123,11 @@
 
     /*-----Sidebar-----*/
     .nav_container {
-        width: 320px;
+        width: 380px;
         height: 90vh;
-        background: #444;
+        background: #FFF;
+        border-right: 1px solid lightgrey;
+        border-top: 1px solid lightgrey;
         position: fixed;
         top: 80px;
         transition: all .2s ease-in-out;
@@ -141,25 +143,54 @@
         .nav_container nav ul {
             margin-top: 80px;
             width: 100%;
-            padding-left: 45px;
+            padding-left: 40px;
+        }
+        .nav_container nav ul h4 {
+            font-family: Lato;
+            text-transform: uppercase;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+        .nav_container nav ul button {
+            border: none;
+            padding: 8px 20px;
+            color: #eee;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: Lato;
+            font-weight: 500;
+            text-transform: uppercase;
+            width: 180px;
+        }
+        .button_ma {
+            margin-bottom: 20px;
+            margin-top: 8px;
+            background: #444;
+        }
+        .button_saa {
+            margin-top: 20px;
+            background: #444;
         }
         .nav_container nav ul a {
             text-decoration: none;
-            font-family: 'Times New Roman';
-            color: #eee;
+            font-family: Roboto;
+            color: #333;
             font-size: 16px;
-            font-weight: bold;
             text-transform: uppercase;
             transition: all .1s ease-in;
         }
         .nav_container nav ul li {
             list-style-type: none;
             padding: 20px 0;
+            margin-left: 5px;
         }
         .nav_container nav ul .a_link_after::after {
             content: '';
             position: absolute;
-            background: lightgrey;
+            background: gold;
             width: 80px;
             height: 1px;
             transform: translateY(-15px);

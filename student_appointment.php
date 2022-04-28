@@ -1004,8 +1004,13 @@ $(document).ready(function() {
 
 
 .main_apt_container {
-    margin-top: 20px;
-    padding: 5px 0;
+    margin-top: 10px;
+    padding: 5% 0;
+    background: green;
+    background-image: url("./image/appoint.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
     .aptype-container {
         width: 80%;
@@ -1025,9 +1030,9 @@ $(document).ready(function() {
         transition: all .2s ease-in-out;
     }
 
-
     .aptype:hover {
         transform: scale(1.025);
+        background: #FCD227;
     }
    
     .aptype .content_type {
@@ -1044,7 +1049,7 @@ $(document).ready(function() {
         text-decoration: underline;
     }
     .p_flex_end {
-        height: 120px;
+        height: 80px;
         display: flex;
         align-items: flex-end;
     }
@@ -1080,11 +1085,11 @@ $(document).ready(function() {
     text-decoration: underline;
     margin-bottom: 40px;
 }
-form label {
-    opacity: 1;
-    color: blue;
-}
-/*-------------------------------------------
+
+
+
+
+
 .apt_container_div h3 {
 
 }
@@ -1098,7 +1103,12 @@ form label {
 
 }
 .apt_container_div form .radio_design {
-
+    color: #fff;
+    background-color: gray;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    height: 30px;
 }
 .apt_container_div form .radio_design span {
 
@@ -1179,7 +1189,6 @@ form label {
     }
     .search-box input[type="text"] {
         width: 100%;
-        box-sizing: border-box;
     }
     /* End of Formatting search box */
     /* Formatting result items */
