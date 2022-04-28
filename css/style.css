@@ -177,10 +177,11 @@
         .nav_container nav ul a {
             text-decoration: none;
             font-family: Roboto;
-            color: #333;
+            color: #444;
             font-size: 16px;
             text-transform: uppercase;
             transition: all .1s ease-in;
+            font-weight: 600;
         }
         .nav_container nav ul li {
             list-style-type: none;
@@ -202,6 +203,11 @@
         }
   
 
+
+
+
+        /*-----login form-----*/
+
     .login_sidebar {
         width: 100%;
         height: 90vh;
@@ -217,11 +223,25 @@
         z-index: 888;
 
     }
+    
+/*---------login_form here-------------*/
+.login_form_div {
+    width: 100%;
+    height: 60vh;
+    padding: 40px;
+}
+
+        .forgot_pass_div {
+            display: none;
+        }
+
     .form_content {
         width: 760px;
         height: 60vh;
         display: flex;
     }
+
+
     .form_content .gsck_img,
     .form_content .form_container_div {
         width: 50%;
@@ -234,16 +254,72 @@
         background-position: center;
         background-repeat: no-repeat;
     }
-    .cirle {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+    .login_form_div form {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .login_form_div form h2 {
+        color: #333;
+        font-size: 22px;
+        text-decoration: underline;
+        margin-bottom: 8px;
+    }
+    .login_form_div form p {
+        font-weight: 500;
+        font-family: Lato;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 40px;
+    }
+    .login_form_div form .input_box {
         display: flex;
         align-items: center;
-        justify-content: center;
-        float: right;
-        transform: translate(20px, -20px);
+        width: 100%;
+        height: 32px;
+        border: 1px solid lightgrey;
+        padding: 0 10px;
+        margin-bottom: 10px;
     }
+    .login_form_div form .input_box .icon {
+        width: 20px;
+    }
+    .login_form_div form .input_box input {
+        width: 100%;
+        height: 32px;
+        border: none;
+        outline: none;
+        background: none;
+    }
+    .login_form_div form .input_button_div {
+        width: 100%;
+    }
+    .login_form_div form .input_button_div .login_button {
+        width: 100%;
+        border: none;
+        background: #324e9e;
+        height: 32px;
+        font-family: lato;
+        color: #eee;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    .option_div button {
+        background: none;
+        border: none;
+        font-family: lato;
+        font-size: 14px;
+        text-decoration: underline;
+        color: #324e9e;
+        cursor: pointer;
+    }
+    #message {
+        color: red;
+        margin-top: 10px;
+        font-style: italic;
+    }
+ 
+
+
 
     .register_sidebar {
         width: 100%;
@@ -449,22 +525,4 @@
         position: absolute;
         top: -4px;
         right: -5px;
-    }
-
-/*---------login_form here-------------*/
-.login_form_div {
-    width: 100%;
-    height: 60vh;
-    padding: 40px;
-}
-        .forgot_pass_div {
-            display: none;
-        }
-.login_form_div .title_login {
-    font-family: Roboto;
-}
-    .title_login h4 {
-        font-family: Roboto;
-        text-transform: uppercase;
-        text-align: center;
     }

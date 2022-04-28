@@ -1041,7 +1041,7 @@ $(document).ready(function() {
     }
     .aptype-container .aptype .content_type h4 {
         font-size: 20px;
-        font-family: 'times new roman';
+        font-family: Roboto;
         text-transform: uppercase;
         color: #333;
         text-align: left;
@@ -1057,7 +1057,8 @@ $(document).ready(function() {
        text-align: left;
        font-family: 'times new roman';
        font-size: 16px;
-       color: #555;
+       color: #444;
+       text-transform: initial;
     }
     .at_under_staff {
         font-family: Lato;
@@ -1088,7 +1089,7 @@ $(document).ready(function() {
 
 
 
-
+/*-------
 
 .apt_container_div h3 {
 
@@ -1102,6 +1103,9 @@ $(document).ready(function() {
 .apt_container_div form small {
 
 }
+*/
+
+
 .apt_container_div form .radio_design {
     color: #fff;
     background-color: gray;
@@ -1110,6 +1114,7 @@ $(document).ready(function() {
     align-items: center;
     height: 30px;
 }
+/*----
 .apt_container_div form .radio_design span {
 
 }

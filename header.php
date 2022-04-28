@@ -108,8 +108,11 @@
     <div class="login_sidebar" id="open_login">
         <div class="login_form_container">
             <div class="form_content">
+
                 <div class="gsck_img"></div>
+
                 <div class="form_container_div">
+
                     <button class="bg-outer" onclick="CloseLoginBtn()">
                         <div class="outer">
                             <div class="inner">
@@ -117,21 +120,24 @@
                             </div>
                         </div>
                     </button>
-                    <!----login form---->
+
+
+                    <!----login form------------------->
                     <div class="login_form_div" id="login_form_div_id">
                         <form method="post">
-
+                            <h2>Sign in account</h2>
+                            <p>WELCOME STAFF AND STUDENTS of GOLDENSTATE COLLEGE OF KORONADAL</p>
                             <div class="input_box">
-                                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
                                 <div class="icon"><i class="fa fa-user"></i></div>
+                                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" />
                             </div>
 
                             <div class="input_box">
-                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
                                 <div class="icon"><i class="fa fa-lock"></i></div>
+                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
                             </div>
 
-                            <div class="input_box">
+                            <div class="input_button_div">
                                 <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" />
                             </div>
 
@@ -141,15 +147,18 @@
                             <button onclick="ForgotPassword()">Forgot Password?</button>
                         </div>
 
-                        <small id="message"></small>
+                        <p id="message"></p>
                     </div>
+
+
+
+
+
+
+
                      <!----forgotpass form---->
                     <div class="forgot_pass_div" id="forgot_pass_div_id">
                         <h1>forgotpass</h1>
-
-
-
-
 
                     <!-- MESSAGE AFTER CHANGGING NEW PASSWORD SUCCESSFULLY -->
                         <div class="form-group">
@@ -177,7 +186,7 @@
 
                             <!-- message for errors -->
                             <div class="form-group">
-                                <small id="message" style="color:red;"></small>
+                                <p id="message"></p>
                             </div>
                             <!-- message for errors -->
                         </form>
