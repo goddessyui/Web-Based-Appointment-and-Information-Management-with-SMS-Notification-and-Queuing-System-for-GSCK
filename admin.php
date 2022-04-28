@@ -224,7 +224,7 @@
                         </div>
                     </div>
 
-                    <div class="col_4">
+                    <div class="col_3">
                         <div class="card">
                             <div class="card_title">No. of Appointment Slots Taken Today:</div>
                             <div class="card_body">

@@ -14,7 +14,7 @@ $batchstatus_ug = $_POST['batchstatus_ug'];
 <?php
 
 $unifast_grantee="SELECT * FROM tbl_unifast_grantee WHERE last_name LIKE $alphabetical_ln_ug 
-AND batch_status LIKE $batchstatus_ug 
+AND batch_status = $batchstatus_ug 
 ORDER BY last_name ASC, first_name ASC";
 $ug_result = mysqli_query($db, $unifast_grantee);
 
