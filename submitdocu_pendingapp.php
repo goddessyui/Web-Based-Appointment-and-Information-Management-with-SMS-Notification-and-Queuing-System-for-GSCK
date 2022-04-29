@@ -126,7 +126,7 @@
                                                 <div class="sdpending_col">
                                                     <h4>Student's Note</h4>
                                                 </div>
-                                            </div>
+                                            </div><hr>
                                         <?php
                                             while($rows=mysqli_fetch_assoc($request_result)) {
                                         ?>
@@ -171,7 +171,7 @@
                                                 ?>
                                             </div>
 
-                                        </div><hr>
+                                        </div>
                                 <?php
                                             }
                                         }
@@ -258,7 +258,7 @@
                                                 <div class="sdpending_col">
                                                     <h4>Student's Note</h4>
                                                 </div>
-                                            </div>
+                                            </div><hr>
                                 
                                     <?php
                                         while($rows=mysqli_fetch_assoc($request_result)) {
