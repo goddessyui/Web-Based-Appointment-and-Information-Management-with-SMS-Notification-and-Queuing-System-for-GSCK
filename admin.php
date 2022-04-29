@@ -407,19 +407,28 @@
    
        
         function printDiv_regstudent() {
-            var printContents = document.getElementById("generated_rep_registeredstudents_hidden").innerHTML;
-			var originalContents = document.body.innerHTML;
-			document.body.innerHTML = printContents;
+            var printContents_regstudent = document.getElementById("generated_rep_registeredstudents_hidden").innerHTML;
+			var originalContents_regstudent = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstudent;
 			window.print();
-			document.body.innerHTML = originalContents;
+			document.body.innerHTML = originalContents_regstudent;
         }
 
         function printDiv_regstaff() {
-            var printContents = document.getElementById("generated_rep_registeredstaff_hidden").innerHTML;
-			var originalContents = document.body.innerHTML;
-			document.body.innerHTML = printContents;
+            var printContents_regstaff = document.getElementById("generated_rep_registeredstaff_hidden").innerHTML;
+			var originalContents_regstaff  = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstaff;
 			window.print();
-			document.body.innerHTML = originalContents;
+			document.body.innerHTML = originalContents_regstaff ;
+
+        }
+
+        function printDiv_regug() {
+            var printContents_regug = document.getElementById("generated_rep_ug_hidden").innerHTML;
+			var originalContents_regug = document.body.innerHTML;
+			document.body.innerHTML = printContents_regug;
+			window.print();
+			document.body.innerHTML = originalContents_regug;
 
         }
     
