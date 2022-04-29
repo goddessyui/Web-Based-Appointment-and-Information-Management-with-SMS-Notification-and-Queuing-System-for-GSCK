@@ -2,37 +2,37 @@
     include("admin_header.php");
 ?>
     <main>
-        <?php 
-            if($position=="Accounting Staff/Scholarship Coordinator") {//if Accounting Staff/Scholarship Coordinator
-        ?>  
+            <?php 
+        if($position=="Accounting Staff/Scholarship Coordinator") {//if Accounting Staff/Scholarship Coordinator
+            ?>  
             <h2>UniFAST - Claim Cheque Appointment Requests</h2>
-            <!--success or error-->
-                        <?php 
-                            if(isset($_GET['success'])){
-                        ?>
-                                <p align="center">
-                                    <?php 
-                                        echo $_GET['success'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                            if(isset($_GET['error'])){
-                        ?>
-                                        <p align="center">
-                                            <?php 
-                                                echo $_GET['error'];
-                                            ?>
-                                        </p>
-                                <?php
-                                    }
-                            else{
-                            }
-                        ?>
-                        <!--success or error-->
-            <div class="pending-container">
+                    <!--success or error-->
+                    <?php 
+                        if(isset($_GET['success'])){
+                    ?>
+                            <p align="center">
+                                <?php 
+                                    echo $_GET['success'];
+                                ?>
+                            </p>
+                    <?php
+                        }
+                        if(isset($_GET['error'])){
+                    ?>
+                                    <p align="center">
+                                        <?php 
+                                            echo $_GET['error'];
+                                        ?>
+                                    </p>
+                            <?php
+                                }
+                        else{
+                        }
+                    ?>
+                    <!--success or error-->
+            <div class="pending_container">
 
-                    <div class="pending-column">
+                <div class="pending_column">
                         <button type="submit" onclick='selectAll()' value="Select All">Select All</button>
                         <button type="submit" onclick='UnSelectAll()' value="Unselect All">Unselect All</button>
                         <button type="submit" onclick='select10()' value="Select 2">Select 10</button>
@@ -45,33 +45,37 @@
                             </select>
                         </form>
     
-                    </div>
+                </div>
                     
-                    <div class="pending-column" id="buttonsforall">
+                <div class="pending_column" id="buttonsforall">
 
                     <?php 
                         if(isset($_POST['batchstate'])) {
                             $bs = $_POST['batchstate'];
                             date_default_timezone_set('Asia/Manila');                           		
-                                    $currentdate = date("Y-m-d");
+                            $currentdate = date("Y-m-d");
+                            ?>
 
-                        ?>
-                            <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
-                            <!-------------------------BUTTONS FOR ALL------------------------->
-                                
-                                <label>Enter Date of Appointment:</label>
-                                <input type="date" name="ad[]" value=""
-                                        min="<?php echo $currentdate;?>" max="<?php echo date('Y-m-d', 
-                                        strtotime($currentdate. ' + 90 days'));?>">
-                                <label>Comment:</label>
-                                    <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
-                                </textarea>
-                                <button  type="submit" name="accept">ACCEPT</button>
-                                <button type="submit" name="decline">DECLINE</button>
-                                <!----------------------------BUTTONS FOR ALL-----------------------> 
-                                                
-                    </div>                
-                    <div class="pending-column">
+                            <div class="pending_row">
+
+                                <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
+                                <!-------------------------BUTTONS FOR ALL------------------------->
+                                    
+                                    <label>Enter Date of Appointment:</label>
+                                    <input type="date" name="ad[]" value=""
+                                            min="<?php echo $currentdate;?>" max="<?php echo date('Y-m-d', 
+                                            strtotime($currentdate. ' + 90 days'));?>">
+                                    <label>Comment:</label>
+                                        <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
+                                    </textarea>
+                                    <button  type="submit" name="accept">ACCEPT</button>
+                                    <button type="submit" name="decline">DECLINE</button>
+                                    <!----------------------------BUTTONS FOR ALL-----------------------> 
+
+                            </div>                       
+                </div>
+
+                <div class="pending_column">
 
                                 <?php
                                     $staff_id = $_SESSION["staff_id"];
@@ -96,9 +100,10 @@
 
                                     if($request_result==TRUE) {
                                         $count = mysqli_num_rows($request_result);
+
                                         if($count>0) {
                                             $t = 1;?>
-                                            <div class="pending-row">
+                                            <div class="pending_row">
                                                 <div class="ccpending_count">
                                                     <h4>S.N.</h4>
                                                 </div>
@@ -126,52 +131,52 @@
                                                     <h4>Student's Note</h4>
                                                 </div>
                                             </div><hr>
-                                        <?php
-                                            while($rows=mysqli_fetch_assoc($request_result)) {
-                                        ?>
-                                        <div class="pending-row">
-                                            
-                                            <div class="ccpending_count">
-                                            <?php echo $t++; //Adds Row Counter ?>
-                                            </div>   
-                                            <div class="ccpending_checkbox">
-                                                <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                                <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                                
-                                            </div>
-
-                                            <div class="ccpending_date">
-                                                <?php echo $rows['date_created']; ?>
-                                            </div>
-
-                                            <div class="ccpending_col">
-                                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
-                                                <small>
-                                                    <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                                </small>
-                                            </div>
-
-                                            <div class="ccpending_bs">
-                                                <?php echo $rows['batch_status']; ?>
-                                            </div>
-                                            
-                                            <div class="ccpending_col">
-                                                <?php echo $rows['appointment_type']; ?>
-                                            </div>
-
-                                            <div class="ccpending_col">
                                                 <?php
-                                                    if($rows['note']==""){
-                                                        echo "No note.";
-                                                    }
-                                                    else{
-                                                    echo $rows['note'];
-                                                    }
+                                            while($rows=mysqli_fetch_assoc($request_result)) {
                                                 ?>
-                                            </div>
+                                                <div class="pending_row">
+                                            
+                                                    <div class="ccpending_count">
+                                                        <?php echo $t++; //Adds Row Counter ?>
+                                                    </div>
 
-                                        </div>
-                                <?php
+                                                    <div class="ccpending_checkbox">
+                                                        <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                                        <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">    
+                                                    </div>
+
+                                                    <div class="ccpending_date">
+                                                        <?php echo $rows['date_created']; ?>
+                                                    </div>
+
+                                                    <div class="ccpending_col">
+                                                        <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                                        <small>
+                                                            <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                                        </small>
+                                                    </div>
+
+                                                    <div class="ccpending_bs">
+                                                        <?php echo $rows['batch_status']; ?>
+                                                    </div>
+                                                    
+                                                    <div class="ccpending_col">
+                                                        <?php echo $rows['appointment_type']; ?>
+                                                    </div>
+
+                                                    <div class="ccpending_col">
+                                                        <?php
+                                                            if($rows['note']==""){
+                                                                echo "No note.";
+                                                            }
+                                                            else{
+                                                                echo $rows['note'];
+                                                            }
+                                                        ?>
+                                                    </div>
+
+                                                </div>
+                                                <?php
                                             }
                                         }
                                         else {
@@ -181,30 +186,32 @@
                                     else {
                                         echo "There is no data in the database." . mysqli_error($db);
                                     }
-                                ?>
+                                        ?>
                             </form> <!----------------------------End of FORM-------------------------------------------------------------------------------------------->  
-                        <?php   
+                            <?php   
                         }//end of batch status
-                         else {
+                        else {
                             date_default_timezone_set('Asia/Manila');                           		
                             $currentdate = date("Y-m-d");//start of show all status
                         ?>
 
+                            <div class="pending_row">
+                                <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
+                                    <!-------------------------BUTTONS FOR ALL------------------------->
+                                    <label>Enter Date of Appointment:</label>
+                                    <input type="date" name="ad[]" value=""
+                                            min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                            strtotime($currentdate. ' + 90 days'));?>">
+                                    <label>Comment:</label>
+                                        <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
+                                    </textarea>
+                                    <button  type="submit" name="accept">ACCEPT</button>
+                                    <button type="submit" name="decline">DECLINE</button>
+                                    <!----------------------------BUTTONS FOR ALL----------------------->
+                            </div>        
+                </div>
 
-                        <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
-                            <!-------------------------BUTTONS FOR ALL------------------------->
-                            <label>Enter Date of Appointment:</label>
-                            <input type="date" name="ad[]" value=""
-                                    min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
-                                    strtotime($currentdate. ' + 90 days'));?>">
-                            <label>Comment:</label>
-                                <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
-                            </textarea>
-                            <button  type="submit" name="accept">ACCEPT</button>
-                            <button type="submit" name="decline">DECLINE</button>
-                            <!----------------------------BUTTONS FOR ALL----------------------->        
-                </div>                
-                <div class="pending-column">
+                <div class="pending_column">
 
                             <?php
                                 $staff_id = $_SESSION["staff_id"];
@@ -230,7 +237,7 @@
                                     $count = mysqli_num_rows($request_result);
                                     if($count>0) {
                                         $t = 1;?>
-                                        <div class="pending-row">
+                                        <div class="pending_row">
                                             <div class="ccpending_count">
                                                 <h4>S.N.</h4>
                                             </div>
@@ -258,50 +265,52 @@
                                                 <h4>Student's Note</h4>
                                             </div>
                                         </div><hr>
-                                    <?php
-                                        while($rows=mysqli_fetch_assoc($request_result)) {
-                                    ?>
-                                    <div class="pending-row">
-                                        <div class="ccpending_count">
-                                        <?php echo $t++; //Adds Row Counter ?>
-                                        </div>   
-                                        <div class="ccpending_checkbox">
-                                            <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
-                                            <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
-                                            
-                                        </div>
-
-                                        <div class="ccpending_date">
-                                            <?php echo $rows['date_created']; ?>
-                                        </div>
-                                       <div class="ccpending_col">
-                                            <?php echo $rows['first_name']." ".$rows['last_name']; ?>
-                                            <small>
-                                                <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                                
-                                            </small>
-                                       </div>
-                                       <div class="ccpending_bs">
-                                            <?php echo $rows['batch_status']; ?>
-                                       </div>
-                                       
-                                       <div class="ccpending_col">
-                                            <?php echo $rows['appointment_type']; ?>
-                                       </div>
-
-                                       <div class="ccpending_col">
                                             <?php
-                                                if($rows['note']==""){
-                                                    echo "No note.";
-                                                }
-                                                else{
-                                                echo $rows['note'];
-                                                }
-                                            ?>
-                                       </div>
+                                        while($rows=mysqli_fetch_assoc($request_result)) {?>
 
-                                    </div>
-                            <?php
+                                            <div class="pending_row">
+                                                
+                                                <div class="ccpending_count">
+                                                    <?php echo $t++; //Adds Row Counter ?>
+                                                </div>  
+
+                                                <div class="ccpending_checkbox">
+                                                    <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
+                                                    <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
+                                                    
+                                                </div>
+
+                                                <div class="ccpending_date">
+                                                    <?php echo $rows['date_created']; ?>
+                                                </div>
+                                                <div class="ccpending_col">
+                                                    <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                                    <small>
+                                                        <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
+                                                        
+                                                    </small>
+                                                </div>
+                                                <div class="ccpending_bs">
+                                                        <?php echo $rows['batch_status']; ?>
+                                                </div>
+                                                
+                                                <div class="ccpending_col">
+                                                        <?php echo $rows['appointment_type']; ?>
+                                                </div>
+
+                                                <div class="ccpending_col">
+                                                        <?php
+                                                            if($rows['note']==""){
+                                                                echo "No note.";
+                                                            }
+                                                            else{
+                                                            echo $rows['note'];
+                                                            }
+                                                        ?>
+                                                </div>
+
+                                            </div>
+                                        <?php
                                         }
                                     }
                                     else {
@@ -311,7 +320,7 @@
                                 else {
                                     echo "There is no data in the database." . mysqli_error($db);
                                 }
-                            ?>
+                                    ?>
                         </form> <!----------------------------End of FORM--------------------------------------------------------------------------------------------> 
 
                     <?php
@@ -320,17 +329,17 @@
                     ?>
                                     
                 </div>
-                 
+                
             </div> 
-        <?php
-            } //if Accounting Staff/Scholarship Coordinator
-            else{ //if not Accounting Staff/Scholarship Coordinator
-                echo "Test: You are not an Accounting Staff/Scholarship Coordinator";
-            }//if not Accounting Staff/Scholarship Coordinator
-        
-            include("backtotop.php");
-        
-        ?>
+            <?php
+        } //if Accounting Staff/Scholarship Coordinator
+        else{ //if not Accounting Staff/Scholarship Coordinator
+            echo "Test: You are not an Accounting Staff/Scholarship Coordinator";
+        }//if not Accounting Staff/Scholarship Coordinator
+    
+        include("backtotop.php");
+    
+            ?>
        
     </main>
 </body>
@@ -383,19 +392,20 @@
         margin-right: 5%;
         margin-top: 100px;
     }
-    .pending-container {
+    .pending_container {
         width: 100%;
-        background: lightgrey;
+        background: #fafafa;
         padding:20px;
     }
-    .pending-column {
-        background: lightblue;  
+    .pending_column {
+       
         margin-bottom: 20px;
     }
-    .pending-row{
+    .pending_row{
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 5px;
+        background-color: #dedede;
+        margin-bottom: 10px;
     }
     .ccpending_col {
         width: 20%;
@@ -410,7 +420,7 @@
         margin: auto;
     }
     .ccpending_checkbox input[type=checkbox] {
-        accent-color: gold;
+        accent-color: #324e9e;
         transform: scale(3);
     }
     .ccpending_count {
