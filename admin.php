@@ -334,7 +334,8 @@
 <script>
        $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstudent').click(function(){
-      
+            
+            /*
             $.post("adminajax_regstudent.php", 
             {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
             student_course_report: $('#student_course_report').val(),
@@ -342,6 +343,7 @@
             function(data){
                 $('#generated_rep_registeredstudents').html(data);
             });
+            */
             $.post("adminajax_regstudentprint.php", 
             {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
             student_course_report: $('#student_course_report').val(),
@@ -358,12 +360,14 @@
 
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstaff').click(function(){
-      
+            
+            /*
             $.post("adminajax_regstaff.php", 
             {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
             function(data){
                 $('#generated_rep_registeredstaff').html(data);
             });
+            */
             $.post("adminajax_regstaffprint.php", 
             {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
             function(data){
@@ -379,12 +383,15 @@
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_ug').click(function(){
       
+            /*
             $.post("adminajax_ug.php", 
             {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
             batchstatus_ug: $('#batchstatus_ug').val(),},
             function(data){
                 $('#generated_rep_ug').html(data);
             });
+            */
+
             $.post("adminajax_ugprint.php", 
             {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
             batchstatus_ug: $('#batchstatus_ug').val(),},
@@ -398,7 +405,24 @@
 
         });
    
-        
+       
+        function printDiv_regstudent() {
+            var printContents = document.getElementById("generated_rep_registeredstudents_hidden").innerHTML;
+			var originalContents = document.body.innerHTML;
+			document.body.innerHTML = printContents;
+			window.print();
+			document.body.innerHTML = originalContents;
+        }
+
+        function printDiv_regstaff() {
+            var printContents = document.getElementById("generated_rep_registeredstaff_hidden").innerHTML;
+			var originalContents = document.body.innerHTML;
+			document.body.innerHTML = printContents;
+			window.print();
+			document.body.innerHTML = originalContents;
+
+        }
+    
     </script>
  
 
