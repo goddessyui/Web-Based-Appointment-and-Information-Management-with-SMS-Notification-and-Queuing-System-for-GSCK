@@ -207,7 +207,7 @@
 
                     <div class="col_3">
                         <div class="card">
-                            <div class="card_title">Allowed No. of Appointment Slots Today:</div>
+                            <div class="card_title">Allowed No. of Appointments Today:</div>
                             <div class="card_body">
                                 <div class="card_text">
                                 <?php
