@@ -7,7 +7,18 @@
        <img src="image/logo.png" width="80">
        <p>GSCK APPOINTMENT PORTAL</p>
        <h1>Set an appointment without the hassle of queueing</h1>
-       <a href="student_appointment.php"><button>BOOK NOW</button></a>
+
+        <?php 
+        if (isset($_SESSION['student_id'])) {?>
+            <a href="student_appointment.php"><button>BOOK NOW</button></a>
+        <?php
+        }
+        else {?>
+            <button onclick="BtnLogin()">BOOK NOW</button>
+        <?php
+        }
+        ?>
+
    </div>
 </div>
 

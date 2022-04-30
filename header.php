@@ -95,7 +95,19 @@
                 <a href="announcements.php" class="a_link_after"><li>Announcements</li></a>
                 <a href="schedules.php" class="a_link_after"><li>Staff Schedule</li></a>
                 <a href="contact.php" class="a_link_after"><li>Contact</li></a>
-                <a href="student_appointment.php"><button class="button_saa">Set an appointment</button></a>
+                <?php 
+                        if (isset($_SESSION['student_id'])) {
+                ?>
+                            <a href="student_appointment.php"><button class="button_saa">Set an appointment</button></a>
+                <?php
+                        }
+                        else {
+                ?>
+                           <button class="button_saa" onclick="BtnLogin()">Set an appointment</button>
+                <?php
+                }
+                ?>
+
             </ul>
         </nav>
     </div>

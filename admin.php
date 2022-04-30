@@ -207,7 +207,7 @@
 
                     <div class="col_3">
                         <div class="card">
-                            <div class="card_title">Allowed No. of Appointment Slots Today:</div>
+                            <div class="card_title">Allowed No. of Appointments Today:</div>
                             <div class="card_body">
                                 <div class="card_text">
                                 <?php
@@ -315,9 +315,10 @@
             }
             ?> <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
 
-         
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.187416904765!2d124.83928635046632!3d6.4979414952765255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f8188deb24eeb5%3A0x2b58bb78e9ae72!2sGoldenstate%20College%20of%20Koronadal%20City!5e0!3m2!1sen!2sph!4v1651155144915!5m2!1sen!2sph" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
-    </main>
+    <?php
+        include("backtotop.php");
+    ?> 
+  </main>
 </body>
 </html>
 
@@ -333,7 +334,8 @@
 <script>
        $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstudent').click(function(){
-      
+            
+            /*
             $.post("adminajax_regstudent.php", 
             {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
             student_course_report: $('#student_course_report').val(),
@@ -341,6 +343,7 @@
             function(data){
                 $('#generated_rep_registeredstudents').html(data);
             });
+            */
             $.post("adminajax_regstudentprint.php", 
             {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
             student_course_report: $('#student_course_report').val(),
@@ -357,12 +360,14 @@
 
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstaff').click(function(){
-      
+            
+            /*
             $.post("adminajax_regstaff.php", 
             {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
             function(data){
                 $('#generated_rep_registeredstaff').html(data);
             });
+            */
             $.post("adminajax_regstaffprint.php", 
             {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
             function(data){
@@ -378,12 +383,15 @@
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_ug').click(function(){
       
+            /*
             $.post("adminajax_ug.php", 
             {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
             batchstatus_ug: $('#batchstatus_ug').val(),},
             function(data){
                 $('#generated_rep_ug').html(data);
             });
+            */
+
             $.post("adminajax_ugprint.php", 
             {alphabetical_ln_ug: $('#alphabetical_ln_ug').val(),
             batchstatus_ug: $('#batchstatus_ug').val(),},
@@ -397,7 +405,33 @@
 
         });
    
-        
+       
+        function printDiv_regstudent() {
+            var printContents_regstudent = document.getElementById("generated_rep_registeredstudents_hidden").innerHTML;
+			var originalContents_regstudent = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstudent;
+			window.print();
+			document.body.innerHTML = originalContents_regstudent;
+        }
+
+        function printDiv_regstaff() {
+            var printContents_regstaff = document.getElementById("generated_rep_registeredstaff_hidden").innerHTML;
+			var originalContents_regstaff  = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstaff;
+			window.print();
+			document.body.innerHTML = originalContents_regstaff ;
+
+        }
+
+        function printDiv_regug() {
+            var printContents_regug = document.getElementById("generated_rep_ug_hidden").innerHTML;
+			var originalContents_regug = document.body.innerHTML;
+			document.body.innerHTML = printContents_regug;
+			window.print();
+			document.body.innerHTML = originalContents_regug;
+
+        }
+    
     </script>
  
 
