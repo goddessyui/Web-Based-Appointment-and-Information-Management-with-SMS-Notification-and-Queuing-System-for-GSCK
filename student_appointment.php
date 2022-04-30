@@ -1026,7 +1026,7 @@ $(document).ready(function() {
         width: 24.15%;
         margin: 5px;
         justify-content: center;
-        box-shadow: 0 1px 5px #0001;
+        box-shadow: 0 1px 5px #0005;
         transition: all .2s ease-in-out;
     }
 
@@ -1041,9 +1041,8 @@ $(document).ready(function() {
     }
     .aptype-container .aptype .content_type h4 {
         font-size: 20px;
-        font-family: Roboto;
         text-transform: uppercase;
-        color: #333;
+        color: #000;
         text-align: left;
         height: 40px;
         text-decoration: underline;
@@ -1055,17 +1054,15 @@ $(document).ready(function() {
     }
     .aptype-container .aptype .content_type p {
        text-align: left;
-       font-family: 'times new roman';
        font-size: 16px;
        color: #444;
        text-transform: initial;
     }
     .at_under_staff {
-        font-family: Lato;
         text-transform: uppercase;
         transform: translateY(6px);
         font-size: 14px;
-        color: #333;
+        color: #000;
     }
     
 
@@ -1166,21 +1163,19 @@ $(document).ready(function() {
         background: none;
         border: 1px solid lightgrey;
         font-size: 15px;
-        font-family: 'times new roman';
         padding-left: 10px;
-        color: #666;
+        color: #444;
 
     }
     .search-box:nth-child(2) button {
         height: 30px;
         outline: none;
         border: none;
-        background: #333;
+        background: #000;
         color: #eee;
         cursor: pointer;
         padding-left: 30px;
         padding-right: 30px;
-        font-family: Roboto;
         text-transform: uppercase;
         font-size: 12px;
         margin-left: 10px;
@@ -1202,7 +1197,6 @@ $(document).ready(function() {
         background: #324E9E;
         padding: 5px 12px;
         color: #eee;
-        font-family: Lato;
         text-transform: uppercase;
         font-size: 12px;
     }

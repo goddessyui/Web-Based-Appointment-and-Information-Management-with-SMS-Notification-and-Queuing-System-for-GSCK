@@ -138,7 +138,7 @@ $(document).ready(function() {
 						$('#message').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);
-            			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
+            			$('#number').html('<small>We sent the verification code to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
 						$('#hidden_username').val(dataResult.username);
             			$('#hidden_mobile_number').val(dataResult.mobile_number);
             			$('#verify').val(dataResult.verify);
@@ -162,7 +162,7 @@ $(document).ready(function() {
 						$('#message').hide();
             			$('#username').prop('disabled', true);
             			$('#btn_otp_verify').prop('disabled', false);						
-            			$('#number').html('<small>We send to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
+            			$('#number').html('<small>We sent the verification code to your number 09****'+dataResult.mobile_number.slice(-2)+'</small>');  
 						$('#hidden_username').val(dataResult.username);
             			$('#hidden_mobile_number').val(dataResult.mobile_number);	
             			$('#verify').val(dataResult.verify);				

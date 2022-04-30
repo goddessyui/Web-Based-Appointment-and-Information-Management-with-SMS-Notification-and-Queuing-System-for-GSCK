@@ -159,7 +159,7 @@
                      <!----forgotpass form---->
                     <div class="forgot_pass_div" id="forgot_pass_div_id">
 
-                        <h2>forgotpass</h2>
+                        <h2>Forgot password?</h2>
 
                     <!-- MESSAGE AFTER CHANGGING NEW PASSWORD SUCCESSFULLY -->
                         <div class="form-group">
@@ -168,16 +168,14 @@
 
 
                     <!-- POP UP THATS FADES OUT MESSAGE AFTER VERIFYING -->
-                        <div class="form-group">
-                            <div id="message_fade"></div>
-                        </div>
+                 
 
 
                     <!-- FORM FOR USERNAME VERIFICATION -->
                         <form id="username_verify" name="form" method="post">
                             <div class="go_back_pass">
                                 <button onclick="BackToLogin()"><a href="#">Go Back</a></button>
-                                <h3>FORGOT PASSWORD</h3>
+                                <h3>CHANGE YOUR PASSWORD</h3>
                             </div>
 
                             <div class="input_n_button">
@@ -203,19 +201,29 @@
                             </div>
 
                             <div>
-                                <label>Enter Verification Code</label>
-                                <input type="text" name="verification_code" id="verification_code" />
-                                <input type="button" name="btn_otp_verify" class="btn btn-success" value="Resend" id="btn_otp_resend" disabled/><small id="countdown"></small>
+                                <div class="form_group">
+                                    <input type="text" name="verification_code" id="verification_code" placeholder="Enter Verification Code" class="verification_input"/>
+                                </div>
+
+                                <input type="button" name="btn_otp_verify" class="btn_success" value="Resend" id="btn_otp_resend" disabled/>
                             </div>
 
                             <div>
-                                <input type="button" name="btn_otp_verify" class="btn btn-success" value="Verify" id="btn_otp_verify" disabled/>
+                                <input type="button" name="btn_otp_verify" class="btn_success" value="Verify" id="btn_otp_verify" disabled/>
+                                <div class="countdown_div">
+                                    <small id="countdown"></small>
+                                </div>
                             </div>
 
                             <!-- message for errors -->
                             <div class="form-group">
-                                <small id="message1" style="color:red;"></small>
+                                <small id="message1"></small>
                             </div>
+
+                            <div class="form-group">
+                                <small id="message_fade"></small>
+                            </div>
+
                         </form>
                     <!-- FORM FOR VERIFYING CODE -->
 
@@ -284,7 +292,7 @@
                         </div>
                     </button>
 
-
+                    <div class="register_form_div">
                         <!-- DISPLAY AFTER ACCOUNT CREATED -->
                         <div class="form_group" id='m' style="display:none;">
                             <h3 id="message_created_account"></h3>
@@ -294,38 +302,32 @@
 
                         <!-- VERIFICATION -->
                         <form id="verification_form" name="form1" method="post">
+                      
+                            <h1>Account verification</h1>
+                            <p>You need to input the exact details below</p>
+                      
                             <div class="form_group">
-                                <h1>Verify</h1>
-                            </div>
-
-                            <div class="form_group">
-                                <label>Student/Staff ID</label>
                                 <input type="text" name="s_id" id="s_id" placeholder="Your Student/Staff ID">
                             </div>
 
                             <div class="form_group">
-                                <label>First Name</label>
                                 <input type="text" name="first_name" id="first_name" placeholder="Your First Name" >
                             </div>
 
                             <div class="form_group">
-                                <label>Last Name</label>
                                 <input type="text" name="last_name" id="last_name" placeholder="Your Last Name" >
                             </div>
 
 
                             <div class="form_group">
-                                <input type="button" name="btn_verify" class="btn btn-success" value="Verify" id="btn_verify_reg" />
+                                <input type="button" name="btn_verify" class="btn_success" value="Verify" id="btn_verify_reg" />
                             </div>
-                            
 
-                            <div class="form_group">
-                                <small id="message_reg" style="color:red;"></small>
-                            </div>
+                            <small id="message_reg" style="color:red;"></small>
 
                         </form>
                             <!-- VERIFICATION -->
-
+                    </div>
 
 
 
@@ -336,35 +338,31 @@
                                 <div id="message1"></div>
                             </div>
 
-                            <h1>Sign Up</h1>
+                            <h1>Registration Form</h1>
+
                             <div>
-                                <label>Student ID: </label>
                                 <input type="text" name="student_id" id="student_id" readonly>
                             </div>
 
                             <div>
-                                <label>First Name: </label>
                                 <input type="text" name="first_name1" id="first_name1" readonly>
                             </div>
                             
                             <div>
-                                <label>Last Name: </label>
                                 <input type="text" name="last_name1" id="last_name1" readonly>
                             </div>
                             
                             <div>
-                                <label>Username: </label>
                                 <input type="text" name="username" id="username_reg" placeholder="enter a username" />
                             </div>
                             
                             <div>
-                                <label>Mobile Number: </label>
                                 <input type="tel" name="number" id="number_reg" placeholder="09683510254"  />
                             </div>
 
                             <div>
-                                <label>Course: </label>
                                 <select name="course" id="course">  
+                                    <option value="">Course</option>
                                     <option value="BSHM">BSHM</option>
                                     <option value="BSTM">BSTM</option>
                                     <option value="BSIT">BSIT</option>
@@ -380,8 +378,8 @@
                             </div>
 
                             <div>
-                                <label>Year: </label> 
-                                <select name="year" id="year">  
+                                <select name="year" id="year">
+                                    <option value="">Year</option>  
                                     <option value="1">1st Year</option>
                                     <option value="2">2nd Year</option>
                                     <option value="3">3rd Year</option>
@@ -390,7 +388,6 @@
                             </div>
 
                             <div class>
-                                <label>Password: </label>
                                 <input type="password" name="passwd" id="passwd" placeholder="enter a password" autocomplete="off" />
                             </div>
 
@@ -399,7 +396,6 @@
                             </div>
 
                             <div>
-                                <label>Re-enter Password: </label>
                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm your password" autocomplete="off" />
                             </div>
 
@@ -413,6 +409,9 @@
                                 <small id="message2" style="color:red;"></small>
                             </div>
                         </form>
+
+
+
                         <!-- STUDENT REGISTRATION -->
 
 
@@ -427,33 +426,28 @@
                             <h1>Sign Up</h1>
                             
                             <div>
-                                <label for="staff_id">Staff ID: </label>
                                 <input type="text" name="staff_id" id="staff_id" readonly>
                             </div>
                             
                             <div>
-                                <label>First Name: </label>
                                 <input type="text" name="first_name2" id="first_name2" readonly>
                             </div>
                             
                             <div>
-                                <label>Last Name: </label>
                                 <input type="text" name="last_name2" id="last_name2" readonly>
                             </div>
 
                             <div>
-                                <label>Username: </label>
                                 <input type="text" name="username2" id="username2" placeholder="enter a username" />
                             </div>
 
                             <div>
-                                <label>Phone Number: </label>
                                 <input type="tel" name="number2" id="number2" placeholder="09683510254"  />
                             </div>
 
                             <div>
-                                <label>Position: </label>
                                 <select name="position2" id="position2">  
+                                    <option value="">Position</option>
                                     <option value="Teacher">Teacher</option>  
                                     <option value="Accounting Staff/Scholarship Coordinator">Accounting Staff/Scholarship Coordinator</option>  
                                 </select>
@@ -481,7 +475,6 @@
                             </div>
 
                             <div>
-                                <label>Password: </label>
                                 <input type="password" name="passwd2" id="passwd2" placeholder="enter a password" autocomplete="off"  />
                             </div>
 
@@ -490,7 +483,6 @@
                             </div>	
 
                             <div>
-                                <label>Re-enter Password: </label>
                                 <input type="password" name="confirm_password2" id="confirm_password2" placeholder="confirm your password" autocomplete="off"  />
                             </div>
 
@@ -510,6 +502,21 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .input_n_button {
+            display: flex;
+            width: 100%;
+        }
+        .input_n_button span {
+            width: 30px;
+        }
+        .input_n_button #forgot_username {
+            background: none;
+            outline: none;
+        }
+    </style>
+
 
 
 <script>

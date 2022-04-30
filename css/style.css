@@ -1,12 +1,14 @@
 
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Libre+Bodoni:wght@400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
 
 
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'times new roman';
 
     }
     body {
@@ -36,7 +38,6 @@
 
     }
     .title_container h3 {
-        font-family: roboto;
         color: #333;
         text-align: center;
         transform: translateX(50px);
@@ -57,7 +58,6 @@
     .sign_user button{
         border: none;
         background: none;
-        font-family: Poppins;
         color: #333;
         text-transform: uppercase;
         font-size: 13.5px;
@@ -146,7 +146,6 @@
             padding-left: 40px;
         }
         .nav_container nav ul h4 {
-            font-family: Lato;
             text-transform: uppercase;
             color: #333;
             font-weight: 500;
@@ -160,7 +159,6 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 500;
-            font-family: Lato;
             font-weight: 500;
             text-transform: uppercase;
             width: 180px;
@@ -168,16 +166,15 @@
         .button_ma {
             margin-bottom: 20px;
             margin-top: 8px;
-            background: #444;
+            background: #000;
         }
         .button_saa {
             margin-top: 20px;
-            background: #444;
+            background: #000;
         }
         .nav_container nav ul a {
             text-decoration: none;
-            font-family: Roboto;
-            color: #444;
+            color: #000;
             font-size: 16px;
             text-transform: uppercase;
             transition: all .1s ease-in;
@@ -263,7 +260,6 @@
     }
     .login_form_div form p {
         font-weight: 500;
-        font-family: Lato;
         font-size: 14px;
         color: #333;
         margin-bottom: 40px;
@@ -288,7 +284,6 @@
         border: none;
         outline: none;
         background: none;
-        font-family: Lato;
     }
     .login_form_div form .input_button_div {
         width: 100%;
@@ -298,7 +293,6 @@
         border: none;
         background: #324e9e;
         height: 32px;
-        font-family: lato;
         color: #eee;
         margin-bottom: 10px;
         cursor: pointer;
@@ -306,7 +300,6 @@
     .option_div button {
         background: none;
         border: none;
-        font-family: lato;
         font-size: 14px;
         text-decoration: underline;
         color: #324e9e;
@@ -337,7 +330,6 @@
         border: none;
         color: #324e9e;
         text-decoration: underline;
-        font-family: Lato;
         font-size: 12px;
         text-transform: uppercase;
     }
@@ -346,7 +338,6 @@
     }
     .go_back_pass h3 {
         font-weight: 500;
-        font-family: Lato;
         font-size: 14px;
         margin-left: 10px;
     }
@@ -371,7 +362,6 @@
         border: none;
         height: 32px;
         padding-left: 10px;
-        font-family: Lato;
         font-size: 14px;
         outline: none;
     }
@@ -382,7 +372,6 @@
         background: #324e9e;
         color: #eee;
         height: 32px;
-        font-family: Lato;
         cursor: pointer;
     }
 
@@ -406,7 +395,66 @@
         height: 60vh;
         background: #fff;
     }
+    .register_form_div {
+        width: 100%;
+        padding: 40px;
+    }
+    .register_form_div form {
+        width: 100%;
+    }
+    .register_form_div form h1 {
+        font-size: 22px;
+        text-decoration: underline;
+        margin-bottom: 8px;
+        margin-top: 20px;
+        color: #333;
+    }
+    .register_form_div form p {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        color: #444;
+    }
+    .register_form_div form .form_group{
+        width: 100%;
+        margin-bottom: 12px;
+        height: 32px;
+        border: 1px solid lightgrey;
+    }
+    .register_form_div form .form_group input {
+        width: 100%;
+        height: 32px;
+        padding-left: 10px;
+        border: none;
+        background: none;
+    }
+    .register_form_div form .form_group .btn_success {
+        background: #324e9e;
+        color: #eee;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
 
+    .verification_input {
+        background: none;
+        width: 100%;
+        padding: 5px;
+        padding-left: 10px;
+        border: 1px solid lightgrey;
+        margin-bottom: 5px;
+    }
+    #number {
+        margin-bottom: 12px;
+    }
+    .countdown_div {
+        text-align: center;
+        color: red;
+        width: 100%;
+        margin-top: 12px;
+    }
+    .btn_success {
+        text-transform: uppercase;
+    }
 
 
 
@@ -440,7 +488,6 @@
         line-height: 21px;
         text-transform: uppercase;
         color: #fff;
-        font-family: Lato;
         transition: all .1s ease-in;
         opacity: 0;
         cursor: pointer;
@@ -491,7 +538,7 @@
         padding: 4px 12px;
         color: #fff;
         font-size: 12px;
-        background: #444;
+        background: #000;
     }
     .fa.fa-bell-o {
         font-size: 18px;
@@ -516,19 +563,21 @@
     }
  
     .dropdown-menu {
-        width: 400px;
+        width: 380px;
         height: 92vh;
         position: fixed;
         top: 80px;
         right: 0;
         list-style-type: none;
         box-sizing: border-box;
-        padding: 20px 40px;
-        padding-top: 30px;
+        padding: 20px;
+        padding-top: 40px;
         opacity: 0;
         transform: translateX(55vh);
         transition: all .2s ease-in-out;
-        background: #444;
+        background: #fff;
+        border-left: 1px solid lightgrey;
+        border-top: 1px solid lightgrey;
     }
  
     /* width */
@@ -563,26 +612,24 @@
 
     .notif_container a {
         text-decoration: none;
-        color: #fff;
+        color: #000;
     }
     .notif_container a:visited {
         color: grey;
     }
     .notif_container .notif_title {
-        font-family: roboto;
         margin-bottom: 5px;
         font-size: 13px;
     }
 
     .notif_container small {
         font-size: 14px;
-        color: #eee;
+        color: #444;
     }
     .count {
         height: 14px;
         width: 14px;
         font-size: 9px;
-        font-family: roboto;
         font-weight: bold;
         border-radius: 50%;
         display: flex;
