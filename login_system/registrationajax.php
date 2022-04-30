@@ -19,6 +19,14 @@ if ($_POST['type']==1){
 	}
 	else if(mysqli_num_rows($query2) == 1 && mysqli_num_rows($query3) == 0){
 
+        session_unset();
+    	session_destroy();
+		session_start();
+        $_SESSION["s_id"] = $s_id;
+        $_SESSION["first_name"] = $first_name1;
+        $_SESSION["last_name"] = $last_name1;
+
+
         echo json_encode(array("statusCode"=>202, "staff_id"=>$s_id, "first_name"=>$first_name1, "last_name"=>$last_name1));
 	}
 	else if(mysqli_num_rows($query1) == 1 || mysqli_num_rows($query3) == 1){

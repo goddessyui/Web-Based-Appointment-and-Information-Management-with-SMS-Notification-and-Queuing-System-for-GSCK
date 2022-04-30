@@ -342,7 +342,7 @@
                     </div>
 
 
-
+                    <div id="staff_mes" style="color:green;"></div>
 
                         <!-- STUDENT REGISTRATION -->
                         <form id="student_form" name="form2" method="post" style="display:none;">
@@ -1182,14 +1182,13 @@ $(document).ready(function() {
 
 					}
 					else if(dataResult.statusCode==202){
-						$("#message3").html("Staff Verified !");
-        				setInterval(function() { $("#message3").fadeOut(); }, 1000);
-						$('#btn_staff').prop('disabled', false);
-						$("#staff_form").show();
-						$("#verification_form").hide();
-						$('#staff_id').val(dataResult.staff_id);
-						$('#first_name2').val(dataResult.first_name);
-						$('#last_name2').val(dataResult.last_name);
+                        $("#verification_form").hide();
+                       
+						$("#staff_mes").html("Staff Verified !");
+        				setInterval(function() { location.href = "register_admin.php"; }, 500);
+						
+						
+                        
 					
 					}
                     else if(dataResult.statusCode==203){
@@ -1322,124 +1321,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// STAFF REGISTRATION
-	$('#btn_staff').on('click', function() {
-		$('#btn_staff').prop('disabled', true);
-		var staff_id = $('#staff_id').val(); 
-		var number = $('#number2').val();
-		var position = $('#position2').val();
-		var username = $('#username2').val();
-		var password = $('#passwd2').val();
-		var confirm_password = $('#confirm_password2').val();
-		var first_name1 	 = $('#first_name2').val();
-		var last_name1 = $('#last_name2').val();
-		var type = [];
-        $(':checkbox:checked').each(function(i){
-          type[i] = $(this).val();
-        });
-		if(student_id!="" && number!="" && course!="" && username!="" && year!="" && password!="" && confirm_password!="" && first_name!="" && last_name!=""){
-
-		if(!/^[a-z A-Z 0-9]+$/.test(username)){
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Only letters and digit characters are allowed for Username!!');
-		}
-		else if (username.length < 3) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Username must be at least 3 characters!!'); 
-    	}
-		else if (username.length > 16) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Username must not exceed 16 characters!!'); 
-    	}
-		else if (!/^[0-9]+$/.test(number)) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Only numbers are allowed for phone numbers!!'); 
-		}
-		else if (number.length != 11) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Phone number must be at 11 digits!!'); 
-		}
-		else if (number.substring(0, 2)!='09') {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Incorrect phone number!!'); 
-		}
-		else if (type=="") {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Put at least one appointment type!!'); 
-		}
-		else if (password.length < 8) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password must be at least 8 characters!!'); 
-		}
-		else if (password.length > 16) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password must not exceed 16 characters!!'); 
-		}
-		else if (!/^(?!.* )/.test(password)) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password must not contain space!!'); 
-		}
-		else if  (password.search(/[a-z]/i) < 0) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password must contain at least one letter!!');
-		}
-		else if  (password.search(/[0-9]/) < 0) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password must contain at least one digit!!'); 
-		}
-		else if (password!=confirm_password) {
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Password did not match!!'); 
-		}
-		else{
-			$.ajax({
-				url: "login_system/registrationajax.php",
-				type: "POST",
-				data: {
-					type:3,
-					staff_id:staff_id,
-					number: number,
-					first_name: first_name1,
-					last_name: last_name1,	
-					position: position,	
-					username: username,	
-					types: type,	
-					password: password						
-				},
-				cache: false,
-				success: function(dataResult){
-					$('#message4').html(dataResult); 
-					var dataResult = JSON.parse(dataResult);
-					if(dataResult.statusCode==201){
-						$("#m").show();
-						$("#staff_form").hide();
-						$('#message_created_account').html('Account Created!! ');
-						
-   					 setTimeout( function() { location.href = "admin.php" }, 1500 );
-											
-					}
-					else if(dataResult.statusCode==202){
-						$('#btn_staff').prop('disabled', false);
-						$('#message4').html('An error has occured. Please try again!!'); 
-					}
-					else if(dataResult.statusCode==203){
-						$('#btn_staff').prop('disabled', false);
-						$('#message4').html('Username '+dataResult.username+' has already been taken!!'); 
-					}
-					else if(dataResult.statusCode==204){
-						$('#btn_staff').prop('disabled', false);
-						$('#message4').html('Another account is already using the mobile number you entered!!'); 
-					}
-					
-				}
-			});
-		}
-	}
-		else{
-			$('#btn_staff').prop('disabled', false);
-			$('#message4').html('Please fill all the fields!!'); 
-		}
-	});
 
 
 });
