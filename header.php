@@ -83,7 +83,7 @@
                 <?php 
                     if(isset($_SESSION['student_id'])){
                     ?>
-                    <a href="student_profile.php"><h4>Profile Setting</h4></a>
+                    <a href="student_profile.php"><h4>Profile Setting &rarr;</h4></a>
                     <a href="student_appointment_details.php"><button class="button_ma" >My Appointments</button></a>
                     <?php
                     }
@@ -332,7 +332,7 @@
 
 
                             <div class="form_group">
-                                <input type="button" name="btn_verify" class="btn_success" value="Verify" id="btn_verify_reg" />
+                                <input type="button" name="btn_verify" class="btn_success" value="Proceed to Registration" id="btn_verify_reg" />
                             </div>
 
                             <small id="message_reg" style="color:red;"></small>
