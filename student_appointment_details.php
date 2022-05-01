@@ -11,121 +11,135 @@ if (empty($_SESSION['student_id'])){
 <div class="parent-div">
     <div class="cs_container"><!---------Start of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
         <div class="count_status"><!---------Start of No. of Active Appointments-------------------------------->
-            <h5>Active Appointments</h5><br>
-            <p>
-                <?php
-                    $acceptedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-                        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
-                        tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
-                        FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                        WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'";
-                    $accepted_appointment_list = mysqli_query($db, $acceptedappointment);
-                    $count = mysqli_num_rows($accepted_appointment_list); 
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="activeapp()">  
+                    <h3>
+                    <?php
+                        $acceptedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+                            tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
+                            tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
+                            FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                            ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                            INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'";
+                        $accepted_appointment_list = mysqli_query($db, $acceptedappointment);
+                        $count = mysqli_num_rows($accepted_appointment_list); 
+                        echo $count;
+                    ?>
+                    </h3>
+                    <h3>Active Appointments</h3>    
+            </button>
+
         </div>
         <!---------End of No. of Active Appointments-------------------------------->
         <!---------Start of No. of Pending Appointments-------------------------------->
         <div class="count_status">
-            <h5>Pending Appointments</h5><br>
-            <p>
-                <?php
-                    $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
-                    ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                    INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                    WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
-                    WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
-                    AND tbl_student_registry.student_id = '$student_id' AND tbl_appointment.status = 'Pending'";
-                    $pending_appointment_list = mysqli_query($db, $pendingappointment);
-                    $count = mysqli_num_rows($pending_appointment_list);
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="pendingapp()">
+        
+                <h3>
+                    <?php
+                        $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
+                        ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                        WHERE NOT EXISTS(SELECT * FROM tbl_appointment_detail 
+                        WHERE tbl_appointment.appointment_id = tbl_appointment_detail.appointment_id) 
+                        AND tbl_student_registry.student_id = '$student_id' AND tbl_appointment.status = 'Pending'";
+                        $pending_appointment_list = mysqli_query($db, $pendingappointment);
+                        $count = mysqli_num_rows($pending_appointment_list);
+                        echo $count;
+                    ?>
+                </h3>
+                <h3>Pending Appointments</h3>
+            </button>
         </div>
         <!---------End of No. of Pending Appointments-------------------------------->
         <!---------Start of No. of Missed Appointments-------------------------------->
         <div class="count_status">
-            <h5>Missed Appointments</h5><br>
-            <p>
-                <?php
-                    $missedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-                        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
-                        tbl_appointment.note, tbl_appointment_detail.comment
-                        FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                        WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
-                        AND tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'";
-                    $missed_appointment_list = mysqli_query($db, $missedappointment);
-                    $count = mysqli_num_rows($missed_appointment_list);
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="missedapp()">
+                <h3>
+                    <?php
+                        $missedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+                            tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
+                            tbl_appointment.note, tbl_appointment_detail.comment
+                            FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                            ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                            INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                            WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
+                            AND tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'";
+                        $missed_appointment_list = mysqli_query($db, $missedappointment);
+                        $count = mysqli_num_rows($missed_appointment_list);
+                        echo $count;
+                    ?>
+                </h3>
+                <h3>Missed Appointments</h3>
+            </button>
         </div>
         <!---------End of No. of Missed Appointments-------------------------------->
         <!---------Start of No. of Declined Appointments-------------------------------->
         <div class="count_status">
-            <h5>Declined Appointments</h5><br>
-            <p>
-                <?php
-                    $declinedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-                        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
-                        tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
-                        FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                        WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Declined'";
-                    $declined_appointment_list = mysqli_query($db, $declinedappointment);
-                    $count = mysqli_num_rows($declined_appointment_list); 
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="declinedapp()">
+                <h3>
+                    <?php
+                        $declinedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+                            tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
+                            tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
+                            FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                            ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                            INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Declined'";
+                        $declined_appointment_list = mysqli_query($db, $declinedappointment);
+                        $count = mysqli_num_rows($declined_appointment_list); 
+                        echo $count;
+                    ?>
+                </h3>
+                <h3>Declined Appointments</h3>
+            </button>
         </div>
         <!---------End of No. of Declined Appointments-------------------------------->
         <!---------Start of No. of Cancelled Appointments-------------------------------->
         <div class="count_status">
-            <h5>Cancelled Appointments</h5><br>
-            <p>
-                <?php
-                    $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-                        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
-                        tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
-                        FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                        WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Cancelled'";
-                    $cancelled_appointment_list = mysqli_query($db, $cancelledappointments);
-                    $count = mysqli_num_rows($cancelled_appointment_list); 
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="cancelledapp()">
+                <h3>
+                    <?php
+                        $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+                            tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
+                            tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
+                            FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                            ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                            INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Cancelled'";
+                        $cancelled_appointment_list = mysqli_query($db, $cancelledappointments);
+                        $count = mysqli_num_rows($cancelled_appointment_list); 
+                        echo $count;
+                    ?>
+                </h3>
+                <h3>Cancelled Appointments</h3>
+            </button>
         </div>
         <!---------End of No. of Cancelled Appointments-------------------------------->
         <!---------Start of No. of Past Appointments-------------------------------->
         <div class="count_status">
-            <h5>Past Appointments</h5><br>
-            <p>
-                <?php
-                    $doneappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
-                        tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
-                        tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
-                        FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                        WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Done'";
-                    $done_appointment_list = mysqli_query($db, $doneappointment);
-                    $count = mysqli_num_rows($done_appointment_list); 
-                    echo $count;
-                ?>
-            </p>
+            <button onclick="doneapp()">
+                <h3>
+                    <?php
+                        $doneappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
+                            tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
+                            tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
+                            FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                            ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                            INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                            INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
+                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Done'";
+                        $done_appointment_list = mysqli_query($db, $doneappointment);
+                        $count = mysqli_num_rows($done_appointment_list); 
+                        echo $count;
+                    ?>
+                </h3>
+                <h3>Past Appointments</h3>
+            </button>
         </div>
         <!---------End of No. of Past Appointments-------------------------------->
     </div><!---------End of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
@@ -151,14 +165,9 @@ if (empty($_SESSION['student_id'])){
         }
         else{
        ?>
-        <!------Start of Appointment Status Buttons ---------------------->
-        <button onclick="activeapp()">Active Appointments</button>
-        <button onclick="pendingapp()">Pending Appointments</button>
-        <button onclick="missedapp()">Missed Appointments</button>
-        <button onclick="declinedapp()">Declined Appointments</button>
-        <button onclick="cancelledapp()">Cancelled Appointments</button>
-        <button onclick="doneapp()">Past Appointments</button>
-         <!------End of Appointment Status Buttons ---------------------->
+        
+
+        
         <div> <!------Start of Appointment Status Includes ---------->
             <div id="appactive">
                 <h4>Active Appointments</h4>
