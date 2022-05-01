@@ -9,6 +9,13 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
 ?>
 <!-- STAFF REGISTRATION -->
 
+<!-- DISPLAY AFTER ACCOUNT CREATED -->
+<div>
+    <h3 id="message_created_account1"></h3>
+</div>
+<!-- DISPLAY AFTER ACCOUNT CREATED -->
+
+
 <form id="staff_form" name="form2" method="post">
 	<div class="form_group">
 		<div id="message3"></div>
@@ -98,7 +105,7 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
 <!-- STAFF REGISTRATION -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
 // STAFF REGISTRATION
 $(document).ready(function() {
@@ -202,11 +209,10 @@ $(document).ready(function() {
 					$('#message4').html(dataResult); 
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==201){
-						$("#m").show();
 						$("#staff_form").hide();
-						$('#message_created_account').html('Account Created!! ');
+						$('#message_created_account1').html('Account Created!! ');
 						
-   					 setTimeout( function() { location.href = "admin.php" }, 1500 );
+   					 setTimeout( function() { location.href = "admin.php" }, 500 );
 											
 					}
 					else if(dataResult.statusCode==202){
