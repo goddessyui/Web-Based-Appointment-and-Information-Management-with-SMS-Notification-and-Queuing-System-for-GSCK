@@ -50,3 +50,11 @@ main h3 {
 .appointment_result .row {
     background: green;
 }
+.appointment_result .row_app {
+    background: grey;
+    display: flex;
+}
+.appointment_result .row_app .col_app {
+    background: pink;
+    margin: 5px;
+}
