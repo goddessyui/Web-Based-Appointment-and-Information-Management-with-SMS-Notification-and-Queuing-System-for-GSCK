@@ -127,19 +127,16 @@ include("admin_header.php");
                                             echo $rows['appointment_type']; 
                                             echo $rows['first_name']." ".$rows['last_name'];    
                                             echo $rows['course']." ".$rows['year'];
+                                         
+                                            if($rows['note']==""){
+                                                echo "No note.";
+                                            }
+                                            else{
+                                                echo $rows['note'];
+                                            }
                                         ?>
                                     </div>
                                     
-                                    <div class="col_app">
-                                        <?php
-                                        if($rows['note']==""){
-                                            echo "No note.";
-                                        }
-                                        else{
-                                            echo $rows['note'];
-                                        }
-                                        ?>
-                                    </div> 
 
                                     <div class="col_app">
                                         <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
@@ -251,19 +248,14 @@ include("admin_header.php");
                                         echo $rows['appointment_type']; 
                                         echo $rows['first_name']." ".$rows['last_name'];    
                                         echo $rows['course']." ".$rows['year'];
+                                        if($rows['note']==""){
+                                            echo "No note.";
+                                        }
+                                        else{
+                                            echo $rows['note'];
+                                        }
                                     ?>
                                 </div>
-                                
-                                <div class="col_app">
-                                    <?php
-                                    if($rows['note']==""){
-                                        echo "No note.";
-                                    }
-                                    else{
-                                        echo $rows['note'];
-                                    }
-                                    ?>
-                                </div> 
 
                                 <div class="col_app">
                                     <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
@@ -373,19 +365,14 @@ include("admin_header.php");
                                         echo $rows['appointment_type']; 
                                         echo $rows['first_name']." ".$rows['last_name'];    
                                         echo $rows['course']." ".$rows['year'];
+                                        if($rows['note']==""){
+                                            echo "No note.";
+                                        }
+                                        else{
+                                            echo $rows['note'];
+                                        }
                                     ?>
                                 </div>
-                                
-                                <div class="col_app">
-                                    <?php
-                                    if($rows['note']==""){
-                                        echo "No note.";
-                                    }
-                                    else{
-                                        echo $rows['note'];
-                                    }
-                                    ?>
-                                </div> 
 
                                 <div class="col_app">
                                     <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
