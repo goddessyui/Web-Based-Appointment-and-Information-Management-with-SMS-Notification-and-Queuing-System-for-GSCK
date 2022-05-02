@@ -7,7 +7,7 @@ include("admin_header.php");
 
     <?php include("count_app.php"); ?>
 
-        <h3>Active Appointments</h3> 
+    <h3>Active Appointments</h3> 
 
     <div class="appointment_result">
 
@@ -28,7 +28,7 @@ include("admin_header.php");
                 </p> <?php
             }
             else {
-                echo "This is where the success or error button appears. This statement is for testing. Please delete after designing.";
+                echo "This is where the success or error statement appears. This statement is for testing. Please delete after designing.";
             }
             ?>
             <!--success or error-->
