@@ -18,49 +18,45 @@ if ($staff_id == ""){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	
-	 <!-- This css is only an example for the notifcation style -->
-	
+	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
     <title>Goldenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
 	<input type="checkbox" id="nav-toggle">
+
 	<div class="sidebar">
 		<div class="sidebar_brand">
-			<h1><img class="school_logo" src="image/logo.png" alt="logo" width="50"></h1>
-		</div>
+	</div>
 
 		<div class="sidebar_menu">
 			<ul>
 				<li>
+					<img src="icon/gold/artboard_gold.svg" alt="">
 					<a href="admin.php">
-						<span class="fa fa-home"></span>
 						<span>Dashboard</span>
 					</a>
 				</li>
 
 				<li>
+					<img src="icon/gold/account_gold.svg" alt="">
 					<a href="staff_profile.php">
-						<span class="fa fa-user-circle"></span>
 						<span>Account</span>
 					</a>
 				</li>
 
 				<li>
+					<img src="icon/gold/schedule_gold.svg" alt="">
 					<a href="schedule_admin.php">
-						<span class="fa fa-calendar-plus-o"></span>
 						<span>Set my schedule</span>
 					</a>
 				</li>
 
 				<li>
+					<img src="icon/gold/anouncement_gold.svg" alt="">
 					<a href="announcement_admin.php">
-						<span class="fa fa-bullhorn"></span>
 						<span>Announcement</span>
 					</a>
 				</li>
@@ -68,8 +64,9 @@ if ($staff_id == ""){
 				if ($position == "Registrar"){
 			?>
 				<li>
+					<img src="icon/gold/record_gold.svg">
+					<button class="dropdown_btn"><span class="navname">Records</span><i class="fa fa-caret-down"></i></button>
 					
-					<button class="dropdown_btn"><span class="fa fa-book"></span><span class="navname">Records</span><i class="fa fa-caret-down"></i></button>
 					<div class="dropdown_container">
 						<a href="upload_student_records.php">Student</a>
 						<a href="upload_staff_records.php">Staff</a>
@@ -77,8 +74,9 @@ if ($staff_id == ""){
 				</li>
 
 				<li>
-					
-					<span><button class="dropdown_btn"><span class="fa fa-calendar"></span><span class="navname">My Appointments</span><i class="fa fa-caret-down"></i></button>
+					<img src="icon/gold/appointment_gold.svg">
+					<span><button class="dropdown_btn">
+						<span class="navname">Appointments</span><i class="fa fa-caret-down"></i></button>
 					<div class="dropdown_container">
 						<a href="staff_accepted_requests.php">Active </a>
 						<a href="staff_pending_requests.php">Pending </a>
@@ -97,18 +95,25 @@ if ($staff_id == ""){
             ?>
 
 				<li>
-					
-					<button class="dropdown_btn"><span class="fa fa-book"></span><span class="navname">UniFAST</span><i class="fa fa-caret-down"></i></button>
+					<button class="dropdown_btn">
+						<img src="icon/gold/record_gold.svg">
+						<span class="navname">UniFAST</span>
+						<i class="fa fa-caret-down"></i>
+					</button>
+
 					<div class="dropdown_container">
 						<a href="upload_unifast_grantee.php">Grantee Records</a>
 						<a href="claimcheque_pendingapp.php">Claim Cheque</a>
 						<a href="submitdocu_pendingapp.php">Submit Documents</a>
 					</div>
-					
 				</li>
+
 				<li>
-					
-					<button class="dropdown_btn"><span class="fa fa-calendar"></span><span class="navname">My Appointments</span><i class="fa fa-caret-down"></i></button>
+					<button class="dropdown_btn">
+						<img src="icon/gold/appointment_gold.svg" alt="">
+						<span class="navname">My Appointments</span><i class="fa fa-caret-down"></i>
+					</button>
+
 					<div class="dropdown_container">
 						<a href="staff_accepted_requests.php">Active </a>
 						<a href="staff_pending_requests.php">Pending </a>
@@ -137,15 +142,7 @@ if ($staff_id == ""){
 				</li>
 				<?php
 			}
-			?>
-
-				<li>
-					<a href="logout.php">
-						<span class="fa fa-sign-out"></span>
-						<span>Logout</span>
-					</a>
-				</li>
-			
+			?>			
 
 			</ul>
 		</div>
@@ -153,17 +150,30 @@ if ($staff_id == ""){
 
 	<div class="main-content">
 		<header>
-				<h2>
+				<div class="menu_admin">
 					<label for="nav-toggle">
-						<span class="fa fa-bars"></span>
+						<span>
+							<img src="icon/menu_btn.png" width="26">
+						</span>
 					</label>
-				</h2>
+				</div>
+
+				<div>
+					<h4>GOLDENSTATE COLLEGE OF KORONADAL</h4>
+				</div>
+
 				<div class="user_wrapper">
-					<span class="fa fa-user"></span>
-					<small><?php echo $staff_username;?></small>
+					<span class="fa fa-user-circle"></span>
+					<small>
+						<?php
+							echo $staff_username;
+						?>
+					</small>
+					<button class="btn_logout_admin"><a href="#"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
+
 					<!-- NOTIFICATION BUTTON -->
 					<div class="dropdown-toggle" data-toggle="dropdown">
-						<button onclick="BtnDropdown()">
+						<button onclick="BtnDropdown()" class="btn_no_bg">
 							<i class="fa fa-bell-o"><p class="count" id="count_red" style="text-decoration: none; color: #fff;"></p></i>
 						</button>
 						<div class="dropdown-menu" id="dropdown_id"></div>
@@ -174,10 +184,9 @@ if ($staff_id == ""){
 
 
 
-
 <style>
-    :root {
 
+    :root {
 	--blue: #324e9e;
 	--darkerblue: #2d468e;
 	--red: #ec3237;
@@ -193,7 +202,7 @@ if ($staff_id == ""){
 	box-sizing: border-box;
 	list-style-type: none;
 	text-decoration: none;
-	font-family: 'Poppins', sans-serif;
+	font-family: roboto;
 }
 
 .sidebar {
@@ -202,33 +211,47 @@ if ($staff_id == ""){
 	top: 0;
 	left: 0;
 	height: 100%;
-	background: var(--blue);
-	z-index: 100;
+	background: #333;
+	z-index: 888;
 	transition: width 300ms;
+	border-right: 1px solid lightgrey;
 }
 .sidebar_brand {
-	height: 90px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
 	text-align: center;
-	line-height: 90px;
-	background-color: white;
+	background-color: #333;
+
 }
 .sidebar_brand span {
 	display: inline-block;
 	padding-right: 1rem;
 }
 .sidebar_menu {
-	margin-top: 80px;
+	margin-top: 20px;
 }
 .sidebar_menu li{
 	width: 100%;
 	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+	margin-left: 20px;
+}
+.sidebar_menu li img {
+	margin-right: 12px;
+	border-radius: 50%;
+	padding: 2px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #FEA621;
 }
 
 .sidebar_menu li a,
 .sidebar_menu li .dropdown_btn {
-	padding-left: 1rem;
-	color: #fff;
-	font-size: 1rem;
+	color: #FEA621;
+	font-size: 18px;
 	text-decoration: none;
 	display: block;
 	border: none;
@@ -236,7 +259,7 @@ if ($staff_id == ""){
 	cursor: pointer;
 	outline: none;
 	width: 100%;
-	
+	text-transform: uppercase;
 }
 
 .sidebar_menu li .dropdown_btn .navname{
@@ -250,16 +273,15 @@ if ($staff_id == ""){
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .sidebar_menu li .dropdown_container {
-  	display: none;
-  	text-align: right;
-  	padding-right: 8px;
-	background: var(--darkerblue);
+	background: #fff;
+	width: 300px;
+	padding: 20px;
+	top: 0;
 }
 
 /* Optional: Style the caret down icon */
 .sidebar_menu .fa-caret-down {
-  	float: right;
-  	padding-right: 8px;
+	margin-left: 12px;
 }
 
 #nav-toggle:checked + .sidebar {
@@ -301,42 +323,43 @@ if ($staff_id == ""){
 header {
 	background: #fff;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
-	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 	position: fixed;
 	left: 300px;
 	width: calc(100% - 300px);
 	top: 0;
-	z-index: 100;
+	z-index: 999;
 	transition: left 300ms;
-	padding: 8px 20px;
-}
-.la-user {
-	margin: 5px;
-	font-size: 20px;
+	height: 60px;
+	padding-left: 15px;
+	border-bottom: 1px solid lightgrey;
 }
 
 #nav-toggle {
 	display: none;
 }
 
-header h2 {
-	color: #222;
-}
-header label span {
-	font-size: 1.7rem;
-	padding-right: 1rem;
-}
-
 .user_wrapper {
 	display: flex;
 	align-items: center;
-	margin-right: 3rem;
+	margin-right: 20px;
+}
+.user_wrapper small {
+	margin-right: 12px;
+	margin-left: 2px;
 }
 
-.user_wrapper small {
-	display: inline-block;
-	color: var(--text-grey);
+.user_wrapper  .btn_logout_admin{
+	background: #333;
+	margin-right: 12px;
+	border: none;
+	padding: 4px 10px;
+	font-size: 12px;
+}
+.user_wrapper a {
+	color: gold;
+	font-weight: 500;
 }
 
 
@@ -346,7 +369,6 @@ header label span {
 
 .fa.fa-bell-o {
         font-size: 18px;
-        transform: translateY(2px);
 
     }
     .fa.fa-bell-o:hover {
@@ -367,20 +389,19 @@ header label span {
     }
  
     .dropdown-menu {
-        width: 400px;
-        height: 90vh;
+        width: 300px;
+        height: 100vh;
         position: fixed;
-        top: 80px;
+        top: 60px;
         right: 0;
         list-style-type: none;
         box-sizing: border-box;
         padding: 20px 40px;
         padding-top: 30px;
-        overflow: scroll;
         opacity: 0;
         transform: translateX(55vh);
         transition: all .5s ease-in-out;
-        background: #fff;
+        background: pink;
     }
  
     /* width */
@@ -421,20 +442,17 @@ header label span {
         color: grey;
     }
     .notif_container .notif_title {
-        font-family: roboto;
         margin-bottom: 5px;
         font-size: 13px;
     }
 
     .notif_container small {
-        font-family: Lato;
         font-size: 12px;
     }
     .count {
         height: 14px;
         width: 14px;
         font-size: 9px;
-        font-family: roboto;
         font-weight: bold;
         border-radius: 50%;
         display: flex;
@@ -444,6 +462,10 @@ header label span {
         top: -4px;
         right: -5px;
     }
+	.btn_no_bg {
+		border: none;
+		background: none;
+	}
 
 /*----form-div----*/
 

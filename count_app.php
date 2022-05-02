@@ -165,37 +165,3 @@
             <!--------------End of No. of Declined Requests-------------->
         </div>
         <!--------------Start of Parent of No. of Appointment Requests (5 DIVS - active, pending, declined, cancelled, past)-------------->
-
-        <style>
-            .row {
-            width: 100%;
-            margin-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            background-color: #fafafa;
-            text-align: center;
-            }
-        
-            .col_3{
-                width: 320px;
-                margin-bottom: 10px;
-                margin-left:auto;
-                margin-right:auto;
-            }
-            .card {
-                text-align: center;
-            }
-            .card_title{
-                background-color: #324e9e;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                color: #fff;
-            }
-            .card_body {
-                background-color: white;
-                font-size: 20px;
-                color: #324e9e;
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-        </style>
