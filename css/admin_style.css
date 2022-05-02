@@ -1,5 +1,52 @@
 main {
     margin-top: 60px;
-    background: #fafafa;
+    padding: 15px;
+}
+main h3 {
+    font-family: roboto;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.card_row_div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    background: #EFF0F4;
+    padding: 15px;
+}
+.card_row_div .col_3 {
+    width: 182px;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+}
+.card_row_div .col_3 a {
+    text-decoration: none;
+    color: #000;
+}
 
+.card_row_div .col_3 .card .card_title {
+    padding: 15px;
+    font-family: Roboto;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #333;
+}
+.card_row_div .col_3 .card .card_body {
+    padding-bottom: 15px;
+    font-family: Roboto;
+    font-size: 30px;
+}
+
+/*---------appointment_result------------*/
+.appointment_result {
+    background: #EFF0F4;
+    padding: 15px;
+}
+.appointment_result .row {
+    background: green;
 }

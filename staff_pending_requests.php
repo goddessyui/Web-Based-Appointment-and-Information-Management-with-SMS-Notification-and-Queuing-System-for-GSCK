@@ -7,12 +7,7 @@ include("admin_header.php");
                 include("count_app.php");
         ?>
     </div>
-    <style>
-        #pendingrequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
+  
 
     <div class="row">
         <h2>Pending Appointments</h2> 
@@ -290,3 +285,12 @@ if($position=="Accounting Staff/Scholarship Coordinator") {?>
 
 </main>
 
+<style>
+    #pendingrequests {
+        background: #324e9e;
+    }
+    #pendingrequests .card_title,
+    #pendingrequests .card_body {
+        color: #fff;
+    }
+</style>

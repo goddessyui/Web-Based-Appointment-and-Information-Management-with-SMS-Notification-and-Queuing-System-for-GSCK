@@ -7,12 +7,7 @@ include("admin_header.php");
                 include("count_app.php");
         ?>
     </div>
-    <style>
-        #declinedrequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
+   
 
     <div class="row">
         <h2>Declined Appointments</h2> 
@@ -139,3 +134,13 @@ include("admin_header.php");
     </div>
 
 </main>
+
+<style>
+    #declinedrequests {
+        background: #324e9e;
+    }
+    #declinedrequests .card_title,
+    #declinedrequests .card_body {
+        color: #fff;
+    }
+</style>

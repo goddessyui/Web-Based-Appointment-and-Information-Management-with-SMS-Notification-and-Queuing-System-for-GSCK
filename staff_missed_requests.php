@@ -7,12 +7,7 @@ include("admin_header.php");
                 include("count_app.php");
         ?>
     </div>
-    <style>
-        #missedrequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
+   
 
     <div class="row">
         <h2>Missed Appointments</h2> 
@@ -162,3 +157,13 @@ include("admin_header.php");
 
 </main>
 
+
+<style>
+    #missedrequests {
+        background: #324e9e;
+    }
+    #missedrequests .card_title,
+    #missedrequests .card_body {
+        color: #fff;
+    }
+</style>

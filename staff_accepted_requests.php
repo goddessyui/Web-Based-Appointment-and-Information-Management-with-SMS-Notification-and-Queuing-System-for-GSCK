@@ -1,47 +1,42 @@
 <?php
 include("admin_header.php");
 ?>
+
+
 <main>
-    <div class="row">
-        <?php
-                include("count_app.php");
-        ?>
-    </div>
-    <style>
-        #activerequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
 
-    <div class="row">
-        <h2>Active Appointments</h2> 
-    </div>
+    <?php include("count_app.php"); ?>
 
-    <div class="row">
+        <h3>Active Appointments</h3> 
+
+    <div class="appointment_result">
+
+        <div class="row">
             <!--success or error-->
             <?php 
-                    if(isset($_GET['success'])){
+                if(isset($_GET['success'])){
                 ?>
-                        <p align="center">
-                            <?php echo $_GET['success']; ?>
-                        </p>
+                <p align="center">
+                    <?php echo $_GET['success']; ?>
+                </p>
+
                 <?php
                     }
-                    else{
-                    }
-                    if(isset($_GET['error'])){
+
+                else{
+                }
+                if(isset($_GET['error'])){
                 ?>
-                                <p align="center">
-                                    <?php echo $_GET['error']; ?>
-                                </p>
-                        <?php
-                            }
-                    else{
-                    }
+                    <p align="center">
+                        <?php echo $_GET['error']; ?>
+                    </p>
+                <?php
+                        }
+                else{
+                }
                 ?>
                 <!--success or error-->
-    </div>
+        </div>
 
     <!-------------------------Sort Requests By Date------------------------------> 
     <div class="row">
@@ -340,24 +335,18 @@ include("admin_header.php");
         
         else {
         ?>
-                    <div class="row_app">
-                        <b>
-                            <font color="#324e9e">
-                                All Active Appointments.
-                            </font>
-                        </b> 
-                    </div>
+ 
 
-                    <div class="row_app">
-                        <div class="col_app" id="serialno"></div>
-                        <div class="col_app" id="appdate">Appt. Date</div>
-                        <div class="col_app" id="apptype">Appt.Type</div>
-                        <div class="col_app" id="studentname">Student</div> 
-                        <div class="col_app" id="studnote">Student's Note</div>
-                        <div class="col_app" id="resched">Reschedule</div> 
-                        <div class="col_app" id="comment">Comment</div>
-                        <div class="col_app" id="canceldone"></div>
-                    </div>
+                <div class="row_app">
+                    <div class="col_app" id="serialno"></div>
+                    <div class="col_app" id="appdate">Appt. Date</div>
+                    <div class="col_app" id="apptype">Appt.Type</div>
+                    <div class="col_app" id="studentname">Student</div> 
+                    <div class="col_app" id="studnote">Student's Note</div>
+                    <div class="col_app" id="resched">Reschedule</div> 
+                    <div class="col_app" id="comment">Comment</div>
+                    <div class="col_app" id="canceldone"></div>
+                </div>
         
         <?php
         
@@ -473,14 +462,20 @@ include("admin_header.php");
     } 
             //-------------------------Show All Accepted Requests WITHOUT Sorting By Date------------------------------> 
             ?>
-         
 
+   </div>
 <!-------------------------Show Accepted Requests ------------------------------>     
-
-
 </main>
 
-
+  <style>
+      #activerequests {
+          background: #324e9e;
+      }
+      #activerequests .card_title,
+      #activerequests .card_body {
+          color: #fff;
+      }
+  </style>
 
 <script>
         document.getElementById("sort_date").value = localStorage.getItem("sortingdate");

@@ -7,12 +7,7 @@ include("admin_header.php");
                 include("count_app.php");
         ?>
     </div>
-    <style>
-        #cancelledrequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
+  
 
     <div class="row">
         <h2>Cancelled Appointments</h2> 
@@ -142,3 +137,13 @@ include("admin_header.php");
     </div>
     
 </main>
+
+<style>
+      #cancelledrequests {
+          background: #324e9e;
+      }
+      #cancelledrequests .card_title,
+      #cancelledrequests .card_body {
+          color: #fff;
+      }
+  </style>

@@ -21,7 +21,7 @@ if ($staff_id == ""){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
-    <title>Goldenstate College of Koronadal - Admin Dashboard</title>
+    <title>blackenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
@@ -34,28 +34,28 @@ if ($staff_id == ""){
 		<div class="sidebar_menu">
 			<ul>
 				<li>
-					<img src="icon/gold/artboard_gold.svg" alt="">
+					<img src="icon/black/dashboard_black.svg" alt="">
 					<a href="admin.php">
 						<span>Dashboard</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/gold/account_gold.svg" alt="">
+					<img src="icon/black/user_black.svg" alt="">
 					<a href="staff_profile.php">
 						<span>Account</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="schedule_admin.php">
 						<span>Set my schedule</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/gold/anouncement_gold.svg" alt="">
+					<img src="icon/black/announcement_black.svg" alt="">
 					<a href="announcement_admin.php">
 						<span>Announcement</span>
 					</a>
@@ -64,13 +64,13 @@ if ($staff_id == ""){
 				if ($position == "Registrar"){
 			?>
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/record_black.svg" alt="">
 					<a href="upload_student_records.php">
 						<span>Student Records</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/record_black.svg" alt="">
 					<a href="upload_staff_records.php">
 						<span>Staff Records</span>
 					</a>
@@ -78,7 +78,7 @@ if ($staff_id == ""){
 				
 
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -90,26 +90,26 @@ if ($staff_id == ""){
             ?>
 				
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/record_black.svg" alt="">
 					<a href="upload_unifast_grantee.php">
 						<span>Grantee Records</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="claimcheque_pendingapp.php">
 						<span>Claim Cheque</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="submitdocu_pendingapp.php">
 						<span>Submit Documents</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -119,7 +119,7 @@ if ($staff_id == ""){
 				else if($position == "Teacher"){
             ?>
 				<li>
-					<img src="icon/gold/schedule_gold.svg" alt="">
+					<img src="icon/black/schedule_black.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -142,18 +142,11 @@ if ($staff_id == ""){
 					</label>
 				</div>
 
-				<div>
-					<h4>GOLDENSTATE COLLEGE OF KORONADAL</h4>
+				<div class="title_name">
+					<h3>GOLDENSTATE COLLEGE OF KORONADAL</h3>
 				</div>
 
 				<div class="user_wrapper">
-					<span class="fa fa-user-circle"></span>
-					<small>
-						<?php
-							echo $staff_username;
-						?>
-					</small>
-					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
 
 					<!-- NOTIFICATION BUTTON -->
 					<div class="dropdown-toggle" data-toggle="dropdown">
@@ -162,6 +155,7 @@ if ($staff_id == ""){
 						</button>
 						<div class="dropdown-menu" id="dropdown_id"></div>
 					</div>
+					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
        <!-- NOTIFICATION BUTTON -->
 				</div>
 		</header>
@@ -169,6 +163,7 @@ if ($staff_id == ""){
 
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
     :root {
 	--blue: #324e9e;
@@ -186,7 +181,6 @@ if ($staff_id == ""){
 	box-sizing: border-box;
 	list-style-type: none;
 	text-decoration: none;
-	font-family: roboto;
 }
 
 .sidebar {
@@ -195,7 +189,7 @@ if ($staff_id == ""){
 	top: 0;
 	left: 0;
 	height: 100%;
-	background: #333;
+	background: #fff;
 	z-index: 888;
 	transition: width 300ms;
 	border-right: 1px solid lightgrey;
@@ -205,37 +199,29 @@ if ($staff_id == ""){
 	display: flex;
 	justify-content: center;
 	text-align: center;
-	background-color: #333;
+	background-color: #fff;
+	border-bottom: 1px solid lightgrey;
 
 }
-.sidebar_brand span {
-	display: inline-block;
-	padding-right: 1rem;
-}
+
 .sidebar_menu {
-	margin-top: 20px;
+	background: #EFF0F4;
+	margin: 15px;
+	padding: 15px;
+	height: 88vh;
 }
+
 .sidebar_menu li{
 	width: 100%;
 	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
 	text-transform: uppercase;
-	margin-left: 20px;
-}
-.sidebar_menu li img {
-	margin-right: 12px;
-	border-radius: 50%;
-	padding: 2px;
-	width: 30px;
-	height: 30px;
-	border: 1px solid #FEA621;
 }
 
-.sidebar_menu li a,
-.sidebar_menu li .dropdown_btn {
-	color: #FEA621;
-	font-size: 18px;
+.sidebar_menu li a {
+	color: #333;
+	font-size: 16px;
 	text-decoration: none;
 	display: block;
 	border: none;
@@ -244,24 +230,15 @@ if ($staff_id == ""){
 	outline: none;
 	width: 100%;
 	text-transform: uppercase;
+	font-family: Lato;
+}
+.sidebar_menu li img {
+	margin-right: 12px;
+	padding: 2px;
+	width: 26px;
+	height: 26px;
 }
 
-.sidebar_menu li .dropdown_btn .navname{
-	padding-left: 5px;
-}
-/* Style the sidenav links and the dropdown button */
-
-.sidebar_menu li .dropdown_btn {
-	text-align: left;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.sidebar_menu li .dropdown_container {
-	background: #fff;
-	width: 300px;
-	padding: 20px;
-	top: 0;
-}
 
 /* Optional: Style the caret down icon */
 .sidebar_menu .fa-caret-down {
@@ -319,6 +296,10 @@ header {
 	padding-left: 15px;
 	border-bottom: 1px solid lightgrey;
 }
+header .title_name h3 {
+	font-family: roboto;
+	color: #333;
+}
 
 #nav-toggle {
 	display: none;
@@ -327,7 +308,7 @@ header {
 .user_wrapper {
 	display: flex;
 	align-items: center;
-	margin-right: 20px;
+	margin-right: 15px;
 }
 .user_wrapper small {
 	margin-right: 12px;
@@ -335,15 +316,15 @@ header {
 }
 
 .user_wrapper  .btn_logout_admin{
-	background: #333;
-	margin-right: 12px;
+	background: #444;
+	margin-left: 12px;
 	border: none;
 	padding: 4px 10px;
 	font-size: 12px;
 }
 .user_wrapper a {
-	color: gold;
-	font-weight: 500;
+	color: #eee;
+	font-family: Lato;
 }
 
 
@@ -353,6 +334,7 @@ header {
 
 .fa.fa-bell-o {
         font-size: 18px;
+		transform: translateY(1.5px);
 
     }
     .fa.fa-bell-o:hover {

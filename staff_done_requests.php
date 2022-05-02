@@ -7,12 +7,7 @@ include("admin_header.php");
             include("count_app.php");
         ?>
     </div>
-    <style>
-        #pastrequests{
-            background-color: #fcd228;
-            color: #324e9e;
-        }
-    </style>
+   
 
     <div class="row">
         <h2>Past Appointments</h2> 
@@ -142,3 +137,12 @@ include("admin_header.php");
     
 </main>
 
+<style>
+    #pastrequests {
+        background: #324e9e;
+    }
+    #pastrequests .card_title,
+    #pastrequests .card_body {
+        color: #fff;
+    }
+</style>
