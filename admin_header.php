@@ -64,81 +64,65 @@ if ($staff_id == ""){
 				if ($position == "Registrar"){
 			?>
 				<li>
-					<img src="icon/gold/record_gold.svg">
-					<button class="dropdown_btn"><span class="navname">Records</span><i class="fa fa-caret-down"></i></button>
-					
-					<div class="dropdown_container">
-						<a href="upload_student_records.php">Student</a>
-						<a href="upload_staff_records.php">Staff</a>
-					</div>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="upload_student_records.php">
+						<span>Student Records</span>
+					</a>
 				</li>
+				<li>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="upload_staff_records.php">
+						<span>Staff Records</span>
+					</a>
+				</li>
+				
 
 				<li>
-					<img src="icon/gold/appointment_gold.svg">
-					<span><button class="dropdown_btn">
-						<span class="navname">Appointments</span><i class="fa fa-caret-down"></i></button>
-					<div class="dropdown_container">
-						<a href="staff_accepted_requests.php">Active </a>
-						<a href="staff_pending_requests.php">Pending </a>
-						<a href="staff_missed_requests.php">Missed </a>
-						<a href="staff_declined_requests.php">Declined </a>
-						<a href="staff_cancelled_requests.php">Cancelled </a>
-						<a href="staff_done_requests.php">Past </a>
-					</div>
-					</span>
-					
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="staff_accepted_requests.php">
+						<span>My Appointments</span>
+					</a>
 				</li>
 				
 			<?php
             	}
             	else if($position == "Accounting Staff/Scholarship Coordinator"){
             ?>
-
+				
 				<li>
-					<button class="dropdown_btn">
-						<img src="icon/gold/record_gold.svg">
-						<span class="navname">UniFAST</span>
-						<i class="fa fa-caret-down"></i>
-					</button>
-
-					<div class="dropdown_container">
-						<a href="upload_unifast_grantee.php">Grantee Records</a>
-						<a href="claimcheque_pendingapp.php">Claim Cheque</a>
-						<a href="submitdocu_pendingapp.php">Submit Documents</a>
-					</div>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="upload_unifast_grantee.php">
+						<span>Grantee Records</span>
+					</a>
+				</li>
+				<li>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="claimcheque_pendingapp.php">
+						<span>Claim Cheque</span>
+					</a>
+				</li>
+				<li>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="submitdocu_pendingapp.php">
+						<span>Submit Documents</span>
+					</a>
 				</li>
 
 				<li>
-					<button class="dropdown_btn">
-						<img src="icon/gold/appointment_gold.svg" alt="">
-						<span class="navname">My Appointments</span><i class="fa fa-caret-down"></i>
-					</button>
-
-					<div class="dropdown_container">
-						<a href="staff_accepted_requests.php">Active </a>
-						<a href="staff_pending_requests.php">Pending </a>
-						<a href="staff_missed_requests.php">Missed </a>
-						<a href="staff_declined_requests.php">Declined </a>
-						<a href="staff_cancelled_requests.php">Cancelled </a>
-						<a href="staff_done_requests.php">Past </a>
-					</div>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="staff_accepted_requests.php">
+						<span>My Appointments</span>
+					</a>
 				</li>
 			<?php
             	}
 				else if($position == "Teacher"){
             ?>
-
 				<li>
-					<span><button class="dropdown_btn"><span class="fa fa-calendar"></span><span class="navname">My Appointments</span><i class="fa fa-caret-down"></i></button>
-					<div class="dropdown_container">
-						<a href="staff_accepted_requests.php">Active </a>
-						<a href="staff_pending_requests.php">Pending </a>
-						<a href="staff_missed_requests.php">Missed </a>
-						<a href="staff_declined_requests.php">Declined </a>
-						<a href="staff_cancelled_requests.php">Cancelled </a>
-						<a href="staff_done_requests.php">Past </a>
-					</div>
-					</span>
+					<img src="icon/gold/schedule_gold.svg" alt="">
+					<a href="staff_accepted_requests.php">
+						<span>My Appointments</span>
+					</a>
 				</li>
 				<?php
 			}
@@ -169,7 +153,7 @@ if ($staff_id == ""){
 							echo $staff_username;
 						?>
 					</small>
-					<button class="btn_logout_admin"><a href="#"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
+					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
 
 					<!-- NOTIFICATION BUTTON -->
 					<div class="dropdown-toggle" data-toggle="dropdown">
