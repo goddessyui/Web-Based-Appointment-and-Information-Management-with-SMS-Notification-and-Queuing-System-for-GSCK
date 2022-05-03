@@ -32,7 +32,7 @@ main h3 {
 .card_row_div .col_3 .card .card_title {
     padding: 15px;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     color: #333;
 }
@@ -48,13 +48,130 @@ main h3 {
     padding: 15px;
 }
 .appointment_result .row {
-    background: green;
+    margin-bottom: 15px;
 }
-.appointment_result .row_app {
-    background: grey;
+#error_appt {
+    width: 100%;
+    background: orange;
+    color: #fff;
+    font-family: roboto;
+    font-size: 13px;
+}
+.row form input {
+    padding: 5px 12px;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    margin-right: 5px;
+    transition: all .2s ease-in-out;
+    font-size: 13px;
+    font-family: roboto;
+}
+.row form input:hover {
+    background: gold;
+}
+
+
+.appointment_result .row_app, .row_label {
     display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
 }
-.appointment_result .row_app .col_app {
-    background: pink;
-    margin: 5px;
+.row_app {
+    padding: 15px;
+    background: #fff;
+}
+.row_label {
+    text-transform: uppercase;
+    font-family: roboto;
+    color: #fff;
+    background: #324e9e;
+    padding: 0 15px;
+    align-items: center;
+}
+.appointment_result .row_app .col_app,
+.appointment_result .row_label .col_app {
+    width:  10%;
+    margin-right: 15px;
+    font-size: 13px;
+}
+.appointment_result .row_app .col_app,
+.appointment_result .row_label .col_app :not(.col_app:nth-child(4)) {
+    padding-top: 15px;
+    font-family: roboto;
+}
+
+
+.appointment_result .row_label .col_app:nth-child(4) {
+    width: 28%;
+    padding: 15px;
+}
+.appointment_result .row_app .col_app:nth-child(4) {
+    width: 28%;
+    padding: 15px;
+    background: none;
+    color: #333;
+    font-size: 14px;;
+}
+.appointment_result .row_app .col_app:nth-child(4) p {
+    margin-bottom: 2px;
+}
+.appointment_result .row_app .col_app:nth-child(4) p:nth-child(1) {
+    color: #324e9e;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: roboto;
+}
+.appointment_result .row_app .col_app:nth-child(4) p:nth-child(4) {
+    color: #324e9e;
+    margin-top: 10px;
+}
+.appointment_result .row_app .col_app:nth-child(6),
+.appointment_result .row_label .col_app:nth-child(6) {
+    width: 20%;
+}
+.appointment_result .row_app .col_app:nth-child(5),
+.appointment_result .row_label .col_app:nth-child(5) {
+    width: 12%;
+}
+
+
+
+.appointment_result .row_app .col_app textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    padding: 5px;
+}
+.appointment_result .row_app .col_app input,
+.appointment_result .row_app .col_app button {
+    width: 100%;
+    padding: 5px 12px;
+    margin-bottom: 10px;
+    font-family: roboto;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background: #324e9e;
+}
+
+.appointment_result .row_app .col_app:nth-child(5) input:nth-child(1),
+.appointment_result .row_app .col_app:nth-child(5) button {
+    border: 1px solid #333;
+    background: none;
+    padding: 4px 12px;
+    color: #333;
+}
+.appointment_result .row_app .col_app:nth-child(7) input {
+    border: none;
+    background: #EB4235;
+    padding: 4px 12px;
+}
+.appointment_result .row_app .col_app:nth-child(7) button {
+    background: #324e9e;
+}
+.appointment_result .row_app .col_app:nth-child(7) a {
+    color: #fff;
 }

@@ -11,31 +11,8 @@ include("admin_header.php");
 
     <div class="appointment_result">
 
-        <div class="row">
-            <!--success or error-->
-            <?php 
-            if(isset($_GET['success'])){
-            ?>
-            <p>
-                <?php echo $_GET['success']; ?>
-            </p> <?php
-            }
-            else{
-            }
-            if(isset($_GET['error'])){ ?>
-                <p>
-                    <?php echo $_GET['error']; ?>
-                </p> <?php
-            }
-            else {
-                echo "This is where the success or error statement appears. This statement is for testing. Please delete after designing.";
-            }
-            ?>
-            <!--success or error-->
-        </div>
-
-        <!-------------------------Sort Requests By Date------------------------------> 
-        <div class="row">
+       <!-------------------------Sort Requests By Date------------------------------> 
+       <div class="row">
             <?php 
                 date_default_timezone_set('Asia/Manila');                           		
                 $currentdate = date("Y-m-d");
@@ -52,9 +29,32 @@ include("admin_header.php");
         </div>
             
         <!-------------------------Sort Requests By Date ------------------------------> 
-                                
 
-                                        
+        <div class="row" id="error_appt">
+            <!--success or error-->
+            <?php 
+            if(isset($_GET['success'])){
+            ?>
+            <p>
+                <?php echo $_GET['success']; ?>
+            </p> <?php
+            }
+            else{
+            }
+            if(isset($_GET['error'])){ ?>
+                <p>
+                    <?php echo $_GET['error']; ?>
+                </p> <?php
+            }
+            else {
+                
+            }
+            ?>
+            <!--success or error-->
+        </div>
+
+     
+                                
 
 
 
@@ -71,15 +71,15 @@ include("admin_header.php");
                                 <?php echo "Appointments for ". $sortdate; ?>
                     </div>
 
-                    <div class="row_app">
+                    <div class="row_label">
                         
-                        <div class="col_app">Appointment Date</div>
-                        <div class="col_app">Date Accepted</div>
-                        <div class="col_app">Date Requested</div> 
-                        <div class="col_app">Student Appt. Details</div>
+                        <div class="col_app">Appt. date</div>
+                        <div class="col_app">Accepted</div>
+                        <div class="col_app">Requested</div> 
+                        <div class="col_app">Student Appointment Details</div>
                         <div class="col_app">Reschedule</div> 
                         <div class="col_app">Comment</div>
-                        <div class="col_app">Cancel/Done</div>
+                        <div class="col_app"></div>
                         
                     </div>
                     
@@ -109,30 +109,34 @@ include("admin_header.php");
                                 <div class="row_app">
                                     
                                     <div class="col_app">
-                                        <?php 
-                                            echo $rows['appointment_date'];
-                                        ?>
+                                        <p>
+                                            <?php echo $rows['appointment_date']; ?>
+                                        </p>
                                     </div>
 
                                     <div class="col_app">
-                                        <?php echo $rows['date_accepted']; ?>
+                                        <p>
+                                            <?php echo $rows['date_accepted']; ?>
+                                        </p>
                                     </div>
 
                                     <div class="col_app">
-                                        <?php echo $rows['date_created']; ?>
+                                        <p>
+                                            <?php echo $rows['date_created']; ?>
+                                        </p>
                                     </div>
                                     
                                     <div class="col_app">
                                         <?php 
-                                            echo $rows['appointment_type']; 
-                                            echo $rows['first_name']." ".$rows['last_name'];    
-                                            echo $rows['course']." ".$rows['year'];
+                                            ?><p><?php echo $rows['appointment_type']; ?></p><?php
+                                            ?><p><?php echo $rows['first_name']." ".$rows['last_name']; ?></p><?php   
+                                            ?><p><?php echo $rows['course']." ".$rows['year']; ?></p><?php
                                          
                                             if($rows['note']==""){
-                                                echo "No note.";
+                                                ?><p><?php echo "No note."; ?></p><?php
                                             }
                                             else{
-                                                echo $rows['note'];
+                                                ?><p><?php echo $rows['note']; ?></p><?php
                                             }
                                         ?>
                                     </div>
@@ -168,14 +172,17 @@ include("admin_header.php");
                                     </div>  
 
                                     <div class="col_app">
-
-                                            <input id="cancel" type="submit" name="cancel" value="CANCEL">
-
+                                            <div>
+                                                <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                            </div>
                                         </form>
                                         
                                         <!-------------------------Send data to done.php ------------------------------>  
-                                        <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
-                                        DONE</a> </button>
+                                        <div>
+                                            <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                            DONE</a>
+                                            </button>
+                                        </div>
                                         <!-------------------------Send data to done.php ------------------------------> 
                                     </div>   
                                     
@@ -183,7 +190,9 @@ include("admin_header.php");
                             }
                         }
                         else {
+                            ?><p><?php
                             echo "No Appointments Scheduled for ". $sortdate;
+                            ?></p><?php
                         }
                     }?>
                     
@@ -196,15 +205,15 @@ include("admin_header.php");
                         Show All Active Appointments.
                 </div>
 
-                <div class="row_app">
+                <div class="row_label">
                     
-                    <div class="col_app">Appointment Date</div>
-                    <div class="col_app">Date Accepted</div>
-                    <div class="col_app">Date Requested</div> 
-                    <div class="col_app">Student Appt. Details</div>
+                    <div class="col_app">Appt. date</div>
+                    <div class="col_app">Accepted</div>
+                    <div class="col_app">Requested</div> 
+                    <div class="col_app">Student Appointment Details</div>
                     <div class="col_app">Reschedule</div> 
                     <div class="col_app">Comment</div>
-                    <div class="col_app">Cancel/Done</div>
+                    <div class="col_app"></div>
                     
                 </div>
 
@@ -228,34 +237,40 @@ include("admin_header.php");
 
                         while($rows=mysqli_fetch_assoc($acceptedrequest_result)) {?>
                             <div class="row_app">
-                                    
+                                
                                 <div class="col_app">
-                                    <?php 
-                                        echo $rows['appointment_date'];
-                                    ?>
+                                    <p>
+                                        <?php echo $rows['appointment_date']; ?>
+                                    </p>
                                 </div>
 
                                 <div class="col_app">
-                                    <?php echo $rows['date_accepted']; ?>
+                                    <p>
+                                        <?php echo $rows['date_accepted']; ?>
+                                    </p>
                                 </div>
 
                                 <div class="col_app">
-                                    <?php echo $rows['date_created']; ?>
+                                    <p>
+                                        <?php echo $rows['date_created']; ?>
+                                    </p>
                                 </div>
                                 
                                 <div class="col_app">
                                     <?php 
-                                        echo $rows['appointment_type']; 
-                                        echo $rows['first_name']." ".$rows['last_name'];    
-                                        echo $rows['course']." ".$rows['year'];
+                                        ?><p><?php echo $rows['appointment_type']; ?></p><?php
+                                        ?><p><?php echo $rows['first_name']." ".$rows['last_name']; ?></p><?php   
+                                        ?><p><?php echo $rows['course']." ".$rows['year']; ?></p><?php
+                                        
                                         if($rows['note']==""){
-                                            echo "No note.";
+                                            ?><p><?php echo "No note."; ?></p><?php
                                         }
                                         else{
-                                            echo $rows['note'];
+                                            ?><p><?php echo $rows['note']; ?></p><?php
                                         }
                                     ?>
                                 </div>
+                                
 
                                 <div class="col_app">
                                     <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
@@ -287,14 +302,17 @@ include("admin_header.php");
                                 </div>  
 
                                 <div class="col_app">
-
-                                        <input id="cancel" type="submit" name="cancel" value="CANCEL">
-
+                                        <div>
+                                            <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                        </div>
                                     </form>
                                     
                                     <!-------------------------Send data to done.php ------------------------------>  
-                                    <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
-                                    DONE</a> </button>
+                                    <div>
+                                        <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                        DONE</a>
+                                        </button>
+                                    </div>
                                     <!-------------------------Send data to done.php ------------------------------> 
                                 </div>   
                                 
@@ -312,15 +330,15 @@ include("admin_header.php");
             
             else {?>
 
-                <div class="row_app">
+                <div class="row_label">
                     
-                    <div class="col_app">Appointment Date</div>
-                    <div class="col_app">Date Accepted</div>
-                    <div class="col_app">Date Requested</div> 
-                    <div class="col_app">Student Appt. Details</div>
+                    <div class="col_app">Appt. date</div>
+                    <div class="col_app">Accepted</div>
+                    <div class="col_app">Requested</div> 
+                    <div class="col_app">Student Appointment Details</div>
                     <div class="col_app">Reschedule</div> 
                     <div class="col_app">Comment</div>
-                    <div class="col_app">Cancel/Done</div>
+                    <div class="col_app"></div>
                     
                 </div>
             
@@ -345,34 +363,40 @@ include("admin_header.php");
 
                         while($rows=mysqli_fetch_assoc($acceptedrequest_result)) {?>
                             <div class="row_app">
-                                        
+                                
                                 <div class="col_app">
-                                    <?php 
-                                        echo $rows['appointment_date'];
-                                    ?>
+                                    <p>
+                                        <?php echo $rows['appointment_date']; ?>
+                                    </p>
                                 </div>
 
                                 <div class="col_app">
-                                    <?php echo $rows['date_accepted']; ?>
+                                    <p>
+                                        <?php echo $rows['date_accepted']; ?>
+                                    </p>
                                 </div>
 
                                 <div class="col_app">
-                                    <?php echo $rows['date_created']; ?>
+                                    <p>
+                                        <?php echo $rows['date_created']; ?>
+                                    </p>
                                 </div>
                                 
                                 <div class="col_app">
                                     <?php 
-                                        echo $rows['appointment_type']; 
-                                        echo $rows['first_name']." ".$rows['last_name'];    
-                                        echo $rows['course']." ".$rows['year'];
+                                        ?><p><?php echo $rows['appointment_type']; ?></p><?php
+                                        ?><p><?php echo $rows['first_name']." ".$rows['last_name']; ?></p><?php   
+                                        ?><p><?php echo $rows['course']." ".$rows['year']; ?></p><?php
+                                        
                                         if($rows['note']==""){
-                                            echo "No note.";
+                                            ?><p><?php echo "No note."; ?></p><?php
                                         }
                                         else{
-                                            echo $rows['note'];
+                                            ?><p><?php echo $rows['note']; ?></p><?php
                                         }
                                     ?>
                                 </div>
+                                
 
                                 <div class="col_app">
                                     <!-------------------------To reschedule appointment. Send Form Data to reschedule.php --------------------------->       
@@ -404,14 +428,17 @@ include("admin_header.php");
                                 </div>  
 
                                 <div class="col_app">
-
-                                        <input id="cancel" type="submit" name="cancel" value="CANCEL">
-
+                                        <div>
+                                            <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                        </div>
                                     </form>
                                     
                                     <!-------------------------Send data to done.php ------------------------------>  
-                                    <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
-                                    DONE</a> </button>
+                                    <div>
+                                        <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                        DONE</a>
+                                        </button>
+                                    </div>
                                     <!-------------------------Send data to done.php ------------------------------> 
                                 </div>   
                                 

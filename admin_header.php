@@ -200,14 +200,10 @@ if ($staff_id == ""){
 	justify-content: center;
 	text-align: center;
 	background-color: #fff;
-	border-bottom: 1px solid lightgrey;
-
 }
 
 .sidebar_menu {
-	background: #EFF0F4;
-	margin: 15px;
-	padding: 15px;
+	margin: 20px;
 	height: 88vh;
 }
 
@@ -221,7 +217,7 @@ if ($staff_id == ""){
 
 .sidebar_menu li a {
 	color: #333;
-	font-size: 16px;
+	font-size: 14px;
 	text-decoration: none;
 	display: block;
 	border: none;
@@ -367,7 +363,6 @@ header .title_name h3 {
         opacity: 0;
         transform: translateX(55vh);
         transition: all .5s ease-in-out;
-        background: pink;
     }
  
     /* width */
