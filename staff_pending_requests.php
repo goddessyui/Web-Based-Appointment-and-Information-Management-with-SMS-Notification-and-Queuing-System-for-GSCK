@@ -37,7 +37,7 @@ include("admin_header.php");
             <div class="col_app">Appt. Type</div>
             <div class="col_app">Student Details</div>
             <div class="col_app">Student's Note</div>
-            <div class="col_app">Set Appointment Date</div>
+            <div class="col_app">Set Appt. Date</div>
             <div class="col_app">Comment</div>
             <div class="col_app"></div>
 
