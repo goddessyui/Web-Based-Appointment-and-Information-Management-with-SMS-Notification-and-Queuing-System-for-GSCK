@@ -33,8 +33,8 @@ include("admin_header.php");
         
         <div class="row_label">
 
-            <div class="col_app">Cancellation Date</div>
-            <div class="col_app">Appointment Date</div>
+            <div class="col_app">Date Cancelled</div>
+            <div class="col_app">Appt. Date</div>
             <div class="col_app">Date Requested</div>
             <div class="col_app">Appt.Type</div>
             <div class="col_app">Student</div> 
@@ -94,7 +94,7 @@ include("admin_header.php");
                                         <?php echo $rows['first_name']." ".$rows['last_name']; ?>
                                     </p>
                                     <p>
-                                        <?php echo $rows['course']." ".$rows['year']; ?>
+                                        <?php echo $rows['course']."-".$rows['year']; ?>
                                     </p>
                                 </div>
 
