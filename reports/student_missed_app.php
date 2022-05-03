@@ -2,6 +2,7 @@
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
 <?php
 
+
     $missedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
         tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
         tbl_appointment.note, tbl_appointment_detail.comment

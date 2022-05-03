@@ -203,8 +203,7 @@
                                             min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                             strtotime($currentdate. ' + 90 days'));?>">
                                     <label>Comment:</label>
-                                        <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
-                                    </textarea>
+                                    <textarea class="form-control" name="com[]" placeholder="Comment here..."></textarea>
                                     <button  type="submit" name="accept">ACCEPT</button>
                                     <button type="submit" name="decline">DECLINE</button>
                                     <!----------------------------BUTTONS FOR ALL----------------------->

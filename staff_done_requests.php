@@ -2,139 +2,121 @@
 include("admin_header.php");
 ?>
 <main>
-    <div class="row">
-        <?php
-            include("count_app.php");
-        ?>
-    </div>
-   
+  
+    <?php include("count_app.php");?>
+    <h3>Past Appointments</h3> 
 
-    <div class="row">
-        <h2>Past Appointments</h2> 
-    </div>
+    <div class="appointment_result">
 
-    <div class="row">
+        <div class="row">
             <!--success or error-->
             <?php 
-                    if(isset($_GET['success'])){
-                ?>
-                        <p align="center">
-                            <?php 
-                                echo $_GET['success'];
-                            ?>
-                        </p>
-                <?php
-                    }
-                    if(isset($_GET['error'])){
-                ?>
-                                <p align="center">
-                                    <?php 
-                                        echo $_GET['error'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                    else{
-                    }
-                ?>
-                <!--success or error-->
-    </div>
+            if(isset($_GET['success'])){
+            ?>
+            <p>
+                <?php echo $_GET['success']; ?>
+            </p> <?php
+            }
+            else{
+            }
+            if(isset($_GET['error'])){ ?>
+                <p>
+                    <?php echo $_GET['error']; ?>
+                </p> <?php
+            }
+            else {
+                echo "This is where the success or error statement appears. This statement is for testing. Please delete after designing.";
+            }
+            ?>
+            <!--success or error-->
+        </div>
 
-    <div class="row_app">
-        <div class="col_app" id="serialnum"></div>
-        <div class="col_app" id="apptdate">Appt. Date</div>
-        <div class="col_app" id="appttype">Appt.Type</div>
-        <div class="col_app" id="studentfullname">Student</div> 
-        <div class="col_app" id="thestudnote">Student's Note</div>
-        <div class="col_app" id="staffcomment">Comment</div>
-    </div>
+        <div class="row_label">
+           
+            <div class="col_app">Appt. Date</div>
+            <div class="col_app">Date Accepted</div>
+            <div class="col_app">Date Requested</div>
+            <div class="col_app">Appt.Type</div>
+            <div class="col_app">Student</div> 
+            <div class="col_app">Student's Note</div>
+            <div class="col_app">Comment</div>
 
-    <div>
- <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
-        <?php
+        </div>
 
-            $donerequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id' 
-                ORDER BY tbl_appointment_detail.appointment_date DESC";
-          
-            $donerequest_result = mysqli_query($db, $donerequest);
+        <div>
+        <!-------------------------Show Done Appointments ------------------------------------------------------------------------------------------------>        
+            <?php
+
+                $donerequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                    ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                    INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+                    INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
+                    WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id' 
+                    ORDER BY tbl_appointment_detail.appointment_date DESC";
             
-            //check whether the query is executed or not
-            if($donerequest_result==TRUE) 
-            { // count rows to check whether we have data in database or not
-                $count = mysqli_num_rows($donerequest_result);
-                //check the num of rows                 
-                if($count>0) //we have data in database
-                {
-                    $i = 1;
-                    while($rows=mysqli_fetch_assoc($donerequest_result)) 
-                    //using while loop to get all the date from database
-			        //and while loop will run as long as we have data in database
-                    {
-        ?>
-                        <div class="row_app">
-                            <div class="col_app" id="serialnum">
-                                <?php   
-                                    echo $i++; 
-                                ?>
-                            </div>
+                $donerequest_result = mysqli_query($db, $donerequest);
+ 
+                if($donerequest_result==TRUE) {
+                    $count = mysqli_num_rows($donerequest_result);
+                                    
+                    if($count>0) {
+                      
+                        while($rows=mysqli_fetch_assoc($donerequest_result)) {?>
+                            <div class="row_app">
 
-                            <div class="col_app" id="apptdate">
-                                <?php echo $rows['appointment_date']; ?>
-                                <small>
-                                    <p><b>Date Accepted:</b></p><p><?php echo $rows['date_accepted']; ?></p> 
-                                    <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
-                                </small>
-                            </div>
+                                <div class="col_app">
+                                    <?php echo $rows['appointment_date']; ?>
+                                    <small>
+                                        <p><b>Date Accepted:</b></p><p><?php echo $rows['date_accepted']; ?></p> 
+                                        <p><b>Date Requested:</b></p><p><?php echo $rows['date_created']; ?></p>
+                                    </small>
+                                </div>
 
-                            <div class="col_app" id="appttype">
-                                <?php echo $rows['appointment_type']; ?>
-                            </div>
+                                <div class="col_app">
+                                    <?php echo $rows['appointment_type']; ?>
+                                </div>
 
-                            <div class="col_app" id="studentfullname">
-                                <?php echo $rows['first_name']." ".$rows['last_name']; ?>
-                                <small>
-                                    <p><b>Course and Year:</b></p><p><?php echo $rows['course']." ".$rows['year']; ?></p>
-                                </small>
-                            </div>
+                                <div class="col_app">
+                                    <?php echo $rows['first_name']." ".$rows['last_name']; ?>
+                                    <small>
+                                        <p><b>Course and Year:</b></p><p><?php echo $rows['course']."-".$rows['year']; ?></p>
+                                    </small>
+                                </div>
 
-                            <div class="col_app" id="thestudnote">
-                                <?php
-                                if($rows['note']==""){
-                                    echo "No note.";
-                                }
-                                else{
-                                    ?><?php echo $rows['note'];  ?><?php
-                                }
-                                ?>
-                            </div>
+                                <div class="col_app">
+                                    <?php
+                                    if($rows['note']==""){
+                                        echo "No note.";
+                                    }
+                                    else{
+                                        ?><?php echo $rows['note'];  ?><?php
+                                    }
+                                    ?>
+                                </div>
 
-                            <div class="col_app" id="staffcomment">
-                            <?php
-                                if($rows['note']==""){
-                                    echo "No note.";
-                                }
-                                else{
-                                    ?><?php echo $rows['comment'];  ?><?php
-                                }
-                                ?>
+                                <div class="col_app">
+                                    <?php
+                                    if($rows['comment']==""){
+                                        echo "You did not comment.";
+                                    }
+                                    else{
+                                        ?><?php echo $rows['comment'];  ?><?php
+                                    }
+                                    ?>
+                                </div>
+                                
                             </div>
-                            
-                        </div>
-        <?php 
+            <?php 
+                        }
                     }
-                }
-                else{
-                    echo "No Past Appointments.";
-                }
-            }   
-	    ?>
- <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
+                    else{
+                        echo "No Past Appointments.";
+                    }
+                }   
+            ?>
+        <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
+        </div>
     </div>
-    
 </main>
 
 <style>
