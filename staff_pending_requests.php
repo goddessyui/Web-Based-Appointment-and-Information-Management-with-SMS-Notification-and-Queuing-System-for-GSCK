@@ -39,7 +39,7 @@ include("admin_header.php");
             <div class="col_app">Student's Note</div>
             <div class="col_app">Set Appointment Date</div>
             <div class="col_app">Comment</div>
-            <div class="col_app">Accept/Decline</div>
+            <div class="col_app"></div>
 
         </div>
 
