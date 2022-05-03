@@ -74,8 +74,8 @@ include("admin_header.php");
                     <div class="row_label">
                         
                         <div class="col_app">Appt. date</div>
-                        <div class="col_app">Accepted</div>
-                        <div class="col_app">Requested</div> 
+                        <div class="col_app">Date Accepted</div>
+                        <div class="col_app">/ Requested</div> 
                         <div class="col_app">Student Appointment Details</div>
                         <div class="col_app">Reschedule</div> 
                         <div class="col_app">Comment</div>
@@ -208,8 +208,8 @@ include("admin_header.php");
                 <div class="row_label">
                     
                     <div class="col_app">Appt. date</div>
-                    <div class="col_app">Accepted</div>
-                    <div class="col_app">Requested</div> 
+                    <div class="col_app">Date Accepted</div>
+                    <div class="col_app">/ Requested</div> 
                     <div class="col_app">Student Appointment Details</div>
                     <div class="col_app">Reschedule</div> 
                     <div class="col_app">Comment</div>
@@ -333,8 +333,8 @@ include("admin_header.php");
                 <div class="row_label">
                     
                     <div class="col_app">Appt. date</div>
-                    <div class="col_app">Accepted</div>
-                    <div class="col_app">Requested</div> 
+                    <div class="col_app">Date Accepted</div>
+                    <div class="col_app">/ Requested</div> 
                     <div class="col_app">Student Appointment Details</div>
                     <div class="col_app">Reschedule</div> 
                     <div class="col_app">Comment</div>
