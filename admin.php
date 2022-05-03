@@ -11,7 +11,7 @@
         }//End of show if Registrar
         ?>
         <!---------------Reports for Registrar------------------------------------------------->
-
+        <div class="appointment_result">
 
 
 
@@ -20,28 +20,24 @@
         if ($position == "Registrar") {?>
 
             <div class="row">
-                <div class="col-6">
 
-                    <form action="appointment_limit.php" method="post">
-                        <h5>Limit the No. of Appointments Per Day:</h5>
-                        <?php
-                            $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
-                            $limitvalue= mysqli_query($db, $limit);
-                            if($limitvalue==TRUE){
-                                while($al=mysqli_fetch_assoc($limitvalue)){
-                        ?>
-                                    <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
-                                    min="1" max="5000">
-                                    <input type="submit" name="limit" value="Limit">
-                        <?php
-                                }
+                <form action="appointment_limit.php" method="post">
+                    <h4>Limit the No. of Appointments Per Day:</h4>
+                    <?php
+                        $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                        $limitvalue= mysqli_query($db, $limit);
+                        if($limitvalue==TRUE){
+                            while($al=mysqli_fetch_assoc($limitvalue)){
+                    ?>
+                                <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
+                                min="1" max="5000">
+                                <input type="submit" name="limit" value="Limit">
+                    <?php
                             }
-                        ?>
-                    </form>
-                
-                <div>
+                        }
+                    ?>
+                </form>
 
-                <div class="col-6">
                     <!--success or error-->                        
                     <?php 
                         if(isset($_GET['success'])){
@@ -66,16 +62,18 @@
                         }
                     ?>
                     <!--success or error-->
-                </div>
-
             </div>
+            <hr>
+            <br>
 
-            <div class="row">
 
-                <div class="col-6">
-                    <div class="row">
-                        <h4>List of Registered Staff</h4>
-                    </div>
+
+            <div class="list_div" style="background: pink; display: flex">
+
+                <div class="reg_print_div" style="border: 1px solid green;">
+
+                <h4>List of Registered Staff</h4>
+ 
                     <div class="row">
                         <form method="post">
                             <span>Alphabetical (Last Name):</span>
@@ -119,14 +117,14 @@
                 </div>
             
 
-                <div class="col-sm-6">
+                <div class="reg_print_div" style="border: 1px solid green;">
+
+                    <h4>List of Registered Students</h4>
+
                     <div class="row">
-                        <h4>List of Registered Students</h4>
-                    </div>
-                    <div class="row">
-                    
                         <form method="post">
                             <span>Alphabetical (Last Name):</span>
+
                             <select name="alphabetical_ln_student" id="alphabetical_ln_student">
                                 <option value="('%')">ALL</option>
                                 <option value="'A%'">A</option>
@@ -190,13 +188,52 @@
                     <div class="row" id="generated_rep_registeredstudents_hidden"></div><!--- style="display: none;"-->
 
                 </div>
-                    
+            </div>
+
             <?php
         }
             ?><!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
         
         
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
         <?php
@@ -317,7 +354,9 @@
     <?php
         include("backtotop.php");
     ?> 
+    </div>
   </main>
+
 </body>
 </html>
 
