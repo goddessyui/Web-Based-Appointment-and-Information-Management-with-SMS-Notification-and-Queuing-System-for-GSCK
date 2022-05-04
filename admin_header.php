@@ -19,7 +19,7 @@ if ($staff_id == ""){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-                            <script type="text/javascript">
+                        <script type="text/javascript">
                             google.charts.load('current', {'packages':['corechart']});
                             google.charts.setOnLoadCallback(drawChart);
 
@@ -66,7 +66,7 @@ if ($staff_id == ""){
 
                                 chart.draw(data, options);
                             }
-                            </script>
+                        </script>
 
 
 
@@ -78,21 +78,38 @@ if ($staff_id == ""){
 
 								function drawStuff() {
 									var data = new google.visualization.arrayToDataTable([
-									['Opening Move', 'Slot'],
+									['Staff', 'Appointments'],
+								
+									<?php  
+										date_default_timezone_set('Asia/Manila');                           		
+										$currentdate = date("Y-m-d");
+			
+										$appt = "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name, COUNT(*) as C
+										FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+										ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+										INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status =('Accepted' OR 'Cancelled')
+										GROUP BY first_name HAVING COUNT(*)>0";
+										$appt_today = mysqli_query($db, $appt);
+
+										if($appt_today==TRUE){
+											$count= mysqli_num_rows($appt_today);
+
+											if($count>0) {
+
+												while($r=mysqli_fetch_assoc($appt_today)){
+													echo "['".$r["first_name"]."', ".$r["C"]."], ";
+												}
+											}
+											else {
+												echo"No result";
+											}
+										}
+										else{
+											echo"Cannot access" . mysqli_error($db);
+										}
+									?> 
 									
-									["1", 100],
-									["2", 31],
-									["3", 12],
-									["4", 10],
-									["1", 44],
-									["2", 31],
-									["3", 12],
-									["4", 10],
-									["1", 44],
-									["2", 31],
-									["3", 12],
-									["4", 10],
-									['Other', 3]
 									]);
 
 									var options = {
