@@ -38,10 +38,33 @@
                         ?>
                     </form>
                 </div>
+                
+                <?php
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
 
-                <div class="limit_container">
-                    <div id="top_x_div"></div>
-                </div>
+                $countapp = "SELECT * FROM tbl_appointment_detail 
+                WHERE appointment_date = '$currentdate' 
+                AND `status`='Accepted'";
+
+                $countapp_today = mysqli_query($db, $countapp);
+                $countapp_today_result = mysqli_num_rows($countapp_today);
+             
+                if($countapp_today_result>0){
+                    ?>
+                    <div class="limit_container">
+                        <div id="top_x_div"></div>
+                    </div>
+                    <?php
+                }
+                else{
+                    ?>
+                    <div class="limit_container">
+                        <div>No Scheduled Appointments Today</div>
+                    </div>
+                    <?php
+                }
+                ?>
 
                 <div class="limit_container">
                     <div id="piechart"></div>

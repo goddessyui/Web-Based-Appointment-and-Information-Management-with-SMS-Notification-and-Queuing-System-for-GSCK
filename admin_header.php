@@ -117,9 +117,9 @@ if ($staff_id == ""){
 									?>
 
 									var options = {
-									title: 'Chess opening moves',
+									title: 'Daily Active Appointments Per Staff',
 									legend: { position: 'none' },
-								
+									
 									bars: 'vertical', // Required for Material Bar Charts.
 									axes: {
 										x: {
