@@ -495,9 +495,10 @@ header .title_name h3 {
         transition: all .5s ease-in-out;
     }
  
+ 
     /* width */
     ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     }
 
     /* Track */
@@ -507,18 +508,18 @@ header .title_name h3 {
     
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: #eee; 
+    background: gray; 
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: grey; 
+    background: gold; 
     }
 
     .notif_container {
-        padding: 10px;
+        padding: 20px;
         border-bottom: 1px solid lightgrey;
-        transition: all .3s ease-in-out;
+        transition: all .2s ease-in-out;
     }
   
     .notif_container:last-child {
@@ -527,7 +528,7 @@ header .title_name h3 {
 
     .notif_container a {
         text-decoration: none;
-        color: #333;
+        color: #000;
     }
     .notif_container a:visited {
         color: grey;
@@ -538,7 +539,8 @@ header .title_name h3 {
     }
 
     .notif_container small {
-        font-size: 12px;
+        font-size: 14px;
+        color: #444;
     }
     .count {
         height: 14px;

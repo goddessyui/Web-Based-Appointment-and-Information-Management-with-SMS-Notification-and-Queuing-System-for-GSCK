@@ -18,13 +18,12 @@ if(isset($_POST["view"]))
   while($row = mysqli_fetch_array($result))
   {
    $output .= '
-   <li>
+   <div class="notif_container">
     <a href="'.$row["link"].'">
-     <strong>'.$row["notification_subject"].'</strong><br />
-     <small><em>'.$row["notification_text"].'</em></small>
+        <div class="notif_title"><b>'.$row["notification_subject"].'</b></div>
+        <small>'.$row["notification_text"].'</small>
     </a>
-   </li>
-   <li class="divider"></li>
+   </div> 
    ';
   }
  }
