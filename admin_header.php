@@ -142,7 +142,7 @@ if ($staff_id == ""){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
-    <title>blackenstate College of Koronadal - Admin Dashboard</title>
+    <title>whiteenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
@@ -150,6 +150,7 @@ if ($staff_id == ""){
 
 	<div class="sidebar">
 		<div class="sidebar_brand">
+			<img src="icon/white/user_white.svg" width="28">
 			<h4 class="username_appear">
 				<?php echo $staff_username; ?>
 			</h4>
@@ -158,28 +159,28 @@ if ($staff_id == ""){
 		<div class="sidebar_menu">
 			<ul>
 				<li>
-					<img src="icon/black/dashboard_black.svg" alt="">
+					<img src="icon/white/dashboard_white.svg" alt="">
 					<a href="admin.php">
 						<span>Dashboard</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/black/user_black.svg" alt="">
+					<img src="icon/white/user_white.svg" alt="">
 					<a href="staff_profile.php">
 						<span>Account</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/appointment_white.svg" alt="">
 					<a href="schedule_admin.php">
 						<span>Set my schedule</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/black/announcement_black.svg" alt="">
+					<img src="icon/white/announcement_white.svg" alt="">
 					<a href="announcement_admin.php">
 						<span>Announcement</span>
 					</a>
@@ -188,13 +189,13 @@ if ($staff_id == ""){
 				if ($position == "Registrar"){
 			?>
 				<li>
-					<img src="icon/black/record_black.svg" alt="">
+					<img src="icon/white/record_white.svg" alt="">
 					<a href="upload_student_records.php">
 						<span>Student Records</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/black/record_black.svg" alt="">
+					<img src="icon/white/record_white.svg" alt="">
 					<a href="upload_staff_records.php">
 						<span>Staff Records</span>
 					</a>
@@ -202,7 +203,7 @@ if ($staff_id == ""){
 				
 
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/schedule_white.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -214,26 +215,26 @@ if ($staff_id == ""){
             ?>
 				
 				<li>
-					<img src="icon/black/record_black.svg" alt="">
+					<img src="icon/white/record_white.svg" alt="">
 					<a href="upload_unifast_grantee.php">
 						<span>Grantee Records</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/schedule_white.svg" alt="">
 					<a href="claimcheque_pendingapp.php">
 						<span>Claim Cheque</span>
 					</a>
 				</li>
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/schedule_white.svg" alt="">
 					<a href="submitdocu_pendingapp.php">
 						<span>Submit Documents</span>
 					</a>
 				</li>
 
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/schedule_white.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -243,7 +244,7 @@ if ($staff_id == ""){
 				else if($position == "Teacher"){
             ?>
 				<li>
-					<img src="icon/black/schedule_black.svg" alt="">
+					<img src="icon/white/schedule_white.svg" alt="">
 					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
 					</a>
@@ -277,7 +278,7 @@ if ($staff_id == ""){
 						<button onclick="BtnDropdown()" class="btn_no_bg">
 							<i class="fa fa-bell-o"><p class="count" id="count_red" style="text-decoration: none; color: #fff;"></p></i>
 						</button>
-						<div class="dropdown-menu" id="dropdown_id" style="background: #fff"></div>
+						<div class="dropdown-menu" id="dropdown_id"></div>
 					</div>
 					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
        <!-- NOTIFICATION BUTTON -->
@@ -312,22 +313,30 @@ if ($staff_id == ""){
 	top: 0;
 	left: 0;
 	height: 100%;
-	background: #EFF0F4;
+	background: #444;
 	z-index: 888;
 	transition: width 300ms;
 	border-right: 1px solid lightgrey;
 }
 .sidebar_brand {
 	height: 60px;
+	color: #fff;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding-bottom: 0;
+	background: #444;
+}
+.sidebar_brand img {
+	margin-right: 10px;
 }
 
-.sidebar_brand h4 {
+.sidebar_brand .username_appear {
 	font-weight: 400;
-	font-family: 'Roboto';
+	font-family: 'Roboto Serif';
 	font-size: 14px;
+	text-align: center;
+	color: #eee;
 }
 
 .sidebar_menu {
@@ -347,7 +356,7 @@ if ($staff_id == ""){
 }
 
 .sidebar_menu li a {
-	color: #333;
+	color: #eee;
 	font-size: 14px;
 	text-decoration: none;
 	display: block;
@@ -481,7 +490,7 @@ header .title_name h3 {
     }
  
     .dropdown-menu {
-        width: 300px;
+        width: 380px;
         height: 100vh;
         position: fixed;
         top: 60px;
@@ -493,6 +502,8 @@ header .title_name h3 {
         opacity: 0;
         transform: translateX(55vh);
         transition: all .5s ease-in-out;
+		background: #444;
+		overflow: auto;
     }
  
  
@@ -528,7 +539,8 @@ header .title_name h3 {
 
     .notif_container a {
         text-decoration: none;
-        color: #000;
+        color: #fff;
+		font-family: 'roboto';
     }
     .notif_container a:visited {
         color: grey;
@@ -540,7 +552,8 @@ header .title_name h3 {
 
     .notif_container small {
         font-size: 14px;
-        color: #444;
+        color: #eee;
+		font-family: 'Roboto Serif';
     }
     .count {
         height: 14px;
