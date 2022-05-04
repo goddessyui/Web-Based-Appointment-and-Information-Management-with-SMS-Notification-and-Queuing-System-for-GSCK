@@ -57,10 +57,13 @@ if ($staff_id == ""){
                                 ]);
 
                                 var options = {
-                                title: 'Daily Appointment Slot (Active/Cancelled)',
+                                title: 'Daily Appointment Slot',
+								fontSize: 11,
+								legendFontSize: 11,
+								height: 250,
 								backgroundColor: { fill:'transparent' },
-								is3d:true
                                 };
+
 
                                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
@@ -118,6 +121,7 @@ if ($staff_id == ""){
 
 									var options = {
 									title: 'Daily Active Appointments Per Staff',
+									legendFontSize: 14,
 									legend: { position: 'none' },
 									
 									bars: 'vertical', // Required for Material Bar Charts.

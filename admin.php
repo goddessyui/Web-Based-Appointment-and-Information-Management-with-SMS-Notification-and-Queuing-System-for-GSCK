@@ -119,8 +119,7 @@
                 <div class="reg_print_div">
 
                 <h4>List of Registered Staff</h4>
- 
-                    <div class="row">
+
                         <form method="post">
                             <span>Alphabetical</span>
                             <select name="alphabetical_ln_staff" id="alphabetical_ln_staff">
@@ -154,9 +153,9 @@
                             </select>
 
                             <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List of Registered Staff"/>
-                            <button onclick="printDiv_regstaff()">PRINT</button>
+                            <button onclick="printDiv_regstaff()">Print</button>
                         </form>
-                    </div>
+
                     <!--<div class="row" id="generated_rep_registeredstaff"></div>-->
                     <div class="row" id="generated_rep_registeredstaff_hidden"></div><!--- style="display: none;"-->
                     
@@ -167,7 +166,6 @@
 
                     <h4>List of Registered Students</h4>
 
-                    <div class="row">
                         <form method="post">
                             <span>Alphabetical</span>
 
@@ -226,10 +224,9 @@
                                 <option value="'4'">4th Year</option>
                             </select>
                             <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List of Registered Students"/>
-                            <button onclick="printDiv_regstudent()">PRINT</button>
+                            <button onclick="printDiv_regstudent()">Print</button>
                         </form>
-            
-                    </div>
+
                     <!--<div class="row" id="generated_rep_registeredstudents"></div>-->
                     <div class="row" id="generated_rep_registeredstudents_hidden"></div><!--- style="display: none;"-->
 
@@ -421,15 +418,12 @@
         height: 32vh;
     }
     .limit_div .limit_container:nth-child(1) {
-        padding: 30px;
+        padding: 15px;
     }
     .limit_div .limit_container:nth-child(2) {
         margin: 0 15px;
-        border: 1px solid #3871CF;
     }
-    .limit_div .limit_container:nth-child(3) {
-        border: 1px solid #DC3912;
-    }
+
     .limit_div .limit_container:nth-child(1) form {
         height: 100%;
     }
@@ -465,7 +459,7 @@
              height: 40px;
          }
                                 .form_group input {
-                                    height: 32px;
+                                    height: 28px;
                                 }
                                 .form_group input[type=number] {
                                     margin-bottom: 15px;
@@ -480,19 +474,82 @@
                                     color: #fff;
                                     font-size: 13px;
                                     cursor: pointer;
+                                    text-transform: uppercase;
                                 }
 .error_message {
     background: orange;
+    margin-top: 15px;
 }
 .error_message p {
-    padding: 2px 20px;
-    font-family: 'Roboto';
+    padding: 2px 30px;
+    font-family: 'Roboto Serif';
     font-size: 13px;
-    color: #000;
+    color: #fff;
 }
 .card_title,
 .card_body {
     cursor: auto;
+}
+
+
+
+.appointment_result {
+    margin-top: 15px;
+}
+
+                    .list_div .reg_print_div {
+                        background-color: #fff;
+                        padding: 15px;
+                    }
+                    .list_div .reg_print_div:nth-child(1) {
+                        margin-bottom: 15px;
+                    }
+
+.reg_print_div h4 {
+    color: #333;
+    font-family: 'Roboto Serif';
+    margin-bottom: 15px;
+}
+.reg_print_div form {
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.reg_print_div form input {
+    border: none;
+    background: #4285F4;
+    color: #fff;
+    height: 32px;
+    padding: 0 20px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+.reg_print_div form button {
+    float: right;
+    border: none;
+    background: #333;
+    color: #eee;
+    height: 26px;
+    padding: 0 30px;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+}
+.reg_print_div form select {
+    outline: none;
+    height: 29px;
+    margin-left: 5px;
+    margin-right: 12px;
+    padding: 0 8px;
+    background: none;
+    border: 1px solid lightgrey;
+    font-family: 'roboto Serif';
+    font-size: 13px;
+}
+.reg_print_div form select option {
+    font-family: 'Roboto Serif';
 }
 </style>
 
