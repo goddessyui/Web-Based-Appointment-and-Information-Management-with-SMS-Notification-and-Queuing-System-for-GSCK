@@ -17,6 +17,102 @@ if ($staff_id == ""){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+                            <script type="text/javascript">
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            function drawChart() {
+
+                                var data = google.visualization.arrayToDataTable([
+                                ['Task', 'Hours per Day'],
+                                
+                                
+
+                                ['Slots Taken', 
+                                <?php 
+                                    date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
+                                    
+                                    $taken = "SELECT appointment_detail_id FROM tbl_appointment_detail 
+                                        WHERE `status` = ('Accepted' OR 'Cancelled') 
+                                        AND appointment_date = '$currentdate'";
+                                    $takenslot = mysqli_query($db, $taken);
+                                    $no_of_slots_taken = mysqli_num_rows($takenslot);
+    
+                                    echo $no_of_slots_taken; 
+                                ?>],
+                                ['Slots Available',
+                                <?php
+                                    
+                                    $limit_app = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                                    $app_limitation = mysqli_query($db, $limit_app);
+                                    $row= mysqli_fetch_assoc($app_limitation);
+        
+                                   $no_of_slots_available = $row['appointment_limit'] - $no_of_slots_taken;
+                                    echo $no_of_slots_available ;
+                                    ?>
+                                ]
+                                ]);
+
+                                var options = {
+                                title: 'Daily Appointment Slot',
+								backgroundColor: { fill:'transparent' },
+								is3d:true
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                chart.draw(data, options);
+                            }
+                            </script>
+
+
+
+
+
+							<script type="text/javascript">
+								google.charts.load('current', {'packages':['bar']});
+								google.charts.setOnLoadCallback(drawStuff);
+
+								function drawStuff() {
+									var data = new google.visualization.arrayToDataTable([
+									['Opening Move', 'Slot'],
+									
+									["1", 100],
+									["2", 31],
+									["3", 12],
+									["4", 10],
+									["1", 44],
+									["2", 31],
+									["3", 12],
+									["4", 10],
+									["1", 44],
+									["2", 31],
+									["3", 12],
+									["4", 10],
+									['Other', 3]
+									]);
+
+									var options = {
+									title: 'Chess opening moves',
+									legend: { position: 'none' },
+								
+									bars: 'vertical', // Required for Material Bar Charts.
+									axes: {
+										x: {
+										0: { side: 'top', label: 'Daily Appointment Numbers of Staff'} // Top x-axis.
+										}
+									},
+									bar: { groupWidth: "100%" }
+									};
+
+									var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+									chart.draw(data, options);
+								};
+								</script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

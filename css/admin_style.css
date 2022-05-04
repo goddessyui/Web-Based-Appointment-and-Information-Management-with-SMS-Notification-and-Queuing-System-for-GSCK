@@ -3,7 +3,6 @@ main {
     padding: 15px;
 }
 main h3 {
-    font-family: roboto;
     text-transform: uppercase;
     margin-left: 15px;
     margin-bottom: 15px;
@@ -31,14 +30,12 @@ main h3 {
 
 .card_row_div .col_3 .card .card_title {
     padding: 15px;
-    font-family: Roboto;
     font-size: 13px;
     text-transform: uppercase;
     color: #333;
 }
 .card_row_div .col_3 .card .card_body {
     padding-bottom: 15px;
-    font-family: Roboto;
     font-size: 30px;
 }
 
@@ -54,7 +51,6 @@ main h3 {
     width: 100%;
     background: orange;
     color: #fff;
-    font-family: roboto;
     font-size: 13px;
 }
 .row form input {
@@ -66,7 +62,6 @@ main h3 {
     margin-right: 5px;
     transition: all .2s ease-in-out;
     font-size: 13px;
-    font-family: roboto;
 }
 .row form input:hover {
     background: gold;
@@ -88,7 +83,6 @@ main h3 {
 }
 .row_label {
     text-transform: uppercase;
-    font-family: roboto;
     color: #fff;
     background: #324e9e;
     padding: 0 15px;
@@ -103,7 +97,6 @@ main h3 {
 .appointment_result .row_app .col_app,
 .appointment_result .row_label .col_app :not(.col_app:nth-child(4)) {
     padding-top: 15px;
-    font-family: roboto;
 }
 
 
@@ -125,7 +118,6 @@ main h3 {
     color: #324e9e;
     text-transform: uppercase;
     margin-bottom: 10px;
-    font-family: roboto;
 }
 .appointment_result .row_app .col_app:nth-child(4) p:nth-child(4) {
     color: #324e9e;
@@ -154,7 +146,6 @@ main h3 {
     width: 90%;
     padding: 4px 12px;
     margin-bottom: 10px;
-    font-family: roboto;
     font-size: 13px;
     cursor: pointer;
     border: none;

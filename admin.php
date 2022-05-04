@@ -2,6 +2,7 @@
     include("admin_header.php");
 ?>
 
+
     <main>
             
         <!---------------Reports for Registrar------------------------------------------------->
@@ -11,63 +12,75 @@
         }//End of show if Registrar
         ?>
         <!---------------Reports for Registrar------------------------------------------------->
-        <div class="appointment_result">
 
 
 
-        <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
-            <?php 
-        if ($position == "Registrar") {?>
+            <div class="limit_div">
+                <div class="limit_container">
+                <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
+                <?php 
+                if ($position == "Registrar") {?>
 
-            <div class="row">
-
-                <form action="appointment_limit.php" method="post">
-                    <h4>Limit the No. of Appointments Per Day:</h4>
-                    <?php
-                        $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
-                        $limitvalue= mysqli_query($db, $limit);
-                        if($limitvalue==TRUE){
-                            while($al=mysqli_fetch_assoc($limitvalue)){
-                    ?>
-                                <input type="text" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
-                                min="1" max="5000">
-                                <input type="submit" name="limit" value="Limit">
-                    <?php
-                            }
-                        }
-                    ?>
-                </form>
-
-                    <!--success or error-->                        
-                    <?php 
-                        if(isset($_GET['success'])){
-                    ?>
-                            <p>
-                                <?php 
-                                    echo $_GET['success'];
-                                ?>
-                            </p>
-                    <?php
-                        }
-                        if(isset($_GET['error'])){
-                    ?>
-                                    <p>
-                                        <?php 
-                                            echo $_GET['error'];
-                                        ?>
-                                    </p>
-                            <?php
+                    <form action="appointment_limit.php" method="post">
+                        <h4>Limit the No. of Appointments Per Day:</h4>
+                        <?php
+                            $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                            $limitvalue= mysqli_query($db, $limit);
+                            if($limitvalue==TRUE){
+                                while($al=mysqli_fetch_assoc($limitvalue)){
+                        ?>
+                                    <input type="number" class="limit_value" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
+                                    min="1" max="5000">
+                                    <input class="limit_btn" type="submit" name="limit" value="Limit">
+                        <?php
                                 }
-                        else{
-                        }
-                    ?>
-                    <!--success or error-->
-            </div>
-            <hr>
-            <br>
+                            }
+                        ?>
+                    </form>
+                </div>
+
+                <div class="limit_container">
+                    <div id="top_x_div"></div>
+                </div>
+
+                <div class="limit_container">
+                    <div id="piechart"></div>
+                </div>
+            
+             
+                <!--success or error-->                        
+                <?php 
+                    if(isset($_GET['success'])){
+                ?>
+                        <p>
+                            <?php 
+                                echo $_GET['success'];
+                            ?>
+                        </p>
+                <?php
+                    }
+                    if(isset($_GET['error'])){
+                ?>
+                                <p>
+                                    <?php 
+                                        echo $_GET['error'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                    else{
+                    }
+                ?>
+                <!--success or error-->
+        </div>
 
 
 
+
+
+
+
+        <div class="appointment_result" style="display: none;">
             <div class="list_div" style="background: pink; display: flex">
 
                 <div class="reg_print_div" style="border: 1px solid green;">
@@ -351,14 +364,44 @@
         }
         ?> <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
 
-    <?php
-        include("backtotop.php");
-    ?> 
+   
     </div>
   </main>
 
 </body>
 </html>
+
+
+<style>
+    .limit_div {
+        display: flex;
+        width: 100%;
+        background: #EFF0F4;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+    }
+    .limit_div .limit_container {
+        width: 33%;
+        background: #fff;
+        padding: 15px;
+    }
+    .limit_div .limit_container:nth-child(2) {
+        margin: 0 15px;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
