@@ -26,7 +26,7 @@ if ($staff_id == ""){
                             function drawChart() {
 
                                 var data = google.visualization.arrayToDataTable([
-                                ['Task', 'Hours per Day'],
+                                ['Appointments', 'No. of Appointments'],
                                 
                                 
 
@@ -57,7 +57,7 @@ if ($staff_id == ""){
                                 ]);
 
                                 var options = {
-                                title: 'Daily Appointment Slot',
+                                title: 'Daily Appointment Slot (Active/Cancelled)',
 								backgroundColor: { fill:'transparent' },
 								is3d:true
                                 };
@@ -88,8 +88,7 @@ if ($staff_id == ""){
 										FROM tbl_appointment_detail INNER JOIN tbl_appointment 
 										ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
 										INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status = 'Accepted' 
-										OR tbl_appointment_detail.status = 'Cancelled'
+										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status = 'Accepted'
 										GROUP BY first_name HAVING COUNT(*)>0";
 										$appt_today = mysqli_query($db, $appt);
 
@@ -109,9 +108,13 @@ if ($staff_id == ""){
 										else{
 											echo"Cannot access" . mysqli_error($db);
 										}
+
 									?> 
 									
 									]);
+									<?php
+									
+									?>
 
 									var options = {
 									title: 'Chess opening moves',
@@ -120,7 +123,7 @@ if ($staff_id == ""){
 									bars: 'vertical', // Required for Material Bar Charts.
 									axes: {
 										x: {
-										0: { side: 'top', label: 'Daily Appointment Numbers of Staff'} // Top x-axis.
+										0: { side: 'top', label: 'Daily Active Appointments Per Staff'} // Top x-axis.
 										}
 									},
 									bar: { groupWidth: "100%" }

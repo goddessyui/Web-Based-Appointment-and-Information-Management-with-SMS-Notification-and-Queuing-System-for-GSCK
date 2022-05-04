@@ -78,7 +78,7 @@
             <div class="col_3">
                 <a href="#">
                 <div class="card">
-                    <div class="card_title" id="cancelledrequests">Total Appointments</div>
+                    <div class="card_title" id="cancelledrequests">Total Active Appts.</div>
                     <div class="card_body">
                         <?php
                                 $app = "SELECT * FROM tbl_appointment_detail WHERE `status`= 'Accepted'";
@@ -95,14 +95,14 @@
             <div class="col_3">
                 <a href="#">
                 <div class="card">
-                    <div class="card_title" id="pastrequests">Appointments Today</div>
+                    <div class="card_title" id="pastrequests">Active Appts. Today</div>
                     <div class="card_body">
                         <?php
                             date_default_timezone_set('Asia/Manila');                           		
                             $currentdate = date("Y-m-d");
 
                             $app = "SELECT * FROM tbl_appointment_detail WHERE appointment_date = '$currentdate' 
-                                AND `status`=('Accepted' OR 'Cancelled')";
+                                AND `status`='Accepted'";
 
                             $app_today = mysqli_query($db, $app);
                             $count = mysqli_num_rows($app_today);
