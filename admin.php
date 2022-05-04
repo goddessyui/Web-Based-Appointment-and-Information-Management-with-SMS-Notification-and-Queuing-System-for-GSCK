@@ -152,8 +152,9 @@
                                 <option value="'Z%'">Z</option>
                             </select>
 
-                            <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List of Registered Staff"/>
                             <button onclick="printDiv_regstaff()">Print</button>
+                            <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List of Registered Staff"/>
+                           
                         </form>
 
                     <!--<div class="row" id="generated_rep_registeredstaff"></div>-->
@@ -223,8 +224,10 @@
                                 <option value="'3'">3rd Year</option>
                                 <option value="'4'">4th Year</option>
                             </select>
-                            <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List of Registered Students"/>
+
                             <button onclick="printDiv_regstudent()">Print</button>
+                            <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List of Registered Students"/>
+                            
                         </form>
 
                     <!--<div class="row" id="generated_rep_registeredstudents"></div>-->
@@ -524,17 +527,18 @@
     background: #4285F4;
     color: #fff;
     height: 32px;
-    padding: 0 20px;
-    margin-left: 12px;
+    width: 220px;
+    margin-right: 12px;
     cursor: pointer;
+    float: right;
 }
 .reg_print_div form button {
     float: right;
     border: none;
     background: #333;
     color: #eee;
-    height: 26px;
-    padding: 0 30px;
+    height: 32px;
+    width: 150px;
     font-size: 12px;
     cursor: pointer;
     text-transform: uppercase;

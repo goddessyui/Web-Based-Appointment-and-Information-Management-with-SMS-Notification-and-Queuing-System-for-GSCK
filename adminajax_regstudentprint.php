@@ -95,8 +95,9 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
     }
     .row_student_list .regstudent_row {
         font-family: 'Roboto Serif';
-        font-size: 14px;
+        font-size: 13px;
         padding: 5px 0;
+        color: #333;
     }
     .row_student_list:nth-child(even) {
         background: #0001;
