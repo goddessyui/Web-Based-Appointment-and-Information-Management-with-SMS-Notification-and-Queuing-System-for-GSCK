@@ -14,7 +14,6 @@
         <!---------------Reports for Registrar------------------------------------------------->
 
 
-
             <div class="limit_div">
                 <div class="limit_container">
                 <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
@@ -22,16 +21,30 @@
                 if ($position == "Registrar") {?>
 
                     <form action="appointment_limit.php" method="post">
-                        <h4>Limit the No. of Appointments Per Day:</h4>
-                        <?php
-                            $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
-                            $limitvalue= mysqli_query($db, $limit);
-                            if($limitvalue==TRUE){
-                                while($al=mysqli_fetch_assoc($limitvalue)){
-                        ?>
-                                    <input type="number" class="limit_value" name="limit_value" value="<?php echo $al['appointment_limit'];?>" 
-                                    min="1" max="5000">
-                                    <input class="limit_btn" type="submit" name="limit" value="Limit">
+                        <div class="top_flex">
+                            <h4>Max number of Appointment per Day</h4>
+                        
+                            <?php
+                                $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                                $limitvalue= mysqli_query($db, $limit);
+                                if($limitvalue==TRUE){
+                                    while($al=mysqli_fetch_assoc($limitvalue)){
+
+                                        ?><h4><?php echo $al['appointment_limit'];?></h4><?php
+                            ?>
+                        </div>
+
+                        <div class="top_flex">
+                                    <h4>Input Appointment Limit</h4>
+                                    <div class="form_group">
+                                        <input type="number" class="limit_value" name="limit_value" value="<?php echo $al['appointment_limit'];?>" min="1" max="5000">
+                                    </div>
+
+                                    <div class="form_group">
+                                        <input class="limit_btn" type="submit" name="limit" value="Set Limit">
+                                    </div>
+                        </div>
+
                         <?php
                                 }
                             }
@@ -70,49 +83,46 @@
                     <div id="piechart"></div>
                 </div>
             
-             
-                <!--success or error-->                        
-                <?php 
-                    if(isset($_GET['success'])){
-                ?>
-                        <p>
-                            <?php 
-                                echo $_GET['success'];
-                            ?>
-                        </p>
-                <?php
-                    }
-                    if(isset($_GET['error'])){
-                ?>
-                                <p>
-                                    <?php 
-                                        echo $_GET['error'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                    else{
-                    }
-                ?>
-                <!--success or error-->
+        </div>
+
+        <div class="error_message">
+            <!--success or error-->                        
+            <?php 
+                if(isset($_GET['success'])){
+            ?>
+                    <p>
+                        <?php 
+                            echo $_GET['success'];
+                        ?>
+                    </p>
+            <?php
+                }
+                if(isset($_GET['error'])){
+            ?>
+                            <p>
+                                <?php 
+                                    echo $_GET['error'];
+                                ?>
+                            </p>
+                    <?php
+                        }
+                else{
+                }
+            ?>
+            <!--success or error-->
         </div>
 
 
+        <div class="appointment_result">
+            <div class="list_div">
 
-
-
-
-
-        <div class="appointment_result" style="display: none;">
-            <div class="list_div" style="background: pink; display: flex">
-
-                <div class="reg_print_div" style="border: 1px solid green;">
+                <div class="reg_print_div">
 
                 <h4>List of Registered Staff</h4>
  
                     <div class="row">
                         <form method="post">
-                            <span>Alphabetical (Last Name):</span>
+                            <span>Alphabetical</span>
                             <select name="alphabetical_ln_staff" id="alphabetical_ln_staff">
                                 <option value="('%')">ALL</option>
                                 <option value="'A%'">A</option>
@@ -153,13 +163,13 @@
                 </div>
             
 
-                <div class="reg_print_div" style="border: 1px solid green;">
+                <div class="reg_print_div">
 
                     <h4>List of Registered Students</h4>
 
                     <div class="row">
                         <form method="post">
-                            <span>Alphabetical (Last Name):</span>
+                            <span>Alphabetical</span>
 
                             <select name="alphabetical_ln_student" id="alphabetical_ln_student">
                                 <option value="('%')">ALL</option>
@@ -408,12 +418,82 @@
         width: 33%;
         background: #fff;
         padding: 15px;
+        height: 32vh;
+    }
+    .limit_div .limit_container:nth-child(1) {
+        padding: 30px;
     }
     .limit_div .limit_container:nth-child(2) {
         margin: 0 15px;
+        border: 1px solid #3871CF;
+    }
+    .limit_div .limit_container:nth-child(3) {
+        border: 1px solid #DC3912;
+    }
+    .limit_div .limit_container:nth-child(1) form {
+        height: 100%;
     }
 
+    form .top_flex:nth-child(1) {
+        height: 40%;
+    }
 
+          .top_flex:nth-child(1) h4:nth-child(1) {
+              color: #333;
+              font-family: 'Roboto';
+              font-size: 13px;
+              font-weight: 400;
+              text-transform: uppercase;
+              margin-bottom: 8px;
+          }
+          .top_flex:nth-child(1) h4:nth-child(2) {
+              color: #000;
+              font-size: 30px;
+              font-family: 'Roboto Serif';
+              font-weight: 400;
+          }
+    form .top_flex:nth-child(2) {
+        height: 50%;
+    }
+    form .top_flex:nth-child(2) h4 {
+       margin-top: 15px;
+       font-family: 'Roboto Serif';
+       margin-bottom: 8px;
+       color: #333;
+    }
+         .top_flex:nth-child(2) .form_group {
+             height: 40px;
+         }
+                                .form_group input {
+                                    height: 32px;
+                                }
+                                .form_group input[type=number] {
+                                    margin-bottom: 15px;
+                                    width: 100%;
+                                    padding: 0 8px;
+                                    border: 1px solid lightgrey;
+                                }
+                                .form_group input[type=submit] {
+                                    width: 100%;
+                                    border: none;
+                                    background: #4285F4;
+                                    color: #fff;
+                                    font-size: 13px;
+                                    cursor: pointer;
+                                }
+.error_message {
+    background: orange;
+}
+.error_message p {
+    padding: 2px 20px;
+    font-family: 'Roboto';
+    font-size: 13px;
+    color: #000;
+}
+.card_title,
+.card_body {
+    cursor: auto;
+}
 </style>
 
 

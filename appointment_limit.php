@@ -14,17 +14,17 @@ include_once('dbconfig.php');
             echo $count;
 
         if($limit_value<=$count) { 
-            header('location: admin.php?error="Failed to update appointment limit.<br>The value is less than the current number of appointments already filled today.<br>Please use a higher value than the number of slots already taken."');
+            header('location: admin.php?error=<p>Error: The value is less than the current number of appointments already filled today. Please use a higher value than the number of slots already taken.</p>');
          
         } 
         else {
             $limitapp="UPDATE tbl_appointment_limit SET appointment_limit = '.$limit_value.' WHERE limit_id = '1'";
             if (mysqli_query($db, $limitapp)) {
-                header('location: admin.php?success="Successfully updated appointment limit!"');
+                header('location: admin.php?success=<p>Successfully updated appointment limit.</p>');
                 
                 echo "Success";
             } else {
-                header('location: admin.php?error="Error inserting record."');
+                header('location: admin.php?error=<p>Error inserting record.</p>');
             }
         
         }  

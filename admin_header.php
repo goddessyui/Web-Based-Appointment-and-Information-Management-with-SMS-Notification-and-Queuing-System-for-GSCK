@@ -280,7 +280,6 @@ if ($staff_id == ""){
 
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
     :root {
 	--blue: #324e9e;
@@ -343,7 +342,6 @@ if ($staff_id == ""){
 	outline: none;
 	width: 100%;
 	text-transform: uppercase;
-	font-family: Lato;
 }
 .sidebar_menu li img {
 	margin-right: 12px;
@@ -410,8 +408,8 @@ header {
 	border-bottom: 1px solid lightgrey;
 }
 header .title_name h3 {
-	font-family: roboto;
 	color: #333;
+	font-family: 'Roboto';
 }
 
 #nav-toggle {
@@ -437,7 +435,6 @@ header .title_name h3 {
 }
 .user_wrapper a {
 	color: #eee;
-	font-family: Lato;
 }
 
 
