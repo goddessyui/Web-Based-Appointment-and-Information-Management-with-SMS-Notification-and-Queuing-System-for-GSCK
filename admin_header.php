@@ -150,7 +150,10 @@ if ($staff_id == ""){
 
 	<div class="sidebar">
 		<div class="sidebar_brand">
-	</div>
+			<h4 class="username_appear">
+				<?php echo $staff_username; ?>
+			</h4>
+		</div>
 
 		<div class="sidebar_menu">
 			<ul>
@@ -257,7 +260,7 @@ if ($staff_id == ""){
 		<header>
 				<div class="menu_admin">
 					<label for="nav-toggle">
-						<span>
+						<span style="cursor: pointer;">
 							<img src="icon/menu_btn.png" width="26">
 						</span>
 					</label>
@@ -274,7 +277,7 @@ if ($staff_id == ""){
 						<button onclick="BtnDropdown()" class="btn_no_bg">
 							<i class="fa fa-bell-o"><p class="count" id="count_red" style="text-decoration: none; color: #fff;"></p></i>
 						</button>
-						<div class="dropdown-menu" id="dropdown_id"></div>
+						<div class="dropdown-menu" id="dropdown_id" style="background: #fff"></div>
 					</div>
 					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
        <!-- NOTIFICATION BUTTON -->
@@ -309,7 +312,7 @@ if ($staff_id == ""){
 	top: 0;
 	left: 0;
 	height: 100%;
-	background: #fff;
+	background: #EFF0F4;
 	z-index: 888;
 	transition: width 300ms;
 	border-right: 1px solid lightgrey;
@@ -317,14 +320,22 @@ if ($staff_id == ""){
 .sidebar_brand {
 	height: 60px;
 	display: flex;
+	align-items: center;
 	justify-content: center;
-	text-align: center;
-	background-color: #fff;
+}
+
+.sidebar_brand h4 {
+	font-weight: 400;
+	font-family: 'Roboto';
+	font-size: 14px;
 }
 
 .sidebar_menu {
 	margin: 20px;
 	height: 88vh;
+}
+.sidebar_menu ul {
+	transform: translateY(40%);
 }
 
 .sidebar_menu li{
@@ -345,10 +356,11 @@ if ($staff_id == ""){
 	cursor: pointer;
 	outline: none;
 	width: 100%;
-	text-transform: uppercase;
+	text-transform: uppercase;;
+	font-family: 'Roboto Serif';
 }
 .sidebar_menu li img {
-	margin-right: 12px;
+	margin-right: 20px;
 	padding: 2px;
 	width: 26px;
 	height: 26px;
@@ -364,7 +376,7 @@ if ($staff_id == ""){
 	width: 70px;
 }
 
-#nav-toggle:checked + .sidebar .sidebar_brand h2 span,
+#nav-toggle:checked + .sidebar .sidebar_brand .username_appear,
 #nav-toggle:checked + .sidebar li a,
 #nav-toggle:checked + .sidebar li span
 {
@@ -375,7 +387,7 @@ if ($staff_id == ""){
 	padding-right: 1.6rem;
 }
 
-#nav-toggle:checked + .sidebar .sidebar_brand h2 span:last-child,
+#nav-toggle:checked + .sidebar .sidebar_brand .username_appear,
 #nav-toggle:checked + .sidebar li a span:last-child,
 #nav-toggle:checked + .sidebar li .dropdown_btn .navname
  {
