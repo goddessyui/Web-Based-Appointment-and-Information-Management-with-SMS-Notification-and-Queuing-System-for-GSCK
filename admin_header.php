@@ -540,6 +540,8 @@ header .title_name h3 {
         position: absolute;
         top: -4px;
         right: -5px;
+
+
     }
 	.btn_no_bg {
 		border: none;
@@ -597,7 +599,7 @@ $(document).ready(function(){
     $('.dropdown-menu').html(data.notification);
     if(data.unseen_notification > 0)
     {
-     $('.count').html(data.unseen_notification);
+     $('.count').html(data.unseen_notification).css({backgroundColor: 'red'});
     }
    }
   });
