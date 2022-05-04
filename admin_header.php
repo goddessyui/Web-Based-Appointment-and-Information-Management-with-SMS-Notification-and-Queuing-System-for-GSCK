@@ -88,7 +88,8 @@ if ($staff_id == ""){
 										FROM tbl_appointment_detail INNER JOIN tbl_appointment 
 										ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
 										INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status =('Accepted' OR 'Cancelled')
+										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status = 'Accepted' 
+										OR tbl_appointment_detail.status = 'Cancelled'
 										GROUP BY first_name HAVING COUNT(*)>0";
 										$appt_today = mysqli_query($db, $appt);
 
