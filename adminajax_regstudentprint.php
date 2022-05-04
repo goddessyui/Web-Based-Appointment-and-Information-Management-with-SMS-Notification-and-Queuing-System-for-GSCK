@@ -24,21 +24,22 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
     //check the num of rows                 
     if($count>0) { //we have data in database
         $i = 1;
-        ?>
-            <div class="row">
+        ?>  
+        <div class="row_container">
+            <div class="row_student">
                
-                <div class="regstudent_row"><b>S.N.</b></div>
-                <div class="regstudent_row"><b>Last Name</b></div>
-                <div class="regstudent_row"><b>First Name</b></div>
-                <div class="regstudent_row"><b>Student ID No.</b></div>
-                <div class="regstudent_row"><b>Course & Year</b></div>
+                <div class="regstudent_row">S.N.</b></div>
+                <div class="regstudent_row">Last Name</b></div>
+                <div class="regstudent_row">First Name</b></div>
+                <div class="regstudent_row">Student ID No.</b></div>
+                <div class="regstudent_row">Course & Year</b></div>
                 
             </div>
                
         <?php
         while($rows=mysqli_fetch_assoc($staff_result)) {
 ?>
-            <div class="row">
+            <div class="row_student_list">
                     <div class="regstudent_row">
                         <?php   
                                 echo $i++; 
@@ -47,7 +48,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
                         
                     <div class="regstudent_row">
                         <?php echo $rows['last_name']; ?>
-                    </div class="regstudent_row">
+                    </div>
 
                     <div class="regstudent_row">
                         <?php echo $rows['first_name']; ?>
@@ -61,6 +62,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
                         <?php echo $rows['course']."-".$rows['year']; ?>
                     </div>
             </div>
+        
 <?php 
         }
     } 
@@ -69,10 +71,34 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
     }
 }  
 ?>
+    </div>
 
-</div>
+
 <style>
-    .row .regstudent_row{
-        width: 20%;
+    .row_container {
+        margin-top: 40px;
+        width: 100%;
+    }
+    .row_container .row_student,
+    .row_container .row_student_list {
+        display: flex;
+        width: 100%;
+        padding: 5px;
+    }
+    .row_student {
+        font-family: 'Roboto Serif';
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+    .regstudent_row {
+        width: 25%;
+    }
+    .row_student_list .regstudent_row {
+        font-family: 'Roboto Serif';
+        font-size: 14px;
+        padding: 5px 0;
+    }
+    .row_student_list:nth-child(even) {
+        background: #0001;
     }
 </style>

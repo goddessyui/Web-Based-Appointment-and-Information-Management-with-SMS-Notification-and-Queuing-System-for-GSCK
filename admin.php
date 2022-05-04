@@ -282,11 +282,11 @@
         <?php
         if($position=="Accounting Staff/Scholarship Coordinator" OR $position=="Teacher") { 
         ?>
-            <div class="row">
 
-                <div class="col_3">
-                    <div class="card">
-                        <div class="card_title">Allowed No. of Appointments Today:</div>
+                <div class="child_option">
+                    <div class="card_list">
+                        <h4>Allowed No. of Appointments Today:</h4>
+
                         <div class="card_body">
                             <div class="card_text">
                             <?php
@@ -300,12 +300,14 @@
                             ?>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="col_3">
-                    <div class="card">
-                        <div class="card_title">No. of Appointment Slots Taken Today:</div>
+                <div class="child_option">
+                    <div class="card_list">
+                        <h4>No. of Appointment Slots Taken Today:</h4>
+
                         <div class="card_body">
                             <div class="card_text">
                             <?php
@@ -321,11 +323,12 @@
                                 echo $count; 
                             ?>
                             </div>
+
                         </div>
                     </div>                
                 </div>  
 
-            </div>
+
         <?php
         }
         ?>
@@ -418,7 +421,7 @@
         height: 32vh;
     }
     .limit_div .limit_container:nth-child(1) {
-        padding: 15px;
+        padding: 30px;
     }
     .limit_div .limit_container:nth-child(2) {
         margin: 0 15px;
@@ -499,7 +502,7 @@
 
                     .list_div .reg_print_div {
                         background-color: #fff;
-                        padding: 15px;
+                        padding: 30px;
                     }
                     .list_div .reg_print_div:nth-child(1) {
                         margin-bottom: 15px;
@@ -551,6 +554,9 @@
 .reg_print_div form select option {
     font-family: 'Roboto Serif';
 }
+
+
+
 </style>
 
 
