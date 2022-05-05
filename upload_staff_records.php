@@ -418,7 +418,7 @@ else{
         padding: 0;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 50px;
+        margin-top: 80px;
     }
    
     .row {
