@@ -405,7 +405,7 @@ if ($staff_id == "" && $username == ""){
 }
 .profile_div .head_account:nth-child(3) .profile_input input {
     background: none;
-    border: 1px solid lightgrey;
+    border: 1px solid gray;
     padding: 5px;
     padding-left: 8px;
     font-size: 13px;
