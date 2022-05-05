@@ -476,7 +476,7 @@
                                 .form_group input[type=submit] {
                                     width: 100%;
                                     border: none;
-                                    background: #4285F4;
+                                    background: #324E9E;
                                     color: #fff;
                                     font-size: 13px;
                                     cursor: pointer;
@@ -524,7 +524,7 @@
 }
 .reg_print_div form input {
     border: none;
-    background: #4285F4;
+    background: #324E9E;
     color: #fff;
     height: 32px;
     width: 220px;

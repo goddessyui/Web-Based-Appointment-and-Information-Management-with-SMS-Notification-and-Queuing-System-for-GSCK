@@ -61,6 +61,7 @@ if ($staff_id == ""){
 								fontSize: 11,
 								legendFontSize: 11,
 								height: 250,
+								colors: ['#EB4235', '#324E9E'],
 								backgroundColor: { fill:'transparent' },
                                 };
 
@@ -123,6 +124,7 @@ if ($staff_id == ""){
 									title: 'Daily Active Appointments Per Staff',
 									legendFontSize: 14,
 									legend: { position: 'none' },
+									colors: ['#324E9E'],
 									
 									bars: 'vertical', // Required for Material Bar Charts.
 									axes: {
@@ -313,7 +315,7 @@ if ($staff_id == ""){
 	top: 0;
 	left: 0;
 	height: 100%;
-	background: #444;
+	background: #324E9E;
 	z-index: 888;
 	transition: width 300ms;
 	border-right: 1px solid lightgrey;
@@ -325,7 +327,7 @@ if ($staff_id == ""){
 	align-items: center;
 	justify-content: center;
 	padding-bottom: 0;
-	background: #444;
+	background: #324E9E;
 }
 .sidebar_brand img {
 	margin-right: 10px;
