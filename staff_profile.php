@@ -28,125 +28,413 @@ if ($staff_id == "" && $username == ""){
     echo '<script type="text/javascript">window.location.href="login_system/login.php"</script>';
 }
 ?>
+
+
 <main>
-<hr>
+<div class="profile_settings">
+    <img src="icon/settings.png" width="24">
+    <h1>Profile Settings</h1>
+</div>
 
-    <div><h1>PROFILE</h1></div>
-    <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
-    <div><p> <?php echo $row["username"]?></p></div>
-    <div><p> <?php echo $row["mobile_number"]?></p></div>
-    <hr>
-
-    <div><h2>Update Profile</h2></div>
-    <div>
-        Student ID: <input type="text" name="student_id" value="<?php echo $row["staff_id"]?>" disabled />
-    </div>
-
-    <div class="">
-	    Username: <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
-	</div>
-
-    <div>
-        First Name: <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
+<div class="profile_div">
+    
+    <div class="head_account">
+        <div class="current_profile">
+            <div><h2> <?php echo $row["first_name"]," ", $row["last_name"]?></h2></div>
+            <div><span>Username:</span><p><?php echo $row["username"]?></p></div>
+            <div><span>Mobile number:</span><p><?php echo $row["mobile_number"]?></p></div>
+        </div>
     </div>
     
-    <div>
-        Last Name: <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
-    </div>
+    <div class="head_account">
 
-    <form  method="POST" action="#" id="dis">
-        <div>
-            Mobile Number: <input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" autocomplete="off" />
+        <div class="profile_input">
+            <p>Student ID</p><input type="text" name="student_id" value="<?php echo $row["staff_id"]?>" disabled />
         </div>
-        <?php 
+
+        <div class="profile_input">
+            <p>Username</p><input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
+        </div>
+
+        <div class="profile_input">
+            <p>First name</p><input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
+        </div>
+
+        <div class="profile_input">
+            <p>Last name</p><input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
+        </div>
+
+        <form  method="POST" action="#" id="dis">
+            <div class="form_input_div">
+                <p>Mobile number</p><input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" autocomplete="off" />
+            </div>
+
+            <?php 
             if ($position == 'Registrar') {?>
-        <div>
-            Position: 
-            <select name="position" id="position">  
-                <option value="Registrar" selected>Registrar</option>  
-            </select>  </div>
 
-        <div><label>Appointment Type: </label></div>
-        <div>
-            <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
-            <label> Meeting</label><br>
-            <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
-            <label> Presentation</label><br>
-            <input type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
-            <label> Request Documents</label><br>
-            <input type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
-            <label> Pre-Enrollment</label><br>
-            <input type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
-            <label> Enrollment</label><br>
-            <input type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
-            <label> Request for Grades</label><br>
-            <input type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
-            <label> Application for Graduation</label><br>   
-        </div>
-        <?php 
-            }
-            else {?>
-                <div>
-                    Position: 
-                    <select name="position" id="position">  
-                        <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
-                        <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
-                    </select>  
+            <div class="form_input_div form_space">
+                <p>Position</p>
+                <select name="position" id="position">  
+                    <option value="Registrar" selected>Registrar</option>  
+                </select>
+            </div>
+
+
+        <div class="appointment_form">
+            <div class="apptn_type">
+                <p>Appointment Type: </p>
+            </div>
+
+            <div class="pick_appt_type">
+                
+                <div class="form_group_input">
+                    <input hidden id="reg_meeting" type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
+                    <label for="reg_meeting">Meeting</label>
                 </div>
 
-        <div><label>Appointment Type: </label></div>
-        <div>
-            <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
-            <label> Meeting</label><br>
-            <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
-            <label> Presentation</label><br>
-            <input type="checkbox" name="check_list[]" value="Module Claiming or Submission" <?php echo in_array("Module Claiming or Submission", $array_type)?'checked':'';?>>
-            <label> Module Claiming or Submission</label><br>
-            <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
-            <label> Project Submission</label><br>
-            <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
-            <label> Evaluation of Grades - Department Head</label><br>
-            <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
-            <label> UniFAST - Claim Cheque</label><br>
-            <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
-            <label> UniFAST - Submit Documents</label><br>
-            <input type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
-            <label> Application for Graduation</label><br>   
+                <div class="form_group_input">
+                    <input hidden id="reg_presentation" type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
+                    <label for="reg_presentation">Presentation</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden id="reg_request" type="checkbox" name="check_list[]" value="Request Documents From Registrar" <?php echo in_array("Request Documents From Registrar", $array_type)?'checked':'';?>>
+                    <label for="reg_request">Request Documents</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden hidden id="reg_pre-enrollment" type="checkbox" name="check_list[]" value="Pre-Enrollment" <?php echo in_array("Pre-Enrollment", $array_type)?'checked':'';?>>
+                    <label for="reg_pre-enrollment">Pre-Enrollment</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden id="reg_enrollment" type="checkbox" name="check_list[]" value="Enrollment" <?php echo in_array("Enrollment", $array_type)?'checked':'';?>>
+                    <label for="reg_enrollment">Enrollment</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden id="reg_grades" type="checkbox" name="check_list[]" value="Request for Grades" <?php echo in_array("Request for Grades", $array_type)?'checked':'';?>>
+                    <label for="reg_grades">Request for Grades</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden id="reg_graduation" type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
+                    <label for="reg_graduation"> Application for Graduation</label> 
+                </div>
+            </div>
+
+
+            <?php 
+            }
+            else {?>
+
+            <div>
+            Position: 
+                <select name="position" id="position">  
+                    <option value="Teacher" <?php echo $row["position"]=='Teacher'?'selected':''?>>Teacher</option>  
+                    <option value="Accounting Staff/Scholarship Coordinator" <?php echo $row["position"]=='Accounting Staff/Scholarship Coordinator'?'selected':''?>>Accounting Staff/Scholarship Coordinator</option>  
+                </select>  
+            </div>
+
+            <div><label>Appointment Type: </label></div>
+            <div>
+                <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
+                <label> Meeting</label>
+                <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
+                <label> Presentation</label>
+                <input type="checkbox" name="check_list[]" value="Module Claiming or Submission" <?php echo in_array("Module Claiming or Submission", $array_type)?'checked':'';?>>
+                <label> Module Claiming or Submission</label>
+                <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
+                <label> Project Submission</label>
+                <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
+                <label> Evaluation of Grades - Department Head</label>
+                <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
+                <label> UniFAST - Claim Cheque</label>
+                <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
+                <label> UniFAST - Submit Documents</label>
+                <input type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
+                <label> Application for Graduation</label>   
+            </div>
+            <?php } ?>
+
         </div>
-        <?php } ?>
+
+            <div class="right_btn">
+                <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
+            </div>
+
+            <div class="form-group">
+                <small id="message" class="" style="color:red;"></small>
+            </div>      
+        </div>  
     
-        
 
-        <div>
-        <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
-        </div>
-        <div class="form-group">
-		<small id="message" class="" style="color:red;"></small>
-	    </div>        
-    <hr>
-        <div><h2>Change Password</h2></div>
-        <label>Current password</label>
-        <div>
-            <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
-        </div>
-        <label>New Password</label>
-        <div >
-            <input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off" />
-        </div>
-        <div class="">
-            <small>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</small>
-        </div>
-        <label>Re-enter New Password</label>
-        <div>
-            <input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
+        <div class="head_account">
+            <div class="c_p">
+                <h2>Change Password</h2>
+            </div>
 
-        <div>
-            <input type="button" name="button_change_pass" value="Save Changes" id="button_change_pass" />
+            <div class="profile_input">
+                <p>Current password</p>
+                <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
+            </div>
+
+            <div class="profile_input">
+                <p>New Password</p>
+                <input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off" />
+            </div>
+
+            <div class="pass_note">
+                <small>password must be at least 5 characters and have a number character,<br>e.g. abcde12345</small>
+            </div>
+
+            <div class="profile_input">
+                <p>Re-enter New Password</p>
+                <input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
+            </div>
+
+            <div class="right_btn">
+                <input type="button" name="button_change_pass" value="Save Changes" id="button_change_pass" />
+            </div>
+
+            <div class="form-group">
+                <small id="message1"></small>
+            </div>
+            </form>
         </div>
-        <div class="form-group">
-		<small id="message1" class="" style="color:red;"></small>
-	    </div>
-    </form>
+
+
+    </div>
+</main>
+
+
+
+    <?php
+    include("backtotop.php");
+    ?>
+
+
+
+<style>
+    main {
+        padding: 15px;
+    }
+    main .profile_settings {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 15px;
+        margin-left: 15px;
+    }
+    main .profile_settings img {
+        margin-right: 8px;
+    }
+    main .profile_settings h1 {
+        font-family: 'Roboto';
+        text-transform: uppercase;
+        font-size: 20px;
+        color: #333;
+    }
+    main .profile_div {
+        background: #EFF0F4;
+        padding: 15px;
+    }
+    main .profile_div .head_account {
+        background: #fff;
+        padding: 15px 30px;
+    }
+   
+    main .profile_div .head_account:nth-child(1) {
+        background: #324E9E;
+    }
+
+    main .profile_div .head_account:nth-child(2) {
+        margin-bottom: 15px;
+        padding-top: 35px;
+    }
+    .head_account .current_profile {
+        display: flex;
+        align-items: center;
+    }
+    .head_account .current_profile div {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-family: 'Roboto';
+    }
+    .head_account .current_profile div h2 {
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .head_account .current_profile div span {
+        margin-right: 8px;
+        color: #eee;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+    .head_account .current_profile div p {
+        font-family: 'Roboto Serif';
+    }
+    .profile_div .head_account:nth-child(2) {
+        padding-top: 25px;
+    }
+    .profile_div .head_account:nth-child(2) .profile_input{
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    .profile_div .head_account:nth-child(2) .profile_input p {
+        font-family: 'Roboto';
+        font-size: 13px;
+        text-transform: uppercase;
+        width: 150px;
+        color: #444;
+    }
+    .profile_div .head_account:nth-child(2) .profile_input input {
+        background: #EFF0F4;
+        border: 1px solid lightgrey;
+        padding: 5px;
+        padding-left: 8px;
+        font-size: 13px;
+        width: 220px;
+    }
+                 .head_account form {
+                     margin-top: 30px;
+                 }
+                 .head_account form .form_input_div {
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 8px;
+                 }
+                 .head_account form .form_input_div p {
+                    font-family: 'Roboto';
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    width: 150px;
+                    color: #444;
+                 }
+                 .head_account form .form_input_div input,
+                 .head_account form .form_input_div select {
+                    background: none;
+                    border: 1px solid lightgrey;
+                    padding: 5px;
+                    padding-left: 8px;
+                    font-size: 13px;
+                    width: 220px;
+                 }
+      
+.appointment_form {
+    margin-top: 45px;
+}
+.appointment_form .apptn_type p {
+    font-family: 'Roboto';
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 15px;
+}
+.appointment_form .pick_appt_type {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pick_appt_type .form_group_input {
+    height: 30px;
+    font-family: 'Roboto Serif';
+    font-size: 13px;
+    background: #fff;
+    margin: 8px;
+    width: 280px;
+    display: flex;
+    align-items: stretch;
+    transform: translateX(-10px);
+}
+.pick_appt_type .form_group_input label{
+    border: 1px solid #324E9E;
+    color: #333;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.pick_appt_type .form_group_input input[type=checkbox]:checked ~ label {
+    background: #324E9E;
+    color: #eee;
+    border: none;
+}
+.right_btn {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.right_btn input[type=button] {
+    background: #444;
+    border: none;
+    color: #eee;
+    font-family: 'Roboto';
+    font-size: 13px;
+    width: 150px;
+    height: 32px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.profile_div .head_account:nth-child(3) {
+        padding-top: 25px;
+    }
+.profile_div .head_account:nth-child(3) .profile_input{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.profile_div .head_account:nth-child(3) .profile_input p {
+    font-family: 'Roboto';
+    font-size: 13px;
+    text-transform: uppercase;
+    width: 150px;
+    color: #444;
+}
+.profile_div .head_account:nth-child(3) .profile_input input {
+    background: none;
+    border: 1px solid lightgrey;
+    padding: 5px;
+    padding-left: 8px;
+    font-size: 13px;
+    width: 220px;
+}
+.head_account:nth-child(3) .c_p {
+    margin-bottom: 25px;
+}
+.head_account:nth-child(3) .c_p h2 {
+    font-family: 'Roboto';
+    font-size: 20px;
+}
+.head_account:nth-child(3) .pass_note {
+    margin-bottom: 12px;
+    margin-left: 150px;
+    font-family: 'Roboto Serif';
+    font-size: 13px;
+    width: 220px;
+    color: gray;
+}
+     
+</style>
+
+
+
+
+
+
+
 
 
 
@@ -290,10 +578,3 @@ $(document).ready(function() {
 
 });
 </script>
-
-
-<?php
- include("backtotop.php");
-?>
-</main>
-

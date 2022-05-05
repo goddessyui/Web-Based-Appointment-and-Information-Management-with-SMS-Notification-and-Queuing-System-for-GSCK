@@ -73,7 +73,7 @@
                 else{
                     ?>
                     <div class="limit_container">
-                        <div>No Scheduled Appointments Today</div>
+                        <div class="no_sched">No Scheduled Appointments Today</div>
                     </div>
                     <?php
                 }
@@ -457,7 +457,7 @@
     }
     form .top_flex:nth-child(2) h4 {
        margin-top: 15px;
-       font-family: 'Roboto Serif';
+       font-family: 'Roboto';
        margin-bottom: 8px;
        color: #333;
     }
@@ -513,11 +513,11 @@
 
 .reg_print_div h4 {
     color: #333;
-    font-family: 'Roboto Serif';
+    font-family: 'Roboto';
     margin-bottom: 15px;
 }
 .reg_print_div form {
-    font-family: 'Roboto Serif';
+    font-family: 'Roboto';
     font-weight: 400;
     font-size: 13px;
     text-transform: uppercase;
@@ -552,10 +552,13 @@
     padding: 0 8px;
     background: none;
     border: 1px solid lightgrey;
-    font-family: 'roboto Serif';
+    font-family: 'roboto';
     font-size: 13px;
 }
 .reg_print_div form select option {
+    font-family: 'Roboto';
+}
+.no_sched {
     font-family: 'Roboto Serif';
 }
 

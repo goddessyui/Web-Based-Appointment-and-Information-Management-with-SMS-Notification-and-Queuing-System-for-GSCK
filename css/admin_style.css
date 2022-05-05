@@ -8,6 +8,7 @@ main h3 {
     text-transform: uppercase;
     margin-left: 15px;
     margin-bottom: 15px;
+    font-family: 'Roboto';
 }
 .card_row_div {
     display: flex;
@@ -40,7 +41,7 @@ main h3 {
 .card_row_div .col_3 .card .card_body {
     padding-bottom: 15px;
     font-size: 30px;
-    font-family: 'Roboto Serif';
+    font-family: 'Roboto';
 }
 
 /*---------appointment_result------------*/
@@ -71,16 +72,17 @@ main h3 {
     background: gold;
 }
 .row form input:nth-child(1) {
-    border-bottom: 1px solid grey;
-    background: none;
+    border: 1px solid grey;
+    background: #fff;
 }
 
 
 .appointment_result .row_app, .row_label {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 0;
 }
+
 .row_app {
     padding: 15px;
     background: #fff;
@@ -97,6 +99,7 @@ main h3 {
     width:  10%;
     margin-right: 15px;
     font-size: 13px;
+    font-family: 'Roboto';
 }
 .appointment_result .row_app .col_app,
 .appointment_result .row_label .col_app :not(.col_app:nth-child(4)) {
@@ -117,6 +120,7 @@ main h3 {
 }
 .appointment_result .row_app .col_app:nth-child(4) p {
     margin-bottom: 2px;
+    font-family: 'Roboto Serif';
 }
 .appointment_result .row_app .col_app:nth-child(4) p:nth-child(1) {
     color: #324e9e;
@@ -144,6 +148,7 @@ main h3 {
     resize: none;
     padding: 5px;
     border: 1px solid gray;
+    font-family: 'Roboto Serif';
 }
 .appointment_result .row_app .col_app input,
 .appointment_result .row_app .col_app button {
@@ -160,14 +165,14 @@ main h3 {
 .appointment_result .row_app .col_app:nth-child(5) input:nth-child(1),
 .appointment_result .row_app .col_app:nth-child(5) button {
     border: none;
-    border-bottom: 1px solid gray;
+    border: 1px solid gray;
     background: none;
     padding: 4px 12px;
     color: #333;
 }
 .appointment_result .row_app .col_app:nth-child(7) input {
     border: none;
-    background: #EB4235;
+    background: #444;
     padding: 4px 12px;
 }
 .appointment_result .row_app .col_app:nth-child(7) button {

@@ -26,10 +26,10 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
         <div class="row_container">
         <div class="row_student">
         
-            <div class=" regstudent_row"><b>S.N.</b></div>
-            <div class=" regstudent_row"><b>Last Name</b></div>
-            <div class=" regstudent_row"><b>First Name</b></div>
-            <div class=" regstudent_row"><b>Employee ID No.</b></div>
+            <div class=" regstudent_row">S.N.</b></div>
+            <div class=" regstudent_row">Last Name</b></div>
+            <div class=" regstudent_row">First Name</b></div>
+            <div class=" regstudent_row">Employee ID No.</b></div>
         
         </div>
            
@@ -80,7 +80,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
         padding: 5px;
     }
     .row_student {
-        font-family: 'Roboto Serif';
+        font-family: 'Roboto';
         font-weight: 500;
         margin-bottom: 15px;
     }
@@ -88,7 +88,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
         width: 25%;
     }
     .row_student_list .regstudent_row {
-        font-family: 'Roboto Serif';
+        font-family: 'Roboto';
         font-size: 13px;
         padding: 5px 0;
         color: #333;
