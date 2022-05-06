@@ -232,6 +232,27 @@
 
                     <!--<div class="row" id="generated_rep_registeredstudents"></div>-->
                     <div class="row" id="generated_rep_registeredstudents_hidden"></div><!--- style="display: none;"-->
+                    </div>
+                    
+
+
+                    <!-- Show and Print Appointment Schedules, only seen by Registrar -->
+                    <div class="reg_print_div">
+                        <h4>List of Appointment Schedules</h4>
+                            <form method="post">   
+                                <span>DATE:</span>
+                                <input type="date" name="appointment_date" id="appointmentdate" value=" ">         
+                                        
+                                <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
+                                <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List of Registered Students"/>
+                            </form>
+                        
+                            <div class="row" id="generated_appointment_schedule_hidden"></div>
+                    </div>
+                    <!-- Show and Print Appointment Schedules, only seen by Registrar -->
+
+
+                   
 
                 </div>
             </div>
@@ -244,27 +265,67 @@
         
 
 
+        <div class="appointment_result">
+            <div class="list_div">
+            <!-- Show and Print Appointment REPORT, seen by all admins -->
+            <div class="reg_print_div">
+                <h4>Appointment Reports</h4>
+                <form method="post">
+
+                    <span>STATUS:</span>
+                    <select name="status_report" id="status_report">  
+                        <option value="Accepted">Accepted</option>
+                        <option value="Declined">Declined</option>
+                        <option value="Canceled">Canceled</option>
+                        <option value="Done">Done</option>
+                        <option value="Missed">Missed</option>
+                    </select>
+                    
+                    <span>FREQUENCY:</span>
+                    <select name="time_report" id="time_report">  
+                        <option value="daily">Daily Report</option>
+                        <option value="weekly">Weekly Report</option>
+                        <option value="monthly">Monthly Report</option>
+                    </select>                   
+                        
+                    <button id="print_report"onclick="printDiv_appointment_report()" disabled>PRINT</button>
+                    <input id="ajaxSubmit_appointment_report" type="submit" value="Show List of Registered Students"/>
+                </form>
+                    <div class="row" id="generated_appointment_report_hidden"></div>
+            </div>
+            <!-- Show and Print Appointment REPORT, seen by all admins -->
+        </div></div>
 
 
 
 
 
+        <div class="appointment_result">
+            <div class="list_div">
+            <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
+            <div class="reg_print_div">
+            <h4>List of UniFast Schedules</h4>
+            <form method="post">
+                <span>TYPE:</span>
+                    <select name="type" id="type">  
+                        <option value="UniFAST - Claim Cheque">Unifast - Claim Cheque</option>
+                        <option value="UniFAST - Submit Documents">UniFAST - Submit Documents</option>
+                    </select>
+                
 
+                <span>DATE:</span>
+                <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value="">
 
+                <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
+                <input id="ajax_show_unifast" type="submit" value="Show List"/>
+            </form>  
+                
+                <div class="row" id="generated_unifast_schedule_hidden"></div>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
+        </div>
+        </div>
 
 
 
@@ -329,7 +390,7 @@
 
                         </div>
                     </div>                
-                </div>  
+                </div>    
 
 
         <?php
@@ -395,7 +456,8 @@
                 </div> 
 
             </div>
-        
+
+     
         <?php
         }
         ?> <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
@@ -678,6 +740,94 @@
 
         }
     
+
+
+// FETCH DATA for Appointment Schedule for Registrar
+document.getElementById("appointmentdate").valueAsDate = new Date();
+    $(document).ready(function() {
+    $('#ajaxSubmit_appointment_schedule').click(function(){
+        $('#print_app').prop('disabled', true);
+        $.post("adminajax_appointment_schedule.php", 
+        {appointment_date: $('#appointmentdate').val(),},
+        function(data){
+            $('#generated_appointment_schedule_hidden').html(data);
+            if (!data.includes('No result.')){
+            $('#print_app').prop('disabled', false);
+            }
+        });
+        return false;        
+            });
+        });
+
+    function printDiv_appointment_sched() {
+        var printContents_regstudent = document.getElementById("generated_appointment_schedule_hidden").innerHTML;
+		var originalContents_regstudent = document.body.innerHTML;
+		document.body.innerHTML = printContents_regstudent;
+		window.print();
+		document.body.innerHTML = originalContents_regstudent;
+    }
+    // FETCH DATA for Appointment Schedule for Registrar
+
+
+// FECTCH DATA for appointment reports
+$(document).ready(function() {
+        $('#ajaxSubmit_appointment_report').click(function(){
+            $('#print_report').prop('disabled', true);
+            
+            $.post("adminajax_appointmentreport.php", 
+            {status_report: $('#status_report').val(),
+            time_report: $('#time_report').val(),},
+            function(data){
+                $('#generated_appointment_report_hidden').html(data);
+                if (!data.includes('No result.')){
+                $('#print_report').prop('disabled', false);
+                }
+            });
+            
+            return false;
+                    
+                });
+
+        });
+
+        function printDiv_appointment_report() {
+            var printContents_regstudent = document.getElementById("generated_appointment_report_hidden").innerHTML;
+			var originalContents_regstudent = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstudent;
+			window.print();
+			document.body.innerHTML = originalContents_regstudent;
+        }
+        // FECTCH DATA for appointment reports
+
+
+    // FETCH DATA for Unifast schedules for accounting Staff
+    document.getElementById("unifast_appointmentdate").valueAsDate = new Date();
+    $(document).ready(function() {
+        $('#ajax_show_unifast').click(function(){   
+            $('#print_unifast').prop('disabled', true);
+            $.post("adminajax_unifastschedule.php", 
+            {appointment_date: $('#unifast_appointmentdate').val(),
+            appointment_type: $('#type').val(),},
+            function(data){
+                $('#generated_unifast_schedule_hidden').html(data);
+                if (!data.includes('No result.')){
+                $('#print_unifast').prop('disabled', false);
+                }
+                
+            });
+            return false;         
+                });
+        });
+        function printDiv_unifastsched() {
+            var printContents_regstudent = document.getElementById("generated_unifast_schedule_hidden").innerHTML;
+			var originalContents_regstudent = document.body.innerHTML;
+			document.body.innerHTML = printContents_regstudent;
+			window.print();
+			document.body.innerHTML = originalContents_regstudent;
+        }
+    // FETCH DATA for Unifast schedules for accounting Staff
+
+
     </script>
  
 
