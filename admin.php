@@ -18,7 +18,7 @@
                 <div class="limit_container">
                 <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
                 <?php 
-                if ($position == "Registrar") {?>
+                if ($position == "Registrar") { ?>
 
                     <form action="appointment_limit.php" method="post">
                         <div class="top_flex">
@@ -83,37 +83,38 @@
                     <div id="piechart"></div>
                 </div>
             
-        </div>
+            </div>
 
-        <div class="error_message">
-            <!--success or error-->                        
-            <?php 
-                if(isset($_GET['success'])){
-            ?>
-                    <p>
-                        <?php 
-                            echo $_GET['success'];
-                        ?>
-                    </p>
-            <?php
-                }
-                if(isset($_GET['error'])){
-            ?>
-                            <p>
-                                <?php 
-                                    echo $_GET['error'];
-                                ?>
-                            </p>
-                    <?php
-                        }
-                else{
-                }
-            ?>
-            <!--success or error-->
-        </div>
+            <div class="error_message">
+                <!--success or error-->                        
+                <?php 
+                    if(isset($_GET['success'])){
+                ?>
+                        <p>
+                            <?php 
+                                echo $_GET['success'];
+                            ?>
+                        </p>
+                <?php
+                    }
+                    if(isset($_GET['error'])){
+                ?>
+                                <p>
+                                    <?php 
+                                        echo $_GET['error'];
+                                    ?>
+                                </p>
+                        <?php
+                            }
+                    else{
+                    }
+                ?>
+                <!--success or error-->
+            </div>
 
 
         <div class="appointment_result">
+
             <div class="list_div">
 
                 <div class="reg_print_div">
@@ -161,7 +162,9 @@
                     <div class="row" id="generated_rep_registeredstaff_hidden"></div><!--- style="display: none;"-->
                     
                 </div>
-            
+            </div>
+
+            <div class="list_div">
 
                 <div class="reg_print_div">
 
@@ -232,28 +235,23 @@
 
                     <!--<div class="row" id="generated_rep_registeredstudents"></div>-->
                     <div class="row" id="generated_rep_registeredstudents_hidden"></div><!--- style="display: none;"-->
-                    </div>
+                </div>
+            </div>
+          
+
+            <div class="list_div">
+
+                <div class="reg_print_div">
+                    <h4>List of Appointment Schedules</h4>
+                        <form method="post">   
+                            <span>DATE:</span>
+                            <input type="date" name="appointment_date" id="appointmentdate" value=" " style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
+                                    
+                            <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
+                            <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List of Appt. Schedules"/>
+                        </form>
                     
-
-
-                    <!-- Show and Print Appointment Schedules, only seen by Registrar -->
-                    <div class="reg_print_div">
-                        <h4>List of Appointment Schedules</h4>
-                            <form method="post">   
-                                <span>DATE:</span>
-                                <input type="date" name="appointment_date" id="appointmentdate" value=" " style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
-                                        
-                                <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
-                                <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List of Appt. Schedules"/>
-                            </form>
-                        
-                            <div class="row" id="generated_appointment_schedule_hidden"></div>
-                    </div>
-                    <!-- Show and Print Appointment Schedules, only seen by Registrar -->
-
-
-                   
-
+                        <div class="row" id="generated_appointment_schedule_hidden"></div>
                 </div>
             </div>
 
@@ -261,74 +259,35 @@
         }
             ?><!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
         
-        
-        
-
-
-        <div class="appointment_result">
             <div class="list_div">
-            <!-- Show and Print Appointment REPORT, seen by all admins -->
-            <div class="reg_print_div">
-                <h4>Appointment Reports</h4>
+           
+                <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
+                <div class="reg_print_div">
+                <h4>List of UniFast Schedules</h4>
                 <form method="post">
-
-                    <span>STATUS:</span>
-                    <select name="status_report" id="status_report">  
-                        <option value="Accepted">Accepted</option>
-                        <option value="Declined">Declined</option>
-                        <option value="Canceled">Canceled</option>
-                        <option value="Done">Done</option>
-                        <option value="Missed">Missed</option>
-                    </select>
+                    <span>TYPE:</span>
+                        <select name="type" id="type">  
+                            <option value="UniFAST - Claim Cheque">Unifast - Claim Cheque</option>
+                            <option value="UniFAST - Submit Documents">UniFAST - Submit Documents</option>
+                        </select>
                     
-                    <span>FREQUENCY:</span>
-                    <select name="time_report" id="time_report">  
-                        <option value="daily">Daily Report</option>
-                        <option value="weekly">Weekly Report</option>
-                        <option value="monthly">Monthly Report</option>
-                    </select>                   
-                        
-                    <button id="print_report"onclick="printDiv_appointment_report()" disabled>PRINT</button>
-                    <input id="ajaxSubmit_appointment_report" type="submit" value="Show List of Appt. Reports"/>
-                </form>
-                    <div class="row" id="generated_appointment_report_hidden"></div>
+
+                    <span>DATE:</span>
+                    <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value=""  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
+
+                    <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
+                    <input id="ajax_show_unifast" type="submit" value="Show List"/>
+                </form>  
+                    
+                    <div class="row" id="generated_unifast_schedule_hidden"></div>
+                </div>
+
+                <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
             </div>
-            <!-- Show and Print Appointment REPORT, seen by all admins -->
-        </div></div>
+        
 
 
-
-
-
-        <div class="appointment_result">
-            <div class="list_div">
-            <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
-            <div class="reg_print_div">
-            <h4>List of UniFast Schedules</h4>
-            <form method="post">
-                <span>TYPE:</span>
-                    <select name="type" id="type">  
-                        <option value="UniFAST - Claim Cheque">Unifast - Claim Cheque</option>
-                        <option value="UniFAST - Submit Documents">UniFAST - Submit Documents</option>
-                    </select>
-                
-
-                <span>DATE:</span>
-                <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value=""  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
-
-                <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
-                <input id="ajax_show_unifast" type="submit" value="Show List"/>
-            </form>  
-                
-                <div class="row" id="generated_unifast_schedule_hidden"></div>
-            </div>
-
-        <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
         </div>
-        </div>
-
-
-
 
 
 

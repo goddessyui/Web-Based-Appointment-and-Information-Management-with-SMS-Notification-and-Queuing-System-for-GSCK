@@ -135,7 +135,10 @@ include("admin_header.php");
             <!-------------------------Show Declined Requests ------------------------------>          
 
     </div>
-    
+ 
+        <?php
+        include("backtotop.php");
+        ?>  
 </main>
 
 <style>

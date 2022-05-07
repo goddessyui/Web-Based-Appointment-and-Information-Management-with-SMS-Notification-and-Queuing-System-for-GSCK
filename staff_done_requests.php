@@ -124,6 +124,9 @@ include("admin_header.php");
         <!-------------------------Show Done Appointments ----------------------------------------------------------------------------------------->          
         </div>
     </div>
+        <?php
+        include("backtotop.php");
+        ?>  
 </main>
 
 <style>

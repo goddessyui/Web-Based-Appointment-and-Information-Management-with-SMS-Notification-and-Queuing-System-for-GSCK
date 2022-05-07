@@ -454,7 +454,10 @@ include("admin_header.php");
                 ?>
 
    </div>
-<!-------------------------Show Accepted Requests ------------------------------>     
+<!-------------------------Show Accepted Requests ------------------------------>
+        <?php
+        include("backtotop.php");
+        ?>  
 </main>
 
   <style>
