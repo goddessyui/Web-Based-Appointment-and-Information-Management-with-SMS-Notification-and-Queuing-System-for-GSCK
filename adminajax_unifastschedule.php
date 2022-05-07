@@ -47,11 +47,11 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
 
             <div class="row_container">
             <div class="row_unifast">
-                <div class="schedunifast_row">Appointment ID</b></div>
-                <div class="schedunifast_row">Queue Number</b></div>
-                <div class="schedunifast_row">Student Name</b></div>
-                <div class="schedunifast_row">Appointment Type</b></div>
-                <div class="schedunifast_row">Schedule Date</b></div>
+                <div class="schedunifast_row">Appointment ID</div>
+                <div class="schedunifast_row">Queue Number</div>
+                <div class="schedunifast_row">Student Name</div>
+                <div class="schedunifast_row">Appointment Type</div>
+                <div class="schedunifast_row">Schedule Date</div>
             </div>
     
         <tbody>
