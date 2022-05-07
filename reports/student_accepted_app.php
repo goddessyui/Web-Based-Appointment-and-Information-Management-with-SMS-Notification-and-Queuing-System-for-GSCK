@@ -1,5 +1,7 @@
 
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
+<div class="my_appointment">
+
 <?php
     date_default_timezone_set('Asia/Manila');                           		
     $currentdate = date("Y-m-d");
@@ -25,7 +27,7 @@
             INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
             WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'
-            AND tbl_appointment_detail.appointment_date > '$currentdate'
+            AND tbl_appointment_detail.appointment_date >= '$currentdate'
             ORDER BY appointment_date ASC";
      }
         $accepted_appointment_list = mysqli_query($db, $acceptedappointment);
@@ -42,15 +44,15 @@
                 
                     date_default_timezone_set('Asia/Manila');                           		
                     $currentdate = date("Y-m-d");?>
-                    <div>
-                        <td>
+                    <div class="my_appnt_data">
+                        <p>
                             <?php   echo $i;
                                     $i++; 
                             ?>
-                        </td>
-                        <p><span>Appointment Date:</span>
+                        </p>
+                        <p>
                         <?php      
-                                        if($appointment_date<=$currentdate){
+                                        if($appointment_date<$currentdate){
                                             echo "<font color='red';>" . $appointment_date . ": Missed Appointment. </font>";
                                         }
                                         else {
@@ -64,18 +66,18 @@
                                 $queue = mysqli_fetch_assoc($qnum);
                                 //Queue Number---------------------------------------------------------------------------------------//
                                 $queuenumber = $queue['queuenum'];
-                                echo "Queue Number:" . $queuenumber;
+                                echo $queuenumber;
                                 //Queue Number---------------------------------------------------------------------------------------// 
                             ?>
 
                         </p>
-                        <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
-                        <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
-                        <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                        <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                        <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
-                        <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
-                        <hr>
+                        <p><?php echo $rows['date_created']; ?></p>
+                        <p><?php echo $rows['appointment_id']; ?></p>
+                        <p><?php echo $rows['note']; ?></p>
+                        <p><?php echo $rows['appointment_type']; ?></p>
+                        <p><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
+                        <p><?php echo $rows['comment']; ?></p>
+                        
                     </div>
     <?php 
                 }
@@ -87,3 +89,18 @@
 
     ?>
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
+</div>
+
+<style>
+    .my_appointment {
+       background: grey;
+    }
+    .my_appointment .my_appnt_data {
+      
+    }
+    
+    .my_appnt_data p {
+ 
+    }
+  
+</style>

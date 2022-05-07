@@ -1,14 +1,9 @@
-
-    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Libre+Bodoni:wght@400;500;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,400;8..144,500;8..144,700&family=Roboto:wght@400;500;700&display=swap');
+   
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'times new roman';
 
     }
     body {
@@ -41,6 +36,7 @@
         color: #333;
         text-align: center;
         transform: translateX(50px);
+        font-family: 'Roboto';
     }
     .sign_user {
         display: flex;
@@ -166,19 +162,25 @@
         .button_ma {
             margin-bottom: 20px;
             margin-top: 8px;
-            background: #000;
+            background: #333;
         }
         .button_saa {
             margin-top: 20px;
-            background: #000;
+            background: #333;
+            font-family: 'Roboto';
+        }
+        .button_maa:hover,
+        .button_saa:hover {
+            background: #222;
         }
         .nav_container nav ul a {
             text-decoration: none;
-            color: #000;
+            color: #333;
             font-size: 16px;
             text-transform: uppercase;
             transition: all .1s ease-in;
             font-weight: 500;
+            font-family: 'Roboto';
         }
         .nav_container nav ul li {
             list-style-type: none;
@@ -254,16 +256,16 @@
     }
     .login_form_div form h2 {
         color: #333;
-        font-size: 22px;
-        text-decoration: underline;
+        font-size: 20px;
         margin-bottom: 8px;
+        font-family: 'Times new roman';
     }
     .login_form_div form p {
-        font-weight: 500;
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 40px;
+        font-size: 13px;
         text-transform: uppercase;
+        margin-bottom: 40px;
+        color: #444;
+        font-family: 'Roboto';
     }
     .login_form_div form .input_box {
         display: flex;
@@ -316,14 +318,16 @@
         padding: 40px;
     }
     .forgot_pass_div h2 {
-        font-size: 22px;
-        text-decoration: underline;
+        font-size: 20px;
+        font-family: 'Times New Roman';
         margin-top: 20px;
+        color: #333;
     }
     .forgot_pass_div .go_back_pass {
         display: flex;
         align-items: center;
         margin-top: 8px;
+        font-family: 'Roboto';
     }
     .go_back_pass button {
         background: none;
@@ -336,10 +340,10 @@
     .go_back_pass a:visited {
         color: #324e9e;
     }
-    .go_back_pass h3 {
-        font-weight: 500;
-        font-size: 14px;
+    .go_back_pass p {
+        font-size: 13px;
         margin-left: 10px;
+        color: #444;
     }
 
     .input_n_button {
@@ -402,18 +406,19 @@
     .register_form_div form {
         width: 100%;
     }
-    .register_form_div form h1 {
-        font-size: 22px;
-        text-decoration: underline;
+    .register_form_div form h2 {
+        font-size: 20px;
         margin-bottom: 8px;
         margin-top: 20px;
         color: #333;
+        font-family: 'Times New Roman';
     }
     .register_form_div form p {
-        font-size: 14px;
+        font-size: 13px;
         text-transform: uppercase;
         margin-bottom: 40px;
         color: #444;
+        font-family: 'Roboto';
     }
     .register_form_div form .form_group{
         width: 100%;
@@ -538,7 +543,7 @@
         padding: 4px 12px;
         color: #fff;
         font-size: 12px;
-        background: #000;
+        background: #333;
     }
     .fa.fa-bell-o {
         font-size: 18px;
@@ -612,7 +617,8 @@
 
     .notif_container a {
         text-decoration: none;
-        color: #000;
+        color: #333;
+        font-family: 'Roboto';
     }
     .notif_container a:visited {
         color: grey;

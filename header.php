@@ -187,7 +187,7 @@
                         <form id="username_verify" name="form" method="post">
                             <div class="go_back_pass">
                                 <button id="back_to_login" onclick="BackToLogin()"><a href="#">Go Back</a></button>
-                                <h3>CHANGE YOUR PASSWORD</h3>
+                                <p>CHANGE YOUR PASSWORD</p>
                             </div>
 
                             <div class="input_n_button">
@@ -315,7 +315,7 @@
                         <!-- VERIFICATION -->
                         <form id="verification_form" name="form1" method="post">
                       
-                            <h1>Account verification</h1>
+                            <h2>Account verification</h2>
                             <p>You need to input the exact details below</p>
                       
                             <div class="form_group">

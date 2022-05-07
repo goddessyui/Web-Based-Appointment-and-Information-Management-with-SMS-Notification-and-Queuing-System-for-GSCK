@@ -12,8 +12,13 @@ if (empty($_SESSION['student_id'])){
     <div class="cs_container"><!---------Start of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
         <div class="count_status"><!---------Start of No. of Active Appointments-------------------------------->
             <button onclick="activeapp()">  
-                    <h3>
+                    <h3>Active Appointments</h3>   
+                    <h1>
                     <?php
+                    date_default_timezone_set('Asia/Manila');                           		
+                    $currentdate = date("Y-m-d");
+
+
                         $acceptedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
                             tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
                             tbl_staff_registry.last_name, tbl_appointment.note, tbl_appointment_detail.comment
@@ -21,13 +26,13 @@ if (empty($_SESSION['student_id'])){
                             ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                             INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'";
+                            WHERE tbl_student_registry.student_id = '$student_id' AND tbl_appointment_detail.status = 'Accepted'
+                            AND tbl_appointment_detail.appointment_date >= '$currentdate'";
                         $accepted_appointment_list = mysqli_query($db, $acceptedappointment);
                         $count = mysqli_num_rows($accepted_appointment_list); 
                         echo $count;
                     ?>
-                    </h3>
-                    <h3>Active Appointments</h3>    
+                    </h1> 
             </button>
 
         </div>
@@ -35,8 +40,8 @@ if (empty($_SESSION['student_id'])){
         <!---------Start of No. of Pending Appointments-------------------------------->
         <div class="count_status">
             <button onclick="pendingapp()">
-        
-                <h3>
+                <h3>Pending Appointments</h3>
+                <h1>
                     <?php
                         $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
                         ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
@@ -48,15 +53,16 @@ if (empty($_SESSION['student_id'])){
                         $count = mysqli_num_rows($pending_appointment_list);
                         echo $count;
                     ?>
-                </h3>
-                <h3>Pending Appointments</h3>
+                </h1>
+               
             </button>
         </div>
         <!---------End of No. of Pending Appointments-------------------------------->
         <!---------Start of No. of Missed Appointments-------------------------------->
         <div class="count_status">
             <button onclick="missedapp()">
-                <h3>
+                <h3>Missed Appointments</h3>
+                <h1>
                     <?php
                         $missedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
                             tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, tbl_staff_registry.last_name, 
@@ -71,15 +77,16 @@ if (empty($_SESSION['student_id'])){
                         $count = mysqli_num_rows($missed_appointment_list);
                         echo $count;
                     ?>
-                </h3>
-                <h3>Missed Appointments</h3>
+                </h1>
+                
             </button>
         </div>
         <!---------End of No. of Missed Appointments-------------------------------->
         <!---------Start of No. of Declined Appointments-------------------------------->
         <div class="count_status">
             <button onclick="declinedapp()">
-                <h3>
+                <h3>Declined Appointments</h3>
+                <h1>
                     <?php
                         $declinedappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
                             tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
@@ -93,15 +100,16 @@ if (empty($_SESSION['student_id'])){
                         $count = mysqli_num_rows($declined_appointment_list); 
                         echo $count;
                     ?>
-                </h3>
-                <h3>Declined Appointments</h3>
+                </h1>
+                
             </button>
         </div>
         <!---------End of No. of Declined Appointments-------------------------------->
         <!---------Start of No. of Cancelled Appointments-------------------------------->
         <div class="count_status">
             <button onclick="cancelledapp()">
-                <h3>
+                <h3>Cancelled Appointments</h3>
+                <h1>
                     <?php
                         $cancelledappointments="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
                             tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
@@ -115,15 +123,16 @@ if (empty($_SESSION['student_id'])){
                         $count = mysqli_num_rows($cancelled_appointment_list); 
                         echo $count;
                     ?>
-                </h3>
-                <h3>Cancelled Appointments</h3>
+                </h1>
+                
             </button>
         </div>
         <!---------End of No. of Cancelled Appointments-------------------------------->
         <!---------Start of No. of Past Appointments-------------------------------->
         <div class="count_status">
             <button onclick="doneapp()">
-                <h3>
+                <h3>Past Appointments</h3>
+                <h1>
                     <?php
                         $doneappointment="SELECT tbl_appointment_detail.appointment_date, tbl_appointment.date_created, 
                             tbl_appointment.appointment_id, appointment_type, tbl_staff_registry.first_name, 
@@ -137,18 +146,21 @@ if (empty($_SESSION['student_id'])){
                         $count = mysqli_num_rows($done_appointment_list); 
                         echo $count;
                     ?>
-                </h3>
-                <h3>Past Appointments</h3>
+                </h1>
+                
             </button>
         </div>
         <!---------End of No. of Past Appointments-------------------------------->
     </div><!---------End of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
     
-    <div><!---------Start of Show Appointment Based on Status----------------------------------->
-    <h3 align="center">Student Appointment Details</h3><br><hr>
+    <div class="appnt_stud_result">
+        <div class="white_appnt">
+        <!---------Start of Show Appointment Based on Status----------------------------------->
+            <h3>Student Appointment Details</h3>
+
 
    <?php if (isset($_GET['status'])){
-          ?> <hr><a href="student_appointment_details.php"><button type="button">View all appointment</button></a><hr> <?php 
+          ?> <a href="student_appointment_details.php"><button type="button">View all appointment</button></a> <?php 
           if($_GET['status'] == 'accepted'){
             include("reports/student_accepted_app.php");
           }
@@ -170,7 +182,6 @@ if (empty($_SESSION['student_id'])){
         
         <div> <!------Start of Appointment Status Includes ---------->
             <div id="appactive">
-                <h4>Active Appointments</h4>
                 <?php
                     include("reports/student_accepted_app.php");
                 ?>
@@ -204,33 +215,66 @@ if (empty($_SESSION['student_id'])){
                 <?php
                     include("reports/student_done_app.php");
                 ?>
-            </div>
-        </div> <!------End of Appointment Status Includes ----------><?php } ?>
-    </div><!---------End of Show Appointment Based on Status----------------------------------->
-    <?php
-     include("backtotop.php");
-    ?>
+                </div>
+            </div> <!------End of Appointment Status Includes ----------><?php } ?>
+        </div>
+    </div>
+    <!---------End of Show Appointment Based on Status----------------------------------->
 </div><!--End of parent-div-->
+
+<?php
+     include("backtotop.php");
+?>
+
+
+
 <style>
+    body {
+        background: #EFF0F4;
+        background-image: url("./image/calendar.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
     .parent-div{
-        padding-top: 150px;
-        margin-left: 5%;
-        margin-right: 30%;
+        margin-top: 80px;
     }
-    
     .cs_container{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
+       background: rgba(50, 78, 158, .8);
+       position: relative;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       height: 80px;
+       width: 100%;
+       padding: 0 2%;
     }
-    .count_status{
-    width: 33.33%;
-    background-color:lightgray;
-    text-align: center;
-    padding: 20px;
+    .count_status {
+       transform: translateY(40px);
+       width: 220px;
+    }
+ 
+
+    .count_status button {
+       width: 220px;
+       height: 80px;
+       border: none;
+       background: #fff;
+       cursor: pointer;
+    }
+    .count_status h1 {
+        margin-top: 8px;
+        color: #324E9E;
+        font-family: 'Roboto Serif';
+    }
+    .count_status h3 {
+       color: #333;
+       font-family: 'Roboto';
+       font-size: 14px;
+       font-weight: 400;
     }
 
-    #appactive,
+
     #apppending,
     #appmissed,
     #appdeclined,
@@ -238,7 +282,25 @@ if (empty($_SESSION['student_id'])){
     #appdone {
         display: none;
     }
+    .appnt_stud_result {
+        background: rgba(50, 78, 158, .8);
+        margin-top: 80px;
+        padding: 20px 2%;
+    }
+    .appnt_stud_result .white_appnt {
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+    }
+    .appnt_stud_result .white_appnt h3 {
+        font-family: 'Roboto';
+        font-size: 16px;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
 
+    
 </style>
 
 <script>

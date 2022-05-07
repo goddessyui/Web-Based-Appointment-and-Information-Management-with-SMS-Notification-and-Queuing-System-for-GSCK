@@ -234,9 +234,9 @@ include("backtotop.php");
 ?>
 <style>
 
-  body {
-    background: #EFF0F4;
-  }
+    body {
+      background: #EFF0F4;
+    }
 
     main {
        background: #EFF0F4;

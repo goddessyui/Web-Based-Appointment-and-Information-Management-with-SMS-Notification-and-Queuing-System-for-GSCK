@@ -1005,28 +1005,25 @@ $(document).ready(function() {
 
 .main_apt_container {
     margin-top: 10px;
-    padding: 5% 0;
-    background: green;
-    background-image: url("./image/appoint.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: #EFF0F4;
+    
 }
     .aptype-container {
         width: 80%;
         margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
+        padding: 5px 0;
     }
     .aptype {
         background: #fff;
         border: none;
         cursor: pointer;
         display: flex;
-        width: 24.15%;
+        width: 24.12%;
+        flex-wrap: wrap;
         margin: 5px;
-        justify-content: center;
-        box-shadow: 0 1px 5px #0005;
+        box-shadow: 0 1px 5px #0001;
         transition: all .2s ease-in-out;
     }
 
@@ -1045,7 +1042,7 @@ $(document).ready(function() {
         color: #000;
         text-align: left;
         height: 40px;
-        text-decoration: underline;
+        font-family: 'Roboto';
     }
     .p_flex_end {
         height: 80px;
@@ -1054,15 +1051,17 @@ $(document).ready(function() {
     }
     .aptype-container .aptype .content_type p {
        text-align: left;
-       font-size: 16px;
+       font-size: 14px;
        color: #444;
        text-transform: initial;
+       font-family: 'Roboto Serif';
     }
     .at_under_staff {
         text-transform: uppercase;
         transform: translateY(6px);
-        font-size: 14px;
-        color: #000;
+        font-size: 13px;
+        color: #444;
+        font-family: 'Roboto';
     }
     
 
@@ -1149,7 +1148,10 @@ $(document).ready(function() {
 
     }
     .search-box:nth-child(1) h2 {
-        text-decoration: underline;
+        text-decoration: none;
+        font-size: 20px;
+        color: #333;
+        font-family: 'Times New Roman';
     }
     .search-box:nth-child(2) {
         width: 50%;
@@ -1171,7 +1173,7 @@ $(document).ready(function() {
         height: 30px;
         outline: none;
         border: none;
-        background: #000;
+        background: #333;
         color: #eee;
         cursor: pointer;
         padding-left: 30px;
@@ -1189,6 +1191,9 @@ $(document).ready(function() {
     }
     .search-box input[type="text"] {
         width: 100%;
+        font-family: 'Roboto Serif';
+        font-size: 13px;
+        color: #444;
     }
     /* End of Formatting search box */
     /* Formatting result items */
@@ -1198,7 +1203,8 @@ $(document).ready(function() {
         padding: 5px 12px;
         color: #eee;
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: 13px;
+        font-family: 'Roboto';
     }
     .result p:hover{
         background: #5463FF;
