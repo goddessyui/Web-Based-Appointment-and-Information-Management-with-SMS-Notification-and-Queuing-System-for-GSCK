@@ -127,7 +127,6 @@ if ($staff_id == "" || $username == ""){
 <style>
     main {
         background: #EFF0F4;
-        padding: 15px;
     }
     main .schedule_admin {
         background: #fff;

@@ -241,10 +241,10 @@
                         <h4>List of Appointment Schedules</h4>
                             <form method="post">   
                                 <span>DATE:</span>
-                                <input type="date" name="appointment_date" id="appointmentdate" value=" ">         
+                                <input type="date" name="appointment_date" id="appointmentdate" value=" " style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
                                         
                                 <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
-                                <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List of Registered Students"/>
+                                <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List of Appt. Schedules"/>
                             </form>
                         
                             <div class="row" id="generated_appointment_schedule_hidden"></div>
@@ -289,7 +289,7 @@
                     </select>                   
                         
                     <button id="print_report"onclick="printDiv_appointment_report()" disabled>PRINT</button>
-                    <input id="ajaxSubmit_appointment_report" type="submit" value="Show List of Registered Students"/>
+                    <input id="ajaxSubmit_appointment_report" type="submit" value="Show List of Appt. Reports"/>
                 </form>
                     <div class="row" id="generated_appointment_report_hidden"></div>
             </div>
@@ -314,7 +314,7 @@
                 
 
                 <span>DATE:</span>
-                <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value="">
+                <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value=""  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
 
                 <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
                 <input id="ajax_show_unifast" type="submit" value="Show List"/>
@@ -471,6 +471,9 @@
 
 
 <style>
+    main {
+        background: #EFF0F4;
+    }
     .limit_div {
         display: flex;
         width: 100%;

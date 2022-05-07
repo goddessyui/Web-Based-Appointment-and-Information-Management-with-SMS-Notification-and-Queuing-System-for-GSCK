@@ -217,12 +217,12 @@ if ($staff_id == "" && $username == ""){
 
 <style>
     main {
+        background: #EFF0F4;
         padding: 15px;
     }
     main .profile_settings {
         display: flex;
         align-items: flex-end;
-        margin-bottom: 15px;
         margin-left: 15px;
     }
     main .profile_settings img {
