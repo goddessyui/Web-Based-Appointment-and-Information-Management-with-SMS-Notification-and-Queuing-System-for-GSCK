@@ -115,7 +115,7 @@ if ($staff_id == "" || $username == ""){
             <div class="calendar_title">
                 <h2>Calendar Scheduler</h2>
             </div>
-            <p>Click a date to set your schedule or click again to delete.</p>
+            <p>Click a date to set your schedule. Refresh and click to delete.</p>
             <div class="response"></div>
             <div id='calendar'></div>
         </div>
@@ -173,7 +173,7 @@ if ($staff_id == "" || $username == ""){
     }
 
     main .schedule_admin .fc-widget-content {
-        background: #fff;
+        
         cursor: pointer;
     }
     main .schedule_admin .fc-day-grid-event {
