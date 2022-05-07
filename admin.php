@@ -280,7 +280,7 @@
                             <h4>List of Appointment Schedules</h4>
                                 <form method="post">   
                                     <span>DATE:</span>
-                                    <input type="date" name="appointment_date" id="appointmentdate" value=" " style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
+                                    <input type="date" name="appointment_date" id="appointmentdate" value="<?php echo date("Y-m-d");?>" style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
                                             
                                     <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
                                     <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List"/>
@@ -397,7 +397,7 @@
                                         
 
                                         <span>DATE:</span>
-                                        <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value=""  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
+                                        <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value="<?php echo date("Y-m-d");?>"  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
 
                                         <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
                                         <input id="ajax_show_unifast" type="submit" value="Show List"/>
@@ -705,7 +705,6 @@
 
 
 // FETCH DATA for Appointment Schedule for Registrar
-document.getElementById("appointmentdate").valueAsDate = new Date();
     $(document).ready(function() {
     $('#ajaxSubmit_appointment_schedule').click(function(){
         $('#print_app').prop('disabled', true);
@@ -763,7 +762,6 @@ $(document).ready(function() {
 
 
     // FETCH DATA for Unifast schedules for accounting Staff
-    document.getElementById("unifast_appointmentdate").valueAsDate = new Date();
     $(document).ready(function() {
         $('#ajax_show_unifast').click(function(){   
             $('#print_unifast').prop('disabled', true);
