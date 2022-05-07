@@ -4,7 +4,6 @@ include("admin_header.php");
 <main>
 
     <?php include("count_app.php");?>
-    <h3>Declined Appointments</h3> 
 
     <div class="appointment_result">
         <div class="row">

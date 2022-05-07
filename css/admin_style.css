@@ -11,6 +11,7 @@ main h3 {
     margin-left: 15px;
     margin-bottom: 15px;
     font-family: 'Roboto';
+    color: red;
 }
 .card_row_div {
     display: flex;
@@ -20,7 +21,7 @@ main h3 {
     flex-wrap: wrap;
     margin-bottom: 15px;
     background: #EFF0F4;
-    padding: 15px;
+    padding: 0 15px;
 }
 .card_row_div .col_3 {
     width: 182px;
@@ -50,9 +51,11 @@ main h3 {
 .appointment_result {
     background: #EFF0F4;
     padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 0;
 }
 .appointment_result .row {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 #error_appt {
     width: 100%;

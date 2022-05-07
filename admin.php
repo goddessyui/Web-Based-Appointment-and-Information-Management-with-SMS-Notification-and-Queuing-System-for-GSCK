@@ -539,7 +539,9 @@
         background: #EFF0F4;
         align-items: center;
         justify-content: space-between;
-        padding: 15px;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
     .limit_div .limit_container {
         width: 33%;
@@ -559,7 +561,7 @@
     }
 
     form .top_flex:nth-child(1) {
-        height: 40%;
+        height: 36%;
     }
 
           .top_flex:nth-child(1) h4:nth-child(1) {
@@ -577,7 +579,7 @@
               font-weight: 400;
           }
     form .top_flex:nth-child(2) {
-        height: 50%;
+        height: 40%;
     }
     form .top_flex:nth-child(2) h4 {
        margin-top: 15px;
@@ -589,13 +591,14 @@
              height: 40px;
          }
                                 .form_group input {
-                                    height: 28px;
+                                    height: 30px;
                                 }
                                 .form_group input[type=number] {
                                     margin-bottom: 15px;
                                     width: 100%;
                                     padding: 0 8px;
                                     border: 1px solid lightgrey;
+                                    height: 30px;
                                 }
                                 .form_group input[type=submit] {
                                     width: 100%;
@@ -605,6 +608,7 @@
                                     font-size: 13px;
                                     cursor: pointer;
                                     text-transform: uppercase;
+                                    height: 30px;
                                 }
 .error_message {
     background: orange;
@@ -622,10 +626,6 @@
 }
 
 
-
-.appointment_result {
-    margin-top: 15px;
-}
 
                     .list_div .reg_print_div {
                         background-color: #fff;

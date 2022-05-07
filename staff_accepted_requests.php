@@ -7,8 +7,6 @@ include("admin_header.php");
 
     <?php include("count_app.php"); ?>
 
-    <h3>Active Appointments</h3> 
-
     <div class="appointment_result">
 
        <!-------------------------Sort Requests By Date------------------------------> 
@@ -461,6 +459,9 @@ include("admin_header.php");
 </main>
 
   <style>
+      body {
+          background: #EFF0F4;
+      }
       #activerequests {
           background: #324e9e;
       }
