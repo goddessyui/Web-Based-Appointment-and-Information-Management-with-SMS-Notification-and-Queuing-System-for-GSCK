@@ -50,6 +50,7 @@ $(document).ready(function () {
         margin-right: 20%;
     }
 </style>
+
 </head>
 <div class="parent-div">
 <div class = calendar>

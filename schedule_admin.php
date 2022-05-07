@@ -111,33 +111,105 @@ if ($staff_id == "" || $username == ""){
 </head>
 <body>
     <main>
-        <h2>Calendar Scheduler</h2>
-        <div class="response"></div>
-        <div id='calendar'></div>
+        <div class="schedule_admin">
+            <div class="calendar_title">
+                <h2>Calendar Scheduler</h2>
+            </div>
+            <p>Click a date to set your schedule or click again to delete.</p>
+            <div class="response"></div>
+            <div id='calendar'></div>
+        </div>
     </main>
 </body>
 
-
 </html>
+
 <style>
-        #calendar {
-            width: 800px;
-            margin: 0 auto;
-        }
-
-        .response {
-            height: 60px;
-        }
-
-        .success {
-            background: #cdf3cd;
-            padding: 10px 60px;
-            border: #c3e6c3 1px solid;
-            display: inline-block;
-        }
-        main {
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 100px;
+    main {
+        background: #EFF0F4;
+        padding: 15px;
     }
-    </style>
+    main .schedule_admin {
+        background: #fff;
+        padding: 20px;
+    }
+    main .schedule_admin p {
+        font-size: 14px;
+        font-family: 'Roboto';
+        color: gray;
+        margin-top: 12px;
+        width: 300px;
+    }
+    main .schedule_admin .calendar_title {
+        display: flex;
+        align-items: center;
+    }
+
+    main .schedule_admin .calendar_title h2 {
+        color: #000;
+        font-size: 20px;
+        font-family: 'Roboto';
+        text-transform: uppercase;
+    }
+    main .schedule_admin .fc-left h2 {
+        color: #333;
+        font-size: 16px;
+        font-family: 'Roboto';
+        transform: translateY(15px);
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    main .schedule_admin .fc-day-header {
+        padding: 8px 0;
+        font-family: 'Roboto';
+        font-size: 14px;
+        color: #333;
+    }
+
+    main .schedule_admin .fc-day-number {
+        font-family: 'Roboto Serif';
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+    main .schedule_admin .fc-widget-content {
+        background: #fff;
+        cursor: pointer;
+    }
+    main .schedule_admin .fc-day-grid-event {
+        background: none;
+        border: none;;
+    }
+    main .schedule_admin .fc-content {
+        background: #324E9E;
+        padding: 2px;
+        padding-left: 8px;
+        font-family: 'Roboto'
+    }
+    main .schedule_admin .fc-icon {
+        background: none;
+    }
+    main .schedule_admin .fc-prev-button {
+        background: #fff;
+        border-radius: 0;
+        height: 30px;
+    }
+    main .schedule_admin .fc-next-button {
+        background: #fff;
+        border-radius: 0;
+        height: 30px;
+    }
+    main .schedule_admin .fc-today-button {
+        background: #324E9E;
+        color: #fff;
+        opacity: 1;
+        border-radius: 0;
+        text-transform: uppercase;
+        font-size: 13px;
+        height: 30px;
+    }
+    .fc-view-container {
+        margin-top: 20px;
+    }
+
+</style>
