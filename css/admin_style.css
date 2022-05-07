@@ -92,6 +92,9 @@ main h3 {
     padding: 15px;
     background: #fff;
 }
+.row_app:nth-child(even) {
+    background: #0001;
+}
 .row_label {
     text-transform: uppercase;
     color: #fff;

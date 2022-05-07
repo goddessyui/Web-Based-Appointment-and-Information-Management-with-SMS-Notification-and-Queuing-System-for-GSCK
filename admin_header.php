@@ -459,9 +459,13 @@ header .title_name h3 {
 	border: none;
 	padding: 4px 10px;
 	font-size: 12px;
+	margin-right: 15px;
 }
 .user_wrapper a {
 	color: #eee;
+}
+.menu_admin {
+	margin-left: 15px;
 }
 
 

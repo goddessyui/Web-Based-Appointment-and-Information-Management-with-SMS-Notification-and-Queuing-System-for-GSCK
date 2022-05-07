@@ -10,7 +10,8 @@ include("admin_header.php");
     <div class="appointment_result">
 
        <!-------------------------Sort Requests By Date------------------------------> 
-       <div class="row">
+       <div class="row date_input_h3">
+           <p>List of Active Requests</p>
             <?php 
                 date_default_timezone_set('Asia/Manila');                           		
                 $currentdate = date("Y-m-d");
@@ -468,6 +469,18 @@ include("admin_header.php");
       #activerequests .card_title,
       #activerequests .card_body {
           color: #fff;
+      }
+      .date_input_h3 {
+          display: flex;
+          padding: 0;
+          align-items: flex-end;
+          justify-content: space-between;
+      }
+      .date_input_h3 p {
+          text-transform: uppercase;
+          font-size: 13px;
+          font-family: 'Roboto';
+          font-weight: 500;
       }
   </style>
 
