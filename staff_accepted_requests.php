@@ -482,6 +482,9 @@ include("admin_header.php");
           font-family: 'Roboto';
           font-weight: 500;
       }
+      .date_input_h3 input:nth-child(3) {
+          margin: 0;
+      }
   </style>
 
 <script>
