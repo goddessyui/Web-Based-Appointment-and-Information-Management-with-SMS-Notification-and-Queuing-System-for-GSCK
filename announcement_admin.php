@@ -33,7 +33,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
         <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
       </select>
     <?php } ?>
-      <br>
+      
     <?php if (isset($_GET['ann'])){ ?>
       <a href="announcement_admin.php"><button type="button">View all</button></a>
     <?php } ?>   
@@ -87,7 +87,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
           $res = mysqli_query($db, $sql);
           if (mysqli_num_rows($res) > 0) {
             while ($row = mysqli_fetch_assoc($res)) { ?>
-              <hr>
+              
               <div class="blog_img_box">
               <span class="fa fa-user"></span><small><?php echo $row['name'] ?></small>
                 <div><small><?php echo date("F d, Y, g:i a", strtotime($row['date_created'])) ?></small></div>
@@ -233,10 +233,18 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 include("backtotop.php");
 ?>
 <style>
+
+  body {
+    background: #EFF0F4;
+  }
+
     main {
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 100px;
+       background: #EFF0F4;
+       padding: 15px;
+    }
+    main .container {
+      background: pink;
+      padding: 0 15px;
     }
 
     .modal,
