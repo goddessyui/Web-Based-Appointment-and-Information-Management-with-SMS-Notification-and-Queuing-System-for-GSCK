@@ -252,11 +252,11 @@ include("admin_header.php");
                         }
                     }
                     else {
-                        echo "No Pending Requests.";
+                        echo "<p class='no_appt_result'>No Pending Requests.</p>";
                     }
                 }
                 else {
-                    echo "The query was not executed.";
+                    echo "<p class='no_appt_result'>The query was not executed.</p>";
                 }    
             ?>
             <!-------------------------Show Pending Requests ------------------------------------------------------------------------------------------------->   

@@ -116,7 +116,7 @@ include("dbconfig.php");
         }
         else {
             
-            echo "<br><br><br>No result. This person is not a current staff of GSCK."
+            echo "No result. This person is not a current staff of GSCK."
             ?>
             
             <br><a href="student_appointment.php"><button>Back to List of Appointments</button></a>

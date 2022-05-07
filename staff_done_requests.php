@@ -116,7 +116,7 @@ include("admin_header.php");
                         }
                     }
                     else{
-                        echo "No Past Appointments.";
+                        echo "<p class='no_appt_result'>No Past Appointments.</p>";
                     }
                 }   
             ?>

@@ -117,7 +117,7 @@ include("admin_header.php");
                         }
                     }
                     else{
-                        echo "No Declined Appointments.";
+                        echo "<p class='no_appt_result'>No Declined Appointments.</p>";
                     }
                 }   
             ?>

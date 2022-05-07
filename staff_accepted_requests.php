@@ -444,7 +444,7 @@ include("admin_header.php");
                         }
                     }
                     else {
-                        echo "No Appointments Scheduled.";
+                        echo "<p class='no_appt_result'>No Appointments Scheduled.</p>";
                     }
                 }
             } 

@@ -150,7 +150,7 @@ include("admin_header.php");
                             }
                         }
                         else {
-                            echo "No Missed Appointments.";
+                            echo "<p class='no_appt_result'>No Missed Appointments.</p>";
                         }
                     }?>
             
