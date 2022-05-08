@@ -93,6 +93,10 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
     	<input type="password" name="confirm_password2" id="confirm_password2" placeholder="confirm your password" autocomplete="off"  />
 	</div>
 
+
+	<small>By clicking Create Account, you agree to our <a href="TermsandCondition.php">Privacy Policy</a></small>
+
+
 	<div class="form_group">
     	<input type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff"/>
 	</div>
