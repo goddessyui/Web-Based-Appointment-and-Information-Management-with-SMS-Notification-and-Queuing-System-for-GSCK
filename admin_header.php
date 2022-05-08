@@ -18,6 +18,7 @@ if ($staff_id == ""){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="jquery_offline.js"></script>
 
                         <script type="text/javascript">
                             google.charts.load('current', {'packages':['corechart']});

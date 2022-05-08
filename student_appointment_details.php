@@ -283,7 +283,7 @@ if (empty($_SESSION['student_id'])){
         display: none;
     }
     .appnt_stud_result {
-        background: rgba(50, 78, 158, .8);
+        background: none;
         margin-top: 80px;
         padding: 20px 2%;
     }
@@ -291,7 +291,8 @@ if (empty($_SESSION['student_id'])){
         background: #fff;
         width: 100%;
         height: 100%;
-        padding: 20px;
+        padding: 20px 30px;
+        min-height: 62vh;
     }
     .appnt_stud_result .white_appnt h3 {
         font-family: 'Roboto';

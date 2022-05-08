@@ -45,15 +45,19 @@
                     date_default_timezone_set('Asia/Manila');                           		
                     $currentdate = date("Y-m-d");?>
                     <div class="my_appnt_data">
-                        <p>
-                            <?php   echo $i;
-                                    $i++; 
-                            ?>
-                        </p>
+
+                        <div class="number_container">
+                            <p class="appointment_number">
+                                <?php   echo $i;
+                                        $i++; 
+                                ?>
+                            </p>
+                        </div>
+
                         <p>
                         <?php      
                                         if($appointment_date<$currentdate){
-                                            echo "<font color='red';>" . $appointment_date . ": Missed Appointment. </font>";
+                                            echo $appointment_date . ": Missed Appointment";
                                         }
                                         else {
                                             echo $rows['appointment_date'];
@@ -93,14 +97,35 @@
 
 <style>
     .my_appointment {
-       background: grey;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     .my_appointment .my_appnt_data {
-      
+        border: 1px solid lightgrey;
+        width: 320px;
+        min-height: 40vh;
+        padding: 20px;
     }
     
     .my_appnt_data p {
- 
+        border: 1px solid #fff; 
+    }
+    .number_container  {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+    .my_appnt_data .number_container .appointment_number {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        background: #324E9E;
+        border-radius: 50%;
+        transform: translate(35px, -35px);
+        color: #eee;
+        font-family: 'Roboto Serif';
     }
   
 </style>
