@@ -25,39 +25,41 @@ if($ug_result==TRUE) { // count rows to check whether we have data in database o
     if($count>0) { //we have data in database
         $i = 1;
         ?>
-            <div class="row">
+        <div class="row_container">
+            <div class="row_student">
                
-                <div class="ug_row"><b>S.N.</b></div>
-                <div class="ug_row"><b>Last Name</b></div>
-                <div class="ug_row"><b>First Name</b></div>
-                <div class="ug_row"><b>Student ID No.</b></div>
-                <div class="ug_row"><b>Batch Status</b></div>
+                <div class="regstudent_row"><b>S.N.</b></div>
+                <div class="regstudent_row"><b>Last Name</b></div>
+                <div class="regstudent_row"><b>First Name</b></div>
+                <div class="regstudent_row"><b>Student ID No.</b></div>
+                <div class="regstudent_row"><b>Batch Status</b></div>
                 
             </div>
+            
                
         <?php
         while($rows=mysqli_fetch_assoc($ug_result)) {
 ?>
-            <div class="row">
-                    <div class="ug_row">
+            <div class="row_student_list">
+                    <div class="regstudent_row">
                         <?php   
                                 echo $i++; 
                         ?>
                     </div>
                         
-                    <div class="ug_row">
+                    <div class="regstudent_row">
                         <?php echo $rows['last_name']; ?>
                     </div class="ug_row">
 
-                    <div class="ug_row">
+                    <div class="regstudent_row">
                         <?php echo $rows['first_name']; ?>
                     </div>
                     
-                    <div class="ug_row">
+                    <div class="regstudent_row">
                         <?php echo $rows['student_id']; ?>
                     </div>
 
-                    <div class="ug_row">
+                    <div class="regstudent_row">
                         <?php echo $rows['batch_status'];?>
                     </div>
             </div>
@@ -69,10 +71,36 @@ if($ug_result==TRUE) { // count rows to check whether we have data in database o
     }
 }  
 ?>
+    </div>
 
 </div>
 <style>
-    .row .ug_row{
-        width: 20%;
+    .row_container {
+        margin-top: 40px;
+        width: 100%;
     }
+    .row_container .row_student,
+    .row_container .row_student_list {
+        display: flex;
+        width: 100%;
+        padding: 5px;
+    }
+    .row_student {
+        font-family: 'Roboto';
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+    .regstudent_row {
+        width: 25%;
+    }
+    .row_student_list .regstudent_row {
+        font-family: 'Roboto';
+        font-size: 13px;
+        padding: 5px 0;
+        color: #333;
+    }
+    .row_student_list:nth-child(even) {
+        background: #0001;
+    }
+
 </style>
