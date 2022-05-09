@@ -156,7 +156,7 @@ if (empty($_SESSION['student_id'])){
     <div class="appnt_stud_result">
         <div class="white_appnt">
         <!---------Start of Show Appointment Based on Status----------------------------------->
-            <h3>Student Appointment Details</h3>
+            <h3 class="s_appnt">Student Appointment Details</h3>
 
 
    <?php if (isset($_GET['status'])){
@@ -231,10 +231,6 @@ if (empty($_SESSION['student_id'])){
 <style>
     body {
         background: #EFF0F4;
-        background-image: url("./image/calendar.jpg");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
     }
     .parent-div{
         margin-top: 80px;
@@ -285,20 +281,26 @@ if (empty($_SESSION['student_id'])){
     .appnt_stud_result {
         background: none;
         margin-top: 80px;
-        padding: 20px 2%;
+        padding: 20px 0;
+        padding-bottom: 0;
     }
     .appnt_stud_result .white_appnt {
         background: #fff;
+        background-image: url("./image/calendar.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         width: 100%;
-        height: 100%;
         padding: 20px 30px;
-        min-height: 62vh;
+        padding-bottom: 40px;
+        min-height: 68vh;
     }
-    .appnt_stud_result .white_appnt h3 {
+    .appnt_stud_result .white_appnt .s_appnt {
         font-family: 'Roboto';
         font-size: 16px;
         margin-bottom: 15px;
         font-weight: 500;
+        color: #eee;
     }
 
     

@@ -44,6 +44,7 @@
                 
                     date_default_timezone_set('Asia/Manila');                           		
                     $currentdate = date("Y-m-d");?>
+
                     <div class="my_appnt_data">
 
                         <div class="number_container">
@@ -54,33 +55,68 @@
                             </p>
                         </div>
 
-                        <p>
-                        <?php      
-                                        if($appointment_date<$currentdate){
-                                            echo $appointment_date . ": Missed Appointment";
-                                        }
-                                        else {
-                                            echo $rows['appointment_date'];
-                                        }?></p>
-                        <p><?php
-                            $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
-                                FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                                AND appointment_date = '$appointment_date') T2 WHERE appointment_id='$appointment_id'";
-                                $qnum = mysqli_query($db, $q); 
-                                $queue = mysqli_fetch_assoc($qnum);
-                                //Queue Number---------------------------------------------------------------------------------------//
-                                $queuenumber = $queue['queuenum'];
-                                echo $queuenumber;
-                                //Queue Number---------------------------------------------------------------------------------------// 
-                            ?>
+                        <div class="appointment_data_row">
+                            <p>Appointment Date</p>
 
-                        </p>
-                        <p><?php echo $rows['date_created']; ?></p>
-                        <p><?php echo $rows['appointment_id']; ?></p>
-                        <p><?php echo $rows['note']; ?></p>
-                        <p><?php echo $rows['appointment_type']; ?></p>
-                        <p><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
-                        <p><?php echo $rows['comment']; ?></p>
+                            <h3>
+                                <?php      
+                                    if($appointment_date<$currentdate){
+                                        echo $appointment_date . ": Missed Appointment";
+                                    }
+                                    else {
+                                        echo $rows['appointment_date'];
+                                    }
+                                ?>
+                            </h3>
+                        </div>
+
+                        <div class="appointment_data_row">
+                            <p>Queue Number</p>
+                            <h3>
+                            <?php
+                                $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
+                                    FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+                                    AND appointment_date = '$appointment_date') T2 WHERE appointment_id='$appointment_id'";
+                                    $qnum = mysqli_query($db, $q); 
+                                    $queue = mysqli_fetch_assoc($qnum);
+                                    //Queue Number---------------------------------------------------------------------------------------//
+                                    $queuenumber = $queue['queuenum'];
+                                    echo $queuenumber;
+                                    //Queue Number---------------------------------------------------------------------------------------// 
+                                ?>
+                            </h3>
+                        </div>
+
+                        <div class="appointment_data_row">
+                            <p>Date Created</p>
+                            <h3><?php echo $rows['date_created']; ?></h3>
+                        </div>
+
+                        <div class="appointment_data_row">
+                            <div class="note_comment">
+                                <div class="note_box">
+                                    <p>Note</p>
+                                    <small><?php echo $rows['note']; ?></small>
+                                </div>
+        
+                                <div class="note_box">
+                                    <p>Comment</p>
+                                    <small><?php echo $rows['comment']; ?></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="appointment_data_row">
+                            <p>Appointment Type</p>
+                            <h3><?php echo $rows['appointment_type']; ?></h3>
+                        </div>
+
+                        <div class="appointment_data_row">
+                            <p>Staff</p>
+                            <h3><?php echo $rows['first_name']. " ". $rows['last_name']; ?></h3>
+                        </div>
+
+                       
                         
                     </div>
     <?php 
@@ -103,14 +139,15 @@
     }
     .my_appointment .my_appnt_data {
         border: 1px solid lightgrey;
-        width: 320px;
+        width: 340px;
         min-height: 40vh;
-        padding: 20px;
+        padding-top: 0;
+        padding-left: 20px;
+        padding-right: 30px;
+        padding-bottom: 20px;
+        background: #fff;
     }
     
-    .my_appnt_data p {
-        border: 1px solid #fff; 
-    }
     .number_container  {
         display: flex;
         align-items: center;
@@ -123,9 +160,72 @@
         text-align: center;
         background: #324E9E;
         border-radius: 50%;
-        transform: translate(35px, -35px);
+        transform: translate(45px, -15px);
         color: #eee;
         font-family: 'Roboto Serif';
     }
-  
+  .my_appnt_data .appointment_data_row {
+      background: none;
+      margin-bottom: 20px;
+      padding: 0 20px;
+  }
+  .my_appnt_data .appointment_data_row p {
+      margin-bottom: 4px;
+      color: #444;
+      font-family: 'Roboto';
+      font-size: 13px;
+  }
+  .my_appnt_data .appointment_data_row h3 {
+      font-family: 'Roboto';
+      color: #333;
+      font-weight: 400;
+      font-size: 16px;
+  }
+  .my_appnt_data .appointment_data_row:nth-child(3) h3 {
+      color: #324E9E;
+      font-size: 20px;
+      font-family: 'Roboto Serif';
+      font-weight: bolder;
+  }
+  .my_appnt_data .appointment_data_row small {
+      color: #444;
+      font-family: 'Roboto Serif';
+  }
+        .note_comment .note_box {
+            min-height: 5vh;
+        }
+        .note_box small {
+            font-family: 'Roboto Serif';
+            font-family: 12px;
+            color: #444;
+        }
+        .note_comment .note_box:nth-child(1) {
+            margin-bottom: 15px;
+        }
+            
+.my_appnt_data .appointment_data_row:nth-child(2),
+.my_appnt_data .appointment_data_row:nth-child(3),
+.my_appnt_data .appointment_data_row:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.my_appnt_data .appointment_data_row:nth-child(2),
+.my_appnt_data .appointment_data_row:nth-child(3) {
+    margin-bottom: 5px;
+}
+.my_appnt_data .appointment_data_row:nth-child(2) h3,
+.my_appnt_data .appointment_data_row:nth-child(3) h3,
+.my_appnt_data .appointment_data_row:nth-child(4) h3 {
+    width: 40%;
+}
+
+.my_appnt_data .appointment_data_row:nth-child(3) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
 </style>
