@@ -145,7 +145,7 @@ else{
                     <div class="message"><?php echo $msg; ?></div>
                     <form method="post" enctype='multipart/form-data'>
                         <label>Update UniFAST Grantee Records: <small>Please Select File(Only CSV Format)</small></label>
-                        <input type="file" class="uploadfile" name="ug_file" />
+                        <input type="file" class="uploadfile" name="ug_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                         <p>
                             <?php
                                 $message = '';
