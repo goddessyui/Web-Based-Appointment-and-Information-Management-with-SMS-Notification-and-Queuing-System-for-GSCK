@@ -123,7 +123,7 @@ else{
 
                     <form method="post" enctype='multipart/form-data'>
                         <label>Update Student Records: <small>Please Select File(Only CSV Format)</small></label>
-                        <input type="file" class="uploadfile" name="student_file" />
+                        <input type="file" class="uploadfile" name="student_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                         <p>
                             <?php
                                 $message = '';
