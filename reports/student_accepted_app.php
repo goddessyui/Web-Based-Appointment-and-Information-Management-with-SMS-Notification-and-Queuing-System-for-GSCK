@@ -135,7 +135,6 @@
     .my_appointment {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
     }
     .my_appointment .my_appnt_data {
         border: 1px solid lightgrey;
@@ -146,6 +145,8 @@
         padding-right: 30px;
         padding-bottom: 20px;
         background: #fff;
+        margin-left: 20px;
+        margin-bottom: 20px;
     }
     
     .number_container  {
