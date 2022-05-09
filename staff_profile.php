@@ -136,24 +136,42 @@ if ($staff_id == "" && $username == ""){
                 </select>  
             </div>
 
-            <div><label>Appointment Type: </label></div>
-            <div>
-                <input type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
-                <label> Meeting</label>
-                <input type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
-                <label> Presentation</label>
-                <input type="checkbox" name="check_list[]" value="Module Claiming or Submission" <?php echo in_array("Module Claiming or Submission", $array_type)?'checked':'';?>>
-                <label> Module Claiming or Submission</label>
-                <input type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
-                <label> Project Submission</label>
-                <input type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
-                <label> Evaluation of Grades - Department Head</label>
-                <input type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
-                <label> UniFAST - Claim Cheque</label>
-                <input type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
-                <label> UniFAST - Submit Documents</label>
-                <input type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
-                <label> Application for Graduation</label>   
+            <div class="apptn_type"><p>Appointment Type: </p></div>
+            <div class="pick_appt_type">
+
+                <div class="form_group_input">
+                    <input hidden id="reg_meeting" type="checkbox" name="check_list[]" value="Meeting" <?php echo in_array("Meeting", $array_type)?'checked':'';?>>
+                    <label for="reg_meeting">Meeting</label>
+                </div>
+
+                <div class="form_group_input">
+                    <input hidden id="reg_presentation" type="checkbox" name="check_list[]" value="Presentation" <?php echo in_array("Presentation", $array_type)?'checked':'';?>>
+                    <label for="reg_presentation">Presentation</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_module" type="checkbox" name="check_list[]" value="Module Claiming or Submission" <?php echo in_array("Module Claiming or Submission", $array_type)?'checked':'';?>>
+                    <label for="reg_module">Module Claiming or Submission</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_projectsubmission" type="checkbox" name="check_list[]" value="Project Submission" <?php echo in_array("Project Submission", $array_type)?'checked':'';?>>
+                    <label for="reg_projectsubmission">Project Submission</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_evaluationofgrades" type="checkbox" name="check_list[]" value="Evaluation of Grades" <?php echo in_array("Evaluation of Grades", $array_type)?'checked':'';?>>
+                    <label for="reg_evaluationofgrades">Evaluation of Grades - Department Head</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_claimcheque" type="checkbox" name="check_list[]" value="UniFAST - Claim Cheque" <?php echo in_array("UniFAST - Claim Cheque", $array_type)?'checked':'';?>>
+                    <label for="reg_claimcheque">UniFAST - Claim Cheque</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_submitdocu" type="checkbox" name="check_list[]" value="UniFAST - Submit Documents" <?php echo in_array("UniFAST - Submit Documents", $array_type)?'checked':'';?>>
+                    <label for="reg_submitdocu">UniFAST - Submit Documents</label>
+                </div>
+                <div class="form_group_input">
+                    <input hidden id="reg_graduation" type="checkbox" name="check_list[]" value="Application for Graduation" <?php echo in_array("Application for Graduation", $array_type)?'checked':'';?>>
+                    <label for="reg_graduation">Application for Graduation</label> 
+                </div>
             </div>
             <?php } ?>
 
