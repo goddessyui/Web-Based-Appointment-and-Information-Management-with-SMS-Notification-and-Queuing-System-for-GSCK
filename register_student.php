@@ -82,7 +82,7 @@ if(!isset($_SESSION["stu_id"]) || !isset($_SESSION["stufirst_name"]) || !isset($
                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm your password" autocomplete="off" />
                             </div>
 
-							<small>By clicking Create Account, you agree to our <a href="TermsandCondition.php">Privacy Policy</a></small>
+							<small>By clicking Create Account, you agree to our <a href="PrivacyPolicy.php">Privacy Policy</a></small>
 
 
                             <div class="form_group">
