@@ -33,39 +33,43 @@ if ($student_id == "" || $username1 == ""){
 
     <hr>
 
+
+
+
+
     <div>
         <h2>Update Profile</h2>
     </div>
 
     <div>
-        <span>Student ID: </span>
+        <p>Student ID: </p>
         <input type="text" name="student_id" value="<?php echo $row["student_id"]?>" disabled />
     </div>
 
     <div>
-        <span>Username: </span>
+        <p>Username: </p>
 	    <input type="text" name="username" value="<?php echo $row["username"]?>" disabled />
 	</div>
 
     <div>
-        <span>First Name: </span>
+        <p>First Name: </p>
         <input type="text" name="first_name" value=<?php echo $row["first_name"]?> disabled />
     </div>
     
     <div>
-        <span>Last Name: </span>
+        <p>Last Name: </p>
         <input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
     </div>
 
-    <form  method="POST" id="dis">
+    <form method="post" id="dis">
         <div>
-            <span>Mobile Number: </span>
-            <input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" />
+            <p>Mobile Number: </p>
+            <input type="tel" name="number" id="profile_number" value="<?php echo $row["mobile_number"]?>" maxlength="11" />
         </div>
 
         <div>
-            <span>Course:</span>
-            <select name="course" id="course">  
+            <p>Course:</p>
+            <select name="course" id="profile_course">  
                 <option value="BSHM" <?php echo $row["course"]=='BSHM'?'selected':"";?>>BSHM</option>
                 <option value="BSTM" <?php echo $row["course"]=='BSTM'?'selected':"";?>>BSTM</option>
                 <option value="BSIT" <?php echo $row["course"]=='BSIT'?"selected":"";?>>BSIT</option>
@@ -82,8 +86,8 @@ if ($student_id == "" || $username1 == ""){
 
 
         <div>
-            <span>Year: </span> 
-            <select name="year" id="year">  
+            <p>Year: </p> 
+            <select name="year" id="profile_year">  
                 <option value="1" <?php echo $row["year"]=='1'?'selected':'';?>>1st Year</option>
                 <option value="2" <?php echo $row["year"]=='2'?'selected':'';?>>2nd Year</option>
                 <option value="3" <?php echo $row["year"]=='3'?'selected':'';?>>3rd Year</option>
@@ -98,30 +102,37 @@ if ($student_id == "" || $username1 == ""){
         <div class="form-group">
 		    <small id="message3" class="" style="color:red;"></small>
 	    </div>
-
+    </form>
         <hr>
+    
 
+
+
+
+
+
+    <form method="post" id="dat">
         <div>
             <h2>Change Password</h2>
         </div>
 
-        <span>Current password</span>
+        <p>Current password</p>
         <div>
-            <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
+            <input type="password" name="currentpass" id="profile_currentpass" placeholder="Current password" autocomplete="off" />
         </div>
         
-        <span>New Password</span>
+        <p>New Password</p>
         <div >
-            <input type="password" name="newpass" id="newpass" placeholder="New password" autocomplete="off" />
+            <input type="password" name="newpass" id="profile_newpass" placeholder="New password" autocomplete="off" />
         </div>
         
         <div>
-            <small>password must be at least 5 characters and<br /> have a number character, e.g. 1234567890</small>
+            <small>password must be at least 5 characters and have a number character, e.g. 1234567890</small>
         </div>
 
-        <span>Re-enter New Password</span>
+        <p>Re-enter New Password</p>
         <div>
-            <input type="password" name="newpass_verify" id="newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
+            <input type="password" name="newpass_verify" id="profile_newpass_verify" placeholder="Re-enter new password" autocomplete="off" />
         </div>
 
         <div>
@@ -129,10 +140,13 @@ if ($student_id == "" || $username1 == ""){
         </div>
 
         <div class="form-group">
-		    <small id="message1" class="" style="color:red;"></small>
+		    <small id="changepass_message1" class="" style="color:red;"></small>
 	    </div>
     </form>
 
+
+
+    
 </div>
 
 <?php include("backtotop.php"); ?>
@@ -144,9 +158,9 @@ $(document).ready(function() {
     // UPDATE PROFILE
 	$('#button_edit_profile').on('click', function() {
         $("#dis :input").prop('disabled', true);    
-		var new_mobilenumber = $('#number').val();
-		var new_course = $('#course').val();
-        var new_year = $('#year').val();;
+		var new_mobilenumber = $('#profile_number').val();
+		var new_course = $('#profile_course').val();
+        var new_year = $('#profile_year').val();;
         $(':checkbox:checked').each(function(i){
           type[i] = $(this).val();
         });
@@ -204,34 +218,34 @@ $(document).ready(function() {
 
     // CHANGE PASS
     $('#button_change_pass').on('click', function() {
-        $("#dis :input").prop('disabled', true);  
-        var currentpass = $('#currentpass').val();
-		var newpass = $('#newpass').val();
-		var newpass_verify = $('#newpass_verify').val();
+        $("#dat :input").prop('disabled', true);  
+        var currentpass = $('#profile_currentpass').val();
+		var newpass = $('#profile_newpass').val();
+		var newpass_verify = $('#profile_newpass_verify').val();
         if(currentpass!=""&&newpass!=""&&newpass_verify!=""){
         if (newpass.length < 8) {
-            $("#dis :input").prop('disabled', false); 
-      	$("#message1").html('Password must be at least 8 characters !!');
+            $("#dat :input").prop('disabled', false); 
+      	$("#changepass_message1").html('Password must be at least 8 characters !!');
         }
       	else if (newpass.length > 16) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must not exceed 16 characters !!'); 
+            $("#dat :input").prop('disabled', false);
+        $("#changepass_message1").html('Password must not exceed 16 characters !!'); 
         }
 		else if (!/^(?!.* )/.test(newpass)) {
-            $("#dis :input").prop('disabled', false);
-		$('#message1').html('Password must not contain space !!'); 
+            $("#dat :input").prop('disabled', false);
+		$('#changepass_message1').html('Password must not contain space !!'); 
 		}
         else if  (newpass.search(/[a-z]/i) < 0) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must contain at least one letter !!');
+            $("#dat :input").prop('disabled', false);
+        $("#changepass_message1").html('Password must contain at least one letter !!');
         }
         else if  (newpass.search(/[0-9]/) < 0) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must contain at least one digit !!'); 
+            $("#dat :input").prop('disabled', false);
+        $("#changepass_message1").html('Password must contain at least one digit !!'); 
         }
       	else if (newpass != newpass_verify){
-            $("#dis :input").prop('disabled', false);
-            $('#message1').html('New Password did not match !!'); 
+            $("#dat :input").prop('disabled', false);
+            $('#changepass_message1').html('New Password did not match !!'); 
       	}
             else{
 			$.ajax({
@@ -247,19 +261,19 @@ $(document).ready(function() {
                   
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
-                        $("#dis :input").prop('disabled', false);
-                        $('#currentpass').val('');
-                        $('#newpass').val('');
-                        $('#newpass_verify').val('');
-                        $('#message1').html('Password updated successfully !!'); 
+                        $("#dat :input").prop('disabled', false);
+                        $('#profile_currentpass').val('');
+                        $('#profile_newpass').val('');
+                        $('#profile_newpass_verify').val('');
+                        $('#changepass_message1').html('Password updated successfully !!'); 
 					}
                     else if(dataResult.statusCode==201){
-                        $("#dis :input").prop('disabled', false);
-						$('#message1').html('An Error occured while changing password, please refresh the page !!'); 
+                        $("#dat :input").prop('disabled', false);
+						$('#changepass_message1').html('An Error occured while changing password, please refresh the page !!'); 
 					}
                     else if(dataResult.statusCode==202){
-                        $$("#dis :input").prop('disabled', false);
-						$('#message1').html('Current password did not match !!'); 
+                        $$("#dat :input").prop('disabled', false);
+						$('#changepass_message1').html('Current password did not match !!'); 
 					}
                     
 					
@@ -268,8 +282,8 @@ $(document).ready(function() {
         }
         }
         else{
-            $("#dis :input").prop('disabled', false);
-            $('#message1').html('Please fill all the field !!'); 
+            $("#dat :input").prop('disabled', false);
+            $('#changepass_message1').html('Please fill all the field !!'); 
         }
 		
 	});
