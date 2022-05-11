@@ -24,26 +24,29 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 //-----------For pagination-------------//
 ?>
 
+
+
 <main>
   
-  <h2>Announcement</h2>
-      <?php 
-    if (!isset($_GET['ann'])) { ?>
-      <select onchange="location = this.value;">
-        <option value="?"  <?php echo !isset($_GET['all'])?'selected':'';?>>All</option>
-        <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
-      </select>
-      <?php 
-    }?>
-      
-      <?php 
-    if (isset($_GET['ann'])) { ?>
-      <a href="announcement_admin.php"><button type="button">View all</button></a>
-      <?php 
-    }?>   
+<div class="announcement_header">
+    <h2>Announcement</h2>
+        <?php 
+      if (!isset($_GET['ann'])) { ?>
+        <select onchange="location = this.value;">
+          <option value="?"  <?php echo !isset($_GET['all'])?'selected':'';?>>All</option>
+          <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
+        </select>
+        <?php 
+      }?>
+        
+        <?php 
+      if (isset($_GET['ann'])) { ?>
+        <a href="announcement_admin.php"><button type="button">View all</button></a>
+        <?php 
+      }?>   
 
-      <button type="button" id="add_announcement">Add announcement</button>            
-    
+        <button type="button" id="add_announcement">Add announcement</button>            
+</div>
       <?php
     if (isset($_GET['ann'])) {
       $ann = $_GET["ann"];
