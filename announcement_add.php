@@ -66,6 +66,42 @@ $fullname = $row['first_name'].' '.$row['last_name'];
                             <img id="output" src="#"/>
                         </div>
 
+                        <div>
+                        <input type="checkbox" name="check_notify" id="check_notify" onclick="checknotify()" value="true">
+                        <label >Notify students through SMS</label>
+                        </div>
+                        
+                        <div hidden id="filter">
+                            <div><label>send to:</label></div>
+                            <div>
+                                <label >course:</label>
+                                <select name="course" id="course">
+                                    <option value="ALL">ALL</option>  
+                                    <option value="BSHM">BSHM</option>
+                                    <option value="BSTM">BSTM</option>
+                                    <option value="BSIT">BSIT</option>
+                                    <option value="BSSW">BSSW</option>
+                                    <option value="ABE">ABE</option>
+                                    <option value="BECE">BECE</option>
+                                    <option value="BTVED">BTVED</option>
+                                    <option value="BSBA">BSBA</option>
+                                    <option value="ACT">ACT</option>
+                                    <option value="HM">HM</option>
+                                    <option value="TESDA PROGRAM">TESDA PROGRAM</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>year:</label>
+                                <select name="year" id="year"> 
+                                    <option value="ALL">ALL</option> 
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="">
                             <button type="submit" id= "add" name="button_add_announcement">Submit</button>
                             <button formnovalidate formaction='announcement_admin.php'>Cancel</button>
@@ -156,6 +192,14 @@ $fullname = $row['first_name'].' '.$row['last_name'];
         setInterval(function() { $("#mess").fadeOut(); }, 2000);
     }
 
+    function checknotify() {
+        if ($('#check_notify').is(':checked')){
+            $("#filter").show();
+        } else {
+            $("#filter").hide();
+        }
+    }
+
 </script>
 <script src="http://code.jquery.com/jquery-1.9.1.js">
 </script>
@@ -184,6 +228,12 @@ if (isset($_POST['button_add_announcement'])) {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], "announcement_image/" . $newfilename)) {
             $stmt->execute();
             $add_id = $db->insert_id;
+            if (!empty($_POST['check_notify'])) {
+                $check = $_POST['check_notify'];
+                $course = $_POST['course'];
+                $year = $_POST['year'];
+                include ('announcement_sms.php');
+                }
             $add = "true";
             include ('notification_announcement.php');
             echo '<script>$("#mess1").html("Added Successfully!");
@@ -237,6 +287,12 @@ if (isset($_POST['button_add_announcement'])) {
             $name = $fullname;
             if ($stmt->execute()) {
                 $add_id = $db->insert_id;
+                if (!empty($_POST['check_notify'])) {
+                    $check = $_POST['check_notify'];
+                    $course = $_POST['course'];
+                    $year = $_POST['year'];
+                    include ('announcement_sms.php');
+                    }
                 $add = "true";
                 include ('notification_announcement.php');
                 echo '<script>$("#mess1").html("Added Successfully!");
@@ -262,6 +318,12 @@ if (isset($_POST['button_add_announcement'])) {
         $name = $fullname;
         if ($stmt->execute()) {
             $add_id = $db->insert_id;
+            if (!empty($_POST['check_notify'])) {
+            $check = $_POST['check_notify'];
+            $course = $_POST['course'];
+            $year = $_POST['year'];
+            include ('announcement_sms.php');
+            }
             $add = "true";
             include ('notification_announcement.php');
             echo '<script>$("#mess1").html("Added Successfully!");

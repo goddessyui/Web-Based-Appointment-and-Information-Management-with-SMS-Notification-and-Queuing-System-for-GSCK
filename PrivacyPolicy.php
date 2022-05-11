@@ -54,6 +54,9 @@
 <p>Phone number</p>
 </li>
 <li>
+<p>School Information</p>
+</li>
+<li>
 <p>Usage Data</p>
 </li>
 </ul>

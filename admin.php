@@ -188,7 +188,7 @@
                                         <option value="'Z%'">Z</option>
                                     </select>
 
-                                    <button onclick="printDiv_regstaff()">Print</button>
+                                    <button id="regstaff" onclick="printDiv_regstaff()" disabled hidden>Print</button>
                                     <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List"/>
                                 
                                 </form>
@@ -263,7 +263,7 @@
                                         <option value="'4'">4th Year</option>
                                     </select>
 
-                                    <button onclick="printDiv_regstudent()">Print</button>
+                                    <button id="regstudent" onclick="printDiv_regstudent()" disabled hidden>Print</button>
                                     <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List"/>
                                     
                                 </form>
@@ -282,7 +282,7 @@
                                     <span>DATE:</span>
                                     <input type="date" name="appointment_date" id="appointmentdate" value="<?php echo date("Y-m-d");?>" style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
                                             
-                                    <button id="print_app" onclick="printDiv_appointment_sched()" disabled>PRINT</button>
+                                    <button id="print_app" onclick="printDiv_appointment_sched()" disabled hidden>PRINT</button>
                                     <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List"/>
                                 </form>
                             
@@ -317,7 +317,7 @@
                                     <option value="monthly">Monthly Report</option>
                                 </select>                   
                                     
-                                <button id="print_report"onclick="printDiv_appointment_report()" disabled>PRINT</button>
+                                <button id="print_report"onclick="printDiv_appointment_report()" disabled hidden>PRINT</button>
                                 <input id="ajaxSubmit_appointment_report" type="submit" value="Show List"/>
                             </form>
                                 <div class="row" id="generated_appointment_report_hidden"></div>
@@ -374,7 +374,7 @@
                                         <option value="'old'">OLD</option>
                                         <option value="'new'">NEW</option>
                                     </select>
-                                    <button onclick="printDiv_regug()">PRINT</button>
+                                    <button id="regug" onclick="printDiv_regug()" disabled hidden>PRINT</button>
                                     <input id="ajaxSubmit_gen_report_ug" type="submit" value="Show List"/>
                                     
                                 </form>
@@ -399,7 +399,7 @@
                                         <span>DATE:</span>
                                         <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value="<?php echo date("Y-m-d");?>"  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
 
-                                        <button id="print_unifast" onclick="printDiv_unifastsched()" disabled>PRINT</button>
+                                        <button id="print_unifast" onclick="printDiv_unifastsched()" disabled hidden>PRINT</button>
                                         <input id="ajax_show_unifast" type="submit" value="Show List"/>
                                     </form>  
                                         
@@ -604,6 +604,8 @@
 <script>
        $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstudent').click(function(){
+            $('#regstudent').prop('disabled', true);
+            $("#regstudent").hide();
             
             /*
             $.post("adminajax_regstudent.php", 
@@ -620,6 +622,10 @@
             student_year_report: $('#student_year_report').val(),},
             function(data){
                 $('#generated_rep_registeredstudents_hidden').html(data);
+                if (!data.includes('No result.')){
+                    $('#regstudent').prop('disabled', false);
+                     $('#regstudent').show();
+                }
             });
             
             return false;
@@ -630,6 +636,8 @@
 
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_regstaff').click(function(){
+            $('#regstaff').prop('disabled', true);
+            $("#regstaff").hide();
             
             /*
             $.post("adminajax_regstaff.php", 
@@ -642,6 +650,10 @@
             {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
             function(data){
                 $('#generated_rep_registeredstaff_hidden').html(data);
+                if (!data.includes('No result.')){
+                    $('#regstaff').prop('disabled', false);
+                     $('#regstaff').show();
+                }
             });
             
             return false;
@@ -652,6 +664,8 @@
 
         $(document).ready(function() {
         $('#ajaxSubmit_gen_report_ug').click(function(){
+            $('#regug').prop('disabled', true);
+            $("#regug").hide();
       
             /*
             $.post("adminajax_ug.php", 
@@ -667,6 +681,10 @@
             batchstatus_ug: $('#batchstatus_ug').val(),},
             function(data){
                 $('#generated_rep_ug_hidden').html(data);
+                if (!data.includes('No result.')){
+                    $('#regug').prop('disabled', false);
+                     $('#regug').show();
+                }
             });
             
             return false;
@@ -708,12 +726,14 @@
     $(document).ready(function() {
     $('#ajaxSubmit_appointment_schedule').click(function(){
         $('#print_app').prop('disabled', true);
+        $('#print_app').hide();
         $.post("adminajax_appointment_schedule.php", 
         {appointment_date: $('#appointmentdate').val(),},
         function(data){
             $('#generated_appointment_schedule_hidden').html(data);
             if (!data.includes('No result.')){
             $('#print_app').prop('disabled', false);
+            $('#print_app').show();
             }
         });
         return false;        
@@ -734,7 +754,7 @@
 $(document).ready(function() {
         $('#ajaxSubmit_appointment_report').click(function(){
             $('#print_report').prop('disabled', true);
-            
+            $("#print_report").hide();
             $.post("adminajax_appointmentreport.php", 
             {status_report: $('#status_report').val(),
             time_report: $('#time_report').val(),},
@@ -742,6 +762,7 @@ $(document).ready(function() {
                 $('#generated_appointment_report_hidden').html(data);
                 if (!data.includes('No result.')){
                 $('#print_report').prop('disabled', false);
+                $("#print_report").show();
                 }
             });
             
@@ -765,6 +786,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         $('#ajax_show_unifast').click(function(){   
             $('#print_unifast').prop('disabled', true);
+            $('#print_unifast').hide();
             $.post("adminajax_unifastschedule.php", 
             {appointment_date: $('#unifast_appointmentdate').val(),
             appointment_type: $('#type').val(),},
@@ -772,6 +794,7 @@ $(document).ready(function() {
                 $('#generated_unifast_schedule_hidden').html(data);
                 if (!data.includes('No result.')){
                 $('#print_unifast').prop('disabled', false);
+                $('#print_unifast').show();
                 }
                 
             });
