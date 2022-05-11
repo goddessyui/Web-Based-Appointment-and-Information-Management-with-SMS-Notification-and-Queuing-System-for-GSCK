@@ -430,6 +430,7 @@ else{
             background: #fff;
             padding: 22px;
             text-align: center;
+            width: 23%;
         }
       
         .student_record .show_count_stud .card p {

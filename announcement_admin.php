@@ -29,88 +29,103 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 <main>
   
 <div class="announcement_header">
-    <h2>Announcement</h2>
-        <?php 
-      if (!isset($_GET['ann'])) { ?>
-        <select onchange="location = this.value;">
-          <option value="?"  <?php echo !isset($_GET['all'])?'selected':'';?>>All</option>
-          <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
-        </select>
-        <?php 
-      }?>
-        
-        <?php 
-      if (isset($_GET['ann'])) { ?>
-        <a href="announcement_admin.php"><button type="button">View all</button></a>
-        <?php 
-      }?>   
 
-        <button type="button" id="add_announcement">Add announcement</button>            
-</div>
-      <?php
-    if (isset($_GET['ann'])) {
-      $ann = $_GET["ann"];
-      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title, 
-        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name` 
-        FROM tbl_announcement WHERE announcement_id = '$ann' ORDER BY date_created DESC"; 
+  <div class="flex_2">
+    <h2>Announcement</h2>
+
+    <div class="select_div">
+      <?php 
+        if (!isset($_GET['ann'])) { ?>
+          <select onchange="location = this.value;">
+            <option value="?"  <?php echo !isset($_GET['all'])?'selected':'';?>>All</option>
+            <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
+          </select>
+          <?php 
+        }
+      ?>
+    </div>
+  </div>   
+
+  <?php 
+    if (isset($_GET['ann'])) { ?>
+      <a href="announcement_admin.php"><button type="button">View all</button></a>
+      <?php 
     }
-    else if (isset($_GET['all'])) {
-      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
-        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url,`name`    
-        FROM tbl_announcement WHERE staff_id='$staff_id'
-        ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; 
-    } 
-    else {
-      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
-        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name`    
-        FROM tbl_announcement ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; }
+  ?>
+
+    <div class="add_announcement_btn">
+        <button type="button" id="add_announcement">Add announcement</button>
+    </div>            
+</div>
+
+
+      <?php
+        if (isset($_GET['ann'])) {
+          $ann = $_GET["ann"];
+          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title, 
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name` 
+            FROM tbl_announcement WHERE announcement_id = '$ann' ORDER BY date_created DESC"; 
+        }
+
+        else if (isset($_GET['all'])) {
+          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url,`name`    
+            FROM tbl_announcement WHERE staff_id='$staff_id'
+            ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; 
+        } 
+
+        else {
+          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name`    
+            FROM tbl_announcement ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; }
 
       $res = mysqli_query($db, $sql);
 
-      if (mysqli_num_rows($res) > 0) {
+      ?><div class="announcement_container"><?php
 
-        while ($row = mysqli_fetch_assoc($res)) { ?>
+      if (mysqli_num_rows($res) > 0) {
+       
+        while ($row = mysqli_fetch_assoc($res)) 
+        { 
+          ?>
           
           <div class="blog_img_box">
 
-            <span class="fa fa-user"></span>
-
-            <small>
-              <?php echo $row['name'] ?>
-            </small>
-
-            <div>
-              <small>
+          <div class="announce_header">
+            <div class="title_caption">
+                <h3>
                   <?php 
-                    echo date("F d, Y, g:i a", strtotime($row['date_created'])) 
+                    echo $row['announcement_title'] 
                   ?>
-              </small>
+                </h3>
+      
+                <p>
+                  <?php 
+                    echo $row['caption'] 
+                  ?>
+                </p>
+              </div>
+
+              <div class="name_date">
+                <p>
+                  <?php echo $row['name'] ?>
+                </p>
+
+                <p>
+                    <?php 
+                      echo date("F d, Y, g:i a", strtotime($row['date_created'])) 
+                    ?>
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h3>
-                <?php 
-                  echo $row['announcement_title'] 
-                ?>
-              </h3>
-            </div>
+            <?php 
+              echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; 
+            ?>
+            <?php 
+              echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'" frameborder="0" allowfullscreen></iframe>':''; 
+            ?>             
 
-            <div>
-              <pre>
-                <?php 
-                  echo $row['caption'] 
-                ?>
-              </pre>
-            </div>
-
-            <div>
-              <?php 
-                echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; 
-              ?>
-              <?php 
-                echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; 
-              ?>             
-            </div> 
 
             <div>  
               <!-- check if post is made by staff remove delete and edit button if not -->
@@ -124,7 +139,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                   data-value2="<?php echo $row['announcement_title']; ?>" 
                   data-value3="<?php echo $row['image']; ?>"  
                   value="<?php echo $row['caption']; ?>" 
-                  class="">Edit</button>
+                  class="editModal">Edit</button>
 
                 <!-- display this check if posted with video url -->
                 <?php } else if (!empty($row['video_url'])){ ?>
@@ -133,7 +148,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                   data-value2="<?php echo $row['announcement_title']; ?>" 
                   data-value3="<?php echo $row['video_url']; ?>"  
                   value="<?php echo $row['caption']; ?>" 
-                  class="">Edit</button>
+                  class="editModal">Edit</button>
               
                   <!-- display this if post dont have both image and video -->
                 <?php } else { ?>
@@ -141,10 +156,10 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                   data-value="<?php echo $row['announcement_id']; ?>"
                   data-value2="<?php echo $row['announcement_title']; ?>"   
                   value="<?php echo $row['caption']; ?>" 
-                  class="">Edit</button>  
+                  class="editModal">Edit</button>  
                 <?php } ?>
 
-                  <button class="addModal" onclick="del(this);" value="<?php echo $row['announcement_id']; ?>" style="background-color: #f44336">Delete</button>
+                  <button class="addModal" onclick="del(this);" value="<?php echo $row['announcement_id']; ?>">Delete</button>
                 <?php 
               } ?>
               
@@ -152,7 +167,14 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
           </div>
           <?php 
-        } ?>
+        } 
+        ?>
+        </div>
+
+
+
+
+
 
 
                   <!--------Pagination---------------------------------------------->
@@ -274,10 +296,7 @@ include("backtotop.php");
        background: #EFF0F4;
        padding: 15px;
     }
-    main .container {
-      background: pink;
-      padding: 0 15px;
-    }
+  
 
     .modal,
     .addmodal,
@@ -352,6 +371,142 @@ include("backtotop.php");
         text-decoration: none;
         cursor: pointer;
     }
+
+
+
+
+
+
+  main .announcement_header {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  main .announcement_header .add_announcement_btn {
+    background: yellow;
+  }
+  main .announcement_header .add_announcement_btn button{
+    padding: 0 20px;
+    height: 30px;
+    border: none;
+    background: #324e9e;
+    color: #eee;
+    cursor: pointer;
+  }
+
+  main .announcement_header .flex_2 {
+    display: flex;
+    width: 50%;
+    border: 1px solid white;
+    align-items: center;
+  }
+  main .announcement_header .flex_2 h2{
+    color: #333;
+    margin-right: 20px;
+    font-size: 20px;
+    font-family: 'Roboto';
+  }
+  main .announcement_header .flex_2 select {
+    height: 30px;
+    border: 1px solid lightgrey;
+  }
+
+
+  .announcement_container {
+    background-color: #EFF0F4;
+  }
+  .announcement_container .blog_img_box {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .announcement_container .blog_img_box .announce_header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+    .blog_img_box .announce_header .title_caption {
+      background: none;
+    }
+          .title_caption h3 {
+            color: #333;
+            font-family: 'Roboto';
+            margin: 0;
+            margin-bottom: 5px;
+            font-size: 20px;
+          }
+          .title_caption p {
+            font-size: 14px;
+            font-family: 'Roboto Serif';
+            width: 500px;
+            color: #333;
+          }
+
+    .blog_img_box .announce_header .name_date {
+      background: none;
+    }
+          .name_date p:nth-child(1) {
+            color: #444;
+            margin-bottom: 5px;
+            font-family: 'Roboto Serif';
+          }
+          .name_date p:nth-child(2) {
+            color: #444;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-family: 'Roboto Serif';
+          }
+
+  .announcement_container .blog_img_box img,
+  .announcement_container .blog_img_box iframe {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height: 400px;
+  }
+
+  .blog_img_box .editModal {
+    background: #444;
+    color: #eee;
+    border: none;
+    width: 120px;
+    height: 30px;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+  }
+  .blog_img_box .addModal {
+    background: #ec3237;
+    color: #eee;
+    border: none;
+    width: 120px;
+    height: 30px;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+  }
+
+  .pagination {
+    display: flex;
+    padding: 0 15px;
+    margin-bottom: 40px;
+  }
+  .pagination li {
+    padding: 5px;
+    background: #444;
+    margin-right: 5px;
+  }
+
+  .pagination a {
+    color: #eee;
+    font-family: 'Roboto';
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
 </style>
 
 

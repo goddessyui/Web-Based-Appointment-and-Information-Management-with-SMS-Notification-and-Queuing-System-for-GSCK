@@ -430,6 +430,7 @@ else{
             background: #fff;
             padding: 22px;
             text-align: center;
+            width: 23%;
         }
       
         .staff_record .show_count_staff .card p {
