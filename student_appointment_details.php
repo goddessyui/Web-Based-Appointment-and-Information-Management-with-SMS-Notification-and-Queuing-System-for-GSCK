@@ -160,7 +160,7 @@ if (empty($_SESSION['student_id'])){
 
 
    <?php if (isset($_GET['status'])){
-          ?> <a href="student_appointment_details.php"><button type="button">View all appointment</button></a> <?php 
+          ?> <a href="student_appointment_details.php"><button type="button" class="view_all_appnt">View all appointment</button></a> <?php 
           if($_GET['status'] == 'accepted'){
             include("reports/student_accepted_app.php");
           }
@@ -279,28 +279,35 @@ if (empty($_SESSION['student_id'])){
         display: none;
     }
     .appnt_stud_result {
-        background: none;
-        margin-top: 80px;
-        padding: 20px 0;
+        background: green;
+        margin-top: 100px;
         padding-bottom: 0;
     }
     .appnt_stud_result .white_appnt {
-        background: #fff;
+        background: lightgrey;
         background-image: url("./image/calendar.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         width: 100%;
-        padding: 20px 30px;
-        padding-bottom: 40px;
-        min-height: 68vh;
+        padding: 30px;
+        min-height: 60vh;
     }
     .appnt_stud_result .white_appnt .s_appnt {
         font-family: 'Roboto';
         font-size: 16px;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         font-weight: 500;
         color: #eee;
+    }
+    .view_all_appnt {
+        width: 220px;
+        height: 30px;
+        font-family: 'Roboto';
+        margin-bottom: 30px;
+        border: none;
+        background: #324E9E;
+        color: #fff;
     }
 
     

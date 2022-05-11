@@ -24,10 +24,12 @@
 
 
 <div class="announcement_container">
-    <h2>Latest Announcements</h2>
+  
     <div class="announcement">
         <div class="img_announcement"></div>
+        
         <div class="fetch_content">
+            <h2>Latest Announcements</h2>
         <?php
             $announcement = "SELECT * FROM tbl_announcement ORDER BY announcement_id DESC LIMIT 3";
             $announcement_query = mysqli_query($db, $announcement);
@@ -67,5 +69,6 @@
 
 
 </body>
+
 </html>
 

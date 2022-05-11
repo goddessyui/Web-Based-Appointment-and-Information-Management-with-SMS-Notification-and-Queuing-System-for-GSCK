@@ -135,9 +135,9 @@
     .my_appointment {
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-start;
     }
     .my_appointment .my_appnt_data {
-        border: 1px solid lightgrey;
         width: 340px;
         min-height: 40vh;
         padding-top: 0;
@@ -145,10 +145,11 @@
         padding-right: 30px;
         padding-bottom: 20px;
         background: #fff;
-        margin-left: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
-    
+    .my_appointment .my_appnt_data:not(:nth-child(4)) {
+        margin-right: 30px;
+    }
     .number_container  {
         display: flex;
         align-items: center;

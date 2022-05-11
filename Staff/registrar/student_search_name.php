@@ -26,13 +26,13 @@ include("../../dbconfig.php");
             while($rows = mysqli_fetch_assoc($run)) { 
                 
     ?>               
-                    <div  class="form_group">    
+                    <div  class="list_group_container">    
                         
                         <form action="Staff/registrar/updatedelete_studentrecord.php" method="post">
                             
-                            <div class="form_inline" >
+              
                                 <div class="form_list">
-                                    <label><div class="left_counter">Search Result:</div></label>
+                                    <p>Search Result</p>
                                     <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $rows["last_name"]?>">               
                                     <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $rows["first_name"]?>">
                                     <input type="text" class="form-control" id="studentid" name="studentid" value="<?php echo $rows["student_id"]?>">
@@ -41,7 +41,7 @@ include("../../dbconfig.php");
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>
                                     <button class="btn_delete" type="submit" name="delete">DELETE</button>
                                 </div> 
-                            </div>
+                 
 
                         </form>
                     </div>            

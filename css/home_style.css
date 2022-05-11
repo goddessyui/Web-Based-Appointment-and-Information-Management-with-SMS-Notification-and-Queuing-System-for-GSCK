@@ -53,84 +53,59 @@
 
 .announcement_container {
     width: 100%;
+}
+.announcement {
     background: #fff;
-    height: 80vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 2%;
-}
-.announcement_container h2 {
-    width: 20%;
-    text-align: right;
-    text-decoration: underline;
-    font-size: 28px;
-    padding: 40px;
-    color: #333;
-}
-.announcement_container .announcement {
-    height: 50vh;
-    width: 80%;
-    display: flex;
-    justify-content: left;
+    width: 100%;
+    padding: 80px 0;
 }
 .announcement .img_announcement {
-    width: 360px;
-    height: 50vh;
-    background-image: url("../image/announcement.jpg");
+    width: 30%;
+    background-image: url(../image/announcement.jpg);
     background-size: cover;
-    background-position: left center;
+    background-position: left;
     background-repeat: no-repeat;
 }
 .announcement .fetch_content {
-    padding: 30px;
-    margin-left: 20px;
-}
-.fetch_content .announcement_div {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid gold;
-}
-
-
-.announcement_div h1 {
-    text-transform: uppercase;
-    font-size: 20px;
-    font-family: 'Roboto';
-    color: #333;
-}
-.announcement_div h3 {
-    font-size: 12px;
-    color: rgb(223, 223, 223);
-    font-weight: 500;
-    background: #324E9E;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    padding-right: 8px;
-    padding-left: 22px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
-}
-.announcement_div p {
-    font-size: 16px;
-    color: #444;
-    width: 600px;
-    font-family: 'Roboto serif';
-}
-.announcement button {
-    border: none;
-    padding: 8px 50px;
-    background: #333;
+    width: 70%;
+    padding: 80px;
+    background-color: #324E9E;
     color: #eee;
-    cursor: pointer;
-    margin-top: 10px;
 }
-.announcement button:hover {
-    background: #222;
-}
-
-.date_title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
+    .fetch_content h2 {
+        font-family: 'Times New Roman';
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .announcement_div:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    .announcement_div .date_title {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+    .announcement_div .date_title h1 {
+        font-family: 'Roboto';
+        font-size: 16px;
+    }
+    .announcement_div .date_title h3 {
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 13px;
+    }
+    .announcement_div p {
+        width: 80%;
+        font-family: 'Roboto Serif';
+        font-size: 13px;
+    }
+    .fetch_content button {
+        border: none;
+        background: #fff;
+        width: 220px;
+        height: 30px;
+    }
+    .fetch_content a {
+        font-family: 'Roboto';
+    }
