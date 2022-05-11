@@ -146,7 +146,8 @@
             color: #333;
             font-weight: 500;
             font-size: 14px;
-            text-decoration: underline;
+            font-family: 'Roboto Serif';
+            margin-bottom: 20px;
         }
         .nav_container nav ul button {
             border: none;
@@ -162,11 +163,11 @@
         .button_ma {
             margin-bottom: 20px;
             margin-top: 8px;
-            background: #333;
+            background: #324e9e;
         }
         .button_saa {
             margin-top: 20px;
-            background: #333;
+            background: #324e9e;
             font-family: 'Roboto';
         }
         .button_maa:hover,
@@ -179,8 +180,7 @@
             font-size: 16px;
             text-transform: uppercase;
             transition: all .1s ease-in;
-            font-weight: 500;
-            font-family: 'Roboto';
+            font-family: 'Roboto Serif';
         }
         .nav_container nav ul li {
             list-style-type: none;
