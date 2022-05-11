@@ -25,152 +25,182 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 ?>
 
 <main>
-  <div class="container">
+  
   <h2>Announcement</h2>
-    <?php if (!isset($_GET['ann'])){ ?>
+      <?php 
+    if (!isset($_GET['ann'])) { ?>
       <select onchange="location = this.value;">
         <option value="?"  <?php echo !isset($_GET['all'])?'selected':'';?>>All</option>
         <option value="?all=no"  <?php echo isset($_GET['all'])?'selected':'';?>>Your Post</option>
       </select>
-    <?php } ?>
+      <?php 
+    }?>
       
-    <?php if (isset($_GET['ann'])){ ?>
+      <?php 
+    if (isset($_GET['ann'])) { ?>
       <a href="announcement_admin.php"><button type="button">View all</button></a>
-    <?php } ?>   
+      <?php 
+    }?>   
 
       <button type="button" id="add_announcement">Add announcement</button>            
     
-    <?php
-      if (isset($_GET['ann'])){
-        $sql = "SELECT
-        tbl_announcement.announcement_id,
-        tbl_announcement.staff_id,
-        tbl_announcement.announcement_title,
-        tbl_announcement.caption,
-        tbl_announcement.image,
-        tbl_announcement.date_created,
-        tbl_announcement.video_url,
-        `name` 
-        FROM tbl_announcement
-        WHERE announcement_id = '".$_GET["ann"]."'
-        ORDER BY date_created DESC"; }
-     
-      else if (isset($_GET['all'])){
-        $sql = "SELECT
-        tbl_announcement.announcement_id,
-        tbl_announcement.staff_id,
-        tbl_announcement.announcement_title,
-        tbl_announcement.caption,
-        tbl_announcement.image,
-        tbl_announcement.date_created,
-        tbl_announcement.video_url,
-        `name`    
-        FROM tbl_announcement 
-        WHERE staff_id='".$staff_id."'
-        ORDER BY date_created DESC
-        LIMIT $offset, $no_of_records_per_page"; } 
+      <?php
+    if (isset($_GET['ann'])) {
+      $ann = $_GET["ann"];
+      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title, 
+        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name` 
+        FROM tbl_announcement WHERE announcement_id = '$ann' ORDER BY date_created DESC"; 
+    }
+    else if (isset($_GET['all'])) {
+      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url,`name`    
+        FROM tbl_announcement WHERE staff_id='$staff_id'
+        ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; 
+    } 
+    else {
+      $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+        tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name`    
+        FROM tbl_announcement ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; }
 
-      else {
-        $sql = "SELECT
-        tbl_announcement.announcement_id,
-        tbl_announcement.staff_id,
-        tbl_announcement.announcement_title,
-        tbl_announcement.caption,
-        tbl_announcement.image,
-        tbl_announcement.date_created,
-        tbl_announcement.video_url,
-        `name`    
-        FROM tbl_announcement
-        ORDER BY date_created DESC
-        LIMIT $offset, $no_of_records_per_page"; }
+      $res = mysqli_query($db, $sql);
 
-          $res = mysqli_query($db, $sql);
-          if (mysqli_num_rows($res) > 0) {
-            while ($row = mysqli_fetch_assoc($res)) { ?>
+      if (mysqli_num_rows($res) > 0) {
+
+        while ($row = mysqli_fetch_assoc($res)) { ?>
+          
+          <div class="blog_img_box">
+
+            <span class="fa fa-user"></span>
+
+            <small>
+              <?php echo $row['name'] ?>
+            </small>
+
+            <div>
+              <small>
+                  <?php 
+                    echo date("F d, Y, g:i a", strtotime($row['date_created'])) 
+                  ?>
+              </small>
+            </div>
+
+            <div>
+              <h3>
+                <?php 
+                  echo $row['announcement_title'] 
+                ?>
+              </h3>
+            </div>
+
+            <div>
+              <pre>
+                <?php 
+                  echo $row['caption'] 
+                ?>
+              </pre>
+            </div>
+
+            <div>
+              <?php 
+                echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; 
+              ?>
+              <?php 
+                echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; 
+              ?>             
+            </div> 
+
+            <div>  
+              <!-- check if post is made by staff remove delete and edit button if not -->
+              <?php 
+              if ($staff_id==$row['staff_id']) { ?>
+
+                <!-- display this check if posted with an image -->
+                <?php if (!empty($row['image'])){ ?>
+                  <button onclick="update_image(this)" 
+                  data-value="<?php echo $row['announcement_id']; ?>"
+                  data-value2="<?php echo $row['announcement_title']; ?>" 
+                  data-value3="<?php echo $row['image']; ?>"  
+                  value="<?php echo $row['caption']; ?>" 
+                  class="">Edit</button>
+
+                <!-- display this check if posted with video url -->
+                <?php } else if (!empty($row['video_url'])){ ?>
+                  <button onclick="update_video(this)" 
+                  data-value="<?php echo $row['announcement_id']; ?>"
+                  data-value2="<?php echo $row['announcement_title']; ?>" 
+                  data-value3="<?php echo $row['video_url']; ?>"  
+                  value="<?php echo $row['caption']; ?>" 
+                  class="">Edit</button>
               
-              <div class="blog_img_box">
-              <span class="fa fa-user"></span><small><?php echo $row['name'] ?></small>
-                <div><small><?php echo date("F d, Y, g:i a", strtotime($row['date_created'])) ?></small></div>
-                <div><h3><?php echo $row['announcement_title'] ?></h3></div>
-                <div><pre><?php echo $row['caption'] ?></pre></div>
-                    <div>
-                      <?php echo !empty($row['image'])?'<img src="announcement_image/' . $row['image'] . '" alt="#">':''; ?>
-                      <?php echo !empty($row['video_url'])?'<iframe src="'.$row['video_url'].'"  width="500" height="265" frameborder="0" allowfullscreen></iframe>':''; ?>             
-                    </div> 
+                  <!-- display this if post dont have both image and video -->
+                <?php } else { ?>
+                  <button onclick="update(this)" 
+                  data-value="<?php echo $row['announcement_id']; ?>"
+                  data-value2="<?php echo $row['announcement_title']; ?>"   
+                  value="<?php echo $row['caption']; ?>" 
+                  class="">Edit</button>  
+                <?php } ?>
 
-                  <div>  
-                    <!-- check if post is made by staff remove delete and edit button if not -->
-                    <?php if ($staff_id==$row['staff_id']){?>
+                  <button class="addModal" onclick="del(this);" value="<?php echo $row['announcement_id']; ?>" style="background-color: #f44336">Delete</button>
+                <?php 
+              } ?>
+              
+            </div> 
 
-                      <!-- display this check if posted with an image -->
-                      <?php if (!empty($row['image'])){ ?>
-                        <button onclick="update_image(this)" 
-                        data-value="<?php echo $row['announcement_id']; ?>"
-                        data-value2="<?php echo $row['announcement_title']; ?>" 
-                        data-value3="<?php echo $row['image']; ?>"  
-                        value="<?php echo $row['caption']; ?>" 
-                        class="">Edit</button>
-
-                      <!-- display this check if posted with video url -->
-                      <?php } else if (!empty($row['video_url'])){ ?>
-                        <button onclick="update_video(this)" 
-                        data-value="<?php echo $row['announcement_id']; ?>"
-                        data-value2="<?php echo $row['announcement_title']; ?>" 
-                        data-value3="<?php echo $row['video_url']; ?>"  
-                        value="<?php echo $row['caption']; ?>" 
-                        class="">Edit</button>
-                    
-                        <!-- display this if post dont have both image and video -->
-                      <?php } else { ?>
-                        <button onclick="update(this)" 
-                        data-value="<?php echo $row['announcement_id']; ?>"
-                        data-value2="<?php echo $row['announcement_title']; ?>"   
-                        value="<?php echo $row['caption']; ?>" 
-                        class="">Edit</button>  
-                      <?php } ?>
-
-                        <button class="addModal" onclick="del(this);" value="<?php echo $row['announcement_id']; ?>" style="background-color: #f44336">Delete</button>
-                    <?php } ?>
-                    
-                  </div> 
-
-            <?php } ?>
+          </div>
+          <?php 
+        } ?>
 
 
-                      <!--------Pagination---------------------------------------------->
-            <ul class="pagination">
-                <li><a href="<?php echo isset($_GET['all'])?"?all=no&pageno=1":"?pageno=1"; ?>">First</a></li>
-                <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo isset($_GET['all'])?"?all=no&pageno=".($pageno - 1):"?pageno=".($pageno - 1); } ?>">Prev</a>
-                </li>
-                <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo isset($_GET['all'])?"?all=no&pageno=".($pageno + 1):"?pageno=".($pageno + 1); } ?>">Next</a>
-                </li>
-                <li><a href="<?php echo isset($_GET['all'])?"?all=no&pageno=".$total_pages:"?pageno=".$total_pages; ?>">Last</a></li>
-            </ul>
-            <!--------Pagination---------------------------------------------->    
+                  <!--------Pagination---------------------------------------------->
+        <ul class="pagination">
+            <li><a href="<?php echo isset($_GET['all'])?"?all=no&pageno=1":"?pageno=1"; ?>">First</a></li>
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo isset($_GET['all'])?"?all=no&pageno=".($pageno - 1):"?pageno=".($pageno - 1); } ?>">Prev</a>
+            </li>
+            <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo isset($_GET['all'])?"?all=no&pageno=".($pageno + 1):"?pageno=".($pageno + 1); } ?>">Next</a>
+            </li>
+            <li><a href="<?php echo isset($_GET['all'])?"?all=no&pageno=".$total_pages:"?pageno=".$total_pages; ?>">Last</a></li>
+        </ul>
+        <!--------Pagination---------------------------------------------->    
 
-          <?php } else { ?>
-                <h1>NO ANNOUNCEMENT FOUND</h1>
-                <h5><?php echo isset($_GET["ann"])?"UPLOADER MUST HAVE DELETED THE ANNOUNCEMENT":""; ?></h5>
-          <?php } ?>                    
-  </div>
+        <?php 
+      } 
+      else { ?>
+        <h1>NO ANNOUNCEMENT FOUND</h1>
+        <h5>
+          <?php 
+            echo isset($_GET["ann"])?"UPLOADER MUST HAVE DELETED THE ANNOUNCEMENT":"";
+          ?>
+        </h5>
+        <?php 
+      } ?>                    
+  
 </main>
 
     <!-- delete announcement modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
+
         <div>
           <div id="mess_delete" style="color:red;"></div>
         </div>
-        <div> <p>Do you really want to delete?</p></div>
+        
+        <div>
+          <p>
+            Do you really want to delete?
+          </p>
+        </div>
+
         <div>
           <form method="POST" id="form_delete">
-          <button class="delete" type="submit" id= "delete" name="button_delete_announcement">DELETE</button>
-          <button class="close1">CANCEL</button>
+            <button class="delete" type="submit" id= "delete" name="button_delete_announcement">DELETE</button>
+            <button class="close1">CANCEL</button>
           </form>
         </div>
+
       </div>
     </div>
 
@@ -193,7 +223,6 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
         </div>
       </div>
     </div>
-
 
 </body>
 </html>
