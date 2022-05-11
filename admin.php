@@ -190,6 +190,7 @@
 
                                     <button id="regstaff" onclick="printDiv_regstaff()" disabled hidden>Print</button>
                                     <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List"/>
+                                    <input id="hide_gen_report_regstaff" type="submit" value="Hide List" hidden/>
                                 
                                 </form>
 
@@ -265,6 +266,7 @@
 
                                     <button id="regstudent" onclick="printDiv_regstudent()" disabled hidden>Print</button>
                                     <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List"/>
+                                    <input id="hide_gen_report_regstudent" type="submit" value="Hide List" hidden/>
                                     
                                 </form>
 
@@ -284,6 +286,7 @@
                                             
                                     <button id="print_app" onclick="printDiv_appointment_sched()" disabled hidden>PRINT</button>
                                     <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List"/>
+                                    <input id="hide_appointment_schedule" type="submit" value="Hide List" hidden/>
                                 </form>
                             
                                 <div class="row" id="generated_appointment_schedule_hidden"></div>
@@ -319,6 +322,7 @@
                                     
                                 <button id="print_report"onclick="printDiv_appointment_report()" disabled hidden>PRINT</button>
                                 <input id="ajaxSubmit_appointment_report" type="submit" value="Show List"/>
+                                <input id="hide_appointment_report" type="submit" value="Hide List" hidden/>
                             </form>
                                 <div class="row" id="generated_appointment_report_hidden"></div>
                         </div>
@@ -376,6 +380,7 @@
                                     </select>
                                     <button id="regug" onclick="printDiv_regug()" disabled hidden>PRINT</button>
                                     <input id="ajaxSubmit_gen_report_ug" type="submit" value="Show List"/>
+                                    <input id="ajax_hide_gen_report_ug" type="submit" value="Hide List" hidden/>
                                     
                                 </form>
                                 <!---<div class="row" id="generated_rep_ug"></div>--->
@@ -401,6 +406,7 @@
 
                                         <button id="print_unifast" onclick="printDiv_unifastsched()" disabled hidden>PRINT</button>
                                         <input id="ajax_show_unifast" type="submit" value="Show List"/>
+                                        <input id="ajax_hide_unifast" type="submit" value="Hide List" hidden/>
                                     </form>  
                                         
                                         <div class="row" id="generated_unifast_schedule_hidden"></div>
@@ -625,6 +631,8 @@
                 if (!data.includes('No result.')){
                     $('#regstudent').prop('disabled', false);
                      $('#regstudent').show();
+                     $("#hide_gen_report_regstudent").show();
+                     $("#ajaxSubmit_gen_report_regstudent").hide();
                 }
             });
             
@@ -653,6 +661,8 @@
                 if (!data.includes('No result.')){
                     $('#regstaff').prop('disabled', false);
                      $('#regstaff').show();
+                     $('#hide_gen_report_regstaff').show();
+                     $('#ajaxSubmit_gen_report_regstaff').hide();
                 }
             });
             
@@ -684,6 +694,8 @@
                 if (!data.includes('No result.')){
                     $('#regug').prop('disabled', false);
                      $('#regug').show();
+                     $('#ajax_hide_gen_report_ug').show();
+                     $('#ajaxSubmit_gen_report_ug').hide();
                 }
             });
             
@@ -734,6 +746,8 @@
             if (!data.includes('No result.')){
             $('#print_app').prop('disabled', false);
             $('#print_app').show();
+            $('#hide_appointment_schedule').show();
+            $('#ajaxSubmit_appointment_schedule').hide();        
             }
         });
         return false;        
@@ -763,6 +777,8 @@ $(document).ready(function() {
                 if (!data.includes('No result.')){
                 $('#print_report').prop('disabled', false);
                 $("#print_report").show();
+                $("#hide_appointment_report").show();
+                $("#ajaxSubmit_appointment_report").hide();
                 }
             });
             
@@ -795,6 +811,8 @@ $(document).ready(function() {
                 if (!data.includes('No result.')){
                 $('#print_unifast').prop('disabled', false);
                 $('#print_unifast').show();
+                $('#ajax_hide_unifast').show();
+                $('#ajax_show_unifast').hide();
                 }
                 
             });
@@ -810,6 +828,71 @@ $(document).ready(function() {
         }
     // FETCH DATA for Unifast schedules for accounting Staff
 
+    // HIDE LIST BUTTON PROCESS
+    // appointment report
+    $(document).ready(function() {
+        $('#hide_appointment_report').click(function(){   
+            $('#generated_appointment_report_hidden').html('');
+            $("#print_report").hide();
+            $("#hide_appointment_report").hide();
+            $("#ajaxSubmit_appointment_report").show();
+            return false;         
+        });
+    });
+    // registred staff
+    $(document).ready(function() {
+        $('#hide_gen_report_regstaff').click(function(){   
+            $('#generated_rep_registeredstaff_hidden').html('');
+            $('#regstaff').hide();
+            $('#hide_gen_report_regstaff').hide();
+            $('#ajaxSubmit_gen_report_regstaff').show();
+            return false;         
+        });
+    });
+    // registred student
+    $(document).ready(function() {
+        $('#hide_gen_report_regstudent').click(function(){   
+            $('#generated_rep_registeredstudents_hidden').html('');
+            $('#regstudent').hide();
+            $("#hide_gen_report_regstudent").hide();
+            $("#ajaxSubmit_gen_report_regstudent").show();
+            return false;         
+        });
+    });
+    // appointment schedule
+    $(document).ready(function() {
+        $('#hide_appointment_schedule').click(function(){   
+            $('#generated_appointment_schedule_hidden').html('');
+            $('#print_app').hide();
+            $('#hide_appointment_schedule').hide();
+            $('#ajaxSubmit_appointment_schedule').show(); 
+            return false;         
+        });
+    });
+    // List of unifast grantees
+    $(document).ready(function() {
+        $('#ajax_hide_gen_report_ug').click(function(){   
+            $('#generated_rep_ug_hidden').html('');
+            $('#regug').hide();
+            $('#ajax_hide_gen_report_ug').hide();
+            $('#ajaxSubmit_gen_report_ug').show();
+            return false;         
+        });
+    });
+    // Unifast Schedule
+    $(document).ready(function() {
+        $('#ajax_hide_unifast').click(function(){   
+            $('#generated_unifast_schedule_hidden').html('');
+            $('#print_unifast').hide();
+            $('#ajax_hide_unifast').hide();
+            $('#ajax_show_unifast').show();
+            return false;         
+        });
+    });
+
+    // HIDE LIST BUTTON PROCESS
+    
+         
 
     </script>
  
