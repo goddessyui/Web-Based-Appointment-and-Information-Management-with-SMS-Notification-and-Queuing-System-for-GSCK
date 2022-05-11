@@ -70,13 +70,17 @@
 .announcement .fetch_content {
     width: 70%;
     padding: 80px;
-    background-color: #324E9E;
-    color: #eee;
+    background-color: #D6DCDA;
+    color: #333;
 }
     .fetch_content h2 {
         font-family: 'Times New Roman';
         font-size: 20px;
         margin-bottom: 20px;
+    }
+    .announcement_div {
+        padding-bottom: 5px;
+        border-bottom: 1px solid grey;
     }
     .announcement_div:not(:last-child) {
         margin-bottom: 20px;
@@ -89,6 +93,7 @@
     .announcement_div .date_title h1 {
         font-family: 'Roboto';
         font-size: 16px;
+        margin-bottom: 5px;
     }
     .announcement_div .date_title h3 {
         font-family: 'Roboto';
@@ -102,10 +107,14 @@
     }
     .fetch_content button {
         border: none;
-        background: #fff;
+        background: #324E9E;
         width: 220px;
         height: 30px;
+        color: lightgrey;
+        cursor: pointer;
+        margin-top: 20px;
     }
     .fetch_content a {
         font-family: 'Roboto';
+        color: #eee;
     }
