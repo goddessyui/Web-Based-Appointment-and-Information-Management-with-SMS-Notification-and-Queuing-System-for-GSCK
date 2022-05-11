@@ -26,7 +26,7 @@ include("../../dbconfig.php");
             while($rows = mysqli_fetch_assoc($run)) { 
                 
     ?>               
-                    <div  class="list_group_container">    
+                    <div  class="list_group_container">     
                         
                         <form action="Staff/registrar/updatedelete_studentrecord.php" method="post">
                             
@@ -41,7 +41,6 @@ include("../../dbconfig.php");
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>
                                     <button class="btn_delete" type="submit" name="delete">DELETE</button>
                                 </div> 
-                 
 
                         </form>
                     </div>            
