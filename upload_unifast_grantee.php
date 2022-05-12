@@ -78,7 +78,7 @@ else{
             
                 <div class="card">
                     <p class="card_title">
-                        No. of Old Batch / New Batch
+                        No. of Old Batch : New Batch
                     </p>
                     <h3 class="card_text">
                         <?php
@@ -89,7 +89,7 @@ else{
                             $newug = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'new'";
                             $newug_result = mysqli_query($db, $newug);
                             $newug_count = mysqli_num_rows($newug_result);
-                            echo $oldug_count." / ".$newug_count;
+                            echo $oldug_count." : ".$newug_count;
                         ?>
                     </h3>
                     
@@ -672,7 +672,7 @@ else{
             width: 50%;
         }
         .search_select .row:nth-child(1) .form_label {
-            width: 25%;
+            width: 20%;
             font-family: 'Roboto';
             font-size: 13px;
             text-transform: uppercase;
@@ -734,10 +734,11 @@ else{
             width: 50%;
         }
         .list_group_container form .form_list p {
-            width: 25%;
+            width: 20%;
         }
-        .list_group_container form .form_list input {
-            width: 25%;
+        .list_group_container form .form_list input,
+        .list_group_container form .form_list select {
+            width: 20%;
             height: 30px;
             padding: 5px;
             border: 1px solid lightgrey;
