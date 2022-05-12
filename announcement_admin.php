@@ -427,7 +427,7 @@ include("backtotop.php");
 
   .announcement_container .blog_img_box .announce_header {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
   }
     .blog_img_box .announce_header .title_caption {
@@ -445,6 +445,7 @@ include("backtotop.php");
             font-family: 'Roboto Serif';
             width: 500px;
             color: #333;
+            margin-bottom: 12px;
           }
 
     .blog_img_box .announce_header .name_date {
