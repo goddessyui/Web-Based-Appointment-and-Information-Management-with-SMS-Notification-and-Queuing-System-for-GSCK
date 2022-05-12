@@ -216,7 +216,7 @@
                                     
                                             <!----------------------------BUTTONS FOR ALL-----------------------> 
                                     </div>               
-                    </div>
+                        </div>
                     
                     <div class="pending_column">
 
@@ -344,7 +344,7 @@
                 <?php
             } //if Accounting Staff/Scholarship Coordinator
             else{ //if not Accounting Staff/Scholarship Coordinator
-                echo "Test: You are not an Accounting Staff/Scholarship Coordinator";
+                echo "You are not an Accounting Staff/Scholarship Coordinator";
             }//if not Accounting Staff/Scholarship Coordinator
         
         include("backtotop.php");

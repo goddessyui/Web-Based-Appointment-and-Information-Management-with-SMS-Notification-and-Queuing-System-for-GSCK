@@ -212,8 +212,9 @@ if ($staff_id == "" && $username == ""){
 
         <div class="head_account">
             <div class="c_p">
-                    <h2>Change Password</h2>
-                </div>
+                <h2>Change Password</h2>
+            </div>
+
             <form method="POST" action="#" id="dat_staff">    
                 <div class="profile_input">
                     <p>Current password</p>

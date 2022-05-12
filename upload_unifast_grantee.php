@@ -254,9 +254,10 @@ else{
                 
                 <?php
                 //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
-                if(isset($_POST['batchstate'])) {
+                if(isset($_POST['batchstate'])) 
+                {
                     $bs = $_POST['batchstate'];
-                
+                    
 
                     //-----------For thepagination-------------//
                     if (isset($_GET['pageno'])) {
@@ -273,70 +274,77 @@ else{
                     $total_rows = mysqli_fetch_array($theresult)[0];
                     $total_pages = ceil($total_rows / $no_of_records_per_page);
                     //-----------For thepagination-------------//
-                
-                    $ugquery = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = $bs ORDER BY last_name ASC, first_name ASC 
-                        LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
-                    $ugresult = mysqli_query($db, $ugquery);
                     
-                    $i=1;
-                    ?>
-
-                    <div class="student_list_container">
+                        $ugquery = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = $bs ORDER BY last_name ASC, first_name ASC 
+                            LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
+                        $ugresult = mysqli_query($db, $ugquery);
                         
-                    <?php
-                    
-                    while($row = mysqli_fetch_assoc($ugresult)) {?>
-                        <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
-                
-                        <div class="list_group_container">    
+                        $i=1;
+                        ?>
+
+                        <div class="student_list_container">
                             
-                            <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
+                        <?php
+                        
+                        while($row = mysqli_fetch_assoc($ugresult)) 
+                        { ?>
+                            <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
+                    
+                            <div class="list_group_container">    
                                 
-                                <div class="form_list">
-                                    <p><?php echo $offset + $i++;?></p>
-                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                    <select name="batchstatus"  id="batchstatus" >
-                                        <?php $batch_status = $row["batch_status"];
-                                        if($batch_status=='old'){?>
-                                            <option value="old">old</option>
-                                            <option value="new">new</option>
-                                            <?php
-                                        }
-                                        else {?>
-                                            <option value="new">new</option>
-                                            <option value="old">old</option>
-                                        <?php         
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
+                                <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
+                                    
+                                    <div class="form_list">
+                                        <p>
+                                            <?php 
+                                                echo $offset + $i++;
+                                            ?>
+                                        </p>
+                                        <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                        <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                        <input type="text" id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                        <select name="batchstatus" id="batchstatus" >
+                                            <?php $batch_status = $row["batch_status"];
+                                            if($batch_status=='old') 
+                                            {   ?>
+                                                    <option value="old">old</option>
+                                                    <option value="new">new</option>
+                                                <?php
+                                            }
+                                            else 
+                                            {   ?>
+                                                    <option value="new">new</option>
+                                                    <option value="old">old</option>
+                                                <?php         
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
 
-                                <div class="btn_group" role="group" aria-label="Basic example">
-                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
-                                </div>
+                                    <div class="btn_group" role="group" aria-label="Basic example">
+                                        <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                        <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                    </div>
 
-                          </form>
-                        </div>
-                
-                        <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
-                <?php
-                    }
-                ?>
-                </div>
-                <?php
+                            </form>
+                            </div>
+                    
+                            <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
+                    <?php
+                        }
+                    ?>
+                    </div>
+                    <?php
                 
                 }//end of isset batch state
-
                 else if(isset($_POST['alphabetical'])) {
                     $alphabetical = $_POST['alphabetical'];
 
 
                     if (isset($_GET['pageno'])) {
                         $pageno = $_GET['pageno'];
-                    } else {
+                    } 
+                    else {
                         $pageno = 1;
                     }
                     $no_of_records_per_page = 25;
@@ -368,23 +376,29 @@ else{
                         <div class="list_group_container">    
                             
                             <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
-                                                            
+                               
                                 <div class="form_list">
-                                    <p><?php echo $offset + $i++;?></p>
-                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                    <select name="batchstatus"  id="batchstatus" >
+                                    <p>
+                                        <?php 
+                                            echo $offset + $i++;
+                                        ?>
+                                    </p>
+                                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text" id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <select name="batchstatus" id="batchstatus" >
                                         <?php $batch_status = $row["batch_status"];
-                                        if($batch_status=='old'){?>
-                                            <option value="old">old</option>
-                                            <option value="new">new</option>
+                                        if($batch_status=='old')
+                                        {   ?>
+                                                <option value="old">old</option>
+                                                <option value="new">new</option>
                                             <?php
                                         }
-                                        else {?>
-                                            <option value="new">new</option>
-                                            <option value="old">old</option>
-                                        <?php         
+                                        else 
+                                        {   ?>
+                                                <option value="new">new</option>
+                                                <option value="old">old</option>
+                                            <?php         
                                         }
                                         ?>
                                     </select>
@@ -409,7 +423,7 @@ else{
                     if ($alphabetical == "'%'"){
                         echo "The list of UniFAST grantees is empty.";
                     }
-                    else{
+                    else {
                         echo "No result for ". substr($alphabetical, 1,-2);
                     }
                 }
@@ -449,21 +463,27 @@ else{
                             <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                                 
                                 <div class="form_list">
-                                    <p><?php echo $offset + $i++;?></p>
-                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                    <select name="batchstatus"  id="batchstatus" >
+                                    <p>
+                                        <?php 
+                                            echo $offset + $i++;
+                                        ?>
+                                    </p>
+                                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text" id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <select name="batchstatus" id="batchstatus" >
                                         <?php $batch_status = $row["batch_status"];
-                                        if($batch_status=='old'){?>
-                                            <option value="old">old</option>
-                                            <option value="new">new</option>
+                                        if($batch_status=='old')
+                                        {   ?>
+                                                <option value="old">old</option>
+                                                <option value="new">new</option>
                                             <?php
                                         }
-                                        else {?>
-                                            <option value="new">new</option>
-                                            <option value="old">old</option>
-                                        <?php         
+                                        else 
+                                        {   ?>
+                                                <option value="new">new</option>
+                                                <option value="old">old</option>
+                                            <?php         
                                         }
                                         ?>
                                     </select>
@@ -473,8 +493,7 @@ else{
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>
                                     <button class="btn_delete" type="submit" name="delete">DELETE</button>
                                 </div>
-
-                                
+     
                             </form>
                         </div>
                 
@@ -489,7 +508,6 @@ else{
                     //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
                 ?>
            
-            
             <div class="pagination_div">
                 <!--------thepagination---------------------------------------------->
                 <ul>
