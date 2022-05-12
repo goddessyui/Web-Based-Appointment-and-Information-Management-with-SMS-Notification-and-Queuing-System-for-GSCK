@@ -94,13 +94,14 @@ else{
                     </h3>
 
                 </div>
-
+                <!----------------------Form to Upload CSV ------------------------------------------------------------> 
                 <div class="card">
                     <form method="post" enctype='multipart/form-data'>
                         <p>Update Student Records: Please Select File (Only CSV Format)</p>
 
                         <div class="input_div_file">
-                            <input type="file" class="uploadfile" name="student_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                            <input type="file" class="uploadfile" name="student_file" 
+                            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                             <input type="submit" class="btn_upload" name="upload" value="Upload" />
                         </div>
 
@@ -112,10 +113,11 @@ else{
 
                     </form>
                 </div>
+                <!----------------------Form to Upload CSV ------------------------------------------------------------> 
             </div>
             <!---------------------Cards ------------------------------------------------------------> 
         
-            <!----------------------Form to Upload CSV ------------------------------------------------------------> 
+            
 
     <div class="message">
         <?php echo $msg; ?>
@@ -231,14 +233,16 @@ else{
                         <button type="submit" value="Find" name="formsubmit" id="formsubmit">Search</button>
                     </div>
                 </form>
-                <!------Shows the result when pressing find---->
+                
                
-                <!------Shows the result when pressing find---->
+               
             </div>
         </div>
         
         <div class="student_list_container">
+            <!------Shows the result when pressing find---->
             <div id="response"></div>
+             <!------Shows the result when pressing find---->
         </div>
         
                 <?php

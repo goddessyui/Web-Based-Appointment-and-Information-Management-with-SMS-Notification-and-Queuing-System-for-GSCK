@@ -42,7 +42,7 @@ if(isset($_REQUEST["term"])) {
             }
         } 
         else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
+            echo "ERROR: Could not execute $sql. " . mysqli_error($db);
         }
     }
     

@@ -49,7 +49,7 @@ if(isset($_GET["updation"]))
     $msg = '<label class="text-success">Student Records Update Done</label>';
 }
 else{
-    $msg = "";
+    $msg = " ";
 }
 //-------------------------------upload csv------------------------------------------------------------------------------//
 
@@ -58,188 +58,123 @@ else{
     <main>
         
         <div class="unifast_grantee_record">
-
-            
-            <h3>UniFAST Grantee Records</h3>
             
             <!----------------------Cards ------------------------------------------------------------>        
-            <div class="row">
+            <div class="show_count_stud">
 
-                <div class="col_3">
-                    <div class="card">
-
-                        <div class="card_title">
-                            Total No. of UniFAST Grantees
-                        </div>
-
-                        <div class="card_body">
-                        
-                            <div class="card_text">
-                               
-                                    <?php
-                                        $enrolledstaff = "SELECT * FROM tbl_unifast_grantee";
-                                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
-                                        $count = mysqli_num_rows($enrolledstaff_result);
-                                        echo $count;
-                                    ?>
-                              
-                            </div>
+                <div class="card">
+                    <p class="card_title">
+                        Total No. of UniFAST Grantees
+                    </p>
+                    <h3 class="card_text">
+                        <?php
+                            $enrolledstaff = "SELECT * FROM tbl_unifast_grantee";
+                            $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
+                            $count = mysqli_num_rows($enrolledstaff_result);
+                            echo $count;
+                        ?>
+                    </h3>  
+                </div>
+            
+                <div class="card">
+                    <p class="card_title">
+                        No. of Old Batch / New Batch
+                    </p>
+                    <h3 class="card_text">
+                        <?php
+                            $oldug= "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'old'";
+                            $oldug_result = mysqli_query($db, $oldug);
+                            $oldug_count = mysqli_num_rows($oldug_result);
                             
-                        </div>
-                    </div>
+                            $newug = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'new'";
+                            $newug_result = mysqli_query($db, $newug);
+                            $newug_count = mysqli_num_rows($newug_result);
+                            echo $oldug_count." / ".$newug_count;
+                        ?>
+                    </h3>
+                    
                 </div>
-
-                <div class="col_3">
-                    <div class="card">
-                        <div class="card_title">
-                            No. of Old UniFAST Grantees
-                        </div>
-
-                        <div class="card_body">
-                        
-                            <div class="card_text">
-                           
-                                    <?php
-                                        $enrolledstaff = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'old'";
-                                        $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
-                                        $count = mysqli_num_rows($enrolledstaff_result);
-                                        echo $count;
-                                    ?>
-                        
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col_3">
-                    <div class="card">
-                        <div class="card_title">
-                            No. of New UniFAST Grantees
-                        </div>
-
-                        <div class="card_body">
-                        
-                            <div class="card_text">
-                                <?php
-                                    $enrolledstaff = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = 'new'";
-                                    $enrolledstaff_result = mysqli_query($db, $enrolledstaff);
-                                    $count = mysqli_num_rows($enrolledstaff_result);
-                                    echo $count;
-                                ?>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                
-            </div>
-                <!---------------------Cards ------------------------------------------------------------> 
-        
-        
-            <!----------------------Form to Upload CSV ------------------------------------------------------------> 
-            <div class="row">
-
-                <div  class="form_group">
-                    <div class="message"><?php echo $msg; ?></div>
+                <!----------------------Form to Upload CSV ------------------------------------------------------------> 
+                <div  class="card">
+                    
                     <form method="post" enctype='multipart/form-data'>
-                        <label>Update UniFAST Grantee Records: <small>Please Select File(Only CSV Format)</small></label>
-                        <input type="file" class="uploadfile" name="ug_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                        <p>Update UniFAST Grantee Records: Please Select File(Only CSV Format)</p>
+
+                        <div class="input_div_file">
+                            <input type="file" class="uploadfile" name="ug_file" 
+                            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                            <input type="submit" class="btn_upload" name="upload" value="Upload" />
+                        </div>
                         <p>
                             <?php
                                 $message = '';
                             ?>
                         </p>
-                        <input type="submit" class="btn_upload" name="upload" value="Upload" />
                     </form>
                 </div>
-                
+                 <!----------------------Form to Upload CSV ------------------------------------------------------------>
+               
             </div>
-            <!----------------------Form to Upload CSV ------------------------------------------------------------>
+                <!---------------------Cards ------------------------------------------------------------> 
+        
+
             <!----------------------Show Error or Success Message ------------------------------------------------------------>
-        
-
-        
-            <div class="row">
-
-                <div class="form_group">
-
-                    <div class="message">
-                        <!--success or error-->
-                        <?php 
-                        if(isset($_GET['success'])){?>
-                            <p>
-                                <?php 
-                                    echo $_GET['success'];
-                                ?>
-                            </p><?php
-                        }
-                        if(isset($_GET['error'])){?>
-                            <p>
-                                <?php 
-                                    echo $_GET['error'];
-                                ?>
-                            </p><?php
-                        }
-                        else {
-                            echo "This is a sample success or error message. Please delete.";
-                        }?>
-                        <!--success or error-->
-                    </div>
-
-                    
-                    <!----------------------Show Error or Success Message ------------------------------------------------------------>
-                    <div class="form_inline">
-                        <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
-                        <form action="Staff/accounting_staff/add_unifastgrantee.php" method="post">
-                            <label><div class="left_counter">Add UniFAST Grantee:</div></label>
-                            <input type="text"  id="lastname" name="lastname" placeholder="Last Name" required>
-                            <input type="text"  id="firstname" name="firstname" placeholder="First Name" required>
-                            <input type="text"  id="studentid" name="studentid" placeholder="Student ID" required>
-                            <select required  id="batchstatus" name="batchstatus">
-                                <option value="">Batch-Status</option>
-                                <option value="old">old</option>
-                                <option value="new">new</option>
-                            </select>   
-                            
-                            <button type="submit" class="btn_add" name="add">Add</button>
-                        </form>
-                        <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
-                    </div>
-
-                </div>
-
+            <div class="message">
+                <?php echo $msg; ?>
             </div>
 
-            <div class="row">
-                <!--------------------------------------Search box--------------------------------------------------------->
-                <div class="form_group">
-                    <form name="form1" method="get" action="">
-                        <div class="search-box"><label>Search UniFAST Grantee:</label></div>
-                        <div class="search-box">
-                            <input type="text" autocomplete="off" placeholder="Search student name..." name="search" id="search" value="" required>
-                            <div class="result"></div>
-                        </div>
-                        <div class="search-box">
-                            <button type="submit" value="Find" name="formsubmit" id="formsubmit">Search</button>
+            <div class="message">
+                <!--success or error-->
+                <?php 
+                if(isset($_GET['success'])){?>
+                    <p>
+                        <?php 
+                            echo $_GET['success'];
+                        ?>
+                    </p><?php
+                }
+                if(isset($_GET['error'])){?>
+                    <p>
+                        <?php 
+                            echo $_GET['error'];
+                        ?>
+                    </p><?php
+                }
+                else {
+                    
+                }?>
+                <!--success or error-->
+            </div>
+
+
+
+                <div class="add_stud_div">
+                    <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
+                    <form action="Staff/accounting_staff/add_unifastgrantee.php" method="post">
+                        <p>Add UniFAST Grantee:</p>
+                        <input type="text"  id="lastname" name="lastname" placeholder="Last Name" required>
+                        <input type="text"  id="firstname" name="firstname" placeholder="First Name" required>
+                        <input type="text"  id="studentid" name="studentid" placeholder="Student ID" required>
+                        <select required  id="batchstatus" name="batchstatus">
+                            <option value="">Batch-Status</option>
+                            <option value="old">old</option>
+                            <option value="new">new</option>
+                        </select>   
+                        <div class="btn_add_container">
+                            <button type="submit" class="btn_add" name="add">Add</button>
                         </div>
                     </form>
-                
-                    <!------Shows the result when pressing find---->
-                    <div id="response"></div>
-                    <!------Shows the result when pressing find---->
+                    <!------Form to Add data to tbl_unifast_grantee. Sends data to add_unifastgrantee.php------------------------------------------------>
                 </div>
 
-                <!--------------------------------------Search box--------------------------------------------------------->
+            <div class="search_select">
+                <div class="row">
 
-            </div>
+                    <div class="form_label">
+                        S.N.
+                    </div>
 
-                            
-            <div class="row">
-                <div class="form_group">
-                    <div class="form_inline">
-                        <div class="form_label">No.</div>
+                    <div class="form_label">
                         <form action="#" method="POST" onclick="e.preventDefault()" >
                             <select name="alphabetical" id="alphabetical"  onchange="this.form.submit();">
                                 <option value="">Last Name</option>
@@ -272,21 +207,51 @@ else{
                                 <option value="'Z%'">Z</option>
                             </select>
                         </form>
-                        <div class="form_label">First Name</div>
-                        <div class="form_label">Student ID No.</div>
-                        <div class="form_label">
-                            <form action="#" method="POST" onclick="e.preventDefault()" >
-                                <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
-                                    <option value="">Batch Status</option>
-                                    <option value="('new' OR 'old')">ALL</option>
-                                    <option value="'old'">OLD</option>
-                                    <option value="'new'">NEW</option>
-                                </select>
-                            </form>
-
-                        </div>
+                    </div>
+                    <div class="form_label">First Name</div>
+                    <div class="form_label">Student ID No.</div>
+                    <div class="form_label">
+                        <form action="#" method="POST" onclick="e.preventDefault()" >
+                            <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
+                                <option value="">Batch Status</option>
+                                <option value="('new' OR 'old')">ALL</option>
+                                <option value="'old'">OLD</option>
+                                <option value="'new'">NEW</option>
+                            </select>
+                        </form>
                     </div>
                 </div>
+
+                <div class="row">
+                    <!--------------------------------------Search box--------------------------------------------------------->
+                    
+                        <form name="form1" method="get" action="">
+                            <div class="search-box">
+                                <p>Search UniFAST Grantee:</p>
+                            </div>
+
+                            <div class="search-box">
+                                <input type="text" autocomplete="off" placeholder="Search student name..." name="search" id="search" value="" required>
+                                <div class="result"></div>
+                            </div>
+
+                            <div class="search-box">
+                                <button type="submit" value="Find" name="formsubmit" id="formsubmit">Search</button>
+                            </div>
+                        </form>
+                <!--------------------------------------Search box--------------------------------------------------------->
+                </div>
+
+            </div> 
+            
+            <div class="student_list_container">
+                <!------Shows the result when pressing find---->
+                <div id="response"></div>
+                <!------Shows the result when pressing find---->
+            </div>
+
+     
+                
                 <?php
                 //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
                 if(isset($_POST['batchstate'])) {
@@ -296,12 +261,12 @@ else{
                     //-----------For thepagination-------------//
                     if (isset($_GET['pageno'])) {
                         $pageno = $_GET['pageno'];
-                    } else {
+                    } 
+                    else {
                         $pageno = 1;
                     }
                     $no_of_records_per_page = 25;
                     $offset = ($pageno-1) * $no_of_records_per_page;
-
 
                     $total_pages_sql = "SELECT COUNT(*) FROM tbl_unifast_grantee";
                     $theresult = mysqli_query($db, $total_pages_sql);
@@ -309,54 +274,59 @@ else{
                     $total_pages = ceil($total_rows / $no_of_records_per_page);
                     //-----------For thepagination-------------//
                 
-                    
                     $ugquery = "SELECT * FROM tbl_unifast_grantee WHERE batch_status = $bs ORDER BY last_name ASC, first_name ASC 
                         LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
                     $ugresult = mysqli_query($db, $ugquery);
                     
                     $i=1;
+                    ?>
+
+                    <div class="student_list_container">
+                        
+                    <?php
                     
                     while($row = mysqli_fetch_assoc($ugresult)) {?>
                         <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
                 
-                        <div class="form_group">    
+                        <div class="list_group_container">    
                             
                             <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                                 
-                                <div class="form_inline" >
-                                    <div class="form_list">
-                                        <label><div class="left_counter"><?php echo $offset + $i++;?></div></label>
-                                        <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                        <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                        <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                        <select name="batchstatus"  id="batchstatus" >
-                                            <?php $batch_status = $row["batch_status"];
-                                            if($batch_status=='old'){?>
-                                                <option value="old">old</option>
-                                                <option value="new">new</option>
-                                                <?php
-                                            }
-                                            else {?>
-                                                <option value="new">new</option>
-                                                <option value="old">old</option>
-                                            <?php         
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>    
-                                    <div class="btn_group" role="group" aria-label="Basic example">
-                                        <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                        <button class="btn_delete" type="submit" name="delete">DELETE</button>
-                                    </div>
-
+                                <div class="form_list">
+                                    <p><?php echo $offset + $i++;?></p>
+                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <select name="batchstatus"  id="batchstatus" >
+                                        <?php $batch_status = $row["batch_status"];
+                                        if($batch_status=='old'){?>
+                                            <option value="old">old</option>
+                                            <option value="new">new</option>
+                                            <?php
+                                        }
+                                        else {?>
+                                            <option value="new">new</option>
+                                            <option value="old">old</option>
+                                        <?php         
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                
-                            </form>
+
+                                <div class="btn_group" role="group" aria-label="Basic example">
+                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                </div>
+
+                          </form>
                         </div>
                 
                         <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
-                        <?php
+                <?php
                     }
+                ?>
+                </div>
+                <?php
                 
                 }//end of isset batch state
 
@@ -387,48 +357,53 @@ else{
                     $count =mysqli_num_rows($ugresult);
                     if ($count > 0) {
                     $i=1;
-                    
+                    ?>
+
+                    <div class="student_list_container">
+                        
+                    <?php
                     while($row = mysqli_fetch_array($ugresult)) {?>
                         <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
                 
-                        <div class="form_group">    
+                        <div class="list_group_container">    
                             
                             <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
-                                
-                                <div class="form_inline" >
-                                    <div class="form_list">
-                                        <label><div class="left_counter"><?php echo $offset + $i++;?></div></label>
-                                        <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                        <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                        <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                        <select name="batchstatus"  id="batchstatus" >
-                                            <?php $batch_status = $row["batch_status"];
-                                            if($batch_status=='old'){?>
-                                                <option value="old">old</option>
-                                                <option value="new">new</option>
-                                                <?php
-                                            }
-                                            else {?>
-                                                <option value="new">new</option>
-                                                <option value="old">old</option>
-                                            <?php         
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>    
-                                    <div class="btn_group" role="group" aria-label="Basic example">
-                                        <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                        <button class="btn_delete" type="submit" name="delete">DELETE</button>
-                                    </div>
-
+                                                            
+                                <div class="form_list">
+                                    <p><?php echo $offset + $i++;?></p>
+                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <select name="batchstatus"  id="batchstatus" >
+                                        <?php $batch_status = $row["batch_status"];
+                                        if($batch_status=='old'){?>
+                                            <option value="old">old</option>
+                                            <option value="new">new</option>
+                                            <?php
+                                        }
+                                        else {?>
+                                            <option value="new">new</option>
+                                            <option value="old">old</option>
+                                        <?php         
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                
+                                    
+                                <div class="btn_group" role="group" aria-label="Basic example">
+                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                </div>
+
                             </form>
                         </div>
                 
                         <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
                         <?php
                     }
+                    ?>
+                    </div>
+                    <?php
                 }
                 else {
                     if ($alphabetical == "'%'"){
@@ -463,41 +438,42 @@ else{
                         LIMIT $offset, $no_of_records_per_page"; //LIMIT $offset, $no_of_records_per_page is for thepagination
                     $ugresult = mysqli_query($db, $ugquery);
                     $i=1;
-                    
+                    ?>
+                    <div class="student_list_container">
+                    <?php
                     while($row = mysqli_fetch_array($ugresult)) {?>
                         <!--------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
                 
-                        <div class="form_group">    
+                        <div class="list_group_container">    
                             
                             <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                                 
-                                <div class="form_inline" >
-                                    <div class="form_list">
-                                        <label><div class="left_counter"><?php echo $offset + $i++;?></div></label>
-                                        <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
-                                        <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
-                                        <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
-                                        <select name="batchstatus"  id="batchstatus" >
-                                            <?php $batch_status = $row["batch_status"];
-                                            if($batch_status=='old'){?>
-                                                <option value="old">old</option>
-                                                <option value="new">new</option>
-                                                <?php
-                                            }
-                                            else {?>
-                                                <option value="new">new</option>
-                                                <option value="old">old</option>
-                                            <?php         
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>    
-                                    <div class="btn_group" role="group" aria-label="Basic example">
-                                        <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                        <button class="btn_delete" type="submit" name="delete">DELETE</button>
-                                    </div>
-
+                                <div class="form_list">
+                                    <p><?php echo $offset + $i++;?></p>
+                                    <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
+                                    <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
+                                    <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <select name="batchstatus"  id="batchstatus" >
+                                        <?php $batch_status = $row["batch_status"];
+                                        if($batch_status=='old'){?>
+                                            <option value="old">old</option>
+                                            <option value="new">new</option>
+                                            <?php
+                                        }
+                                        else {?>
+                                            <option value="new">new</option>
+                                            <option value="old">old</option>
+                                        <?php         
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
+                                
+                                <div class="btn_group" role="group" aria-label="Basic example">
+                                    <button class="btn_update" type="submit" name="update">UPDATE</button>
+                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                </div>
+
                                 
                             </form>
                         </div>
@@ -505,15 +481,18 @@ else{
                         <!---------Send Form Data to updatedelete_unifastgrantee.php---------------------------------------------->
                         <?php
                     }
+                    ?>
+                    </div>
+                    <?php
 
                 }//end of if empty
                     //----------------------Form to Show, Update, Delete Data From tbl_unifast_grantee ------------------------------------------//
                 ?>
-            </div>
+           
             
-            <div class="row">
+            <div class="pagination_div">
                 <!--------thepagination---------------------------------------------->
-                <ul class="thepagination">
+                <ul>
                     <li><a href="?pageno=1">First</a></li>
                     <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
                         <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
@@ -537,190 +516,277 @@ else{
 </body>
 </html>
 
+
 <style> 
     main {
-        padding: 0;
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 80px;
+       width: 100%;
+       padding: 15px;
     }
-   
-    .row {
-        width: 100%;
-        margin-bottom: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        background-color: #fafafa;
-        padding: 10px;
-        text-align: center;
+    main .unifast_grantee_record {
+        padding: 0 15px;
     }
-    .row h3 {
-        text-align: center;
-    }
-    .col_3{
-        width: 320px;
-        margin-bottom: 10px;
-        margin-left:auto;
-        margin-right:auto;
-    }
-    .card {
-        text-align: center;
-    }
-    .card_title{
-        background-color: #324e9e;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        color: #fff;
-    }
-    .card_body {
-        background-color: white;
-        font-size: 20px;
-        color: #324e9e;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    #formsubmit {
-        background-color: #324e9e;
-        color: #fff;
-        padding: 5px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 25px;
-    }
-    .form_group {
-      width: 100%;
-      margin: auto;
-      min-width: 300px;
-    }
-
-    h3 {
-       text-align: center;
-    }
-    .form_inline {
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 5px;
-        margin-top: 5px;
-        background-color: #dedede;
-        padding: 10px;
-        min-width: 250px;
-       
-    }
-    .form_inline:hover .btn_group {
-        display: block;
-    }
-
-    .form_inline .left_counter{
-        width: 150px;
-        float: left;
-    }
-    .form_inline input{
-        width: 150px;
-    }
-    .form_inline select {
-        width: 150px;
-        text-align: center;
-    }
-    .form_inline .form_label {
-        width: 150px;
-       
-    }
-    .uploadfile {
-        border: 0.5px solid gray;
-    }
-    .message {
-        color: #324e9e;
-    }
-    .btn_group{
-        display: none;
-        width: 150px;
-    }
-    .btn_update {
-        margin-top: 1px;
-        margin-left: 10px;
-        border-radius: 0.5em 0 0 0.5em;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 5px;
-        padding-right: 5px;
-        background-color: #324e9e;
-        border: 1px solid #324e9e;
-        color: #fff;
-    }
-   
-    .btn_delete {
-        margin-top: 1px;
-        border-radius: 0 0.5em 0.5em 0;
-        border: 1px solid #ec3237;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 5px;
-        padding-right: 5px;
-        background-color: #ec3237;
-        color: #fff;
-    }
-    .btn_add, .btn_upload {
-        background-color: var(--blue);
-        color: #fff;
-        padding: 5px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 25px;
-    }
-    .thepagination {
-        display: flex;
-        flex-wrap: wrap;
-        
-    }
-    .thepagination li {
-        border: 1px solid lightgray;
-        padding: 5px; 
-    }
-    .thepagination li a {
-        text-decoration: none;
-    }
-
-
-  /* Formatting search box */
-  .search-box{
-        width: 300px;
-        position: relative;
-        display: inline-block;
-        font-size: 14px;
-        z-index: 2;
-       
-    }
-    .search-box input[type="text"]{
-        height: 32px;
-        padding: 5px 10px;
-        border: 1px solid #CCCCCC;
-        font-size: 14px;
-    }
-    .result{
-        position: absolute;        
-        top: 100%;
-        left: 0;
-        background-color: white;
-        
-    }
-    .search-box input[type="text"], .result{
-        width: 100%;
-       
-    }
-    /* End of Formatting search box */
-    /* Formatting result items */
-    .result p{
-        margin: 0;
-        padding: 7px 10px;
-        border: 1px solid #CCCCCC;
-        border-top: none;
-        cursor: pointer;
-    }
-    .result p:hover{
-        background: #f2f2f2;
-    }
-    /* End of Formatting result items */
+        .unifast_grantee_record .show_count_stud {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
     
+        .unifast_grantee_record .show_count_stud .card:not(:last-child) {
+            background: #fff;
+            padding: 22px;
+            text-align: center;
+            width: 23%;
+        }
+      
+        .unifast_grantee_record .show_count_stud .card p {
+            margin-bottom: 20px;
+            font-family: 'Roboto';
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        .unifast_grantee_record .show_count_stud .card h3 {
+            font-family: 'Roboto Serif';
+            font-size: 30px;
+            color: #000;
+        }
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) {
+            width: 50%;
+            background: #fff;
+            padding: 20px;
+        }
+  
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) form {
+            width: 100%;
+        }
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) form p{
+            margin-bottom: 20px;
+        }
+        .input_div_file {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) form .input_div_file input[type=file] {
+            background: none;
+            height: 30px;
+            width: 320px;
+            border: 1px solid lightgrey;
+            cursor: pointer;
+        }
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) form .input_div_file input[type=submit] {
+            height: 30px;
+            width: 120px;
+            border: none;
+            background: #324E9E;
+            color: #eee;
+            font-family: 'Roboto';
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        .unifast_grantee_record .show_count_stud .card:nth-child(3) form .input_div_file input[type=file]::file-selector-button {
+            background: #333;
+            color: #eee;
+            height: 30px;
+            border: none;
+            font-family: 'Roboto';
+            width: 120px;
+            line-height: 28px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+
+        .add_stud_div {
+            background: #fff;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+        }
+        .add_stud_div form {
+            display: flex;
+            align-items: center;
+        }
+        .add_stud_div form p {
+            font-family: 'Roboto';
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-right: 20px;
+        }
+        .add_stud_div form input {
+            height: 30px;
+            width: 200px;
+            margin-right: 20px;
+            background: #fff;
+            border: 1px solid lightgrey;
+            padding-left: 15px;
+        }
+        .add_stud_div form .btn_add_container {
+            flex: 1;
+        }
+        .add_stud_div form .btn_add_container button {
+            width: 120px;
+            height: 30px;
+            background: #324E9E;
+            border: none;
+            color: #fff;
+            float: right;
+            cursor: pointer;
+        }
+   
+
+
+
+        .search_select {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+        .search_select .row:nth-child(1) {
+            display: flex;
+            align-items: center;
+            width: 50%;
+        }
+        .search_select .row:nth-child(1) .form_label {
+            width: 25%;
+            font-family: 'Roboto';
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #333;
+        }
+        .search_select .row:nth-child(1) .form_label:not(:first-child) {
+            margin-left: 20px;
+        }
+     
+        .search_select .row:nth-child(1) .form_label form select {
+            width: 80%;
+            border: 1px solid lightgrey;
+            color: #333;
+            height: 30px;
+        }
+        .search_select .row:nth-child(2) form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search_select .row:nth-child(2) form .search-box p {
+            margin-right: 20px;
+            font-size: 13px;
+            font-family: 'Roboto';
+        }
+        .search_select .row:nth-child(2) form .search-box input {
+            border: 1px solid lightgrey;
+            background: none;
+            margin-right: 20px;
+            height: 30px;
+        }
+        .search_select .row:nth-child(2) form .search-box button {
+            width: 120px;
+            height: 30px;
+            font-family: 'Roboto';
+            background: #324E9E;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        .student_list_container {
+            background: #fff;
+            margin-top: 15px;
+        }
+
+        .list_group_container {
+            padding: 20px;
+            background: #fff;
+            border-bottom: 1px solid lightgrey;
+        }
+      
+        .list_group_container form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .list_group_container form .form_list {
+            display: flex;
+            width: 50%;
+        }
+        .list_group_container form .form_list p {
+            width: 25%;
+        }
+        .list_group_container form .form_list input {
+            width: 25%;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            margin-left: 15px;
+            color: #333;
+        }
+        .list_group_container form .btn_group {
+            background: none;
+            display: none;
+        }
+        .list_group_container form .btn_group button {
+            border: none;
+            height: 30px;
+            width: 120px;
+            background: #324E9E;
+            color: #eee;
+            font-family: 'Roboto';
+            cursor: pointer;
+        }
+        .list_group_container form .btn_group button:nth-child(2) {
+            background: #ec3237;
+        }
+        .list_group_container:hover .btn_group {
+            display: block;
+        }
+        .result {
+            background: #fff;
+            position: absolute;
+            width: 185px;
+        }
+        .result p {
+            margin: 0;
+            padding: 8px 5px;
+            border: 1px solid lightgrey;
+            width: 100%;
+            cursor: pointer;
+            transition: all .1s ease-in-out;
+            font-family: 'Roboto';
+        }
+        .result p:hover {
+            background: #324E9E;
+            color: #eee;
+        }
+
+.pagination_div {
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+.pagination_div ul {
+    list-style-type: none;
+    display: flex;
+}
+.pagination_div ul li {
+    padding: 5px;
+    border: 1px solid lightgrey;
+    margin-left: 5px;
+    background: #444;
+    cursor: pointer;
+}
+.pagination_div ul a {
+    color: #eee;
+    font-family: 'Roboto';
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+
 </style>
 
 

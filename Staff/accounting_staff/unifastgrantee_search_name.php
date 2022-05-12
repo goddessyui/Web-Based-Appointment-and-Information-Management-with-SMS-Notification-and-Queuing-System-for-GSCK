@@ -25,12 +25,13 @@ include("../../dbconfig.php");
             while($rows = mysqli_fetch_assoc($run)) { 
                 
     ?>               
-                    <div  class="form_group">    
+                    <div  class="list_group_container">    
                         
                         <form action="Staff/accounting_staff/updatedelete_unifastgrantee.php" method="post">
                             
-                            <div class="form_inline" >
-                                <div class="ug_list">
+                            
+                                <div class="form_list">
+                                    <p>Search Result</p>
                                     <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $rows["last_name"]?>">               
                                     <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $rows["first_name"]?>">
                                     <input type="text" class="form-control" id="studentid" name="studentid" value="<?php echo $rows["student_id"]?>">
@@ -39,7 +40,7 @@ include("../../dbconfig.php");
                                         if($batch_status=='old'){?>
                                             <option value="old">old</option>
                                             <option value="new">new</option>
-                                            <?php
+                                            <?php 
                                         }
                                         else {?>
                                             <option value="new">new</option>
@@ -53,8 +54,6 @@ include("../../dbconfig.php");
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>
                                     <button class="btn_delete" type="submit" name="delete">DELETE</button>
                                 </div> 
-                            </div>
-
                         </form>
                     </div>            
     <?php     
