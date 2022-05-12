@@ -36,8 +36,10 @@
             </div>
 
         </div>
+
         <div class="title_container">
-            <h3>GOLDENSTATE COLLEGE OF KORONADAL</h3>
+            <h3 class="complete_title">GOLDENSTATE COLLEGE OF KORONADAL</h3>
+            <h3 class="short_title">GSCK</h3>
         </div>
 
         <div class="sign_in_container">
@@ -75,6 +77,7 @@
                 
             </div>
         </div>
+        
     </div>
 
 
@@ -433,7 +436,7 @@
         else {
             menuBtn.classList.remove('open');
             menuOpen = false;
-            document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+            document.getElementById('open_nav_container').style.transform = "translateX(-600px)";
             document.getElementById('open_nav_container').style.opacity = "0";
 
         }
@@ -448,7 +451,7 @@
 
         menuBtn.classList.remove('open');
         menuOpen = false;
-        document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+        document.getElementById('open_nav_container').style.transform = "translateX(-600px)";
     }
     function CloseLoginBtn() {
         document.getElementById('open_login').style.transform = "translateY(-100vh)";
@@ -506,7 +509,7 @@
 
         menuBtn.classList.remove('open');
         menuOpen = false;
-        document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+        document.getElementById('open_nav_container').style.transform = "translateX(-600px)";
     }
 
 
@@ -524,7 +527,7 @@
                 x.style.transform = "translateX(0)";
                 menuBtn.classList.remove('open');
                 menuOpen = false;
-                document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+                document.getElementById('open_nav_container').style.transform = "translateX(-600px)";
 
         document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
         document.getElementById('at_meeting').style.opacity = "0";
