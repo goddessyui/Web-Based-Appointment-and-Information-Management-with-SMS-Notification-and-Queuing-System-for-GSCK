@@ -10,7 +10,7 @@
 
     $query = mysqli_query($db, "SELECT password FROM tbl_staff_registry WHERE staff_id ='{$staff_id}' AND mobile_number='{$new_mobilenumber}'");
     if (mysqli_num_rows($query) == 1){
-    $sql = "UPDATE tbl_staff_registry SET mobile_number='".$new_mobilenumber."', position='".$new_position."' WHERE staff_id = '{$staff_id}'";
+    $sql = "UPDATE tbl_staff_registry SET mobile_number='$new_mobilenumber', position='$new_position' WHERE staff_id = '{$staff_id}'";
         if (mysqli_query($db, $sql)) {
             $stmt = $db->prepare("DELETE FROM tbl_staff_appointment WHERE staff_id = '{$staff_id}'");
 	        if ($stmt->execute()){ 
@@ -36,7 +36,7 @@
             $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$new_mobilenumber}'");
             if(mysqli_num_rows($query1) == 0&&mysqli_num_rows($query2) == 0){
                 
-                $sql = "UPDATE tbl_staff_registry SET mobile_number='".$new_mobilenumber."', position='".$new_position."' WHERE staff_id = '{$staff_id}'";
+                $sql = "UPDATE tbl_staff_registry SET mobile_number='$new_mobilenumber', position='$new_position' WHERE staff_id = '{$staff_id}'";
                 if (mysqli_query($db, $sql)) {
                     $stmt = $db->prepare("DELETE FROM tbl_staff_appointment WHERE staff_id = '{$staff_id}'");
 	            if ($stmt->execute()){ 

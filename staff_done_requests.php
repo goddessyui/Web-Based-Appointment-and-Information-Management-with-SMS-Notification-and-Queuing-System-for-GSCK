@@ -32,7 +32,7 @@ include("admin_header.php");
 
         <div class="row_label">
            
-            <div class="col_app">Appt. Date</div>
+            <div class="col_app">Date Done</div>
             <div class="col_app">Date Accepted</div>
             <div class="col_app">Date Requested</div>
             <div class="col_app">Appt.Type</div>
