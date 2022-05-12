@@ -64,7 +64,7 @@ if ($staff_id == "" && $username == ""){
                 <p>Last name</p><input type="text" name="last_name" value=<?php echo $row["last_name"]?> disabled />
             </div>
 
-            <form  method="POST" action="#" id="dis">
+            <form method="POST" action="#" id="dis_staff">
                 <div class="form_input_div">
                     <p>Mobile number</p><input type="tel" name="number" id="number" value="<?php echo $row["mobile_number"]?>" maxlength="11" autocomplete="off" />
                 </div>
@@ -130,7 +130,7 @@ if ($staff_id == "" && $username == ""){
                         </div>
                     </div>
 
-                <?php 
+                    <?php 
                 }
                 else {?>
 
@@ -191,25 +191,30 @@ if ($staff_id == "" && $username == ""){
                                 <label for="reg_graduation">Application for Graduation</label> 
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
+                    <?php 
+                } ?>
 
-                </div>
+                    
 
                 <div class="right_btn">
                     <input type="button" name="button_edit_profile" value="Save Changes" id="button_edit_profile" />
                 </div>
 
                 <div class="form-group">
-                    <small id="message" class="" style="color:red;"></small>
-                </div>      
-        </div>  
+                    <small id="message_staffprofile" style="color:red;"></small>
+                </div>
+            </form>     
+        </div> 
+        
+            
         
 
-            <div class="head_account">
-                <div class="c_p">
+        <div class="head_account">
+            <div class="c_p">
                     <h2>Change Password</h2>
                 </div>
-
+            <form method="POST" action="#" id="dat_staff">    
                 <div class="profile_input">
                     <p>Current password</p>
                     <input type="password" name="currentpass" id="currentpass" placeholder="Current password" autocomplete="off" />
@@ -234,11 +239,11 @@ if ($staff_id == "" && $username == ""){
                 </div>
 
                 <div class="form-group">
-                    <small id="message1"></small>
+                    <small id="message_sp_cp"></small>
                 </div>
-                </form>
-            </div>
-
+            </form>
+        </div>
+            
 
     </div>
 </main>
@@ -480,7 +485,7 @@ if ($staff_id == "" && $username == ""){
 $(document).ready(function() {
     // UPDATE PROFILE
 	$('#button_edit_profile').on('click', function() { 
-        $("#dis :input").prop('disabled', true);    
+        $("#dis_staff :input").prop('disabled', true);    
 		var new_mobilenumber = $('#number').val();
 		var new_position = $('#position').val();
         var type = [];
@@ -489,16 +494,16 @@ $(document).ready(function() {
         });
         if(new_mobilenumber!=""&&new_position!=""&&type!=""){
         if (!/^[0-9]+$/.test(new_mobilenumber)) {
-            $("#dis :input").prop('disabled', false);   
-			$('#message').html('Phone number only a number character'); 
+            $("#dis_staff :input").prop('disabled', false);   
+			$('#message_staffprofile').html('Phone number only a number character'); 
 		}
 		else if (new_mobilenumber.length != 11) {
-            $("#dis :input").prop('disabled', false);   
-			$('#message').html('Phone number must be at 11 characters'); 
+            $("#dis_staff :input").prop('disabled', false);   
+			$('#message_staffprofile').html('Phone number must be at 11 characters'); 
 		}
 		else if (new_mobilenumber.substring(0, 2)!='09') {
-            $("#dis :input").prop('disabled', false);   
-			$('#message').html('Incorrect phone number !!'); 
+            $("#dis_staff :input").prop('disabled', false);   
+			$('#message_staffprofile').html('Incorrect phone number !!'); 
 		}
         else{
 			$.ajax({
@@ -514,16 +519,16 @@ $(document).ready(function() {
 				success: function(dataResult){
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){  
-                        $('#message').html('Updated profile settings sucessfully !!'); 
+                        $('#message_staffprofile').html('Updated profile settings sucessfully !!'); 
                         setTimeout( function() { location.href = "staff_profile.php" }, 1000 );    
 					}
                     else if(dataResult.statusCode==201){
-                        $("#dis :input").prop('disabled', false);   
-						$('#message').html('An Error occured, please refresh the page !!'); 
+                        $("#dis_staff :input").prop('disabled', false);   
+						$('#message_staffprofile').html('An Error occured, please refresh the page !!'); 
 					}
                     else if(dataResult.statusCode==202){
-                        $("#dis :input").prop('disabled', false);   
-						$('#message').html('Mobile number already in used, please try another !!'); 
+                        $("#dis_staff :input").prop('disabled', false);   
+						$('#message_staffprofile').html('Mobile number already in used, please try another !!'); 
 					}
 					
 				}
@@ -531,8 +536,8 @@ $(document).ready(function() {
         }
     }
     else{
-        $("#dis :input").prop('disabled', false);   
-		$('#message').html('Please fill all the field !!'); 
+        $("#dis_staff :input").prop('disabled', false);   
+		$('#message_staffprofile').html('Please fill all the field !!'); 
     }
 		
 	});
@@ -541,34 +546,34 @@ $(document).ready(function() {
 
     // CHANGE PASS
     $('#button_change_pass').on('click', function() {
-        $("#dis :input").prop('disabled', true);  
+        $("#dat_staff :input").prop('disabled', true);  
         var currentpass = $('#currentpass').val();
 		var newpass = $('#newpass').val();
 		var newpass_verify = $('#newpass_verify').val();
         if(currentpass!=""&&newpass!=""&&newpass_verify!=""){
         if (newpass.length < 8) {
-            $("#dis :input").prop('disabled', false); 
-      	$("#message1").html('Password must be at least 8 characters !!');
+            $("#dat_staff :input").prop('disabled', false); 
+      	$("#message_sp_cp").html('Password must be at least 8 characters !!');
         }
       	else if (newpass.length > 16) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must not exceed 16 characters !!'); 
+            $("#dat_staff :input").prop('disabled', false);
+        $("#message_sp_cp").html('Password must not exceed 16 characters !!'); 
         }
 		else if (!/^(?!.* )/.test(newpass)) {
-            $("#dis :input").prop('disabled', false);
-		$('#message1').html('Password must not contain space !!'); 
+            $("#dat_staff :input").prop('disabled', false);
+		$('#message_sp_cp').html('Password must not contain space !!'); 
 		}
         else if  (newpass.search(/[a-z]/i) < 0) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must contain at least one letter !!');
+            $("#dat_staff :input").prop('disabled', false);
+        $("#message_sp_cp").html('Password must contain at least one letter !!');
         }
         else if  (newpass.search(/[0-9]/) < 0) {
-            $("#dis :input").prop('disabled', false);
-        $("#message1").html('Password must contain at least one digit !!'); 
+            $("#dat_staff :input").prop('disabled', false);
+        $("#message_sp_cp").html('Password must contain at least one digit !!'); 
         }
       	else if (newpass != newpass_verify){
-            $("#dis :input").prop('disabled', false);
-            $('#message1').html('New Password did not match !!'); 
+            $("#dat_staff :input").prop('disabled', false);
+            $('#message_sp_cp').html('New Password did not match !!'); 
       	}
             else{
 			$.ajax({
@@ -584,19 +589,19 @@ $(document).ready(function() {
                   
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
-                        $("#dis :input").prop('disabled', false);
+                        $("#dat_staff :input").prop('disabled', false);
                         $('#currentpass').val('');
                         $('#newpass').val('');
                         $('#newpass_verify').val('');
-                        $('#message1').html('Password updated successfully !!'); 
+                        $('#message_sp_cp').html('Password updated successfully !!'); 
 					}
                     else if(dataResult.statusCode==201){
-                        $("#dis :input").prop('disabled', false);
-						$('#message1').html('An Error occured while changing password, please refresh the page !!'); 
+                        $("#dat_staff :input").prop('disabled', false);
+						$('#message_sp_cp').html('An Error occured while changing password, please refresh the page !!'); 
 					}
                     else if(dataResult.statusCode==202){
-                        $$("#dis :input").prop('disabled', false);
-						$('#message1').html('Current password did not match !!'); 
+                        $$("#dat_staff :input").prop('disabled', false);
+						$('#message_sp_cp').html('Current password did not match !!'); 
 					}
 					
 				}
@@ -604,8 +609,8 @@ $(document).ready(function() {
         }
         }
         else{
-            $("#dis :input").prop('disabled', false);
-            $('#message1').html('Please fill all the field !!'); 
+            $("#dat_staff :input").prop('disabled', false);
+            $('#message_sp_cp').html('Please fill all the field !!'); 
         }
 		
 	});
