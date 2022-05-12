@@ -678,6 +678,16 @@ else{
             text-transform: uppercase;
             color: #333;
         }
+        .search_select .row:nth-child(1) .form_label:nth-child(1) {
+            width: 6%;
+        }
+        .search_select .row:nth-child(1) .form_label:nth-child(2) {
+            width: 27%;
+        }
+        .search_select .row:nth-child(1) .form_label:nth-child(5) {
+            width: 27%;
+        }
+
         .search_select .row:nth-child(1) .form_label:not(:first-child) {
             margin-left: 20px;
         }
@@ -734,10 +744,9 @@ else{
             width: 50%;
         }
         .list_group_container form .form_list p {
-            width: 20%;
+            width: 6%;
         }
-        .list_group_container form .form_list input,
-        .list_group_container form .form_list select {
+        .list_group_container form .form_list input {
             width: 20%;
             height: 30px;
             padding: 5px;
@@ -745,6 +754,18 @@ else{
             margin-left: 15px;
             color: #333;
         }
+        .list_group_container form .form_list input:nth-child(2) {
+            width: 27%;
+        }
+        .list_group_container form .form_list select {
+            width: 27%;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            margin-left: 15px;
+            color: #333;
+        }
+
         .list_group_container form .btn_group {
             background: none;
             display: none;
