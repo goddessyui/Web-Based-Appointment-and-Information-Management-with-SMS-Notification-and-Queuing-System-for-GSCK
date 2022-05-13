@@ -54,7 +54,7 @@
                         $rows=mysqli_fetch_assoc($name);
 
                         ?>
-                            <button><p><?php echo $rows['student_id']; ?></p></button>
+                            <button><p><a href="student_profile.php"><?php echo $rows['student_id']; ?></a></p></button>
                             <button class="btn_logout_link"><a href="logout.php">Logout</a></button>
                             
                             <div class="dropdown-toggle" data-toggle="dropdown">
@@ -394,7 +394,7 @@
             document.getElementById('open_register').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
 
         document.getElementById('at_meeting').style.transform = "translateY(-90vh)";
         document.getElementById('at_meeting').style.opacity = "0";
@@ -519,7 +519,7 @@
 
             if (x.style.opacity === "1") {
                 x.style.opacity = "0";
-                x.style.transform = "translateX(55vh)";
+                x.style.transform = "translateX(70vh)";
 
             } 
             else {

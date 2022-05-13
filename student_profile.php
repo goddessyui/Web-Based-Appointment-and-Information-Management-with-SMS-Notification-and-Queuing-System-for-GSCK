@@ -10,13 +10,9 @@ if ($student_id == "" || $username1 == ""){
 ?>
 
 
+<div class="profile_img"></div>
 
 <div class="parent_div">
-
-    <div class="profile_settings">
-        <img src="icon/settings.png" width="24">
-        <h1>Profile Settings</h1>
-    </div>
 
     <div class="profile_div">
 
@@ -150,36 +146,34 @@ if ($student_id == "" || $username1 == ""){
 
 
 <style>
-    .parent_div {
-        background: #EFF0F4;
-        padding: 15px;
+    .profile_img {
+        width: 100%;
+        min-height: 20vh;
+        background: lightgrey;
         margin-top: 80px;
+        background-image: url("./image/img_top.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
     }
-    .parent_div .profile_settings {
-        display: flex;
-        align-items: flex-end;
-        margin-left: 15px;
+
+    .parent_div {
+        background: #DEDDD9;
     }
-    .parent_div .profile_settings img {
-        margin-right: 8px;
-    }
-    .parent_div .profile_settings h1 {
-        font-family: 'Roboto';
-        text-transform: uppercase;
-        font-size: 20px;
-        color: #333;
-    }
+   
     .parent_div .profile_div {
-        background: #EFF0F4;
-        padding: 15px;
+        background: #DEDDD9;
     }
     .parent_div .profile_div .head_account {
         background: #fff;
         padding: 15px 30px;
+        padding-left: 80px;
     }
    
     .parent_div .profile_div .head_account:nth-child(1) {
-        background: #324E9E;
+        background: #fff;
+        border-bottom: 1px solid lightgrey;
     }
 
     .parent_div .profile_div .head_account:nth-child(2) {
@@ -191,27 +185,32 @@ if ($student_id == "" || $username1 == ""){
         align-items: center;
     }
     .head_account .current_profile div {
-        margin-right: 20px;
+        margin-right: 50px;
         display: flex;
         align-items: center;
-        color: #fff;
         font-family: 'Roboto';
     }
     .head_account .current_profile div h2 {
         font-weight: 500;
-        font-size: 20px;
+        font-size: 16px;
+        color: #333;
+        text-transform: uppercase;
     }
     .head_account .current_profile div span {
-        margin-right: 8px;
-        color: #eee;
+        margin-right: 12px;
+        color: #444;
         font-size: 13px;
         text-transform: uppercase;
     }
     .head_account .current_profile div p {
-        font-family: 'Roboto Serif';
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 14px;
     }
     .profile_div .head_account:nth-child(2) {
         padding-top: 25px;
+        margin-top: 15px;
+        padding-left: 80px;
     }
     .profile_div .head_account:nth-child(2) .profile_input{
         width: 100%;
@@ -319,6 +318,7 @@ if ($student_id == "" || $username1 == ""){
     height: 32px;
     cursor: pointer;
     text-transform: uppercase;
+    margin-right: 10px;
 }
 
 .profile_div .head_account:nth-child(3) {
@@ -362,6 +362,30 @@ if ($student_id == "" || $username1 == ""){
     color: gray;
 }
      
+@media screen and (max-width: 652px) {
+    .profile_img {
+        margin-top: 60px;
+    }
+    .parent_div .profile_div .head_account {
+        padding: 20px;
+        margin-top: 0;
+        border-bottom: 1px solid lightgrey;
+        margin-bottom: 0;
+    }
+    .head_account .current_profile {
+        display: block;
+    }
+    .head_account .current_profile div h2 {
+        margin-bottom: 12px;
+    }
+    .head_account .current_profile div span {
+        margin-bottom: 12px;
+    }
+    .head_account .current_profile div p {
+        margin-bottom: 12px;
+    }
+}
+
 </style>
 
 

@@ -190,6 +190,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
     padding: 5px;
     background: #444;
     margin-right: 5px;
+    list-style: none;
   }
 
   .pagination a {
@@ -197,6 +198,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
     font-family: 'Roboto';
     font-size: 12px;
     text-transform: uppercase;
+    text-decoration: none;
   }
 
 

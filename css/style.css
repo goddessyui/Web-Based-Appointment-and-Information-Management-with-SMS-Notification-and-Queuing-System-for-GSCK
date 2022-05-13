@@ -49,6 +49,12 @@
         text-decoration: underline;
         transition: all .2s ease-in-out;
     }
+    .sign_user a {
+        color: #333;
+    }
+    .sign_user a:hover {
+        text-decoration: none;
+    }
     .sign_user p:hover {
         color: #324e9e;
         text-decoration: none;
@@ -61,6 +67,7 @@
         text-transform: uppercase;
         font-size: 13.5px;
     }
+   
 
     .login {
         margin-right: 6px;
