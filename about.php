@@ -5,43 +5,48 @@ include("header.php");
 <div class="about_container">
 
     <div class="about_section">
-        <h2>History of Goldenstate College</h2>
+        <div class="left_first_section">
+            <h2>History of Goldenstate College</h2>
 
-        <p>
-            Demand for technical skills by the economic sector was growing. The Goldenstate Institute, aggressive to respond to
-            this need, offered short-term industrial courses.
-        </p>
+            <p>
+                Demand for technical skills by the economic sector was growing. The Goldenstate Institute, aggressive to respond to
+                this need, offered short-term industrial courses.
+            </p>
 
-        <p>
-            When it opened, the institution was manned by only seven administrative officials, twenty-nine instructors, 
-            and 160 students. Five years later, the administrative staff and instructors increased to forty-eight. Their efforts 
-            and expertise were dedicated to meet the needs of the increasing student population.
-        </p>
+            <p>
+                When it opened, the institution was manned by only seven administrative officials, twenty-nine instructors, 
+                and 160 students. Five years later, the administrative staff and instructors increased to forty-eight. Their efforts 
+                and expertise were dedicated to meet the needs of the increasing student population.
+            </p>
 
-        <p>
-            In the year 1997, the Goldenstate Institute occupied two building spaces which became the venues for academic training, and 
-            specific practicum and classroom instructions. The institution started its operation with only 7 vocational courses 
-            and 5 non-formal courses. The same courses were offered with two more additional courses: Computer Secretarial and
-            Architectural Drafting.
-        </p>
+            <p>
+                In the year 1997, the Goldenstate Institute occupied two building spaces which became the venues for academic training, and 
+                specific practicum and classroom instructions. The institution started its operation with only 7 vocational courses 
+                and 5 non-formal courses. The same courses were offered with two more additional courses: Computer Secretarial and
+                Architectural Drafting.
+            </p>
 
-        <p>
-            With the increasing demand for supply of technically-skilled men and women here and abroad, Goldenstate continues to 
-            upgrade and enhance its training program proficiency in order to produce graduates who can be productive and efficient 
-            in the professional world. This, along with fulfilling its educational mission in nation building, 
-            is the guiding philosophy of the Goldenstate Institute as it envisions a society where constituents live fruitfully and
-            productively within the context of an economically productive society. In the year 2001, the Board of Trustees decided to
-            change its organization's name from Goldenstate Institute, Inc to Goldenstate College, Inc and applied degree courses
-            from the Commission of Higher Education. Fortunately, the school was granted permit to operate Bachelor of Science in Tourism,
-            Bachelor of Science in Hotel and Restaurant Management, and Bachelor of Science Commerce, Major in Business Management.
-            In 2006, the Goldenstate College was fortunately granted permit to operate Bachelor of Science in Business 
-            Administration and BS Tourism.
-        </p>
-        <p>
-            Currently, the Goldenstate College of Koronadal offers a variety of courses including BSHM, BSTM, BSIT, BSSW, ABE, 
-            BECE, BTVED, BSBA, ACT, HM, and TESDA PROGRAMs.
-        </p>
+            <p>
+                With the increasing demand for supply of technically-skilled men and women here and abroad, Goldenstate continues to 
+                upgrade and enhance its training program proficiency in order to produce graduates who can be productive and efficient 
+                in the professional world. This, along with fulfilling its educational mission in nation building, 
+                is the guiding philosophy of the Goldenstate Institute as it envisions a society where constituents live fruitfully and
+                productively within the context of an economically productive society. In the year 2001, the Board of Trustees decided to
+                change its organization's name from Goldenstate Institute, Inc to Goldenstate College, Inc and applied degree courses
+                from the Commission of Higher Education. Fortunately, the school was granted permit to operate Bachelor of Science in Tourism,
+                Bachelor of Science in Hotel and Restaurant Management, and Bachelor of Science Commerce, Major in Business Management.
+                In 2006, the Goldenstate College was fortunately granted permit to operate Bachelor of Science in Business 
+                Administration and BS Tourism.
+            </p>
+            <p>
+                Currently, the Goldenstate College of Koronadal offers a variety of courses including BSHM, BSTM, BSIT, BSSW, ABE, 
+                BECE, BTVED, BSBA, ACT, HM, and TESDA PROGRAMs.
+            </p>
+        </div>
+        <div class="credentials"></div>
     </div>
+
+    <div class="img_section"></div>
 
     <div class="about_section">
         <h2>Vision</h2>
@@ -59,6 +64,8 @@ include("header.php");
             develop and benefit themselves and the society.
         </p>
     </div>
+
+    <div class="school_bg"></div>
 
     <div class="about_section">
         <h2>Mission</h2>
@@ -91,6 +98,8 @@ include("header.php");
         </p>
     </div>
 
+    <div class="school_bg"></div>
+
     <div class="about_section">
         <h2>
             Core Values
@@ -110,11 +119,6 @@ include("header.php");
         </p>    
     </div>
 
-    <div class="about_section">
-        <img src="image/goldenstate-iso.png" width="500">
-    </div>
-
-
 </div>
 <?php
      include("backtotop.php");
@@ -122,45 +126,91 @@ include("header.php");
 
 
 <style>
+    body {
+        background: #DEDDD9;
+    }
     .about_container{
         width: 96%;
-        background: green;
         margin: 0 auto;
         margin-top: 80px;
+        padding: 20px 0;
     }
     .about_section{
-       
+        margin-bottom: 20px;
         text-align: justify;
-  text-justify: inter-word;
+        text-justify: inter-word;
+        padding: 20px;
+        background: #fff;
     }
-    .about_section h3, li {
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 50px;
+    .about_section h3, .about_section li {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 30px;
+        list-style-type: none;
     }
-    .about_section p {
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-bottom: 10px;   
-    }
-    .about_section li {
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-bottom: 10px;   
-    }
-    .about_section img{
-        margin-top: 50px;
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-   
     .about_section h2 {
-        padding: 25px;
-        
-       
-        margin-bottom: 25px;
+        font-family: 'Roboto';
+        font-size: 20px;
+        margin-bottom: 12px;
     }
-    
+   .about_section p {
+       font-family: 'Roboto Serif';
+       font-size: 14px;
+       color: #333;
+       margin-bottom: 12px;
+   }
+
+   .about_section:nth-child(1) {
+       background: #fff;
+       padding: 20px;
+       margin-bottom: 0;
+       display: flex;
+   }
+   .img_section {
+        width: 100%;
+        min-height: 30vh;
+        background: #fff;
+        background: url("./image/img_top.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+   }
+    .credentials {
+       width: 50%;
+       background: url("./image/gsckannex.jpg");
+       margin-left: 40px;
+       background-position: center;
+       background-size: cover;
+       background-repeat: no-repeat;
+   }
+   .left_first_section {
+       width: 50%;
+   }
+   .about_section:nth-child(3),
+   .about_section:nth-child(4) {
+       margin-bottom: 0;
+   }
+   .school_bg {
+       width: 100%;
+       min-height: 30vh;
+       background: url("./image/gsckannex.jpg");
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: center;
+       background-attachment: fixed;
+   }
+   @media screen and (max-width: 652px) {
+       .about_section:nth-child(1) {
+           display: block;
+       }
+       .left_first_section {
+            width: 100%;
+       }
+       .credentials {
+           display: none;
+       }
+   }
 
 
 
