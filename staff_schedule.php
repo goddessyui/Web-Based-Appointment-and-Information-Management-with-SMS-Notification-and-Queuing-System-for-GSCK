@@ -2,8 +2,49 @@
 include("header.php");
 ?>
 <style>
+body {
+      background: #EFF0F4;
+    }
 
+    main {
+       background: #EFF0F4;
+       padding: 15px;
+    }
+.pagination {
+    display: flex;
+    padding: 0 15px;
+    margin-bottom: 40px;
+  }
+  .pagination li {
+    padding: 5px;
+    background: #444;
+    margin-right: 5px;
+  }
 
+  .pagination a {
+    color: #eee;
+    font-family: 'Roboto';
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+.sched_date {
+    background-color: #fff;
+    padding: 20px;
+    color: #333;
+    font-family: 'Roboto';
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+.sched_name {
+    background-color: #324E9E;
+    padding: 20px;
+    color: #fff;
+    font-family: 'Roboto';
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 15px;
+}  
 
 .parent-div{
         padding-top: 80px;
@@ -39,8 +80,11 @@ include("header.php");
                 ?>
 
 </select>  </div>
-
-<h3><?php echo $_GET['name']?></h3>
+<br>
+<div class="sched_name">
+<h2><?php echo $_GET['name']?></h2>
+<h4>Present at School:</h4>
+</div>
 <?php
 $fname = $_GET['name'];
 //-----------For pagination-------------//
@@ -71,7 +115,7 @@ $sql = "SELECT
                         # code...
                 ?>
                 
-                <?php echo date("l, F d, Y", strtotime($row['date'])); ?>
+                <div class="sched_date"><?php echo date("l, F d, Y", strtotime($row['date'])); ?></div>
                                     
                 <?php
 
