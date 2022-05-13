@@ -306,11 +306,11 @@
 
                                 <span>STATUS:</span>
                                 <select name="status_report" id="status_report">  
-                                    <option value="Accepted">Accepted</option>
-                                    <option value="Declined">Declined</option>
-                                    <option value="Canceled">Canceled</option>
-                                    <option value="Done">Done</option>
-                                    <option value="Missed">Missed</option>
+                                    <option value="'Accepted'">Accepted</option>
+                                    <option value="'Declined'">Declined</option>
+                                    <option value="'Canceled'">Canceled</option>
+                                    <option value="'Done'">Done</option>
+                                    <option value="'Accepted' AND DATE(tbl_appointment_detail.appointment_date) < CURDATE()">Missed</option>
                                 </select>
                                 
                                 <span>FREQUENCY:</span>

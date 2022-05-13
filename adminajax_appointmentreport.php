@@ -25,7 +25,7 @@ $fetch="SELECT tbl_appointment.appointment_id,
                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                    WHERE tbl_appointment_detail.status = '$status_report' AND tbl_appointment.staff_id = '$staff_id'
+                    WHERE tbl_appointment_detail.status = $status_report AND tbl_appointment.staff_id = '$staff_id'
                     AND day(tbl_appointment_detail.appointment_date) = day(CURDATE())
                     AND year(tbl_appointment_detail.appointment_date) = year(CURDATE())
                     AND month(tbl_appointment_detail.appointment_date) = month(CURDATE())
@@ -44,7 +44,7 @@ if ($time_report=='weekly'){
                         ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                         INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                         INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                        WHERE tbl_appointment_detail.status = '$status_report' AND tbl_appointment.staff_id = '$staff_id'
+                        WHERE tbl_appointment_detail.status = $status_report AND tbl_appointment.staff_id = '$staff_id'
                         AND year(tbl_appointment_detail.appointment_date) = year(CURDATE())
                         AND week(tbl_appointment_detail.appointment_date) = week(CURDATE())
                         ORDER BY tbl_appointment_detail.date_accepted ASC";
@@ -62,7 +62,7 @@ if ($time_report=='monthly'){
                             ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                             INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                             INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                            WHERE tbl_appointment_detail.status = '$status_report' AND tbl_appointment.staff_id = '$staff_id'
+                            WHERE tbl_appointment_detail.status = $status_report AND tbl_appointment.staff_id = '$staff_id'
                             AND year(tbl_appointment_detail.appointment_date) = year(CURDATE())
                             AND month(tbl_appointment_detail.appointment_date) = month(CURDATE())
                             ORDER BY tbl_appointment_detail.date_accepted ASC";
