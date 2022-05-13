@@ -272,19 +272,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Meeting</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                 
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Meeting">             
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Meeting">             
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -330,19 +332,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Enrollment</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                 
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Enrollment">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Enrollment">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -388,25 +392,26 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Evaluation of Grades</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Evaluation of Grades">                   
-                                    <?php   
-                                    }
-                                    ?>
-                                    <h4>Note to Staff (Optional):</h4>
-                                    <small>You can specify an appointment or add additional appointment requests for the same staff here. 
-                                    Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
-                                    <div class="textarea_div"><textarea name="note"></textarea></div>
-                                    <input type="submit" id="request" name="request" value="Request Appointment">
-
+                                            <input type="hidden" name="appointmenttype" value="Evaluation of Grades">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                        <h4>Note to Staff (Optional):</h4>
+                                        <small>You can specify an appointment or add additional appointment requests for the same staff here. 
+                                        Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
+                                        <div class="textarea_div"><textarea name="note"></textarea></div>
+                                        <input type="submit" id="request" name="request" value="Request Appointment">
+                                    </div>
                                 </form>
                             <?php }
                             else {
@@ -446,19 +451,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Module Submission</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                 
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Module Claiming or Submission">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Module Claiming or Submission">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -505,19 +512,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Pre-Enrollment</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Pre-Enrollment">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Pre-Enrollment">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -563,19 +572,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Presentation</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                 
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Presentation">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Presentation">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -621,19 +632,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Project Submission</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post"> 
+                                    <div class="staff_list_label">               
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Project Submission">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Project Submission">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -679,19 +692,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Request Documents</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">
+                                    <div class="staff_list_label">                   
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Request Documents From Registrar">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Request Documents From Registrar">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -737,19 +752,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Request for Grades</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post"> 
+                                    <div class="staff_list_label">                  
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Request for Grades">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Request for Grades">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -796,19 +813,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: UniFAST - Claim Cheque</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">  
+                                    <div class="staff_list_label">                 
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -913,19 +932,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: Application for Graduation</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">     
+                                    <div class="staff_list_label">               
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="Application for Graduation">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="Application for Graduation">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
