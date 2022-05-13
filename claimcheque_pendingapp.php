@@ -443,11 +443,12 @@
         font-family: 'Roboto';
     }
     .pending_column_all {
-        background: lightgrey;
+        background: #fff;
         padding: 15px;
-        margin: 10px 0;
     }
-   
+   .pending_row_header {
+       margin-top: 40px;
+   }
    .pending_row_header form {
        display: flex;
    }
@@ -501,6 +502,8 @@
        display: flex;
        align-items: center;
        padding: 10px 15px;
+       background: #324E9E;
+       margin-top: 40px;
    }
    .label_for_appnt_row {
        display: flex;
@@ -512,7 +515,7 @@
        width: 300px;
    }
    .label_for_appnt .pending_label {
-       color: #333;
+       color: #eee;
        font-family: 'Roboto';
        font-size: 13px;
        text-transform: uppercase;
@@ -526,10 +529,12 @@
        font-family: 'Roboto';
        font-size: 13px;
    }
-   .pending_label p {
-       margin-bottom: 5px;
-   }
+   input[type=checkbox] {
+       width: 20px;
+       height: 20px;
 
+   }
+  
    .label_for_appnt .pending_label:nth-child(1),
    .label_for_appnt_row .pending_label:nth-child(1),
    .label_for_appnt .pending_label:nth-child(2),
