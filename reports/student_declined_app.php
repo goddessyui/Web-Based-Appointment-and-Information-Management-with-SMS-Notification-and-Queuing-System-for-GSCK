@@ -2,6 +2,15 @@
 <!----------------Shows Student's Declined Appointments------------------------------------------------------------>
 <div class="declined_appnt">
     <table>
+        <tr>
+            <th>#</th>
+            <th>Date Declined</th>
+            <th>Date Requested</th>
+            <th>Appointment ID</th>
+            <th>Note</th>
+            <th>Appointment Type</th>
+            <th>Staff</th>
+        </tr>
 
 <?php
 if (isset($_GET['apde'])){
@@ -41,20 +50,20 @@ else {
             $i = 1;
             while($rows=mysqli_fetch_assoc($declined_appointment_list)) {
 ?>
-                <div>
+                <tr>
                     <td>
                         <?php   echo $i;
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Date Declined: </span><?php echo $rows['date_accepted']; ?></p>
-                    <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
-                    <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
-                    <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                    <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                    <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
-                </div>
-                <hr>
+                    <td><?php echo $rows['date_accepted']; ?></td>
+                    <td><?php echo $rows['date_created']; ?></td>
+                    <td><?php echo $rows['appointment_id']; ?></td>
+                    <td><?php echo $rows['note']; ?></td>
+                    <td><?php echo $rows['appointment_type']; ?></td>
+                    <td><?php echo $rows['first_name']. " ". $rows['last_name']; ?></td>
+                </tr>
+
 <?php 
             }
         }
@@ -67,3 +76,41 @@ else {
 <!----------------Shows Student's Declined/Cancelled Appointments------------------------------------------------------------>
 </table>
 </div>
+
+
+
+
+<style>
+     .declined_appnt {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .declined_appnt table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+    }
+    .declined_appnt table th {
+        padding: 15px;
+        background: #fff;
+        border: none;
+        font-family: 'Roboto';
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: left;
+    }
+    .declined_appnt table td {
+        padding: 15px;
+        font-family: 'Roboto';
+        font-size: 13px;
+        color: #333;
+    }
+    .declined_appnt table tr {
+        background: #fff;
+    }
+    .declined_appnt table tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
