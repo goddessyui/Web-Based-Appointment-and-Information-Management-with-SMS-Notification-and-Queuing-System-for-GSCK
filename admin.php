@@ -70,7 +70,7 @@
                                 ?><h4><?php echo $limit['appointment_limit'];?></h4>
                         </div>
                         <div class="top_flex">
-                            <h4>No. of Appointment Slots Taken Today:</h4>
+                            <h4 style="font-family: 'Roboto'; font-size: 13px; font-weight: 400; margin-top: 30px; text-transform: uppercase;">No. of Appointment Slots Taken Today:</h4>
                             <?php
                             date_default_timezone_set('Asia/Manila');                           		
                             $currentdate = date("Y-m-d");
@@ -80,7 +80,7 @@
                                 AND appointment_date = '$currentdate'";
                             $al = mysqli_query($db, $applimit);
                             $count = mysqli_num_rows($al);
-                            ?><h4><?php echo $count; ?></h4>     
+                            ?><h4 style="font-family: 'Roboto Serif'; font-size: 30px; font-weight: 500;"><?php echo $count; ?></h4>     
                         </div>
                     </div>
                     <?php

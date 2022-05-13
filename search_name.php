@@ -26,7 +26,6 @@ include("dbconfig.php");
     <div class="search_box_div">
         <button id="back_search"><p>Go Back</p></button>
         <p class="at_under_staff">Appointments Under <?php echo  $search . " " . $search2; ?></p>
-       
     </div>
 
                 <form method="post">
@@ -179,15 +178,15 @@ $(document).ready(function() {
         cursor: pointer;
     }
     .at_under_staff {
-        font-family: Lato;
+        font-family: 'Roboto';
         text-transform: uppercase;
-        transform: translateY(6px);
         font-size: 14px;
         color: #333;
     }
     .search_box_div {
         margin-left: 10%;
         padding-left: 8px;
+        margin-bottom: 20px;
     }
 
     @media screen and (max-width: 652px) {

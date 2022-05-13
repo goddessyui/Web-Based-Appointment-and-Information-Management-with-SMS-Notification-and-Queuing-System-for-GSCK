@@ -10,7 +10,7 @@
                     <?php 
                         if(isset($_GET['success'])){
                     ?>
-                            <p align="center">
+                            <p>
                                 <?php 
                                     echo $_GET['success'];
                                 ?>
@@ -19,7 +19,7 @@
                         }
                         if(isset($_GET['error'])){
                     ?>
-                                    <p align="center">
+                                    <p>
                                         <?php 
                                             echo $_GET['error'];
                                         ?>
@@ -30,24 +30,25 @@
                         }
                     ?>
                     <!--success or error-->
-            <div class="pending_container">
+            <div class="pending_container_top">
 
-                <div class="pending_column">
-                        <button type="submit" onclick='selectAll()' value="Select All">Select All</button>
-                        <button type="submit" onclick='UnSelectAll()' value="Unselect All">Unselect All</button>
-                        <button type="submit" onclick='select10()' value="Select 2">Select 10</button>
-                        <form action="#" method="POST" onclick="e.preventDefault()" >
-                            <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
-                                <option value="">Select Batch Status</option>
-                                <option value="('new' OR 'old')">ALL</option>
-                                <option value="'old'">OLD</option>
-                                <option value="'new'">NEW</option>
-                            </select>
-                        </form>
-    
+                <div class="pending_column_batch">
+                    <button type="submit" onclick='selectAll()' value="Select All">Select All</button>
+                    <button type="submit" onclick='UnSelectAll()' value="Unselect All">Unselect All</button>
+                    <button type="submit" onclick='select10()' value="Select 2">Select 10</button>
+
+                    <form action="#" method="POST" onclick="e.preventDefault()" >
+                        <select name="batchstate" id="batchstate"  onchange="this.form.submit();">
+                            <option value="">Select Batch Status</option>
+                            <option value="('new' OR 'old')">ALL</option>
+                            <option value="'old'">OLD</option>
+                            <option value="'new'">NEW</option>
+                        </select>
+                    </form>
                 </div>
+
                     
-                <div class="pending_column" id="buttonsforall">
+                <div class="pending_column_all" id="buttonsforall">
 
                     <?php 
                         if(isset($_POST['batchstate'])) {
@@ -56,20 +57,27 @@
                             $currentdate = date("Y-m-d");
                             ?>
 
-                            <div class="pending_row">
+                            <div class="pending_row_header">
 
                                 <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                                 <!-------------------------BUTTONS FOR ALL------------------------->
-                                    
-                                    <label>Enter Date of Appointment:</label>
-                                    <input type="date" name="ad[]" value=""
-                                            min="<?php echo $currentdate;?>" max="<?php echo date('Y-m-d', 
-                                            strtotime($currentdate. ' + 90 days'));?>">
-                                    <label>Comment:</label>
-                                        <textarea class="form-control" name="com[]" placeholder="For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID.">"For UniFAST transactions, please bring your school ID, blue ballpen, and 5 photocopies of your school ID."
-                                    </textarea>
-                                    <button  type="submit" name="accept">ACCEPT</button>
-                                    <button type="submit" name="decline">DECLINE</button>
+                                    <div class="input_group">
+                                        <p>Enter Date of Appointment</p>
+                                        <input type="date" name="ad[]" value=""
+                                                min="<?php echo $currentdate;?>" max="<?php echo date('Y-m-d', 
+                                                strtotime($currentdate. ' + 90 days'));?>">
+                                    </div>
+
+                                    <div class="input_group">
+                                        <p>Comment</p>
+                                        <textarea class="form-control" name="com[]">
+                                        </textarea>
+                                    </div>
+
+                                    <div class="input_group">
+                                        <button  type="submit" name="accept">ACCEPT</button>
+                                        <button type="submit" name="decline">DECLINE</button>
+                                    </div>
                                     <!----------------------------BUTTONS FOR ALL-----------------------> 
 
                             </div>                       
@@ -103,68 +111,71 @@
 
                                         if($count>0) {
                                             $t = 1;?>
-                                            <div class="pending_row">
-                                                <div class="ccpending_count">
+                                            <div class="label_for_appnt">
+
+                                                <div class="pending_label">
                                                     <h4>S.N.</h4>
                                                 </div>
-                                                <div class="ccpending_checkbox">
-                                                    
+
+                                                <div class="pending_label">
+                                                    <p>Check</p>
                                                 </div>
 
-                                                <div class="ccpending_date">
+                                                <div class="pending_label">
                                                     <h4>Date Requested</h4>
                                                 </div>
 
-                                                <div class="ccpending_col">
+                                                <div class="pending_label">
                                                     <h4>Student</h4>
                                                 </div>
 
-                                                <div class="ccpending_bs">
+                                                <div class="pending_label">
                                                     <h4>Batch Status</h4>
                                                 </div>
 
-                                                <div class="ccpending_col">
+                                                <div class="pending_label">
                                                     <h4>Appointment Type</h4>
                                                 </div>
 
-                                                <div class="ccpending_col">
+                                                <div class="pending_label">
                                                     <h4>Student's Note</h4>
                                                 </div>
-                                            </div><hr>
+                                            </div>
+
                                                 <?php
                                             while($rows=mysqli_fetch_assoc($request_result)) {
                                                 ?>
-                                                <div class="pending_row">
+                                                <div class="label_for_appnt">
                                             
-                                                    <div class="ccpending_count">
+                                                    <div class="pending_label">
                                                         <?php echo $t++; //Adds Row Counter ?>
                                                     </div>
 
-                                                    <div class="ccpending_checkbox">
+                                                    <div class="pending_label">
                                                         <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
                                                         <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">    
                                                     </div>
 
-                                                    <div class="ccpending_date">
+                                                    <div class="pending_label">
                                                         <?php echo $rows['date_created']; ?>
                                                     </div>
 
-                                                    <div class="ccpending_col">
+                                                    <div class="pending_label">
                                                         <?php echo $rows['first_name']." ".$rows['last_name']; ?>
-                                                        <small>
+                                                        <p>
                                                             <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
-                                                        </small>
+                                                        </p>
                                                     </div>
 
-                                                    <div class="ccpending_bs">
+                                                    <div class="pending_label">
                                                         <?php echo $rows['batch_status']; ?>
                                                     </div>
                                                     
-                                                    <div class="ccpending_col">
+                                                    <div class="pending_label">
                                                         <?php echo $rows['appointment_type']; ?>
                                                     </div>
 
-                                                    <div class="ccpending_col">
+                                                    <div class="pending_label">
                                                         <?php
                                                             if($rows['note']==""){
                                                                 echo "No note.";
@@ -195,17 +206,25 @@
                             $currentdate = date("Y-m-d");//start of show all status
                         ?>
 
-                            <div class="pending_row">
+                            <div class="pending_row_header">
                                 <form action="appointment/claim_multipleacceptordecline.php" method="post"><!----------------------------Start of FORM------------------------------------------------------------------>    
                                     <!-------------------------BUTTONS FOR ALL------------------------->
-                                    <label>Enter Date of Appointment:</label>
-                                    <input type="date" name="ad[]" value=""
-                                            min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
-                                            strtotime($currentdate. ' + 90 days'));?>">
-                                    <label>Comment:</label>
-                                    <textarea class="form-control" name="com[]" placeholder="Comment here..."></textarea>
-                                    <button  type="submit" name="accept">ACCEPT</button>
-                                    <button type="submit" name="decline">DECLINE</button>
+                                    <div class="input_group">
+                                        <p>Enter Date of Appointment</p>
+                                        <input type="date" name="ad[]" value=""
+                                                min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
+                                                strtotime($currentdate. ' + 90 days'));?>">
+                                    </div>
+
+                                    <div class="input_group">
+                                        <p>Comment</p>
+                                        <textarea class="form-control" name="com[]" placeholder="Comment here..."></textarea>
+                                    </div>
+                                    
+                                    <div class="input_group">
+                                        <button  type="submit" name="accept">ACCEPT</button>
+                                        <button type="submit" name="decline">DECLINE</button>
+                                    </div>
                                     <!----------------------------BUTTONS FOR ALL----------------------->
                             </div>        
                 </div>
@@ -236,68 +255,72 @@
                                     $count = mysqli_num_rows($request_result);
                                     if($count>0) {
                                         $t = 1;?>
-                                        <div class="pending_row">
-                                            <div class="ccpending_count">
+
+                                        <div class="label_for_appnt">
+                                            <div class="pending_label">
                                                 <h4>S.N.</h4>
                                             </div>
-                                            <div class="ccpending_checkbox">
-                                                
+
+                                            <div class="pending_label">
+                                                <p>Check</p>
                                             </div>
 
-                                            <div class="ccpending_date">
+                                            <div class="pending_label">
                                                 <h4>Date Requested</h4>
                                             </div>
 
-                                            <div class="ccpending_col">
+                                            <div class="pending_label">
                                                 <h4>Student</h4>
                                             </div>
 
-                                            <div class="ccpending_bs">
+                                            <div class="pending_label">
                                                 <h4>Batch Status</h4>
                                             </div>
 
-                                            <div class="ccpending_col">
+                                            <div class="pending_label">
                                                 <h4>Appointment Type</h4>
                                             </div>
 
-                                            <div class="ccpending_col">
+                                            <div class="pending_label">
                                                 <h4>Student's Note</h4>
                                             </div>
-                                        </div><hr>
+                                        </div>
                                             <?php
                                         while($rows=mysqli_fetch_assoc($request_result)) {?>
 
-                                            <div class="pending_row">
+                                            <div class="label_for_appnt_row">
                                                 
-                                                <div class="ccpending_count">
+                                                <div class="pending_label">
                                                     <?php echo $t++; //Adds Row Counter ?>
                                                 </div>  
 
-                                                <div class="ccpending_checkbox">
+                                                <div class="pending_label">
                                                     <input type="checkbox" name="pending[]" value="<?php echo $rows['appointment_id'];?>">
                                                     <input type="hidden" name="appointment_id[]" value="<?php echo $rows['appointment_id'];?>">
                                                     
                                                 </div>
 
-                                                <div class="ccpending_date">
+                                                <div class="pending_label">
                                                     <?php echo $rows['date_created']; ?>
                                                 </div>
-                                                <div class="ccpending_col">
+
+                                                <div class="pending_label">
                                                     <?php echo $rows['first_name']." ".$rows['last_name']; ?>
-                                                    <small>
+                                                    <p>
                                                         <p><span>Course and Year:</span> <?php echo $rows['course']." ".$rows['year']; ?></p>
                                                         
-                                                    </small>
+                                                    </p>
                                                 </div>
-                                                <div class="ccpending_bs">
+
+                                                <div class="pending_label">
                                                         <?php echo $rows['batch_status']; ?>
                                                 </div>
                                                 
-                                                <div class="ccpending_col">
+                                                <div class="pending_label">
                                                         <?php echo $rows['appointment_type']; ?>
                                                 </div>
 
-                                                <div class="ccpending_col">
+                                                <div class="pending_label">
                                                         <?php
                                                             if($rows['note']==""){
                                                                 echo "No note.";
@@ -387,52 +410,136 @@
 
 <style>
     main {
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 100px;
+       width: 100%;
+       padding: 15px;
+       min-height: 100vh;
+       margin-top: 60px;
     }
-    .pending_container {
-        width: 100%;
-        background: #fafafa;
-        padding:20px;
+    main h2 {
+        margin-left: 15px;
+        font-size: 20px;
+        font-family: 'Roboto';
+        margin-bottom: 15px;
     }
-    .pending_column {
-       
-        margin-bottom: 20px;
+    .pending_container_top {
+        background: #fff;
     }
-    .pending_row{
+    .pending_container_top .pending_column_batch {
+        background: #fff;
+        padding: 15px;
         display: flex;
-        flex-wrap: wrap;
-        background-color: #dedede;
-        margin-bottom: 10px;
     }
-    .ccpending_col {
-        width: 20%;
-        padding: 5px;
-        word-break: break-all;
-        margin: auto;
+    .pending_container_top .pending_column_batch button {
+        width: 120px;
+        height: 30px;
+        border: 1px solid #444;
+        cursor: pointer;
+        margin-right: 20px;
+        background: none;
+        font-family: 'Roboto';
     }
-    .ccpending_checkbox {
-        width: 5%;
-        padding: 5px;
-        text-align: center;
-        margin: auto;
+    .pending_container_top .pending_column_batch select {
+        height: 30px;
+        font-family: 'Roboto';
     }
-    .ccpending_checkbox input[type=checkbox] {
-        accent-color: #324e9e;
-        transform: scale(3);
-    }
-    .ccpending_count {
-        width: 5%;
-        text-align: center;
-        padding: 5px;
-        margin: auto;
-    }
-    .ccpending_bs, .ccpending_date {
-        width: 15%;
-        padding: 5px;
-        margin: auto;
+    .pending_column_all {
+        background: lightgrey;
+        padding: 15px;
+        margin: 10px 0;
     }
    
+   .pending_row_header form {
+       display: flex;
+   }
+   .pending_row_header form .input_group {
+       display: flex;
+       align-items: center;
+       margin-right: 20px;
+   }
+   .pending_row_header form .input_group p {
+       color: #333;
+       font-size: 13px;
+       text-transform: uppercase;
+       margin-right: 8px;
+       font-family: 'Roboto';
+       font-weight: 400;
+   }
+   .pending_row_header form .input_group input {
+       width: 120px;
+       height: 30px;
+       padding-left: 5px;
+       font-family: 'Roboto Serif';
+   }
+   .pending_row_header form .input_group textarea {
+       width: 280px;
+       height: 30px;
+       padding-left: 5px;
+       padding-top: 5px;
+       font-family: 'Roboto Serif';
+   }
+   .pending_row_header form .input_group:last-child {
+       flex: 1;
+       justify-content: right;
+   }
+   .pending_row_header form .input_group:last-child button {
+       width: 120px;
+       height: 30px;
+       border: none;
+       font-family: 'Roboto';
+       cursor: pointer;
+   }
+   .pending_row_header form .input_group:last-child button:first-child {
+       margin-right: 20px;
+       background: #324e9e;
+       color: #eee;
+   }
+   .pending_row_header form .input_group:last-child button:nth-child(2) {
+       background: #ec3237;
+       color: #eee;
+   }
+   .label_for_appnt {
+       display: flex;
+       align-items: center;
+       padding: 10px 15px;
+   }
+   .label_for_appnt_row {
+       display: flex;
+       align-items: center;
+       padding: 10px;
+   }
+   .label_for_appnt .pending_label,
+   .label_for_appnt_row .pending_label {
+       width: 300px;
+   }
+   .label_for_appnt .pending_label {
+       color: #333;
+       font-family: 'Roboto';
+       font-size: 13px;
+       text-transform: uppercase;
+       font-weight: 400;
+       padding: 10px 0;
+   }
+   .label_for_appnt .pending_label h4 {
+       font-weight: 400;
+   }
+   .label_for_appnt_row .pending_label {
+       font-family: 'Roboto';
+       font-size: 13px;
+   }
+   .pending_label p {
+       margin-bottom: 5px;
+   }
+
+   .label_for_appnt .pending_label:nth-child(1),
+   .label_for_appnt_row .pending_label:nth-child(1),
+   .label_for_appnt .pending_label:nth-child(2),
+   .label_for_appnt_row .pending_label:nth-child(2) {
+       width: 100px;
+   }
+
+
+   .label_for_appnt_row:nth-child(odd) {
+        background: lightgrey;
+   }
 </style>
 

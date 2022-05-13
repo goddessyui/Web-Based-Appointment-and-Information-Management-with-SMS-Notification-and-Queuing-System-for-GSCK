@@ -70,9 +70,9 @@ $sql = "SELECT
                     while ($row = mysqli_fetch_assoc($res)) {
                         # code...
                 ?>
-                <br>
+                
                 <?php echo date("l, F d, Y", strtotime($row['date'])); ?>
-                <br>                    
+                                    
                 <?php
 
                     }
@@ -97,3 +97,4 @@ $sql = "SELECT
 
 
 </div>
+
