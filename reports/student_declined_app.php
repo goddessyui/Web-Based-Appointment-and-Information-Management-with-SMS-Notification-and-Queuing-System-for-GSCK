@@ -1,5 +1,8 @@
 
 <!----------------Shows Student's Declined Appointments------------------------------------------------------------>
+<div class="declined_appnt">
+    <table>
+
 <?php
 if (isset($_GET['apde'])){
     
@@ -62,3 +65,5 @@ else {
 
 ?>
 <!----------------Shows Student's Declined/Cancelled Appointments------------------------------------------------------------>
+</table>
+</div>

@@ -1,5 +1,17 @@
 
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
+<div class="table_missed">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Appointment Date</th>
+            <th>Date Requested</th>
+            <th>Appointment ID</th>
+            <th>Note</th>
+            <th>Appointment Type</th>
+            <th>Staff</th>
+            <th>Comment</th>
+        </tr>
 <?php
 
 
@@ -31,33 +43,22 @@
                 $appointment_id = $rows['appointment_id'];
                 $appointment_date = $rows['appointment_date'];
 ?>
-                <div>
+                <tr>
                     <td>
                         <?php   echo $i;
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Appointment Date:</span><?php echo $rows['appointment_date']; ?></p>
-                    <p><?php
-                        $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
-                            FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
-                            AND appointment_date = '$appointment_date') T2 WHERE appointment_id='$appointment_id'";
-                            $qnum = mysqli_query($db, $q); 
-                            $queue = mysqli_fetch_assoc($qnum);
-                            //Queue Number---------------------------------------------------------------------------------------//
-                            $queuenumber = $queue['queuenum'];
-                            echo "Queue Number:" . $queuenumber;
-                            //Queue Number---------------------------------------------------------------------------------------// 
-                        ?>
-                    </p>
-                    <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
-                    <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
-                    <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                    <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                    <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
-                    <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
-                    <hr>
-                </div>
+
+                    <td><?php echo $rows['appointment_date']; ?></td>
+                    <td><?php echo $rows['date_created']; ?></td>
+                    <td><?php echo $rows['appointment_id']; ?></td>
+                    <td><?php echo $rows['note']; ?></td>
+                    <td><?php echo $rows['appointment_type']; ?></p>
+                    <td><?php echo $rows['first_name']. " ". $rows['last_name']; ?></td>
+                    <td><?php echo $rows['comment']; ?></p>
+                    
+                </tr>
 <?php 
             }
         }
@@ -67,4 +68,41 @@
     }
 
 ?>
+    </table>
+</div>
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
+
+<style>
+     .table_missed {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .table_missed table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+    }
+    .table_missed table th {
+        padding: 15px;
+        background: #fff;
+        border: none;
+        font-family: 'Roboto';
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: left;
+    }
+    .table_missed table td {
+        padding: 15px;
+        font-family: 'Roboto';
+        font-size: 13px;
+        color: #333;
+    }
+    .table_missed table tr {
+        background: #fff;
+    }
+    .table_missed table tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>

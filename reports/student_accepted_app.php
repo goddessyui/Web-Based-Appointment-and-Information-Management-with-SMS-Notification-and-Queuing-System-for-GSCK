@@ -1,5 +1,7 @@
 
 <!----------------Shows Student's Active Appointments------------------------------------------------------------>
+<h4 class="s_appoint_text">Active Appointments</h4>
+
 <div class="my_appointment">
 
 <?php
@@ -46,7 +48,7 @@
                     $currentdate = date("Y-m-d");?>
 
                     <div class="my_appnt_data">
-
+             
                         <div class="number_container">
                             <p class="appointment_number">
                                 <?php   echo $i;
@@ -132,6 +134,14 @@
 </div>
 
 <style>
+    .s_appoint_text {
+        font-family: 'Roboto';
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 20px;
+    }
     .my_appointment {
         display: flex;
         flex-wrap: wrap;

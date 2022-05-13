@@ -153,10 +153,9 @@ if (empty($_SESSION['student_id'])){
         <!---------End of No. of Past Appointments-------------------------------->
     </div><!---------End of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
     
-    <div class="appnt_stud_result">
+    <div class="appnt_stud_result" id="student_scroll_down">
         <div class="white_appnt">
         <!---------Start of Show Appointment Based on Status----------------------------------->
-            <h3 class="s_appnt" id="student_scroll_down">Student Appointment Details</h3>
 
 
    <?php if (isset($_GET['status'])){
@@ -281,21 +280,15 @@ if (empty($_SESSION['student_id'])){
     }
     .appnt_stud_result {
         padding-bottom: 0;
+        background: #fff;
     }
     .appnt_stud_result .white_appnt {
         background: #DCDBD6;
         width: 100%;
         padding: 30px;
-        min-height: 60vh;
+        min-height: 80vh;
     }
-    .appnt_stud_result .white_appnt .s_appnt {
-        font-family: 'Roboto';
-        font-size: 14px;
-        margin-bottom: 30px;
-        font-weight: 400;
-        color: #333;
-        text-transform: uppercase;
-    }
+  
     .view_all_appnt {
         width: 220px;
         height: 30px;
@@ -305,6 +298,28 @@ if (empty($_SESSION['student_id'])){
         background: #324E9E;
         color: #fff;
     }
+    #apppending h4,
+    #appmissed h4,
+    #appdeclined h4,
+    #appcancelled h4,
+    #appdone h4 {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Roboto';
+        color: #333;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 652px) {
 
@@ -349,6 +364,9 @@ if (empty($_SESSION['student_id'])){
     }
     .my_appointment .my_appnt_data:not(:nth-child(4)) {
         margin-right: 0;
+    }
+    .appnt_stud_result .white_appnt {
+        padding: 30px 20px;
     }
  
 }

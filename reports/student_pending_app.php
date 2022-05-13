@@ -1,5 +1,14 @@
 
 <!----------------Shows Student's Pending Appointments------------------------------------------------------------>
+<div class="table_pending">
+<table class="pending_appnt">
+    <tr class="pending_label">
+        <th>#</th>
+        <th>Date Requested</th>
+        <th>Appointment ID</th>
+        <th>Appointment Type</th>
+        <th>Note</th>
+    </tr>
 <?php
 
     $pendingappointment="SELECT * FROM tbl_appointment INNER JOIN tbl_staff_registry 
@@ -25,18 +34,18 @@
             //and while loop will run as long as we have data in database
             {
 ?>
-                <div>
+                <tr class="pending_row">
                     <td>
                         <?php   echo $i;
                                 $i++; 
                         ?>
-                    </td>  
-                    <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
-                    <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
-                    <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                    <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                </div>
-                <hr>
+                    </td>
+                    <td><?php echo $rows['date_created']; ?></td>
+                    <td><?php echo $rows['appointment_id']; ?></td>
+                    <td><?php echo $rows['appointment_type']; ?></td>
+                    <td><?php echo $rows['note']; ?></pre></p>
+                </tr>
+                
 <?php 
             }
         }
@@ -46,4 +55,42 @@
     }
 
 ?>
+</table>
+</div>
 <!----------------Shows Student's Pending Appointments------------------------------------------------------------>
+
+
+<style>
+    .table_pending {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .pending_appnt {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+    }
+    .pending_appnt th {
+        padding: 15px;
+        background: #fff;
+        border: none;
+        font-family: 'Roboto';
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: left;
+    }
+    .pending_appnt td {
+        padding: 15px;
+        font-family: 'Roboto';
+        font-size: 13px;
+        color: #333;
+    }
+    tr {
+        background: #fff;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
