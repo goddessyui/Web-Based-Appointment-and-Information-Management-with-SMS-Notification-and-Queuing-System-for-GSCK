@@ -231,7 +231,7 @@ if (empty($_SESSION['student_id'])){
     body {
         background: #EFF0F4;
     }
-    .parent-div{
+    .parent-div {
         margin-top: 80px;
     }
     .cs_container {
@@ -367,6 +367,9 @@ if (empty($_SESSION['student_id'])){
     }
     .appnt_stud_result .white_appnt {
         padding: 30px 20px;
+    }
+    .parent-div {
+        margin-top: 60px;
     }
  
 }

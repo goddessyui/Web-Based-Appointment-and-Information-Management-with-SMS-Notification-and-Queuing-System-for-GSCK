@@ -1150,7 +1150,10 @@ form .staff_list_label {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 20px;
-
+    width: 100%;
+}
+.div_label {
+   width: 180px;
 }
 
 .apt_container_div form .radio_design {
@@ -1161,11 +1164,9 @@ form .staff_list_label {
     height: 30px;
     width: 160px;
     cursor: pointer;
+
 }
 
-.div_label:not(:first-child) {
-    margin-left: 20px;
-}
 
 form .staff_list_label input[type=radio] {
     margin-right: 6px;
@@ -1342,6 +1343,21 @@ form .staff_list_label p {
     }
     #thisappointment {
         margin-top: 40px;
+    }
+
+    #at_meeting,
+    #at_enrollment,
+    #at_evaluationofgrades,
+    #at_modulesubmission,
+    #at_preenrollment,
+    #at_presentation,
+    #at_projectsubmission,
+    #at_requestdocuments,
+    #at_requestforgrades,
+    #at_unifastcc,
+    #at_unifastsd,
+    #at_appforgrad {
+        top: 60px;
     }
     }
     </style>

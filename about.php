@@ -1,29 +1,32 @@
 <?php
 include("header.php");
 ?>
-<div class="parent-div">
+
+<div class="about_container">
 
     <div class="about_section">
-        <h2>
-            History of Goldenstate College
-        </h2>
+        <h2>History of Goldenstate College</h2>
+
         <p>
-            &emsp; Demand for technical skills by the economic sector was growing. The Goldenstate Institute, aggressive to respond to
+            Demand for technical skills by the economic sector was growing. The Goldenstate Institute, aggressive to respond to
             this need, offered short-term industrial courses.
         </p>
+
         <p>
-            &emsp; When it opened, the institution was manned by only seven administrative officials, twenty-nine instructors, 
+            When it opened, the institution was manned by only seven administrative officials, twenty-nine instructors, 
             and 160 students. Five years later, the administrative staff and instructors increased to forty-eight. Their efforts 
             and expertise were dedicated to meet the needs of the increasing student population.
         </p>
+
         <p>
-            &emsp; In the year 1997, the Goldenstate Institute occupied two building spaces which became the venues for academic training, and 
+            In the year 1997, the Goldenstate Institute occupied two building spaces which became the venues for academic training, and 
             specific practicum and classroom instructions. The institution started its operation with only 7 vocational courses 
             and 5 non-formal courses. The same courses were offered with two more additional courses: Computer Secretarial and
             Architectural Drafting.
         </p>
+
         <p>
-            &emsp; With the increasing demand for supply of technically-skilled men and women here and abroad, Goldenstate continues to 
+            With the increasing demand for supply of technically-skilled men and women here and abroad, Goldenstate continues to 
             upgrade and enhance its training program proficiency in order to produce graduates who can be productive and efficient 
             in the professional world. This, along with fulfilling its educational mission in nation building, 
             is the guiding philosophy of the Goldenstate Institute as it envisions a society where constituents live fruitfully and
@@ -35,20 +38,19 @@ include("header.php");
             Administration and BS Tourism.
         </p>
         <p>
-            &emsp; Currently, the Goldenstate College of Koronadal offers a variety of courses including BSHM, BSTM, BSIT, BSSW, ABE, 
+            Currently, the Goldenstate College of Koronadal offers a variety of courses including BSHM, BSTM, BSIT, BSSW, ABE, 
             BECE, BTVED, BSBA, ACT, HM, and TESDA PROGRAMs.
         </p>
     </div>
 
     <div class="about_section">
-        <h2>
-            Vision
-        </h2>
+        <h2>Vision</h2>
         <p>
             Goldenstate College seeks to transform lives, organizations and communities through instruction, research
             and community service thereby paving the way for a holistic development of productive, successful, and 
             globally competitive professionals and graduates and responsible members of the community.
         </p>
+
         <p>
             The VISION of GOLDENSTATE COLLEGE which is the central inspiration of the organization is: 
             An economically, socially, and morally developed human resource who can respond to the needs of the 
@@ -59,9 +61,7 @@ include("header.php");
     </div>
 
     <div class="about_section">
-        <h2>
-            Mission
-        </h2>
+        <h2>Mission</h2>
         <p>
             GOLDENSTATE COLLEGE is a Filipino, non-sectarian, educational institution established to serve the educational 
             development needs of the society, locally, nationally, and globally.
@@ -122,9 +122,11 @@ include("header.php");
 
 
 <style>
-    .parent-div{
-        padding-top: 80px;
-        font-family: roboto;
+    .about_container{
+        width: 96%;
+        background: green;
+        margin: 0 auto;
+        margin-top: 80px;
     }
     .about_section{
        
