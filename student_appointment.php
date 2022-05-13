@@ -1154,6 +1154,7 @@ form .staff_list_label {
 }
 .div_label {
    width: 180px;
+   margin-bottom: 20px;
 }
 
 .apt_container_div form .radio_design {
