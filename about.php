@@ -4,9 +4,9 @@ include("header.php");
 <div class="parent-div">
 
     <div class="about_section">
-        <h3>
+        <h2>
             History of Goldenstate College
-        </h3>
+        </h2>
         <p>
             &emsp; Demand for technical skills by the economic sector was growing. The Goldenstate Institute, aggressive to respond to
             this need, offered short-term industrial courses.
@@ -41,9 +41,9 @@ include("header.php");
     </div>
 
     <div class="about_section">
-        <h3>
+        <h2>
             Vision
-        </h3>
+        </h2>
         <p>
             Goldenstate College seeks to transform lives, organizations and communities through instruction, research
             and community service thereby paving the way for a holistic development of productive, successful, and 
@@ -59,9 +59,9 @@ include("header.php");
     </div>
 
     <div class="about_section">
-        <h3>
+        <h2>
             Mission
-        </h3>
+        </h2>
         <p>
             GOLDENSTATE COLLEGE is a Filipino, non-sectarian, educational institution established to serve the educational 
             development needs of the society, locally, nationally, and globally.
@@ -92,26 +92,26 @@ include("header.php");
     </div>
 
     <div class="about_section">
-        <h3>
+        <h2>
             Core Values
-        </h3>
+        </h2>
         <p>
-            <h4>Teamwork.</h4> Providing support to one another, working co-operatively, respecting one another's views, and
+            Teamwork. Providing support to one another, working co-operatively, respecting one another's views, and
             making our work environment fun and enjoyable.
         </p>
         <p>
-            <h4>Excellence.</h4> Always doing what we say we will and striving for excellence and quality in everything we do.
+        Excellence. Always doing what we say we will and striving for excellence and quality in everything we do.
         </p>
         <p>
-            <h4>Professionalism.</h4> At all times we act with integrity, providing quality service, being reliable and responsible.
+           Professionalism. At all times we act with integrity, providing quality service, being reliable and responsible.
         </p>
         <p>
-            <h4>Honesty.</h4> Being open and honest in all our dealings and maintaining the highest integrity at all times.
+            Honesty. Being open and honest in all our dealings and maintaining the highest integrity at all times.
         </p>    
     </div>
 
     <div class="about_section">
-        <img src="image/goldenstate-iso.png" width="300">
+        <img src="image/goldenstate-iso.png" width="500">
     </div>
 
 
@@ -123,8 +123,43 @@ include("header.php");
 
 <style>
     .parent-div{
-        padding-top: 150px;
-        margin-left: 15%;
-        margin-right: 15%;
+        padding-top: 80px;
+        font-family: roboto;
     }
+    .about_section{
+       
+        text-align: justify;
+  text-justify: inter-word;
+    }
+    h3, li {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-left: 50px;
+    }
+    p {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 10px;   
+    }
+    li {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 10px;   
+    }
+    img{
+        margin-top: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+   
+    h2 {
+        padding: 25px;
+        background: #324E9E;
+        color: #fff;
+        margin-bottom: 25px;
+    }
+    
+
+
+
 </style>
