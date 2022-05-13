@@ -277,12 +277,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Meeting">             
+                                            <input type="hidden" name="appointmenttype" value="Meeting">   
+                                        </div>          
                                         <?php   
                                         }
                                         ?>
@@ -337,12 +339,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Enrollment">                   
+                                            <input type="hidden" name="appointmenttype" value="Enrollment">     
+                                        </div>              
                                         <?php   
                                         }
                                         ?>
@@ -397,21 +401,23 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Evaluation of Grades">                   
+                                            <input type="hidden" name="appointmenttype" value="Evaluation of Grades">   
+                                        </div>                
                                         <?php   
                                         }
                                         ?>
+                                        </div>
                                         <h4>Note to Staff (Optional):</h4>
                                         <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                         Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
                                         <div class="textarea_div"><textarea name="note"></textarea></div>
                                         <input type="submit" id="request" name="request" value="Request Appointment">
-                                    </div>
                                 </form>
                             <?php }
                             else {
@@ -456,12 +462,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Module Claiming or Submission">                   
+                                            <input type="hidden" name="appointmenttype" value="Module Claiming or Submission"> 
+                                        </div>                  
                                         <?php   
                                         }
                                         ?>
@@ -517,12 +525,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Pre-Enrollment">                   
+                                            <input type="hidden" name="appointmenttype" value="Pre-Enrollment">    
+                                        </div>               
                                         <?php   
                                         }
                                         ?>
@@ -577,12 +587,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Presentation">                   
+                                            <input type="hidden" name="appointmenttype" value="Presentation">   
+                                        </div>                
                                         <?php   
                                         }
                                         ?>
@@ -637,12 +649,15 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Project Submission">                   
+                                            <input type="hidden" name="appointmenttype" value="Project Submission"> 
+                                        </div>   
+
                                         <?php   
                                         }
                                         ?>
@@ -697,12 +712,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Request Documents From Registrar">                   
+                                            <input type="hidden" name="appointmenttype" value="Request Documents From Registrar"> 
+                                        </div>                  
                                         <?php   
                                         }
                                         ?>
@@ -757,12 +774,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Request for Grades">                   
+                                            <input type="hidden" name="appointmenttype" value="Request for Grades">      
+                                        </div>             
                                         <?php   
                                         }
                                         ?>
@@ -818,12 +837,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">                   
+                                            <input type="hidden" name="appointmenttype" value="UniFAST - Claim Cheque">    
+                                        </div>               
                                         <?php   
                                         }
                                         ?>
@@ -878,12 +899,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
                                                 <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">                   
+                                            <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">    
+                                        </div>               
                                         <?php   
                                         }
                                         ?>
@@ -937,12 +960,14 @@ $(document).ready(function() {
                                         <?php
                                         while($rows = mysqli_fetch_assoc($atresult)) { 
                                         ?>
+                                        <div class="div_label">
                                             <label class="radio_design">
                                                 <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                                <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
                                             </label>
 
-                                            <input type="hidden" name="appointmenttype" value="Application for Graduation">                   
+                                            <input type="hidden" name="appointmenttype" value="Application for Graduation"> 
+                                        </div>                  
                                         <?php   
                                         }
                                         ?>
@@ -1099,6 +1124,8 @@ $(document).ready(function() {
     background: #fff;
     padding: 40px;
     height: 60vh;
+    overflow: auto;
+    width: 100%;
 }
 .apt_container_div h2 {
     font-size: 16px;
@@ -1118,46 +1145,77 @@ $(document).ready(function() {
     text-transform: uppercase;
     margin-bottom: 12px;
 }
-.apt_container_div form {
-    background: grey;
-}
+
 form .staff_list_label {
-    background: teal;
-    border: 1px solid green;
-    padding: 20px;
-}
-.apt_container_div form h4 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 
 }
-.apt_container_div form small {
-
-}
-
-
 
 .apt_container_div form .radio_design {
-    color: #fff;
-    background-color: gray;
-    margin-bottom: 8px;
+    color: #eee;
+    background-color: #444;
     display: flex;
     align-items: center;
     height: 30px;
+    width: 160px;
+    cursor: pointer;
 }
-/*----
-.apt_container_div form .radio_design span {
 
+.div_label:not(:first-child) {
+    margin-left: 20px;
 }
-.apt_container_div form input[type=radio] {
 
+form .staff_list_label input[type=radio] {
+    margin-right: 6px;
+    margin-left: 12px;
 }
-.apt_container_div form input[type=submit] {
 
+
+form .staff_list_label p {
+    font-family: 'Roboto';
+    color: #eee;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
+
+.apt_container_div form h4 {
+    color: red;
+    margin-bottom: 5px;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    text-transform: uppercase;
+}
+.apt_container_div form small {
+    color: yellow;
+    font-family: 'Roboto Serif';
+    font-size: 12px;
+    color: #444;
+}
+
 .apt_container_div form textarea {
-
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    margin-bottom: 12px;
 }
 
-/* end --- apt_container_div */
+.apt_container_div form input[type=submit] {
+    background: #324E9E;
+    border: none;
+    color: #eee;
+    font-family: 'Roboto';
+    height: 30px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+
+
 
 
 
@@ -1176,6 +1234,7 @@ form .staff_list_label {
         width: 100%;
         height: 80px;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
 
@@ -1245,6 +1304,46 @@ form .staff_list_label {
     /* End of Formatting result items */
     
 
+
+@media screen and (max-width: 652px) {
+
+    .apt_content {
+        width: 80%;
+    }
+    .div_label:not(:first-child) {
+        margin: 0;
+        margin-bottom: 5px;
+    }
+    .div_label {
+        margin-bottom: 5px;
+    }
+    .aptype-container {
+        width: 96%;
+    }
+
+    .aptype {
+        width: 100%;
+    }
+    .search_container {
+        width: 96%;
+    }
+  
+    .search-box:nth-child(2) {
+        width: 100%;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+  
+    .result {
+        position: absolute;        
+        top: 200px;
+        left: 0;
+        margin-left: 4%;
+    }
+    #thisappointment {
+        margin-top: 40px;
+    }
+    }
     </style>
 
 
@@ -1293,7 +1392,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
 
     }
 
@@ -1340,7 +1439,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function evaluationofgrades_at() {
@@ -1386,7 +1485,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function modulesubmission_at() {
@@ -1432,7 +1531,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function preenrollment_at() {
@@ -1478,7 +1577,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function presentation_at() {
@@ -1524,7 +1623,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function projectsubmission_at() {
@@ -1570,7 +1669,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function requestdocuments_at() {
@@ -1616,7 +1715,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function requestforgrades_at() {
@@ -1662,7 +1761,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
     
     function unifastcc_at() {
@@ -1708,7 +1807,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
     function unifastsd_at() {
@@ -1753,7 +1852,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
 
     }
 
@@ -1800,7 +1899,7 @@ form .staff_list_label {
             document.getElementById('open_nav_container').style.opacity = "0";
 
             document.getElementById('dropdown_id').style.opacity = "0";
-            document.getElementById('dropdown_id').style.transform = "translateX(55vh)";
+            document.getElementById('dropdown_id').style.transform = "translateX(70vh)";
     }
 
 

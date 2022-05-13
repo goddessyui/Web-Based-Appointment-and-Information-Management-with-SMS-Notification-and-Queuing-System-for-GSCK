@@ -23,7 +23,7 @@ include("dbconfig.php");
         if($foundnum > 0) {$i=0;
              
     ?>
-    <div class="search-box" style="margin-left: 10%; padding-left: 8px;">
+    <div class="search_box_div">
         <button id="back_search"><p>Go Back</p></button>
         <p class="at_under_staff">Appointments Under <?php echo  $search . " " . $search2; ?></p>
        
@@ -176,6 +176,7 @@ $(document).ready(function() {
         margin-right: 10px;
         color: blue;
         text-decoration: underline;
+        cursor: pointer;
     }
     .at_under_staff {
         font-family: Lato;
@@ -183,5 +184,18 @@ $(document).ready(function() {
         transform: translateY(6px);
         font-size: 14px;
         color: #333;
+    }
+    .search_box_div {
+        margin-left: 10%;
+        padding-left: 8px;
+    }
+
+    @media screen and (max-width: 652px) {
+        .search_box_div {
+            margin-left: 4%;
+            padding-left: 4px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
     }
 </style>

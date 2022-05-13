@@ -373,6 +373,14 @@
             background: none;
             outline: none;
         }
+        .notif_container {
+            background: #0001;
+        }
+        @media screen and (max-width: 652px) {
+            .dropdown-menu {
+                background: yellow;
+            }
+        }
     </style>
 
 

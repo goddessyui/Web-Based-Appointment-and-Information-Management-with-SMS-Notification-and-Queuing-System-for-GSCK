@@ -588,7 +588,7 @@
         padding: 20px;
         padding-top: 40px;
         opacity: 0;
-        transform: translateX(55vh);
+        transform: translateX(100vh);
         transition: all .2s ease-in-out;
         background: #fff;
         border-left: 1px solid lightgrey;
