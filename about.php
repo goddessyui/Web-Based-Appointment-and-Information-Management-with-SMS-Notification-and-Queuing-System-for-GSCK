@@ -131,31 +131,31 @@ include("header.php");
         text-align: justify;
   text-justify: inter-word;
     }
-    h3, li {
+    .about_section h3, li {
         padding-top: 50px;
         padding-bottom: 50px;
         padding-left: 50px;
     }
-    p {
+    .about_section p {
         padding-left: 50px;
         padding-right: 50px;
         padding-bottom: 10px;   
     }
-    li {
+    .about_section li {
         padding-left: 50px;
         padding-right: 50px;
         padding-bottom: 10px;   
     }
-    img{
+    .about_section img{
         margin-top: 50px;
         padding-left: 50px;
         padding-right: 50px;
     }
    
-    h2 {
+    .about_section h2 {
         padding: 25px;
-        background: #324E9E;
-        color: #fff;
+        
+       
         margin-bottom: 25px;
     }
     
