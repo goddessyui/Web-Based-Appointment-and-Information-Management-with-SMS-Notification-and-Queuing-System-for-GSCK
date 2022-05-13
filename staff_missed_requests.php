@@ -139,7 +139,7 @@ include("admin_header.php");
                                         
                                         <!-------------------------Send data to done.php ------------------------------>  
                                         <div>
-                                            <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                            <button type="submit" id="done"><a href="appointment/done_missed.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
                                             DONE</a>
                                             </button>
                                         </div>
