@@ -451,6 +451,7 @@
    }
    .pending_row_header form {
        display: flex;
+       align-items: center;
    }
    .pending_row_header form .input_group {
        display: flex;
@@ -530,8 +531,8 @@
        font-size: 13px;
    }
    input[type=checkbox] {
-       width: 20px;
-       height: 20px;
+       width: 15px;
+       height: 15px;
 
    }
   
