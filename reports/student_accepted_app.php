@@ -144,8 +144,8 @@
         padding-left: 20px;
         padding-right: 30px;
         padding-bottom: 20px;
-        background: #fff;
         margin-bottom: 30px;
+        background: #fff;
     }
     .my_appointment .my_appnt_data:not(:nth-child(4)) {
         margin-right: 30px;

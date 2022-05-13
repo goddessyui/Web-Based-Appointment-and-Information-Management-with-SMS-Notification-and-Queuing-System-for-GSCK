@@ -11,7 +11,7 @@ if (empty($_SESSION['student_id'])){
 <div class="parent-div">
     <div class="cs_container"><!---------Start of No. of Appointments (Active, Pending, Declined, Cancelled, Past)-------------------------------->
         <div class="count_status"><!---------Start of No. of Active Appointments-------------------------------->
-            <button onclick="activeapp()">  
+            <a href="#student_scroll_down"><button onclick="activeapp()">  
                     <h3>Active Appointments</h3>   
                     <h1>
                     <?php
@@ -33,7 +33,7 @@ if (empty($_SESSION['student_id'])){
                         echo $count;
                     ?>
                     </h1> 
-            </button>
+            </button></a>
 
         </div>
         <!---------End of No. of Active Appointments-------------------------------->
@@ -156,7 +156,7 @@ if (empty($_SESSION['student_id'])){
     <div class="appnt_stud_result">
         <div class="white_appnt">
         <!---------Start of Show Appointment Based on Status----------------------------------->
-            <h3 class="s_appnt">Student Appointment Details</h3>
+            <h3 class="s_appnt" id="student_scroll_down">Student Appointment Details</h3>
 
 
    <?php if (isset($_GET['status'])){
@@ -235,20 +235,21 @@ if (empty($_SESSION['student_id'])){
     .parent-div{
         margin-top: 80px;
     }
-    .cs_container{
-       background: rgba(50, 78, 158, .8);
+    .cs_container {
+       background: url(./image/img_top.jpg);
+       background-position: center;
+       background-size: cover;
+       background-repeat: no-repeat;
        position: relative;
        display: flex;
        align-items: center;
        justify-content: space-between;
-       height: 80px;
+       height: 160px;
        width: 100%;
        padding: 0 2%;
+
     }
-    .count_status {
-       transform: translateY(40px);
-       width: 220px;
-    }
+  
  
 
     .count_status button {
@@ -279,26 +280,21 @@ if (empty($_SESSION['student_id'])){
         display: none;
     }
     .appnt_stud_result {
-        background: green;
-        margin-top: 100px;
         padding-bottom: 0;
     }
     .appnt_stud_result .white_appnt {
-        background: lightgrey;
-        background-image: url("./image/calendar.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: #DCDBD6;
         width: 100%;
         padding: 30px;
         min-height: 60vh;
     }
     .appnt_stud_result .white_appnt .s_appnt {
         font-family: 'Roboto';
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 30px;
-        font-weight: 500;
-        color: #eee;
+        font-weight: 400;
+        color: #333;
+        text-transform: uppercase;
     }
     .view_all_appnt {
         width: 220px;
@@ -310,6 +306,52 @@ if (empty($_SESSION['student_id'])){
         color: #fff;
     }
 
+@media screen and (max-width: 652px) {
+
+    .parent-div{
+        margin-top: 60px;
+    }
+    .cs_container {
+       position: inherit;
+       display: block;
+       height: auto;
+       width: 100%;
+       padding: 15px 2%;
+
+    }
+    .count_status {
+        transform: translateY(0);
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .count_status:last-child {
+        margin-bottom: 0;
+    }
+    .count_status button {
+       width: 100%;
+       height: 100px;
+       border: none;
+       background: #fff;
+       cursor: pointer;
+    }
+    .appnt_stud_result {
+        margin-top: 0;
+    }
+    .my_appointment {
+        background: none;
+        padding: 0;
+
+    }
+    .my_appointment .my_appnt_data {
+        background: #fff;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .my_appointment .my_appnt_data:not(:nth-child(4)) {
+        margin-right: 0;
+    }
+ 
+}
     
 </style>
 

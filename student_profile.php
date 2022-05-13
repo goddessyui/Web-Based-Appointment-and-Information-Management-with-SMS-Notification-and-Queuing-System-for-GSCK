@@ -148,7 +148,7 @@ if ($student_id == "" || $username1 == ""){
 <style>
     .profile_img {
         width: 100%;
-        min-height: 20vh;
+        min-height: 160px;
         background: lightgrey;
         margin-top: 80px;
         background-image: url("./image/img_top.jpg");
