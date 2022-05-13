@@ -854,19 +854,21 @@ $(document).ready(function() {
                                 <h2>Appointment Type: UniFAST - Submit Documents</h2>
                                 <h3>Select A Staff Member:</h3>
 
-                                <form action="appointment/student_insert_appointment.php" method="post">                 
-                                    <?php
-                                    while($rows = mysqli_fetch_assoc($atresult)) { 
-                                    ?>
-                                        <label class="radio_design">
-                                            <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
-                                            <span><?php echo $rows['first_name']." ".$rows['last_name'];?></span>
-                                        </label>
+                                <form action="appointment/student_insert_appointment.php" method="post">        
+                                    <div class="staff_list_label">         
+                                        <?php
+                                        while($rows = mysqli_fetch_assoc($atresult)) { 
+                                        ?>
+                                            <label class="radio_design">
+                                                <input type="radio" name="staff_id" required value="<?php echo $rows['staff_id'];?>">
+                                                <p><?php echo $rows['first_name']." ".$rows['last_name'];?></p>
+                                            </label>
 
-                                        <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">                   
-                                    <?php   
-                                    }
-                                    ?>
+                                            <input type="hidden" name="appointmenttype" value="UniFAST - Submit Documents">                   
+                                        <?php   
+                                        }
+                                        ?>
+                                    </div>
                                     <h4>Note to Staff (Optional):</h4>
                                     <small>You can specify an appointment or add additional appointment requests for the same staff here. 
                                     Please keep your message brief and relevant.  (For example: "Verification of Grades", "Request for TOR.")</small>
@@ -1078,20 +1080,30 @@ $(document).ready(function() {
     height: 60vh;
 }
 .apt_container_div h2 {
-    font-size: 20px;
-    text-decoration: underline;
-    margin-bottom: 40px;
+    font-size: 16px;
+    font-family: 'Roboto Serif';
+    margin-bottom: 20px;
 }
 
 
 
-/*-------
+
 
 .apt_container_div h3 {
-
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 12px;
 }
 .apt_container_div form {
-
+    background: grey;
+}
+form .staff_list_label {
+    background: teal;
+    border: 1px solid green;
+    padding: 20px;
 }
 .apt_container_div form h4 {
 
@@ -1099,7 +1111,7 @@ $(document).ready(function() {
 .apt_container_div form small {
 
 }
-*/
+
 
 
 .apt_container_div form .radio_design {

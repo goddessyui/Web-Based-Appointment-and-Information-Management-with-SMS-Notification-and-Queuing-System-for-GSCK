@@ -1,5 +1,19 @@
 
 <!----------------Shows Student's Cancelled Appointments------------------------------------------------------------>
+<div class="cancelled_appnt">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Date Cancelled</th>
+            <th>Appointment Date</th>
+            <th>Date Requested</th>
+            <th>Appointment ID</th>
+            <th>Note</th>
+            <th>Appointment Type</th>
+            <th>Staff</th>
+            <th>Comment</th>
+        </tr>
+
 <?php
 if (isset($_GET['apde'])){
     $theapde = $_GET['apde'];
@@ -41,22 +55,23 @@ else {
             //and while loop will run as long as we have data in database
             
 ?>
-                <div>
+                <tr>
                     <td>
                         <?php   echo $i;
                                 $i++; 
                         ?>
                     </td>
-                    <p><span>Date Cancelled: </span><?php echo $rows['date_accepted']; ?></p>
-                    <p><span>Appointment Date: </span><?php echo $rows['appointment_date']; ?></p>
-                    <p><span>Date Requested: </span><?php echo $rows['date_created']; ?></p>
-                    <p><span>Appointment ID:</span> <?php echo $rows['appointment_id']; ?></p>
-                    <p><span>My Note:</span><pre><?php echo $rows['note']; ?></pre></p>
-                    <p><span>Appointment Type: </span><?php echo $rows['appointment_type']; ?></p>
-                    <p><span>Staff: </span><?php echo $rows['first_name']. " ". $rows['last_name']; ?></p>
-                    <p><span>Staff's Comment:</span><pre><?php echo $rows['comment']; ?></pre></p>
-                </div>
-                <hr>
+
+                    <td><?php echo $rows['date_accepted']; ?></td>
+                    <td><?php echo $rows['appointment_date']; ?></td>
+                    <td><?php echo $rows['date_created']; ?></p>
+                    <td><?php echo $rows['appointment_id']; ?></td>
+                    <td><?php echo $rows['note']; ?></td>
+                    <td><?php echo $rows['appointment_type']; ?></td>
+                    <td><?php echo $rows['first_name']. " ". $rows['last_name']; ?></td>
+                    <td><?php echo $rows['comment']; ?></td>
+                </tr>
+  
 <?php 
             }
         }
@@ -67,3 +82,44 @@ else {
 
 ?>
 <!----------------Shows Student's Declined/Cancelled Appointments------------------------------------------------------------>
+    </table>
+</div>
+
+
+
+
+
+<style>
+     .cancelled_appnt {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .cancelled_appnt table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+    }
+    .cancelled_appnt table th {
+        padding: 15px;
+        background: #fff;
+        border: none;
+        font-family: 'Roboto';
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: left;
+    }
+    .cancelled_appnt table td {
+        padding: 15px;
+        font-family: 'Roboto';
+        font-size: 13px;
+        color: #333;
+    }
+    .cancelled_appnt table tr {
+        background: #fff;
+    }
+    .cancelled_appnt table tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
