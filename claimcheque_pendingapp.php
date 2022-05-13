@@ -448,6 +448,7 @@
     }
    .pending_row_header {
        margin-top: 40px;
+       padding: 5px;
    }
    .pending_row_header form {
        display: flex;
@@ -494,6 +495,7 @@
        margin-right: 20px;
        background: #324e9e;
        color: #eee;
+       
    }
    .pending_row_header form .input_group:last-child button:nth-child(2) {
        background: #ec3237;
@@ -502,14 +504,14 @@
    .label_for_appnt {
        display: flex;
        align-items: center;
-       padding: 10px 15px;
+       padding: 10px 20px;
        background: #324E9E;
        margin-top: 40px;
    }
    .label_for_appnt_row {
        display: flex;
        align-items: center;
-       padding: 10px;
+       padding: 10px 20px;
    }
    .label_for_appnt .pending_label,
    .label_for_appnt_row .pending_label {
