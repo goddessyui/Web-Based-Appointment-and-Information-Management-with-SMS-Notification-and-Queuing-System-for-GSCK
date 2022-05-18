@@ -1,367 +1,486 @@
 <?php
-    include_once("dbconfig.php");
-        session_start();
-        $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
-        $student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
-        $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
-        $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
-        $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
+include_once("dbconfig.php");
+session_start();
+$student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
+$student_username = !empty($_SESSION["student_username"])?$_SESSION["student_username"]:'';
+$staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
+$position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
+$staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
 
-    if ($staff_id == ""){
-        echo '<script type="text/javascript">window.location.href="index.php"</script>';
-    }
+if ($staff_id == ""){
+    echo '<script type="text/javascript">window.location.href="index.php"</script>';
+}
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="image/logo.png">
+	<link rel="icon" href="image/logo.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="jquery_offline.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="jquery_offline.js"></script>
+
+                        <script type="text/javascript">
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            function drawChart() {
+
+                                var data = google.visualization.arrayToDataTable([
+                                ['Appointments', 'No. of Appointments'],
+                                
+                                
+
+                                ['Slots Taken', 
+                                <?php 
+                                    date_default_timezone_set('Asia/Manila');                           		
+                                    $currentdate = date("Y-m-d");
+                                    
+                                    $taken = "SELECT appointment_detail_id FROM tbl_appointment_detail 
+                                        WHERE `status` = ('Accepted' OR 'Cancelled') 
+                                        AND appointment_date = '$currentdate'";
+                                    $takenslot = mysqli_query($db, $taken);
+                                    $no_of_slots_taken = mysqli_num_rows($takenslot);
+    
+                                    echo $no_of_slots_taken; 
+                                ?>],
+                                ['Slots Available',
+                                <?php
+                                    
+                                    $limit_app = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                                    $app_limitation = mysqli_query($db, $limit_app);
+                                    $row= mysqli_fetch_assoc($app_limitation);
+        
+                                   $no_of_slots_available = $row['appointment_limit'] - $no_of_slots_taken;
+                                    echo $no_of_slots_available ;
+                                    ?>
+                                ]
+                                ]);
+
+                                var options = {
+                                title: 'Daily Appointment Slot',
+								fontSize: 11,
+								legendFontSize: 11,
+								height: 250,
+								colors: ['#EB4235', '#324E9E'],
+								backgroundColor: { fill:'transparent' },
+                                };
+
+
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                chart.draw(data, options);
+                            }
+                        </script>
+
+
+
+
+
+							<script type="text/javascript">
+								google.charts.load('current', {'packages':['bar']});
+								google.charts.setOnLoadCallback(drawStuff);
+
+								function drawStuff() {
+									var data = new google.visualization.arrayToDataTable([
+									['Staff', 'Appointments'],
+								
+									<?php  
+										date_default_timezone_set('Asia/Manila');                           		
+										$currentdate = date("Y-m-d");
+			
+										$appt = "SELECT tbl_staff_registry.first_name, tbl_staff_registry.last_name, COUNT(*) as C
+										FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+										ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+										INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
+										WHERE appointment_date = '$currentdate' AND tbl_appointment_detail.status = 'Accepted'
+										GROUP BY first_name HAVING COUNT(*)>0";
+										$appt_today = mysqli_query($db, $appt);
+
+										if($appt_today==TRUE){
+											$count= mysqli_num_rows($appt_today);
+
+											if($count>0) {
+
+												while($r=mysqli_fetch_assoc($appt_today)){
+													echo "['".$r["first_name"]."', ".$r["C"]."], ";
+												}
+											}
+											else {
+												echo"No result";
+											}
+										}
+										else{
+											echo"Cannot access" . mysqli_error($db);
+										}
+
+									?> 
+									
+									]);
+									<?php
+									
+									?>
+
+									var options = {
+									title: 'Daily Active Appointments Per Staff',
+									legendFontSize: 14,
+									legend: { position: 'none' },
+									colors: ['#324E9E'],
+									
+									bars: 'vertical', // Required for Material Bar Charts.
+									axes: {
+										x: {
+										0: { side: 'top', label: 'Daily Active Appointments Per Staff'} // Top x-axis.
+										}
+									},
+									bar: { groupWidth: "100%" }
+									};
+
+									var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+									chart.draw(data, options);
+								};
+								</script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>GSCK Appointment Portal</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
+    <title>Goldenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
-<div class="main_header">
-    <div class="navbar_panel">
-        <div class="admin_container">
+	<input type="checkbox" id="nav-toggle">
 
-            <div class="admin_icon">
-                <img src="icon/white/user_white.svg" alt="" width="25">
-            </div>
+	<div class="sidebar">
+		<div class="sidebar_brand">
+			<img src="icon/white/user_white.svg" width="28">
+			<h4 class="username_appear">
+				<?php echo $staff_username; ?>
+			</h4>
+		</div>
 
-            <div class="admin_name">
-                <?php
-                    $admin = "SELECT * FROM tbl_staff_registry where username = '$staff_username'";
-                    $admin_query = mysqli_query($db, $admin);
+		<div class="sidebar_menu">
+			<ul>
+				<li>
+					<img src="icon/white/dashboard_white.svg" alt="">
+					<a href="admin.php">
+						<span>Dashboard</span>
+					</a>
+				</li>
 
-                    while ($AdminRow = mysqli_fetch_assoc($admin_query)) {
-                        ?><h3><?php echo $AdminRow['first_name']." ".$AdminRow['last_name']; ?></h3>
-                        <p><?php echo $AdminRow['position']; ?></p><?php
-                    }
-                ?>
-            </div>
-         
-        </div>
-        <nav>
-        <ul>
-            <a href="admin.php">
-                <li>
-                    <img src="icon/white/dashboard_white.svg" alt="" width="25">
-                    <span>Dashboard</span>
-                </li>
-            </a>
+				<li>
+					<img src="icon/white/user_white.svg" alt="">
+					<a href="staff_profile.php">
+						<span>Account</span>
+					</a>
+				</li>
 
+				<li>
+					<img src="icon/white/appointment_white.svg" alt="">
+					<a href="schedule_admin.php">
+						<span>Set my schedule</span>
+					</a>
+				</li>
 
-            <a  href="schedule_admin.php">
-                <li>
-                    <img src="icon/white/appointment_white.svg" alt="" width="25">
-                    <span>Set my schedule</span>
-                </li>
-            </a>
-
-            <a href="announcement_admin.php">
-                <li>
-                    <img src="icon/white/announcement_white.svg" alt="" width="25">
-                    <span>Announcement</span>
-                </li>
-            </a>
-
+				<li>
+					<img src="icon/white/announcement_white.svg" alt="">
+					<a href="announcement_admin.php">
+						<span>Announcement</span>
+					</a>
+				</li>
 			<?php 
-				if ($position == "Registrar") {
+				if ($position == "Registrar"){
 			?>
-
-            <a href="upload_student_records.php">
-                <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
-                    <span>Student Records</span>
-                </li>
-            </a>
-
-            <a href="upload_staff_records.php">
-                <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
-                    <span>Staff Records</span>
-                </li>
-            </a>
-            
-
-            <a href="staff_accepted_requests.php">
-                <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
-                    <span>My Appointments</span>
-                </li>
-            </a>
+				<li>
+					<img src="icon/white/record_white.svg" alt="">
+					<a href="upload_student_records.php">
+						<span>Student Records</span>
+					</a>
+				</li>
+				<li>
+					<img src="icon/white/record_white.svg" alt="">
+					<a href="upload_staff_records.php">
+						<span>Staff Records</span>
+					</a>
+				</li>
 				
-			<?php
-            	}
-            	else if($position == "Accounting Staff/Scholarship Coordinator") {
-            ?>
-				
-            <a href="upload_unifast_grantee.php">
-                <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
-                    <span>Grantee Records</span>
-                </li>
-            </a>
 
-            <a>
-                <li href="claimcheque_pendingapp.php">
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
-                    <span>Claim Cheque</span>
-                </li>
-            </a>
-
-            <a href="submitdocu_pendingapp.php">
-                <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
-                    <span>Submit Documents</span>
-                </li>
-            </a>
-
-            <a href="staff_accepted_requests.php">
-                <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
-                    <span>My Appointments</span>
-                </li>
-            </a>
-
-			<?php
-            	}
-				else if($position == "Teacher") {
-            ?>
-				<a href="staff_accepted_requests.php">
-					<li>
-                        <img src="icon/white/schedule_white.svg" alt="" width="25">
+				<li>
+					<img src="icon/white/schedule_white.svg" alt="">
+					<a href="staff_accepted_requests.php">
 						<span>My Appointments</span>
-					</li>
-				</a>
-
+					</a>
+				</li>
+				
 			<?php
+            	}
+            	else if($position == "Accounting Staff/Scholarship Coordinator"){
+            ?>
+				
+				<li>
+					<img src="icon/white/record_white.svg" alt="">
+					<a href="upload_unifast_grantee.php">
+						<span>Grantee Records</span>
+					</a>
+				</li>
+				<li>
+					<img src="icon/white/schedule_white.svg" alt="">
+					<a href="claimcheque_pendingapp.php">
+						<span>Claim Cheque</span>
+					</a>
+				</li>
+				<li>
+					<img src="icon/white/schedule_white.svg" alt="">
+					<a href="submitdocu_pendingapp.php">
+						<span>Submit Documents</span>
+					</a>
+				</li>
 
+				<li>
+					<img src="icon/white/schedule_white.svg" alt="">
+					<a href="staff_accepted_requests.php">
+						<span>My Appointments</span>
+					</a>
+				</li>
+			<?php
+            	}
+				else if($position == "Teacher"){
+            ?>
+				<li>
+					<img src="icon/white/schedule_white.svg" alt="">
+					<a href="staff_accepted_requests.php">
+						<span>My Appointments</span>
+					</a>
+				</li>
+				<?php
 			}
-            
-			?>		
-
-                <a href="staff_accepted_requests.php">
-                    <li>
-                        <img src="icon/white/schedule_white.svg" alt="" width="25">
-                        <span>Records</span>
-                    </li>
-                </a>
-
-                <a href="staff_profile.php">
-                    <li>
-                        <img src="icon/white/user_white.svg" alt="" width="25">
-                        <span>Account</span>
-                    </li>
-                </a>	
+			?>			
 
 			</ul>
-        </nav>
-    </div>
+		</div>
+	</div>
 
-    <div class="content_panel">
-        <div class="header">
+	<div class="main-content">
+		<header>
+				<div class="menu_admin">
+					<label for="nav-toggle">
+						<span style="cursor: pointer;">
+							<img src="icon/menu_btn.png" width="26">
+						</span>
+					</label>
+				</div>
 
-            <div class="menu_container">
-                <p><?php echo $staff_id; ?></p>
-            </div>
+				<div class="title_name">
+					<h3>GOLDENSTATE COLLEGE OF KORONADAL</h3>
+				</div>
 
-            <div class="title_container">
-                <div class="title_text">
-                    <h3>Goldenstate College of Koronadal</h3>
-                    <p>Appointment System Portal</p>
-                </div>
-            </div>
+				<div class="user_wrapper">
 
-            <div class="notif_container">
-
-                <div class="dropdown-toggle" data-toggle="dropdown">
-                    <button onclick="BtnDropdown()" class="btn_no_bg">
-                        <i class="fa fa-bell-o"><p class="count" id="count_red" style="text-decoration: none; color: #fff;"></p></i>
-                    </button>
-                    <div class="dropdown-menu" id="dropdown_id"></div>
-                </div>
-
-                <button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
-            </div>
-
-        </div>
-
-        <main></main>
-    </div>
-</div>
-
-
-
-
-
-<div class="mobile_header"></div>
-
-</body>
-</html>
-
-
+					<!-- NOTIFICATION BUTTON -->
+					<div class="dropdown-toggle" data-toggle="dropdown">
+						<button onclick="BtnDropdown()" class="btn_no_bg">
+							<i class="fa fa-bell-o"><p class="count" id="count_red" style="text-decoration: none; color: #fff;"></p></i>
+						</button>
+						<div class="dropdown-menu" id="dropdown_id"></div>
+					</div>
+					<button class="btn_logout_admin"><a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a></button>
+       <!-- NOTIFICATION BUTTON -->
+				</div>
+		</header>
 
 
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
 
-    body {
-        overflow: hidden;
-    }
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        list-style-type: none;
-        font-family: 'Open Sans', sans-serif;
-        font-family: 'Quicksand', sans-serif;
-    }
-    /* width */
-        ::-webkit-scrollbar {
-        width: 10px;
-        }
+    :root {
+	--blue: #324e9e;
+	--darkerblue: #2d468e;
+	--red: #ec3237;
+	--yellow: #fcd228;
+	--text-grey: #555;
+	--gold: #fec843;
+	--orange: #fda237;
+}
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-        background: #2D303A;
-        }
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+	text-decoration: none;
+}
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-        background: #888;
-        }
+.sidebar {
+	width: 300px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: #324E9E;
+	z-index: 888;
+	transition: width 300ms;
+	border-right: 1px solid lightgrey;
+}
+.sidebar_brand {
+	height: 60px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 0;
+	background: #324E9E;
+}
+.sidebar_brand img {
+	margin-right: 10px;
+}
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-        }
-    .main_header {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        position: flex;
-        top: 0;
-    }
-    .main_header .navbar_panel {
-        width: 20vw;
-        height: 100vh;
-    }
-    .navbar_panel .admin_container {
-        width: 20vw;
-        height: 10vh;
-        background: #424F59;
-        display: flex;
-        align-items: center;
-        padding-left: 2.5vw;
-    }
-    .admin_icon {
-        margin-right: 16px;
-    }
-    .admin_name h3 {
-        color: #eee;
-        font-size: 20px;
-    }
-    .admin_name p {
-        font-size: 14px;
-        color: #BBBBBD;
-    }
+.sidebar_brand .username_appear {
+	font-weight: 400;
+	font-family: 'Roboto Serif';
+	font-size: 14px;
+	text-align: center;
+	color: #eee;
+}
+
+.sidebar_menu {
+	margin: 20px;
+	height: 88vh;
+}
+.sidebar_menu ul {
+	transform: translateY(40%);
+}
+
+.sidebar_menu li{
+	width: 100%;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+}
+
+.sidebar_menu li a {
+	color: #eee;
+	font-size: 14px;
+	text-decoration: none;
+	display: block;
+	border: none;
+  	background: none;
+	cursor: pointer;
+	outline: none;
+	width: 100%;
+	text-transform: uppercase;;
+	font-family: 'Roboto Serif';
+}
+.sidebar_menu li img {
+	margin-right: 20px;
+	padding: 2px;
+	width: 26px;
+	height: 26px;
+}
 
 
-    .navbar_panel nav {
-        background: #2D303A;
-        height: 90vh;
-        width: 20vw;
-        overflow-y: scroll;
-        overflow-x: hidden;
-    }
-    .navbar_panel nav ul {
-        width: 20vw;
-        padding-top: 5vh;
-    }
-    .navbar_panel nav ul a {
-        text-decoration: none;
-        color: #BBBBBD;
-        font-family: 'Quicksand', sans-serif;
-        font-size: 16px;
-        text-transform: capitalize;
-    }
-    .navbar_panel nav ul li {
-        width: 20vw;
-        height: 52px;
-        display: flex;
-        align-items: center;
-        padding-left: 2.5vw;
-    }
-    .navbar_panel nav ul li:hover {
-        background: #424F59;
-    }
-    .navbar_panel nav ul li img {
-        opacity: .8;
-        margin-right: 16px;
-    }
+/* Optional: Style the caret down icon */
+.sidebar_menu .fa-caret-down {
+	margin-left: 12px;
+}
 
-    .main_header .content_panel {
-        width: 80vw;
-        height: 100vh;
-        background: teal;
-    }
-    .header {
-        width: 100%;
-        height: 10vh;
-        background: #FFFEFE;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .menu_container,
-    .title_container,
-    .notif_container {
-        height: 10vh;
-    }
-    .menu_container,
-    .notif_container {
-        width: 20vw;
-    }
-    .notif_container {
-        display: flex;
-        align-items: center;
-        justify-content: right;
-        padding-right: 25px;
-    }
-    .notif_container  .btn_logout_admin {
-        background: #2D303A;
-        margin-left: 12px;
-        border: none;
-        padding: 4px 10px;
-        font-size: 12px;
-    }
-    .notif_container  .btn_logout_admin:hover {
-        background: #424F59;
-    }
-    .notif_container a {
-        color: #eee;
-        text-decoration: none;
-    }
-    .fa.fa-bell-o {
+#nav-toggle:checked + .sidebar {
+	width: 70px;
+}
+
+#nav-toggle:checked + .sidebar .sidebar_brand .username_appear,
+#nav-toggle:checked + .sidebar li a,
+#nav-toggle:checked + .sidebar li span
+{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+#nav-toggle:checked + .sidebar li i{
+	padding-right: 1.6rem;
+}
+
+#nav-toggle:checked + .sidebar .sidebar_brand .username_appear,
+#nav-toggle:checked + .sidebar li a span:last-child,
+#nav-toggle:checked + .sidebar li .dropdown_btn .navname
+ {
+	display: none;
+}
+#nav-toggle:checked ~ .main-content {
+	margin-left: 70px;
+}
+#nav-toggle:checked ~ .main-content header{
+	width: calc(100% - 70px);
+	left: 70px;
+	
+
+}
+
+.main-content {
+	transition: margin-left 300ms;
+	margin-left: 300px;
+}
+
+header {
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	left: 300px;
+	width: calc(100% - 300px);
+	top: 0;
+	z-index: 999;
+	transition: left 300ms;
+	height: 60px;
+	padding-left: 15px;
+	border-bottom: 1px solid lightgrey;
+}
+header .title_name h3 {
+	color: #333;
+	font-family: 'Roboto';
+}
+
+#nav-toggle {
+	display: none;
+}
+
+.user_wrapper {
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+}
+.user_wrapper small {
+	margin-right: 12px;
+	margin-left: 2px;
+	background: green;
+}
+
+.user_wrapper  .btn_logout_admin{
+	background: #444;
+	margin-left: 12px;
+	border: none;
+	padding: 4px 10px;
+	font-size: 12px;
+	margin-right: 15px;
+}
+.user_wrapper a {
+	color: #eee;
+}
+.menu_admin {
+	margin-left: 15px;
+}
+
+
+
+
+/* notification */
+
+.fa.fa-bell-o {
         font-size: 18px;
-        cursor: pointer;
-        transform: translateY(1.5px);
-    }
-    .btn_no_bg {
-		border: none;
-		background: none;
-	}
+		transform: translateY(1.5px);
 
+    }
     .fa.fa-bell-o:hover {
         animation-name: bell_icon;
         animation-duration: .5s;
@@ -378,50 +497,183 @@
             transform: rotate(-10deg) translateY(2px);
         }
     }
-
-
-    .menu_container {
-        padding-left: 15px;
-        display: flex;
-        align-items: center;
-        font-size: 14px;
+ 
+    .dropdown-menu {
+        width: 380px;
+        height: 100vh;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        list-style-type: none;
+        box-sizing: border-box;
+        padding: 20px 40px;
+        padding-top: 30px;
+        opacity: 0;
+        transform: translateX(55vh);
+        transition: all .5s ease-in-out;
+		background: #444;
+		overflow: auto;
+    }
+ 
+ 
+    /* width */
+    ::-webkit-scrollbar {
+    width: 5px;
     }
 
-    .title_container {
-        width: 80vw;
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #fff; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: gray; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: gold; 
+    }
+
+    .notif_container {
+        padding: 20px;
+        border-bottom: 1px solid lightgrey;
+        transition: all .2s ease-in-out;
+    }
+  
+    .notif_container:last-child {
+        border: none;
+    }
+
+    .notif_container a {
+        text-decoration: none;
+        color: #fff;
+		font-family: 'roboto';
+    }
+    .notif_container a:visited {
+        color: grey;
+    }
+    .notif_container .notif_title {
+        margin-bottom: 5px;
+        font-size: 13px;
+    }
+
+    .notif_container small {
+        font-size: 14px;
+        color: #eee;
+		font-family: 'Roboto Serif';
+    }
+    .count {
+        height: 14px;
+        width: 14px;
+        font-size: 9px;
+        font-weight: bold;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        top: -4px;
+        right: -5px;
+
+
+    }
+	.btn_no_bg {
+		border: none;
+		background: none;
+	}
+
+/*----form-div----*/
+
+    .form_div {
+        width: 100%;
+        height: 60vh;
+        background: green;
     }
 
-    .title_container .title_text h3 {
-        text-transform: uppercase;
-        font-family: 'Roboto';
-        color: #333;
-    }
-    .title_container p {
-        font-size: 14px;
-        text-align: center;
-    }
-    main {
-        width: 100%;
-        height: 90vh;
-        background: #F1F3F6;
-        overflow-y: scroll;
-    }
-    .mobile_header {
-        width: 100%;
-        height: 100vh;
-        background: gold;
-        display: none;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .main_header {
-            display: none;
-        }
-        .mobile_header {
-            display: block;
-        }
-    }
 </style>
+
+
+<!-- notification script -->
+
+<script>
+
+function BtnDropdown() {
+
+var x = document.getElementById("dropdown_id");
+
+	if (x.style.opacity === "1") {
+		x.style.opacity = "0";
+		x.style.transform = "translateX(55vh)";
+
+	} 
+	else {
+		x.style.opacity = "1";
+		x.style.transform = "translateX(0)";
+		menuBtn.classList.remove('open');
+		menuOpen = false;
+		document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+
+	}
+}
+
+
+
+
+$(document).ready(function(){
+ var id = '<?php echo $_SESSION["staff_id"]; ?>'
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"fetch_notification_admin.php",
+   method:"POST",
+   data:{view:view, id:id},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification).css({backgroundColor: 'red'});
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+
+//-------Dropdown toggle
+
+//* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown_btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+
+//-------Dropdown toggle
+
+</script>
+
