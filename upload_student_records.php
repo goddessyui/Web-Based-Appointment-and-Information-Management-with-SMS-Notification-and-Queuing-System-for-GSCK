@@ -1,6 +1,19 @@
 <?php
 include("admin_header.php");
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/Exception.php';
+require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/PHPMailer.php';
+require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/SMTP.php';
+
+// passing true in constructor enables exceptions in PHPMailer
+
+
+
+
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
 {
@@ -9,20 +22,66 @@ if(isset($_POST["upload"]))
         $filename = explode(".", $_FILES['student_file']['name']);//convert file name into array and store into $ file name variable
         if(end($filename) == "csv")//check if file is csv or not
         {//if csv
+            if(!empty($_POST['check_list'])) {
             //truncate all data from table
             $truncate = "TRUNCATE `tbl_student_record`";
             mysqli_query($db, $truncate);
+            }
             //truncate all data from table
             $handle = fopen($_FILES['student_file']['tmp_name'], "r");//file open function
             while($data = fgetcsv($handle))//file get csv function: fetch comma delimited data from csv and convert into array and store into $ variable
             {
+                $mail = new PHPMailer(true);
                 $student_id = mysqli_real_escape_string($db, $data[0]); //data is cleaned by mysqli real escape function
                 $first_name = mysqli_real_escape_string($db, $data[1]);  
                 $last_name = mysqli_real_escape_string($db, $data[2]);
-               
-                $query="INSERT INTO tbl_student_record (student_id, first_name, last_name) 
-                VALUES ('$student_id', '$first_name', '$last_name')";
-                        mysqli_query($db, $query);
+                $email = mysqli_real_escape_string($db, $data[3]);
+                $check1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
+                if (mysqli_num_rows($check1)!=1){
+                $query="INSERT INTO tbl_student_record (student_id, first_name, last_name, email) 
+                VALUES ('$student_id', '$first_name', '$last_name', '$email')";
+                if (mysqli_query($db, $query)){
+                    $check = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id}' AND first_name='{$first_name}' AND last_name='{$last_name}'");
+                    if (mysqli_num_rows($check)!=1){
+                        $fname = $first_name.' '.$last_name;
+                        $username = $student_id;
+                        $password = rand(100000, 999999);
+                        $passwd = password_hash($password, PASSWORD_DEFAULT);
+                        $sql ="INSERT INTO tbl_student_registry (student_id, first_name, last_name, username, `password`, register_status) VALUES ('$student_id', '$first_name', '$last_name', '$username', '$passwd', '0')";
+                        mysqli_query($db, $sql);
+                        
+                            $mail->isSMTP();
+                            $mail->Host = 'smtp.gmail.com';
+                            $mail->SMTPAuth = true;
+                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                            $mail->Port = 587;
+                            
+                            $mail->Username = 'goldenstatecollege00@gmail.com'; // YOUR gmail email
+                            $mail->Password = 'goldenstate123'; // YOUR gmail password
+                            // Sender and recipient settings
+                            $mail->setFrom('goldenstatecollege00@gmail.com', 'Goldentstate College');
+                            $mail->addAddress($email, $fname);
+                            $mail->addReplyTo('goldenstatecollege00@gmail.com', 'Goldentstate College'); // to set the reply to
+
+                            // Setting the email content
+                            $mail->IsHTML(true);
+                            $mail->Subject = "Goldenstate College Appointment System First Time Login Account";
+                            $mail->Body = 'Dear '.$fname.'<br><br>Your temporary account for <a href="gsck.online">Goldenstate College Appointment System</a> is ready to use.
+                                            <br><br>Username: '.$username.'<br>Password: '.$password.
+                                            '<br><br>If you have any concerns dont hesitate to contact us in goldenstatecollege00@gmail.com<br><br>Do not share your temporary username and password to anyone';
+                            $mail->AltBody = 'Dear '.$fname.'\n\nYour temporary account for Goldenstate College Appointment System(gsck.online) is ready to use.
+                            \n\nUsername: '.$username.'\nPassword: '.$password.
+                            '\n\nIf you have any concerns dont hesitate to contact us in goldenstatecollege00@gmail.com\n\nDo not share your temporary username and password to anyone';
+                            $mail->send();
+                           
+                        
+
+                    }
+                }
+                }
+                
+
+
             }
         fclose($handle);
         ?>
@@ -104,7 +163,7 @@ else{
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                             <input type="submit" class="btn_upload" name="upload" value="Upload" />
                         </div>
-
+                        <P>Overwrite Data<input type="checkbox" name="check_list[]" value="true">
                         <p>
                             <?php
                                 $message = '';
@@ -155,6 +214,7 @@ else{
                     <input type="text"  id="lastname" name="lastname" placeholder="Last Name" required>
                     <input type="text"  id="firstname" name="firstname" placeholder="First Name" required>
                     <input type="text"  id="studentid" name="studentid" placeholder="Student ID" required> 
+                    <input type="text"  id="email" name="email" placeholder="Email" required> 
                     <div class="btn_add_container">
                         <button type="submit" class="btn_add" name="add">Add</button>
                     </div>
