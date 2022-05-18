@@ -1,10 +1,12 @@
 <?php
 include_once("header.php");
 session_start();
-if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESSION["last_name"]) || !empty($_SESSION["staff_id"]) || !empty($_SESSION["student_id"])){
+if(!isset($_SESSION["st_id"]) || !empty($_SESSION["staff_id"]) || !empty($_SESSION["student_id"])){
     echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
-
+$staff_id_registry = $_SESSION["st_id"];
+$query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$staff_id_registry}'");
+$row = $query->fetch_assoc();
 
 ?>
 <!-- STAFF REGISTRATION -->
@@ -21,26 +23,26 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
 		<div id="message3"></div>
 	</div>
 
-	<h1>Sign Up</h1>
+	<h1>First Time Login Fillup</h1>
     
 	<div>
 		<label>Staff ID: </label>
-    	<input type="text" name="staff_id" id="staff_id" value="<?php echo $_SESSION["s_id"] ?>" readonly>
+    	<input type="text" name="staff_id" id="staff_id" value="<?php echo $row["staff_id"] ?>" disabled>
     </div>
     
     <div>
 		<label>First Name: </label>
-    	<input type="text" name="first_name2" id="first_name2" value="<?php echo $_SESSION["first_name"] ?>" readonly>
+    	<input type="text" name="first_name2" id="first_name2" value="<?php echo $row["first_name"] ?>" disabled>
     </div>
     
     <div>
 		<label>Last Name: </label>
-    	<input type="text" name="last_name2" id="last_name2" value="<?php echo $_SESSION["last_name"] ?>" readonly>
+    	<input type="text" name="last_name2" id="last_name2" value="<?php echo $row["last_name"] ?>" disabled>
     </div>
 
     <div>
 		<label>Username: </label>
-		<input type="text" name="username2" id="username2" placeholder="enter a username" />
+		<input type="text" name="username2" id="username2" placeholder="enter a username" value="<?php echo $row["username"] ?>"/>
 	</div>
 
     <div>
@@ -98,7 +100,8 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
 
 
 	<div class="form_group">
-    	<input type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff"/>
+		<!-- <input type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff"/> -->
+    	<button type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff">Create Account</button>
 	</div>
     
     <div class="form_group">
@@ -114,6 +117,7 @@ if(!isset($_SESSION["s_id"]) || !isset($_SESSION["first_name"]) || !isset($_SESS
 // STAFF REGISTRATION
 $(document).ready(function() {
 	$('#btn_staff').on('click', function() {
+		$('#btn_staff').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
         $("#staff_form :input").prop('disabled', true);  
 		var staff_id = $('#staff_id').val(); 
 		var number = $('#number2').val();
@@ -130,65 +134,78 @@ $(document).ready(function() {
 		if(staff_id!="" && number!="" && position!="" && username!="" && password!="" && confirm_password!="" && first_name1!="" && last_name1!=""){
 
 		if(!/^[a-z A-Z 0-9]+$/.test(username)){
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			$('#message4').html('Only letters and digit characters are allowed for Username!!');
 		}
 		else if (username.length < 3) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 	
 			$('#message4').html('Username must be at least 3 characters!!'); 
     	}
 		else if (username.length > 16) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 		
 			$('#message4').html('Username must not exceed 16 characters!!'); 
     	}
 		else if (!/^[0-9]+$/.test(number)) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 		
 			$('#message4').html('Only numbers are allowed for phone numbers!!'); 
 		}
 		else if (number.length != 11) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 		
 			$('#message4').html('Phone number must be at 11 digits!!'); 
 		}
 		else if (number.substring(0, 2)!='09') {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Incorrect phone number!!'); 
 		}
 		else if (type=="") {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Put at least one appointment type!!'); 
 		}
 		else if (password.length < 8) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 		
 			$('#message4').html('Password must be at least 8 characters!!'); 
 		}
 		else if (password.length > 16) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Password must not exceed 16 characters!!'); 
 		}
 		else if (!/^(?!.* )/.test(password)) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Password must not contain space!!'); 
 		}
 		else if  (password.search(/[a-z]/i) < 0) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Password must contain at least one letter!!');
 		}
 		else if  (password.search(/[0-9]/) < 0) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Password must contain at least one digit!!'); 
 		}
 		else if (password!=confirm_password) {
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);  
 			
 			$('#message4').html('Password did not match!!'); 
@@ -210,8 +227,9 @@ $(document).ready(function() {
 				},
 				cache: false,
 				success: function(dataResult){
-					$('#message4').html(dataResult); 
+					alert(dataResult);
 					var dataResult = JSON.parse(dataResult);
+					$('#btn_staff').html('Create Account'); 
 					if(dataResult.statusCode==201){
 						$("#staff_form").hide();
 						$('#message_created_account1').html('Account Created!! ');
@@ -240,6 +258,7 @@ $(document).ready(function() {
 		}
 	}
 		else{
+			$('#btn_staff').html('Create Account'); 
             $("#staff_form :input").prop('disabled', false);    
 			
 			$('#message4').html('Please fill all the fields!!'); 
