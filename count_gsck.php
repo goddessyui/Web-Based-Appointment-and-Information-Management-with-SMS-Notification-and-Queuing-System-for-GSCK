@@ -7,7 +7,7 @@
                 <a href="#">
                     <div class="card">
 
-                        <div class="card_title" id="activerequests">Enrolled Students</div>
+                        <div class="card_title" id="activerequests">Enrolled student</div>
 
                         <div class="card_body">
                             <?php
@@ -43,7 +43,7 @@
             <div class="col_3">
                 <a href="#">
                     <div class="card">
-                        <div class="card_title" id="missedrequests">Registered Students</div>
+                        <div class="card_title" id="missedrequests">Registered Student</div>
                         <div class="card_body">
                             <?php
                                 $registeredstudents = "SELECT * FROM tbl_student_registry";

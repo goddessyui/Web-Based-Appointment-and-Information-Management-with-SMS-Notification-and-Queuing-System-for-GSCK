@@ -194,18 +194,7 @@
 
         </div>
 
-        <main></main>
-    </div>
-</div>
 
-
-
-
-
-<div class="mobile_header"></div>
-
-</body>
-</html>
 
 
 
