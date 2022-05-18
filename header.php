@@ -1,4 +1,5 @@
 <?php
+
     include_once("dbconfig.php");
     session_start();
     $student_id = !empty($_SESSION["student_id"])?$_SESSION["student_id"]:'';
@@ -155,7 +156,8 @@
                             </div>
 
                             <div class="input_button_div">
-                                <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" />
+                                <!-- <input type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" /> -->
+                                <button type="button" name="button_login" class="login_button" value="LOGIN" id="btn_login" >LOGIN</button>
                             </div>
 
                         </form>
@@ -200,8 +202,8 @@
                                 <input type="text" name="forgot_username" id="forgot_username" placeholder="Enter your username"/>
                             </div>
 
-                            <input type="button" name="btn_verify" class="btn_success" value="Next" id="btn_verify" />
-
+                            <!-- <input type="button" name="btn_verify" class="btn_success" value="Next" id="btn_verify" /> -->
+                            <button type="button" name="btn_verify" class="btn_success" value="Next" id="btn_verify">Next</button>
                             <!-- message for errors -->
                             <div class="form-group">
                                 <p id="message"></p>
@@ -222,11 +224,13 @@
                                     <input type="text" name="verification_code" id="verification_code" placeholder="Enter Verification Code" class="verification_input"/>
                                 </div>
 
-                                <input type="button" name="btn_otp_verify" class="btn_success" value="Resend" id="btn_otp_resend" disabled/>
+                                <!-- <input type="button" name="btn_otp_verify" class="btn_success" value="Resend" id="btn_otp_resend" disabled/> -->
+                                <button type="button" name="btn_otp_verify" class="btn_success" value="Resend" id="btn_otp_resend" disabled><i class="fa fa-spinner fa-spin"></i><span id="count"></span></button>
                             </div>
 
                             <div>
-                                <input type="button" name="btn_otp_verify" class="btn_success" value="Verify" id="btn_otp_verify" disabled/>
+                                <!-- <input type="button" name="btn_otp_verify" class="btn_success" value="Verify" id="btn_otp_verify" disabled/> -->
+                                <button type="button" name="btn_otp_verify" class="btn_success" value="Verify" id="btn_otp_verify" disabled>Verify</button>
                                 <div class="countdown_div">
                                     <small id="countdown"></small>
                                 </div>
@@ -274,7 +278,8 @@
                             </div>
 
                             <div>
-                                <input type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled/>
+                                <!-- <input type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled/> -->
+                                <button type="button" name="btn_change_pass" value="Change Password" id="btn_change_pass" disabled>Change Password</button>
                             </div>
 
                             <!-- message for errors -->
@@ -337,7 +342,8 @@
 
 
                             <div class="form_group">
-                                <input type="button" name="btn_verify" class="btn_success" value="Proceed to Registration" id="btn_verify_reg" />
+                                <!-- <input type="button" name="btn_verify" class="btn_success" value="Proceed to Registration" id="btn_verify_reg" /> -->
+                                <button type="button" name="btn_verify" class="btn_success" value="Proceed to Registration" id="btn_verify_reg" >Proceed to Registration</button>
                             </div>
 
                             <small id="message_reg" style="color:red;"></small>
@@ -593,6 +599,7 @@
 <script>
 $(document).ready(function() {
     $('#btn_login').on('click', function() {
+        $('#btn_login').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
         $("#login_form_div_id :input").prop('disabled', true); 
         var username = $('#username').val();
         var password = $('#password').val();
@@ -608,6 +615,7 @@ $(document).ready(function() {
                 cache: false,
                 success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
+                    $('#btn_login').html('Login'); 
                     if(dataResult.statusCode==200){
                         $("#login_form_div_id :input").prop('disabled', false); 
                         location.href = "index.php"; 
@@ -629,12 +637,21 @@ $(document).ready(function() {
                         $("#login_form_div_id :input").prop('disabled', false); 
                         $('#login_message').html('Account not existing in Staff record!');
                     }
+                    if(dataResult.statusCode==205){
+						$("#login_message").html("Student Verified !");
+        				setInterval(function() { location.href = "register_student.php"; }, 500);
+					}
+                    if(dataResult.statusCode==206){
+						$("#login_message").html("Staff Verified !");
+        				setInterval(function() { location.href = "register_admin.php"; }, 500);
+					}
 
                     
                 }
             });
         }
         else{
+            $('#btn_login').html('Login'); 
             $("#login_form_div_id :input").prop('disabled', false); 
             $('#login_message').html('Please fill all the field !');
         }
@@ -706,6 +723,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 
 	$('#btn_verify').on('click', function() {
+    $('#btn_verify').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
     $("#username_verify :input").prop('disabled', true); 
 		var username = $('#forgot_username').val();
 		if(username!=""){
@@ -718,7 +736,8 @@ $(document).ready(function() {
 				},
 				cache: false,
 				success: function(dataResult){
-					var dataResult = JSON.parse(dataResult);	
+					var dataResult = JSON.parse(dataResult);
+                    $('#btn_verify').html('Next'); 	
 					if(dataResult.statusCode==201){
                         $("#username_verify :input").prop('disabled', false); 
             			var timeleft = 30;
@@ -729,8 +748,10 @@ $(document).ready(function() {
                   		if(timeleft <= 0){
                 		clearInterval(downloadTimer);
                 		$('#btn_otp_resend').prop('disabled', false);
+                        $('#btn_otp_resend').html('Resend'); 
                 		document.getElementById("countdown").innerHTML = "";
                 		} else {
+                        $('#count').html(timeleft); 
                 		document.getElementById("countdown").innerHTML = timeleft;
                 		}timeleft -= 1; }, 1000);
 						$("#otp_verify").show();
@@ -754,8 +775,10 @@ $(document).ready(function() {
                   		if(timeleft <= 0){
                 		clearInterval(downloadTimer);
                 		$('#btn_otp_resend').prop('disabled', false);
+                        $('#btn_otp_resend').html('Resend'); 
                 		document.getElementById("countdown").innerHTML = "";
                 		} else {
+                        $('#count').html(timeleft); 
                 		document.getElementById("countdown").innerHTML = timeleft;
                 		}timeleft -= 1;}, 1000);
 						$("#otp_verify").show();
@@ -778,6 +801,7 @@ $(document).ready(function() {
 			});
 		}
 		else{
+            $('#btn_verify').html('Next'); 	
             $("#username_verify :input").prop('disabled', false); 
 			$('#message').html('Please enter your username !');
 		}
@@ -787,6 +811,7 @@ $(document).ready(function() {
 
   // resend
 	$('#btn_otp_resend').on('click', function() {
+    $('#btn_otp_resend').html('<i class="fa fa-spinner fa-spin"></i><span id="count"></span>'); 
     $('#btn_otp_resend').prop('disabled', true);
 		var username1 = $('#hidden_username').val();
     	var mobile_number = $('#hidden_mobile_number').val();	
@@ -808,8 +833,10 @@ $(document).ready(function() {
                   	if(timeleft <= 0){
                 	clearInterval(downloadTimer);
                 	$('#btn_otp_resend').prop('disabled', false);
+                    $('#btn_otp_resend').html('Resend'); 
                 	document.getElementById("countdown").innerHTML = "";
                 	} else {
+                    $('#count').html(timeleft); 
                 	document.getElementById("countdown").innerHTML = timeleft;
                 	}timeleft -= 1; }, 1000);              
 					}
@@ -831,6 +858,7 @@ $(document).ready(function() {
 
 	// otp VERIFY
 	$('#btn_otp_verify').on('click', function() {
+    $('#btn_otp_verify').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
     $('#back_to_login').prop('disabled', true);
     $('#btn_otp_verify').prop('disabled', true);		
     var verification_code = $('#verification_code').val();
@@ -847,7 +875,8 @@ $(document).ready(function() {
 				},
 				cache: false,
 				success: function(dataResult){
-					var dataResult = JSON.parse(dataResult);	
+					var dataResult = JSON.parse(dataResult);
+                    $('#btn_otp_verify').html('Verify'); 	
 					if(dataResult.statusCode==201){
                         $('#back_to_login').prop('disabled', false);
                         $("#verification_code").prop('disabled', false); 
@@ -873,6 +902,7 @@ $(document).ready(function() {
 			});
 		}
 		else{
+            $('#btn_otp_verify').html('Verify'); 	
             $('#back_to_login').prop('disabled', false);
             $("#verification_code").prop('disabled', false); 
       		$('#btn_otp_verify').prop('disabled', false);		
@@ -885,6 +915,7 @@ $(document).ready(function() {
 // change pass
 $('#btn_change_pass').on('click', function() {
     $("#change_pass :input").prop('disabled', true); 
+    $('#btn_change_pass').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
     $('#btn_change_pass').prop('disabled', true);	
     var verification_code = $('#v_number').val();
 	var username = $('#hidden_username').val();
@@ -893,38 +924,47 @@ $('#btn_change_pass').on('click', function() {
     var verify = $('#verify').val();
 	if(new_pass!=""&&new_pass_verify!=""){
       if (verification_code==""){
+        $('#btn_change_pass').html('Change Password'); 
         $("#change_pass :input").prop('disabled', false); 
         $("#message2").html("An error occured, please refresh the page !");
       	}
       	else if (username==""){
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html("An error occured, please refresh the page !");
       	}
       	else if (verify==""){
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html("An error occured, please refresh the page !");
       	}
       	else if (new_pass.length < 8) {
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
       	$("#message2").html('Password must be at least 8 characters !!');
         }
       	else if (new_pass.length > 16) {
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html('Password must not exceed 16 characters !!'); 
         }
 		else if (!/^(?!.* )/.test(new_pass)) {
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
 		$('#message2').html('Password must not contain space !!'); 
 		}
         else if  (new_pass.search(/[a-z]/i) < 0) {
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html('Password must contain at least one letter !!');
         }
         else if  (new_pass.search(/[0-9]/) < 0) {
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html('Password must contain at least one digit !!'); 
         }
       	else if (new_pass != new_pass_verify){
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
         $("#message2").html("Password did not match !");
       	}
@@ -941,7 +981,8 @@ $('#btn_change_pass').on('click', function() {
 				},
 				cache: false,
 				success: function(dataResult){
-					var dataResult = JSON.parse(dataResult);	
+					var dataResult = JSON.parse(dataResult);
+                    $('#btn_change_pass').html('Change Password'); 	
 					if(dataResult.statusCode==201){
                     $("#change_pass :input").prop('disabled', false); 
             		var timeleft = 30;	
@@ -962,6 +1003,7 @@ $('#btn_change_pass').on('click', function() {
     	}
 		}
 		else{
+            $('#btn_change_pass').html('Change Password'); 
             $("#change_pass :input").prop('disabled', false); 
 			$('#message2').html('Please fill all the field!');
 		}
@@ -979,6 +1021,7 @@ $('#btn_change_pass').on('click', function() {
 	// VERIFICATION
 $(document).ready(function() {
 	$('#btn_verify_reg').on('click', function() {
+        $('#btn_verify_reg').html('<i class="fa fa-spinner fa-spin"></i> Loading'); 
         $("#verification_form :input").prop('disabled', true); 
 		var s_id = $('#s_id').val();
 		var first_name 	 = $('#first_name').val().toLowerCase();
@@ -996,6 +1039,7 @@ $(document).ready(function() {
 				cache: false,
 				success: function(dataResult){
 					var dataResult = JSON.parse(dataResult);	
+                    $('#btn_verify_reg').html('Proceed to Registration'); 
 					if(dataResult.statusCode==201){
 						$("#verification_form :input").prop('disabled', false); 
                         $("#verification_form").hide();
@@ -1026,6 +1070,7 @@ $(document).ready(function() {
 			});
 		}
 		else{
+            $('#btn_verify_reg').html('Proceed to Registration'); 
             $("#verification_form :input").prop('disabled', false); 
 			$('#message_reg').html('Please fill all the field !');
 		}
