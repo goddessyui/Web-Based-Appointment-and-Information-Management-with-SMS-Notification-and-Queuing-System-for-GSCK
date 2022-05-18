@@ -14,12 +14,21 @@ session_start();
         $query1 = mysqli_query($db, "SELECT * FROM tbl_student_record WHERE student_id='{$student_id}'");
         
         if (mysqli_num_rows($query1) == 1) {
-            session_unset();
-            session_destroy();
-            session_start();
-            $_SESSION["student_id"] = $student_id;
-            $_SESSION["student_username"] = $row["username"];
-            echo json_encode(array("statusCode"=>200));
+            if($row['register_status']==0){
+                session_unset();
+    	        session_destroy();
+		        session_start();
+                $_SESSION["stu_id"] = $row['student_id'];
+                echo json_encode(array("statusCode"=>205));
+            }
+            else{
+                session_unset();
+                session_destroy();
+                session_start();
+                $_SESSION["student_id"] = $student_id;
+                $_SESSION["student_username"] = $row["username"];
+                echo json_encode(array("statusCode"=>200));
+            }
         }
         else{
             echo json_encode(array("statusCode"=>203));
@@ -41,14 +50,22 @@ session_start();
         $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_record WHERE staff_id='{$staff_id}'");
 
         if (mysqli_num_rows($query3) == 1) {
+            if($row['register_status']==0){
+                session_unset();
+    	        session_destroy();
+		        session_start();
+                $_SESSION["st_id"] = $row['staff_id'];
+                echo json_encode(array("statusCode"=>206));
+            }
+            else{
                 session_unset();
                 session_destroy();
                 session_start();
                 $_SESSION["staff_id"] = $staff_id;
                 $_SESSION["position"] = $position;
                 $_SESSION["staff_username"] = $row["username"];
-               
                 echo json_encode(array("statusCode"=>201));
+            }
            
         }
         else{
