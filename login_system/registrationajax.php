@@ -59,12 +59,15 @@ if ($_POST['type']==2) {
     $passwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
+            $fetch = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}' AND student_id='{$student_id}'");
+                if (mysqli_num_rows($fetch)==1){
 
-                if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+                if (mysqli_num_rows($query) == 1 && mysqli_num_rows($query1) == 0){
                 $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
                 $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
                 if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
-                $sql = "INSERT INTO tbl_student_registry ( `student_id`, `first_name`, `last_name`, `username`, `password`, `mobile_number`, `course`, `year`) VALUES ('{$student_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}')";
+                // $sql = "INSERT INTO tbl_student_registry (`username`, `password`, `mobile_number`, `course`, `year`, `register_status`) VALUES ('{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}', '1')";
+                $sql = "UPDATE tbl_student_registry SET username='$username', `password`='$passwd' , mobile_number='$number' , course='$course' , `year`='$year' , register_status='1' WHERE student_id = '{$student_id}'";
                     if (mysqli_query($db, $sql)) {
                         session_unset();
                         session_destroy();
@@ -85,6 +88,37 @@ if ($_POST['type']==2) {
                 else {
                 echo json_encode(array("statusCode"=>203,"username" => $username));
                 }
+
+            }
+
+            else {
+                if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+                    $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
+                    $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
+                    if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
+                    // $sql = "INSERT INTO tbl_student_registry (`username`, `password`, `mobile_number`, `course`, `year`, `register_status`) VALUES ('{$username}', '{$passwd}', '{$number}', '{$course}', '{$year}', '1')";
+                    $sql = "UPDATE tbl_student_registry SET username='$username', `password`='$passwd' , mobile_number='$number' , course='$course' , `year`='$year' , register_status='1' WHERE student_id = '{$student_id}'";
+                        if (mysqli_query($db, $sql)) {
+                            session_unset();
+                            session_destroy();
+                            session_start();
+                            $_SESSION["student_id"] = $student_id;
+                            $_SESSION["student_username"] = $username;
+                            echo json_encode(array("statusCode"=>201));
+                        }
+    
+                        else {
+                        echo json_encode(array("statusCode"=>202));
+                        }
+                    }
+                    else {
+                        echo json_encode(array("statusCode"=>204));
+                    }
+                        }
+                    else {
+                    echo json_encode(array("statusCode"=>203,"username" => $username));
+                    } 
+            }
             }
 
 // Student Registration
@@ -104,11 +138,14 @@ if ($_POST['type']==3) {
     $passwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}'");
             $query1 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE username='{$username}'");
-                if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+            $fetch = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE username='{$username}' AND staff_id='{$staff_id}'");
+            if (mysqli_num_rows($fetch)==1){
+                if (mysqli_num_rows($query) == 1 && mysqli_num_rows($query1) == 0){
                     $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
                     $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
                 if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
-                        $sql = "INSERT INTO tbl_staff_registry ( `staff_id`, `first_name`, `last_name`, `username`, `password`, `position`, `mobile_number`) VALUES ('{$staff_id}', '{$first_name}', '{$last_name}', '{$username}', '{$passwd}', '{$position}', '{$number}')";
+                        // $sql = "INSERT INTO tbl_staff_registry (`username`, `password`, `position`, `mobile_number`, `register_status`) VALUES ('{$username}', '{$passwd}', '{$position}', '{$number}', '1')";
+                        $sql = "UPDATE tbl_staff_registry SET username='$username', `password`='$passwd' , mobile_number='$number' , `position`='$position' , register_status='1' WHERE staff_id = '{$staff_id}'";
                         if (mysqli_query($db, $sql)){
                         foreach($type as $types){
                         $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
@@ -135,7 +172,41 @@ if ($_POST['type']==3) {
                 else{
                     echo json_encode(array("statusCode"=>203,"username" => $username));
                 }
-                   
+            }
+            else{
+                    if (mysqli_num_rows($query) == 0 && mysqli_num_rows($query1) == 0){
+                        $query2 = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE mobile_number='{$number}'");
+                        $query3 = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE mobile_number='{$number}'");
+                    if (mysqli_num_rows($query2) == 0 && mysqli_num_rows($query3) == 0){
+                            // $sql = "INSERT INTO tbl_staff_registry (`username`, `password`, `position`, `mobile_number`, `register_status`) VALUES ('{$username}', '{$passwd}', '{$position}', '{$number}', '1')";
+                            $sql = "UPDATE tbl_staff_registry SET username='$username', `password`='$passwd' , mobile_number='$number' , `position`='$position' , register_status='1' WHERE staff_id = '{$staff_id}'";
+                            if (mysqli_query($db, $sql)){
+                            foreach($type as $types){
+                            $query = "INSERT INTO tbl_staff_appointment (appointment_type, staff_id)VALUES ('{$types}', '{$staff_id}')";
+                            $query_run = mysqli_query($db, $query);
+                            }
+                            session_unset();
+                            session_destroy();
+                            session_start();
+                            $_SESSION["staff_id"] = $staff_id;
+                            $_SESSION["staff_username"] = $username;
+                            $_SESSION["position"] = $position;
+                            echo json_encode(array("statusCode"=>201));   
+                            }
+    
+                            else {
+                                echo json_encode(array("statusCode"=>202));   
+                            }
+                        }
+                    else{
+                            echo json_encode(array("statusCode"=>204));   
+                        }
+                    }
+    
+                    else{
+                        echo json_encode(array("statusCode"=>203,"username" => $username));
+                    }
+            }   
             }
 
 // Staff Registration
