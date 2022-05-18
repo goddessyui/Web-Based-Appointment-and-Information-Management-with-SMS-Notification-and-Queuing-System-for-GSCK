@@ -146,7 +146,7 @@ if ($staff_id == ""){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/admin_style.css">
-    <title>whiteenstate College of Koronadal - Admin Dashboard</title>
+    <title>Goldenstate College of Koronadal - Admin Dashboard</title>
 </head>
 <body>
 
@@ -453,6 +453,7 @@ header .title_name h3 {
 .user_wrapper small {
 	margin-right: 12px;
 	margin-left: 2px;
+	background: green;
 }
 
 .user_wrapper  .btn_logout_admin{
