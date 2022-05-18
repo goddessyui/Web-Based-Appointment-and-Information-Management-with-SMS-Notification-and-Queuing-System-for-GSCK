@@ -449,9 +449,8 @@
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        background: #EFF0F4;
         padding: 15px;
-        background: #424F59;
+        background: #EDEEF3;
     }
     .card_row_div .col_3 {
         width: 182px;

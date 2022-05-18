@@ -474,7 +474,7 @@
     main {
         width: 100%;
         height: 90vh;
-        background: #F1F3F6;
+        background: #EDEEF3;
         overflow-y: scroll;
     }
     .mobile_header {
