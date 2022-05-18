@@ -453,7 +453,6 @@ header .title_name h3 {
 .user_wrapper small {
 	margin-right: 12px;
 	margin-left: 2px;
-	background: green;
 }
 
 .user_wrapper  .btn_logout_admin{

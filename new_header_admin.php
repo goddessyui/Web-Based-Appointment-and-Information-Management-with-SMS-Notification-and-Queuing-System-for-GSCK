@@ -151,7 +151,7 @@
                 <a href="staff_accepted_requests.php">
                     <li>
                         <img src="icon/white/schedule_white.svg" alt="" width="25">
-                        <span>Records</span>
+                        <span>Reports</span>
                     </li>
                 </a>
 
@@ -180,7 +180,7 @@
                 </div>
             </div>
 
-            <div class="notif_container">
+            <div class="user_wrapper">
 
                 <div class="dropdown-toggle" data-toggle="dropdown">
                     <button onclick="BtnDropdown()" class="btn_no_bg">
@@ -194,18 +194,7 @@
 
         </div>
 
-        <main></main>
-    </div>
-</div>
 
-
-
-
-
-<div class="mobile_header"></div>
-
-</body>
-</html>
 
 
 
@@ -274,6 +263,17 @@
     .admin_name p {
         font-size: 14px;
         color: #BBBBBD;
+        max-width: 16vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        position: relative;
+    }
+    .admin_name p:hover {
+        overflow: visible;
+        white-space: normal;
     }
 
 
@@ -325,33 +325,36 @@
     }
     .menu_container,
     .title_container,
-    .notif_container {
+    .user_wrapper {
         height: 10vh;
     }
     .menu_container,
-    .notif_container {
+    .user_wrapper {
         width: 20vw;
     }
-    .notif_container {
+    .user_wrapper {
         display: flex;
         align-items: center;
         justify-content: right;
         padding-right: 25px;
     }
-    .notif_container  .btn_logout_admin {
+    .user_wrapper  .btn_logout_admin {
         background: #2D303A;
         margin-left: 12px;
         border: none;
         padding: 4px 10px;
-        font-size: 12px;
+        padding-top: 3px;
     }
-    .notif_container  .btn_logout_admin:hover {
+ 
+    .user_wrapper  .btn_logout_admin:hover {
         background: #424F59;
     }
-    .notif_container a {
-        color: #eee;
+    .user_wrapper .btn_logout_admin a {
         text-decoration: none;
+        color: #eee;
+        font-size: 12px;
     }
+
     .fa.fa-bell-o {
         font-size: 18px;
         cursor: pointer;
@@ -380,6 +383,71 @@
     }
 
 
+
+
+
+
+
+
+
+
+    .dropdown-menu {
+        width: 380px;
+        height: 100vh;
+        position: fixed;
+        top: 10vh;
+        right: 0;
+        list-style-type: none;
+        box-sizing: border-box;
+        opacity: 0;
+        transform: translateX(55vw);
+		background: #2D303A;
+		overflow: auto;
+        padding-top: 5vh;
+    }
+ 
+    .notif_container {
+        padding-left: 3vw;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 2.5vw;
+        transition: all .2s ease-in-out;
+    }
+    .notif_container:hover {
+        background: #424F59;
+    }
+  
+    .notif_container:last-child {
+        border: none;
+    }
+
+    .notif_container a {
+        text-decoration: none;
+        color: #BBBBBD;
+    }
+
+    .notif_container .notif_title {
+        font-size: 16px;
+    }
+
+    .notif_container small {
+        font-size: 14px;
+        color: #BBBBBD;
+    }
+    .count {
+        height: 14px;
+        width: 14px;
+        font-size: 9px;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -4px;
+        right: -5px;
+    }
+
     .menu_container {
         padding-left: 15px;
         display: flex;
@@ -406,7 +474,7 @@
     main {
         width: 100%;
         height: 90vh;
-        background: #F1F3F6;
+        background: #EDEEF3;
         overflow-y: scroll;
     }
     .mobile_header {
@@ -425,3 +493,83 @@
         }
     }
 </style>
+
+
+
+<script>
+
+function BtnDropdown() {
+
+var x = document.getElementById("dropdown_id");
+
+	if (x.style.opacity === "1") {
+		x.style.opacity = "0";
+		x.style.transform = "translateX(55vw)";
+        x.style.transition = "all 0.5s ease-in-out";
+
+	} 
+	else {
+		x.style.opacity = "1";
+		x.style.transform = "translateX(0)";
+        x.style.transition = "all 0.5s ease-in-out";
+
+	}
+}
+
+
+
+$(document).ready(function(){
+ var id = '<?php echo $_SESSION["staff_id"]; ?>'
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"fetch_notification_admin.php",
+   method:"POST",
+   data:{view:view, id:id},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification).css({backgroundColor: 'red'});
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+
+//-------Dropdown toggle
+
+//* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown_btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+
+//-------Dropdown toggle
+
+</script>
