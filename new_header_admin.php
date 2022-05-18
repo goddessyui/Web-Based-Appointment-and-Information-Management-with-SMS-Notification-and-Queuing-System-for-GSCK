@@ -411,8 +411,7 @@
         list-style-type: none;
         box-sizing: border-box;
         opacity: 0;
-        transform: translateX(55vh);
-        transition: all .5s ease-in-out;
+        transform: translateX(55vw);
 		background: #2D303A;
 		overflow: auto;
         padding-top: 5vh;
@@ -444,7 +443,7 @@
 
     .notif_container small {
         font-size: 14px;
-        color: #eee;
+        color: #BBBBBD;
     }
     .count {
         height: 14px;
@@ -506,6 +505,8 @@
     }
 </style>
 
+
+
 <script>
 
 function BtnDropdown() {
@@ -514,15 +515,14 @@ var x = document.getElementById("dropdown_id");
 
 	if (x.style.opacity === "1") {
 		x.style.opacity = "0";
-		x.style.transform = "translateX(55vh)";
+		x.style.transform = "translateX(55vw)";
+        x.style.transition = "all 0.5s ease-in-out";
 
 	} 
 	else {
 		x.style.opacity = "1";
 		x.style.transform = "translateX(0)";
-		menuBtn.classList.remove('open');
-		menuOpen = false;
-		document.getElementById('open_nav_container').style.transform = "translateX(-380px)";
+        x.style.transition = "all 0.5s ease-in-out";
 
 	}
 }
