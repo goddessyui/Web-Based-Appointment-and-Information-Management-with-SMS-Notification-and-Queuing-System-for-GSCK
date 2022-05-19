@@ -95,7 +95,59 @@
     </script>
 
 
-        
+       <div class="appointment">
+
+            <div class="current_appnt">
+                <div class="pending_title">
+                    <h3>Today's Appointments</h3>
+                    <button>View all</button>
+                </div>
+                <table>
+                    <tr>
+                        <th>Student name</th>
+                        <th>Date requested</th>
+                        <th>Appointment type</th>
+                        <th>Note</th>
+                    </tr>
+
+                    <tr>
+                        <td>Jonald Penpillo</td>
+                        <td>May 11, 2022</td>
+                        <td>Request for grades</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jonald Penpillo</td>
+                        <td>May 11, 2022</td>
+                        <td>Request for grades</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jonald Penpillo</td>
+                        <td>May 11, 2022</td>
+                        <td>Request for grades</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jonald Penpillo</td>
+                        <td>May 11, 2022</td>
+                        <td>Request for grades</td>
+                        <td>-</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="limit_appnt"></div>
+       </div>
+
+
+
+
+
     </main>
 
 
@@ -168,9 +220,75 @@
     }
    
 
+   
+    .appointment {
+        width: 100%;
+        display: flex;
+        padding: 15px;
+    }
+    .appointment .current_appnt {
+        width: 70%;
+        background: #fff;
+        padding: 30px;
+        min-height: 55vh;
+    }
+    .current_appnt .pending_title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    .current_appnt table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    .current_appnt table th {
+        padding: 20px 15px;
+        background: #fff;
+        border: none;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-align: left;
+    }
+    .current_appnt table td {
+        padding: 20px 15px;
+        font-size: 14px;
+        color: #444;
+        font-weight: 500;
+    }
+    .current_appnt table tr {
+        background: #fff;
+    }
+    .current_appnt table tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+    
 
+        .pending_title h3 {
+            font-size: 16px;
+            color: #333;
+        }
+        .pending_title button {
+            border: none;
+            width: 120px;
+            height: 26px;
+            background: #FE4961;
+            color: #eee;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            border-radius: 15px;
+            font-weight: 500;
+        }
 
-
+    .appointment .limit_appnt {
+        width: 30%;
+        height: 50vh;
+        background: #fff;
+        margin-left: 15px;
+    }
 
 
 
