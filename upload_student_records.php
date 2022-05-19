@@ -9,7 +9,6 @@ require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/Exception.php';
 require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/gmailsender/vendor/phpmailer/src/SMTP.php';
 
-// passing true in constructor enables exceptions in PHPMailer
 
 
 
@@ -163,7 +162,9 @@ else{
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                             <input type="submit" class="btn_upload" name="upload" value="Upload" />
                         </div>
-                        <P>Overwrite Data<input type="checkbox" name="check_list[]" value="true">
+                        <div>
+                        <input type="checkbox" name="check_list[]" value="true"><p>Overwrite Previous list</p>
+                        </div>
                         <p>
                             <?php
                                 $message = '';
@@ -214,7 +215,7 @@ else{
                     <input type="text"  id="lastname" name="lastname" placeholder="Last Name" required>
                     <input type="text"  id="firstname" name="firstname" placeholder="First Name" required>
                     <input type="text"  id="studentid" name="studentid" placeholder="Student ID" required> 
-                    <input type="text"  id="email" name="email" placeholder="Email" required> 
+                    <input type="text"  id="email" name="email" placeholder="Email Address" required> 
                     <div class="btn_add_container">
                         <button type="submit" class="btn_add" name="add">Add</button>
                     </div>

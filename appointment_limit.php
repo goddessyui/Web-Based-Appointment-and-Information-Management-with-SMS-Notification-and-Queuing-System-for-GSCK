@@ -18,7 +18,7 @@ include_once('dbconfig.php');
          
         } 
         else {
-            $limitapp="UPDATE tbl_appointment_limit SET appointment_limit = '.$limit_value.' WHERE limit_id = '1'";
+            $limitapp="UPDATE tbl_appointment_limit SET appointment_limit = '{$limit_value}' WHERE limit_id = '1'";
             if (mysqli_query($db, $limitapp)) {
                 header('location: admin.php?success=<p>Successfully updated appointment limit.</p>');
                 
