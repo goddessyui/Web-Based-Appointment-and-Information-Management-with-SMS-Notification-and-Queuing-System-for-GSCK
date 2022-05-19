@@ -61,12 +61,12 @@ if(isset($_POST["upload"]))
                             // Setting the email content
                             $mail->IsHTML(true);
                             $mail->Subject = "Goldenstate College Appointment System First Time Login Account";
-                            $mail->Body = 'Dear '.$fname.'<br><br>Your temporary username and password for <a href="gsck.online">Goldenstate College Appointment System</a> is ready to use.
+                            $mail->Body = 'Dear '.$fname.'<br><br>Your temporary username and password for <a href="gsck.online">Goldenstate College of Koronadal Appointment System</a> is ready to use.
                                             <br><br>Username: '.$username.'<br>Password: '.$password.
-                                            '<br><br>If you have any concerns dont hesitate to contact us in goldenstatecollege00@gmail.com<br><br>Do not share your temporary username and password to anyone';
-                            $mail->AltBody = 'Dear '.$fname.'\n\nYour temporary account for Goldenstate College Appointment System(gsck.online) is ready to use.
+                                            '<br><br>If you have any concerns, please dont hesitate to contact us at goldenstatecollege00@gmail.com<br><br>Do not share your temporary username and password to anyone';
+                            $mail->AltBody = 'Dear '.$fname.'\n\nYour temporary account for Goldenstate College of Koronadal Appointment System(gsck.online) is ready to use.
                             \n\nUsername: '.$username.'\nPassword: '.$password.
-                            '\n\nIf you have any concerns dont hesitate to contact us in goldenstatecollege00@gmail.com\n\nDo not share your temporary username and password to anyone';
+                            '\n\nIf you have any concerns, please dont hesitate to contact us at goldenstatecollege00@gmail.com\n\nDo not share your temporary username and password to anyone';
                             $mail->send();
 
                     }
