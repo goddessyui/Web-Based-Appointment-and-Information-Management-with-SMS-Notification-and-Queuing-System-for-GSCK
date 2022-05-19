@@ -99,44 +99,72 @@
 
             <div class="current_appnt">
                 <div class="pending_title">
-                    <h3>Today's Appointments</h3>
+                    <?php
+                    date_default_timezone_set('Asia/Manila');                           		
+                    $currentdate = date("F j, Y");
+                    ?>
+                    <h3>Today's Appointments (<?php echo $currentdate;?>)</h3>
                     <button>View all</button>
                 </div>
                 <table>
                     <tr>
-                        <th>Student name</th>
-                        <th>Date requested</th>
-                        <th>Appointment type</th>
+                        <th>Student Name</th>
+                        <th>Date Requested</th>
+                        <th>Appointment Type</th>
                         <th>Note</th>
                     </tr>
 
-                    <tr>
-                        <td>Jonald Penpillo</td>
-                        <td>May 11, 2022</td>
-                        <td>Request for grades</td>
-                        <td>-</td>
-                    </tr>
+                    <?php 
+                        date_default_timezone_set('Asia/Manila');                           		
+                        $currentdate = date("Y-m-d");
 
-                    <tr>
-                        <td>Jonald Penpillo</td>
-                        <td>May 11, 2022</td>
-                        <td>Request for grades</td>
-                        <td>-</td>
-                    </tr>
+                        $listapp = "SELECT 
+                            tbl_student_registry.first_name, 
+                            tbl_student_registry.last_name, 
+                            tbl_appointment.date_created, 
+                            tbl_appointment.appointment_type, 
+                            tbl_appointment.note
+                        FROM tbl_appointment_detail 
+                        INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id
+                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
+                        WHERE tbl_appointment.staff_id ='$staff_id' 
+                        AND tbl_appointment_detail.appointment_date = '$currentdate' 
+                        AND tbl_appointment_detail.status = 'Accepted' 
+                        LIMIT 5";
 
-                    <tr>
-                        <td>Jonald Penpillo</td>
-                        <td>May 11, 2022</td>
-                        <td>Request for grades</td>
-                        <td>-</td>
-                    </tr>
+                        $listapp_query = mysqli_query($db, $listapp);
+                        $count=mysqli_num_rows($listapp_query);
+                        if($count>0) {
 
-                    <tr>
-                        <td>Jonald Penpillo</td>
-                        <td>May 11, 2022</td>
-                        <td>Request for grades</td>
-                        <td>-</td>
-                    </tr>
+                        while($applist=mysqli_fetch_assoc($listapp_query)) { ?>
+                            <tr>
+                                <td>
+                                    <?php  echo $applist['first_name']. " ".  $applist['last_name'];?>
+                                </td>
+                                <td>
+                                    <?php  echo date('F j, Y', strtotime($applist['date_created'])); ?>
+                                </td>
+                                <td>
+                                    <?php  echo $applist['appointment_type']; ?>
+                                </td>
+                                <td>
+                                    <?php   echo $applist['note']; ?>
+                                </td>
+                            </tr> <?php
+
+                        }
+                        }
+                        else {
+                            ?>
+                                <tr>
+                                    <td colspan = "4">
+                                        <?php echo "You have no appointments today.";?>
+                                    </td>
+                                </tr>
+                            <?php
+                        }                  
+                    ?>
+
 
                 </table>
             </div>
