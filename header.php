@@ -9,7 +9,7 @@
     $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
     if ($staff_id != "" && $staff_username != ""){
         if ($position == "Registrar" OR "Accounting Staff/Scholarship Coordinator" OR "Teacher"){
-            echo '<script type="text/javascript">window.location.href="admin.php"</script>';
+            echo '<script type="text/javascript">window.location.href="dashboard.php"</script>';
         }
     }
 ?>
@@ -622,7 +622,7 @@ $(document).ready(function() {
                     }
                     else if(dataResult.statusCode==201){
                         $("#login_form_div_id :input").prop('disabled', false); 
-                        location.href = "admin.php"; 
+                        location.href = "dashboard.php"; 
                     }
                     else if(dataResult.statusCode==202){
                         $("#login_form_div_id :input").prop('disabled', false); 
