@@ -112,8 +112,8 @@
                 </li>
             </a>
 
-            <a>
-                <li href="claimcheque_pendingapp.php">
+            <a href="claimcheque_pendingapp.php">
+                <li>
                     <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
                     <span>Claim Cheque</span>
                 </li>
