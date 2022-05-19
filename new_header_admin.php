@@ -23,6 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="jquery_offline.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
     <title>GSCK Appointment Portal</title>
 </head>
 <body>
@@ -50,7 +52,7 @@
         </div>
         <nav>
         <ul>
-            <a href="admin.php">
+            <a href="dashboard.php">
                 <li>
                     <img src="icon/white/dashboard_white.svg" alt="" width="25">
                     <span>Dashboard</span>
@@ -318,7 +320,7 @@
     .header {
         width: 100%;
         height: 10vh;
-        background: #FFFEFE;
+        background: #fff;
         display: flex;
         align-items: center;
         justify-content: space-between;

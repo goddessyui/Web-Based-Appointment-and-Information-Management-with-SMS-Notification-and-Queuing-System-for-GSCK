@@ -3,8 +3,7 @@
 ?>
 
 
-    <main>
-            
+    <main> 
         <!---------------Reports for Registrar------------------------------------------------->
         <?php
         if ($position == "Registrar") {//Start of show if Registrar
@@ -12,424 +11,96 @@
         }//End of show if Registrar
         ?>
         <!---------------Reports for Registrar------------------------------------------------->
-
-
-            
-                <!---------------Limit Appointments and Show List of Students and Staff, only seen by Registrar------------------------------------------------->
-       
-            <div class="limit_div">
-                <?php 
-                if ($position == "Registrar") { ?>
-                    <div class="limit_container">
-                        <form action="appointment_limit.php" method="post">
-                            <div class="top_flex">
-                                <h4>Max number of Appointment per Day</h4>
-                            
-                                <?php
-                                    $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
-                                    $limitvalue= mysqli_query($db, $limit);
-                                    if($limitvalue==TRUE){
-                                        while($al=mysqli_fetch_assoc($limitvalue)){
-
-                                            ?><h4><?php echo $al['appointment_limit'];?></h4><?php
-                                ?>
-                            </div>
-
-                            <div class="top_flex">
-                                        <h4>Input Appointment Limit</h4>
-                                        <div class="form_group">
-                                            <input type="number" class="limit_value" name="limit_value" value="<?php echo $al['appointment_limit'];?>" min="1" max="5000">
-                                        </div>
-
-                                        <div class="form_group">
-                                            <input class="limit_btn" type="submit" name="limit" value="Set Limit">
-                                        </div>
-                            </div>
-
-                            <?php
-                                    }
-                                }
-                            ?>
-                        </form>
-                    </div>
-
-                    <?php
-                }
-                if ($position == "Accounting Staff/Scholarship Coordinator" OR $position=="Teacher") { 
-                    ?>
-
-                
-                    <div class="limit_container">
-                        <div class="top_flex">
-                            <h4>Allowed No. of Appointments Today:</h4>
-                            <?php  
-                            $applimit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
-                            $al = mysqli_query($db, $applimit);
-                            
-                            $limit= mysqli_fetch_assoc($al);
-                                ?><h4><?php echo $limit['appointment_limit'];?></h4>
-                        </div>
-                        <div class="top_flex">
-                            <h4 style="font-family: 'Roboto'; font-size: 13px; font-weight: 400; margin-top: 30px; text-transform: uppercase;">No. of Appointment Slots Taken Today:</h4>
-                            <?php
-                            date_default_timezone_set('Asia/Manila');                           		
-                            $currentdate = date("Y-m-d");
-                            
-                            $applimit = "SELECT appointment_detail_id FROM tbl_appointment_detail 
-                                WHERE `status` = ('Accepted' OR 'Cancelled') 
-                                AND appointment_date = '$currentdate'";
-                            $al = mysqli_query($db, $applimit);
-                            $count = mysqli_num_rows($al);
-                            ?><h4 style="font-family: 'Roboto Serif'; font-size: 30px; font-weight: 500;"><?php echo $count; ?></h4>     
-                        </div>
-                    </div>
-                    <?php
-                }
-
-                date_default_timezone_set('Asia/Manila');                           		
-                $currentdate = date("Y-m-d");
-
-                $countapp = "SELECT * FROM tbl_appointment_detail 
-                WHERE appointment_date = '$currentdate' 
-                AND `status`='Accepted'";
-
-                $countapp_today = mysqli_query($db, $countapp);
-                $countapp_today_result = mysqli_num_rows($countapp_today);
-             
-                if($countapp_today_result>0){
-                    ?>
-                    <div class="limit_container">
-                        <div id="top_x_div"></div>
-                    </div>
-                    <?php
-                }
-                else{
-                    ?>
-                    <div class="limit_container">
-                        <div class="no_sched">No Scheduled Appointments Today</div>
-                    </div>
-                    <?php
-                }
-                ?>
-
-                <div class="limit_container">
-                    <div id="piechart"></div>
-                </div>
-            
-            </div>
-
-            <div class="error_message">
-                <!--success or error-->                        
-                <?php 
-                    if(isset($_GET['success'])){
-                ?>
-                        <p>
-                            <?php 
-                                echo $_GET['success'];
-                            ?>
-                        </p>
-                <?php
-                    }
-                    if(isset($_GET['error'])){
-                ?>
-                                <p>
-                                    <?php 
-                                        echo $_GET['error'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                    else{
-                    }
-                ?>
-                <!--success or error-->
-            </div>
-
-
-
-            <div class="appointment_result">
-                <?php 
-                if ($position == "Registrar") { ?>    
-                    <div class="list_div">
-
-                        <div class="reg_print_div">
-
-                        <h4>List of Registered Staff</h4>
-
-                                <form method="post">
-                                    <span>Alphabetical</span>
-                                    <select name="alphabetical_ln_staff" id="alphabetical_ln_staff">
-                                        <option value="('%')">ALL</option>
-                                        <option value="'A%'">A</option>
-                                        <option value="'B%'">B</option>
-                                        <option value="'C%'">C</option>
-                                        <option value="'D%'">D</option>
-                                        <option value="'E%'">E</option>
-                                        <option value="'F%'">F</option>
-                                        <option value="'G%'">G</option>
-                                        <option value="'H%'">H</option>
-                                        <option value="'I%'">I</option>
-                                        <option value="'J%'">J</option>
-                                        <option value="'K%'">K</option>
-                                        <option value="'L%'">L</option>
-                                        <option value="'M%'">M</option>
-                                        <option value="'N%'">N</option>
-                                        <option value="'O%'">O</option>
-                                        <option value="'P%'">P</option>
-                                        <option value="'Q%'">Q</option>
-                                        <option value="'R%'">R</option>
-                                        <option value="'S%'">S</option>
-                                        <option value="'T%'">T</option>
-                                        <option value="'U%'">U</option>
-                                        <option value="'V%'">V</option>
-                                        <option value="'W%'">W</option>
-                                        <option value="'X%'">X</option>
-                                        <option value="'Y%'">Y</option>
-                                        <option value="'Z%'">Z</option>
-                                    </select>
-
-                                    <button id="regstaff" onclick="printDiv_regstaff()" disabled hidden>Print</button>
-                                    <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List"/>
-                                    <input id="hide_gen_report_regstaff" type="submit" value="Hide List" hidden/>
-                                
-                                </form>
-
-                            <!--<div class="row" id="generated_rep_registeredstaff"></div>-->
-                            <div class="row" id="generated_rep_registeredstaff_hidden"></div><!--- style="display: none;"-->
-                            
-                        </div>
-                    </div>
-
-                    <div class="list_div">
-
-                        <div class="reg_print_div">
-
-                            <h4>List of Registered Students</h4>
-
-                                <form method="post">
-                                    <span>Alphabetical</span>
-
-                                    <select name="alphabetical_ln_student" id="alphabetical_ln_student">
-                                        <option value="('%')">ALL</option>
-                                        <option value="'A%'">A</option>
-                                        <option value="'B%'">B</option>
-                                        <option value="'C%'">C</option>
-                                        <option value="'D%'">D</option>
-                                        <option value="'E%'">E</option>
-                                        <option value="'F%'">F</option>
-                                        <option value="'G%'">G</option>
-                                        <option value="'H%'">H</option>
-                                        <option value="'I%'">I</option>
-                                        <option value="'J%'">J</option>
-                                        <option value="'K%'">K</option>
-                                        <option value="'L%'">L</option>
-                                        <option value="'M%'">M</option>
-                                        <option value="'N%'">N</option>
-                                        <option value="'O%'">O</option>
-                                        <option value="'P%'">P</option>
-                                        <option value="'Q%'">Q</option>
-                                        <option value="'R%'">R</option>
-                                        <option value="'S%'">S</option>
-                                        <option value="'T%'">T</option>
-                                        <option value="'U%'">U</option>
-                                        <option value="'V%'">V</option>
-                                        <option value="'W%'">W</option>
-                                        <option value="'X%'">X</option>
-                                        <option value="'Y%'">Y</option>
-                                        <option value="'Z%'">Z</option>
-                                    </select>
-
-                                    <span>Course:</span>
-                                    <select name="student_course_report" id="student_course_report">
-                                        <option value="('%')">ALL</option>  
-                                        <option value="'BSHM'">BSHM</option>
-                                        <option value="'BSTM'">BSTM</option>
-                                        <option value="'BSIT'">BSIT</option>
-                                        <option value="'BSSW'">BSSW</option>
-                                        <option value="'ABE'">ABE</option>
-                                        <option value="'BECE'">BECE</option>
-                                        <option value="'BTVED'">BTVED</option>
-                                        <option value="'BSBA'">BSBA</option>
-                                        <option value="'ACT'">ACT</option>
-                                        <option value="'HM'">HM</option>
-                                        <option value="'TESDA PROGRAM'">TESDA PROGRAM</option>
-                                    </select>
-
-                                    <span>Year: </span> 
-                                    <select name="student_year_report" id="student_year_report">
-                                        <option value="('%')">ALL</option>
-                                        <option value="'1'">1st Year</option>
-                                        <option value="'2'">2nd Year</option>
-                                        <option value="'3'">3rd Year</option>
-                                        <option value="'4'">4th Year</option>
-                                    </select>
-
-                                    <button id="regstudent" onclick="printDiv_regstudent()" disabled hidden>Print</button>
-                                    <input id="ajaxSubmit_gen_report_regstudent" type="submit" value="Show List"/>
-                                    <input id="hide_gen_report_regstudent" type="submit" value="Hide List" hidden/>
-                                    
-                                </form>
-
-                            <!--<div class="row" id="generated_rep_registeredstudents"></div>-->
-                            <div class="row" id="generated_rep_registeredstudents_hidden"></div><!--- style="display: none;"-->
-                        </div>
-                    </div>
-                
-
-                    <div class="list_div">
-
-                        <div class="reg_print_div">
-                            <h4>List of Appointment Schedules</h4>
-                                <form method="post">   
-                                    <span>DATE:</span>
-                                    <input type="date" name="appointment_date" id="appointmentdate" value="<?php echo date("Y-m-d");?>" style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">         
-                                            
-                                    <button id="print_app" onclick="printDiv_appointment_sched()" disabled hidden>PRINT</button>
-                                    <input id="ajaxSubmit_appointment_schedule" type="submit" value="Show List"/>
-                                    <input id="hide_appointment_schedule" type="submit" value="Hide List" hidden/>
-                                </form>
-                            
-                                <div class="row" id="generated_appointment_schedule_hidden"></div>
-                        </div>
-                    </div>
-
-                    <?php
-                }
-                    ?>    
-
-
-                    <div class="list_div">
-                        <!-- Show and Print Appointment REPORT, seen by all admins -->
-                        <div class="reg_print_div">
-                            <h4>Appointment Reports</h4>
-                            <form method="post">
-
-                                <span>STATUS:</span>
-                                <select name="status_report" id="status_report">  
-                                    <option value="'Accepted'">Accepted</option>
-                                    <option value="'Declined'">Declined</option>
-                                    <option value="'Canceled'">Canceled</option>
-                                    <option value="'Done'">Done</option>
-                                    <option value="'Accepted' AND DATE(tbl_appointment_detail.appointment_date) < CURDATE()">Missed</option>
-                                </select>
-                                
-                                <span>FREQUENCY:</span>
-                                <select name="time_report" id="time_report">  
-                                    <option value="daily">Daily Report</option>
-                                    <option value="weekly">Weekly Report</option>
-                                    <option value="monthly">Monthly Report</option>
-                                </select>                   
-                                    
-                                <button id="print_report"onclick="printDiv_appointment_report()" disabled hidden>PRINT</button>
-                                <input id="ajaxSubmit_appointment_report" type="submit" value="Show List"/>
-                                <input id="hide_appointment_report" type="submit" value="Hide List" hidden/>
-                            </form>
-                                <div class="row" id="generated_appointment_report_hidden"></div>
-                        </div>
-                        <!-- Show and Print Appointment REPORT, seen by all admins -->
-                    </div>
-
- 
-
-                        <?php 
-                    if ($position == "Accounting Staff/Scholarship Coordinator") { ?> 
-
-                        <div class="list_div">
-
-                            <div class="reg_print_div">
-                                <h4>List of Unifast Grantees</h4>
-
-
-                                <form method="post">
-                                    <span>Alphabetical (Last Name):</span>
-                                    <select name="alphabetical_ln_ug" id="alphabetical_ln_ug">
-                                        <option value="('%')">ALL</option>
-                                        <option value="'A%'">A</option>
-                                        <option value="'B%'">B</option>
-                                        <option value="'C%'">C</option>
-                                        <option value="'D%'">D</option>
-                                        <option value="'E%'">E</option>
-                                        <option value="'F%'">F</option>
-                                        <option value="'G%'">G</option>
-                                        <option value="'H%'">H</option>
-                                        <option value="'I%'">I</option>
-                                        <option value="'J%'">J</option>
-                                        <option value="'K%'">K</option>
-                                        <option value="'L%'">L</option>
-                                        <option value="'M%'">M</option>
-                                        <option value="'N%'">N</option>
-                                        <option value="'O%'">O</option>
-                                        <option value="'P%'">P</option>
-                                        <option value="'Q%'">Q</option>
-                                        <option value="'R%'">R</option>
-                                        <option value="'S%'">S</option>
-                                        <option value="'T%'">T</option>
-                                        <option value="'U%'">U</option>
-                                        <option value="'V%'">V</option>
-                                        <option value="'W%'">W</option>
-                                        <option value="'X%'">X</option>
-                                        <option value="'Y%'">Y</option>
-                                        <option value="'Z%'">Z</option>
-                                    </select>
-
-                                    <span>Batch Status:</span>
-                                    <select name="batchstatus_ug" id="batchstatus_ug">
-                                        <option value="('new' OR 'old')">ALL</option>
-                                        <option value="'old'">OLD</option>
-                                        <option value="'new'">NEW</option>
-                                    </select>
-                                    <button id="regug" onclick="printDiv_regug()" disabled hidden>PRINT</button>
-                                    <input id="ajaxSubmit_gen_report_ug" type="submit" value="Show List"/>
-                                    <input id="ajax_hide_gen_report_ug" type="submit" value="Hide List" hidden/>
-                                    
-                                </form>
-                                <!---<div class="row" id="generated_rep_ug"></div>--->
-                                <div class="row" id="generated_rep_ug_hidden" ></div> <!--- style="display: none;"-->
-
-                            </div>
-
-                            <div class="list_div">
-                
-                                <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
-                                <div class="reg_print_div">
-                                    <h4>List of UniFast Schedules</h4>
-                                    <form method="post">
-                                        <span>TYPE:</span>
-                                            <select name="type" id="type">  
-                                                <option value="UniFAST - Claim Cheque">Unifast - Claim Cheque</option>
-                                                <option value="UniFAST - Submit Documents">UniFAST - Submit Documents</option>
-                                            </select>
-                                        
-
-                                        <span>DATE:</span>
-                                        <input type="date" name="unifast_appointmentdate" id="unifast_appointmentdate" value="<?php echo date("Y-m-d");?>"  style="float: none; background: none; border: 1px solid lightgrey; color: #333; padding: 8px; margin-left: 8px; width: 150px;">
-
-                                        <button id="print_unifast" onclick="printDiv_unifastsched()" disabled hidden>PRINT</button>
-                                        <input id="ajax_show_unifast" type="submit" value="Show List"/>
-                                        <input id="ajax_hide_unifast" type="submit" value="Hide List" hidden/>
-                                    </form>  
-                                        
-                                        <div class="row" id="generated_unifast_schedule_hidden"></div>
-                                </div>
-
-                                <!-- Show and Print UniFast Schedule, only seen by Accounting Staff -->
-                            </div>
-
-                        </div> 
-                        <?php 
-                    }    ?> 
-
-
-
-                <!--------------------- Appointment Limit and Show List of Students and Staff, only seen by Accounting Staff------------------------------------------>
-
-
-
-
-            </div>
-   
+    <div class="limit_container">
+        <div class="chart_panel">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
-  </main>
+
+    <script>
+       
+
+       const ctx = document.getElementById('myChart');
+
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina", "Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15, 55, 49, 44, 24, 15];
+
+        const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(31,159,243,1)');
+        gradient.addColorStop(1, 'rgba(15,79,121,1)');
+
+        Chart.defaults.global.defaultFontColor = '#333';
+
+
+        new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: gradient,
+            data: yValues
+            }]
+        },
+
+        options: {
+       
+            scales: {
+          
+                xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                        fontFamily: 'Quicksand'
+                    },
+                        gridLines: {
+                        drawOnChartArea: false
+                    }
+                        
+                }],
+                
+      
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                        fontSize: 14,
+                        fontFamily: 'Quicksand'
+                    },
+                        gridLines: {
+                        drawOnChartArea: false
+                    }
+                }]
+            
+            },
+            
+           
+            
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    bottom: 20,
+                    top: 10,
+                    left: 40,
+                    right: 20
+                }
+            },
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "World Wine Production 2018",
+            fontSize: 16,
+            fontFamily: 'Quicksand',
+            padding: 20
+            }
+        }
+        });
+    </script>
+
+
+    </main>
+
+
+
+
 
 
 
@@ -456,12 +127,12 @@
         width: 182px;
         height: 110px;
         text-align: center;
-        cursor: pointer;
-        background: #FFFEFE;
+        background: #fff;
     }
     .card_row_div .col_3 a {
         text-decoration: none;
         color: #000;
+        cursor: auto;
     }
 
     .card_row_div .col_3 .card .card_title {
@@ -475,7 +146,33 @@
     .card_row_div .col_3 .card .card_body {
         padding-bottom: 15px;
         font-size: 30px;
+        font-family: 'Roboto';
+        color: #333;
     }
+
+
+
+
+
+
+
+
+    .limit_container {
+        width: 100%;
+        padding: 0 15px;
+    }
+    .limit_container .chart_panel {
+        background: #fff;
+        width: 100%;
+        height: 20vw;
+    }
+   
+
+
+
+
+
+
 </style>
 
 
