@@ -22,11 +22,11 @@
 
        const ctx = document.getElementById('myChart');
 
-        var xValues = ["Italy", "France", "Spain", "USA", "Argentina", "Italy", "France", "Spain", "USA", "Argentina"];
-        var yValues = [55, 49, 44, 24, 15, 55, 49, 44, 24, 15];
+        var xValues = ["8am - 9am", "9am - 10am", "10am - 11am", "11am - 12nn", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm", "4pm - 5pm"];
+        var yValues = [2, 5, 9, 4, 5, 1, 0, 10];
 
         const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(31,159,243,1)');
+        gradient.addColorStop(0, 'rgba(110,193,247,0.9)');
         gradient.addColorStop(1, 'rgba(15,79,121,1)');
 
         Chart.defaults.global.defaultFontColor = '#333';
@@ -62,11 +62,10 @@
                     ticks: {
                         beginAtZero:true,
                         fontSize: 14,
-                        fontFamily: 'Quicksand'
-                    },
-                        gridLines: {
-                        drawOnChartArea: false
+                        fontFamily: 'Quicksand',
+                        stepSize: 1
                     }
+                       
                 }]
             
             },
@@ -86,7 +85,7 @@
             legend: {display: false},
             title: {
             display: true,
-            text: "World Wine Production 2018",
+            text: "No. of Appointment per Designated Hour",
             fontSize: 16,
             fontFamily: 'Quicksand',
             padding: 20
@@ -96,6 +95,7 @@
     </script>
 
 
+        
     </main>
 
 
@@ -164,9 +164,13 @@
     .limit_container .chart_panel {
         background: #fff;
         width: 100%;
-        height: 20vw;
+        height: 48vh;
     }
    
+
+
+
+
 
 
 
