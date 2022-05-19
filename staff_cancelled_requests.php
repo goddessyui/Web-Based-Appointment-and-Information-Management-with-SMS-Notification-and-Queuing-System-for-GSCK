@@ -1,5 +1,5 @@
 <?php
-include("admin_header.php");
+include("new_header_admin.php");
 ?>
 <main>
  
@@ -139,6 +139,15 @@ include("admin_header.php");
         include("backtotop.php");
         ?>  
 </main>
+
+</div>
+</div>
+
+<div class="mobile_header"></div>
+
+</body>
+</html>
+
 
 <style>
       #cancelledrequests {

@@ -1,6 +1,6 @@
 <!-- MAIN INDEX OF ANNOUNCEMENT FOR ADMIN -->
 <?php
-include("admin_header.php"); 
+include("new_header_admin.php"); 
 $staff_id = !empty($_SESSION["staff_id"])?$_SESSION["staff_id"]:'';
 $position = !empty($_SESSION["position"])?$_SESSION["position"]:'';
 $staff_username = !empty($_SESSION["staff_username"])?$_SESSION["staff_username"]:'';
@@ -248,6 +248,12 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
         </div>
       </div>
     </div>
+
+
+    </div>
+</div>
+
+<div class="mobile_header"></div>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include("admin_header.php");
+include("new_header_admin.php");
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
 $username = $_SESSION["staff_username"];
@@ -249,6 +249,13 @@ if ($staff_id == "" && $username == ""){
     </div>
 </main>
 
+</div>
+</div>
+
+<div class="mobile_header"></div>
+
+</body>
+</html>
 
 
     <?php

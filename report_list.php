@@ -1,5 +1,5 @@
 <?php 
-    include("admin_header.php");
+    include("new_header_admin.php");
 ?>     
 <main>        
                 <div class="appointment_result">
@@ -285,9 +285,14 @@
             </div>
   </main>
 
-</body>
-</html> 
 
+  </div>
+</div>
+
+<div class="mobile_header"></div>
+
+</body>
+</html>
 
 
 <script>

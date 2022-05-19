@@ -1,5 +1,5 @@
 <?php
-    include("admin_header.php");
+    include("new_header_admin.php");
 ?>
     <main>
             <?php 
@@ -364,6 +364,12 @@
             ?>
        
     </main>
+
+    </div>
+</div>
+
+<div class="mobile_header"></div>
+
 </body>
 </html>
 

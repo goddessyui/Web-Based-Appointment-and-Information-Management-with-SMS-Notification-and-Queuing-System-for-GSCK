@@ -1,5 +1,5 @@
 <?php
-include("admin_header.php");
+include("new_header_admin.php");
 
 //-------------------------------upload csv------------------------------------------------------------------------------//
 if(isset($_POST["upload"]))
@@ -531,6 +531,12 @@ else{
         ?> 
 
     </main>
+
+    </div>
+</div>
+
+<div class="mobile_header"></div>
+
 </body>
 </html>
 

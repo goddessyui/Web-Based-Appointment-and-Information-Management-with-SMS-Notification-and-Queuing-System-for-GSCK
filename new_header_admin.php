@@ -54,7 +54,7 @@
         <ul>
             <a href="dashboard.php">
                 <li>
-                    <img src="icon/white/dashboard_white.svg" alt="" width="25">
+                    <img src="icon/white/dashboard_white.svg" alt="dashboard icon" width="25">
                     <span>Dashboard</span>
                 </li>
             </a>
@@ -62,14 +62,14 @@
 
             <a  href="schedule_admin.php">
                 <li>
-                    <img src="icon/white/appointment_white.svg" alt="" width="25">
+                    <img src="icon/white/appointment_white.svg" alt="schedule icon" width="25">
                     <span>Set my schedule</span>
                 </li>
             </a>
 
             <a href="announcement_admin.php">
                 <li>
-                    <img src="icon/white/announcement_white.svg" alt="" width="25">
+                    <img src="icon/white/announcement_white.svg" alt="announcement icon" width="25">
                     <span>Announcement</span>
                 </li>
             </a>
@@ -80,14 +80,14 @@
 
             <a href="upload_student_records.php">
                 <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
+                    <img src="icon/white/record_white.svg" alt="records icon" width="25">
                     <span>Student Records</span>
                 </li>
             </a>
 
             <a href="upload_staff_records.php">
                 <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
+                    <img src="icon/white/record_white.svg" alt="records icon" width="25">
                     <span>Staff Records</span>
                 </li>
             </a>
@@ -95,7 +95,7 @@
 
             <a href="staff_accepted_requests.php">
                 <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
+                    <img src="icon/white/schedule_white.svg" alt="appointments icon" width="25">
                     <span>My Appointments</span>
                 </li>
             </a>
@@ -107,28 +107,28 @@
 				
             <a href="upload_unifast_grantee.php">
                 <li>
-                    <img src="icon/white/record_white.svg" alt="" width="25">
+                    <img src="icon/white/record_white.svg" alt="records icon" width="25">
                     <span>Grantee Records</span>
                 </li>
             </a>
 
             <a>
                 <li href="claimcheque_pendingapp.php">
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
+                    <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
                     <span>Claim Cheque</span>
                 </li>
             </a>
 
             <a href="submitdocu_pendingapp.php">
                 <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
+                    <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
                     <span>Submit Documents</span>
                 </li>
             </a>
 
             <a href="staff_accepted_requests.php">
                 <li>
-                    <img src="icon/white/schedule_white.svg" alt="" width="25">
+                    <img src="icon/white/schedule_white.svg" alt="appointment icon" width="25">
                     <span>My Appointments</span>
                 </li>
             </a>
@@ -139,7 +139,7 @@
             ?>
 				<a href="staff_accepted_requests.php">
 					<li>
-                        <img src="icon/white/schedule_white.svg" alt="" width="25">
+                        <img src="icon/white/schedule_white.svg" alt="appointment icon" width="25">
 						<span>My Appointments</span>
 					</li>
 				</a>
@@ -152,14 +152,14 @@
 
                 <a href="staff_accepted_requests.php">
                     <li>
-                        <img src="icon/white/schedule_white.svg" alt="" width="25">
+                        <img src="icon/white/schedule_white.svg" alt="reports icon" width="25">
                         <span>Reports</span>
                     </li>
                 </a>
 
                 <a href="staff_profile.php">
                     <li>
-                        <img src="icon/white/user_white.svg" alt="" width="25">
+                        <img src="icon/white/user_white.svg" alt="user icon" width="25">
                         <span>Account</span>
                     </li>
                 </a>	

@@ -1,5 +1,5 @@
 <?php
-include("admin_header.php");
+include("new_header_admin.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -461,6 +461,12 @@ else{
         ?> 
 
     </main>
+
+
+    </div>
+</div>
+
+<div class="mobile_header"></div>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include_once("admin_header.php"); 
+include_once("new_header_admin.php"); 
 
 $staff_id = $_SESSION["staff_id"];
 $position = $_SESSION["position"];
@@ -120,9 +120,15 @@ if ($staff_id == "" || $username == ""){
             <div id='calendar'></div>
         </div>
     </main>
-</body>
 
+    </div>
+</div>
+
+<div class="mobile_header"></div>
+
+</body>
 </html>
+
 
 <style>
     main {
