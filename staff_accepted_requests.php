@@ -94,7 +94,7 @@ include("new_header_admin.php");
                         WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                         AND tbl_appointment_detail.appointment_date = '$sortdate' 
                         AND tbl_appointment_detail.appointment_date >= '$currentdate'
-                        ORDER BY tbl_appointment_detail.appointment_id ASC";
+                        ORDER BY tbl_appointment_detail.appointment_id, tbl_appointment_detail.appointment_time_open ASC";
                     
                     $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                     
@@ -148,6 +148,18 @@ include("new_header_admin.php");
                                                 value="<?php echo $rows["appointment_date"]; ?>" 
                                                 min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                                 strtotime($rows["appointment_date"]. ' + 90 days'));?>">
+
+                                                <select name="app_time" id="app_time">  
+                                                    <option value="08:00" <?php echo $rows["appointment_time_open"]=='08:00:00'?'selected':'';?>>8:00AM - 9:00AM</option>
+                                                    <option value="09:00" <?php echo $rows["appointment_time_open"]=='09:00:00'?'selected':'';?>>9:00AM - 10:00AM</option>
+                                                    <option value="10:00" <?php echo $rows["appointment_time_open"]=='10:00:00'?'selected':'';?>>10:00AM - 11:00AM</option>
+                                                    <option value="11:00" <?php echo $rows["appointment_time_open"]=='11:00:00'?'selected':'';?>>11:00AM - 12:00PM</option>
+                                                    <option value="13:00" <?php echo $rows["appointment_time_open"]=='13:00:00'?'selected':'';?>>1:00PM - 2:00PM</option>
+                                                    <option value="14:00" <?php echo $rows["appointment_time_open"]=='14:00:00'?'selected':'';?>>2:00PM - 3:00PM</option>
+                                                    <option value="15:00" <?php echo $rows["appointment_time_open"]=='15:00:00'?'selected':'';?>>3:00PM - 4:00PM</option>
+                                                    <option value="16:00" <?php echo $rows["appointment_time_open"]=='16:00:00'?'selected':'';?>>4:00PM - 5:00PM</option>
+                                                </select>
+
                                             <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                             <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
                                             <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -225,7 +237,7 @@ include("new_header_admin.php");
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                     WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                     AND tbl_appointment_detail.appointment_date > '$currentdate'
-                    ORDER BY tbl_appointment_detail.appointment_date ASC";
+                    ORDER BY tbl_appointment_detail.appointment_date, tbl_appointment_detail.appointment_time_open ASC";
         
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 
@@ -278,6 +290,18 @@ include("new_header_admin.php");
                                             value="<?php echo $rows["appointment_date"]; ?>" 
                                             min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                             strtotime($rows["appointment_date"]. ' + 90 days'));?>">
+
+                                                <select name="app_time" id="app_time">  
+                                                    <option value="08:00" <?php echo $rows["appointment_time_open"]=='08:00:00'?'selected':'';?>>8:00AM - 9:00AM</option>
+                                                    <option value="09:00" <?php echo $rows["appointment_time_open"]=='09:00:00'?'selected':'';?>>9:00AM - 10:00AM</option>
+                                                    <option value="10:00" <?php echo $rows["appointment_time_open"]=='10:00:00'?'selected':'';?>>10:00AM - 11:00AM</option>
+                                                    <option value="11:00" <?php echo $rows["appointment_time_open"]=='11:00:00'?'selected':'';?>>11:00AM - 12:00PM</option>
+                                                    <option value="13:00" <?php echo $rows["appointment_time_open"]=='13:00:00'?'selected':'';?>>1:00PM - 2:00PM</option>
+                                                    <option value="14:00" <?php echo $rows["appointment_time_open"]=='14:00:00'?'selected':'';?>>2:00PM - 3:00PM</option>
+                                                    <option value="15:00" <?php echo $rows["appointment_time_open"]=='15:00:00'?'selected':'';?>>3:00PM - 4:00PM</option>
+                                                    <option value="16:00" <?php echo $rows["appointment_time_open"]=='16:00:00'?'selected':'';?>>4:00PM - 5:00PM</option>
+                                                </select>
+
                                         <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                         <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
                                         <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">
@@ -351,7 +375,7 @@ include("new_header_admin.php");
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                     WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                     AND tbl_appointment_detail.appointment_date >= '$currentdate'
-                    ORDER BY tbl_appointment_detail.appointment_date ASC";
+                    ORDER BY tbl_appointment_detail.appointment_date, tbl_appointment_detail.appointment_time_open ASC";
 
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
                 
@@ -404,6 +428,18 @@ include("new_header_admin.php");
                                             value="<?php echo $rows["appointment_date"]; ?>" 
                                             min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                             strtotime($rows["appointment_date"]. ' + 90 days'));?>">
+
+                                                <select name="app_time" id="app_time">  
+                                                    <option value="08:00" <?php echo $rows["appointment_time_open"]=='08:00:00'?'selected':'';?>>8:00AM - 9:00AM</option>
+                                                    <option value="09:00" <?php echo $rows["appointment_time_open"]=='09:00:00'?'selected':'';?>>9:00AM - 10:00AM</option>
+                                                    <option value="10:00" <?php echo $rows["appointment_time_open"]=='10:00:00'?'selected':'';?>>10:00AM - 11:00AM</option>
+                                                    <option value="11:00" <?php echo $rows["appointment_time_open"]=='11:00:00'?'selected':'';?>>11:00AM - 12:00PM</option>
+                                                    <option value="13:00" <?php echo $rows["appointment_time_open"]=='13:00:00'?'selected':'';?>>1:00PM - 2:00PM</option>
+                                                    <option value="14:00" <?php echo $rows["appointment_time_open"]=='14:00:00'?'selected':'';?>>2:00PM - 3:00PM</option>
+                                                    <option value="15:00" <?php echo $rows["appointment_time_open"]=='15:00:00'?'selected':'';?>>3:00PM - 4:00PM</option>
+                                                    <option value="16:00" <?php echo $rows["appointment_time_open"]=='16:00:00'?'selected':'';?>>4:00PM - 5:00PM</option>
+                                                </select>
+
                                         <input type="hidden" name="appointment_id" value="<?php echo $rows['appointment_id'];?>">
                                         <input type="hidden" name="comment" value="<?php echo $rows['comment'];?>">
                                         <input type="hidden" name="student_id" value="<?php echo $rows['student_id'];?>">

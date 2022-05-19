@@ -19,6 +19,35 @@ session_start();
          $student_id = $_POST['student_id'];
          $staff_id = $_SESSION["staff_id"];
          $appointment_type = $_POST['appointment_type'];
+         $appointment_time_open = $_POST['app_time'];
+         $appointment_time_close = '';
+         switch ($appointment_time_open) {
+            case "08:00":
+              $appointment_time_close = '09:00';
+              break;
+            case "09:00":
+               $appointment_time_close = '10:00';
+              break;
+            case "10:00":
+               $appointment_time_close = '11:00';
+              break;
+            case "11:00":
+               $appointment_time_close = '12:00';
+                break;
+            case "13:00":
+               $appointment_time_close = '14:00';
+               break;
+            case "14:00":
+               $appointment_time_close = '15:00';
+               break;
+            case "15:00":
+               $appointment_time_close = '16:00';
+               break;
+            case "16:00":
+               $appointment_time_close = '17:00';
+               break;
+            default:
+          }
          
          if (empty($_POST['appointment_date'])) {//if appointment date is not filled
             header('location: ../staff_pending_requests.php?error="Appointment date should be filled."');
@@ -26,13 +55,13 @@ session_start();
          } 
          else { //if appointment date is filled 
             $noofappointments ="SELECT * FROM tbl_appointment_detail 
-            WHERE appointment_date = '$appointment_date' AND `status` = 'Accepted'";
+            WHERE appointment_date = '$appointment_date' AND `status` = 'Accepted' AND `appointment_time_open`='$appointment_time_open'";
             $appnumber = mysqli_query($db, $noofappointments);
             $countapp = mysqli_num_rows( $appnumber);
             
             if($countapp<=($limit-1)){
-               $acceptappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
-                                 VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted')";
+               $acceptappointment = "INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`, `appointment_time_open`, `appointment_time_close`)
+                                 VALUES ('$appointment_id', '$currentdate', '$appointment_date', '$comment', 'Accepted', '$appointment_time_open', '$appointment_time_close')";
 
                if(mysqli_query($db, $acceptappointment)){
 
@@ -75,7 +104,7 @@ session_start();
                }
             }
             else {
-               header('location: ../staff_pending_requests.php?error="Appointments for that date are already limited."');
+               header('location: ../staff_pending_requests.php?error="Appointments for that date and time are already full."');
             }
          }
       }

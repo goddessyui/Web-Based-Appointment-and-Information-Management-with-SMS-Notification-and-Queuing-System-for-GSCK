@@ -37,6 +37,7 @@ include("new_header_admin.php");
             <div class="col_app">Student Details</div>
             <div class="col_app">Student's Note</div>
             <div class="col_app">Set Appt. Date</div>
+            <div class="col_app">Time</div>
             <div class="col_app">Comment</div>
             <div class="col_app"></div>
 
@@ -124,6 +125,18 @@ include("new_header_admin.php");
                                         <input type="date" name="appointment_date" id="appointmentdate" value=" "
                                             min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                             strtotime($currentdate. ' + 90 days'));?>">
+                                </div>
+                                <div class="col_app">
+                                <select name="app_time" id="app_time">  
+                                    <option value="08:00" >8:00AM - 9:00AM</option>
+                                    <option value="09:00" >9:00AM - 10:00AM</option>
+                                    <option value="10:00" >10:00AM - 11:00AM</option>
+                                    <option value="11:00" >11:00AM - 12:00PM</option>
+                                    <option value="13:00" >1:00PM - 2:00PM</option>
+                                    <option value="14:00" >2:00PM - 3:00PM</option>
+                                    <option value="15:00" >3:00PM - 4:00PM</option>
+                                    <option value="16:00" >4:00PM - 5:00PM</option>
+                                </select>
                                 </div>
 
                                 <div class="col_app">
@@ -229,6 +242,18 @@ include("new_header_admin.php");
                                         <input type="date" name="appointment_date" id="appointmentdate" value=" "
                                             min="<?php echo $currentdate; ?>" max="<?php echo date('Y-m-d', 
                                             strtotime($currentdate. ' + 90 days'));?>">
+                                </div>
+                                <div class="col_app">
+                                <select name="app_time" id="app_time">  
+                                    <option value="8AM-" >8:00AM - 9:00AM</option>
+                                    <option value="9AM" >9:00AM - 10:00AM</option>
+                                    <option value="10AM" >10:00AM - 11:00AM</option>
+                                    <option value="11AM" >11:00AM - 12:00PM</option>
+                                    <option value="1PM" >1:00PM - 2:00PM</option>
+                                    <option value="2PM" >2:00PM - 3:00PM</option>
+                                    <option value="3PM" >3:00PM - 4:00PM</option>
+                                    <option value="4PM" >4:00PM - 5:00PM</option>
+                                </select>
                                 </div>
 
                                 <div class="col_app">

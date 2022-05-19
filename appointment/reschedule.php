@@ -19,9 +19,38 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                                           echo $newDate;
             $appointment_id = $_GET['appointment_id'];
             $comment = $_POST['comment'];
+            $appointment_time_open = $_POST['app_time'];
+            $appointment_time_close = '';
+            switch ($appointment_time_open) {
+               case "08:00":
+               $appointment_time_close = '09:00';
+               break;
+               case "09:00":
+                  $appointment_time_close = '10:00';
+               break;
+               case "10:00":
+                  $appointment_time_close = '11:00';
+               break;
+               case "11:00":
+                  $appointment_time_close = '12:00';
+                  break;
+               case "13:00":
+                  $appointment_time_close = '14:00';
+                  break;
+               case "14:00":
+                  $appointment_time_close = '15:00';
+                  break;
+               case "15:00":
+                  $appointment_time_close = '16:00';
+                  break;
+               case "16:00":
+                  $appointment_time_close = '17:00';
+                  break;
+               default:
+            }
 
             $noofappointments ="SELECT * FROM tbl_appointment_detail 
-            WHERE appointment_date = '$newDate' AND `status` = 'Accepted'";
+            WHERE appointment_date = '$newDate' AND `status` = 'Accepted' AND `appointment_time_open`='$appointment_time_open'";
             $appnumber = mysqli_query($db, $noofappointments);
             $countapp = mysqli_num_rows( $appnumber);
             
@@ -32,8 +61,8 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                if (mysqli_query($db, $updatedate)) {
                   
 
-                  $insertnew ="INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`)
-                  VALUES ('$appointment_id', '$currentdate', '$newDate', '$comment', 'Accepted')";
+                  $insertnew ="INSERT INTO tbl_appointment_detail (`appointment_id`, `date_accepted`, `appointment_date`, `comment`, `status`, `appointment_time_open`, `appointment_time_close`)
+                  VALUES ('$appointment_id', '$currentdate', '$newDate', '$comment', 'Accepted', '$appointment_time_open', '$appointment_time_close')";
                   
                   if (mysqli_query($db, $insertnew)) {
 
@@ -56,7 +85,7 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
 
                      
                      //Add Queueing and SMS function here???-----------------------------------------
-                     $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
+                     $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_detail_id) AS queuenum 
                         FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
                         AND appointment_date = '$newDate') T2 
                         WHERE appointment_id = '$appointment_id'";
@@ -74,7 +103,7 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
                      $move='true';
                      include ('sms_appointment.php');
 
-                     header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!"');
+                     header('location: ../staff_accepted_requests.php?success="Appointment Successfully Rescheduled!'.$queuenumber.'"');
                      
                   }
                   else {
