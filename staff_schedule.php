@@ -9,6 +9,17 @@ body {
     main {
        background: #EFF0F4;
        padding: 15px;
+       margin: 0;
+    }
+    .parent-div {
+        width: 100%;
+        background: #fff;
+        margin: 0;
+    }
+    .parent-div h2 {
+        font-family: 'Roboto';
+        font-size: 20px;
+        margin-top: 20px;
     }
 .pagination {
     display: flex;
@@ -19,6 +30,7 @@ body {
     padding: 5px;
     background: #444;
     margin-right: 5px;
+    list-style-type: none;
   }
 
   .pagination a {
@@ -26,6 +38,7 @@ body {
     font-family: 'Roboto';
     font-size: 12px;
     text-transform: uppercase;
+    text-decoration: none;
   }
 .sched_date {
     background-color: #fff;
@@ -52,7 +65,7 @@ body {
         margin-right: 20%;
     }
 </style>
-<div class="parent-div">
+<div class="parent-div" style="margin: 0; padding: 20px 2%; margin-top: 80px;">
 <div><h2>Staff Schedules</h2> <select onchange="location = this.value;">
 <option value="schedules.php">All</option>
 <?php
