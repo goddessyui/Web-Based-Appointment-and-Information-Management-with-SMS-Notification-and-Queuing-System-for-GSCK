@@ -67,7 +67,7 @@ $(document).ready(function() {
         <form name="form1" method="get" action="">
             <div class="search-box">
                 <h2>Select Appointment Type</h2>
-                <p class="at_under_staff">OFFICE HOURS ARE FROM 8AM-5AM ONLY</p>
+                <p class="at_under_staff">OFFICE HOURS ARE FROM 8 AM-5 PM ONLY</p>
             </div>
 
             <div class="search-box">
