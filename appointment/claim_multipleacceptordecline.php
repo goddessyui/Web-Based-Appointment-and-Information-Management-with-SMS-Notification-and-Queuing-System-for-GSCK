@@ -3,7 +3,7 @@ include_once("../dbconfig.php");
 session_start();
 include '../sms_test/smsAPIcon.php';
 $send = new smsfunction();
-   $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+   $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
    $limitvalue= mysqli_query($db, $l);
 
       if($limitvalue==TRUE) {
@@ -15,7 +15,7 @@ $send = new smsfunction();
                $staff_id = $_SESSION["staff_id"];
                
                if (empty($_POST['pending'])) {
-                  header('location: ../claimcheque_pendingapp.php?error="Please check at least one appointment."'); 
+                  header('location: ../unifast_claim_pending.php?error="Please check at least one appointment."'); 
                }
                else{
                   foreach ($_POST['pending'] as $appointment_id) {
@@ -28,7 +28,7 @@ $send = new smsfunction();
                         foreach ($_POST['com'] as $com) {
 
                            if (empty($appointment_date)) {//if appointment date is not filled
-                              header('location: ../claimcheque_pendingapp.php?error="Appointment date should be filled."'); 
+                              header('location: ../unifast_claim_pending.php?error="Appointment date should be filled."'); 
                         }
                         else {
 
@@ -53,8 +53,10 @@ $send = new smsfunction();
                               $student_id = $rows['student_id'];
                               $appointment_type = $rows['appointment_type'];
                               
-                              $noofappointments ="SELECT * FROM tbl_appointment_detail 
-                                 WHERE appointment_date = '$appointment_date' AND `status` = 'Accepted'";
+                              $noofappointments ="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
+                              ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
+                              WHERE tbl_appointment_detail.appointment_date = '$appointment_date' AND tbl_appointment_detail.status = 'Accepted' 
+                              AND tbl_appointment.appointment_type IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                               
                               $appnumber = mysqli_query($db, $noofappointments);
                               $countapp = mysqli_num_rows( $appnumber);
@@ -100,14 +102,14 @@ $send = new smsfunction();
                                        include ('sms_unifast.php');                                   
                                        $accept_unifast='';
                                        
-                                       header('location: ../claimcheque_pendingapp.php?success="Appointment request accepted."'); 
+                                       header('location: ../unifast_claim_pending.php?success="Appointment request accepted."'); 
                                  } 
                                  else { 
-                                    header('location: ../claimcheque_pendingapp.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+                                    header('location: ../unifast_claim_pending.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                                  }
                               }
                               else {
-                                 header('location: ../claimcheque_pendingapp.php?error="Appointments are limited for this date."');
+                                 header('location: ../unifast_claim_pending.php?error="Appointments are limited for this date."');
                                  
                               }
                            }
@@ -126,7 +128,7 @@ $send = new smsfunction();
                $staff_id = $_SESSION["staff_id"];
                
                if (empty($_POST['pending'])) {
-                  header('location: ../claimcheque_pendingapp.php?error="Please check at least one appointment."'); 
+                  header('location: ../unifast_claim_pending.php?error="Please check at least one appointment."'); 
                }
                else{
                   foreach ($_POST['pending'] as $appointment_id) {
@@ -184,10 +186,10 @@ $send = new smsfunction();
                                     include ('sms_unifast.php');
                                     $decline='';
                                    
-                                    header('location: ../claimcheque_pendingapp.php?success="Appointment request declined."');
+                                    header('location: ../unifast_claim_pending.php?success="Appointment request declined."');
                               } 
                               else { 
-                                    header('location: ../claimcheque_pendingapp.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
+                                    header('location: ../unifast_claim_pending.php?error="<?php echo "ERROR: Not able to execute. " . mysqli_error($db);?>"');
                               }
                            
                                  ?>
