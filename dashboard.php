@@ -133,6 +133,7 @@
                         WHERE tbl_appointment.staff_id ='$staff_id' 
                         AND tbl_appointment_detail.appointment_date = '$currentdate' 
                         AND tbl_appointment_detail.status = 'Accepted' 
+                        ORDER BY tbl_appointment_detail.appointment_time_open
                         LIMIT 4";
 
                         $listapp_query = mysqli_query($db, $listapp);
@@ -143,7 +144,7 @@
                             <tr>
 
                                 <td>
-                                    <?php echo $applist['appointment_time_open']."-".$applist['appointment_time_close']; ?>
+                                    <?php echo date('g a', strtotime($applist['appointment_time_open']))."-".date('g a', strtotime($applist['appointment_time_close'])); ?>
                                 </td>
 
                                 <td>
@@ -178,7 +179,31 @@
                 </table>
             </div>
 
-            <div class="limit_appnt"></div>
+            <div class="limit_appnt">
+                <h3>Max. Appointments per Hour</h3>
+                <div class="circle_container">
+                    <div class="limit_circle">
+                        <h1>
+                            <?php
+                                $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '1'";
+                                $limitvalue= mysqli_query($db, $limit);
+
+                                if($limitvalue==TRUE){
+                                    while($al=mysqli_fetch_assoc($limitvalue)) {
+
+                                        echo $al['appointment_limit'];
+                                    }
+                                }
+                            ?>
+                        </h1>
+                    </div>
+                </div>
+
+                <form action="appointment_limit.php" method="post">
+                    <input type="text" placeholder="Input Appointment Limit" name="limit_value">
+                    <button type="submit" name="limit">Change Appointment Limit</button>
+                </form>
+            </div>
        </div>
 
 
@@ -267,7 +292,6 @@
         width: 70%;
         background: #fff;
         padding: 30px;
-        min-height: 55vh;
     }
     .current_appnt .pending_title {
         width: 100%;
@@ -284,7 +308,7 @@
         padding: 20px 15px;
         background: #fff;
         border: none;
-        font-size: 16px;
+        font-size: 14px;
         text-transform: uppercase;
         font-weight: 500;
         text-align: left;
@@ -300,6 +324,15 @@
     }
     .current_appnt table tr:nth-child(even) {
         background-color: #f2f2f2
+    }
+    .current_appnt table tr td:last-child {
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
+    .current_appnt table tr td:last-child:hover {
+        white-space: normal;
     }
     
 
@@ -319,14 +352,68 @@
             border-radius: 15px;
             font-weight: 500;
         }
+        .pending_title button:hover {
+            background: #FF6276;
+        }
 
     .appointment .limit_appnt {
         width: 30%;
-        height: 50vh;
         background: #fff;
         margin-left: 15px;
+        padding: 30px;
+        text-align: center;
+    }
+    .limit_appnt h3 {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .circle_container {
+        background: linear-gradient(#86BCE0, #2E719D);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 155px;
+        height: 155px;
+        margin: 0 auto;
+        border-radius: 50%;
+        margin-bottom: 30px;
+    }
+    .limit_appnt .limit_circle {
+        width: 130px;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #fff;
+    }
+    .limit_circle h1 {
+        color: #333;
+        font-size: 50px;
+        font-family: 'Roboto';
     }
 
+    .limit_appnt form input,
+    .limit_appnt form button {
+        width: 255px;
+        height: 28px;
+    }
+    .limit_appnt form input {
+        margin-bottom: 15px;
+        padding: 5px;
+        outline-color: #FF6276;
+    }
+    .limit_appnt button {
+        border: none;
+        background: #FE4961;
+        color: #eee;
+        cursor: pointer;
+    }
+    .limit_appnt button:hover {
+        background: #FF6276;
+    }
 
 
 
