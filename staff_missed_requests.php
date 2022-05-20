@@ -51,7 +51,9 @@ include("new_header_admin.php");
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                     WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
                     AND tbl_appointment_detail.status = 'Accepted' 
-                    AND tbl_staff_registry.staff_id = '$staff_id' ORDER BY tbl_appointment_detail.appointment_date ASC";
+                    AND tbl_staff_registry.staff_id = '$staff_id'
+                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')
+                     ORDER BY tbl_appointment_detail.appointment_date ASC";
                 $missedrequest_result = mysqli_query($db, $missedrequest);
 
       

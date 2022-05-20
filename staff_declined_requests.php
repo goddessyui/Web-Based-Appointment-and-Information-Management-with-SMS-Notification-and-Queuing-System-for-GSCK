@@ -48,7 +48,8 @@ include("new_header_admin.php");
                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                    WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id' 
+                    WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id'
+                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents') 
                     ORDER BY appointment_date DESC";
                 $declinedrequest_result = mysqli_query($db, $declinedrequests);
             

@@ -94,6 +94,7 @@ include("new_header_admin.php");
                         WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                         AND tbl_appointment_detail.appointment_date = '$sortdate' 
                         AND tbl_appointment_detail.appointment_date >= '$currentdate'
+                        AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')
                         ORDER BY tbl_appointment_detail.appointment_id, tbl_appointment_detail.appointment_time_open ASC";
                     
                     $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
@@ -237,6 +238,7 @@ include("new_header_admin.php");
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                     WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                     AND tbl_appointment_detail.appointment_date > '$currentdate'
+                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')
                     ORDER BY tbl_appointment_detail.appointment_date, tbl_appointment_detail.appointment_time_open ASC";
         
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);
@@ -375,6 +377,7 @@ include("new_header_admin.php");
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                     WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id' 
                     AND tbl_appointment_detail.appointment_date >= '$currentdate'
+                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')
                     ORDER BY tbl_appointment_detail.appointment_date, tbl_appointment_detail.appointment_time_open ASC";
 
                 $acceptedrequest_result = mysqli_query($db, $acceptedrequests);

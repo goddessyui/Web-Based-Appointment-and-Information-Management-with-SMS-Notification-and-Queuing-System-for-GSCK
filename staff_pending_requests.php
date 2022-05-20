@@ -245,14 +245,14 @@ include("new_header_admin.php");
                                 </div>
                                 <div class="col_app">
                                 <select name="app_time" id="app_time">  
-                                    <option value="8AM-" >8:00AM - 9:00AM</option>
-                                    <option value="9AM" >9:00AM - 10:00AM</option>
-                                    <option value="10AM" >10:00AM - 11:00AM</option>
-                                    <option value="11AM" >11:00AM - 12:00PM</option>
-                                    <option value="1PM" >1:00PM - 2:00PM</option>
-                                    <option value="2PM" >2:00PM - 3:00PM</option>
-                                    <option value="3PM" >3:00PM - 4:00PM</option>
-                                    <option value="4PM" >4:00PM - 5:00PM</option>
+                                    <option value="08:00" >8:00AM - 9:00AM</option>
+                                    <option value="09:00" >9:00AM - 10:00AM</option>
+                                    <option value="10:00" >10:00AM - 11:00AM</option>
+                                    <option value="11:00" >11:00AM - 12:00PM</option>
+                                    <option value="13:00" >1:00PM - 2:00PM</option>
+                                    <option value="14:00" >2:00PM - 3:00PM</option>
+                                    <option value="15:00" >3:00PM - 4:00PM</option>
+                                    <option value="16:00" >4:00PM - 5:00PM</option>
                                 </select>
                                 </div>
 
