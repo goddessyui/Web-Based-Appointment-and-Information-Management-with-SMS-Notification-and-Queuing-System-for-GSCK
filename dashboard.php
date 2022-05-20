@@ -205,7 +205,38 @@
                 </form>
             </div>
        </div>
+       
 
+    <!-- -CJ UniFast Appointment Limit -->
+       <?php if($position=="Accounting Staff/Scholarship Coordinator") { ?>
+       <div class="limit_appnt">
+                <h3>Max. UniFast Appointments per Day</h3>
+                <div class="circle_container">
+                    <div class="limit_circle">
+                        <h1>
+                            <?php
+                                $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
+                                $limitvalue= mysqli_query($db, $limit);
+
+                                if($limitvalue==TRUE){
+                                    while($al=mysqli_fetch_assoc($limitvalue)) {
+
+                                        echo $al['appointment_limit'];
+                                    }
+                                }
+                            ?>
+                        </h1>
+                    </div>
+                </div>
+
+                <form action="unifast_appointment_limit.php" method="post">
+                    <input type="text" placeholder="Input UniFast Appointment Limit" name="unifast_limit_value">
+                    <button type="submit" name="unifast_limit">Change UniFast Appointment Limit</button>
+                </form>
+            </div>
+       </div>
+       <?php }?>
+       <!-- -CJ UniFast Appointment Limit -->
 
 
 
