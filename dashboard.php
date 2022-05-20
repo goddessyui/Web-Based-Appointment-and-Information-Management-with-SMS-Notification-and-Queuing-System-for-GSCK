@@ -108,6 +108,7 @@
                 </div>
                 <table>
                     <tr>
+                        <th>Time</th>
                         <th>Student Name</th>
                         <th>Date Requested</th>
                         <th>Appointment Type</th>
@@ -123,14 +124,16 @@
                             tbl_student_registry.last_name, 
                             tbl_appointment.date_created, 
                             tbl_appointment.appointment_type, 
-                            tbl_appointment.note
+                            tbl_appointment.note,
+                            tbl_appointment_detail.appointment_time_open,
+                            tbl_appointment_detail.appointment_time_close
                         FROM tbl_appointment_detail 
                         INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id
                         INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
                         WHERE tbl_appointment.staff_id ='$staff_id' 
                         AND tbl_appointment_detail.appointment_date = '$currentdate' 
                         AND tbl_appointment_detail.status = 'Accepted' 
-                        LIMIT 5";
+                        LIMIT 4";
 
                         $listapp_query = mysqli_query($db, $listapp);
                         $count=mysqli_num_rows($listapp_query);
@@ -138,6 +141,11 @@
 
                         while($applist=mysqli_fetch_assoc($listapp_query)) { ?>
                             <tr>
+
+                                <td>
+                                    <?php echo $applist['appointment_time_open']."-".$applist['appointment_time_close']; ?>
+                                </td>
+
                                 <td>
                                     <?php  echo $applist['first_name']. " ".  $applist['last_name'];?>
                                 </td>
@@ -150,6 +158,7 @@
                                 <td>
                                     <?php   echo $applist['note']; ?>
                                 </td>
+
                             </tr> <?php
 
                         }
@@ -157,7 +166,7 @@
                         else {
                             ?>
                                 <tr>
-                                    <td colspan = "4">
+                                    <td colspan = "5">
                                         <?php echo "You have no appointments today.";?>
                                     </td>
                                 </tr>
