@@ -18,7 +18,8 @@
                                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                                 WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id'
-                                AND tbl_appointment_detail.appointment_date >= '$currentdate'";
+                                AND tbl_appointment_detail.appointment_date >= '$currentdate'
+                                AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                             $acceptedrequest_result = mysqli_query($db, $acceptedrequest);
                             $count = mysqli_num_rows($acceptedrequest_result);
                             echo $count;
@@ -84,7 +85,8 @@
                                         INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                                         WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
                                         AND tbl_appointment_detail.status = 'Accepted' 
-                                        AND tbl_staff_registry.staff_id = '$staff_id'";
+                                        AND tbl_staff_registry.staff_id = '$staff_id'
+                                        AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                                     $missedrequest_result = mysqli_query($db, $missedrequest);
                                     $count = mysqli_num_rows($missedrequest_result);
                                     echo $count;
@@ -109,7 +111,8 @@
                                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                                     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                                    WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id'";
+                                    WHERE tbl_appointment_detail.status = 'Declined' AND tbl_appointment.staff_id = '$staff_id'
+                                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                                 $declinedrequest_result = mysqli_query($db, $declinedrequest);
                                 $count = mysqli_num_rows($declinedrequest_result);
                                 echo $count;
@@ -132,7 +135,8 @@
                                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                                     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                                    WHERE tbl_appointment_detail.status = 'Cancelled' AND tbl_appointment.staff_id = '$staff_id'";
+                                    WHERE tbl_appointment_detail.status = 'Cancelled' AND tbl_appointment.staff_id = '$staff_id'
+                                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                                 $cancelledrequest_result = mysqli_query($db, $cancelledrequest);
                                 $count = mysqli_num_rows($cancelledrequest_result);
                                 echo $count;
@@ -155,7 +159,8 @@
                                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                                     INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                                    WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id'";
+                                    WHERE tbl_appointment_detail.status = 'done' AND tbl_appointment.staff_id = '$staff_id'
+                                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                                 $donerequest_result = mysqli_query($db, $donerequest);
                                 $count = mysqli_num_rows($donerequest_result);
                                 echo $count;
