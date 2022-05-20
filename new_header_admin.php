@@ -119,10 +119,10 @@
                 </li>
             </a>
 
-            <a href="submitdocu_pendingapp.php">
+            <a href="unifast_accepted_request.php">
                 <li>
                     <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
-                    <span>Submit Documents</span>
+                    <span>UniFast Appointments Detail</span>
                 </li>
             </a>
 
