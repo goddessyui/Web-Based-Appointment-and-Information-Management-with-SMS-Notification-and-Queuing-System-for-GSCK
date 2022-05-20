@@ -150,7 +150,7 @@
             
 			?>		
 
-                <a href="staff_accepted_requests.php">
+                <a href="report_list.php">
                     <li>
                         <img src="icon/white/schedule_white.svg" alt="reports icon" width="25">
                         <span>Reports</span>
