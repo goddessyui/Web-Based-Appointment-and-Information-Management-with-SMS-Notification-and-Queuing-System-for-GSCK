@@ -149,12 +149,10 @@ include("header.php");
         list-style-type: none;
     }
     .about_section h2 {
-        font-family: 'Roboto';
         font-size: 20px;
         margin-bottom: 12px;
     }
    .about_section p {
-       font-family: 'Roboto Serif';
        font-size: 14px;
        color: #333;
        margin-bottom: 12px;
