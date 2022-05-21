@@ -28,6 +28,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 <?php
     $sql = "SELECT
+    tbl_staff_registry.position,
     tbl_announcement.announcement_id,
     tbl_announcement.staff_id,
     tbl_announcement.announcement_title,
@@ -35,9 +36,10 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
     tbl_announcement.image,
     tbl_announcement.date_created,
     tbl_announcement.video_url,
-    `name`
-    FROM tbl_announcement
-    ORDER BY date_created DESC
+    tbl_announcement.name
+    FROM tbl_announcement 
+    INNER JOIN tbl_staff_registry ON tbl_announcement.staff_id = tbl_staff_registry.staff_id
+    ORDER BY tbl_announcement.date_created DESC
     LIMIT $offset, $no_of_records_per_page";
 
     ?>
@@ -50,12 +52,12 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                 <div class="blog_img_box">
                     <div class="announce_header">
                         <div class="title_caption">
-                            <h3><?php echo $row['announcement_title'] ?></h3>
-                            <p><?php echo $row['caption'] ?></p>
+                            <h3><?php echo $row['announcement_title']; ?></h3>
+                            <p><?php echo $row['caption']; ?></p>
                         </div>
 
                         <div class="name_date">
-                            <p><?php echo $row['name'] ?></p>
+                            <p><?php echo $row['name'].", ". $row['position']; ?></p>
                             <p><?php echo date("F d, Y, g:i a", strtotime($row['date_created'])) ?></p>
                         </div>
                     </div>

@@ -114,13 +114,13 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
             <div class="title_caption">
                 <h3>
                   <?php 
-                    echo $row['announcement_title'] 
+                    echo $row['announcement_title']; 
                   ?>
                 </h3>
       
                 <p>
                   <?php 
-                    echo $row['caption'] 
+                    echo $row['caption']; 
                   ?>
                 </p>
               </div>
