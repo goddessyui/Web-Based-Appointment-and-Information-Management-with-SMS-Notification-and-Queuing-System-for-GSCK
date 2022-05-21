@@ -1145,7 +1145,6 @@ $(document).ready(function() {
     font-size: 14px;
     font-weight: 400;
     color: #333;
-    text-transform: uppercase;
     margin-bottom: 12px;
 }
 
