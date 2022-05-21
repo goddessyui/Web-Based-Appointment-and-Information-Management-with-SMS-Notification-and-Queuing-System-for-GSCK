@@ -277,6 +277,10 @@ else{
                     Student ID No.
                 </div>
 
+                <div class="form_label">
+                    Email Address
+                </div>
+
             </div>
 
 
@@ -358,6 +362,7 @@ else{
                                 <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
                                 <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
                                 <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                <input type="text"  id="email" name="email" placeholder="Email Address" value="<?php echo $row["email"]?>">
                             </div>    
 
                             <div class="btn_group" role="group" aria-label="Basic example">
@@ -430,6 +435,7 @@ else{
                                     <input type="text"  id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $row["last_name"]?>">               
                                     <input type="text"  id="firstname" name="firstname" placeholder="First Name" value="<?php echo $row["first_name"]?>">
                                     <input type="text"  id="studentid" name="studentid" placeholder="Student Id" value="<?php echo $row["student_id"]?>">
+                                    <input type="text"  id="email" name="email" placeholder="Email Address" value="<?php echo $row["email"]?>">
                                 </div>    
                                 <div class="btn_group" role="group" aria-label="Basic example">
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>

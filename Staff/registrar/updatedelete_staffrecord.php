@@ -15,9 +15,10 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
     $staff_id = $_POST['staffid'];
     $first_name= $_POST['firstname'];
     $last_name= $_POST['lastname'];
+    $email= $_POST['email'];
     
         $updatestaffrecord = "UPDATE tbl_staff_record 
-        SET staff_id ='$staff_id', first_name = '$first_name', last_name = '$last_name' 
+        SET staff_id ='$staff_id', first_name = '$first_name', last_name = '$last_name', email = '$email'  
         WHERE staff_id ='$staff_id'";
 
         if(mysqli_query($db, $updatestaffrecord)){
