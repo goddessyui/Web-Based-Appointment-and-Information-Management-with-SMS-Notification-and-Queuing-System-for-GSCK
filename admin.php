@@ -123,24 +123,24 @@
                 <?php 
                     if(isset($_GET['success'])){
                 ?>
-                        <p>
-                            <?php 
-                                echo $_GET['success'];
-                            ?>
-                        </p>
+                    <p>
+                        <?php 
+                            echo $_GET['success'];
+                        ?>
+                    </p>
                 <?php
                     }
                     if(isset($_GET['error'])){
                 ?>
-                                <p>
-                                    <?php 
-                                        echo $_GET['error'];
-                                    ?>
-                                </p>
-                        <?php
-                            }
-                    else{
-                    }
+                    <p>
+                        <?php 
+                            echo $_GET['error'];
+                        ?>
+                    </p>
+                <?php
+                }
+                else{
+                }
                 ?>
                 <!--success or error-->
             </div>
