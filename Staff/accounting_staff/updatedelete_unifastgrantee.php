@@ -33,7 +33,7 @@ if ($staff_id == "" && $username == "" && $position != "Accounting Staff/Scholar
 
     //--------------------------If Delete is Pressed--------------------------// 
     else if (isset($_POST['delete'])) {
-        $student_id = $_POST['studentid'];
+        $student_id = $_POST['delete'];
     
         $deleteunifastgrantee = "DELETE FROM tbl_unifast_grantee WHERE student_id ='$student_id'";
     

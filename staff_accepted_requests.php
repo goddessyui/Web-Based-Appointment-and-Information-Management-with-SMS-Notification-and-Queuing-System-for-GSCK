@@ -185,18 +185,77 @@ include("new_header_admin.php");
 
                                     <div class="col_app">
                                             <div>
-                                                <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                                <!-- <input id="cancel" type="submit" name="cancel" value="CANCEL"> -->
+                                                <button type="button" id="cancel" onclick="del(this);">CANCEL</button>
                                             </div>
+
+
+                                            <!-- delete announcement modal -->
+                                        <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to Cancel?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="delete" type="submit" id= "cancel" name="cancel">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
+
                                         </form>
                                         
                                         <!-------------------------Send data to done.php ------------------------------>  
                                         <div>
-                                            <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                            <!-- <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
                                             DONE</a>
-                                            </button>
+                                            </button> -->
+                                            <button type="button" onclick="confirm(this);">DONE</button>
                                         </div>
                                         <!-------------------------Send data to done.php ------------------------------> 
-                                    </div>   
+                                    </div> 
+                                    
+                                    
+                                    <!-- delete announcement modal -->
+                                    <div id="confirmModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Confirm done
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="submit" type="submit" id= "cancel" name="cancel" onclick="location.href='appointment/done.php?appointment_id=<?php echo $rows['appointment_id']?>'" >Confirm</button>
+                                            
+                                            <button class="close2" type="button">Cancel</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
                                     
                                 </div> <?php 
                             }
@@ -328,18 +387,76 @@ include("new_header_admin.php");
 
                                 <div class="col_app">
                                         <div>
-                                            <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                            <!-- <input id="cancel" type="submit" name="cancel" value="CANCEL"> -->
+                                            <button type="button" id="cancel" onclick="del(this);">CANCEL</button>
                                         </div>
+
+
+                                        <!-- delete announcement modal -->
+                                        <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to Cancel?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="delete" type="submit" id= "cancel" name="cancel">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
                                     </form>
                                     
                                     <!-------------------------Send data to done.php ------------------------------>  
                                     <div>
-                                        <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                        <!-- <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
                                         DONE</a>
-                                        </button>
+                                        </button> -->
+                                        <button type="button" onclick="confirm(this);">DONE</button>
                                     </div>
                                     <!-------------------------Send data to done.php ------------------------------> 
-                                </div>   
+                                </div> 
+                                
+                                
+                                <!-- delete announcement modal -->
+                                <div id="confirmModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Confirm done
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="submit" type="submit" id= "cancel" name="cancel" onclick="location.href='appointment/done.php?appointment_id=<?php echo $rows['appointment_id']?>'" >Confirm</button>
+                                            
+                                            <button class="close2" type="button">Cancel</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
                                 
                             </div> <?php 
                         }
@@ -467,19 +584,78 @@ include("new_header_admin.php");
 
                                 <div class="col_app">
                                         <div>
-                                            <input id="cancel" type="submit" name="cancel" value="CANCEL">
+                                            <!-- <input id="cancel" type="submit" name="cancel" value="CANCEL"> -->
+                                            <button type="button" id="cancel" onclick="del(this);">CANCEL</button>
                                         </div>
+
+                                        <!-- delete announcement modal -->
+                                        <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to Cancel?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="delete" type="submit" id= "cancel" name="cancel">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
+
                                     </form>
                                     
                                     <!-------------------------Send data to done.php ------------------------------>  
                                     <div>
-                                        <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
+                                        <!-- <button type="submit" id="done"><a href="appointment/done.php?appointment_id=<?php echo $rows['appointment_id']; ?>">
                                         DONE</a>
-                                        </button>
+                                        </button> -->
+                                        <button type="button" onclick="confirm(this);">DONE</button>
                                     </div>
                                     <!-------------------------Send data to done.php ------------------------------> 
                                 </div>   
                                 
+                                          <!-- delete announcement modal -->
+                                          <div id="confirmModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Confirm done
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="submit" type="submit" id= "cancel" name="cancel" onclick="location.href='appointment/done.php?appointment_id=<?php echo $rows['appointment_id']?>'" >Confirm</button>
+                                            
+                                            <button class="close2" type="button">Cancel</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
+
+
                             </div> <?php 
                         }
                     }
@@ -731,6 +907,126 @@ main h3 {
       .date_input_h3 input:nth-child(3) {
           margin: 0;
       }
+
+
+      
+    .modal,
+    .addmodal,
+    .editmodal  {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 20vw;
+        top: 10vh;
+        width: 80vw; /* Full width */
+        height: 100vh; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background: #0008;
+    }
+    .modal p {
+      margin-bottom: 20px;
+    }
+ 
+
+    /* Delete Modal Content */ 
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 30%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+    /* add and edit modal Content */
+    .addmodal-content,
+    .editmodal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        max-width: 50%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+
+    /* The Close Button */
+    .close1 {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    /* The Close Button */
+    .close2 {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    /* The Close Button */
+    .submit {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    .delete {
+        background-color: #EC3237;
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 28px;
+        width: 120px;
+        text-transform: capitalize;
+    }
+
+    .delete:hover,
+    .delete:focus,
+    .submit:hover,
+    .submit:focus {
+        background: #424F59;
+    }
+    .close1:hover,
+    .close1:focus {
+      background: #424F59;
+    }
+    .close2:hover,
+    .close2:focus {
+      background: #424F59;
+    }
+
+
   </style>
 
 <script>
@@ -751,5 +1047,46 @@ main h3 {
             var sortingdate = document.getElementById("sort_date").value = 
                 new Date().toJSON().slice(0,10);//change to sortdata to current date
         }
+
+
+
+        // Get the modal
+        var cmodal = document.getElementById("confirmModal");
+        var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var close = document.getElementsByClassName("close1")[0];
+var close2 = document.getElementsByClassName("close2")[0];
+
+// When the user clicks the delete button, open the modal 
+function del() {
+    modal.style.display = "block";
+}
+
+function confirm() {
+    cmodal.style.display = "block";
+}
+
+
+
+// When the user clicks on cancel button, close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+  cmodal.style.display = "none";
+}
+close2.onclick = function() {
+  modal.style.display = "none";
+  cmodal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+  if (event.target == cmodal) {
+    cmodal.style.display = "none";
+  }
+}
 
     </script>

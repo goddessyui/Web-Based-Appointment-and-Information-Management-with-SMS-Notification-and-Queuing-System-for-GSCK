@@ -77,7 +77,8 @@
 
                                     <div class="input_group">
                                         <button  type="submit" name="accept">ACCEPT</button>
-                                        <button type="submit" name="decline">DECLINE</button>
+                                        <!-- <button type="submit" name="decline">DECLINE</button> -->
+                                        <button type="button" onclick="del(this);">DECLINE</button>
                                     </div>
                                     <!----------------------------BUTTONS FOR ALL-----------------------> 
 
@@ -199,6 +200,33 @@
                                         echo "There is no data in the database." . mysqli_error($db);
                                     }
                                         ?>
+
+
+                                    <!-- delete announcement modal -->
+                                    <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                            <div>
+                                            <div id="mess_delete"></div>
+                                            </div>
+                                            
+                                            <div>
+                                            <p>
+                                                Do you really want to delete?
+                                            </p>
+                                            </div>
+
+                                            <div>
+                                            <form method="POST" id="form_delete" action="Staff/registrar/updatedelete_staffrecord.php">
+                                                <button class="delete" type="submit" id= "delete" name="delete">Confirm</button>
+                                                <button class="close1" type="button">Cancel</button>
+                                            </form>
+                                            </div>
+
+                                        </div>
+                                        </div>
+
                             </form> <!----------------------------End of FORM-------------------------------------------------------------------------------------------->  
                             <?php   
                         }//end of batch status
@@ -224,7 +252,8 @@
                                     
                                     <div class="input_group">
                                         <button  type="submit" name="accept">ACCEPT</button>
-                                        <button type="submit" name="decline">DECLINE</button>
+                                        <!-- <button type="submit" name="decline">DECLINE</button> -->
+                                        <button type="button" onclick="del(this);">DECLINE</button>
                                     </div>
                                     <!----------------------------BUTTONS FOR ALL----------------------->
                             </div>        
@@ -344,6 +373,37 @@
                                     echo "There is no data in the database." . mysqli_error($db);
                                 }
                                     ?>
+
+
+
+                                <!-- delete announcement modal -->
+                                <div id="myModal" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to decline?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+
+                                            <button class="delete" type="submit" id= "delete" name="decline">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+
+
+
                         </form> <!----------------------------End of FORM--------------------------------------------------------------------------------------------> 
 
                     <?php
@@ -600,6 +660,119 @@
           color: #fff;
       }
   
+      
+.modal,
+    .addmodal,
+    .editmodal  {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 20vw;
+        top: 10vh;
+        width: 80vw; /* Full width */
+        height: 100vh; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background: #0008;
+    }
+    .modal p {
+      margin-bottom: 20px;
+    }
+ 
+
+    /* Delete Modal Content */ 
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 30%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+    /* add and edit modal Content */
+    .addmodal-content,
+    .editmodal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        max-width: 50%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+
+    /* The Close Button */
+    .close1 {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    .delete {
+        background-color: #EC3237;
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 28px;
+        width: 120px;
+        text-transform: capitalize;
+    }
+
+    .delete:hover,
+    .delete:focus {
+        background: #FF0000;
+    }
+    .close1:hover,
+    .close1:focus {
+      background: #424F59;
+    }
+
+
 
 </style>
 
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var close = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the delete button, open the modal 
+function del(id) {
+    $('#delete').attr('value', id.value);
+    modal.style.display = "block";
+}
+
+
+// When the user clicks on cancel button, close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+</script>

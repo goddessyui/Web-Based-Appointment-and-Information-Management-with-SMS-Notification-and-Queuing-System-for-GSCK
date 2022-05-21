@@ -150,7 +150,37 @@ include("new_header_admin.php");
                                         <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
                                         <input type="hidden" name="number" value="<?php echo $rows['mobile_number']; ?>">
                                         <button  type="submit" name="accept" id="accept">ACCEPT</button>
-                                        <button type="submit" name="decline" id="decline">DECLINE</button>
+                                        <!-- <button type="submit" name="decline" id="decline">DECLINE</button> -->
+                                        <button type="button" id="decline" onclick="del(this);">DECLINE</button>
+
+
+                                        <!-- delete announcement modal -->
+                                        <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to decline?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="delete" type="submit" id= "decline" name="decline">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
+
 
                                     </form>
                                     <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
@@ -267,7 +297,38 @@ include("new_header_admin.php");
                                         <input type="hidden" name="student_fullname" value="<?php echo $rows['first_name'].' '.$rows['last_name']; ?>">
                                         <input type="hidden" name="number" value="<?php echo $rows['mobile_number']; ?>">
                                         <button  type="submit" name="accept" id="accept">ACCEPT</button>
-                                        <button type="submit" name="decline" id="decline">DECLINE</button>
+                                        <!-- <button type="submit" name="decline" id="decline">DECLINE</button> -->
+                                        <button type="button" id="decline" onclick="del(this);">DECLINE</button>
+
+
+
+                                        <!-- delete announcement modal -->
+                                        <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                        <div>
+                                        <div id="mess_delete"></div>
+                                        </div>
+                                        
+                                        <div>
+                                        <p>
+                                            Do you really want to decline?
+                                        </p>
+                                        </div>
+
+                                        <div>
+                                        
+                                            <button class="delete" type="submit" id= "decline" name="decline">Yes</button>
+                                            <button class="close1" type="button">No</button>
+                                        
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                        <!-- delete announcement modal -->
+
+
 
                                     </form>
                                     <!-------------------------To accept or decline an appointment. Send Form Data to acceptordecline.php ------------------------------>   
@@ -515,4 +576,116 @@ main h3 {
     #pendingrequests .card_body {
         color: #fff;
     }
+
+    .modal,
+    .addmodal,
+    .editmodal  {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 20vw;
+        top: 10vh;
+        width: 80vw; /* Full width */
+        height: 100vh; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background: #0008;
+    }
+    .modal p {
+      margin-bottom: 20px;
+    }
+ 
+
+    /* Delete Modal Content */ 
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 30%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+    /* add and edit modal Content */
+    .addmodal-content,
+    .editmodal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        max-width: 50%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+
+    /* The Close Button */
+    .close1 {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    .delete {
+        background-color: #EC3237;
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 28px;
+        width: 120px;
+        text-transform: capitalize;
+    }
+
+    .delete:hover,
+    .delete:focus {
+        background: #FF0000;
+    }
+    .close1:hover,
+    .close1:focus {
+      background: #424F59;
+    }
+
 </style>
+
+<script>
+// Get the modal
+        var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var close = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the delete button, open the modal 
+function del(id) {
+    $('#delete').attr('value', id.value);
+    modal.style.display = "block";
+}
+
+
+// When the user clicks on cancel button, close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+    </script>
+
