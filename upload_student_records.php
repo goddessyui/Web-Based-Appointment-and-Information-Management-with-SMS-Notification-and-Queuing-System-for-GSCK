@@ -162,9 +162,11 @@ else{
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                             <input type="submit" class="btn_upload" name="upload" value="Upload" />
                         </div>
-                        <div>
-                        <input type="checkbox" name="check_list[]" value="true"><p>Overwrite Previous list</p>
+
+                        <div class="overwrite">
+                        <input type="checkbox" name="check_list[]" value="true"><label>Overwrite Previous list</label>
                         </div>
+
                         <p>
                             <?php
                                 $message = '';
@@ -484,12 +486,9 @@ else{
 </html>
 
 <style> 
-    main {
-       width: 100%;
-       padding: 15px;
-    }
+
     main .student_record {
-        padding: 0 15px;
+        padding: 15px;
     }
         .student_record .show_count_stud {
             margin-bottom: 20px;
@@ -501,19 +500,19 @@ else{
             background: #fff;
             padding: 22px;
             text-align: center;
-            width: 23%;
+            width: 23.5%;
         }
       
         .student_record .show_count_stud .card p {
             margin-bottom: 20px;
-            font-family: 'Roboto';
-            font-size: 13px;
+            font-size: 14px;
             text-transform: uppercase;
         }
         .student_record .show_count_stud .card h3 {
-            font-family: 'Roboto Serif';
+            font-family: 'Roboto';
             font-size: 30px;
-            color: #000;
+            color: #333;
+            font-weight: 500;
         }
         .student_record .show_count_stud .card:nth-child(3) {
             width: 50%;
@@ -751,7 +750,12 @@ else{
     font-size: 12px;
     text-transform: uppercase;
 }
-
+.overwrite {
+    margin-top: 30px;
+}
+.overwrite input[type=checkbox] {
+    margin-right: 10px;
+}
 
 </style>
 

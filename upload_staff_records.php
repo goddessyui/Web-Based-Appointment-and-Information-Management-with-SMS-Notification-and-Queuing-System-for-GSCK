@@ -153,8 +153,9 @@ else{
                             <input type="file" class="uploadfile" name="staff_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                             <input type="submit" class="btn_upload" name="upload" value="Upload" />
                         </div>
-                        <div>
-                        <input type="checkbox" name="check_list[]" value="true"><p>Overwrite Previous List</p>
+
+                        <div class="overwrite">
+                        <input type="checkbox" name="check_list[]" value="true"><label>Overwrite Previous List</label>
                         </div>
                         <p>
                             <?php
@@ -472,12 +473,9 @@ else{
 </html>
 
 <style> 
-    main {
-       width: 100%;
-       padding: 15px;
-    }
+
     main .staff_record {
-        padding: 0 15px;
+        padding: 15px;
     }
         .staff_record .show_count_staff {
             margin-bottom: 20px;
@@ -489,19 +487,18 @@ else{
             background: #fff;
             padding: 22px;
             text-align: center;
-            width: 23%;
+            width: 23.5%;
         }
       
         .staff_record .show_count_staff .card p {
             margin-bottom: 20px;
-            font-family: 'Roboto';
-            font-size: 13px;
+            font-size: 14px;
             text-transform: uppercase;
         }
         .staff_record .show_count_staff .card h3 {
-            font-family: 'Roboto Serif';
             font-size: 30px;
             color: #000;
+            font-weight: 500;
         }
         .staff_record .show_count_staff .card:nth-child(3) {
             width: 50%;
@@ -533,7 +530,6 @@ else{
             border: none;
             background: #324E9E;
             color: #eee;
-            font-family: 'Roboto';
             margin-left: 20px;
             cursor: pointer;
         }
@@ -542,7 +538,6 @@ else{
             color: #eee;
             height: 30px;
             border: none;
-            font-family: 'Roboto';
             width: 120px;
             line-height: 28px;
             margin-right: 20px;
@@ -550,7 +545,10 @@ else{
         }
 
 
-
+       ul a {
+           text-decoration: none;
+       }
+  
 
 
 
@@ -566,7 +564,6 @@ else{
             align-items: center;
         }
         .add_staff_div form p {
-            font-family: 'Roboto';
             font-size: 13px;
             text-transform: uppercase;
             margin-right: 20px;
@@ -609,7 +606,6 @@ else{
         }
         .search_select .row:nth-child(1) .form_label {
             width: 25%;
-            font-family: 'Roboto';
             font-size: 13px;
             text-transform: uppercase;
             color: #333;
@@ -632,7 +628,6 @@ else{
         .search_select .row:nth-child(2) form .search-box p {
             margin-right: 20px;
             font-size: 13px;
-            font-family: 'Roboto';
         }
         .search_select .row:nth-child(2) form .search-box input {
             border: 1px solid lightgrey;
@@ -643,7 +638,6 @@ else{
         .search_select .row:nth-child(2) form .search-box button {
             width: 120px;
             height: 30px;
-            font-family: 'Roboto';
             background: #324E9E;
             border: none;
             color: #fff;
@@ -690,7 +684,6 @@ else{
             width: 120px;
             background: #324E9E;
             color: #eee;
-            font-family: 'Roboto';
             cursor: pointer;
         }
         .list_group_container form .btn_group button:nth-child(2) {
@@ -711,7 +704,6 @@ else{
             width: 100%;
             cursor: pointer;
             transition: all .1s ease-in-out;
-            font-family: 'Roboto';
         }
         .result p:hover {
             background: #324E9E;
@@ -735,11 +727,15 @@ else{
 }
 .pagination_div ul a {
     color: #eee;
-    font-family: 'Roboto';
     font-size: 12px;
     text-transform: uppercase;
 }
-
+.overwrite {
+    margin-top: 30px;
+}
+.overwrite input[type=checkbox] {
+    margin-right: 10px;
+}
 
 </style>
 

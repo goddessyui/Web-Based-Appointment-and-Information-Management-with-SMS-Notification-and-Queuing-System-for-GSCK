@@ -996,6 +996,10 @@ $(document).ready(function() {
 
     
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+
     .parent_div{
        width: 100%;
        margin-top: 80px;
@@ -1102,12 +1106,11 @@ $(document).ready(function() {
        font-size: 14px;
        color: #444;
        text-transform: initial;
-       font-family: 'Roboto Serif';
     }
     .at_under_staff {
         text-transform: uppercase;
         transform: translateY(6px);
-        font-size: 13px;
+        font-size: 14px;
         color: #444;
         font-family: 'Roboto';
     }
@@ -1123,13 +1126,13 @@ $(document).ready(function() {
 .apt_container_div {
     background: #fff;
     padding: 40px;
+    padding-top: 0;
     height: 60vh;
     overflow: auto;
     width: 100%;
 }
 .apt_container_div h2 {
     font-size: 16px;
-    font-family: 'Roboto Serif';
     margin-bottom: 20px;
 }
 
@@ -1176,26 +1179,22 @@ form .staff_list_label input[type=radio] {
 
 
 form .staff_list_label p {
-    font-family: 'Roboto';
     color: #eee;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .apt_container_div form h4 {
     color: red;
     margin-bottom: 5px;
-    font-family: 'Roboto';
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: #333;
     text-transform: uppercase;
 }
 .apt_container_div form small {
-    color: yellow;
-    font-family: 'Roboto Serif';
-    font-size: 12px;
+    font-size: 14px;
     color: #444;
 }
 
@@ -1245,7 +1244,6 @@ form .staff_list_label p {
         text-decoration: none;
         font-size: 20px;
         color: #333;
-        font-family: 'Times New Roman';
     }
     .search-box:nth-child(2) {
         width: 50%;
@@ -1258,7 +1256,7 @@ form .staff_list_label p {
         border: none;
         background: none;
         border: 1px solid lightgrey;
-        font-size: 15px;
+        font-size: 14px;
         padding-left: 10px;
         color: #444;
 
@@ -1285,8 +1283,7 @@ form .staff_list_label p {
     }
     .search-box input[type="text"] {
         width: 100%;
-        font-family: 'Roboto Serif';
-        font-size: 13px;
+        font-size: 14px;
         color: #444;
     }
     /* End of Formatting search box */
@@ -1297,7 +1294,7 @@ form .staff_list_label p {
         padding: 5px 12px;
         color: #eee;
         text-transform: uppercase;
-        font-size: 13px;
+        font-size: 14px;
         font-family: 'Roboto';
     }
     .result p:hover{

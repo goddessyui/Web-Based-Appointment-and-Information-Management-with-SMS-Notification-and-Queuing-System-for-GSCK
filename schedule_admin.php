@@ -128,6 +128,9 @@ if ($staff_id == "" || $username == ""){
         border-radius: 0;
         border: none;
     }
+    .fc-day {
+        background: #fff;
+    }
 </style>
 
 <script src="css/schedule/fullcalendar/lib/jquery.min.js"></script>

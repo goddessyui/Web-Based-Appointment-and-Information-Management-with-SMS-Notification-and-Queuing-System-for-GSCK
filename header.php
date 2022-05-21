@@ -70,8 +70,6 @@
                     else {
                         ?>
                         <button class="login" onclick="BtnLogin()"><p>Login</p></button>
-                        <b>/</b>
-                        <button class="register" onclick="BtnRegister()"><p>Register</p></button>
                         <?php
                     }
                 ?>
