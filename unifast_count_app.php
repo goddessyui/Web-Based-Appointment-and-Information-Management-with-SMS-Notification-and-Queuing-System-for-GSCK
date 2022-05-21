@@ -18,7 +18,6 @@
                                 INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
                                 INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
                                 WHERE tbl_appointment_detail.status = 'Accepted' AND tbl_staff_registry.staff_id = '$staff_id'
-                                AND tbl_appointment_detail.appointment_date >= '$currentdate'
                                 AND tbl_appointment.appointment_type IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
                             $acceptedrequest_result = mysqli_query($db, $acceptedrequest);
                             $count = mysqli_num_rows($acceptedrequest_result);
@@ -106,33 +105,6 @@ $claimpendingrequest="SELECT tbl_appointment.appointment_id, tbl_appointment.dat
             <!--------------End of No. of Submit Documents Pending Requests-------------->
 
             
-            <!--------------Start of No. of Missed Requests-------------->
-            <div class="col_3" id="missedrequests">
-                <a href="unifast_missed_request.php">
-                    <div class="card">
-                        <div class="card_title">Missed Requests</div>
-                        <div class="card_body">
-                        
-                            
-                                <?php
-                                    $missedrequest="SELECT * FROM tbl_appointment_detail INNER JOIN tbl_appointment 
-                                        ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
-                                        INNER JOIN tbl_staff_registry ON tbl_appointment.staff_id = tbl_staff_registry.staff_id 
-                                        INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id 
-                                        WHERE DATE(tbl_appointment_detail.appointment_date) < CURDATE() 
-                                        AND tbl_appointment_detail.status = 'Accepted' 
-                                        AND tbl_staff_registry.staff_id = '$staff_id'
-                                        AND tbl_appointment.appointment_type IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')";
-                                    $missedrequest_result = mysqli_query($db, $missedrequest);
-                                    $count = mysqli_num_rows($missedrequest_result);
-                                    echo $count;
-                                ?>
-
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--------------End of No. of Missed Requests-------------->
 
             <!--------------Start of No. of Declined Requests-------------->
             <div class="col_3" id="declinedrequests">
