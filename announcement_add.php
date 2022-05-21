@@ -25,38 +25,36 @@ $fullname = $row['first_name'].' '.$row['last_name'];
     }
     </script>
 
-    <h3>Add Announcement</h3>
+    <h3 class="edit_announcement">Add Announcement</h3>
         <!-- Modal content-->
 
                     <form class="user" method="POST" id="form" enctype="multipart/form-data">
-                        <div><label>Title:</label>
+                        <div class="form_edit">
+                            <p>Title:</p>
                             <input name="title" id="title" type="text" value="" required>
                         </div>
 
-                        <div>
-                            <label>Caption:</label>
+                        <div class="form_edit">
+                            <p>Caption:</p>
+                            <input name="caption" id="caption" type="text" value="" required></input>
                         </div>
 
-                        <div>
-                            <textarea name="caption" id="caption" type="text" value="" required></textarea>
-                        </div>
-
-                        <div>    
-                            <label>Video Link(can only accept youtube video url):</label>
+                        <div class="validate_form">    
+                            <p>Video Link(can only accept youtube video url):</p>
                             <input name="video_link" id="video_link" type="text" value="">
                             <button id="check" type="button" onclick="myFunction()">Validate URL</button>
                             <button id="removeurl" type="button" onclick="removeu()">Remove URL</button>                
                         </div>
 
                         <div>
-                            <small id="mess" style="color:red;"></small>
+                            <small id="mess"></small>
                         </div>
 
-                        <div> 
+                        <div class="video_frame"> 
                             <iframe id="videoObject" type="text/html" width="500" height="265" frameborder="0" allowfullscreen></iframe>
                         </div>
                         
-                        <div>
+                        <div class="image_frame">
                             <label>Photo:</label>
                             <input type="file" name="image" accept="image/*" id="imgInp" onchange="loadFile(event)" >
                             <button type="button" id='remove_btn' onclick="Remove()" disabled>Remove Image</button>  
@@ -68,13 +66,13 @@ $fullname = $row['first_name'].' '.$row['last_name'];
 
                         <div>
                         <input type="checkbox" name="check_notify" id="check_notify" onclick="checknotify()" value="true">
-                        <label >Notify students through SMS</label>
+                        <label>Notify students through SMS</label>
                         </div>
                         
-                        <div hidden id="filter">
-                            <div><label>send to:</label></div>
-                            <div>
-                                <label >course:</label>
+                        <div hidden id="filter" class="filter">
+
+                            <div class="filter_send">
+                                <p>Course:</p>
                                 <select name="course" id="course">
                                     <option value="ALL">ALL</option>  
                                     <option value="BSHM">BSHM</option>
@@ -90,8 +88,8 @@ $fullname = $row['first_name'].' '.$row['last_name'];
                                     <option value="TESDA PROGRAM">TESDA PROGRAM</option>
                                 </select>
                             </div>
-                            <div>
-                                <label>year:</label>
+                            <div class="filter_send">
+                                <p>Year:</p>
                                 <select name="year" id="year"> 
                                     <option value="ALL">ALL</option> 
                                     <option value="1">1st Year</option>
@@ -102,19 +100,40 @@ $fullname = $row['first_name'].' '.$row['last_name'];
                             </div>
                         </div>
 
-                        <div class="">
+                        <div class="url_buttons">
                             <button type="submit" id= "add" name="button_add_announcement">Submit</button>
-                            <button formnovalidate formaction='announcement_admin.php'>Cancel</button>
+                            <button formnovalidate formaction='announcement_admin.php' class="cancel_edit">Cancel</button>
                         </div>
 
                         <div>
-                            <div id="mess1" style="color:red;"></div>
+                            <div id="mess1"></div>
                         </div>
                     </form>
 
                 
       
- 
+ <style>
+     .filter {
+         width: 100%;
+     }
+     .filter_send {
+         height: 28px;
+         display: flex;
+         align-items: flex-end;
+         margin-top: 10px;
+     }
+     .filter_send p {
+         width: 80px;
+     }
+     .filter_send select {
+         width: 100%;
+         height: 28px;
+     }
+     #output {
+        height: 20vh;
+    }
+     
+ </style>
 
 <script>
 

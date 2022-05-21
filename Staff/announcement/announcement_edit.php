@@ -97,7 +97,7 @@ if ($staff_id == "" || $staff_username == ""){
             .validate_form {
                 margin-bottom: 10px;
                 width: 100%;
-                background: lightgrey;
+                background: #D3D3D3;
                 padding: 10px;
                 margin-top: 20px;
             }
@@ -119,7 +119,8 @@ if ($staff_id == "" || $staff_username == ""){
                 cursor: pointer;
                 margin-left: 10px;
             }
-            .validate_form #edit_removeurl {
+            .validate_form #edit_removeurl,
+            .validate_form #removeurl {
                 background: #EC3237;
                 color: #eee;
                 margin-left: 10px;
@@ -136,7 +137,7 @@ if ($staff_id == "" || $staff_username == ""){
             .image_frame {
                 width: 100%;
                 margin-bottom: 10px;
-                background: lightgrey;
+                background: #D3D3D3;
                 padding: 10px;
             }
             .image_frame input {
@@ -152,12 +153,14 @@ if ($staff_id == "" || $staff_username == ""){
                 background: #EC3237;
                 color: #eee;
                 cursor: pointer;
+                margin-left: 10px;
             }
             input[type=file]::file-selector-button {
                 color: #eee;
                 height: 28px;
-                border: 1px solid lightgrey;
+                border: none;
                 background: #2D303A;
+                margin: 0;
             }
 
             .url_buttons {
@@ -176,10 +179,9 @@ if ($staff_id == "" || $staff_username == ""){
                 margin-left: 10px;
             }
             #edit_output {
-                width: 100%;
-                max-height: 20vh;
-                background-size: cover;
+                height: 20vh;
             }
+     
         </style>
            
 
