@@ -24,6 +24,7 @@
     <script type="text/javascript" src="jquery_offline.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="css/schedule/fullcalendar/fullcalendar.min.css" />
     
     <title>GSCK Appointment Portal</title>
 </head>
@@ -112,17 +113,10 @@
                 </li>
             </a>
 
-            <a href="claimcheque_pendingapp.php">
-                <li>
-                    <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
-                    <span>Claim Cheque</span>
-                </li>
-            </a>
-
             <a href="unifast_accepted_request.php">
                 <li>
                     <img src="icon/white/schedule_white.svg" alt="records icon" width="25">
-                    <span>UniFast Appointments Detail</span>
+                    <span>UniFAST</span>
                 </li>
             </a>
 

@@ -12,16 +12,36 @@ if ($staff_id == "" || $username == ""){
     echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-    <link rel="stylesheet" href="css/schedule/fullcalendar/fullcalendar.min.css" />
-    <script src="css/schedule/fullcalendar/lib/jquery.min.js"></script>
-    <script src="css/schedule/fullcalendar/lib/moment.min.js"></script>
-    <script src="css/schedule/fullcalendar/fullcalendar.min.js"></script>
+    
 
-    <script>
+
+    <main>
+        <div class="schedule_admin">
+            <div class="calendar_title">
+                <h2>Calendar Scheduler</h2>
+            </div>
+            <p>Click a date to set your schedule. Refresh and click to delete.</p>
+            <div class="response"></div>
+            <div id='calendar'></div>
+        </div>
+    </main>
+
+    </div>
+</div>
+
+<div class="mobile_header"></div>
+
+</body>
+</html>
+
+
+
+<script src="css/schedule/fullcalendar/lib/jquery.min.js"></script>
+<script src="css/schedule/fullcalendar/lib/moment.min.js"></script>
+<script src="css/schedule/fullcalendar/fullcalendar.min.js"></script>
+
+<script>
     $(document).ready(function () {
         var calendar = $('#calendar').fullCalendar({
             editable: true,
@@ -30,7 +50,8 @@ if ($staff_id == "" || $username == ""){
             eventRender: function (event, element, view) {
                 if (event.allDay === 'true') {
                     event.allDay = true;
-                } else {
+                } 
+                else {
                     event.allDay = false;
                 }
             },
@@ -61,12 +82,12 @@ if ($staff_id == "" || $username == ""){
                         }
                     });
                     calendar.fullCalendar('renderEvent',
-                            {
-                                title: title,
-                                start: start,
-                                allDay: allDay
-                            },
-                    true
+                        {
+                            title: title,
+                            start: start,
+                            allDay: allDay
+                        },
+                            true
                             );
                         
                 calendar.fullCalendar('unselect');
@@ -77,8 +98,8 @@ if ($staff_id == "" || $username == ""){
             editable: false,
             eventClick: function (event) {
 
-                if(event.id == undefined || event.id == ''){
-                    alert("Can not delete the new added schedule, please refresh the Page!");
+                if(event.id == undefined || event.id == '') {
+                    alert("Cannot delete the newly added schedule. Please refresh the Page!");
                 }
                 else{
                 var deleteMsg = confirm("Do you really want to delete?");
@@ -102,119 +123,7 @@ if ($staff_id == "" || $username == ""){
     });
 
     function displayMessage(message) {
-            $(".response").html("<div class='success'>"+message+"</div>");
+        $(".response").html("<div class='success'>"+message+"</div>");
         setInterval(function() { $(".success").fadeOut(); }, 1000);
     }
-    </script>
-
-
-</head>
-<body>
-    <main>
-        <div class="schedule_admin">
-            <div class="calendar_title">
-                <h2>Calendar Scheduler</h2>
-            </div>
-            <p>Click a date to set your schedule. Refresh and click to delete.</p>
-            <div class="response"></div>
-            <div id='calendar'></div>
-        </div>
-    </main>
-
-    </div>
-</div>
-
-<div class="mobile_header"></div>
-
-</body>
-</html>
-
-
-<style>
-    main {
-        background: #EFF0F4;
-    }
-    main .schedule_admin {
-        background: #fff;
-        padding: 20px;
-    }
-    main .schedule_admin p {
-        font-size: 14px;
-        font-family: 'Roboto';
-        color: gray;
-        margin-top: 12px;
-        width: 300px;
-    }
-    main .schedule_admin .calendar_title {
-        display: flex;
-        align-items: center;
-    }
-
-    main .schedule_admin .calendar_title h2 {
-        color: #000;
-        font-size: 20px;
-        font-family: 'Roboto';
-        text-transform: uppercase;
-    }
-    main .schedule_admin .fc-left h2 {
-        color: #333;
-        font-size: 16px;
-        font-family: 'Roboto';
-        transform: translateY(15px);
-        font-size: 18px;
-        text-transform: uppercase;
-    }
-    main .schedule_admin .fc-day-header {
-        padding: 8px 0;
-        font-family: 'Roboto';
-        font-size: 14px;
-        color: #333;
-    }
-
-    main .schedule_admin .fc-day-number {
-        font-family: 'Roboto Serif';
-        font-size: 20px;
-        margin-right: 8px;
-    }
-
-    main .schedule_admin .fc-widget-content {
-        
-        cursor: pointer;
-    }
-    main .schedule_admin .fc-day-grid-event {
-        background: none;
-        border: none;;
-    }
-    main .schedule_admin .fc-content {
-        background: #324E9E;
-        padding: 2px;
-        padding-left: 8px;
-        font-family: 'Roboto'
-    }
-    main .schedule_admin .fc-icon {
-        background: none;
-    }
-    main .schedule_admin .fc-prev-button {
-        background: #fff;
-        border-radius: 0;
-        height: 30px;
-    }
-    main .schedule_admin .fc-next-button {
-        background: #fff;
-        border-radius: 0;
-        height: 30px;
-    }
-    main .schedule_admin .fc-today-button {
-        background: #324E9E;
-        color: #fff;
-        opacity: 1;
-        border-radius: 0;
-        text-transform: uppercase;
-        font-size: 13px;
-        height: 30px;
-    }
-    .fc-view-container {
-        margin-top: 20px;
-    }
-
-</style>
+</script>
