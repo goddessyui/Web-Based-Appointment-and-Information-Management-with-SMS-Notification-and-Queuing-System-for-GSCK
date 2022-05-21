@@ -32,7 +32,7 @@ if ($staff_id == "" && $username == "" && $position != "Registrar"){
 
     //--------------------------If Delete is Pressed--------------------------// 
     else if (isset($_POST['delete'])) {
-        $student_id = $_POST['studentid'];
+        $student_id = $_POST['delete'];
     
         $deletestudentrecord = "DELETE FROM tbl_student_record WHERE student_id ='$student_id'";
     

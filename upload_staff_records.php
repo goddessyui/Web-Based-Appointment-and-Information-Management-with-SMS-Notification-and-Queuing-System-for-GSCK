@@ -354,7 +354,8 @@ else{
 
                             <div class="btn_group" role="group" aria-label="Basic example">
                                 <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                <!-- <button class="btn_delete" type="submit" name="delete">DELETE</button> -->
+                                <button type="button" onclick="del(this);" value="<?php echo $row['staff_id']; ?>">DELETE</button>
                             </div>
                         
                         </form>
@@ -426,7 +427,8 @@ else{
                                 </div>    
                                 <div class="btn_group" role="group" aria-label="Basic example">
                                     <button class="btn_update" type="submit" name="update">UPDATE</button>
-                                    <button class="btn_delete" type="submit" name="delete">DELETE</button>
+                                    <!-- <button class="btn_delete" type="submit" name="delete">DELETE</button> -->
+                                    <button type="button" onclick="del(this);" value="<?php echo $row['staff_id']; ?>">DELETE</button>
                                 </div>
                                 
                             </form>
@@ -474,6 +476,33 @@ else{
 </div>
 
 <div class="mobile_header"></div>
+
+
+<!-- delete announcement modal -->
+<div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+
+        <div>
+          <div id="mess_delete"></div>
+        </div>
+        
+        <div>
+          <p>
+            Do you really want to delete?
+          </p>
+        </div>
+
+        <div>
+          <form method="POST" id="form_delete" action="Staff/registrar/updatedelete_staffrecord.php">
+            <button class="delete" type="submit" id= "delete" name="delete">Confirm</button>
+            <button class="close1" type="button">Cancel</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
 
 </body>
 </html>
@@ -743,6 +772,91 @@ else{
     margin-right: 10px;
 }
 
+
+.modal,
+    .addmodal,
+    .editmodal  {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 20vw;
+        top: 10vh;
+        width: 80vw; /* Full width */
+        height: 100vh; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background: #0008;
+    }
+    .modal p {
+      margin-bottom: 20px;
+    }
+ 
+
+    /* Delete Modal Content */ 
+    .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 30%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+    /* add and edit modal Content */
+    .addmodal-content,
+    .editmodal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        max-width: 50%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
+    }
+
+
+    /* The Close Button */
+    .close1 {
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #324E9E;
+        text-transform: capitalize;
+    }
+    .delete {
+        background-color: #EC3237;
+        color: #eee;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 28px;
+        width: 120px;
+        text-transform: capitalize;
+    }
+
+    .delete:hover,
+    .delete:focus {
+        background: #FF0000;
+    }
+    .close1:hover,
+    .close1:focus {
+      background: #424F59;
+    }
+
+
+
 </style>
 
 
@@ -790,6 +904,32 @@ $(document).ready(function() {
 
 });
 /*--------------------------------------Search box script---------------------------------------------------------*/
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var close = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the delete button, open the modal 
+function del(id) {
+    $('#delete').attr('value', id.value);
+    modal.style.display = "block";
+}
+
+
+// When the user clicks on cancel button, close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
 </script>
