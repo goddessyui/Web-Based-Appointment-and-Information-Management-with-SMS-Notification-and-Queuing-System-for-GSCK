@@ -240,6 +240,43 @@
 
 
 
+       <div class="message_container">
+            <!--success or error-->                        
+            <?php 
+                if(isset($_GET['success'])){
+            ?>
+                <div class="success_msg">
+                    <img src="icon/success.png" alt="" width="30">
+                    <p>
+                        <?php 
+                            echo $_GET['success'];
+                        ?>
+                    </p>
+                </div>
+
+
+            <?php
+                }
+                if(isset($_GET['error'])){
+            ?>
+
+                <div class="error_msg">
+                    <p>
+                        <?php 
+                            echo $_GET['error'];
+                        ?>
+                    </p>
+                </div>
+
+            <?php
+            }
+            else{
+            }
+            ?>
+            <!--success or error-->
+        </div>
+
+
 
     </main>
 
@@ -446,6 +483,31 @@
         background: #FF6276;
     }
 
+
+    .message_container {
+        position: absolute;
+        top: 12vh;
+        right: 25px;
+        width: 320px;
+    }
+    .message_container .success_msg {
+        background: #C9E6C8;
+        padding: 15px;
+        height: 10vh;
+        display: flex;
+        align-items: center;
+    }
+    .message_container .success_msg p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #444;
+    }
+    .message_container .success_msg img {
+        margin-right: 20px;
+    }
+    .message_container .error_msg {
+        background: orange;
+    }
 
 
 
@@ -742,5 +804,11 @@ $(document).ready(function() {
 
     </script>
  
+    <script>
+        function hidediv() {
+            document.querySelector('.message_container').style.display = "none";
+        }
+        setTimeout("hidediv()", 4000);
+    </script>
 
 
