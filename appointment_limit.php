@@ -4,7 +4,7 @@ include_once('dbconfig.php');
         
         $limit_value = $_POST['limit_value'];
 
-        
+    if ($limit_value>0){
             $limitapp="UPDATE tbl_appointment_limit SET appointment_limit = '{$limit_value}' WHERE limit_id = '1'";
 
             if (mysqli_query($db, $limitapp)) {
@@ -16,7 +16,11 @@ include_once('dbconfig.php');
             
                 header('location: dashboard.php?error=Error in updating appointment limit.');
             }
-        
+    }
+    else {
+            header('location: dashboard.php?error=<p>Can not accept 0 value</p>');
+    }
+         
          
     }
 

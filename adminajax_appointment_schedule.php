@@ -23,6 +23,8 @@ if (mysqli_num_rows($check) != 0){
 $fetch="SELECT tbl_appointment.appointment_id, 
                     tbl_appointment_detail.appointment_date, 
                     tbl_appointment_detail.date_accepted, 
+                    tbl_appointment_detail.appointment_time_open, 
+                    tbl_appointment_detail.appointment_time_close, 
                     tbl_appointment.staff_id, 
                     tbl_appointment.appointment_type,
                     tbl_appointment.note, 
@@ -32,10 +34,10 @@ $fetch="SELECT tbl_appointment.appointment_id,
                     FROM tbl_appointment_detail INNER JOIN tbl_appointment 
                     ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id 
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
-                    WHERE tbl_appointment_detail.status IN ('Accepted', 'Canceled')
+                    WHERE tbl_appointment_detail.status = 'Accepted'
                     AND tbl_appointment_detail.appointment_date = '$appointment_date'
-
-                    ORDER BY tbl_appointment_detail.appointment_detail_id ASC";
+                    AND tbl_appointment.appointment_type NOT IN ('UniFAST - Claim Cheque', 'UniFAST - Submit Documents')
+                    ORDER BY tbl_appointment_detail.appointment_time_open ASC";
 
 
 $fetch_result = mysqli_query($db, $fetch);
@@ -55,12 +57,26 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
                 <div class="appschedule_row">Student Name</b></div>
                 <div class="appschedule_row">Appointment Type</b></div>
                 <div class="appschedule_row">Appointment Date</b></div>
+                <div class="appschedule_row">Appointment Time</b></div>
             </div>
 
         <?php
         while($rows=mysqli_fetch_assoc($fetch_result)) {
 
-            if($rows['status']=='Accepted'){
+            //Add Queueing and SMS function here???-----------------------------------------
+            $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_detail_id) AS queuenum 
+            FROM tbl_appointment_detail 
+            WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+            AND appointment_date = '$appointment_date') T2 
+            WHERE appointment_id = '{$rows['appointment_id']}'";
+         $qnum = mysqli_query($db, $q); 
+         $queue = mysqli_fetch_assoc($qnum);
+         //Queue Number---------------------------------------------------------------------------------------//
+         $queuenumber = $queue['queuenum'];
+         
+         //Queue Number---------------------------------------------------------------------------------------//  
+
+            
 ?>
 
             <div class="row_schedule_list">
@@ -69,7 +85,7 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
                     </div>
                         
                     <div class="appschedule_row">
-                    <?php echo $i; ?>
+                    <?php echo $queuenumber; ?>
                     </div>
 
                     <div class="appschedule_row">
@@ -84,10 +100,15 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
                     <?php echo date("F d, Y", strtotime($rows['appointment_date'])); ?> 
                     </div>
 
+                    <div class="appschedule_row">
+                    <?php echo  date("h:ia", strtotime($rows['appointment_time_open'])).' - '.date("h:ia", strtotime($rows['appointment_time_close'])); ?> 
+                    </div>
+                   
+
             </div>
 
         
-        <?php }  ++$i; ?>
+        
 
         
 <?php 

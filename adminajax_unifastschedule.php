@@ -32,6 +32,7 @@ $fetch="SELECT tbl_appointment.appointment_id,
                     INNER JOIN tbl_student_registry ON tbl_appointment.student_id = tbl_student_registry.student_id
                     WHERE tbl_appointment_detail.status IN ('Accepted', 'Canceled')
                     AND tbl_appointment_detail.appointment_date = '$appointment_date'
+                    AND tbl_appointment.appointment_type = '$appointment_type'
                     ORDER BY tbl_appointment_detail.appointment_detail_id ASC";
 
 
@@ -57,8 +58,20 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
         <tbody>
         <?php
         while($rows=mysqli_fetch_assoc($fetch_result)) {
-            if($rows['appointment_type']==$appointment_type){   
-            if($rows['status']=='Accepted'){
+
+            //Add Queueing and SMS function here???-----------------------------------------
+            $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_detail_id) AS queuenum 
+            FROM tbl_appointment_detail 
+            WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
+            AND appointment_date = '$appointment_date') T2 
+            WHERE appointment_id = '{$rows['appointment_id']}'";
+            $qnum = mysqli_query($db, $q); 
+            $queue = mysqli_fetch_assoc($qnum);
+            //Queue Number---------------------------------------------------------------------------------------//
+            $queuenumber = $queue['queuenum'];
+         
+            //Queue Number---------------------------------------------------------------------------------------//  
+
 ?>
 
         <div class="row_unifast_list">
@@ -67,7 +80,7 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
                     </div>
                         
                     <div class="schedunifast_row">
-                    <?php echo $i; ?> 
+                    <?php echo $queuenumber; ?> 
                     </div>
 
                     <div class="schedunifast_row">
@@ -85,7 +98,7 @@ if($fetch_result==TRUE) { // count rows to check whether we have data in databas
             </div>
 
         
-        <?php }} ++$i; ?>
+        
     
 <?php 
         }
