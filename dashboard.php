@@ -201,7 +201,7 @@
 
                 <form action="appointment_limit.php" method="post">
                     <input type="text" placeholder="Input Appointment Limit" name="limit_value">
-                    <button type="submit" name="limit">Change Appointment Limit</button>
+                    <button type="submit" name="limit" id="limit">Change Appointment Limit</button>
                 </form>
             </div>
        </div>
@@ -809,6 +809,7 @@ $(document).ready(function() {
             document.querySelector('.message_container').style.display = "none";
         }
         setTimeout("hidediv()", 4000);
+        window.history.replaceState(null, null, window.location.pathname);
     </script>
 
 
