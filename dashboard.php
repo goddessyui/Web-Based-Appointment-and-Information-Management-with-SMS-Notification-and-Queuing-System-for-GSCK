@@ -23,7 +23,119 @@
        const ctx = document.getElementById('myChart');
 
         var xValues = ["8am - 9am", "9am - 10am", "10am - 11am", "11am - 12nn", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm", "4pm - 5pm"];
-        var yValues = [2, 5, 9, 4, 5, 1, 0, 10];
+        var yValues = [   
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '08:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>, 
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '09:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?> , 
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '10:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>, 
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '11:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>, 
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '13:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>,
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '14:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>,
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '15:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>, 
+            <?php 
+                date_default_timezone_set('Asia/Manila');                           		
+                $currentdate = date("Y-m-d");
+                
+                $taken = "SELECT tbl_appointment_detail.appointment_detail_id FROM tbl_appointment_detail 
+                INNER JOIN tbl_appointment ON tbl_appointment_detail.appointment_id = tbl_appointment.appointment_id WHERE tbl_appointment_detail.status = 'Accepted' 
+                    AND tbl_appointment_detail.appointment_time_open = '16:00:00'
+                    AND tbl_appointment.staff_id ='$staff_id'
+                    AND tbl_appointment_detail.appointment_date = '$currentdate'";
+                $takenslot = mysqli_query($db, $taken);
+                $no_of_slots_taken = mysqli_num_rows($takenslot);
+
+                echo $no_of_slots_taken; 
+            ?>];
 
         const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, 'rgba(110,193,247,0.9)');
