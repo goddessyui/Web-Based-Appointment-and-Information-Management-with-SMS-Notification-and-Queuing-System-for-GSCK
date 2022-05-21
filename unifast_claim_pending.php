@@ -420,13 +420,47 @@
        width: 100%;
        padding: 15px;
        min-height: 100vh;
-       margin-top: 60px;
+       
     }
     main h2 {
         margin-left: 15px;
         font-size: 20px;
         font-family: 'Roboto';
         margin-bottom: 15px;
+    }
+
+    .card_row_div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    background: #EFF0F4;
+    padding: 0 15px;
+    }
+    .card_row_div .col_3 {
+        width: 182px;
+        text-align: center;
+        cursor: pointer;
+        background: #fff;
+    }
+    .card_row_div .col_3 a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .card_row_div .col_3 .card .card_title {
+        padding: 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #333;
+        font-family: 'Roboto';
+    }
+    .card_row_div .col_3 .card .card_body {
+        padding-bottom: 15px;
+        font-size: 30px;
+        font-family: 'Roboto';
     }
     .pending_container_top {
         background: #fff;
