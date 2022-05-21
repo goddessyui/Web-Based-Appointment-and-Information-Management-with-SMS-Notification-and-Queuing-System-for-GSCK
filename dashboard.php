@@ -104,7 +104,7 @@
                     $currentdate = date("F j, Y");
                     ?>
                     <h3>Today's Appointments (<?php echo $currentdate;?>)</h3>
-                    <button>View all</button>
+                    <a href="staff_accepted_requests.php"><button>View all</button></a>
                 </div>
                 <table>
                     <tr>
@@ -142,7 +142,6 @@
 
                         while($applist=mysqli_fetch_assoc($listapp_query)) { ?>
                             <tr>
-
                                 <td>
                                     <?php echo date('g a', strtotime($applist['appointment_time_open']))."-".date('g a', strtotime($applist['appointment_time_close'])); ?>
                                 </td>
@@ -179,6 +178,10 @@
                 </table>
             </div>
 
+
+
+            <?php if($position=="Registrar") {
+                ?>
             <div class="limit_appnt">
                 <h3>Max. Appointments per Hour</h3>
                 <div class="circle_container">
@@ -200,43 +203,46 @@
                 </div>
 
                 <form action="appointment_limit.php" method="post">
-                    <input type="text" placeholder="Input Appointment Limit" name="limit_value">
-                    <button type="submit" name="limit" id="limit">Change Appointment Limit</button>
+                    <input type="number" placeholder="Input Appointment Limit" name="limit_value" min="1" required>
+                    <button type="submit" name="limit">Change Appointment Limit</button>
                 </form>
             </div>
-       </div>
-       
 
-    <!-- -CJ UniFast Appointment Limit -->
-       <?php if($position=="Accounting Staff/Scholarship Coordinator") { ?>
-       <div class="limit_appnt">
-                <h3>Max. UniFast Appointments per Day</h3>
-                <div class="circle_container">
-                    <div class="limit_circle">
-                        <h1>
-                            <?php
-                                $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
-                                $limitvalue= mysqli_query($db, $limit);
+            <?php } ?>
 
-                                if($limitvalue==TRUE){
-                                    while($al=mysqli_fetch_assoc($limitvalue)) {
+             <!-- -CJ UniFast Appointment Limit -->
+            <?php if($position=="Accounting Staff/Scholarship Coordinator") { ?>
+            <div class="limit_appnt">
+                        <h3>Max. UniFast Appointments per Day</h3>
+                        <div class="circle_container">
+                            <div class="limit_circle">
+                                <h1>
+                                    <?php
+                                        $limit = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
+                                        $limitvalue= mysqli_query($db, $limit);
 
-                                        echo $al['appointment_limit'];
-                                    }
-                                }
-                            ?>
-                        </h1>
+                                        if($limitvalue==TRUE){
+                                            while($al=mysqli_fetch_assoc($limitvalue)) {
+
+                                                echo $al['appointment_limit'];
+                                            }
+                                        }
+                                    ?>
+                                </h1>
+                            </div>
+                        </div>
+
+                        <form action="unifast_appointment_limit.php" method="post">
+                            <input type="number" placeholder="Input UniFast Appointment Limit" name="unifast_limit_value" min="1" required>
+                            <button type="submit" name="unifast_limit">Change UniFast Appointment Limit</button>
+                        </form>
                     </div>
-                </div>
-
-                <form action="unifast_appointment_limit.php" method="post">
-                    <input type="text" placeholder="Input UniFast Appointment Limit" name="unifast_limit_value">
-                    <button type="submit" name="unifast_limit">Change UniFast Appointment Limit</button>
-                </form>
-            </div>
+            <?php }?>
+            <!-- -CJ UniFast Appointment Limit -->
        </div>
-       <?php }?>
-       <!-- -CJ UniFast Appointment Limit -->
+              
+
+   
 
 
 
@@ -261,6 +267,7 @@
             ?>
 
                 <div class="error_msg">
+                    <img src="icon/error.png" alt="" width="30">
                     <p>
                         <?php 
                             echo $_GET['error'];
@@ -303,6 +310,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         padding: 15px;
+        padding-bottom: 0;
         background: #EDEEF3;
     }
     .card_row_div .col_3 {
@@ -342,6 +350,7 @@
     .limit_container {
         width: 100%;
         padding: 0 15px;
+        margin-top: 15px;
     }
     .limit_container .chart_panel {
         background: #fff;
@@ -506,10 +515,20 @@
         margin-right: 20px;
     }
     .message_container .error_msg {
-        background: orange;
+        background: #FECFC4;
+        padding: 15px;
+        height: 10vh;
+        display: flex;
+        align-items: center;
     }
-
-
+    .message_container .error_msg img {
+        margin-right: 20px;
+    }
+    .message_container .error_msg p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #444;
+    }
 
 
 </style>

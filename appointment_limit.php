@@ -10,7 +10,10 @@ include_once('dbconfig.php');
             if (mysqli_query($db, $limitapp)) {
                 header('location: dashboard.php?success=Successfully updated appointment limit.');
 
-            } else {
+            } 
+            
+            else {
+            
                 header('location: dashboard.php?error=Error in updating appointment limit.');
             }
         
