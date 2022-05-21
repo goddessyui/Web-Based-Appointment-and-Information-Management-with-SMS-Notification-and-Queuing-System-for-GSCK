@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link rel="stylesheet" href="css/schedule/fullcalendar/fullcalendar.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/admin_style.css">
     
     <title>GSCK Appointment Portal</title>
 </head>
