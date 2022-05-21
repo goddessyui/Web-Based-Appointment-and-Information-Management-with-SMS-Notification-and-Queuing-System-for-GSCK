@@ -62,22 +62,25 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
       <?php
         if (isset($_GET['ann'])) {
           $ann = $_GET["ann"];
-          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title, 
-            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name` 
-            FROM tbl_announcement WHERE announcement_id = '$ann' ORDER BY date_created DESC"; 
+          $sql = "SELECT tbl_staff_registry.position, tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title, 
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, tbl_announcement.name  
+            FROM tbl_announcement INNER JOIN tbl_staff_registry ON tbl_announcement.staff_id = tbl_staff_registry.staff_id
+            WHERE tbl_announcement.announcement_id = '$ann' ORDER BY tbl_announcement.date_created DESC"; 
         }
 
         else if (isset($_GET['all'])) {
-          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
-            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url,`name`    
-            FROM tbl_announcement WHERE staff_id='$staff_id'
-            ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; 
+          $sql = "SELECT tbl_staff_registry.position, tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, tbl_announcement.name     
+            FROM tbl_announcement INNER JOIN tbl_staff_registry ON tbl_announcement.staff_id = tbl_staff_registry.staff_id
+            WHERE tbl_announcement.staff_id='$staff_id'
+            ORDER BY tbl_announcement.date_created DESC LIMIT $offset, $no_of_records_per_page"; 
         } 
 
         else {
-          $sql = "SELECT tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
-            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, `name`    
-            FROM tbl_announcement ORDER BY date_created DESC LIMIT $offset, $no_of_records_per_page"; }
+          $sql = "SELECT tbl_staff_registry.position, tbl_announcement.announcement_id, tbl_announcement.staff_id, tbl_announcement.announcement_title,
+            tbl_announcement.caption, tbl_announcement.image, tbl_announcement.date_created, tbl_announcement.video_url, tbl_announcement.name    
+            FROM tbl_announcement INNER JOIN tbl_staff_registry ON tbl_announcement.staff_id = tbl_staff_registry.staff_id 
+            ORDER BY tbl_announcement.date_created DESC LIMIT $offset, $no_of_records_per_page"; }
 
       $res = mysqli_query($db, $sql);
 
@@ -96,7 +99,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
             
               <div class="name_date">
                 <p>
-                  <?php echo $row['name'] ?>
+                  <?php echo $row['name'].", ". $row['position']; ?>
                 </p>
 
                 <p>
