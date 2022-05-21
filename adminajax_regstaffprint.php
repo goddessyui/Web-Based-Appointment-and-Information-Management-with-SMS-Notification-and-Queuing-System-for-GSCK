@@ -4,6 +4,7 @@ include("dbconfig.php");
 session_start();
 
 $alphabetical_ln_staff = $_POST['alphabetical_ln_staff'];
+$staff_status = $_POST['staff_status'];
 
 
 ?>
@@ -11,7 +12,7 @@ $alphabetical_ln_staff = $_POST['alphabetical_ln_staff'];
 
 <?php
 
-$staff="SELECT * FROM tbl_staff_registry WHERE last_name LIKE $alphabetical_ln_staff 
+$staff="SELECT * FROM tbl_staff_registry WHERE last_name LIKE $alphabetical_ln_staff AND `register_status`='1'
 ORDER BY last_name ASC, first_name ASC"; //LIMIT $offset, $no_of_records_per_page is for pagination
 $staff_result = mysqli_query($db, $staff);
 
@@ -27,6 +28,7 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
         <div class="row_student">
         
             <div class=" regstudent_row">S.N.</b></div>
+            <div class=" regstudent_row">Status</b></div>
             <div class=" regstudent_row">Last Name</b></div>
             <div class=" regstudent_row">First Name</b></div>
             <div class=" regstudent_row">Employee ID No.</b></div>
@@ -35,6 +37,15 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
            
     <?php
         while($rows=mysqli_fetch_assoc($staff_result)) {
+
+            $check = mysqli_query($db, "SELECT staff_id FROM tbl_staff_record WHERE staff_id='{$rows['staff_id']}'");
+	        if (mysqli_num_rows($check) == 1){
+                $stat = 'active';
+            }
+            else {
+                $stat = 'inactive';
+            }
+            if ($staff_status=='all') { 
 ?>
             <div class="row_student_list">
                     <div class=" regstudent_row">
@@ -42,7 +53,11 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
                             echo $i++; 
                         ?>
                     </div>
-                        
+                       
+                    <div class=" regstudent_row">
+                        <?php echo $stat; ?>
+                    </div class=" regstudent_row">
+
                     <div class=" regstudent_row">
                         <?php echo $rows['last_name']; ?>
                     </div class=" regstudent_row">
@@ -56,6 +71,68 @@ if($staff_result==TRUE) { // count rows to check whether we have data in databas
                     </div>
 
             </div>
+            <?php } 
+
+            else if ($staff_status=='active') {  
+                if($staff_status==$stat){
+                ?>
+
+            <div class="row_student_list">
+                    <div class=" regstudent_row">
+                        <?php   
+                            echo $i++; 
+                        ?>
+                    </div>
+                       
+                    <div class=" regstudent_row">
+                        <?php echo $stat; ?>
+                    </div class=" regstudent_row">
+
+                    <div class=" regstudent_row">
+                        <?php echo $rows['last_name']; ?>
+                    </div class=" regstudent_row">
+
+                    <div class=" regstudent_row">
+                        <?php echo $rows['first_name']; ?>
+                    </div>
+                    
+                    <div class=" regstudent_row">
+                        <?php echo $rows['staff_id']; ?>
+                    </div>
+
+            </div>
+
+                    <?php } }
+
+            else if ($staff_status=='inactive') {  
+                if($staff_status==$stat){
+                ?>
+
+                <div class="row_student_list">
+                    <div class=" regstudent_row">
+                        <?php   
+                            echo $i++; 
+                        ?>
+                    </div>
+                       
+                    <div class=" regstudent_row">
+                        <?php echo $stat; ?>
+                    </div class=" regstudent_row">
+
+                    <div class=" regstudent_row">
+                        <?php echo $rows['last_name']; ?>
+                    </div class=" regstudent_row">
+
+                    <div class=" regstudent_row">
+                        <?php echo $rows['first_name']; ?>
+                    </div>
+                    
+                    <div class=" regstudent_row">
+                        <?php echo $rows['staff_id']; ?>
+                    </div>
+
+            </div>
+            <?php }} ?>
 <?php 
         }
     } 

@@ -43,6 +43,13 @@
                                         <option value="'Z%'">Z</option>
                                     </select>
 
+                                    <span>Status: </span> 
+                                    <select name="staff_status" id="staff_status">
+                                        <option value="all">ALL</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+
                                     <button id="regstaff" onclick="printDiv_regstaff()" disabled hidden>Print</button>
                                     <input id="ajaxSubmit_gen_report_regstaff" type="submit" value="Show List"/>
                                     <input id="hide_gen_report_regstaff" type="submit" value="Hide List" hidden/>
@@ -117,6 +124,13 @@
                                         <option value="'2'">2nd Year</option>
                                         <option value="'3'">3rd Year</option>
                                         <option value="'4'">4th Year</option>
+                                    </select>
+
+                                    <span>Status: </span> 
+                                    <select name="student_status" id="student_status">
+                                        <option value="all">ALL</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
                                     </select>
 
                                     <button id="regstudent" onclick="printDiv_regstudent()" disabled hidden>Print</button>
@@ -313,6 +327,7 @@
             $.post("adminajax_regstudentprint.php", 
             {alphabetical_ln_student: $('#alphabetical_ln_student').val(),
             student_course_report: $('#student_course_report').val(),
+            student_status: $('#student_status').val(),
             student_year_report: $('#student_year_report').val(),},
             function(data){
                 $('#generated_rep_registeredstudents_hidden').html(data);
@@ -343,7 +358,8 @@
             });
             */
             $.post("adminajax_regstaffprint.php", 
-            {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),},
+            {alphabetical_ln_staff: $('#alphabetical_ln_staff').val(),
+                staff_status: $('#staff_status').val(),},
             function(data){
                 $('#generated_rep_registeredstaff_hidden').html(data);
                 if (!data.includes('No result.')){
