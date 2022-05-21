@@ -99,7 +99,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
             
               <div class="name_date">
                 <p>
-                  <?php echo $row['name'].", ". $row['position']; ?>
+                  <?php echo $row['name'].", <span class='admin_position'>". $row['position']; ?> </span>
                 </p>
 
                 <p>
@@ -535,6 +535,11 @@ include("backtotop.php");
     font-size: 12px;
     text-transform: uppercase;
     text-decoration: none;
+  }
+
+  .admin_position {
+    font-size: 14px;
+    font-weight: 500;
   }
 
 </style>
