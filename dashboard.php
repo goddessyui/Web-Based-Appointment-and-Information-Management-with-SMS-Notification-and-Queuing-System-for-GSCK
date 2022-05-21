@@ -237,7 +237,15 @@
                             <button type="submit" name="unifast_limit">Change UniFast Appointment Limit</button>
                         </form>
                     </div>
-            <?php }?>
+            <?php } 
+
+        if($position=="Teacher") {
+                ?>
+                <div class="limit_appnt"></div>
+                <?php
+            }
+            
+            ?>
             <!-- -CJ UniFast Appointment Limit -->
        </div>
               
@@ -439,6 +447,7 @@
         margin-left: 15px;
         padding: 30px;
         text-align: center;
+        min-height: 50vh;
     }
     .limit_appnt h3 {
         font-size: 16px;
