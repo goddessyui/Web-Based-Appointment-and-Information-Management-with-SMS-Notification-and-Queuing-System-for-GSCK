@@ -1141,11 +1141,11 @@ $(document).ready(function() {
 
 
 .apt_container_div h3 {
-    font-family: 'Roboto';
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #333;
     margin-bottom: 12px;
+    font-weight: 500;
 }
 
 form .staff_list_label {
@@ -1172,7 +1172,7 @@ form .staff_list_label {
 
 
 form .staff_list_label input[type=radio] {
-    margin-right: 6px;
+    margin-right: 10px;
     margin-left: 12px;
 }
 
