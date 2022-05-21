@@ -25,7 +25,7 @@ $fullname = $row['first_name'].' '.$row['last_name'];
     }
     </script>
 
-    <h1>Add Announcement</h1>
+    <h3>Add Announcement</h3>
         <!-- Modal content-->
 
                     <form class="user" method="POST" id="form" enctype="multipart/form-data">

@@ -92,6 +92,22 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
           <div class="blog_img_box">
 
           <div class="announce_header">
+
+            
+              <div class="name_date">
+                <p>
+                  <?php echo $row['name'] ?>
+                </p>
+
+                <p>
+                  <span class="posted_on">posted on</span>
+                    <?php 
+                      echo date("F d Y, g:i a", strtotime($row['date_created'])) 
+                    ?>
+                </p>
+              </div>
+
+
             <div class="title_caption">
                 <h3>
                   <?php 
@@ -106,17 +122,6 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                 </p>
               </div>
 
-              <div class="name_date">
-                <p>
-                  <?php echo $row['name'] ?>
-                </p>
-
-                <p>
-                    <?php 
-                      echo date("F d, Y, g:i a", strtotime($row['date_created'])) 
-                    ?>
-                </p>
-              </div>
             </div>
 
             <?php 
@@ -210,7 +215,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
       <div class="modal-content">
 
         <div>
-          <div id="mess_delete" style="color:red;"></div>
+          <div id="mess_delete"></div>
         </div>
         
         <div>
@@ -221,8 +226,8 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
         <div>
           <form method="POST" id="form_delete">
-            <button class="delete" type="submit" id= "delete" name="button_delete_announcement">DELETE</button>
-            <button class="close1">CANCEL</button>
+            <button class="delete" type="submit" id= "delete" name="button_delete_announcement">Confirm</button>
+            <button class="close1">Cancel</button>
           </form>
         </div>
 
@@ -242,7 +247,9 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
     <!-- edit announcement modal -->
     <div id="modal_edit" class="editmodal">
       <!-- Modal content -->
+
       <div class="editmodal-content">
+        
         <div>
           <?php include("Staff/announcement/announcement_edit.php"); ?>  
         </div>
@@ -310,72 +317,80 @@ include("backtotop.php");
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        margin-left: 5%;
-        margin-right: 5%; 
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
+        left: 20vw;
+        top: 10vh;
+        width: 80vw; /* Full width */
+        height: 100vh; /* Full height */
         overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        background: #0008;
     }
-
+    .modal p {
+      margin-bottom: 20px;
+    }
  
 
     /* Delete Modal Content */ 
     .modal-content {
-        background-color: #fefefe;
+        background-color: #fff;
         margin: auto;
-        padding: 20px;
+        padding: 30px;
         border: 1px solid #888;
         width: 30%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
     }
 
     /* add and edit modal Content */
     .addmodal-content,
     .editmodal-content {
-        background-color: #fefefe;
+        background-color: #fff;
         margin: auto;
-        padding: 20px;
+        padding: 30px;
         border: 1px solid #888;
-        width: 60%;
+        max-width: 50%;
+        position: relative;
+        top: 40%;
+        transform: translateY(-40%);
     }
 
 
     /* The Close Button */
     .close1 {
-        color: #1E90FF;
+        color: #eee;
         border: none;
-        padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
         cursor: pointer;
+        height: 28px;
+        width: 120px;
+        background: #2D303A;
+        text-transform: capitalize;
     }
     .delete {
-        background-color: #FF0000;
-        color: white;
+        background-color: #EC3237;
+        color: #eee;
         border: none;
-        padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
         cursor: pointer;
+        margin-right: 10px;
+        height: 28px;
+        width: 120px;
+        text-transform: capitalize;
     }
 
-    .close1:hover,
-    .close1:focus,
     .delete:hover,
     .delete:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
+        background: #FF0000;
+    }
+    .close1:hover,
+    .close1:focus {
+      background: #424F59;
     }
 
 
@@ -391,14 +406,12 @@ include("backtotop.php");
     padding: 15px;
     margin-bottom: 15px;
   }
-  main .announcement_header .add_announcement_btn {
-    background: yellow;
-  }
+
   main .announcement_header .add_announcement_btn button{
     padding: 0 20px;
-    height: 30px;
+    height: 28px;
     border: none;
-    background: #324e9e;
+    background: #2F729E;
     color: #eee;
     cursor: pointer;
   }
@@ -412,12 +425,12 @@ include("backtotop.php");
   main .announcement_header .flex_2 h2{
     color: #333;
     margin-right: 20px;
-    font-size: 20px;
-    font-family: 'Roboto';
+    font-size: 16px;
   }
   main .announcement_header .flex_2 select {
-    height: 30px;
+    height: 28px;
     border: 1px solid lightgrey;
+    padding: 0 5px;
   }
 
 
@@ -431,43 +444,49 @@ include("backtotop.php");
     border-bottom: 1px solid lightgrey;
   }
 
-  .announcement_container .blog_img_box .announce_header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+
     .blog_img_box .announce_header .title_caption {
       background: none;
     }
           .title_caption h3 {
             color: #333;
-            font-family: 'Roboto';
+            text-transform: capitalize;
             margin: 0;
             margin-bottom: 5px;
-            font-size: 20px;
+            font-size: 16px;
           }
           .title_caption p {
-            font-size: 14px;
-            font-family: 'Roboto Serif';
+            font-size: 16px;
             width: 500px;
             color: #333;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            font-weight: 500;
           }
 
     .blog_img_box .announce_header .name_date {
       background: none;
+      margin-bottom: 20px;
     }
           .name_date p:nth-child(1) {
             color: #444;
-            margin-bottom: 5px;
-            font-family: 'Roboto Serif';
+            margin-right: 10px;
+            font-size: 16px;
+            font-weight: bold;
           }
           .name_date p:nth-child(2) {
             color: #444;
-            font-size: 13px;
-            text-transform: uppercase;
-            font-family: 'Roboto Serif';
+            font-size: 14px;
           }
+          .posted_on {
+            text-transform: lowercase;
+            margin-right: 10px;
+            font-weight: 500;
+            color: #333;
+          }
+
+
+
+          
 
   .announcement_container .blog_img_box img,
   .announcement_container .blog_img_box iframe {
@@ -478,22 +497,21 @@ include("backtotop.php");
   }
 
   .blog_img_box .editModal {
-    background: #444;
+    background: #2F729E;
     color: #eee;
     border: none;
     width: 120px;
-    height: 30px;
-    text-transform: uppercase;
-    font-family: 'Roboto';
+    height: 28px;
+    cursor: pointer;
+    margin-right: 10px;
   }
   .blog_img_box .addModal {
     background: #ec3237;
     color: #eee;
     border: none;
     width: 120px;
-    height: 30px;
-    text-transform: uppercase;
-    font-family: 'Roboto';
+    height: 28px;
+    cursor: pointer;
   }
 
   .pagination {
@@ -502,7 +520,8 @@ include("backtotop.php");
     margin-bottom: 40px;
   }
   .pagination li {
-    padding: 5px;
+    padding: 2px 10px;
+    padding-bottom: 5px;
     background: #444;
     margin-right: 5px;
   }
@@ -512,6 +531,7 @@ include("backtotop.php");
     font-family: 'Roboto';
     font-size: 12px;
     text-transform: uppercase;
+    text-decoration: none;
   }
 
 </style>

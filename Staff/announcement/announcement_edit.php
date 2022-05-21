@@ -12,38 +12,36 @@ if ($staff_id == "" || $staff_username == ""){
 ?>
 
 
-    <h1>Edit Announcement</h1>      
+    <h3 class="edit_announcement">Edit Announcement</h3>      
         <form class="user" method="POST" id="form" enctype="multipart/form-data">
-            <div>
+
+            <div class="form_edit">
                 <input name="edit_id" id="edit_id" type="hidden" class="form-control" value="" >
-                <label>Title:</label>
+                <p>Title:</p>
                 <input name="edit_title" id="edit_title"  type="text" class="form-control"  required>
             </div>
                                         
-            <div>
-                <label>Caption:</label>
+            <div class="form_edit">
+                <p>Caption:</p>
+                <input name="edit_caption" id="edit_caption" type="text" class="form-control" required></input>
             </div>
 
-            <div>
-                <textarea name="edit_caption" id="edit_caption" type="text" class="form-control" required></textarea>
-            </div>
-
-            <div>    
-                <label>Video Link(can only accept youtube video link):</label>
+            <div class="validate_form">    
+                <p>Video Link(can only accept youtube video link):</p>
                 <input name="edit_video_link" id="edit_video_link" type="text" >
                 <button id="edit_check" type="button" onclick="validate()">Validate</button>  
                 <button id="edit_removeurl" type="button" onclick="remove_url()">Remove URL</button>           
             </div>
 
             <div>
-                <small id="edit_mess" style="color:red;"></small>
+                <small id="edit_mess"></small>
             </div>
 
-            <div> 
+            <div class="video_frame"> 
                 <iframe id="edit_videoObject" type="text/html" <?php echo !empty($row['video_url'])?'src='.$row['video_url']:''?> width="500" height="265" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <div>
+            <div class="image_frame">
                 <label>Photo:</label>
                 <input type="file" name="edit_image" accept="image/*" id="edit_imgInp" onchange="loadFile_edit(event)"/>
                 <button type="button" id='edit_remove_btn' onclick="Remove_image()" >Remove Image</button>   
@@ -56,15 +54,133 @@ if ($staff_id == "" || $staff_username == ""){
                               
                           
              
-            <div>
-                <button type="submit" id= "edit" name="button_edit_announcement">Submit</button>
-                <button formnovalidate formaction='announcement_admin.php'>Cancel</button>
+            <div class="url_buttons">
+                <button type="submit" id="edit" name="button_edit_announcement">Submit</button>
+                <button formnovalidate formaction='announcement_admin.php' class="cancel_edit">Cancel</button>
             </div>
             
             <div>
-                <div id="edit_mess1" style="color:red;"></div>
+                <div id="edit_mess1"></div>
             </div>
         </form>   
+
+
+
+
+
+
+
+
+        <style>
+            .edit_announcement {
+                margin-bottom: 20px;
+                font-weight: 500;
+                font-weight: 16px;
+            }
+            form {
+                width: 100%;
+            }
+            .form_edit {
+                height: 28px;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+            .form_edit p {
+                width: 100px;
+            }
+            .form_edit input[type=text] {
+                height: 28px;
+                padding-left: 10px;
+                width: 100%;
+            }
+            .validate_form {
+                margin-bottom: 10px;
+                width: 100%;
+                background: lightgrey;
+                padding: 10px;
+                margin-top: 20px;
+            }
+            .validate_form p {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            .validate_form input[type=text] {
+                height: 28px;
+                background: #eee;
+                border: 1px solid grey;
+            }
+            .validate_form button {
+                height: 28px;
+                width: 100px;
+                border: none;
+                background: #2F729E;
+                color: #eee;
+                cursor: pointer;
+                margin-left: 10px;
+            }
+            .validate_form #edit_removeurl {
+                background: #EC3237;
+                color: #eee;
+                margin-left: 10px;
+            }
+            .video_frame {
+                width: 100%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .video_frame iframe {
+                width: 100%;
+                max-height: 20vh;
+            }
+            .image_frame {
+                width: 100%;
+                margin-bottom: 10px;
+                background: lightgrey;
+                padding: 10px;
+            }
+            .image_frame input {
+                margin-right: 10;
+                border: 1px solid grey;
+                height: 28px;
+                background: #eee;
+            }
+            .image_frame button {
+                height: 28px;
+                padding: 0 12px;
+                border: none;
+                background: #EC3237;
+                color: #eee;
+                cursor: pointer;
+            }
+            input[type=file]::file-selector-button {
+                color: #eee;
+                height: 28px;
+                border: 1px solid lightgrey;
+                background: #2D303A;
+            }
+
+            .url_buttons {
+                margin-top: 20px;
+            }
+            .url_buttons button{
+                height: 28px;
+                border: none;
+                padding: 0 12px;
+                color: #eee;
+                background: #2F729E;
+                cursor: pointer;
+            }
+            .url_buttons .cancel_edit {
+                background: #EC3237;
+                margin-left: 10px;
+            }
+            #edit_output {
+                width: 100%;
+                max-height: 20vh;
+                background-size: cover;
+            }
+        </style>
            
 
 <script>
