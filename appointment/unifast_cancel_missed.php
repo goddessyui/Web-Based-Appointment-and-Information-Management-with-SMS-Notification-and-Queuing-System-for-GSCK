@@ -1,7 +1,8 @@
 <?php
 include_once("../dbconfig.php"); 
 session_start();
-
+include '../sms_test/smsAPIcon.php';
+$send = new smsfunction();
 
 if(isset($_POST['cancel'])){
  // Prepare an update statement
@@ -40,7 +41,7 @@ if (mysqli_query($db, $cancelappointment)) {
     $m_number = $rows1['mobile_number'];
     $student_fullname = $rows1['first_name'].' '.$rows1['last_name'];
     $cancel='true';
-    include ('sms_appointment.php');
+    include ('sms_unifast.php');
 
    header('location: ../unifast_missed_request.php?success="Appointment Cancelled"');
   

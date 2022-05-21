@@ -84,7 +84,7 @@ $send = new smsfunction();
                                        
                                     
                                        //Add Queueing and SMS function here???-----------------------------------------
-                                       $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_id) AS queuenum 
+                                       $q="SELECT queuenum FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY appointment_detail_id) AS queuenum 
                                           FROM tbl_appointment_detail WHERE (`status` = 'Accepted' OR `status` = 'Cancelled') 
                                           AND appointment_date = '$appointment_date') T2 
                                           WHERE appointment_id = '$appointment_id'";

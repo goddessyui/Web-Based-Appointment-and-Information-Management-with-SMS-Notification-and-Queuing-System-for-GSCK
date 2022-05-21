@@ -2,7 +2,8 @@
 include_once("../dbconfig.php");
 session_start();
 //Reschedule Appointment
-
+include '../sms_test/smsAPIcon.php';
+$send = new smsfunction();
 $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
    $limitvalue= mysqli_query($db, $l);
    
@@ -74,7 +75,7 @@ $l = "SELECT appointment_limit FROM tbl_appointment_limit WHERE limit_id = '2'";
                      $m_number = $rows1['mobile_number'];
                      $student_fullname = $rows1['first_name'].' '.$rows1['last_name'];
                      $move='true';
-                     include ('sms_appointment.php');
+                     include ('sms_unifast.php');
                      
                      header('location: ../unifast_missed_request.php?success="Appointment Successfully Rescheduled!'.$queuenumber.'"');
                      

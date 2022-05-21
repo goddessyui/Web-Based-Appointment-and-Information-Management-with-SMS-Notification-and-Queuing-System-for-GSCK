@@ -18,6 +18,18 @@ else if (isset($decline)){
     $message = $student_fullname.":\n\n". $fullnames . ", has declined your appointment request for ".$appointment_type."\n\n -Goldenstate College";
     $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
 }
+
+else if (isset($move)){
+    $receiver = $m_number;
+    $message = $student_fullname.":\n\n". $fullnames . ", has rescheduled the appointment for ".$appointment_type.". Your new schedule is set on " . date("F d, Y", strtotime($newDate))." from 8AM - 5PM only. Your new unique queue number is ".$queuenumber."\n\n -Goldenstate College";
+    $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
+}
+
+else if (isset($cancel)){
+    $receiver = $m_number;
+    $message = $student_fullname.":\n\n". $fullnames . ", has cancelled the appointment for " .$appointment_type."\n\n -Goldenstate College";
+    $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
+}
 ?>
 
 
