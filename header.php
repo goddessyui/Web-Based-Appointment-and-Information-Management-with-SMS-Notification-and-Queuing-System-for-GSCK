@@ -613,7 +613,6 @@ $(document).ready(function() {
                 cache: false,
                 success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
-                    $('#btn_login').html('Login'); 
                     if(dataResult.statusCode==200){
                         $("#login_form_div_id :input").prop('disabled', false); 
                         location.href = "index.php"; 
@@ -625,15 +624,18 @@ $(document).ready(function() {
                     else if(dataResult.statusCode==202){
                         $("#login_form_div_id :input").prop('disabled', false); 
                         $('#login_message').html('Username or Password Incorrect!'); 
+                        $('#btn_login').html('Login'); 
                     
                     }
                     else if(dataResult.statusCode==203){
                         $("#login_form_div_id :input").prop('disabled', false); 
                         $('#login_message').html('Account not existing in Student record!');  
+                        $('#btn_login').html('Login'); 
                     }
                     else if(dataResult.statusCode==204){
                         $("#login_form_div_id :input").prop('disabled', false); 
                         $('#login_message').html('Account not existing in Staff record!');
+                        $('#btn_login').html('Login'); 
                     }
                     if(dataResult.statusCode==205){
 						$("#login_message").html("Student Verified !");
@@ -747,10 +749,10 @@ $(document).ready(function() {
                 		clearInterval(downloadTimer);
                 		$('#btn_otp_resend').prop('disabled', false);
                         $('#btn_otp_resend').html('Resend'); 
-                		document.getElementById("countdown").innerHTML = "";
+                		
                 		} else {
                         $('#count').html(timeleft); 
-                		document.getElementById("countdown").innerHTML = timeleft;
+                		
                 		}timeleft -= 1; }, 1000);
 						$("#otp_verify").show();
            			 	$('#btn_verify').hide();
@@ -774,10 +776,10 @@ $(document).ready(function() {
                 		clearInterval(downloadTimer);
                 		$('#btn_otp_resend').prop('disabled', false);
                         $('#btn_otp_resend').html('Resend'); 
-                		document.getElementById("countdown").innerHTML = "";
+                		
                 		} else {
                         $('#count').html(timeleft); 
-                		document.getElementById("countdown").innerHTML = timeleft;
+                		
                 		}timeleft -= 1;}, 1000);
 						$("#otp_verify").show();
            		 		$('#btn_verify').hide();
@@ -832,10 +834,10 @@ $(document).ready(function() {
                 	clearInterval(downloadTimer);
                 	$('#btn_otp_resend').prop('disabled', false);
                     $('#btn_otp_resend').html('Resend'); 
-                	document.getElementById("countdown").innerHTML = "";
+                	
                 	} else {
                     $('#count').html(timeleft); 
-                	document.getElementById("countdown").innerHTML = timeleft;
+                	
                 	}timeleft -= 1; }, 1000);              
 					}
 					else if(dataResult.statusCode==202){ 
