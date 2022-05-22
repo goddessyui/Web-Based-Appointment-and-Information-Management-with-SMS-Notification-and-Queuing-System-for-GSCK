@@ -1,16 +1,21 @@
 <?php
 include_once("header.php");
+
 session_start();
-if(!isset($_SESSION["st_id"]) || !empty($_SESSION["staff_id"]) || !empty($_SESSION["student_id"])){
-    echo '<script type="text/javascript">window.location.href="index.php"</script>';
-}
+
+	if(!isset($_SESSION["st_id"]) || !empty($_SESSION["staff_id"]) || !empty($_SESSION["student_id"])){
+		echo '<script type="text/javascript">window.location.href="index.php"</script>';
+	}
+
+
 $staff_id_registry = $_SESSION["st_id"];
 $query = mysqli_query($db, "SELECT * FROM tbl_staff_registry WHERE staff_id='{$staff_id_registry}'");
 $row = $query->fetch_assoc();
 
 ?>
 <!-- STAFF REGISTRATION -->
-
+<div class="center_container">
+	<div class="registration_container">
 <!-- DISPLAY AFTER ACCOUNT CREATED -->
 <div>
     <h3 id="message_created_account1"></h3>
@@ -19,50 +24,51 @@ $row = $query->fetch_assoc();
 
 
 <form id="staff_form" name="form2" method="post">
+
 	<div class="form_group">
 		<div id="message3"></div>
 	</div>
 
-	<h1>First Time Login Fillup</h1>
-    
-	<div>
-		<label>Staff ID: </label>
-    	<input type="text" name="staff_id" id="staff_id" value="<?php echo $row["staff_id"] ?>" disabled>
-    </div>
-    
-    <div>
-		<label>First Name: </label>
-    	<input type="text" name="first_name2" id="first_name2" value="<?php echo $row["first_name"] ?>" disabled>
-    </div>
-    
-    <div>
-		<label>Last Name: </label>
-    	<input type="text" name="last_name2" id="last_name2" value="<?php echo $row["last_name"] ?>" disabled>
-    </div>
+	<h3>First Time Login Fillup</h3>
 
-    <div>
-		<label>Username: </label>
-		<input type="text" name="username2" id="username2" placeholder="enter a username" value="<?php echo $row["username"] ?>"/>
+	<div class="reg_form_group">
+		<p>Student ID: </p>
+		<input type="text" name="student_id" id="student_id" value="<?php echo $row["student_id"] ?>" disabled>
 	</div>
 
-    <div>
-		<label>Phone Number: </label>
-		<input type="tel" name="number2" id="number2" placeholder="09683510254"  />
+	<div class="reg_form_group">
+		<p>First Name: </p>
+		<input type="text" name="first_name1" id="first_name1"  value="<?php echo $row["first_name"] ?>" disabled>
+	</div>
+	
+	<div class="reg_form_group">
+		<p>Last Name: </p>
+		<input type="text" name="last_name1" id="last_name1"  value="<?php echo $row["last_name"] ?>" disabled>
+	</div>
+	
+	<div class="reg_form_group">
+		<p>Username: </p>
+		<input type="text" name="username" id="username_reg" placeholder="enter your username" value="<?php echo $row["username"] ?>"/>
+	</div>
+	
+	<div class="reg_form_group">
+		<p>Mobile Number: </p>
+		<input type="tel" name="number" id="number_reg" placeholder="09683510254"  />
 	</div>
 
-    <div>
-		<label>Position: </label>
+    <div class="reg_form_group">
+		<p>Position: </p>
 		<select name="position2" id="position2">  
     		<option value="Teacher">Teacher</option>  
     		<option value="Accounting Staff/Scholarship Coordinator">Accounting Staff/Scholarship Coordinator</option>  
     	</select>
 	</div>
 
-    <div>
-		<label>Appointment Type: </label>
+    <div class="reg_form_group">
+		<p>Appointment Type: </p>
 	</div>
     
-	<div>
+	<div class="ap_type">
 		<input type="checkbox" name="check_list[]" value="Meeting">
 		<label> Meeting</label><br>
 		<input type="checkbox" name="check_list[]" value="Presentation">
@@ -81,17 +87,17 @@ $row = $query->fetch_assoc();
 		<label> Application for Graduation</label><br>
     </div>
 
-	<div>
-		<label>Password: </label>
+	<div class="reg_form_group">
+		<p>Password: </p>
     	<input type="password" name="passwd2" id="passwd2" placeholder="enter a password" autocomplete="off"  />
 	</div>
 
-    <div>
+    <div class="form_char">
 		<small>Password must be at least 8 characters and<br /> have a number character, e.g. 1234567890</small>
 	</div>	
 
-	<div>
-		<label>Re-enter Password: </label>
+	<div class="reg_form_group">
+		<p>Re-enter Password: </p>
     	<input type="password" name="confirm_password2" id="confirm_password2" placeholder="confirm your password" autocomplete="off"  />
 	</div>
 
@@ -99,7 +105,7 @@ $row = $query->fetch_assoc();
 	<small>By clicking Create Account, you agree to our <a href="PrivacyPolicy.php">Privacy Policy</a></small>
 
 
-	<div class="form_group">
+	<div class="reg_form_group right_btn">
 		<!-- <input type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff"/> -->
     	<button type="button" name="btn_staff" class="btn btn-success" value="Create Account" id="btn_staff">Create Account</button>
 	</div>
@@ -110,8 +116,64 @@ $row = $query->fetch_assoc();
 
 </form>
 <!-- STAFF REGISTRATION -->
+</div>
+</div>
 
-
+<style>
+	.center_container {
+		width: 100%;
+		min-height: 100vh;
+		background: #0005;
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+	.registration_container {
+		width: 50%;
+		margin: 0 auto;
+		background: #fff;
+		padding: 30px;
+	}
+	.registration_container form h3 {
+		margin-bottom: 40px;
+	}
+	.reg_form_group {
+		height: 28px;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.reg_form_group p {
+		width: 300px;
+		margin-right: 20px;
+	}
+	.reg_form_group input,
+	.reg_form_group select {
+		height: 28px;
+		width: 100%;
+		padding: 5px;
+	}
+	.reg_form_group button {
+		border: none;
+		height: 28px;
+		width: 120px;
+		margin-top: 20px;
+		color: #eee;
+		background: #324E9E;
+		cursor: pointer;
+	}
+	.form_char {
+		margin-bottom: 20px;
+		margin-left: 220px;
+	}
+	.right_btn {
+		width: 100%;
+		display: flex;
+		justify-content: right;
+	}
+	.ap_type {
+		margin-bottom: 20px;
+	}
+</style>
 
 <script>
 // STAFF REGISTRATION
