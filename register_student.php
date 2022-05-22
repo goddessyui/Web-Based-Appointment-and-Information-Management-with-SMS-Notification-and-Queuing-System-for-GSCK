@@ -1,15 +1,20 @@
 <?php
 include_once("header.php");
+
 session_start();
 if(!isset($_SESSION["stu_id"]) || !empty($_SESSION["staff_id"]) || !empty($_SESSION["student_id"])){
     echo '<script type="text/javascript">window.location.href="index.php"</script>';
 }
+
 $student_id_registry = $_SESSION["stu_id"];
 $query = mysqli_query($db, "SELECT * FROM tbl_student_registry WHERE student_id='{$student_id_registry}'");
 $row = $query->fetch_assoc();
 ?>
-<!-- STUDENT REGISTRATION -->
 
+
+<!-- STUDENT REGISTRATION -->
+<div class="center_container">
+	<div class="registration_container">
                 <!-- DISPLAY AFTER ACCOUNT CREATED -->
                 <div>
                 <h3 id="message_created_account1"></h3>
@@ -18,39 +23,40 @@ $row = $query->fetch_assoc();
 
 
                     <form id="student_form" name="form2" method="post">
+
                             <div class="form_group">
                                 <div id="message1"></div>
                             </div>
 
-                            <h1>First Time Login Fillup</h1>
+                            <h3>First Time Login Fillup</h3>
 
-                            <div>
-							<label>Student ID: </label>
+                            <div class="reg_form_group">
+								<p>Student ID: </p>
                                 <input type="text" name="student_id" id="student_id" value="<?php echo $row["student_id"] ?>" disabled>
                             </div>
 
-                            <div>
-							<label>First Name: </label>
+                            <div class="reg_form_group">
+								<p>First Name: </p>
                                 <input type="text" name="first_name1" id="first_name1"  value="<?php echo $row["first_name"] ?>" disabled>
                             </div>
                             
-                            <div>
-							<label>Last Name: </label>
+                            <div class="reg_form_group">
+								<p>Last Name: </p>
                                 <input type="text" name="last_name1" id="last_name1"  value="<?php echo $row["last_name"] ?>" disabled>
                             </div>
                             
-                            <div>
-							<label>Username: </label>
+                            <div class="reg_form_group">
+								<p>Username: </p>
                                 <input type="text" name="username" id="username_reg" placeholder="enter your username" value="<?php echo $row["username"] ?>"/>
                             </div>
                             
-                            <div>
-							<label>Mobile Number: </label>
+                            <div class="reg_form_group">
+								<p>Mobile Number: </p>
                                 <input type="tel" name="number" id="number_reg" placeholder="09683510254"  />
                             </div>
 
-                            <div>
-							<label>Course: </label>
+                            <div class="reg_form_group">
+								<p>Course: </p>
                                 <select name="course" id="course">  
                                     <option value="BSHM">BSHM</option>
                                     <option value="BSTM">BSTM</option>
@@ -66,8 +72,8 @@ $row = $query->fetch_assoc();
                                 </select>
                             </div>
 
-                            <div>
-							<label>Year: </label>
+                            <div class="reg_form_group">
+								<p>Year: </p>
                                 <select name="year" id="year">
                                     <option value="1">1st Year</option>
                                     <option value="2">2nd Year</option>
@@ -76,35 +82,98 @@ $row = $query->fetch_assoc();
                                 </select>
                             </div>
 
-                            <div class>
-							<label>Password: </label>
+                            <div class="reg_form_group">
+								<p>Password: </p>
                                 <input type="password" name="passwd" id="passwd" placeholder="enter a password" autocomplete="off" />
                             </div>
 
-                            <div>
+                            <div class="form_char">
                                 <small>password must be at least 8 characters and<br /> have a number character, e.g. 1234567890</small>
                             </div>
 
-                            <div>
-							<label>Re-enter Password: </label>
+                            <div class="reg_form_group">
+								<p>Re-enter Password: </p>
                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm your password" autocomplete="off" />
                             </div>
 
 							<small>By clicking Create Account, you agree to our <a href="PrivacyPolicy.php">Privacy Policy</a></small>
 
 
-                            <div class="form_group">
+                            <div class="reg_form_group right_btn">
                                 <!-- <input type="button" name="btn_student" class="btn btn-success" value="Create Account" id="btn_student" /> -->
 								<button type="button" name="btn_student" class="btn btn-success" value="Create Account" id="btn_student">Create Account</button>
                             </div>
                             
 
-                            <div class="form_group">
+                            <div class="reg_form_group">
                                 <small id="message_mes" style="color:red;"></small>
                             </div>
                         </form>
-
+</div>
+</div>
                         <!-- STUDENT REGISTRATION -->
+
+
+
+
+<style>
+	.center_container {
+		width: 100%;
+		min-height: 100vh;
+		background: #0005;
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+	.registration_container {
+		width: 50%;
+		margin: 0 auto;
+		background: #fff;
+		padding: 30px;
+	}
+	.registration_container form h3 {
+		margin-bottom: 40px;
+	}
+	.reg_form_group {
+		height: 28px;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.reg_form_group p {
+		width: 300px;
+		margin-right: 20px;
+	}
+	.reg_form_group input,
+	.reg_form_group select {
+		height: 28px;
+		width: 100%;
+		padding: 5px;
+	}
+	.reg_form_group button {
+		border: none;
+		height: 28px;
+		width: 120px;
+		margin-top: 20px;
+		color: #eee;
+		background: #324E9E;
+		cursor: pointer;
+	}
+	.form_char {
+		margin-bottom: 20px;
+		margin-left: 220px;
+	}
+	.right_btn {
+		width: 100%;
+		display: flex;
+		justify-content: right;
+	}
+</style>
+
+
+
+
+
+
 
 <script>
 
@@ -237,5 +306,6 @@ $(document).ready(function() {
 
 });
 </script>
+
 
 

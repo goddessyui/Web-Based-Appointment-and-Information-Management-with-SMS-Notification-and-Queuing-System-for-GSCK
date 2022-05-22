@@ -2,7 +2,7 @@
     include("new_header_admin.php");
 ?>     
 <main>        
-                <div class="appointment_result">
+            <div class="appointment_result">
                 <?php 
                 if ($position == "Registrar") { ?>    
                     <div class="list_div">
@@ -601,8 +601,9 @@ $(document).ready(function() {
 
 
 <style>
-    main {
-        background: #EFF0F4;
+    .appointment_result {
+        margin-top: 15px;
+        padding: 0 15px;
     }
     .limit_div {
         display: flex;
@@ -638,7 +639,7 @@ $(document).ready(function() {
           .top_flex:nth-child(1) h4:nth-child(1) {
               color: #333;
               font-family: 'Roboto';
-              font-size: 13px;
+              font-size: 14px;
               font-weight: 400;
               text-transform: uppercase;
               margin-bottom: 8px;
@@ -676,7 +677,7 @@ $(document).ready(function() {
                                     border: none;
                                     background: #324E9E;
                                     color: #fff;
-                                    font-size: 13px;
+                                    font-size: 14px;
                                     cursor: pointer;
                                     text-transform: uppercase;
                                     height: 30px;
@@ -688,7 +689,7 @@ $(document).ready(function() {
 .error_message p {
     padding: 2px 30px;
     font-family: 'Roboto Serif';
-    font-size: 13px;
+    font-size: 14px;
     color: #fff;
 }
 .card_title,
@@ -714,7 +715,7 @@ $(document).ready(function() {
 .reg_print_div form {
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: uppercase;
 }
 .reg_print_div form input {
@@ -734,7 +735,7 @@ $(document).ready(function() {
     color: #eee;
     height: 32px;
     width: 150px;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
     text-transform: uppercase;
     font-family: 'Roboto';
@@ -748,7 +749,7 @@ $(document).ready(function() {
     background: none;
     border: 1px solid lightgrey;
     font-family: 'roboto';
-    font-size: 13px;
+    font-size: 14px;
 }
 .reg_print_div form select option {
     font-family: 'Roboto';
