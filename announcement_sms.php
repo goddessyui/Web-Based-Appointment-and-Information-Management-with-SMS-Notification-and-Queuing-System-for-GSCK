@@ -34,7 +34,7 @@ switch ($year) {
 if ($course=='ALL' && $year=='ALL'){
     $sql_sms = "SELECT
     mobile_number,
-    staff_id
+    student_id
     FROM
     tbl_student_registry";
 
@@ -42,12 +42,12 @@ if ($course=='ALL' && $year=='ALL'){
     if (mysqli_num_rows($res_sms) > 0) {
 
     while ($row_sms = mysqli_fetch_assoc($res_sms)) {
-        $check = mysqli_query($db, "SELECT staff_id FROM tbl_staff_record WHERE staff_id='{$row_sms('staff_id')}'");
-        if (mysqli_num_rows($check)!=1){
+       
         $receiver = $row_sms['mobile_number'];
-        $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement in gsck.online/announcements.php \n\n -Goldenstate College";
+        // $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement in gsck.online/announcements.php \n\n -Goldenstate College";
+        $message = "Announcement\nTitled: ".$title."\nCaption: ".$caption;
         $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-        }
+        
         
     }
 
@@ -58,7 +58,7 @@ if ($course=='ALL' && $year=='ALL'){
 else if ($course=='ALL' && $year!='ALL'){
     $sql_sms = "SELECT
     mobile_number,
-    staff_id
+    student_id
     FROM
     tbl_student_registry
     WHERE `year` = '$year'";
@@ -66,12 +66,12 @@ else if ($course=='ALL' && $year!='ALL'){
     if (mysqli_num_rows($res_sms) > 0) {
 
     while ($row_sms = mysqli_fetch_assoc($res_sms)) {
-        $check = mysqli_query($db, "SELECT staff_id FROM tbl_staff_record WHERE staff_id='{$row_sms('staff_id')}'");
-        if (mysqli_num_rows($check)!=1){
+
         $receiver = $row_sms['mobile_number'];
-        $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for " . $year_lvl . " year student in gsck.online/announcements.php \n\n -Goldenstate College";
+        // $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for " . $year_lvl . " year student in gsck.online/announcements.php \n\n -Goldenstate College";
+        $message = "Announcement\nTitled: ".$title."\nCaption: ".$caption;
         $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-        }
+        
       
     }
 
@@ -82,7 +82,7 @@ else if ($course=='ALL' && $year!='ALL'){
 else if ($course!='ALL' && $year=='ALL'){
     $sql_sms = "SELECT
     mobile_number,
-    staff_id
+    student_id
     FROM
     tbl_student_registry
     WHERE course = '$course'";
@@ -90,12 +90,12 @@ else if ($course!='ALL' && $year=='ALL'){
     if (mysqli_num_rows($res_sms) > 0) {
 
     while ($row_sms = mysqli_fetch_assoc($res_sms)) {
-        $check = mysqli_query($db, "SELECT staff_id FROM tbl_staff_record WHERE staff_id='{$row_sms('staff_id')}'");
-        if (mysqli_num_rows($check)!=1){
+        
         $receiver = $row_sms['mobile_number'];
-        $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for " . $course . " student in gsck.online/announcements.php \n\n -Goldenstate College";
+        // $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for " . $course . " student in gsck.online/announcements.php \n\n -Goldenstate College";
+        $message = "Announcement\nTitled: ".$title."\nCaption: ".$caption;
         $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-        }
+        
       
     }
 
@@ -106,7 +106,7 @@ else if ($course!='ALL' && $year=='ALL'){
 else {
     $sql_sms = "SELECT
     mobile_number,
-    staff_id
+    student_id
     FROM
     tbl_student_registry
     WHERE `year` = '$year' AND course = '$course'";
@@ -114,12 +114,12 @@ else {
     if (mysqli_num_rows($res_sms) > 0) {
 
     while ($row_sms = mysqli_fetch_assoc($res_sms)) {
-        $check = mysqli_query($db, "SELECT staff_id FROM tbl_staff_record WHERE staff_id='{$row_sms('staff_id')}'");
-        if (mysqli_num_rows($check)!=1){
+        
         $receiver = $row_sms['mobile_number'];
-        $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for ". $year_lvl ." year " . $course . " student in gsck.online/announcements.php \n\n -Goldenstate College";
+        // $message = "Hello, Good day!\n\n". $fullnames . ", added new announcement specifically for ". $year_lvl ." year " . $course . " student in gsck.online/announcements.php \n\n -Goldenstate College";
+        $message = "Announcement\nTitled: ".$title."\nCaption: ".$caption;
         $send->itexmo($receiver, $message, $smsAPICode, $smsAPIPassword);
-        }
+        
       
     }
 

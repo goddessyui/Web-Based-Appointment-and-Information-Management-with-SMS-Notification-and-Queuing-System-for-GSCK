@@ -257,7 +257,7 @@ if (isset($_POST['button_add_announcement'])) {
             include ('notification_announcement.php');
             echo '<script>$("#mess1").html("Added Successfully!");
             $("#form :input").prop("disabled", true);  
-            setInterval(function() { window.location.href="announcement_admin.php"; }, 1000);
+            window.location.href="announcement_admin.php";
             </script>';
         } else {
             echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
@@ -316,7 +316,7 @@ if (isset($_POST['button_add_announcement'])) {
                 include ('notification_announcement.php');
                 echo '<script>$("#mess1").html("Added Successfully!");
                 $("#form :input").prop("disabled", true); 
-                setInterval(function() { window.location.href="announcement_admin.php"; }, 1000);
+                window.location.href="announcement_admin.php";
                     </script>';
             } else {
                 echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';
@@ -347,7 +347,7 @@ if (isset($_POST['button_add_announcement'])) {
             include ('notification_announcement.php');
             echo '<script>$("#mess1").html("Added Successfully!");
             $("#form :input").prop("disabled", true); 
-            setInterval(function() { window.location.href="announcement_admin.php"; }, 1000);
+            window.location.href="announcement_admin.php";
             </script>';
         } else {
             echo '<script>$("#mess1").html("An Error occured, please reload the page!");</script>';     
