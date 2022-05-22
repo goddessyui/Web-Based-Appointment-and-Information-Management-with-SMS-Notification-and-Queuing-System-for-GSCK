@@ -145,6 +145,8 @@ include("backtotop.php");
     main {
        background: #EFF0F4;
        padding: 15px;
+       width: 80%;
+       margin: 0 auto;
     }
   
 
@@ -242,6 +244,7 @@ include("backtotop.php");
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 15px;
+    margin-top: 11vh;
   }
 
   main .announcement_header .add_announcement_btn button{
