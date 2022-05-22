@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+
 .main_container {
     width: 100%;
     height: 80vh;
@@ -22,7 +38,6 @@
 .homepage p {
     color: #fff;
     text-shadow: 1px 1px 5px #0005;
-    font-family: 'Roboto';
     font-size: 16px;
 }
 .homepage h1 {
@@ -31,7 +46,6 @@
     color: #fff;
     font-size: 46px;
     text-shadow: 1px 1px 5px #0005;
-    font-family: 'Times new roman';
 }
 .homepage button {
     background: #324E9E;
@@ -75,7 +89,6 @@
     color: #333;
 }
     .fetch_content h2 {
-        font-family: 'Times New Roman';
         font-size: 20px;
         margin-bottom: 20px;
     }
@@ -92,18 +105,15 @@
         justify-content: space-between;
     }
     .announcement_div .date_title h1 {
-        font-family: 'Roboto';
         font-size: 16px;
         margin-bottom: 5px;
     }
     .announcement_div .date_title h3 {
-        font-family: 'Roboto';
         font-weight: 500;
         font-size: 13px;
     }
     .announcement_div p {
         width: 80%;
-        font-family: 'Roboto Serif';
         font-size: 13px;
     }
     .fetch_content button {
@@ -116,6 +126,5 @@
         margin-top: 20px;
     }
     .fetch_content a {
-        font-family: 'Roboto';
         color: #eee;
     }
